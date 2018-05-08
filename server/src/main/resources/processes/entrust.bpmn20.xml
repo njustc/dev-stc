@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef" xmlns:modeler="http://activiti.com/modeler" modeler:version="1.0en" modeler:exportDateTime="20180505135041889" modeler:modelId="1001" modeler:modelVersion="1" modeler:modelLastUpdated="1525499432839">
+  <process id="entrust" name="entrust" isExecutable="true">
+    <startEvent id="start">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[startEvent1]]></modeler:editor-resource-id>
+      </extensionElements>
+    </startEvent>
+    <userTask id="submitentrust" name="提交委托" activiti:assignee="客户">
+      <extensionElements>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-AB045AD0-DCD5-45B2-ACD1-948752FB8A4E]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <userTask id="checkentrust" name="审核委托" activiti:assignee="市场部工作人员">
+      <extensionElements>
+        <activiti:formProperty id="Approval" name="Do you approve this request?" type="enum" required="true"/>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-BF1DA17F-62CD-42D0-8FB2-7C1AF61A3050]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="gate1">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-8E96F0AD-7B07-4123-A160-6D2E8F6F790D]]></modeler:editor-resource-id>
+      </extensionElements>
+    </exclusiveGateway>
+    <endEvent id="end">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-54A1159E-A89D-48E2-9387-F2D7C89BCD40]]></modeler:editor-resource-id>
+      </extensionElements>
+    </endEvent>
+    <sequenceFlow id="f1" sourceRef="start" targetRef="submitentrust">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-DF3EC220-C74A-4280-91B6-DDB4BF1B0CED]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="f2" sourceRef="submitentrust" targetRef="checkentrust">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-747CB676-4CC8-413C-B4A7-25FCE3B87866]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="f4" name="通过" sourceRef="gate1" targetRef="end">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-D43AE9A4-86AA-4C13-B9CF-8FAF5660FEC5]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Approval == 'true'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f5" name="不通过" sourceRef="gate1" targetRef="submitentrust">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-4791BF60-AD89-40AA-820E-EECED7315C5F]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Approval == 'false'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f3" sourceRef="checkentrust" targetRef="gate1">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-0C82B910-196A-4377-81F7-92075C5E6DFE]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_entrust">
+    <bpmndi:BPMNPlane bpmnElement="entrust" id="BPMNPlane_entrust">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="30.0" width="30.0" x="100.0" y="163.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="submitentrust" id="BPMNShape_submitentrust">
+        <omgdc:Bounds height="80.0" width="100.0" x="175.0" y="138.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="checkentrust" id="BPMNShape_checkentrust">
+        <omgdc:Bounds height="80.0" width="100.0" x="320.0" y="138.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="gate1" id="BPMNShape_gate1">
+        <omgdc:Bounds height="40.0" width="40.0" x="465.0" y="158.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
+        <omgdc:Bounds height="28.0" width="28.0" x="550.0" y="164.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="f1" id="BPMNEdge_f1">
+        <omgdi:waypoint x="130.0" y="178.0"/>
+        <omgdi:waypoint x="175.0" y="178.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f2" id="BPMNEdge_f2">
+        <omgdi:waypoint x="275.0" y="178.0"/>
+        <omgdi:waypoint x="320.0" y="178.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f3" id="BPMNEdge_f3">
+        <omgdi:waypoint x="420.0" y="178.2164502164502"/>
+        <omgdi:waypoint x="465.4130434782609" y="178.41304347826087"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f4" id="BPMNEdge_f4">
+        <omgdi:waypoint x="504.62179487179486" y="178.37820512820514"/>
+        <omgdi:waypoint x="550.0002839785394" y="178.0891701657418"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f5" id="BPMNEdge_f5">
+        <omgdi:waypoint x="485.5" y="158.5"/>
+        <omgdi:waypoint x="485.5" y="75.0"/>
+        <omgdi:waypoint x="225.0" y="75.0"/>
+        <omgdi:waypoint x="225.0" y="138.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
