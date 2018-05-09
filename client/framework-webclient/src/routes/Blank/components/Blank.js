@@ -19,15 +19,29 @@ export default class Blank extends Component
 			code: "U-C",
 			id: "0",
 			menuIcon: "idcard",
-			menuPath: "/user_pannel",
-			name: "委托(客户)"
+			menuPath: "/user_list",
+			name: "委托列表(客户)"
+		},
+		{
+			code: "U-C",
+			id: "1",
+			menuIcon: "idcard",
+			menuPath: "/user_content",
+			name: "委托内容(客户)"
 		},
 		{
 			code: "C-C",
-			id: "1",
+			id: "2",
 			menuIcon: "idcard",
-			menuPath: "/admin_pannel",
-			name: "委托(工作人员)"
+			menuPath: "/admin_list",
+			name: "委托列表(工作人员)"
+		},
+		{
+			code: "C-C",
+			id: "3",
+			menuIcon: "idcard",
+			menuPath: "/admin_content",
+			name: "委托内容(工作人员)"
 		}
 		]));
 		this.props.router.replace('/index');
