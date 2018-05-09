@@ -4,7 +4,7 @@ import { browserHistory, Router } from 'react-router'
 // 通过 Provider 将store传递给组件
 import { Provider } from 'react-redux'
 
-class AppContainer extends Component {
+class AppComponent extends Component {
 
   static propTypes = {
     routes : PropTypes.object.isRequired,
@@ -30,4 +30,4 @@ class AppContainer extends Component {
 
 }
 
-export default AppContainer
+export default AppComponent

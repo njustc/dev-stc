@@ -14,8 +14,6 @@ import Logo from '../assets/logo-fav.png';
 
 import {sysFetch} from 'utils/FetchUtil';
 
-import Animate from 'rc-animate';
-
 class LoginView extends React.Component 
 {
     constructor(props)
