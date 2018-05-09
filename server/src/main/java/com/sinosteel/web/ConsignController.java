@@ -1,8 +1,8 @@
 package com.sinosteel.web;
 
-import com.sinosteel.domain.Entrust;
+import com.sinosteel.domain.Consign;
 import com.sinosteel.framework.core.web.ResponseType;
-import com.sinosteel.service.EntrustService;
+import com.sinosteel.service.ConsignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,27 +13,27 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author LBW
  */
-@RequestMapping(value = "/entrust")
+@RequestMapping(value = "/consign")
 @RestController
-public class EntrustController extends BaseController
+public class ConsignController extends BaseController
 {
     @Autowired
-    private EntrustService entrustService;
+    private ConsignService consignService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Entrust queryEntrusts()
+    public Consign queryConsigns()
     {
-        Entrust entrust = entrustService.queryEntrusts();
+        Consign consign = consignService.queryConsigns();
 
-        return entrust;
+        return consign;
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Void> updateEntrust(@RequestBody Entrust entrust)
+    public ResponseEntity<Void> updateConsigns(@RequestBody Consign consign)
     {
 
         try {
-            entrustService.updateEntrusts(entrust);
+            consignService.updateConsigns(consign);
             return ResponseEntity.<Void>ok().build();
         }
         catch (Exception e)
@@ -44,28 +44,28 @@ public class EntrustController extends BaseController
 
     }
     @RequestMapping(value = "/state", method = RequestMethod.GET)
-    public String getEntrustState()
+    public String getConsignsState()
     {
-        return entrustService.getEntrustState();
+        return consignService.getConsignState();
     }
 
     @RequestMapping(value = "/state/submit", method = RequestMethod.GET)
-    public ResponseEntity<Void> submitEntrust()
+    public ResponseEntity<Void> submitConsign()
     {
-        entrustService.submitEntrust();
+       consignService.submitConsign();
         return ResponseEntity.<Void>ok().build();
     }
 
     @RequestMapping(value = "/state/pass", method = RequestMethod.GET)
-    public ResponseEntity<Void> passEntrust()
+    public ResponseEntity<Void> passConsign()
     {
-        entrustService.passEntrust();
+        consignService.passConsigns();
         return ResponseEntity.<Void>ok().build();
     }
     @RequestMapping(value = "/state/reject", method = RequestMethod.GET)
-    public ResponseEntity<Void> rejectEntrust()
+    public ResponseEntity<Void> rejectConsign()
     {
-        entrustService.rejectEntrust();
+        consignService.rejectConsign();
         return ResponseEntity.<Void>ok().build();
     }
 }
