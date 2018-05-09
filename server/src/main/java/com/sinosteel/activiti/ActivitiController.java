@@ -40,6 +40,7 @@ public class ActivitiController {
     public String startProcess(String id){
         ProcessInstance pi=processEngine.getRuntimeService().startProcessInstanceByKey(id);
         String processInstanceId = new String(pi.getProcessInstanceId());
+        System.out.println("startProcess success processInstanceId = " + processInstanceId);
         return processInstanceId;
     }
     //查询任务

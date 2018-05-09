@@ -47,8 +47,9 @@ CREATE TABLE `act_evt_log` (
 -- 表的结构 `tbl_sys_entrust`
 --
 
-CREATE TABLE `tbl_sys_entrust`(
-  `ENTRUST` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+CREATE TABLE `tbl_sys_consign`(
+  `CONSIGNATION` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CONSIGNID` varchar(255) COLLATE  utf8_bin NOT NULL,
   `ID` varchar(255) COLLATE utf8_bin NOT NULL,
   `CODE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
