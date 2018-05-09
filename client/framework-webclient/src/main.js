@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 // createStore创建状态管理树
-import createStore from 'STORE/createStore'
+import createStore from 'store/createStore'
 // 应用容器模块
-import AppContainer from 'CONTAINERS/AppContainer'
+import App from 'components/AppComponent'
 
-import {setStore} from 'STORE/globalStore'
+import {setStore} from 'store/globalStore'
 
 // 创建初始化状态容器，指向一个window全局变量
 const initialState = window.___INITIAL_STATE__
@@ -23,7 +23,7 @@ let render = () => {
   const routes = require('ROUTES').default(store)
   // 在根节点渲染页面
   ReactDOM.render(
-    <AppContainer store={store} routes={routes} />,
+    <App store={store} routes={routes} />,
     MOUNT_NODE
   )
 }

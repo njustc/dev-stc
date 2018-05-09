@@ -1,7 +1,7 @@
 import CoreLayout from 'layouts/CoreLayout'
 import CoreLayoutContainer from 'containers/CoreLayoutContainer'
 
-import AppContainer from 'containers/AppContainer'
+import AppComponent from 'components/AppComponent'
 
 import React from 'react'
 

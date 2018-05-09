@@ -38,8 +38,8 @@
       <file leaf-file-name="LoginView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/routes/Login/components/LoginView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="61" column="2" selection-start-line="61" selection-start-column="2" selection-end-line="61" selection-end-column="2" />
+            <state relative-caret-position="690">
+              <caret line="59" column="2" selection-start-line="59" selection-start-column="2" selection-end-line="59" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -48,7 +48,7 @@
         <entry file="file://$PROJECT_DIR$/src/layouts/CoreLayout.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="4140">
-              <caret line="289" column="12" selection-start-line="289" selection-start-column="12" selection-end-line="289" selection-end-column="12" />
+              <caret line="286" column="12" selection-start-line="286" selection-start-column="12" selection-end-line="286" selection-end-column="12" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
                 <element signature="e#371#404#0" expanded="true" />
@@ -87,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/src/routes/System/subviews/UserList/components/UserTreeView.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1975">
-              <caret line="134" column="11" lean-forward="true" selection-start-line="134" selection-start-column="11" selection-end-line="134" selection-end-column="11" />
+              <caret line="134" column="11" selection-start-line="134" selection-start-column="11" selection-end-line="134" selection-end-column="11" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -140,9 +140,6 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
@@ -331,12 +328,12 @@
       <workItem from="1525672853704" duration="8354000" />
       <workItem from="1525703492779" duration="1269000" />
       <workItem from="1525739346091" duration="2367000" />
-      <workItem from="1525834621422" duration="1351000" />
+      <workItem from="1525834621422" duration="1680000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13341000" />
+    <option name="totallyTimeSpent" value="13670000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="265" y="118" width="1280" height="709" extended-state="0" />
@@ -631,8 +628,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/Login/components/LoginView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="61" column="2" selection-start-line="61" selection-start-column="2" selection-end-line="61" selection-end-column="2" />
+        <state relative-caret-position="690">
+          <caret line="59" column="2" selection-start-line="59" selection-start-column="2" selection-end-line="59" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -652,7 +649,7 @@
     <entry file="file://$PROJECT_DIR$/src/layouts/CoreLayout.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4140">
-          <caret line="289" column="12" selection-start-line="289" selection-start-column="12" selection-end-line="289" selection-end-column="12" />
+          <caret line="286" column="12" selection-start-line="286" selection-start-column="12" selection-end-line="286" selection-end-column="12" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
             <element signature="e#371#404#0" expanded="true" />
@@ -680,7 +677,7 @@
     <entry file="file://$PROJECT_DIR$/src/routes/System/subviews/UserList/components/UserTreeView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1975">
-          <caret line="134" column="11" lean-forward="true" selection-start-line="134" selection-start-column="11" selection-end-line="134" selection-end-column="11" />
+          <caret line="134" column="11" selection-start-line="134" selection-start-column="11" selection-end-line="134" selection-end-column="11" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>

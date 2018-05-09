@@ -9,9 +9,6 @@ const { Header, Content, Footer, Sider } = Layout;
 const TabPane = Tabs.TabPane;
 const FormItem = Form.Item;
 
-import Animate from 'rc-animate';
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-
 import Logo from './assets/logo.png';
 
 import tabsmap from 'routes/tabsmap';
