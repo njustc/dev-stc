@@ -1,19 +1,10 @@
-import CoreLayout from 'layouts/CoreLayout'
 import CoreLayoutContainer from 'containers/CoreLayoutContainer'
 
-import AppComponent from 'components/AppComponent'
-
 import React from 'react'
-
-import {setStore} from 'STORE/globalStore'
-
-import Animate from 'rc-animate'
 
 import Blank from './Blank';
 
 import LoginContainer from './Login';
-
-import tabsmap from 'routes/tabsmap';
 
 // 配置路由
 export const createRoutes = (store) => 

@@ -11,7 +11,7 @@ const FormItem = Form.Item;
 
 import Logo from './assets/logo.png';
 
-import tabsmap from 'routes/tabsmap';
+import tabsMap from 'routes/tabsMap';
 
 import {logoutService, resetPasswordService} from 'services';
 import {sysFetch} from 'utils/FetchUtil';
@@ -245,7 +245,7 @@ export default class CoreLayout extends Component
 
 	render()
 	{
-		let pages = tabsmap;
+		let pages = tabsMap;
 		let menus = this.props.modules;
 
 		this.handleClick = (e) =>

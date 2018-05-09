@@ -1,7 +1,7 @@
 import UserTreeView from 'routes/System/subviews/UserList/components/UserTreeView';
 import OrganizationTreeView from 'routes/System/subviews/OrganizationTree/components/OrganizationTreeView';
 
-const tabsmap = 
+const tabsMap =
 [
     {
         path: '/user_pannel',
@@ -13,4 +13,4 @@ const tabsmap =
     }
 ]
 
-export default tabsmap
+export default tabsMap
