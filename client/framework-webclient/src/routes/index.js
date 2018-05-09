@@ -47,7 +47,7 @@ export const createRoutes = (store) =>
                     Personnel,
                     Journal,
                     Contract,
-                    System
+                    Consign
                 ]
             }
         ]

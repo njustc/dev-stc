@@ -1,25 +1,25 @@
-import UserTreeView from 'routes/System/subviews/UserList/components/UserTreeView';
-import UserListView from 'routes/System/subviews/UserList/components/UserListView';
-import OrganizationTreeView from 'routes/System/subviews/OrganizationTree/components/OrganizationTreeView';
-import OrganizationListView from 'routes/System/subviews/OrganizationTree/components/OrganizationListView';
+import UserConsignContentView from 'routes/Consign/components/UserConsignContentView';
+import UserConsignListView from 'routes/Consign/components/UserConsignListView';
+import StaffConsignContentView from 'routes/Consign/components/StaffConsignContentView';
+import StaffConsignListView from 'routes/Consign/components/StaffConsignListView';
 
 const tabsMap =
 [
 	{
 		path: '/user_list',
-		component: UserListView
+		component: UserConsignListView
 	},
     {
         path: '/user_content',
-        component: UserTreeView
+        component: UserConsignContentView
     },
     {
         path: '/admin_list',
-        component: OrganizationListView
+        component: StaffConsignListView
     },
     {
     	path: '/admin_content',
-    	component: OrganizationTreeView
+    	component: StaffConsignContentView
     }
 ]
 
