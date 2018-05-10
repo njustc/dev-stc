@@ -10,7 +10,7 @@ export default class UserConsignListView extends Component {
 
     render() {
         return (
-            <h1>Enjoy Coding!</h1>
+            <h1>4Enjoy Coding!</h1>
         );
     }
 }
