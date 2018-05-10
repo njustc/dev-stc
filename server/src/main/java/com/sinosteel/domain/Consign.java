@@ -14,8 +14,8 @@ public class Consign extends BaseEntity{
     @Column(name = "CONSIGNATION")
     private String consignation;
 
-    @Column(name = "CONSIGNID")
-    private String consignid;
+    @Column(name = "PROCESS_INSTANCE_ID")
+    private String processInstanceID;
 
     public String getConsignation() {
         return consignation;
@@ -25,9 +25,9 @@ public class Consign extends BaseEntity{
         this.consignation = consignation;
     }
 
-    public String getConsignid()
+    public String getProcessInstanceID()
     {
-        return consignid;
+        return processInstanceID;
     }
-    public void setConsignid(String consignid){this.consignid = consignid;}
+    public void setProcessInstanceID(String processInstanceID){this.processInstanceID = processInstanceID;}
 }

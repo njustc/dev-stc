@@ -8,5 +8,4 @@ import com.sinosteel.domain.Consign;
 
 public interface ConsignRepository extends BaseRepository<Consign>{
     Consign findById(String id);
-    Consign findByConsignid(String consignid);
 }
