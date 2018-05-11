@@ -6,15 +6,17 @@
         <activiti:formProperty id="ConsignID" name="the ID of the trust" type="String" required="true"/>
       </extensionElements>
     </startEvent>
-    <userTask id="submitentrust" name="提交委托" activiti:assignee="${UserID}">
+    <userTask id="submitentrust" name="提交委托" activiti:assignee="${ClientID}" >
       <extensionElements>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-AB045AD0-DCD5-45B2-ACD1-948752FB8A4E]]></modeler:editor-resource-id>
       </extensionElements>
     </userTask>
-    <userTask id="checkentrust" name="审核委托" activiti:assignee="${WorkerID}">
+    <userTask id="checkentrust" name="审核委托">
       <extensionElements>
+        <activiti:taskListener event="create"
+                               class="com.sinosteel.activiti.TaskListenerlmpl"></activiti:taskListener>
         <activiti:formProperty id="Approval" name="Do you approve this request?" type="enum" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>

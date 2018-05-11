@@ -1,6 +1,5 @@
 package com.sinosteel.activiti;
 
-import com.oracle.tools.packager.Log;
 import com.sinosteel.FrameworkApplication;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,18 +20,41 @@ public class ConsignActivitiTest {
 
     @Before
     public void deployConsignActiviti() {
-        Log.debug("start to deploy");
         consignActiviti.deploy();
     }
     @Test
     public void newConsign() {
 
-        consignActiviti.NewConsign("0", "0", "0");
+        String processInstanceID =  consignActiviti.createConsignProcess("0", "0");
+        assertNotNull(processInstanceID);
+        System.out.println("委托实例成功创建。 ProcessInstanceID: " + processInstanceID);
+
+        String queryResult = consignActiviti.getProcessState(processInstanceID);
+        assertNotNull(queryResult);
+        System.out.println(queryResult);
+
+        System.out.println("正在测试提交委托");
+        consignActiviti.submitConsign(processInstanceID, "0");
+        System.out.println(consignActiviti.getProcessState(processInstanceID));
+
+        consignActiviti.setWorker(processInstanceID, "1");
+
+        System.out.println("正在测试否决委托");
+        consignActiviti.checkConsign(false, processInstanceID, "1" );
+        System.out.println(consignActiviti.getProcessState(processInstanceID));
+
+        System.out.println("正在测试提交委托");
+        consignActiviti.submitConsign(processInstanceID, "0");
+        System.out.println(consignActiviti.getProcessState(processInstanceID));
+
+        consignActiviti.setWorker(processInstanceID, "1");
+
+        System.out.println("正在测试通过委托");
+        consignActiviti.checkConsign(true, processInstanceID, "1" );
+        System.out.println(consignActiviti.getProcessState(processInstanceID));
     }
 
-    @Test
-    public void getProcessState() {
-    }
+
 
     @Test
     public void getUserTasks() {

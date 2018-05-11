@@ -21,8 +21,8 @@ public class ConsignService extends BaseService<Consign> {
     @Autowired
     private ConsignActiviti consignActiviti;
 
-    public String id = new String();
-    boolean initial = true;
+    public String id = "";
+    private boolean initial = true;
     //为了使每次初始化时一个新的委托，暂时添加一个bool变量
     public Consign queryConsigns() {
         if(initial)
@@ -33,7 +33,7 @@ public class ConsignService extends BaseService<Consign> {
             id = uid;
 
             consignActiviti.deploy();
-            String pid = consignActiviti.NewConsign(id, "", "");
+            String pid = consignActiviti.createConsignProcess(id, "");
 
             Consign consign = new Consign();
             consign.setId(uid);

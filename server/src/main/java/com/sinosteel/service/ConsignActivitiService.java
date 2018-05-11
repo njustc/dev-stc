@@ -20,7 +20,7 @@ public class ConsignActivitiService
 
     public JSONObject queryConsignState(String processInstanceID)
     {
-        String state = consignActiviti.GetProcessState(processInstanceID, "");
+        String state = consignActiviti.getProcessState(processInstanceID);
 
         JSONObject queryResultJson = new JSONObject();
         queryResultJson.put("processInstanceID",  processInstanceID);
