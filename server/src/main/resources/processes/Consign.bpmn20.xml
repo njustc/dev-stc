@@ -1,20 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef" xmlns:modeler="http://activiti.com/modeler" modeler:version="1.0en" modeler:exportDateTime="20180505135041889" modeler:modelId="1001" modeler:modelVersion="1" modeler:modelLastUpdated="1525499432839">
-  <process id="entrust" name="entrust" isExecutable="true">
+  <process id="Consign" name="entrust" isExecutable="true">
     <startEvent id="start">
       <extensionElements>
-        <modeler:editor-resource-id><![CDATA[startEvent1]]></modeler:editor-resource-id>
+        <activiti:formProperty id="ConsignID" name="the ID of the trust" type="String" required="true"/>
       </extensionElements>
     </startEvent>
-    <userTask id="submitentrust" name="提交委托" activiti:assignee="客户">
+    <userTask id="submitentrust" name="提交委托" activiti:assignee="${ClientID}" >
       <extensionElements>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-AB045AD0-DCD5-45B2-ACD1-948752FB8A4E]]></modeler:editor-resource-id>
       </extensionElements>
     </userTask>
-    <userTask id="checkentrust" name="审核委托" activiti:assignee="市场部工作人员">
+    <userTask id="checkentrust" name="审核委托">
       <extensionElements>
+        <activiti:taskListener event="create"
+                               class="com.sinosteel.activiti.TaskListenerlmpl"></activiti:taskListener>
         <activiti:formProperty id="Approval" name="Do you approve this request?" type="enum" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
@@ -60,7 +62,7 @@
     </sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_entrust">
-    <bpmndi:BPMNPlane bpmnElement="entrust" id="BPMNPlane_entrust">
+    <bpmndi:BPMNPlane bpmnElement="Consign" id="BPMNPlane_entrust">
       <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
         <omgdc:Bounds height="30.0" width="30.0" x="100.0" y="163.0"/>
       </bpmndi:BPMNShape>

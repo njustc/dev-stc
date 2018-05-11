@@ -36,29 +36,5 @@ public class ConsignServiceTests {
         Consign Consign2 = consignService.queryConsigns();
         System.out.println("获取的委托内容为 ConsignString = " + Consign2.getConsignation());
     }
-    @Test
-    public void testSubmitAndCheckConsign(){
-        System.out.println("委托提交测试");
-        consignService.submitConsign();
-        System.out.println("委托提交测试完成");
-
-        System.out.println("委托状态查询测试");
-        System.out.println("当前委托状态为: "+consignService.getConsignState());
-        System.out.println("委托状态查询测试完成");
-
-        System.out.println("委托未通过测试");
-        consignService.rejectConsign();
-        System.out.println("委托未通过测试完成");
-
-        System.out.println("委托状态查询测试");
-        System.out.println("当前委托状态为: "+ consignService.getConsignState());
-        System.out.println("委托状态查询测试完成");
-    }
-    @Test
-    public void testGetConsignState(){
-        System.out.println("委托状态查询测试");
-        System.out.println("当前委托状态为: " + consignService.getConsignState());
-        System.out.println("委托状态查询测试完成");
-    }
 
 }
