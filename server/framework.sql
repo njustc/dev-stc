@@ -791,31 +791,35 @@ CREATE TABLE `tbl_sys_function` (
 --
 
 INSERT INTO `tbl_sys_function` (`id`, `altered_time`, `altered_user_id`, `code`, `created_time`, `created_user_id`, `function_code`, `menu_id`, `name`, `function_path`, `function_string`) VALUES
-('0-0-F0', NULL, NULL, '0-0-F0', NULL, NULL, '0-0-F0', '0-0', '新增用户', '/addUser', 'addUser'),
-('0-0-F1', NULL, NULL, '0-0-F1', NULL, NULL, '0-0-F1', '0-0', '修改用户', '/editUser', 'editUser'),
-('0-0-F2', NULL, NULL, '0-0-F2', NULL, NULL, '0-0-F2', '0-0', '删除用户', '/deleteUser', 'deleteUser'),
-('0-0-F3', NULL, NULL, '0-0-F3', NULL, NULL, '0-0-F3', '0-0', '查询用户', '/queryUsers', 'queryUsers'),
-('0-1-F0', NULL, NULL, '0-1-F0', NULL, NULL, '0-1-F0', '0-1', '新增组织', '/addOrganization', 'addOrganization'),
-('0-1-F1', NULL, NULL, '0-1-F1', NULL, NULL, '0-1-F1', '0-1', '修改组织', '/editOrganization', 'editOrganization'),
-('0-1-F2', NULL, NULL, '0-1-F2', NULL, NULL, '0-1-F2', '0-1', '删除组织', '/deleteOrganization', 'deleteOrganization'),
-('0-1-F3', NULL, NULL, '0-1-F3', NULL, NULL, '0-1-F3', '0-1', '新增角色', '/addRole', 'addRole'),
-('0-1-F4', NULL, NULL, '0-1-F4', NULL, NULL, '0-1-F4', '0-1', '修改角色', '/editRole', 'editRole'),
-('0-1-F5', NULL, NULL, '0-1-F5', NULL, NULL, '0-1-F4', '0-1', '删除角色', '/deleteRole', 'deleteRole'),
-('0-2-F0', NULL, NULL, '0-2-F0', NULL, NULL, '0-2-F0', '0-2', '设置权限', NULL, 'placeholder0'),
-('1-0-F0', NULL, NULL, '1-0-F0', NULL, NULL, '1-0-F0', '1-0', '新增项目', '/addProject', 'addProject'),
-('1-0-F1', NULL, NULL, '1-0-F1', NULL, NULL, '1-0-F1', '1-0', '修改项目', '/editProject', 'editProject'),
-('1-0-F2', NULL, NULL, '1-0-F2', NULL, NULL, '1-0-F2', '1-0', '删除项目', '/deleteProject', 'deleteProject'),
-('1-0-F3', NULL, NULL, '1-0-F3', NULL, NULL, '1-0-F3', '1-0', '新增课题', '/addTopic', 'addTopic'),
-('1-0-F4', NULL, NULL, '1-0-F4', NULL, NULL, '1-0-F4', '1-0', '修改课题', '/editTopic', 'editTopic'),
-('1-0-F5', NULL, NULL, '1-0-F5', NULL, NULL, '1-0-F5', '1-0', '删除课题', '/deleteTopic', 'deleteTopic'),
-('1-0-F6', NULL, NULL, '1-0-F6', NULL, NULL, '1-0-F6', '1-0', '新增关键节点', '/addMilestone', 'addMilestone'),
-('1-0-F7', NULL, NULL, '1-0-F7', NULL, NULL, '1-0-F7', '1-0', '修改关键节点', '/editMilestone', 'editMilestone'),
-('1-0-F8', NULL, NULL, '1-0-F8', NULL, NULL, '1-0-F8', '1-0', '删除关键节点', '/deleteMilestone', 'deleteMilestone'),
-('1-0-F9', NULL, NULL, '1-0-F9', NULL, NULL, '1-0-F9', '1-0', '查询项目', '/queryProjects', 'queryProjects'),
-('4-0-F0', NULL, NULL, '4-0-F0', NULL, NULL, '4-0-F0', '4-0', '新增国家标准', '/addStandard', 'addStandard'),
-('4-0-F1', NULL, NULL, '4-0-F1', NULL, NULL, '4-0-F1', '4-0', '删除国家标准', '/deleteStandard', 'deleteStandard'),
-('4-0-F2', NULL, NULL, '4-0-F2', NULL, NULL, '4-0-F2', '4-0', '修改国家标准', '/editStandard', 'editStandard'),
-('4-0-F3', NULL, NULL, '4-0-F3', NULL, NULL, '4-0-F3', '4-0', '查询国家标准', '/queryStandards', 'queryStandards');
+-- ('0-0-F0', NULL, NULL, '0-0-F0', NULL, NULL, '0-0-F0', '0-0', '新增用户', '/addUser', 'addUser'),
+-- ('0-0-F1', NULL, NULL, '0-0-F1', NULL, NULL, '0-0-F1', '0-0', '修改用户', '/editUser', 'editUser'),
+-- ('0-0-F2', NULL, NULL, '0-0-F2', NULL, NULL, '0-0-F2', '0-0', '删除用户', '/deleteUser', 'deleteUser'),
+-- ('0-0-F3', NULL, NULL, '0-0-F3', NULL, NULL, '0-0-F3', '0-0', '查询用户', '/queryUsers', 'queryUsers'),
+-- ('0-1-F0', NULL, NULL, '0-1-F0', NULL, NULL, '0-1-F0', '0-1', '新增组织', '/addOrganization', 'addOrganization'),
+-- ('0-1-F1', NULL, NULL, '0-1-F1', NULL, NULL, '0-1-F1', '0-1', '修改组织', '/editOrganization', 'editOrganization'),
+-- ('0-1-F2', NULL, NULL, '0-1-F2', NULL, NULL, '0-1-F2', '0-1', '删除组织', '/deleteOrganization', 'deleteOrganization'),
+-- ('0-1-F3', NULL, NULL, '0-1-F3', NULL, NULL, '0-1-F3', '0-1', '新增角色', '/addRole', 'addRole'),
+-- ('0-1-F4', NULL, NULL, '0-1-F4', NULL, NULL, '0-1-F4', '0-1', '修改角色', '/editRole', 'editRole'),
+-- ('0-1-F5', NULL, NULL, '0-1-F5', NULL, NULL, '0-1-F4', '0-1', '删除角色', '/deleteRole', 'deleteRole'),
+-- ('0-2-F0', NULL, NULL, '0-2-F0', NULL, NULL, '0-2-F0', '0-2', '设置权限', NULL, 'placeholder0'),
+-- ('1-0-F0', NULL, NULL, '1-0-F0', NULL, NULL, '1-0-F0', '1-0', '新增项目', '/addProject', 'addProject'),
+-- ('1-0-F1', NULL, NULL, '1-0-F1', NULL, NULL, '1-0-F1', '1-0', '修改项目', '/editProject', 'editProject'),
+-- ('1-0-F2', NULL, NULL, '1-0-F2', NULL, NULL, '1-0-F2', '1-0', '删除项目', '/deleteProject', 'deleteProject'),
+-- ('1-0-F3', NULL, NULL, '1-0-F3', NULL, NULL, '1-0-F3', '1-0', '新增课题', '/addTopic', 'addTopic'),
+-- ('1-0-F4', NULL, NULL, '1-0-F4', NULL, NULL, '1-0-F4', '1-0', '修改课题', '/editTopic', 'editTopic'),
+-- ('1-0-F5', NULL, NULL, '1-0-F5', NULL, NULL, '1-0-F5', '1-0', '删除课题', '/deleteTopic', 'deleteTopic'),
+-- ('1-0-F6', NULL, NULL, '1-0-F6', NULL, NULL, '1-0-F6', '1-0', '新增关键节点', '/addMilestone', 'addMilestone'),
+-- ('1-0-F7', NULL, NULL, '1-0-F7', NULL, NULL, '1-0-F7', '1-0', '修改关键节点', '/editMilestone', 'editMilestone'),
+-- ('1-0-F8', NULL, NULL, '1-0-F8', NULL, NULL, '1-0-F8', '1-0', '删除关键节点', '/deleteMilestone', 'deleteMilestone'),
+-- ('1-0-F9', NULL, NULL, '1-0-F9', NULL, NULL, '1-0-F9', '1-0', '查询项目', '/queryProjects', 'queryProjects'),
+-- ('4-0-F0', NULL, NULL, '4-0-F0', NULL, NULL, '4-0-F0', '4-0', '新增国家标准', '/addStandard', 'addStandard'),
+-- ('4-0-F1', NULL, NULL, '4-0-F1', NULL, NULL, '4-0-F1', '4-0', '删除国家标准', '/deleteStandard', 'deleteStandard'),
+-- ('4-0-F2', NULL, NULL, '4-0-F2', NULL, NULL, '4-0-F2', '4-0', '修改国家标准', '/editStandard', 'editStandard'),
+-- ('4-0-F3', NULL, NULL, '4-0-F3', NULL, NULL, '4-0-F3', '4-0', '查询国家标准', '/queryStandards', 'queryStandards');
+('0-0-F0',NULL,NULL,'0-0-F0',NULL,NULL,'0-0-F0','0-0','新增委托','/addConsign','addConsign'),
+('0-0-F1',NULL,NULL,'0-0-F1',NULL,NULL,'0-0-F1','0-0','修改委托','/editConsign','editConsign'),
+('0-0-F2',NULL,NULL,'0-0-F2',NULL,NULL,'0-0-F2','0-0','删除委托','/deleteConsign','deleteConsign'),
+('0-0-F3',NULL,NULL,'0-0-F3',NULL,NULL,'0-0-F3','0-0','查询委托','/queryConsign','queryConsign');
 
 -- --------------------------------------------------------
 
@@ -842,18 +846,19 @@ CREATE TABLE `tbl_sys_menu` (
 --
 
 INSERT INTO `tbl_sys_menu` (`ID`, `CODE`, `MENU_PATH`, `MENU_ICON`, `MODULE_ID`, `PARENT_ID`, `altered_time`, `altered_user_id`, `created_time`, `created_user_id`, `name`) VALUES
-('0-0', '0-0', '/user_list', 'idcard', '0', NULL, NULL, NULL, NULL, NULL, '用户管理'),
-('0-1', '0-1', '/organization_tree', 'usb', '0', NULL, NULL, NULL, NULL, NULL, '组织管理'),
-('0-2', '0-2', '/role_list', 'key', '0', NULL, NULL, NULL, NULL, NULL, '角色管理'),
-('1-0', '1-0', '/project_list', 'database', '1', NULL, NULL, NULL, NULL, NULL, '项目信息'),
-('1-1', '1-1', NULL, 'laptop', '1', NULL, NULL, NULL, NULL, NULL, '项目日志'),
-('1-1-0', '1-1-0', '/personnel_journals', 'tag-o', NULL, '1-1', NULL, NULL, NULL, NULL, '个人日志信息'),
-('1-1-1', '1-1-1', '/journal_list', 'tags', NULL, '1-1', NULL, NULL, NULL, NULL, '项目日志信息'),
-('1-1-2', '1-1-2', '/journal_statistics', 'line-chart', NULL, '1-1', NULL, NULL, NULL, NULL, '日志信息统计'),
-('2-0', '2-0', '/personnel_list', 'solution', '2', NULL, NULL, NULL, NULL, NULL, '员工信息'),
-('3-0', '3-0', '/contract_list', 'red-envelope', '3', NULL, NULL, NULL, NULL, NULL, '合同信息'),
-('3-1', '3-1', '/customer_list', 'contacts', '3', NULL, NULL, NULL, NULL, NULL, '客户信息'),
-('4-0', '4-0', '/standard_list', 'book', '4', NULL, NULL, NULL, NULL, NULL, '国家标准规范');
+-- ('0-0', '0-0', '/user_list', 'idcard', '0', NULL, NULL, NULL, NULL, NULL, '用户管理'),
+-- ('0-1', '0-1', '/organization_tree', 'usb', '0', NULL, NULL, NULL, NULL, NULL, '组织管理'),
+-- ('0-2', '0-2', '/role_list', 'key', '0', NULL, NULL, NULL, NULL, NULL, '角色管理'),
+-- ('1-0', '1-0', '/project_list', 'database', '1', NULL, NULL, NULL, NULL, NULL, '项目信息'),
+-- ('1-1', '1-1', NULL, 'laptop', '1', NULL, NULL, NULL, NULL, NULL, '项目日志'),
+-- ('1-1-0', '1-1-0', '/personnel_journals', 'tag-o', NULL, '1-1', NULL, NULL, NULL, NULL, '个人日志信息'),
+-- ('1-1-1', '1-1-1', '/journal_list', 'tags', NULL, '1-1', NULL, NULL, NULL, NULL, '项目日志信息'),
+-- ('1-1-2', '1-1-2', '/journal_statistics', 'line-chart', NULL, '1-1', NULL, NULL, NULL, NULL, '日志信息统计'),
+-- ('2-0', '2-0', '/personnel_list', 'solution', '2', NULL, NULL, NULL, NULL, NULL, '员工信息'),
+-- ('3-0', '3-0', '/contract_list', 'red-envelope', '3', NULL, NULL, NULL, NULL, NULL, '合同信息'),
+-- ('3-1', '3-1', '/customer_list', 'contacts', '3', NULL, NULL, NULL, NULL, NULL, '客户信息'),
+-- ('4-0', '4-0', '/standard_list', 'book', '4', NULL, NULL, NULL, NULL, NULL, '国家标准规范');
+('0-0','0-0','/consign_list','database','0',NULL,NULL,NULL,NULL,NULL,'委托列表');
 
 -- --------------------------------------------------------
 
@@ -883,7 +888,7 @@ INSERT INTO `tbl_sys_module` (`id`, `code`, `module_icon`, `module_path`, `alter
 -- ('2', 'PERSONNEL', 'team', '/index/personnel', NULL, NULL, NULL, NULL, '人力资源'),
 -- ('3', 'CONTRACT', 'bank', '/index/contract', NULL, NULL, NULL, NULL, '经营管理'),
 -- ('4', 'KNOWLEDGE', 'global', '/index/global', NULL, NULL, NULL, NULL, '知识库');
-('0', 'CONSIGNATION', 'setting')
+('0', 'CONSIGN', 'eye-o','/index/consign',NULL,NULL,NULL,NULL,'委托');
 -- --------------------------------------------------------
 
 --
@@ -1028,7 +1033,9 @@ CREATE TABLE `tbl_sys_role` (
 
 INSERT INTO `tbl_sys_role` (`id`, `altered_time`, `altered_user_id`, `code`, `created_time`, `created_user_id`, `role_name`, `name`, `description`, `role_string`) VALUES
 ('0', '11:28:46', '0', '0', NULL, '0', '超级管理员', NULL, NULL, 'super_admin'),
-('1fb22ed9-2261-4cac-9884-d5dc2a895648', NULL, NULL, NULL, '2017-05-18 09:21:30', '0', '普通用户', NULL, NULL, 'normal_user');
+-- ('1fb22ed9-2261-4cac-9884-d5dc2a895648', NULL, NULL, NULL, '2017-05-18 09:21:30', '0', '普通用户', NULL, NULL, 'normal_user');
+('1',NULL,'1','1',NULL,'1','市场部工作人员',NULL,NULL,'marketing_user'),
+('2',NULL,'2','2',NULL,'2','普通客户',NULL,NULL,'normal_customer');
 
 -- --------------------------------------------------------
 
@@ -1046,35 +1053,40 @@ CREATE TABLE `tbl_sys_role_function` (
 --
 
 INSERT INTO `tbl_sys_role_function` (`function_id`, `role_id`) VALUES
-('1-0-F0', '0'),
-('1-0-F1', '0'),
-('1-0-F2', '0'),
-('1-0-F3', '0'),
-('1-0-F4', '0'),
-('1-0-F5', '0'),
-('1-0-F6', '0'),
-('1-0-F7', '0'),
-('1-0-F8', '0'),
-('1-0-F9', '0'),
-('4-0-F0', '0'),
-('4-0-F1', '0'),
-('4-0-F2', '0'),
-('0-0-F0', '0'),
-('0-0-F1', '0'),
-('0-0-F2', '0'),
-('0-0-F3', '0'),
-('0-1-F0', '0'),
-('0-1-F1', '0'),
-('0-1-F2', '0'),
-('0-1-F3', '0'),
-('0-1-F4', '0'),
-('0-1-F5', '0'),
-('0-2-F0', '0'),
-('1-0-F9', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
-('4-0-F0', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
-('4-0-F1', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
-('4-0-F2', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
-('4-0-F3', '1fb22ed9-2261-4cac-9884-d5dc2a895648');
+-- ('1-0-F0', '0'),
+-- ('1-0-F1', '0'),
+-- ('1-0-F2', '0'),
+-- ('1-0-F3', '0'),
+-- ('1-0-F4', '0'),
+-- ('1-0-F5', '0'),
+-- ('1-0-F6', '0'),
+-- ('1-0-F7', '0'),
+-- ('1-0-F8', '0'),
+-- ('1-0-F9', '0'),
+-- ('4-0-F0', '0'),
+-- ('4-0-F1', '0'),
+-- ('4-0-F2', '0'),
+-- ('0-0-F0', '0'),
+-- ('0-0-F1', '0'),
+-- ('0-0-F2', '0'),
+-- ('0-0-F3', '0'),
+-- ('0-1-F0', '0'),
+-- ('0-1-F1', '0'),
+-- ('0-1-F2', '0'),
+-- ('0-1-F3', '0'),
+-- ('0-1-F4', '0'),
+-- ('0-1-F5', '0'),
+-- ('0-2-F0', '0'),
+-- ('1-0-F9', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
+-- ('4-0-F0', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
+-- ('4-0-F1', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
+-- ('4-0-F2', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
+-- ('4-0-F3', '1fb22ed9-2261-4cac-9884-d5dc2a895648');
+('0-0-F3','1'),
+('0-0-F0','2'),
+('0-0-F1','2'),
+('0-0-F2','2'),
+('0-0-F3','2');
 
 -- --------------------------------------------------------
 
@@ -1093,8 +1105,10 @@ CREATE TABLE `tbl_sys_role_user` (
 
 INSERT INTO `tbl_sys_role_user` (`user_id`, `role_id`) VALUES
 ('0', '0'),
-('22e37288-112e-4c82-a2a5-a1b9eb6f019c', '1fb22ed9-2261-4cac-9884-d5dc2a895648');
-
+-- ('22e37288-112e-4c82-a2a5-a1b9eb6f019c', '1fb22ed9-2261-4cac-9884-d5dc2a895648');
+('1','1'),
+('2','2'),
+('3','2');
 -- --------------------------------------------------------
 
 --
@@ -1120,8 +1134,10 @@ CREATE TABLE `tbl_sys_user` (
 
 INSERT INTO `tbl_sys_user` (`ID`, `CODE`, `USERNAME`, `PASSWORD`, `altered_time`, `altered_user_id`, `created_time`, `created_user_id`, `name`, `salt`) VALUES
 ('0', '0', 'admin', '21232F297A57A5A743894A0E4A801FC3', NULL, NULL, NULL, '0', 'DimitriZhao', NULL),
-('22e37288-112e-4c82-a2a5-a1b9eb6f019c', NULL, 'test', 'E10ADC3949BA59ABBE56E057F20F883E', '09:37:05', '0', '2017-06-14 09:36:39', '0', 'TEST', NULL);
-
+-- ('22e37288-112e-4c82-a2a5-a1b9eb6f019c', NULL, 'test', 'E10ADC3949BA59ABBE56E057F20F883E', '09:37:05', '0', '2017-06-14 09:36:39', '0', 'TEST', NULL);
+('1','1','marketing','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'1','Marketing',NULL),
+('2','2','customer1','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'2','Customer1',NULL),
+('3','3','customer2','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'3','Customer2',NULL);
 -- --------------------------------------------------------
 
 --

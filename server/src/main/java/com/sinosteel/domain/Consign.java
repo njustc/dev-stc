@@ -1,5 +1,7 @@
 package com.sinosteel.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import javax.persistence.*;
 
 
@@ -16,6 +18,12 @@ public class Consign extends BaseEntity{
 
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
+
+//    @ManyToOne
+//    @JoinColumn(name = "USER_ID",foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT))
+//    @JSONField(serialize = false)
+//    private User user;
+
 
     public String getConsignation() {
         return consignation;
