@@ -10,7 +10,7 @@ export default class UserConsignContentView extends Component {
 
     render() {
         return (
-        	<h1>Enjoy Coding!</h1>
+        	<h1>3Enjoy Coding!</h1>
         );
     }
 }
