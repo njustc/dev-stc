@@ -10,7 +10,7 @@ export default class StaffConsignContentView extends Component {
 
     render() {
         return (
-            <h1>Enjoy Coding!</h1>
+            <h1>1Enjoy Coding!</h1>
         );
     }
 }

@@ -4,7 +4,6 @@ import com.alibaba.fastjson.annotation.JSONField;
 
 import javax.persistence.*;
 import java.util.List;
-
 @Entity
 @Table(name = "TBL_SYS_ROLE")
 public class Role extends BaseEntity
@@ -30,7 +29,7 @@ public class Role extends BaseEntity
 	})
 	@JSONField(deserialize = false)
 	private List<Function> functions;
-	
+
 	public String getRoleName() {
 		return roleName;
 	}
