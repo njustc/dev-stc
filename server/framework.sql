@@ -878,12 +878,12 @@ CREATE TABLE `tbl_sys_module` (
 --
 
 INSERT INTO `tbl_sys_module` (`id`, `code`, `module_icon`, `module_path`, `altered_time`, `altered_user_id`, `created_time`, `created_user_id`, `name`) VALUES
-('0', 'SYSTEM', 'setting', '/index/system', NULL, NULL, NULL, NULL, '系统管理'),
-('1', 'PROJECT', 'eye-o', '/index/project', NULL, NULL, NULL, NULL, '项目监理'),
-('2', 'PERSONNEL', 'team', '/index/personnel', NULL, NULL, NULL, NULL, '人力资源'),
-('3', 'CONTRACT', 'bank', '/index/contract', NULL, NULL, NULL, NULL, '经营管理'),
-('4', 'KNOWLEDGE', 'global', '/index/global', NULL, NULL, NULL, NULL, '知识库');
-
+-- ('0', 'SYSTEM', 'setting', '/index/system', NULL, NULL, NULL, NULL, '系统管理'),
+-- ('1', 'PROJECT', 'eye-o', '/index/project', NULL, NULL, NULL, NULL, '项目监理'),
+-- ('2', 'PERSONNEL', 'team', '/index/personnel', NULL, NULL, NULL, NULL, '人力资源'),
+-- ('3', 'CONTRACT', 'bank', '/index/contract', NULL, NULL, NULL, NULL, '经营管理'),
+-- ('4', 'KNOWLEDGE', 'global', '/index/global', NULL, NULL, NULL, NULL, '知识库');
+('0', 'CONSIGNATION', 'setting')
 -- --------------------------------------------------------
 
 --
