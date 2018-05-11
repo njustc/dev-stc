@@ -60,7 +60,6 @@ public class ConsignService extends BaseService<Consign> {
     public void addConsign(JSONObject params,List<MultipartFile> files,User user) throws Exception
     {
 
-        initial=false;
         String uid=UUID.randomUUID().toString();
 
         Consign consign=JSONObject.toJavaObject(params,Consign.class);

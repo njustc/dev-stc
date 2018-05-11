@@ -76,6 +76,7 @@ public class ConsignController extends BaseController
         catch(Exception e)
         {
             e.printStackTrace();
+            response.status=ResponseType.FAILURE;
             response.message=e.getMessage();
         }
         return response;
