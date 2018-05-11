@@ -13,14 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author LBW
  */
-@RequestMapping(value = "/consign")
 @RestController
 public class ConsignController extends BaseController
 {
     @Autowired
     private ConsignService consignService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/consign", method = RequestMethod.GET)
     public Consign queryConsigns()
     {
         Consign consign = consignService.queryConsigns();
@@ -28,7 +27,7 @@ public class ConsignController extends BaseController
         return consign;
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(value = "/consign",method = RequestMethod.PUT)
     public ResponseEntity<Void> updateConsigns(@RequestBody Consign consign)
     {
 
@@ -43,29 +42,5 @@ public class ConsignController extends BaseController
         }
 
     }
-    @RequestMapping(value = "/state", method = RequestMethod.GET)
-    public String getConsignsState()
-    {
-        return consignService.getConsignState();
-    }
 
-    @RequestMapping(value = "/state/submit", method = RequestMethod.GET)
-    public ResponseEntity<Void> submitConsign()
-    {
-       consignService.submitConsign();
-        return ResponseEntity.<Void>ok().build();
-    }
-
-    @RequestMapping(value = "/state/pass", method = RequestMethod.GET)
-    public ResponseEntity<Void> passConsign()
-    {
-        consignService.passConsigns();
-        return ResponseEntity.<Void>ok().build();
-    }
-    @RequestMapping(value = "/state/reject", method = RequestMethod.GET)
-    public ResponseEntity<Void> rejectConsign()
-    {
-        consignService.rejectConsign();
-        return ResponseEntity.<Void>ok().build();
-    }
 }
