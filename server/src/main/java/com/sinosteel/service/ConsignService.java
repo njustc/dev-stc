@@ -53,7 +53,7 @@ public class ConsignService extends BaseService<Consign> {
         return consignRepository.findById(id);
     }
     //更新委托
-    public void updateConsigns(Consign consign) {
+    public void editConsign(Consign consign) {
         consignRepository.save(consign);
     }
     //增加委托

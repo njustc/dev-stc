@@ -21,7 +21,7 @@ public class ConsignServiceTests {
     public void testqueryConsign(){
         System.out.println("获取委托测试");
         Consign consign = consignService.queryConsigns();
-        consignService.updateConsigns(consign);
+        consignService.editConsign(consign);
         System.out.println("ConsignString = " + consign.getConsignation());
         System.out.println("获取委托测试成功");
     }
@@ -31,7 +31,7 @@ public class ConsignServiceTests {
         Consign consign = consignService.queryConsigns();
         consign.setConsignation("这个是一个简单的委托测试");
         System.out.println("正在更新委托");
-        consignService.updateConsigns(consign);
+        consignService.editConsign(consign);
         System.out.println("更新委托成功");
         Consign Consign2 = consignService.queryConsigns();
         System.out.println("获取的委托内容为 ConsignString = " + Consign2.getConsignation());

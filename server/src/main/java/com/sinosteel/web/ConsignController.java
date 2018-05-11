@@ -2,14 +2,12 @@ package com.sinosteel.web;
 
 import com.sinosteel.domain.Consign;
 import com.sinosteel.framework.core.web.Request;
-import com.sinosteel.framework.core.web.RequestType;
 import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
 import com.sinosteel.service.ConsignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,11 +30,11 @@ public class ConsignController extends BaseController
     }
 
     @RequestMapping(value = "/consign",method = RequestMethod.PUT)
-    public ResponseEntity<Void> updateConsigns(@RequestBody Consign consign)
+    public ResponseEntity<Void> editConsign(@RequestBody Consign consign)
     {
 
         try {
-            consignService.updateConsigns(consign);
+            consignService.editConsign(consign);
             return ResponseEntity.<Void>ok().build();
         }
         catch (Exception e)
