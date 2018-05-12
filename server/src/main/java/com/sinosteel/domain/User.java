@@ -1,5 +1,7 @@
 package com.sinosteel.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,6 @@ public class User extends BaseEntity
 	
 	@Column(name = "USERNAME")
 	private String username;
-	
 	@Column(name = "PASSWORD")
 	private String password;
 	
@@ -28,7 +29,20 @@ public class User extends BaseEntity
 		@JoinColumn(name = "ROLE_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
 	})
 	private List<Role> roles;
-	
+
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "USER_ID",foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT))
+	@JSONField(serialize = false)
+	private List<Consign> consigns;
+
+	public List<Consign> getConsigns(){
+		return consigns;
+	}
+
+	public void setConsigns(List<Consign> consigns){
+		this.consigns = consigns;
+	}
+
 	@Transient
 	private List<Function> functions;
 

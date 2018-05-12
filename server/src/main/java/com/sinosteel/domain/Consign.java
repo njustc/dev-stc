@@ -19,10 +19,10 @@ public class Consign extends BaseEntity{
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
 
-//    @ManyToOne
-//    @JoinColumn(name = "USER_ID",foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT))
-//    @JSONField(serialize = false)
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "USER_ID",foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT))
+    @JSONField(serialize = false)
+    private User user;
 
 
     public String getConsignation() {
@@ -38,4 +38,12 @@ public class Consign extends BaseEntity{
         return processInstanceID;
     }
     public void setProcessInstanceID(String processInstanceID){this.processInstanceID = processInstanceID;}
+
+    public User getUser()
+    {
+        return user;
+    }
+    public void setUser(User user){
+        this.user=user;
+    }
 }

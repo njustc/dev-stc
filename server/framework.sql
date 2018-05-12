@@ -56,9 +56,15 @@ CREATE TABLE `tbl_sys_consign`(
   `CREATED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `CREATED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `ALTERED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
+  `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+
+INSERT INTO `tbl_sys_consign` ( `CONSIGNATION`,`PROCESS_INSTANCE_ID`, `ID`, `CODE`, `NAME`, `CREATED_TIME`, `CREATED_USER_ID`, `ALTERED_TIME`, `ALTERED_USER_ID`, `USER_ID`) VALUES
+('consign1 belong to customer1','consign1','1',NULL,NULL,NULL,NULL,NULL,NULL,'2'),
+('consign2 belong to customer1','consign2','2',NULL,NULL,NULL,NULL,NULL,NULL,'2'),
+('consign3 belong to customer2','consign3','3',NULL,NULL,NULL,NULL,NULL,NULL,'3');
 --
 -- 表的结构 `act_ge_bytearray`
 --
