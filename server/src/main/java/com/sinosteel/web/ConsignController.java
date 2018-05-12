@@ -22,26 +22,41 @@ public class ConsignController extends BaseController
     private ConsignService consignService;
 
     @RequestMapping(value = "/consign", method = RequestMethod.GET)
-    public Consign queryConsigns()
+    public Response queryConsigns(Request request)
     {
-        Consign consign = consignService.queryConsigns();
+        Response response = new Response();
 
-        return consign;
-    }
-
-    @RequestMapping(value = "/consign",method = RequestMethod.PUT)
-    public ResponseEntity<Void> editConsign(@RequestBody Consign consign)
-    {
-
-        try {
-            consignService.editConsign(consign);
-            return ResponseEntity.<Void>ok().build();
+        try
+        {
+            response.data = consignService.queryConsigns(request.getUser());
+            response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            return ResponseEntity.<Void>badRequest().build();
+            response.status = ResponseType.FAILURE;
+            response.message = e.getMessage();
         }
+
+        return response;
+    }
+
+    @RequestMapping(value = "/consign",method = RequestMethod.PUT)
+    public Response editConsign(Request request)
+    {
+        Response response = new Response();
+
+        try {
+            consignService.editConsign(request.getParams(), request.getFiles(), request.getUser());
+            response.status = ResponseType.SUCCESS;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            response.status = ResponseType.FAILURE;
+            response.message = e.getMessage();
+        }
+        return response;
 
     }
     @RequestMapping(value="/consign",method=RequestMethod.POST)
