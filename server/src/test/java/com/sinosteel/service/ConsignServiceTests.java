@@ -42,6 +42,7 @@
 //=======
 package com.sinosteel.service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.FrameworkApplication;
 import com.sinosteel.domain.Consign;
@@ -66,7 +67,7 @@ public class ConsignServiceTests {
     @Test
     public void testqueryConsign(){
         System.out.println("获取工作人员委托测试");
-        JSONObject queryResults = consignService.queryConsigns(userService.getUserByUsername("admin"));
+        JSON queryResults = consignService.queryConsigns(userService.getUserByUsername("admin"));
         System.out.println(queryResults);
         System.out.println("获取工作人员委托测试成功");
     }
