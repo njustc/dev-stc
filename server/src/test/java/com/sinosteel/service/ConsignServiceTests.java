@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @SpringApplicationConfiguration(FrameworkApplication.class)
 public class ConsignServiceTests {
 
-    @Autowired
+   @Autowired
     private ConsignService consignService;
 
     @Before
@@ -36,5 +36,4 @@ public class ConsignServiceTests {
         Consign Consign2 = consignService.queryConsigns();
         System.out.println("获取的委托内容为 ConsignString = " + Consign2.getConsignation());
     }
-
 }
