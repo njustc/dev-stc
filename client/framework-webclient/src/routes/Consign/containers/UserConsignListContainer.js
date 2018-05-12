@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import UserConsignListComponent from "../components/UserConsignListComponent";
 import {Divider} from "antd";
+import {connect} from "react-redux";
 
 class UserConsignListContainer extends Component {
 
@@ -85,7 +86,7 @@ class UserConsignListContainer extends Component {
     render() {
         return (
             <UserConsignListComponent
-                dataSource={this.state.dataSource}
+                {...this.props}
                 columns={this.columns}
                 onSearch={this.onSearch}
             />
@@ -93,4 +94,10 @@ class UserConsignListContainer extends Component {
     }
 }
 
-export default UserConsignListContainer
+const mapStateToProps = (state) => {
+    return {
+        dataSource: state.Consign.list,
+    }
+};
+
+export default connect(mapStateToProps, null)(UserConsignListContainer);

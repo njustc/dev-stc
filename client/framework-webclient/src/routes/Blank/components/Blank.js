@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 import {getStore} from 'STORE/globalStore';
-import {setModules} from 'layouts/store/CoreLayoutStore';
+import {setModules} from 'modules/ducks/System';
 
 import './Blank.scss';
 
@@ -44,7 +44,7 @@ export default class Blank extends Component
 			name: "委托内容(工作人员)"
 		}
 		]));
-		this.props.router.replace('/index');
+		this.props.router.replace('/login');
 	}
 
 	render()
