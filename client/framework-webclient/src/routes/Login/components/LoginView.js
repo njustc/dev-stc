@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import { Button, Form, Input, message, Checkbox, Icon, Row, Col } from 'antd';
 const FormItem = Form.Item;
 
-import { Link, hashHistory} from 'react-router';
-
 import {getStore} from 'STORE/globalStore';
-import {setSysUser} from '../reducers/LoginReducer';
-import {setModules} from 'layouts/store/CoreLayoutStore';
+import {setSysUser, setModules} from 'modules/ducks/System';
 import {loginService} from 'services';
 
 import './LoginView.scss';
@@ -37,42 +34,19 @@ class LoginView extends React.Component
                 this.login(values);
             }
         });
-    }
+    };
 
     login = (values) =>
     {
         this.setState(
-        {
-            loading: true,
-            loginText: '登录中，请稍候...'
-        });
-
-        sysFetch(this.loginPath, values, (res) =>
-        {
-            this.setState(
             {
-                loading: false,
-                loginText: '登录'
+                loading: true,
+                loginText: '登录中，请稍候...'
             });
 
-            if(res.status == 'SUCCESS')
-            {
-                const user = res.data;
-
-                getStore().dispatch(setSysUser(user));
-                getStore().dispatch(setModules(user.modules));
-
-                sessionStorage.setItem('sysUser', JSON.stringify(user));
-
-                message.success("登录成功，正在跳转...");
-                this.props.router.replace('/index');
-            }
-            else
-            {
-                message.error('登录失败，用户名或密码错误');
-            }
-        });
-    }
+        message.success("登录成功，正在跳转...");
+        this.props.router.replace('/index');
+    };
 
     render() 
     {

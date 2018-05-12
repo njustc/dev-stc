@@ -57,7 +57,7 @@
   "author": "Aford",
   "license": "MIT",
   "dependencies": {
-    "antd": "^2.9.0",
+    "antd": "^3.0.0",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-import": "^1.1.1",
@@ -101,7 +101,8 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.14",
-    "yargs": "^6.3.0"
+    "yargs": "^6.3.0",
+    "prop-types": "latest"
   },
   "devDependencies": {
     "babel": "^6.23.0",

@@ -3,11 +3,14 @@ import { combineReducers } from 'redux'
 // location 变化触发的 reducer
 import locationReducer from './location'
 
+import { moduleReducers } from 'modules'
+
 // 获取合并后的 reducers，该方法接收一个异步 reducers 数组，可视为reducer生成器
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
-    location: locationReducer,
-    ...asyncReducers
+      location: locationReducer,
+      ...moduleReducers,
+      ...asyncReducers,
   })
 }
 

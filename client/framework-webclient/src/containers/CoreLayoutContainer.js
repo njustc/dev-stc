@@ -3,8 +3,8 @@ import CoreLayout from 'layouts/CoreLayout'
 
 const mapStateToProps = (state) => (
 {
-  	modules: state.system.modules,
-  	sysUser: state.system.sysUser
+  	modules: state.System.modules,
+  	sysUser: state.System.sysUser,
 });
 
 export default (store) =>

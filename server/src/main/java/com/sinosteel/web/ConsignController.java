@@ -1,6 +1,8 @@
 package com.sinosteel.web;
 
 import com.sinosteel.domain.Consign;
+import com.sinosteel.framework.core.web.Request;
+import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
 import com.sinosteel.service.ConsignService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +30,11 @@ public class ConsignController extends BaseController
     }
 
     @RequestMapping(value = "/consign",method = RequestMethod.PUT)
-    public ResponseEntity<Void> updateConsigns(@RequestBody Consign consign)
+    public ResponseEntity<Void> editConsign(@RequestBody Consign consign)
     {
 
         try {
-            consignService.updateConsigns(consign);
+            consignService.editConsign(consign);
             return ResponseEntity.<Void>ok().build();
         }
         catch (Exception e)
@@ -42,5 +44,39 @@ public class ConsignController extends BaseController
         }
 
     }
+    @RequestMapping(value="/consign",method=RequestMethod.POST)
+    public Response addConsign(Request request)
+    {
+        Response response=new Response();
 
+        try{
+            consignService.addConsign(request.getParams(),request.getFiles(),request.getUser());
+            response.status=ResponseType.SUCCESS;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+
+            response.status=ResponseType.FAILURE;
+            response.message=e.getMessage();
+        }
+        return response;
+    }
+    @RequestMapping(value="/consign",method=RequestMethod.DELETE)
+    public Response deleteConsign(Request request)
+    {
+        Response response=new Response();
+
+        try{
+            consignService.deleteConsign(request.getParams());
+            response.status=ResponseType.SUCCESS;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            response.status=ResponseType.FAILURE;
+            response.message=e.getMessage();
+        }
+        return response;
+    }
 }

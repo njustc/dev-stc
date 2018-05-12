@@ -1,7 +1,7 @@
 import UserConsignContentView from 'routes/Consign/components/UserConsignContentView';
-import UserConsignListView from 'routes/Consign/components/UserConsignListView';
 import StaffConsignContentView from 'routes/Consign/components/StaffConsignContentView';
 import StaffConsignListView from 'routes/Consign/components/StaffConsignListView';
+import { UserConsignListView } from "ROUTES/Consign";
 
 const tabsMap =
 [
