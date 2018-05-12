@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //package com.sinosteel.service;
 //
 //import com.sinosteel.FrameworkApplication;
@@ -39,7 +39,7 @@
 //    }
 //
 //}
-=======
+//=======
 package com.sinosteel.service;
 
 import com.sinosteel.FrameworkApplication;
@@ -80,4 +80,4 @@ public class ConsignServiceTests {
     }
 
 }
->>>>>>> be2ae897b068946ed264d076696bf31eb7a01d02
+//>>>>>>> be2ae897b068946ed264d076696bf31eb7a01d02
