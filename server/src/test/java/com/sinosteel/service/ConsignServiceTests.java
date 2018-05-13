@@ -44,8 +44,6 @@ package com.sinosteel.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.FrameworkApplication;
-import com.sinosteel.domain.Consign;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,4 +74,3 @@ public class ConsignServiceTests {
     }
 
 }
-//>>>>>>> be2ae897b068946ed264d076696bf31eb7a01d02
