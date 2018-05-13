@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * @author SongJunju
+ * @author LBW & SQW
  */
 
 @Service
@@ -25,18 +25,13 @@ public class ConsignService extends BaseService<Consign> {
     private ConsignRepository consignRepository;
 
     @Autowired
-    private ConsignActiviti consignActiviti;
+    private ConsignActivitiService consignActivitiService;
 
-    //为了初始化流程引擎，暂时添加一个bool变量
-    //TODO: 需要改进，自动化部署activiti
-    private boolean initial = true;
+
+
     public JSON queryConsigns(User user)
     {
-        if(initial)
-        {
-            initial = false;
-            consignActiviti.deploy();
-        }
+
 
         System.out.println("queryConsigns--> query user role: " + user.getRoles().get(0).getRoleName());
         if (user.getRoles().get(0).getRoleName().equals("普通客户"))
@@ -57,6 +52,11 @@ public class ConsignService extends BaseService<Consign> {
         }
     }
 
+    public JSONObject queryConsignByID(String id) {
+        Consign consign = consignRepository.findById(id);
+        return JSON.parseObject(JSONObject.toJSONString(consign));
+    }
+
     //更新委托
     public void editConsign(JSONObject params, List<MultipartFile> files, User user) throws Exception
     {
@@ -72,6 +72,11 @@ public class ConsignService extends BaseService<Consign> {
 
         Consign consign=JSONObject.toJavaObject(params,Consign.class);
         consign.setId(uid);
+        consign.setUser(user);
+
+        //start activiti process
+        String procID = consignActivitiService.createConsignProcess(params, user);
+        consign.setProcessInstanceID(procID);
         this.saveEntity(consign, user);
     }
     //删除委托（不删除相关委托文件?）
@@ -81,5 +86,6 @@ public class ConsignService extends BaseService<Consign> {
         String uid=params.getString("id");
         this.deleteEntity(uid);
     }
+
 
 }

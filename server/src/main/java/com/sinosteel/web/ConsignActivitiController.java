@@ -4,6 +4,7 @@ import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
 import com.sinosteel.service.ConsignActivitiService;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,10 +31,30 @@ public class ConsignActivitiController extends BaseController
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             response.status = ResponseType.FAILURE;
             response.message = e.getMessage();
         }
 
+        return response;
+    }
+
+    @RequestMapping(value = "consignActiviti/{processInstanceID}", method = RequestMethod.PUT)
+    public Response updateConsignState(@PathVariable String processInstanceID, Request request)
+    {
+        Response response = new Response();
+
+        try
+        {
+            response.data = consignActivitiService.updateConsignState(processInstanceID, request);
+            response.status = ResponseType.SUCCESS;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            response.status = ResponseType.FAILURE;
+            response.message = e.getMessage();
+        }
         return response;
     }
 }

@@ -4,16 +4,14 @@ import com.sinosteel.domain.Consign;
 import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
+import com.sinosteel.service.ConsignActivitiService;
 import com.sinosteel.service.ConsignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
- * @author LBW
+ * @author LBW & SQW
  */
 @RestController
 public class ConsignController extends BaseController
@@ -21,6 +19,8 @@ public class ConsignController extends BaseController
     @Autowired
     private ConsignService consignService;
 
+
+    //对于客户，查询该客户的委托；对于工作人员，查询所有委托
     @RequestMapping(value = "/consign", method = RequestMethod.GET)
     public Response queryConsigns(Request request)
     {
@@ -38,6 +38,24 @@ public class ConsignController extends BaseController
             response.message = e.getMessage();
         }
 
+        return response;
+    }
+
+    @RequestMapping(value = "/consign/{id}", method = RequestMethod.GET)
+    public Response queryConsignByID(@PathVariable String id,  Request request) {
+        Response response = new Response();
+
+        try
+        {
+            response.data = consignService.queryConsignByID(id);
+            response.status = ResponseType.SUCCESS;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            response.status = ResponseType.FAILURE;
+            response.message = e.getMessage();
+        }
         return response;
     }
 
