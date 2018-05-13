@@ -19,6 +19,7 @@ class LoginView extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                //这里用values获取到用户的sysUser和module，数据结构见modules/ducks/system
                 this.props.SetSysUser(values);
                 this.props.router.replace('/index');
             }
