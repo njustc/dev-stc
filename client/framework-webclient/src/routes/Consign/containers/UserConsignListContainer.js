@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import UserConsignListComponent from "../components/UserConsignListComponent";
-import {Divider} from "antd";
+import {Divider, message} from "antd";
 import {connect} from "react-redux";
 
 class UserConsignListContainer extends Component {
@@ -82,6 +82,9 @@ class UserConsignListContainer extends Component {
         });
     };
 
+    newConsign = () => {
+        //message.success('This is a prompt message for success, and it will disappear in 10 seconds', 10);
+    }
 
     render() {
         return (
@@ -89,6 +92,7 @@ class UserConsignListContainer extends Component {
                 {...this.props}
                 columns={this.columns}
                 onSearch={this.onSearch}
+                newConsign={this.newConsign}
             />
         )
     }

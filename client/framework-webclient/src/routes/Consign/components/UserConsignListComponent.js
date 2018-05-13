@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Row, Col, Card, Tabs, Select, Button, Table, Form, Input, Divider} from 'antd';
+import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider} from 'antd';
 
 const { Column } = Table;
 const Search = Input.Search;
@@ -14,6 +14,7 @@ export default class UserConsignListComponent extends Component {
         dataSource: PropTypes.array.isRequired,
         columns: PropTypes.array.isRequired,
         onSearch: PropTypes.func.isRequired,
+        newConsign: PropTypes.func.isRequired,
     };
 
     render() {
@@ -28,6 +29,8 @@ export default class UserConsignListComponent extends Component {
                         enterButton={true}
                     />
                 </Card>
+                <br />
+                <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-square-o" />新建委托</Button>
                 <br /><br />
                 <Table dataSource={this.props.dataSource} columns={this.props.columns} />
 
