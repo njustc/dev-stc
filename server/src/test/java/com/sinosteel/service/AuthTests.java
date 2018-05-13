@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -95,6 +96,7 @@ public class AuthTests {
         }
     }
     @Test
+    @Transactional
     public void testUserConsign()
     {
         System.out.println("测试用户委托");
