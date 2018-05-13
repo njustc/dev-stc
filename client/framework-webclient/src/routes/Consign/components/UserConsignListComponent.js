@@ -75,7 +75,7 @@ export default class UserConsignListComponent extends Component {
     };
 
     viewContent = () => {
-        this.props.addTab(this.props.panes,'details','Details',UserConsignContentView);
+        this.props.addTab(this.props.panes,'details','委托详情',UserConsignContentView);
     };
 
     render() {
