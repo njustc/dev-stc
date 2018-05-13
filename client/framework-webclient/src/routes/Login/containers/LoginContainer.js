@@ -1,6 +1,11 @@
 import {connect} from 'react-redux';
 import LoginView from '../components/LoginView';
+import {setSysUser,setModules} from "../../../modules/ducks/System";
 
-export default (store) => {
-	return connect(null, null)(LoginView);
-}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        SetSysUser: (values) => dispatch(setSysUser(values)),
+    }
+};
+
+export default connect(null, mapDispatchToProps)(LoginView);
