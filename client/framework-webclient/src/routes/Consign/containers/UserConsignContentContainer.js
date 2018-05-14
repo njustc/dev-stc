@@ -18,7 +18,7 @@ const buttons = [{
                 consignData.consignation = values; 
             }
             else {
-                // message.error('保存失败，请重试');
+                console.log("点击“保存”错误");
             }
         });
         //
@@ -37,7 +37,7 @@ const buttons = [{
                 consignData.consignation = values;  
             }
             else {
-                // message.error('保存失败，请重试');
+                console.log("点击“提交”错误");
             }
         });
 
@@ -47,10 +47,10 @@ const buttons = [{
         };
         httpPut(url2, data2, (result) => {
             if (result.status == 'SUCCESS') {
-                
+                consignData.status = "submit";
             }
             else {
-                // message.error('提交失败，请重试');
+                console.log("点击“提交”错误");
             }
         });
         //

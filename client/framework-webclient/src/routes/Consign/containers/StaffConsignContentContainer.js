@@ -11,10 +11,10 @@ const buttons = [{
         };
         httpPut(url, data, (result) => {
             if (result.status == 'SUCCESS') {
-                
+                consignData.status = "pass";
             }
             else {
-                
+                console.log("点击“通过”错误");
             }
         });
     },
@@ -27,10 +27,10 @@ const buttons = [{
         };
         httpPut(url, data, (result) => {
             if (result.status == 'SUCCESS') {
-                
+                consignData.status = "reject";
             }
             else {
-                
+                console.log("点击“否决”错误");
             }
         });
     },
