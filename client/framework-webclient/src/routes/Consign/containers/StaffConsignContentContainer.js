@@ -41,8 +41,8 @@ const buttons = [{
 const mapStateToProps = (state) => {
     const {list, index} = state.Consign;
     return {
-        values: JSON.parse(list[index].consignation),
-        consignData: JSON.parse(list[index]),
+        values: list[index].consignation,
+        consignData: list[index],
         disable: true,
         buttons: buttons,
     }
