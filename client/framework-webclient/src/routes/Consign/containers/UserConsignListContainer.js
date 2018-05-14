@@ -1,107 +1,53 @@
-import React, {Component} from 'react';
+import React, {Component,PropTypes} from 'react';
 import UserConsignListComponent from "../components/UserConsignListComponent";
-import {Divider, message} from "antd";
 import {connect} from "react-redux";
+import {addTabAction, setState} from "../../../modules/ducks/Layout";
+import UserConsignContentView from "ROUTES/Consign/components/ConsignContentComponent";
+import StaffConsignContentContainer from "ROUTES/Consign/containers/StaffConsignContentContainer";
 
-class UserConsignListContainer extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            dataSource: this.data,
+const  containsPane = (key, panes) => {
+    for(let i=0; i<panes.length; i++) {
+        if(key === panes[i].key) {
+            return true;
         }
     }
+    return false;
+};
 
-    data = [{
-        key: '1',
-        ID: '151220134',
-        time: '20180527',
-        status: 0,
-    }, {
-        key: '2',
-        ID: '151220078',
-        time: '20180716',
-        status: 1,
-    }, {
-        key: '3',
-        ID: '151220004',
-        time: '20181017',
-        status: 2,
-    }];
-
-    columns = [{
-        title:"委托ID",
-        dataIndex:"ID",
-        sorter:(a, b) => a.ID - b.ID,
-    }, {
-        title:"委托提交时间",
-        dataIndex:"time",
-        sorter:(a, b) => a.time - b.time,
-    }, {
-        title:"状态",
-        dataIndex:"status",
-        render: (stateNum) => {
-            switch(stateNum) {
-                case 0:
-                    return '待评审';
-                case 1:
-                    return '已通过';
-                case 2:
-                    return '未通过';
-                default:
-                    return '未定义状态';
-            }
-        },
-    }, {
-        title:"操作",
-        key:"action",
-        render: (text) => {
-            return (
-                <span>
-            <a href="javascript:;">查看详情</a>
-            <Divider type="vertical" />
-            <a href="javascript:;">取消委托</a>
-            </span>
-            )
-        }
+const addTab = (Panes, key, name, component, dispatch) => {
+    const panes = Panes;
+    const activeKey = key;
+    if(!containsPane(key, Panes)){
+        panes.push({ title: name, content: React.createElement(component), key: activeKey });
     }
-    ];
+    dispatch(setState({ panes,activeKey }))
+};
 
-    onSearch = (value) => {
-        //this.setState({ searchText: value });
-        // const { searchText } = this.state;
-        const reg = new RegExp(value, 'gi');
-        this.setState({
-            dataSource: this.data.map((record) => {
-                const match = record.ID.match(reg);
-                if (!match) {
-                    return null;
-                }
-                return record;
-            }).filter(record => !!record),
-        });
-    };
-
-    newConsign = () => {
-        //message.success('This is a prompt message for success, and it will disappear in 10 seconds', 10);
-    }
-
-    render() {
-        return (
-            <UserConsignListComponent
-                {...this.props}
-                columns={this.columns}
-                onSearch={this.onSearch}
-                newConsign={this.newConsign}
-            />
-        )
-    }
-}
-
-const mapStateToProps = (state) => {
+// todo: 利用第二个参数ownProps来过滤，实现搜索，ownProps是被显示传入的属性值，不包括map进去的
+const mapStateToProps = (state, ownProps) => {
     return {
         dataSource: state.Consign.list,
+        panes: state.Layout.panes,
     }
 };
 
-export default connect(mapStateToProps, null)(UserConsignListContainer);
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        addTab: (Panes, key, name, component) => {
+            const panes = Panes;
+            const activeKey = key;
+            if(!containsPane(key, Panes)){
+                panes.push({ title: name, content: React.createElement(component), key: activeKey });
+            }
+            dispatch(setState({ panes,activeKey }))
+        },
+        showContent: () => dispatch(addTabAction('details', '委托详情', UserConsignContentView)),
+        // showContent: (panes) => addTab(panes,'details','委托详情',StaffConsignContentContainer, dispatch),
+        // showContent: (panes) => addTab(panes,'details','委托详情',UserConsignContentView, dispatch),
+        newConsign: () => {
+            //message.success('This is a prompt message for success, and it will disappear in 10 seconds', 10);
+        },
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserConsignListComponent);

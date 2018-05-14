@@ -1,11 +1,11 @@
+import LoginContainer from './Login'
 import CoreLayoutContainer from 'containers/CoreLayoutContainer'
-
 import React from 'react'
 
 import Blank from './Blank';
 
-import LoginContainer from './Login';
-
+import LoginView from './Login';
+import CoreLayout from 'layouts/CoreLayout'
 // 配置路由
 export const createRoutes = (store) => 
 {
@@ -18,11 +18,11 @@ export const createRoutes = (store) =>
         [
             {
                 path        : '/login',
-                component   : LoginContainer(store)
+                component   : LoginContainer
             },
             {
                 path        : '/index',
-                component   : CoreLayoutContainer(store)
+                component   : CoreLayoutContainer
             }
         ]
     })
