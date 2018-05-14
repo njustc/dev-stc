@@ -4,10 +4,36 @@ import {connect} from "react-redux";
 
 const buttons = [{
     content: "通过",
-    onClick: (consignData) => {},
+    onClick: (consignData) => {
+        let url = "http://127.0.0.1:8000/services/consignActiviti/" + consignData.processInstanceID;
+        let data = {
+            operation: "pass"
+        };
+        httpPut(url, data, (result) => {
+            if (result.status == 'SUCCESS') {
+                
+            }
+            else {
+                
+            }
+        });
+    },
 },{
     content: "否决",
-    onClick: (consignData) => {},
+    onClick: (consignData) => {
+        let url = "http://127.0.0.1:8000/services/consignActiviti/" + consignData.processInstanceID;
+        let data = {
+            operation: "reject"
+        };
+        httpPut(url, data, (result) => {
+            if (result.status == 'SUCCESS') {
+                
+            }
+            else {
+                
+            }
+        });
+    },
 },
 ];
 
