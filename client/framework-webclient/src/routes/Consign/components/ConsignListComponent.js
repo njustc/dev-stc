@@ -55,7 +55,7 @@ export default class ConsignListComponent extends Component {
     }
     ];
 
-    onSearch = (value) => () => {
+    onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         this.props.setListFilter((record) => record.id.match(reg));
     };
