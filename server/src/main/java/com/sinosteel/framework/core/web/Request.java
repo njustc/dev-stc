@@ -37,7 +37,7 @@ public class Request
 		this.files = files;
 	}
 	
-	public JSONObject getParams() 
+public JSONObject getParams()
 	{
 		return params;
 	}

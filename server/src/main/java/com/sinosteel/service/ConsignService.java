@@ -1,22 +1,21 @@
 package com.sinosteel.service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.sinosteel.activiti.ConsignActiviti;
 import com.sinosteel.domain.Consign;
 import com.sinosteel.domain.User;
 import com.sinosteel.repository.ConsignRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.sinosteel.activiti.ConsignActiviti;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * @author SongJunju
+ * @author LBW & SQW
  */
 
 @Service
@@ -26,36 +25,45 @@ public class ConsignService extends BaseService<Consign> {
     private ConsignRepository consignRepository;
 
     @Autowired
-    private ConsignActiviti consignActiviti;
+    private ConsignActivitiService consignActivitiService;
 
-    public String id = "";
-    private boolean initial = true;
-    //为了使每次初始化时一个新的委托，暂时添加一个bool变量
-    public Consign queryConsigns() {
-        if(initial)
+
+
+    public JSON queryConsigns(User user)
+    {
+
+
+        System.out.println("queryConsigns--> query user role: " + user.getRoles().get(0).getRoleName());
+        if (user.getRoles().get(0).getRoleName().equals("普通客户"))
         {
-            initial = false;
-
-            String uid = UUID.randomUUID().toString();
-            id = uid;
-
-            consignActiviti.deploy();
-            String pid = consignActiviti.createConsignProcess(id, "");
-
-            Consign consign = new Consign();
-            consign.setId(uid);
-            consign.setProcessInstanceID(pid);
-            consign.setConsignation("");
-
-            consignRepository.save(consign);
-            return consign;
+//            Consign consign = new Consign();
+//            consign.setId(UUID.randomUUID().toString());
+//            consign.setConsignation("这是普通用户应该返回的委托");
+            List<Consign> consigns = user.getConsigns();
+            return JSON.parseArray(JSONArray.toJSONString(consigns));
         }
-        return consignRepository.findById(id);
+        else
+        {
+//            Consign consign = new Consign();
+//            consign.setId(UUID.randomUUID().toString());
+//            consign.setConsignation("这是工作人员应该返回的所有委托");
+            List<Consign> consigns = consignRepository.findByAllConsigns();
+            return JSON.parseArray(JSONArray.toJSONString(consigns));
+        }
     }
+
+    public JSONObject queryConsignByID(String id) {
+        Consign consign = consignRepository.findById(id);
+        return JSON.parseObject(JSONObject.toJSONString(consign));
+    }
+
     //更新委托
-    public void editConsign(Consign consign) {
-        consignRepository.save(consign);
+    public void editConsign(JSONObject params, List<MultipartFile> files, User user) throws Exception
+    {
+        Consign consign = JSONObject.toJavaObject(params, Consign.class);
+        this.updateEntity(consign, user);
     }
+
     //增加委托
     public void addConsign(JSONObject params,List<MultipartFile> files,User user) throws Exception
     {
@@ -64,13 +72,20 @@ public class ConsignService extends BaseService<Consign> {
 
         Consign consign=JSONObject.toJavaObject(params,Consign.class);
         consign.setId(uid);
-        this.consignRepository.save(consign);
+        consign.setUser(user);
+
+        //start activiti process
+        String procID = consignActivitiService.createConsignProcess(params, user);
+        consign.setProcessInstanceID(procID);
+        this.saveEntity(consign, user);
     }
     //删除委托（不删除相关委托文件?）
+
     public void deleteConsign(JSONObject params)
     {
         String uid=params.getString("id");
-        consignRepository.delete(uid);
+        this.deleteEntity(uid);
     }
+
 
 }

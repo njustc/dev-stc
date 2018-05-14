@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+//<<<<<<< HEAD
+>>>>>>> ac14dcc759798ab7379f4c568633dc5ee4140b2b
 //package com.sinosteel.service;
 //
 //import com.sinosteel.FrameworkApplication;
@@ -39,11 +43,15 @@
 //    }
 //
 //}
+<<<<<<< HEAD
+=======
+//=======
+>>>>>>> ac14dcc759798ab7379f4c568633dc5ee4140b2b
 package com.sinosteel.service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.FrameworkApplication;
-import com.sinosteel.domain.Consign;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,25 +66,23 @@ public class ConsignServiceTests {
     @Autowired
     private ConsignService consignService;
 
-    @Before
+    @Autowired
+    private UserService userService;
+
+    @Test
     public void testqueryConsign(){
-        System.out.println("获取委托测试");
-        Consign consign = consignService.queryConsigns();
-        consignService.editConsign(consign);
-        System.out.println("ConsignString = " + consign.getConsignation());
-        System.out.println("获取委托测试成功");
+        System.out.println("获取工作人员委托测试");
+        JSON queryResults = consignService.queryConsigns(userService.getUserByUsername("admin"));
+        System.out.println(queryResults);
+        System.out.println("获取工作人员委托测试成功");
     }
     @Test
     public void testUpdateConsign(){
-        System.out.println("更新委托测试");
-        Consign consign = consignService.queryConsigns();
-        consign.setConsignation("这个是一个简单的委托测试");
-        System.out.println("正在更新委托");
-        consignService.editConsign(consign);
-        System.out.println("更新委托成功");
-        Consign Consign2 = consignService.queryConsigns();
-        System.out.println("获取的委托内容为 ConsignString = " + Consign2.getConsignation());
+
     }
 
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> ac14dcc759798ab7379f4c568633dc5ee4140b2b

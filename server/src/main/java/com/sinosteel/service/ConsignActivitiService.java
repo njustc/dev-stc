@@ -2,7 +2,9 @@ package com.sinosteel.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ConsignActiviti;
-import com.sinosteel.framework.config.system.SystemConfig;
+import com.sinosteel.domain.Consign;
+import com.sinosteel.domain.User;
+import com.sinosteel.framework.core.web.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConsignActivitiService
 {
-    @Autowired
-    private SystemConfig systemConfig;
 
     @Autowired
     private ConsignActiviti consignActiviti;
@@ -27,5 +27,30 @@ public class ConsignActivitiService
         queryResultJson.put("state", state);
 
         return queryResultJson;
+    }
+
+    public String createConsignProcess(JSONObject params, User user)
+    {
+        Consign consign = JSONObject.toJavaObject(params, Consign.class);
+
+        return consignActiviti.createConsignProcess(consign.getId(), user.getId());
+    }
+
+    public JSONObject updateConsignState(String processInstanceID, Request request)
+    {
+        JSONObject params = request.getParams();
+        String operation = params.getString("operation");
+
+        if (operation.equals("submit")) {
+            consignActiviti.submitConsign(processInstanceID, request.getUser().getId());
+        }
+        else if (operation.equals("pass")) {
+            consignActiviti.checkConsign(true, processInstanceID, request.getUser().getId());
+        }
+        else if (operation.equals("reject")) {
+            consignActiviti.checkConsign(false, processInstanceID, request.getUser().getId());
+        }
+
+        return queryConsignState(processInstanceID);
     }
 }
