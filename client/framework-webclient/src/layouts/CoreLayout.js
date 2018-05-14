@@ -3,8 +3,9 @@ import 'STYLES/antd.min.css'
 import 'STYLES/core.scss'
 import './CoreLayout.scss'
 
-import { Layout, Menu, Breadcrumb, Icon, Row, Col, Tabs, message, Modal, Form, Input } from 'antd';
+import { Layout, Menu, Icon, Row, Tabs, message, Form, Affix, Button, Dropdown } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
+const { SubMenu } = Menu;
 const TabPane = Tabs.TabPane;
 const FormItem = Form.Item;
 
@@ -22,6 +23,7 @@ export default class CoreLayout extends Component
 	};
 
 	static propTypes = {
+	    sysUser: PropTypes.object.isRequired,
 		modules: PropTypes.array.isRequired,
 		panes: PropTypes.array.isRequired,
         activeKey: PropTypes.string.isRequired,
@@ -36,6 +38,15 @@ export default class CoreLayout extends Component
         this.props.addTab(this.props.panes, menu.id, menu.name, component);
     };
 
+    handleMenuClick = (e) =>{
+        if(e.key==="logout"){
+            sessionStorage.removeItem(this.props.sysUser.userName);
+            sessionStorage.removeItem('sysModules');
+            message.info('退出成功，正在跳转');
+            this.props.router.replace('/login');
+        }
+    };
+
     onEdit = (targetKey) => {
         this.props.removeTab(this.props.panes,this.props.activeKey,targetKey);
     };
@@ -44,25 +55,42 @@ export default class CoreLayout extends Component
         this.props.switchTab(activeKey);
     };
 
+    menu = (
+        <Menu onClick={this.handleMenuClick}>
+            <Menu.Item key="logout">退出登录</Menu.Item>
+        </Menu>
+    );
+
 	render(){
 		return (
 			<Layout>
                 <Sider>
-		        	<Row>
-	                	<div className="logoV2Container" style={{marginBottom: '20px', background: '#012c33'}}>
-	                		<img src={Logo} className="logoV2"></img>
-	                	</div>
-	                </Row>
-                    <Menu
-                        theme="dark"
-                        mode="inline"
-                        defaultSelectedKeys={this.defaultSelectedKeys}
-                        onClick={this.handleClick}
-                    >
-                        {this.props.modules.map(item => <Menu.Item key={item.id}><Icon type={item.menuIcon} />{item.name}</Menu.Item>)}
-                    </Menu>
+                    <Affix offsetTop={0}>
+                        <Row>
+                            <div className="logoV2Container" style={{marginBottom: '20px', background: '#012c33'}}>
+                                <img src={Logo} className="logoV2"></img>
+                            </div>
+                        </Row>
+                    </Affix>
+                    <Affix offsetTop={120}>
+                        <Menu
+                            theme="dark"
+                            mode="inline"
+                            defaultSelectedKeys={this.defaultSelectedKeys}
+                            onClick={this.handleClick}
+                        >
+                            {this.props.modules.map(item => <Menu.Item key={item.id}><Icon type={item.menuIcon} />{item.name}</Menu.Item>)}
+                        </Menu>
+                    </Affix>
                 </Sider>
             	<Layout>
+                    <Header style={{ background: '#fff', padding: 0 }}>
+                        <Dropdown overlay={this.menu}>
+                            <Button style={{ marginLeft: 8 }}>
+                                <Icon type="user"/> {this.props.sysUser.userName} <Icon type="down" />
+                            </Button>
+                        </Dropdown>
+                    </Header>
 			        <Content style={{ margin: '0px 16px', padding: 24, background: '#fff', minHeight: 800 }}>
 			            <Tabs 
 	                		className="contentTab" 
