@@ -28,6 +28,9 @@
   "schemes": [
     "http"
   ],
+  "consumes": [
+    "application/x-www-form-urlencoded"
+  ],
   "produces": [
     "application/json"
   ],
@@ -50,21 +53,21 @@
           {
             "name": "username",
             "in": "query",
-            "description": "用户名. 此时应默认为undefined",
+            "description": "用户名. 此时应默认为 **undefined**",
             "type": "string",
             "required": true
           },
           {
             "name": "clientDigest",
             "in": "query",
-            "description": "摘要. 此时应默认为undefined",
+            "description": "摘要. 此时应默认为 **undefined**",
             "type": "string",
             "required": true
           },
           {
             "in": "formData",
             "name": "params",
-            "description": "登录信息. JSON格式，需包含两个key， 'username' 以及 'password'.  eg.\n{\n  \"username\": \"admin\",\n  \"password\": \"admin\"\n}\n",
+            "description": "登录信息. JSON格式，需包含两个key， 'username' 以及 'password'.  eg.\n```\n{\n  \"username\": \"admin\",\n  \"password\": \"admin\"\n}\n```\n",
             "type": "string",
             "required": true
           }
@@ -114,7 +117,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功查询委托",
+            "description": "成功查询委托. data内包含JsonArray格式的委托内容\n",
             "schema": {
               "$ref": "#/definitions/Response"
             }
@@ -154,7 +157,7 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "委托具体内容. JSON格式\n{\n  \"consignation\": \"content\"\n}\n",
+            "description": "委托具体内容. JSON格式\n```\n{\n  \"consignation\": \"content\"\n}\n```\n",
             "type": "string",
             "required": true
           }
@@ -201,7 +204,7 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "委托具体内容. JSON格式. 需要指明ID",
+            "description": "委托具体内容. JSON格式. 需要指明ID\n```\n{\n  \"id\": \n  \"consignation\":\n}\n```\n",
             "type": "string",
             "required": true
           }
@@ -248,7 +251,7 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "委托具体内容. JSON格式. 需要指明ID",
+            "description": "委托具体内容. JSON格式. 需要指明ID\n```\n{\n  \"id\": \n  \"consignation\":\n}\n```\n",
             "type": "string",
             "required": true
           }
@@ -304,7 +307,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功获取委托状态. data含两个属性 processInstanceID->委托进程ID state->委托状态",
+            "description": "成功获取委托状态. \ndata含两个属性：\nprocessInstanceID->委托进程ID\nstate->委托状态. 格式为\n```\n{\n  \"processInstanceID\": \"xxx\"\n  \"state\": \"xxx\"\n}\n```\n",
             "schema": {
               "$ref": "#/definitions/Response"
             }
@@ -348,14 +351,14 @@
           {
             "name": "params",
             "in": "formData",
-            "description": "修改的操作内容。JSON格式。属性名为'operation', 值可以为 submit/pass/reject. 分别代表 提交/通过/否决",
+            "description": "修改的操作内容。JSON格式。属性名为'operation', 值可以为 submit/pass/reject. 分别代表 提交/通过/否决. \neg.\n```\n{\n  \"operation\": \"submit\"\n}\n",
             "type": "string",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "成功修改委托状态，并在data中返回修改后的进程状态。 data含两个属性 processInstanceID->委托进程ID . state->委托状态",
+            "description": "成功修改委托状态，并在data中返回修改后的进程状态。 \ndata含两个属性 ：\nprocessInstanceID->委托进程ID .\nstate->委托状态\n```\n{\n  \"processInstanceID\": \"xxx\"\n  \"state\": \"xxx\"\n}\n",
             "schema": {
               "$ref": "#/definitions/Response"
             }
