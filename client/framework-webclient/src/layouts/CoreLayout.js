@@ -84,13 +84,15 @@ export default class CoreLayout extends Component
                     </Affix>
                 </Sider>
             	<Layout>
-                    <Header style={{ background: '#fff', padding: 0 }}>
-                        <Dropdown overlay={this.menu}>
-                            <Button style={{ marginLeft: 8 }}>
-                                <Icon type="user"/> {this.props.sysUser.userName} <Icon type="down" />
-                            </Button>
-                        </Dropdown>
-                    </Header>
+                    <Affix offsetTop={0}>
+                        <Header style={{ background: '#fff', padding: 0 }}>
+                            <Dropdown overlay={this.menu}>
+                                <Button style={{ marginLeft: 8 }}>
+                                    <Icon type="user"/> {this.props.sysUser.userName} <Icon type="down" />
+                                </Button>
+                            </Dropdown>
+                        </Header>
+                    </Affix>
 			        <Content style={{ margin: '0px 16px', padding: 24, background: '#fff', minHeight: 800 }}>
 			            <Tabs 
 	                		className="contentTab" 
