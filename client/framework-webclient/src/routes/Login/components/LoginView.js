@@ -34,8 +34,7 @@ class LoginView extends React.Component {
                         let sysUser = {
                             ...values,
                             clientDigest: result.data.clientDigest,
-                        }
-                        debugger;
+                        };
                         this.props.SetSysUser(sysUser);
                         if(values.userName === 'marketing'){
                             this.props.SetModules([{
