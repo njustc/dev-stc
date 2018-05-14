@@ -4,7 +4,6 @@ import {getStore} from 'STORE/globalStore';
 import {setModules,setSysUser} from "../../../modules/ducks/System";
 
 import './Blank.scss';
-import LoginView from "../../Login/components/LoginView";
 import {connect} from "react-redux";
 
 class BlankComponent extends Component {
@@ -22,14 +21,14 @@ class BlankComponent extends Component {
 		const curModulesString = sessionStorage.getItem('sysModules');
 		const curUser = JSON.parse(curUserString);
 		const curModules = JSON.parse(curModulesString);
-		this.props.SetUser(curUser);
-		this.props.SetModules(curModules);
-		if(curUserString&&curModulesString){
+		if(curUserString != 'null' && curModulesString != 'null'){
+            this.props.SetUser(curUser);
+            this.props.SetModules(curModules);
 		    this.props.router.replace('/index');
-        	}
-       		else {
-            	    this.props.router.replace('/login');
-        	}
+		}
+		else {
+			this.props.router.replace('/login');
+		}
 	}
 
 	render() {

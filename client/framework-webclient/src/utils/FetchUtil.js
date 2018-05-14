@@ -2,32 +2,46 @@ import {getStore} from 'store/globalStore';
 
 export const httpGet = (url, callback) => {
     return sysFetch('GET', url, null, callback);
-}
+};
 
-export const httpPost = (url, data, callback) => {
-    return sysFetch('POST', url, data, callback);
-}
+export const httpPost = (url, params, callback) => {
+    return sysFetch('POST', url, params, callback);
+};
 
-export const httpPut = (url, data, callback) => {
-    return sysFetch('PUT', url, data, callback);
-}
+export const httpPut = (url, params, callback) => {
+    return sysFetch('PUT', url, params, callback);
+};
 
-export const httpDelete = (url, data, callback) => {
-    return sysFetch('DELETE', url, data, callback);
-}
+export const httpDelete = (url, params, callback) => {
+    return sysFetch('DELETE', url, params, callback);
+};
 
-export const sysFetch = (Method,url,formData, callback) => {
+const sysFetch = (Method, url, params, callback) => {
 
     let result = { 
         status: "FAILURE"
     };
+    let username = "undefined";
+    let clientDigest = "undefined";
+
+    const curUserString = sessionStorage.getItem('sysUser');
+    const curUser = JSON.parse(curUserString);
+    debugger;
+    if (curUserString != 'null') {
+        username = curUser.username;
+        clientDigest = curUser.clientDigest;
+    }
+
+    let fullUrl = url + '?username=' + username + '&clientDigest=' + clientDigest;
+    let formData = new FormData();
+    formData.append('params', params ? JSON.stringify(params): '');
 
     let request = { method: Method };
     if (Method != 'GET') {
         request.body = formData;
     }
 
-    return fetch(url, request)
+    return fetch(fullUrl, request)
         .then((res) =>
     {
         if(res.ok)
@@ -40,7 +54,6 @@ export const sysFetch = (Method,url,formData, callback) => {
         }
     })
     .then(json => {
-        debugger;
         if(json.status == "SUCCESS"){
             result.status = "SUCCESS"
             result.data = json.data;

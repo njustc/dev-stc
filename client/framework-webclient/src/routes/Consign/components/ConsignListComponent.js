@@ -15,6 +15,7 @@ export default class ConsignListComponent extends Component {
         setListFilter: PropTypes.func.isRequired,
         dataSource: PropTypes.array.isRequired,
         showContent: PropTypes.func.isRequired,
+        deleteConsign: PropTypes.func.isRequired,
         newConsign: PropTypes.func,
         enableNew: PropTypes.bool.isRequired,
     };
@@ -23,10 +24,6 @@ export default class ConsignListComponent extends Component {
         title:"委托ID",
         dataIndex:"id",
         sorter:(a, b) => a.id - b.id,
-    // }, {
-    //     title:"委托新建时间",
-    //     dataIndex:"time",
-    //     sorter:(a, b) => a.time - b.time,
     }, {
         title:"状态",
         dataIndex:"status",
@@ -51,7 +48,7 @@ export default class ConsignListComponent extends Component {
                 <span>
                 <Button type="content" onClick={this.viewContent(id)}><Icon type="plus-square-o" />查看详情</Button>
                 <Divider type="vertical" />
-                <Button type="cancel"><Icon type="plus-square-o" />取消委托</Button>
+                <Button type="cancel" onClick={this.deleteConsign(id)}><Icon type="plus-square-o" />取消委托</Button>
                 </span>
             )
         }
@@ -65,6 +62,9 @@ export default class ConsignListComponent extends Component {
     //
     viewContent = (id) => () => {
         this.props.showContent(id);
+    };
+    deleteConsign = (id) => () => {
+        this.props.deleteConsign(id);
     };
 
     render() {

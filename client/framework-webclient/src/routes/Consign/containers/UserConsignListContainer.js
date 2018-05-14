@@ -16,8 +16,11 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         showContent: () => dispatch(addTabAction('details', '委托详情', UserConsignContentView)),
-        newConsign: () => {
+        newConsign: (id) => {
             //message.success('This is a prompt message for success, and it will disappear in 10 seconds', 10);
+        },
+        deleteConsign: (id) => {
+            console.log('delete', id);
         },
         setListFilter: (newlistFilter) => dispatch(setFilter(newlistFilter)),
     }

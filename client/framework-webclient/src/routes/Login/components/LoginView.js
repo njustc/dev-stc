@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import  PropTypes from 'prop-types';
 import { Button, Form, Input, message, Checkbox, Icon, Row, Col } from 'antd';
 const FormItem = Form.Item;
-import {sysFetch} from 'UTILS/FetchUtil';
+import {} from 'UTILS/FetchUtil';
 import './LoginView.scss';
 import Logo from '../assets/logo-fav.png';
+import {httpPost} from "UTILS/FetchUtil";
 
 class LoginView extends React.Component {
     constructor(props) {
@@ -23,47 +24,44 @@ class LoginView extends React.Component {
             if (!err) {
                 //这里用values获取到用户的sysUser和module，数据结构见modules/ducks/system
                 //
-                let url = "http://127.0.0.1:8000/login?username=undefined&clientDigest=undefined";
-                let data = new FormData();
-                data.append('params', JSON.stringify({
+                let url = "http://127.0.0.1:8000/login";
+                let data = {
                     username: values.userName,
                     password: values.password,
-                }));
-                // let data = JSON.stringify({
-                //     username: values.userName,
-                //     password: values.password,
-                // });
-
-                // let result = sysFetch("POST",url, data);
-                // result.then(res => console.log(res));
-                sysFetch("POST", url, data, (result) => {
-                    console.log(result);
+                };
+                httpPost(url, data, (result) => {
+                    if (result.status == 'SUCCESS') {
+                        let sysUser = {
+                            ...values,
+                            clientDigest: result.data.clientDigest,
+                        }
+                        debugger;
+                        this.props.SetSysUser(sysUser);
+                        if(values.userName === 'marketing'){
+                            this.props.SetModules([{
+                                "code": "U-C",
+                                "id": "1",
+                                "menuIcon": "idcard",
+                                "menuPath": "/admin_list",
+                                "name": "委托管理"
+                            }]);
+                            this.props.router.replace('/index');
+                        }
+                        else if(values.userName === 'customer1'){
+                            this.props.SetModules([{
+                                "code": "U-C",
+                                "id": "1",
+                                "menuIcon": "idcard",
+                                "menuPath": "/user_list",
+                                "name": "委托管理"
+                            }]);
+                            this.props.router.replace('/index');
+                        }
+                    }
+                    else {
+                        message.error('登录失败，请重试');
+                    }
                 });
-                //
-                this.props.SetSysUser(values);
-                if(values.userName === 'marketing'){
-                    this.props.SetModules([{
-                        "code": "U-C",
-                        "id": "1",
-                        "menuIcon": "idcard",
-                        "menuPath": "/admin_list",
-                        "name": "委托管理"
-                        }]);
-                    this.props.router.replace('/index');
-                }
-                else if(values.userName === 'customer1'){
-                    this.props.SetModules([{
-                        "code": "U-C",
-                        "id": "1",
-                        "menuIcon": "idcard",
-                        "menuPath": "/user_list",
-                        "name": "委托管理"
-                    }]);
-                    this.props.router.replace('/index');
-                }
-                else{
-                    message.error('登录失败，请重试');
-                }
             }
         });
     };

@@ -17,6 +17,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         showContent: () => dispatch(addTabAction('details', '委托详情', StaffConsignContentView)),
         setListFilter: (newlistFilter) => dispatch(setFilter(newlistFilter)),
+        deleteConsign: (id) => {
+            console.log('delete', id);
+        },
     }
 };
 
