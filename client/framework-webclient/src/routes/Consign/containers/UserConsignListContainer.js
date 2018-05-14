@@ -1,7 +1,7 @@
 import React, {Component,PropTypes} from 'react';
 import UserConsignListComponent from "../components/UserConsignListComponent";
 import {connect} from "react-redux";
-import {setState} from "../../../modules/ducks/Layout";
+import {addTabAction, setState} from "../../../modules/ducks/Layout";
 import UserConsignContentView from "ROUTES/Consign/components/ConsignContentComponent";
 import StaffConsignContentContainer from "ROUTES/Consign/containers/StaffConsignContentContainer";
 
@@ -41,7 +41,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             }
             dispatch(setState({ panes,activeKey }))
         },
-        showContent: (panes) => addTab(panes,'details','委托详情',StaffConsignContentContainer, dispatch),
+        showContent: () => dispatch(addTabAction('details', '委托详情', UserConsignContentView)),
+        // showContent: (panes) => addTab(panes,'details','委托详情',StaffConsignContentContainer, dispatch),
         // showContent: (panes) => addTab(panes,'details','委托详情',UserConsignContentView, dispatch),
         newConsign: () => {
             //message.success('This is a prompt message for success, and it will disappear in 10 seconds', 10);
