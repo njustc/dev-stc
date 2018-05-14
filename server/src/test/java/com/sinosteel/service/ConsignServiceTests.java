@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-
-=======
-//<<<<<<< HEAD
->>>>>>> ac14dcc759798ab7379f4c568633dc5ee4140b2b
 //package com.sinosteel.service;
 //
 //import com.sinosteel.FrameworkApplication;
@@ -13,7 +8,6 @@
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.SpringApplicationConfiguration;
 //import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-//
 //
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@SpringApplicationConfiguration(FrameworkApplication.class)
@@ -43,10 +37,6 @@
 //    }
 //
 //}
-<<<<<<< HEAD
-=======
-//=======
->>>>>>> ac14dcc759798ab7379f4c568633dc5ee4140b2b
 package com.sinosteel.service;
 
 import com.alibaba.fastjson.JSON;
@@ -82,7 +72,4 @@ public class ConsignServiceTests {
     }
 
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> ac14dcc759798ab7379f4c568633dc5ee4140b2b
