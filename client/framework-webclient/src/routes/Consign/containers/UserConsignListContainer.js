@@ -1,9 +1,8 @@
 import React, {Component,PropTypes} from 'react';
 import UserConsignListComponent from "../components/UserConsignListComponent";
-import {Divider, message, Button, Icon} from "antd";
 import {connect} from "react-redux";
 import {setState} from "../../../modules/ducks/Layout";
-import UserConsignContentView from "../components/UserConsignContentView";
+
 function containsPane(key, panes)
 {
     for(let i=0; i<panes.length; i++) {

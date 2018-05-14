@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider} from 'antd';
-import UserConsignContentView from "../components/UserConsignContentView";
+import UserConsignContentView from "./ConsignContentComponent";
 
 const { Column } = Table;
 const Search = Input.Search;

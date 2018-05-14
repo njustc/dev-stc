@@ -8,6 +8,7 @@ const initialState = {
         id: "1",
         menuIcon: "idcard",
         menuPath: "/user_list",
+        // menuPath: "/admin_list",
         name: "委托管理"
     }]
 };

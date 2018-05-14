@@ -6,22 +6,13 @@ const RadioGroup = Radio.Group;
 const CheckboxGroup = Checkbox.Group;
 const { TextArea } = Input;
 
-class UserConsignContentView extends Component {
+class ConsignContentComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            formLayout: 'horizontal',
-        };
-    }
-
-    changeWind= () => {
-        this.state.windows_c=!this.state.windows_c;
-    }
-    changeLinux= () => {
-        this.state.linux_c=!this.state.linux_c;
     }
 
     static defaultProps = {
+        values: {},
         save: console.log,
         disable:false,
     };
@@ -29,12 +20,8 @@ class UserConsignContentView extends Component {
     static propTypes = {
         values: PropTypes.object.isRequired,
         save: PropTypes.func.isRequired,
+        disable: PropTypes.bool.isRequired,
     };
-
-    handleFormLayoutChange = (e) => {
-        this.setState({ formLayout: e.target.value });
-    }
-
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -48,7 +35,6 @@ class UserConsignContentView extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { formLayout } = this.state;
         const formItemLayout =  {
             labelCol: { span: 5 },
             wrapperCol: { span: 18 },
@@ -65,7 +51,7 @@ class UserConsignContentView extends Component {
 
 
         return(
-            <Form layout={formLayout} onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handleSubmit}>
 
                 <FormItem {...formItemLayout}>
                     <h1>软件项目委托测试申请书</h1>
@@ -775,4 +761,4 @@ class UserConsignContentView extends Component {
         );
     }
 }
-export default Form.create()(UserConsignContentView);
+export default Form.create()(ConsignContentComponent);

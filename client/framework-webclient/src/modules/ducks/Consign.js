@@ -56,6 +56,6 @@ export const getConsignContent = (id) => {
 
 export const toContent = () => {
     return {
-        type: SET_CONTENT
+        type: SET_CONTENT,
     }
 };
