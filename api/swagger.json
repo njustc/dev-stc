@@ -28,7 +28,60 @@
   "schemes": [
     "http"
   ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "login"
+        ],
+        "summary": "登录",
+        "description": "登录系统",
+        "operationId": "login",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名. 此时应默认为undefined",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要. 此时应默认为undefined",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "登录信息. JSON格式，需包含两个key， 'username' 以及 'password'.  eg.\n{\n  \"username\": \"admin\",\n  \"password\": \"admin\"\n}\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功登录. data里包含User相关信息，例如clientDigest, menus等",
+            "schema": {
+              "$ref": "#/definitions/Response"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
     "/services/consign": {
       "get": {
         "tags": [
@@ -101,7 +154,7 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "委托具体内容. JSON格式",
+            "description": "委托具体内容. JSON格式\n{\n  \"consignation\": \"content\"\n}\n",
             "type": "string",
             "required": true
           }
@@ -148,7 +201,7 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "委托具体内容. JSON格式",
+            "description": "委托具体内容. JSON格式. 需要指明ID",
             "type": "string",
             "required": true
           }
@@ -195,7 +248,7 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "委托具体内容. JSON格式. 属性内必须有ID",
+            "description": "委托具体内容. JSON格式. 需要指明ID",
             "type": "string",
             "required": true
           }
