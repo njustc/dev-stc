@@ -1,30 +1,27 @@
-const GET_LIST = 'Consign/GET_LIST';
-const GET_CONTENT = 'Consign/GET_CONTENT';
-const NEW = 'Consign/NEW';
-const SET_CONTENT = 'Consign/SET_CONTENT'
-const SET_FILTER = 'Consign/SET_FILTER'
+const SET_LIST = 'Consign/SET_LIST';
+const SET_STATUS = 'Consign/SET_STATUS';
+const SET_FILTER = 'Consign/SET_FILTER';
 
 const initialState = {
     listFilter: () => true,
     list: [
-        {
-            "processInstanceID": "17505",
-            "status": 'TobeSubmit',
-            "createdUserId": "1",
-            "createdTime": "2018-05-15 01:10:55",
-            "id": "f7a38ffa-22d2-4214-9c70-578c1211ed8b",
-            "consignation": ""
-        },
-        {
-            "processInstanceID": "17513",
-            "status": 'TobeSubmit',
-            "createdUserId": "1",
-            "createdTime": "2018-05-15 01:13:38",
-            "id": "2d9ce647-f95b-426e-8ebb-17340199c7db",
-            "consignation": ""
-        }
+        // {
+        //     "processInstanceID": "17505",
+        //     "status": 'TobeSubmit',
+        //     "createdUserId": "1",
+        //     "createdTime": "2018-05-15 01:10:55",
+        //     "id": "f7a38ffa-22d2-4214-9c70-578c1211ed8b",
+        //     "consignation": ""
+        // },
+        // {
+        //     "processInstanceID": "17513",
+        //     "status": 'TobeSubmit',
+        //     "createdUserId": "1",
+        //     "createdTime": "2018-05-15 01:13:38",
+        //     "id": "2d9ce647-f95b-426e-8ebb-17340199c7db",
+        //     "consignation": ""
+        // }
     ],
-    curContent: {},
 };
 
 // **************
@@ -32,14 +29,18 @@ const initialState = {
 
 export const ConsignReducer = (state = initialState, action) => {
       switch (action.type) {
-          case GET_LIST:
-              return state;
-          case GET_CONTENT:
-              return state;
-          case SET_CONTENT:
+          case SET_LIST:
               return {
                   ...state,
-                  toContent: false
+                  list: action.payload,
+              };
+          case SET_STATUS:
+              const {index, status} = action.payload;
+              const newList = state.list;
+              newList[index].status = status;
+              return {
+                  ...state,
+                  list: newList,
               };
           case SET_FILTER:
               return {
@@ -51,20 +52,20 @@ export const ConsignReducer = (state = initialState, action) => {
       }
 };
 
-export const getConsignList = () =>  {
-    return { type: GET_LIST };
-};
-
-export const getConsignContent = (id) => {
+export const setConsignList = (list) => {
     return {
-        type: GET_CONTENT,
-        payload: id,
+        type: SET_LIST,
+        payload: list,
     }
 };
 
-export const toContent = () => {
+export const setConsignStatus = (index, status) => {
     return {
-        type: SET_CONTENT,
+        type: SET_STATUS,
+        payload: {
+            index: index,
+            status: status,
+        },
     }
 };
 

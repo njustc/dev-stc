@@ -26,7 +26,7 @@ class LoginView extends React.Component {
                 //
                 let url = "http://127.0.0.1:8000/login";
                 let data = {
-                    username: values.userName,
+                    username: values.username,
                     password: values.password,
                 };
                 httpPost(url, data, (result) => {
@@ -36,7 +36,7 @@ class LoginView extends React.Component {
                             clientDigest: result.data.clientDigest,
                         };
                         this.props.SetSysUser(sysUser);
-                        if(values.userName === 'marketing'){
+                        if(values.username === 'marketing'){
                             this.props.SetModules([{
                                 "code": "U-C",
                                 "id": "1",
@@ -46,7 +46,7 @@ class LoginView extends React.Component {
                             }]);
                             this.props.router.replace('/index');
                         }
-                        else if(values.userName === 'customer1'){
+                        else if(values.username === 'customer1'){
                             this.props.SetModules([{
                                 "code": "U-C",
                                 "id": "1",
@@ -78,7 +78,7 @@ class LoginView extends React.Component {
 
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <FormItem>
-                            {getFieldDecorator('userName', {
+                            {getFieldDecorator('username', {
                                 rules: [{ required: true, message: '请输入用户名!' }],
                             })(
                                 <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />

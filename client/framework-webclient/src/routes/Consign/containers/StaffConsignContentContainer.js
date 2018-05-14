@@ -4,10 +4,10 @@ import {connect} from "react-redux";
 
 const buttons = [{
     content: "通过",
-    onClick: (procId) => {},
+    onClick: (consignData) => {},
 },{
     content: "否决",
-    onClick: (procId) => {},
+    onClick: (consignData) => {},
 },
 ];
 

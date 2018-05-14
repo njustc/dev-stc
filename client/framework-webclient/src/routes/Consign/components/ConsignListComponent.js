@@ -16,9 +16,14 @@ export default class ConsignListComponent extends Component {
         dataSource: PropTypes.array.isRequired,
         showContent: PropTypes.func.isRequired,
         deleteConsign: PropTypes.func.isRequired,
+        getConsignList: PropTypes.func.isRequired,
         newConsign: PropTypes.func,
         enableNew: PropTypes.bool.isRequired,
     };
+
+    componentDidMount() {
+        this.props.getConsignList();
+    }
 
     columns = [{
         title:"委托ID",
