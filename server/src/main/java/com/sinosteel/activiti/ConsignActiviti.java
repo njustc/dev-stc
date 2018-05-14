@@ -75,19 +75,23 @@ public class ConsignActiviti {
             if(!(taskService.createTaskQuery().taskName("提交委托")
                     .processInstanceId(processInstanceId).list()).isEmpty())
             {
-                return "审核的ID为："+processInstanceId+" "+"目前的状态为：委托待提交"+"\n";
+                return "TobeSubmit";
+                //return "审核的ID为："+processInstanceId+" "+"目前的状态为：委托待提交"+"\n";
             }
             else if(!(taskService.createTaskQuery().taskName("审核委托")
                     .processInstanceId(processInstanceId).list()).isEmpty())
             {
-                return "审核的ID为："+processInstanceId+" "+"目前的状态为：委托待审核"+"\n";
+                return "TobeCheck";
+                //return "审核的ID为："+processInstanceId+" "+"目前的状态为：委托待审核"+"\n";
             }
             else
             {
-                return "审核的ID为："+processInstanceId+" "+"目前的状态为：委托待新建"+"\n";
+                return "TobeCreate";
+                //return "审核的ID为："+processInstanceId+" "+"目前的状态为：委托待新建"+"\n";
             }
         }
-        else return "审核的ID为："+processInstanceId+" "+"目前的状态为：已结束"+"\n";
+        return "Finished";
+        //else return "审核的ID为："+processInstanceId+" "+"目前的状态为：已结束"+"\n";
     }
     //根据用户的ID查询该用户的委托列表，参数为用户ID
     //注意：返回的是委托的流程ID
