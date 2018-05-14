@@ -40,7 +40,7 @@ export default class CoreLayout extends Component
 
     handleMenuClick = (e) =>{
         if(e.key==="logout"){
-            sessionStorage.removeItem(this.props.sysUser.userName);
+            sessionStorage.removeItem('sysUser');
             sessionStorage.removeItem('sysModules');
             message.info('退出成功，正在跳转');
             this.props.router.replace('/login');

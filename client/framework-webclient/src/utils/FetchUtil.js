@@ -27,7 +27,7 @@ const sysFetch = (Method, url, params, callback) => {
     const curUserString = sessionStorage.getItem('sysUser');
     const curUser = JSON.parse(curUserString);
     debugger;
-    if (curUserString != 'null') {
+    if (curUserString !== 'null') {
         username = curUser.username;
         clientDigest = curUser.clientDigest;
     }

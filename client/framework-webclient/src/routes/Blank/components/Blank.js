@@ -21,7 +21,7 @@ class BlankComponent extends Component {
 		const curModulesString = sessionStorage.getItem('sysModules');
 		const curUser = JSON.parse(curUserString);
 		const curModules = JSON.parse(curModulesString);
-		if(curUserString != 'null' && curModulesString != 'null'){
+		if(curUserString !== 'null' && curModulesString !== 'null'){
             this.props.SetUser(curUser);
             this.props.SetModules(curModules);
 		    this.props.router.replace('/index');
