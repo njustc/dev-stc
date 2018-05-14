@@ -6,40 +6,40 @@ import {httpPut} from "UTILS/FetchUtil";
 
 const buttons = [{
     content: "保存",
-    onClick: (consignData) => {
+    onClick: (consignData,values) => {
         //
         debugger
         let url = "http://127.0.0.1:8000/services/consign";
         let data = {
             id: consignData.id,
-            consignation: consignData.consignation,
+            consignation: values,
         };
         httpPut(url, data, (result) => {
             debugger
             if (result.status == 'SUCCESS') {
-
+                consignData.consignation = values;
             }
             else {
-                // message.error('保存失败，请重试');
+                console.log("点击“保存”错误");
             }
         });
         //
     },
 },{
     content: "提交",
-    onClick: (consignData) => {
+    onClick: (consignData,values) => {
         //
         let url1 = "http://127.0.0.1:8000/services/consign";
         let data1 = {
             id: consignData.id,
-            consignation: consignData.consignation,
+            consignation: values,
         };
         httpPut(url1, data1, (result) => {
             if (result.status == 'SUCCESS') {
-                        
+                consignData.consignation = values;  
             }
             else {
-                // message.error('保存失败，请重试');
+                console.log("点击“提交”错误");
             }
         });
 
@@ -49,10 +49,10 @@ const buttons = [{
         };
         httpPut(url2, data2, (result) => {
             if (result.status == 'SUCCESS') {
-                
+                consignData.status = "submit";
             }
             else {
-                // message.error('提交失败，请重试');
+                console.log("点击“提交”错误");
             }
         });
         //
