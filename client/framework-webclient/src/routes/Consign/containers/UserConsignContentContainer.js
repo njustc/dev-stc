@@ -4,10 +4,10 @@ import ConsignContentComponent from "../components/ConsignContentComponent";
 
 const buttons = [{
     content: "保存",
-    onClick: () => {},
+    onClick: (id) => {},
 },{
     content: "提交",
-    onClick: () => {},
+    onClick: (procId) => {},
 },
 ];
 

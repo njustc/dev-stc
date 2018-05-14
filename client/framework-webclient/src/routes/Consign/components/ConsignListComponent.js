@@ -84,7 +84,7 @@ export default class ConsignListComponent extends Component {
                 <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-square-o" />新建委托</Button>
                     : <br/>}
                 <br /><br />
-                <Table dataSource={this.props.dataSource} columns={this.columns} />
+                <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'} />
 
             </div>
         );

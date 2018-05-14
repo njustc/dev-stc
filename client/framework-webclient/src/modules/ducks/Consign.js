@@ -6,24 +6,25 @@ const SET_FILTER = 'Consign/SET_FILTER'
 
 const initialState = {
     listFilter: () => true,
-    list: [{
-    key: '1',
-    id: '151220134',
-    time: '20180527',
-    status: 0,
-    }, {
-    key: '2',
-    id: '151220078',
-    time: '20180716',
-    status: 1,
-    }, {
-    key: '3',
-    id: '151220004',
-    time: '20181017',
-    status: 2,
-    }],
+    list: [
+        {
+            "processInstanceID": "17505",
+            "status": 'TobeSubmit',
+            "createdUserId": "1",
+            "createdTime": "2018-05-15 01:10:55",
+            "id": "f7a38ffa-22d2-4214-9c70-578c1211ed8b",
+            "consignation": ""
+        },
+        {
+            "processInstanceID": "17513",
+            "status": 'TobeSubmit',
+            "createdUserId": "1",
+            "createdTime": "2018-05-15 01:13:38",
+            "id": "2d9ce647-f95b-426e-8ebb-17340199c7db",
+            "consignation": ""
+        }
+    ],
     curContent: {},
-    toContent: false
 };
 
 // **************
