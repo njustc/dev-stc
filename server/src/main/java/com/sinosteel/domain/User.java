@@ -30,7 +30,7 @@ public class User extends BaseEntity
 	})
 	private List<Role> roles;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID",foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT))
 	@JSONField(serialize = false)
 	private List<Consign> consigns;

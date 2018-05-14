@@ -11,15 +11,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TBL_SYS_CONSIGN")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Consign extends BaseEntity{
+
+
     @Column(name = "CONSIGNATION")
     private String consignation;
 
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID",foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT))
     @JSONField(serialize = false)
     private User user;

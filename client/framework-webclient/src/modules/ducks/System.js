@@ -3,7 +3,14 @@ const SET_SYS_USER = 'System/SET_SYS_USER';
 
 const initialState = {
     sysUser: {},
-    modules: []
+    modules: [{
+        code: "U-C",
+        id: "1",
+        menuIcon: "idcard",
+        menuPath: "/user_list",
+        // menuPath: "/admin_list",
+        name: "委托管理"
+    }]
 };
 
 export const SystemReducer = (state = initialState, action) =>
@@ -12,7 +19,7 @@ export const SystemReducer = (state = initialState, action) =>
         case SET_SYS_USER:
             return {
                 ...state,
-                sysUser: action.payload
+                sysUser: action.payload,
             };
         case SET_MODULES:
             return {
@@ -33,6 +40,7 @@ export const setSysUser = (sysUser) => {
 
 
 export const setModules = (modules) => {
+    sessionStorage.setItem('sysUser','admin');
     return {
         type: SET_MODULES,
         payload: modules
