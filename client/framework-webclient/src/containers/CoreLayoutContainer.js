@@ -34,7 +34,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         removeTab: (Panes, activekey, targetKey) => {
             let activeKey = activekey;
-            let lastIndex;
+            let lastIndex = -1;
             const tmpPanes = Panes;
             tmpPanes.forEach((pane, i) => {
                 if (pane.key === targetKey) {

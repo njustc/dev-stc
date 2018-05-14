@@ -14,7 +14,9 @@ export default class UserConsignListComponent extends Component {
     static propTypes = {
         dataSource: PropTypes.array.isRequired,
         panes: PropTypes.array.isRequired,
-        addTab: PropTypes.func.isRequired,
+        // addTab: PropTypes.func.isRequired,
+        showContent: PropTypes.func.isRequired,
+        newConsign: PropTypes.func.isRequired,
     };
 
     columns = [{
@@ -69,13 +71,10 @@ export default class UserConsignListComponent extends Component {
             }).filter(record => !!record),
         });*/
     };
-
-    newConsign = () => {
-        //message.success('This is a prompt message for success, and it will disappear in 10 seconds', 10);
-    };
-
+    //
     viewContent = () => {
-        this.props.addTab(this.props.panes,'details','委托详情',UserConsignContentView);
+        // this.props.addTab(this.props.panes,'details','委托详情',UserConsignContentView);
+        this.props.showContent(this.props.panes);
     };
 
     render() {
@@ -91,7 +90,7 @@ export default class UserConsignListComponent extends Component {
                     />
                 </Card>
                 <br />
-                <Button type="primary" onClick={this.newConsign}><Icon type="plus-square-o" />新建委托</Button>
+                <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-square-o" />新建委托</Button>
                 <br /><br />
                 <Table dataSource={this.props.dataSource} columns={this.columns} />
 
