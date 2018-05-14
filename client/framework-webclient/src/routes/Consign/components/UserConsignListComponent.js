@@ -12,6 +12,7 @@ export default class UserConsignListComponent extends Component {
     }
 
     static propTypes = {
+        setListFilter: PropTypes.func.isRequired,
         dataSource: PropTypes.array.isRequired,
         panes: PropTypes.array.isRequired,
         // addTab: PropTypes.func.isRequired,
@@ -58,18 +59,8 @@ export default class UserConsignListComponent extends Component {
     ];
 
     onSearch = (value) => {
-        //this.setState({ searchText: value });
-        // const { searchText } = this.state;
-/*        const reg = new RegExp(value, 'gi');
-        this.setState({
-            dataSource: this.data.map((record) => {
-                const match = record.ID.match(reg);
-                if (!match) {
-                    return null;
-                }
-                return record;
-            }).filter(record => !!record),
-        });*/
+        const reg = new RegExp(value, 'gi');
+        this.props.setListFilter((record) => record.ID.match(reg));
     };
     //
     viewContent = () => {
