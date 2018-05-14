@@ -8,14 +8,16 @@ const buttons = [{
     content: "保存",
     onClick: (consignData) => {
         //
+        debugger
         let url = "http://127.0.0.1:8000/services/consign";
         let data = {
             id: consignData.id,
             consignation: consignData.consignation,
         };
         httpPut(url, data, (result) => {
+            debugger
             if (result.status == 'SUCCESS') {
-                        
+
             }
             else {
                 // message.error('保存失败，请重试');
@@ -59,8 +61,10 @@ const buttons = [{
 ];
 
 const mapStateToProps = (state) => {
+    const {list, index} = state.Consign;
     return {
-        values: state.Consign.curContent,
+        values: list[index].consignation,
+        consignData: list[index],
         disable: false,
         buttons: buttons,
     }

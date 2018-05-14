@@ -26,10 +26,9 @@ class ConsignContentComponent extends Component {
     };
 
     onClick = (buttonIndex) => () => {
-        e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                buttons[buttonIndex].onClick(this.props.consignData);
+                this.props.buttons[buttonIndex].onClick(this.props.consignData, values);
             }
         });
     };
@@ -98,7 +97,7 @@ class ConsignContentComponent extends Component {
                     </FormItem>
                 <FormItem {...formItemLayout}>
                 {this.props.buttons.map((button, index) =>
-                    <Button onClick={button.onClick(index)}
+                    <Button onClick={this.onClick(index)}
                             key={button.content}>
                     {button.content}
                     </Button>)}

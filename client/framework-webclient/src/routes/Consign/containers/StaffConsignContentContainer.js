@@ -12,8 +12,10 @@ const buttons = [{
 ];
 
 const mapStateToProps = (state) => {
+    const {list, index} = state.Consign;
     return {
-        values: state.Consign.curContent,
+        values: list[index].consignation,
+        consignData: list[index],
         disable: true,
         buttons: buttons,
     }

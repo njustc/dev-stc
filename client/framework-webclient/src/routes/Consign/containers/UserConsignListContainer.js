@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(setConsignIndex(index));
         },
         newConsign: (id) => {
-            httpPost('http://127.0.0.1:8000/services/consign', {consignation:{}}, (result) => {
+            httpPost('http://127.0.0.1:8000/services/consign', {consignation:{_:null},}, (result) => {
                 const {status} = result;
                 if (status === 'SUCCESS') {
                     httpGet('http://127.0.0.1:8000/services/consign', (result) => {

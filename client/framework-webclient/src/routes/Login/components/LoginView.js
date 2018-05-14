@@ -46,7 +46,7 @@ class LoginView extends React.Component {
                             }]);
                             this.props.router.replace('/index');
                         }
-                        else if(values.username === 'customer1'){
+                        else if(values.username === 'customer1' || values.username === 'customer2'){
                             this.props.SetModules([{
                                 "code": "U-C",
                                 "id": "1",
