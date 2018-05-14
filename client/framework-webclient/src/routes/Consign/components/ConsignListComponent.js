@@ -6,7 +6,7 @@ import UserConsignContentView from "./ConsignContentComponent";
 const { Column } = Table;
 const Search = Input.Search;
 
-export default class UserConsignListComponent extends Component {
+export default class ConsignListComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -15,40 +15,41 @@ export default class UserConsignListComponent extends Component {
         setListFilter: PropTypes.func.isRequired,
         dataSource: PropTypes.array.isRequired,
         showContent: PropTypes.func.isRequired,
-        newConsign: PropTypes.func.isRequired,
+        newConsign: PropTypes.func,
         enableNew: PropTypes.bool.isRequired,
     };
 
     columns = [{
         title:"委托ID",
-        dataIndex:"ID",
-        sorter:(a, b) => a.ID - b.ID,
-    }, {
-        title:"委托提交时间",
-        dataIndex:"time",
-        sorter:(a, b) => a.time - b.time,
+        dataIndex:"id",
+        sorter:(a, b) => a.id - b.id,
+    // }, {
+    //     title:"委托新建时间",
+    //     dataIndex:"time",
+    //     sorter:(a, b) => a.time - b.time,
     }, {
         title:"状态",
         dataIndex:"status",
-        render: (stateNum) => {
-            switch(stateNum) {
-                case 0:
-                    return '待评审';
-                case 1:
+        render: (stateCode) => {
+            switch(stateCode) {
+                case 'TobeSubmit':
+                    return '待提交';
+                case 'TobeCheck':
+                    return '待审核';
+                case 'Finished':
                     return '已通过';
-                case 2:
-                    return '未通过';
                 default:
                     return '未定义状态';
             }
         },
     }, {
         title:"操作",
-        key:"action",
-        render: (text) => {
+        dataIndex:"id",
+        key:"operation",
+        render: (id) => {
             return (
                 <span>
-                <Button type="content" onClick={this.viewContent}><Icon type="plus-square-o" />查看详情</Button>
+                <Button type="content" onClick={this.viewContent(id)}><Icon type="plus-square-o" />查看详情</Button>
                 <Divider type="vertical" />
                 <Button type="cancel"><Icon type="plus-square-o" />取消委托</Button>
                 </span>
@@ -57,14 +58,13 @@ export default class UserConsignListComponent extends Component {
     }
     ];
 
-    onSearch = (value) => {
+    onSearch = (value) => () => {
         const reg = new RegExp(value, 'gi');
-        this.props.setListFilter((record) => record.ID.match(reg));
+        this.props.setListFilter((record) => record.id.match(reg));
     };
     //
-    viewContent = () => {
-        // this.props.addTab(this.props.panes,'details','委托详情',UserConsignContentView);
-        this.props.showContent(this.props.panes);
+    viewContent = (id) => () => {
+        this.props.showContent(id);
     };
 
     render() {

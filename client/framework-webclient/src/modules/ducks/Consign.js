@@ -8,17 +8,17 @@ const initialState = {
     listFilter: () => true,
     list: [{
     key: '1',
-    ID: '151220134',
+    id: '151220134',
     time: '20180527',
     status: 0,
     }, {
     key: '2',
-    ID: '151220078',
+    id: '151220078',
     time: '20180716',
     status: 1,
     }, {
     key: '3',
-    ID: '151220004',
+    id: '151220004',
     time: '20181017',
     status: 2,
     }],

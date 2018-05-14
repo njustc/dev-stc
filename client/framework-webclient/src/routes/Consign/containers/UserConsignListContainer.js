@@ -1,9 +1,9 @@
 import React, {Component,PropTypes} from 'react';
-import UserConsignListComponent from "../components/UserConsignListComponent";
+import ConsignListComponent from "../components/ConsignListComponent";
 import {connect} from "react-redux";
-import {addTabAction, setState} from "../../../modules/ducks/Layout";
+import {addTabAction} from "../../../modules/ducks/Layout";
 import {setFilter} from "../../../modules/ducks/Consign"
-import UserConsignContentView from "ROUTES/Consign/components/ConsignContentComponent";
+import {UserConsignContentView} from "ROUTES/Consign";
 
 // todo: 利用第二个参数ownProps来过滤，实现搜索，ownProps是被显示传入的属性值，不包括map进去的
 const mapStateToProps = (state, ownProps) => {
@@ -22,5 +22,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         setListFilter: (newlistFilter) => dispatch(setFilter(newlistFilter)),
     }
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserConsignListComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ConsignListComponent);

@@ -15,12 +15,15 @@ class ConsignContentComponent extends Component {
         values: {},
         save: console.log,
         disable:false,
+        buttons: [],
     };
 
     static propTypes = {
         values: PropTypes.object.isRequired,
         save: PropTypes.func.isRequired,
         disable: PropTypes.bool.isRequired,
+        buttons: PropTypes.array.isRequired,
+        form: PropTypes.object.isRequired,
     };
 
     handleSubmit = (e) => {
@@ -94,6 +97,9 @@ class ConsignContentComponent extends Component {
                         <Input disabled={this.props.disable}/>
                     )}
                     </FormItem>
+                <FormItem {...formItemLayout}>
+                {this.props.buttons.map(button => <Button onClick={button.onClick} key={button.content}>{button.content}</Button>)}
+                </FormItem>
             </Form>
 
         );

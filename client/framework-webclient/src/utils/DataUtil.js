@@ -18,7 +18,7 @@ getData = () => {
         .then(res=>
         {
             this.setState({name:res.entrustString})
-            this.setState({ID:res.id})
+            this.setState({id:res.id})
             // debugger
         })
 
@@ -27,7 +27,7 @@ getData = () => {
 handleClick = () => {
     let obj = {
         entrustString: this.state.name,
-        id: this.state.ID
+        id: this.state.id
     };
 
     fetch('http://127.0.0.1:8000/entrust',
