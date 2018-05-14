@@ -14,10 +14,9 @@ export default class UserConsignListComponent extends Component {
     static propTypes = {
         setListFilter: PropTypes.func.isRequired,
         dataSource: PropTypes.array.isRequired,
-        panes: PropTypes.array.isRequired,
-        // addTab: PropTypes.func.isRequired,
         showContent: PropTypes.func.isRequired,
         newConsign: PropTypes.func.isRequired,
+        enableNew: PropTypes.bool.isRequired,
     };
 
     columns = [{
@@ -81,7 +80,9 @@ export default class UserConsignListComponent extends Component {
                     />
                 </Card>
                 <br />
+                {this.props.enableNew ?
                 <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-square-o" />新建委托</Button>
+                    : <br/>}
                 <br /><br />
                 <Table dataSource={this.props.dataSource} columns={this.columns} />
 

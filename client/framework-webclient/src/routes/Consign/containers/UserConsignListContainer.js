@@ -9,7 +9,7 @@ import UserConsignContentView from "ROUTES/Consign/components/ConsignContentComp
 const mapStateToProps = (state, ownProps) => {
     return {
         dataSource: state.Consign.list.filter(state.Consign.listFilter),
-        panes: state.Layout.panes,
+        enableNew: true,
     }
 };
 

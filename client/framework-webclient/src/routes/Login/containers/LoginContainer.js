@@ -6,7 +6,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         SetSysUser: (values) => dispatch(setSysUser(values)),
         SetModules: (values) => dispatch(setModules(values)),
-        handleLogin: (username,)
     }
 };
 
