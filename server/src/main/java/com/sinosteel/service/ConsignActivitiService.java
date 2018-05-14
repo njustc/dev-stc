@@ -1,13 +1,10 @@
 package com.sinosteel.service;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ConsignActiviti;
 import com.sinosteel.domain.Consign;
 import com.sinosteel.domain.User;
-import com.sinosteel.framework.config.system.SystemConfig;
 import com.sinosteel.framework.core.web.Request;
-import com.sun.java.swing.action.OpenAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
