@@ -3,7 +3,7 @@ const SET_SYS_USER = 'System/SET_SYS_USER';
 
 const initialState = {
     sysUser: {},
-    modules: [{}]
+    modules: [],
 };
 
 export const SystemReducer = (state = initialState, action) =>
