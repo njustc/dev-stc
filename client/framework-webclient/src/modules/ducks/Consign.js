@@ -2,8 +2,10 @@ const GET_LIST = 'Consign/GET_LIST';
 const GET_CONTENT = 'Consign/GET_CONTENT';
 const NEW = 'Consign/NEW';
 const SET_CONTENT = 'Consign/SET_CONTENT'
+const SET_FILTER = 'Consign/SET_FILTER'
 
 const initialState = {
+    listFilter: () => true,
     list: [{
     key: '1',
     ID: '151220134',
@@ -38,6 +40,11 @@ export const ConsignReducer = (state = initialState, action) => {
                   ...state,
                   toContent: false
               };
+          case SET_FILTER:
+              return {
+                  ...state,
+                  listFilter: action.payload
+              };
           default:
               return state;
       }
@@ -57,5 +64,12 @@ export const getConsignContent = (id) => {
 export const toContent = () => {
     return {
         type: SET_CONTENT,
+    }
+};
+
+export const setFilter = (listFilter) => {
+    return {
+        type: SET_FILTER,
+        payload: listFilter
     }
 };
