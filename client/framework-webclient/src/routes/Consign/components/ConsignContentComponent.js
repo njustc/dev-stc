@@ -13,24 +13,22 @@ class ConsignContentComponent extends Component {
 
     static defaultProps = {
         values: {},
-        save: console.log,
         disable:false,
         buttons: [],
     };
 
     static propTypes = {
         values: PropTypes.object.isRequired,
-        save: PropTypes.func.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };
 
-    handleSubmit = (e) => {
+    handleSubmit = (buttonIndex) => () => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.props.save(values);
+                buttons[buttonIndex].onClick(values);
             }
         });
     };
@@ -98,7 +96,11 @@ class ConsignContentComponent extends Component {
                     )}
                     </FormItem>
                 <FormItem {...formItemLayout}>
-                {this.props.buttons.map(button => <Button onClick={button.onClick} key={button.content}>{button.content}</Button>)}
+                {this.props.buttons.map((button, index) =>
+                    <Button onClick={button.onClick}
+                            key={button.content}>
+                    {button.content}
+                    </Button>)}
                 </FormItem>
             </Form>
 

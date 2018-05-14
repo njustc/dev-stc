@@ -14,9 +14,7 @@ const buttons = [{
 const mapStateToProps = (state) => {
     return {
         values: state.Consign.curContent,
-        // disable: false,
-        disable: true,
-        save: console.log,
+        disable: false,
         buttons: buttons,
     }
 };

@@ -12,16 +12,40 @@ class LoginView extends React.Component {
     };
 
     static propTypes = {
-        SetSysUser: PropTypes.func.isRequired
+        SetSysUser: PropTypes.func.isRequired,
+        SetModules: PropTypes.func.isRequired
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
+            console.log(values);
             if (!err) {
                 //这里用values获取到用户的sysUser和module，数据结构见modules/ducks/system
                 this.props.SetSysUser(values);
-                this.props.router.replace('/index');
+                if(values.userName === 'marketing'){
+                    this.props.SetModules([{
+                        "code": "U-C",
+                        "id": "1",
+                        "menuIcon": "idcard",
+                        "menuPath": "/admin_list",
+                        "name": "委托管理"
+                        }]);
+                    this.props.router.replace('/index');
+                }
+                else if(values.userName === 'customer1'){
+                    this.props.SetModules([{
+                        "code": "U-C",
+                        "id": "1",
+                        "menuIcon": "idcard",
+                        "menuPath": "/user_list",
+                        "name": "委托管理"
+                    }]);
+                    this.props.router.replace('/index');
+                }
+                else{
+                    message.error('登录失败，请重试');
+                }
             }
         });
     };
