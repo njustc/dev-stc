@@ -5,7 +5,6 @@ import {addTabAction, setState} from "../../../modules/ducks/Layout";
 import {setConsignIndex, setConsignList, setConsignStatus, setFilter} from "../../../modules/ducks/Consign"
 import {StaffConsignContentView} from "ROUTES/Consign";
 import {httpDelete, httpGet} from "UTILS/FetchUtil";
-import {UserConsignContentView} from "ROUTES/Consign/index";
 
 // todo: 利用第二个参数ownProps来过滤，实现搜索，ownProps是被显示传入的属性值，不包括map进去的
 const mapStateToProps = (state, ownProps) => {
@@ -18,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         showContent: (index) => {
-            dispatch(addTabAction('details', '委托详情', UserConsignContentView));
+            dispatch(addTabAction('details', '委托详情', StaffConsignContentView));
             dispatch(setConsignIndex(index));
         },
         setListFilter: (newlistFilter) => dispatch(setFilter(newlistFilter)),

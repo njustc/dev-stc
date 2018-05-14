@@ -49,7 +49,7 @@ const buttons = [{
         };
         httpPut(url2, data2, (result) => {
             if (result.status == 'SUCCESS') {
-                consignData.status = "submit";
+                consignData.status = "TobeCheck";
             }
             else {
                 console.log("点击“提交”错误");
