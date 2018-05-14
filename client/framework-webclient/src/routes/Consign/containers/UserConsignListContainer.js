@@ -2,7 +2,7 @@ import React, {Component,PropTypes} from 'react';
 import ConsignListComponent from "../components/ConsignListComponent";
 import {connect} from "react-redux";
 import {addTabAction} from "../../../modules/ducks/Layout";
-import {setConsignList, setConsignStatus, setFilter} from "../../../modules/ducks/Consign"
+import {setConsignIndex, setConsignList, setConsignStatus, setFilter} from "../../../modules/ducks/Consign"
 import {UserConsignContentView} from "ROUTES/Consign";
 import {httpDelete, httpGet, httpPost} from "UTILS/FetchUtil";
 
@@ -16,7 +16,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        showContent: () => dispatch(addTabAction('details', '委托详情', UserConsignContentView)),
+        showContent: (index) => {
+            dispatch(addTabAction('details', '委托详情', UserConsignContentView));
+            dispatch(setConsignIndex(index));
+        },
         newConsign: (id) => {
             httpPost('http://127.0.0.1:8000/services/consign', {consignation:{}}, (result) => {
                 const {status} = result;

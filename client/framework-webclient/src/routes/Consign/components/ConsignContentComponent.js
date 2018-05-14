@@ -19,6 +19,7 @@ class ConsignContentComponent extends Component {
 
     static propTypes = {
         values: PropTypes.object.isRequired,
+        consignData: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
@@ -28,7 +29,7 @@ class ConsignContentComponent extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                buttons[buttonIndex].onClick(values);
+                buttons[buttonIndex].onClick(this.props.consignData);
             }
         });
     };

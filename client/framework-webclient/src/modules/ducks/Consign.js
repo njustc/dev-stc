@@ -1,27 +1,12 @@
 const SET_LIST = 'Consign/SET_LIST';
+const SET_INDEX = 'Consign/SET_INDEX';
 const SET_STATUS = 'Consign/SET_STATUS';
 const SET_FILTER = 'Consign/SET_FILTER';
 
 const initialState = {
     listFilter: () => true,
-    list: [
-        // {
-        //     "processInstanceID": "17505",
-        //     "status": 'TobeSubmit',
-        //     "createdUserId": "1",
-        //     "createdTime": "2018-05-15 01:10:55",
-        //     "id": "f7a38ffa-22d2-4214-9c70-578c1211ed8b",
-        //     "consignation": ""
-        // },
-        // {
-        //     "processInstanceID": "17513",
-        //     "status": 'TobeSubmit',
-        //     "createdUserId": "1",
-        //     "createdTime": "2018-05-15 01:13:38",
-        //     "id": "2d9ce647-f95b-426e-8ebb-17340199c7db",
-        //     "consignation": ""
-        // }
-    ],
+    list: [],
+    index: -1,
 };
 
 // **************
@@ -41,6 +26,11 @@ export const ConsignReducer = (state = initialState, action) => {
               return {
                   ...state,
                   list: newList,
+              };
+          case SET_INDEX:
+              return {
+                  ...state,
+                  index: action.payload,
               };
           case SET_FILTER:
               return {
@@ -66,6 +56,13 @@ export const setConsignStatus = (index, status) => {
             index: index,
             status: status,
         },
+    }
+};
+
+export const setConsignIndex = (index) => {
+    return {
+        type: SET_INDEX,
+        payload: index,
     }
 };
 

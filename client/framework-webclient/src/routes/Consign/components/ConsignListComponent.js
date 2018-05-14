@@ -48,10 +48,10 @@ export default class ConsignListComponent extends Component {
         title:"操作",
         dataIndex:"id",
         key:"operation",
-        render: (id) => {
+        render: (id, record, index) => {
             return (
                 <span>
-                <Button type="content" onClick={this.viewContent(id)}><Icon type="plus-square-o" />查看详情</Button>
+                <Button type="content" onClick={this.viewContent(index)}><Icon type="plus-square-o" />查看详情</Button>
                 <Divider type="vertical" />
                 <Button type="cancel" onClick={this.deleteConsign(id)}><Icon type="plus-square-o" />取消委托</Button>
                 </span>
@@ -65,8 +65,8 @@ export default class ConsignListComponent extends Component {
         this.props.setListFilter((record) => record.id.match(reg));
     };
     //
-    viewContent = (id) => () => {
-        this.props.showContent(id);
+    viewContent = (index) => () => {
+        this.props.showContent(index);
     };
     deleteConsign = (id) => () => {
         this.props.deleteConsign(id);
