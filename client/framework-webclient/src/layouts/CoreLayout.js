@@ -64,17 +64,17 @@ export default class CoreLayout extends Component
 	render(){
 		return (
 			<Layout>
-                <Sider>
+                <Sider width={200} style={{ background: '#d9e2dd' }}>
                     <Affix offsetTop={0}>
                         <Row>
-                            <div className="logoV2Container" style={{marginBottom: '20px', background: '#012c33'}}>
+                            <div className="logoV2Container" style={{marginBottom: '20px', background: '#c8e0bc'}}>
                                 <img src={Logo} className="logoV2"></img>
                             </div>
                         </Row>
                     </Affix>
                     <Affix offsetTop={120}>
                         <Menu
-                            theme="dark"
+                            theme="light"
                             mode="inline"
                             defaultSelectedKeys={this.defaultSelectedKeys}
                             onClick={this.handleClick}
