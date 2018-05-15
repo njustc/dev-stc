@@ -61,6 +61,7 @@ public class ConsignService extends BaseService<Consign> {
     public void editConsign(JSONObject params, List<MultipartFile> files, User user) throws Exception
     {
         Consign consign = JSONObject.toJavaObject(params, Consign.class);
+        consign.setUser(user);
         this.updateEntity(consign, user);
     }
 
