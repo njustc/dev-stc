@@ -4,7 +4,6 @@ import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
 import com.sinosteel.service.ConsignActivitiService;
-import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

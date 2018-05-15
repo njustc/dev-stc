@@ -32,8 +32,8 @@ public class ConsignService extends BaseService<Consign> {
     public JSON queryConsigns(User user)
     {
 
-
-        System.out.println("queryConsigns--> query user role: " + user.getRoles().get(0).getRoleName());
+        if (user != null)
+            System.out.println("queryConsigns--> query user role: " + user.getRoles().get(0).getRoleName());
         if (user.getRoles().get(0).getRoleName().equals("普通客户"))
         {
 //            Consign consign = new Consign();
