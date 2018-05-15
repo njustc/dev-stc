@@ -1,5 +1,9 @@
-import StaffConsignListView from 'routes/Consign/components/StaffConsignListView';
-import {StaffConsignContentView, UserConsignContentView, UserConsignListView} from "ROUTES/Consign";
+import {
+    StaffConsignContentView,
+    StaffConsignListView,
+    UserConsignContentView,
+    UserConsignListView
+} from "ROUTES/Consign";
 
 const tabsMap =
 [

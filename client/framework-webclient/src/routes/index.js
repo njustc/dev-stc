@@ -4,8 +4,6 @@ import React from 'react'
 
 import Blank from './Blank';
 
-import LoginView from './Login';
-import CoreLayout from 'layouts/CoreLayout'
 // 配置路由
 export const createRoutes = (store) => 
 {

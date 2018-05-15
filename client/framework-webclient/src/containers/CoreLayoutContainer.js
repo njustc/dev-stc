@@ -16,6 +16,7 @@ function containsPane(key, panes)
 const mapStateToProps = (state) => {
     console.log(state);
     return {
+        sysUser: state.System.sysUser,
         modules: state.System.modules,
         panes: state.Layout.panes,
         activeKey: state.Layout.activeKey
@@ -34,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         removeTab: (Panes, activekey, targetKey) => {
             let activeKey = activekey;
-            let lastIndex;
+            let lastIndex = -1;
             const tmpPanes = Panes;
             tmpPanes.forEach((pane, i) => {
                 if (pane.key === targetKey) {

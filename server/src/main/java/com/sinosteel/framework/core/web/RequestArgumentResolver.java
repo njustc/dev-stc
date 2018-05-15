@@ -59,7 +59,8 @@ public class RequestArgumentResolver implements HandlerMethodArgumentResolver
 
 		System.out.println("Request content");
 		System.out.println("URL: " + uri);
-		System.out.println("User: " + user.getName());
+		if (user != null)
+			System.out.println("User: " + user.getName());
 		System.out.println("params: " + params);
 
         return request;

@@ -170,11 +170,11 @@
 			<artifactId>activiti-spring-boot-starter-basic</artifactId>
 			<version>6.0.0</version>
 		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-spring-boot-starter-security</artifactId>
-			<version>${activiti.version}</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.activiti</groupId>-->
+			<!--<artifactId>activiti-spring-boot-starter-security</artifactId>-->
+			<!--<version>${activiti.version}</version>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -212,5 +212,6 @@
 
 	<properties>
 		<activiti.version>6.0.0</activiti.version>
+		<start-class>com.sinosteel.FrameworkApplication</start-class>
 	</properties>
 </project>
