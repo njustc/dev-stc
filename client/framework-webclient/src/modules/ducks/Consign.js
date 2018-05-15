@@ -1,29 +1,12 @@
-const GET_LIST = 'Consign/GET_LIST';
-const GET_CONTENT = 'Consign/GET_CONTENT';
-const NEW = 'Consign/NEW';
-const SET_CONTENT = 'Consign/SET_CONTENT'
-const SET_FILTER = 'Consign/SET_FILTER'
+const SET_LIST = 'Consign/SET_LIST';
+const SET_INDEX = 'Consign/SET_INDEX';
+const SET_STATUS = 'Consign/SET_STATUS';
+const SET_FILTER = 'Consign/SET_FILTER';
 
 const initialState = {
     listFilter: () => true,
-    list: [{
-    key: '1',
-    ID: '151220134',
-    time: '20180527',
-    status: 0,
-    }, {
-    key: '2',
-    ID: '151220078',
-    time: '20180716',
-    status: 1,
-    }, {
-    key: '3',
-    ID: '151220004',
-    time: '20181017',
-    status: 2,
-    }],
-    curContent: {},
-    toContent: false
+    list: [],
+    index: -1,
 };
 
 // **************
@@ -31,14 +14,23 @@ const initialState = {
 
 export const ConsignReducer = (state = initialState, action) => {
       switch (action.type) {
-          case GET_LIST:
-              return state;
-          case GET_CONTENT:
-              return state;
-          case SET_CONTENT:
+          case SET_LIST:
               return {
                   ...state,
-                  toContent: false
+                  list: action.payload,
+              };
+          case SET_STATUS:
+              const {index, status} = action.payload;
+              const newList = state.list;
+              newList[index].status = status;
+              return {
+                  ...state,
+                  list: newList,
+              };
+          case SET_INDEX:
+              return {
+                  ...state,
+                  index: action.payload,
               };
           case SET_FILTER:
               return {
@@ -50,20 +42,27 @@ export const ConsignReducer = (state = initialState, action) => {
       }
 };
 
-export const getConsignList = () =>  {
-    return { type: GET_LIST };
-};
-
-export const getConsignContent = (id) => {
+export const setConsignList = (list) => {
     return {
-        type: GET_CONTENT,
-        payload: id,
+        type: SET_LIST,
+        payload: list,
     }
 };
 
-export const toContent = () => {
+export const setConsignStatus = (index, status) => {
     return {
-        type: SET_CONTENT,
+        type: SET_STATUS,
+        payload: {
+            index: index,
+            status: status,
+        },
+    }
+};
+
+export const setConsignIndex = (index) => {
+    return {
+        type: SET_INDEX,
+        payload: index,
     }
 };
 

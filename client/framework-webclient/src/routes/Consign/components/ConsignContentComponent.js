@@ -13,21 +13,22 @@ class ConsignContentComponent extends Component {
 
     static defaultProps = {
         values: {},
-        save: console.log,
         disable:false,
+        buttons: [],
     };
 
     static propTypes = {
         values: PropTypes.object.isRequired,
-        save: PropTypes.func.isRequired,
+        consignData: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
+        buttons: PropTypes.array.isRequired,
+        form: PropTypes.object.isRequired,
     };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
+    onClick = (buttonIndex) => () => {
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.props.save(values);
+                this.props.buttons[buttonIndex].onClick(this.props.consignData, values);
             }
         });
     };
@@ -64,6 +65,7 @@ class ConsignContentComponent extends Component {
                 <FormItem {...formItemLayout} label="测试类型">
                     {getFieldDecorator('test_type', {
                         rules: [{ required: true, message: '请选择至少一项测试类型!'}],
+                        initialValue: this.props.values.test_type,
                     })(
                         <Checkbox.Group disabled={this.props.disable}>
                             <Checkbox value={"软件确认测试"}/>软件确认测试
@@ -76,8 +78,9 @@ class ConsignContentComponent extends Component {
 
 
                 <FormItem {...formItemLayout} label="请输入软件名称">
-                    {getFieldDecorator('software_name', {
+                    {getFieldDecorator('softwareName', {
                         rules: [{ required: true, message: '请输入软件名称！' }],
+                        initialValue: this.props.values.softwareName,
                     })(
                         <Input disabled={this.props.disable}/>
                     )}
@@ -87,11 +90,19 @@ class ConsignContentComponent extends Component {
                 <FormItem {...formItemLayout} label={"版本号"}>
                     {getFieldDecorator('version', {
                         rules: [{ required: true, message: '请正确输入版本号！',pattern:"^[a-zA-Z0-9/.]+$"}],
+                        initialValue: this.props.values.version,
                     })(
                         <Input disabled={this.props.disable}/>
                     )}
                     </FormItem>
-
+                <FormItem {...formItemLayout}>
+                {this.props.buttons.map((button, index) =>
+                    <Button onClick={this.onClick(index)}
+                            key={button.content}>
+                    {button.content}
+                    </Button>)}
+                </FormItem>
+            </Form>
 
         );
     }

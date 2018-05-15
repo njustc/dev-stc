@@ -1,75 +1,47 @@
 import {getStore} from 'store/globalStore';
 
-export const getAuthParams = () =>
-{
-    const systemStore = getStore().getState().system;
-    if(!systemStore)
-    {
-        return;
+export const httpGet = (url, callback) => {
+    return sysFetch('GET', url, null, callback);
+};
+
+export const httpPost = (url, params, callback) => {
+    return sysFetch('POST', url, params, callback);
+};
+
+export const httpPut = (url, params, callback) => {
+    return sysFetch('PUT', url, params, callback);
+};
+
+export const httpDelete = (url, params, callback) => {
+    return sysFetch('DELETE', url, params, callback);
+};
+
+const sysFetch = (Method, url, params, callback) => {
+
+    let result = { 
+        status: "FAILURE"
+    };
+    let username = "undefined";
+    let clientDigest = "undefined";
+
+    const curUserString = sessionStorage.getItem('sysUser');
+    const curUser = JSON.parse(curUserString);
+    if (curUserString && curUserString !== 'null') {
+        username = curUser.username;
+        clientDigest = curUser.clientDigest;
     }
 
-    var sysUser = systemStore.sysUser;
-    if(!sysUser)
-    {
-        return;
-    }
-    
-    return( 
-    {
-        username: sysUser.username,
-        clientDigest: sysUser.clientDigest
-    })
-}
+    let fullUrl = url + '?username=' + username + '&clientDigest=' + clientDigest;
+    let formData = new FormData();
+    formData.append('params', params ? JSON.stringify(params): '');
 
-//封装fetch方法，让fetch自动携带user信息
-/* DEPRECATED */
-/*
-export const sysFetch = (service, request, callback, files) =>
-{
-	const systemStore = getStore().getState().system;
-	if(!systemStore)
-	{
-		return;
-	}
-
-	var sysUser = systemStore.sysUser;
-	if(!sysUser)
-	{
-		return;
-	}
-
-	const serviceWithAuth = service + '?username=' + sysUser.username + '&clientDigest=' + sysUser.clientDigest;
-
-    let contentType = "application/json"
-    if(files)
-    {
-        contentType = "multipart/form-data"
+    let request = { method: Method };
+    if (Method != 'GET') {
+        request.body = formData;
     }
 
-    let body = request && request != '' ? JSON.stringify(request) : '';
-    if(files)
-    {
-        let data = new FormData();
-
-        data.append('params', body == '' ? null : body);
-
-        for(var i = 0; i < files.length; i++)
-        {
-            data.append('file' + i, files[i]);
-        }
-
-        data.append('totalFiles', files.length);
-
-        body = data;
-    }
-
-	fetch(serviceWithAuth, 
-    {
-        method: "POST",
-        mode: "cors",
-        body: body
-    })
-    .then((res) => 
+    return fetch(fullUrl, request)
+        .then((res) =>
     {
         if(res.ok)
         {
@@ -80,62 +52,15 @@ export const sysFetch = (service, request, callback, files) =>
             return Promise.reject();
         }
     })
-    .then((res) =>
-    {
-        callback(res);
-    });
-}
-*/
-
-export const sysFetch = (service, request, callback, files) =>
-{
-    let username = '';
-    let clientDigest = '';
-
-    const systemStore = getStore().getState().system;
-    if(systemStore)
-    {
-        var sysUser = systemStore.sysUser;
-        if(sysUser)
-        {
-            username = sysUser.username;
-            clientDigest = sysUser.clientDigest;
+    .then(json => {
+        if(json.status == "SUCCESS"){
+            result.status = "SUCCESS"
+            result.data = json.data;
+            result.message = json.message;
         }
-    }
-    
-    const serviceWithAuth = service + '?username=' + username + '&clientDigest=' + clientDigest;
-
-    let data = new FormData();
-    data.append('params', request && request != '' ? JSON.stringify(request) : null);
-
-    if(files)
-    {
-        for(var i = 0; i < files.length; i++)
-        {
-            data.append('file' + i, files[i]);
-        }
-
-        data.append('totalFiles', files.length);
-    }
-
-    fetch(serviceWithAuth, 
-    {
-        method: "POST",
-        body: data
+        callback(result);
     })
-    .then((res) => 
-    {
-        if(res.ok)
-        {
-            return res.json();
-        }
-        else
-        {
-            return Promise.reject();
-        }
+    .catch(err => {
+        callback(result);
     })
-    .then((res) =>
-    {
-        callback(res);
-    });
 }

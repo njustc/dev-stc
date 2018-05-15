@@ -6,7 +6,7 @@ import UserConsignContentView from "./ConsignContentComponent";
 const { Column } = Table;
 const Search = Input.Search;
 
-export default class UserConsignListComponent extends Component {
+export default class ConsignListComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -14,44 +14,46 @@ export default class UserConsignListComponent extends Component {
     static propTypes = {
         setListFilter: PropTypes.func.isRequired,
         dataSource: PropTypes.array.isRequired,
-        panes: PropTypes.array.isRequired,
-        // addTab: PropTypes.func.isRequired,
         showContent: PropTypes.func.isRequired,
-        newConsign: PropTypes.func.isRequired,
+        deleteConsign: PropTypes.func.isRequired,
+        getConsignList: PropTypes.func.isRequired,
+        newConsign: PropTypes.func,
+        enableNew: PropTypes.bool.isRequired,
     };
+
+    componentDidMount() {
+        this.props.getConsignList();
+    }
 
     columns = [{
         title:"委托ID",
-        dataIndex:"ID",
-        sorter:(a, b) => a.ID - b.ID,
-    }, {
-        title:"委托提交时间",
-        dataIndex:"time",
-        sorter:(a, b) => a.time - b.time,
+        dataIndex:"id",
+        sorter:(a, b) => a.id - b.id,
     }, {
         title:"状态",
         dataIndex:"status",
-        render: (stateNum) => {
-            switch(stateNum) {
-                case 0:
-                    return '待评审';
-                case 1:
+        render: (stateCode) => {
+            switch(stateCode) {
+                case 'TobeSubmit':
+                    return '待提交';
+                case 'TobeCheck':
+                    return '待审核';
+                case 'Finished':
                     return '已通过';
-                case 2:
-                    return '未通过';
                 default:
                     return '未定义状态';
             }
         },
     }, {
         title:"操作",
-        key:"action",
-        render: (text) => {
+        dataIndex:"id",
+        key:"operation",
+        render: (id, record, index) => {
             return (
                 <span>
-                <Button type="content" onClick={this.viewContent}><Icon type="plus-square-o" />查看详情</Button>
+                <Button type="content" onClick={this.viewContent(index)}><Icon type="plus-square-o" />查看详情</Button>
                 <Divider type="vertical" />
-                <Button type="cancel"><Icon type="plus-square-o" />取消委托</Button>
+                <Button type="cancel" onClick={this.deleteConsign(id)}><Icon type="plus-square-o" />取消委托</Button>
                 </span>
             )
         }
@@ -60,12 +62,14 @@ export default class UserConsignListComponent extends Component {
 
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
-        this.props.setListFilter((record) => record.ID.match(reg));
+        this.props.setListFilter((record) => record.id.match(reg));
     };
     //
-    viewContent = () => {
-        // this.props.addTab(this.props.panes,'details','委托详情',UserConsignContentView);
-        this.props.showContent(this.props.panes);
+    viewContent = (index) => () => {
+        this.props.showContent(index);
+    };
+    deleteConsign = (id) => () => {
+        this.props.deleteConsign(id);
     };
 
     render() {
@@ -81,9 +85,11 @@ export default class UserConsignListComponent extends Component {
                     />
                 </Card>
                 <br />
+                {this.props.enableNew ?
                 <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-square-o" />新建委托</Button>
+                    : <br/>}
                 <br /><br />
-                <Table dataSource={this.props.dataSource} columns={this.columns} />
+                <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'} />
 
             </div>
         );
