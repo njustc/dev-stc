@@ -32,8 +32,8 @@ public class ConsignService extends BaseService<Consign> {
     public JSON queryConsigns(User user)
     {
 
-
-        System.out.println("queryConsigns--> query user role: " + user.getRoles().get(0).getRoleName());
+        if (user != null)
+            System.out.println("queryConsigns--> query user role: " + user.getRoles().get(0).getRoleName());
         if (user.getRoles().get(0).getRoleName().equals("普通客户"))
         {
 //            Consign consign = new Consign();
@@ -60,7 +60,14 @@ public class ConsignService extends BaseService<Consign> {
     //更新委托
     public void editConsign(JSONObject params, List<MultipartFile> files, User user) throws Exception
     {
-        Consign consign = JSONObject.toJavaObject(params, Consign.class);
+        Consign tempconsign = JSONObject.toJavaObject(params, Consign.class);
+        Consign consign;
+        if ((consign = this.findEntityById(tempconsign.getId())) == null) {
+            throw new Exception("Can't find id: " + tempconsign.getId());
+        }
+        //编辑委托时只编辑内容
+        consign.setConsignation(tempconsign.getConsignation());
+
         this.updateEntity(consign, user);
     }
 
