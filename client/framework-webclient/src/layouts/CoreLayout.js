@@ -35,7 +35,7 @@ export default class CoreLayout extends Component
 	handleClick = (e) =>{
         let menu = findMenuByKey(e.key, this.props.modules);
         let component = findPageByPath(menu.menuPath, tabsMap);
-        this.props.addTab(this.props.panes, menu.id, menu.name, component);
+        this.props.addTab(menu.name, component);
     };
 
     handleMenuClick = (e) =>{
