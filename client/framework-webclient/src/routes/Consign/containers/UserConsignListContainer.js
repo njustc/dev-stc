@@ -70,20 +70,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             httpDelete('http://127.0.0.1:8000/services/consign', {id:id}, (result) => {
                 const {status} = result;
                 if (status === 'SUCCESS') {
-                    // httpGet('http://127.0.0.1:8000/services/consign', (result) => {
-                    //     const {status, data} = result;
-                    //     if (status === 'SUCCESS') {
-                    //         dispatch(setConsignList(data));
-                    //         for (let i = 0; i < data.length; i ++) {
-                    //             httpGet('http://localhost:8000/services/consignActiviti/' + data[i].processInstanceID, (result) => {
-                    //                 const {status, data} = result;
-                    //                 if (status === 'SUCCESS') {
-                    //                     dispatch(setConsignStatus(i, data.state));
-                    //                 }
-                    //             })
-                    //         }
-                    //     }
-                    // });
                     dispatch(removeConsign(id));
                 }
             });
