@@ -45,6 +45,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             httpGet('http://127.0.0.1:8000/services/consign', (result) => {
                 const {status, data} = result;
                 if (status === 'SUCCESS') {
+                    debugger;
                     dispatch(setConsignList(data));
                     for (let i = 0; i < data.length; i ++) {
                         httpGet('http://localhost:8000/services/consignActiviti/' + data[i].processInstanceID, (result) => {
