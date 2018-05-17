@@ -12,13 +12,14 @@ import org.springframework.stereotype.Service;
  * @author LBW
  */
 @Service
-public class ConsignActivitiService
+public class ProcessInstanceService
 {
+    //TODO: needs to deal with different kinds of entities.
 
     @Autowired
     private ConsignActiviti consignActiviti;
 
-    public JSONObject queryConsignState(String processInstanceID)
+    public JSONObject queryProcessState(String processInstanceID)
     {
         String state = consignActiviti.getProcessState(processInstanceID);
 
@@ -36,7 +37,7 @@ public class ConsignActivitiService
         return consignActiviti.createConsignProcess(consign.getId(), user.getId());
     }
 
-    public JSONObject updateConsignState(String processInstanceID, Request request)
+    public JSONObject updateProcessState(String processInstanceID, Request request)
     {
         JSONObject params = request.getParams();
         String operation = params.getString("operation");
@@ -51,6 +52,6 @@ public class ConsignActivitiService
             consignActiviti.checkConsign(false, processInstanceID, request.getUser().getId());
         }
 
-        return queryConsignState(processInstanceID);
+        return queryProcessState(processInstanceID);
     }
 }
