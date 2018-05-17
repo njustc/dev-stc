@@ -36,12 +36,16 @@ public class ConsignService extends BaseService<Consign> {
         if (user.getRoles().get(0).getRoleName().equals("普通客户"))
         {
             List<Consign> consigns = user.getConsigns();
-            return JSON.parseArray(JSONArray.toJSONString(consigns));
+            //对委托列表进行处理，去掉委托具体内容,并且添加委托状态
+            JSONArray resultArray = processConsigns(consigns);
+            return resultArray;
         }
         else
         {
             List<Consign> consigns = consignRepository.findByAllConsigns();
-            return JSON.parseArray(JSONArray.toJSONString(consigns));
+            //对委托列表进行处理，去掉委托具体内容,并且添加委托状态
+            JSONArray resultArray = processConsigns(consigns);
+            return resultArray;
         }
     }
 
@@ -97,4 +101,17 @@ public class ConsignService extends BaseService<Consign> {
     }
 
 
+    private  JSONArray processConsigns(List<Consign> consigns) {
+        JSONArray resultArray = new JSONArray();
+        //去掉委托内容,添加状态
+        for (Consign consign: consigns) {
+            JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
+            jsonObject.remove("consignation");
+            String processState = (String)processInstanceService.queryProcessState(consign.getProcessInstanceID()).get("state");
+            jsonObject.put("state", processState);
+            resultArray.add(jsonObject);
+        }
+
+        return resultArray;
+    }
 }
