@@ -117,6 +117,8 @@ public class ConsignActivitiTest {
         System.out.println("正在测试通过委托");
         consignActiviti.checkConsign(true, processInstanceID, "1" );
         System.out.println(consignActiviti.getProcessState(processInstanceID));
+
+        System.out.println(consignActiviti.getProcessState("2333"));
     }
 
 

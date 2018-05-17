@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef" xmlns:modeler="http://activiti.com/modeler" modeler:version="1.0en" modeler:exportDateTime="20180516213213127" modeler:modelId="2002" modeler:modelVersion="1" modeler:modelLastUpdated="1526477496619">
+  <process id="contract" name="contract" isExecutable="true">
+    <startEvent id="start">
+      <extensionElements>
+        <activiti:formProperty id="ContractID" name="the ID of the contract" type="String" required="true"/>
+        <modeler:editor-resource-id><![CDATA[startEvent1]]></modeler:editor-resource-id>
+      </extensionElements>
+    </startEvent>
+    <!---->
+    <userTask id="newcontract" name="新建合同" activiti:assignee="${ClientID}">
+      <extensionElements>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-4A2370E9-D3A1-49E0-B73F-51D76F52B290]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <!--<userTask id="submitcontract" name="提交合同" activiti:candidateGroups="客户">-->
+    <userTask id="submitcontract" name="提交合同" activiti:assignee="${ClientID}">
+      <extensionElements>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-7345CD5A-EB33-4B78-90F0-3C1E3A116822]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <userTask id="checkcontract" name="评审合同" activiti:candidateGroups="质量部,市场部主任">
+      <extensionElements>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-1D47E8F1-A0ED-4383-B3FA-393923F11D77]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="g2">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-6F8786E1-090A-4CDB-8444-505AA2147BCD]]></modeler:editor-resource-id>
+      </extensionElements>
+    </exclusiveGateway>
+    <userTask id="confirmcontract" name="确认合同" activiti:candidateGroups="客户">
+      <extensionElements>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-1E977F25-65D9-4412-91E9-1029A9476267]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="g5">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-8DEB04C7-DB84-4E91-A6F9-C04CE01D1E1F]]></modeler:editor-resource-id>
+      </extensionElements>
+    </exclusiveGateway>
+    <endEvent id="end">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-6F74CC60-3575-4817-BA5A-4D65F393718D]]></modeler:editor-resource-id>
+      </extensionElements>
+    </endEvent>
+    <sequenceFlow id="f3" sourceRef="submitcontract" targetRef="checkcontract">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-D100B008-E3D9-4D77-883D-AAD64110E67E]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="f12" name="确认" sourceRef="g5" targetRef="end">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-9681CAAF-6246-4CB3-8EF9-CECA5F2C9990]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[通过]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f11" sourceRef="confirmcontract" targetRef="g5">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-534529E7-57D2-466E-8863-702847F70650]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="f15" name="否决" sourceRef="g5" targetRef="submitcontract">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-F46E0096-0D62-4D47-96A3-220199B55F26]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[不通过]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f13" name="不通过" sourceRef="g2" targetRef="submitcontract">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-9907F081-2168-4C99-A2A2-BA0EFCB62E43]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[不通过]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f6" sourceRef="checkcontract" targetRef="g2">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-30F64A29-83F3-457E-A45D-9CA0EE77F90C]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="f8" name="通过" sourceRef="g2" targetRef="confirmcontract">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-93A61CD5-2AA5-4B6E-8CF8-C077BEBFF757]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[通过]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f1" sourceRef="start" targetRef="newcontract">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-609AB58B-2A85-4A4F-B96F-51C83F9A5223]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="f2" sourceRef="newcontract" targetRef="submitcontract">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-2C8B75BF-E226-4C8B-9CF6-1EB282459B4B]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_contract">
+    <bpmndi:BPMNPlane bpmnElement="contract" id="BPMNPlane_contract">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="30.0" width="30.0" x="100.0" y="280.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="newcontract" id="BPMNShape_newcontract">
+        <omgdc:Bounds height="80.0" width="100.0" x="175.0" y="255.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="submitcontract" id="BPMNShape_submitcontract">
+        <omgdc:Bounds height="80.0" width="100.0" x="320.0" y="255.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="checkcontract" id="BPMNShape_checkcontract">
+        <omgdc:Bounds height="80.0" width="100.0" x="495.0" y="255.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="g2" id="BPMNShape_g2">
+        <omgdc:Bounds height="40.0" width="40.0" x="715.0" y="275.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="confirmcontract" id="BPMNShape_confirmcontract">
+        <omgdc:Bounds height="80.0" width="100.0" x="795.0" y="255.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="g5" id="BPMNShape_g5">
+        <omgdc:Bounds height="40.0" width="40.0" x="945.0" y="275.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
+        <omgdc:Bounds height="28.0" width="28.0" x="1020.0" y="281.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="f6" id="BPMNEdge_f6">
+        <omgdi:waypoint x="595.0" y="295.1312335958005"/>
+        <omgdi:waypoint x="715.4473684210526" y="295.4473684210526"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f8" id="BPMNEdge_f8">
+        <omgdi:waypoint x="754.5871559633027" y="295.41284403669727"/>
+        <omgdi:waypoint x="795.0" y="295.2283105022831"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f12" id="BPMNEdge_f12">
+        <omgdi:waypoint x="984.6397058823529" y="295.3602941176471"/>
+        <omgdi:waypoint x="1020.0003729405028" y="295.10218705882846"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f11" id="BPMNEdge_f11">
+        <omgdi:waypoint x="895.0" y="295.20746887966806"/>
+        <omgdi:waypoint x="945.4166666666666" y="295.4166666666667"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f13" id="BPMNEdge_f13">
+        <omgdi:waypoint x="735.5" y="275.5"/>
+        <omgdi:waypoint x="735.5" y="105.61165981271593"/>
+        <omgdi:waypoint x="370.0" y="105.61165981271594"/>
+        <omgdi:waypoint x="370.0" y="255.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f15" id="BPMNEdge_f15">
+        <omgdi:waypoint x="965.5" y="314.5"/>
+        <omgdi:waypoint x="965.5" y="395.0"/>
+        <omgdi:waypoint x="370.0" y="395.0"/>
+        <omgdi:waypoint x="370.0" y="335.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f1" id="BPMNEdge_f1">
+        <omgdi:waypoint x="130.0" y="295.0"/>
+        <omgdi:waypoint x="175.0" y="295.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f2" id="BPMNEdge_f2">
+        <omgdi:waypoint x="275.0" y="295.0"/>
+        <omgdi:waypoint x="320.0" y="295.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f3" id="BPMNEdge_f3">
+        <omgdi:waypoint x="420.0" y="295.0"/>
+        <omgdi:waypoint x="495.0" y="295.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
