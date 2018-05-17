@@ -28,7 +28,7 @@ class ConsignContentComponent extends Component {
     onClick = (buttonIndex) => () => {
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.props.buttons[buttonIndex].onClick(this.props.consignData, values);
+                this.props.buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(values));
             }
         });
     };

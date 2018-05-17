@@ -2,6 +2,7 @@ package com.sinosteel.activiti;
 
 import com.sinosteel.FrameworkApplication;
 import org.activiti.engine.*;
+import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.junit.Test;
@@ -35,8 +36,8 @@ public class ConsignActiviti {
     @Autowired
     private TaskService taskService;
 
-   // @Autowired
-    //private HistoryService historyService;
+    @Autowired
+    private HistoryService historyService;
 
     @Autowired
     private ProcessEngine processEngine;
@@ -90,7 +91,14 @@ public class ConsignActiviti {
                 //return "审核的ID为："+processInstanceId+" "+"目前的状态为：委托待新建"+"\n";
             }
         }
-        return "Finished";
+        else
+        {
+            List<HistoricActivityInstance> historicActivityInstanceList=historyService.createHistoricActivityInstanceQuery()
+                    .processInstanceId(processInstanceId).list();
+            if(historicActivityInstanceList.isEmpty()==false)
+                return "Finished";
+        }
+        return "Not Exist";
         //else return "审核的ID为："+processInstanceId+" "+"目前的状态为：已结束"+"\n";
     }
     //根据用户的ID查询该用户的委托列表，参数为用户ID
