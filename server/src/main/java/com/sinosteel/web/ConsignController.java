@@ -1,13 +1,10 @@
 package com.sinosteel.web;
 
-import com.sinosteel.domain.Consign;
 import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
-import com.sinosteel.service.ConsignActivitiService;
 import com.sinosteel.service.ConsignService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**

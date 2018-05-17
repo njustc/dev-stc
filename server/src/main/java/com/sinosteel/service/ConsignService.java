@@ -3,7 +3,6 @@ package com.sinosteel.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.sinosteel.activiti.ConsignActiviti;
 import com.sinosteel.domain.Consign;
 import com.sinosteel.domain.User;
 import com.sinosteel.repository.ConsignRepository;
@@ -25,7 +24,7 @@ public class ConsignService extends BaseService<Consign> {
     private ConsignRepository consignRepository;
 
     @Autowired
-    private ConsignActivitiService consignActivitiService;
+    private ProcessInstanceService processInstanceService;
 
 
 
@@ -82,7 +81,7 @@ public class ConsignService extends BaseService<Consign> {
         consign.setUser(user);
 
         //start activiti process
-        String procID = consignActivitiService.createConsignProcess(params, user);
+        String procID = processInstanceService.createConsignProcess(params, user);
         consign.setProcessInstanceID(procID);
         this.saveEntity(consign, user);
     }
