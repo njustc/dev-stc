@@ -18,11 +18,28 @@ chmod +x /usr/local/bin/docker-compose
 ### 部署工作
 
 1. 进入server目录,执行`docker-compose up -d`,启动 mysql 镜像。
+> 执行第二条命令之前最好先等待十秒钟左右，使container有充分时间初始化
+
 2. 执行命令
 `docker exec -i mymysql mysql -uroot -pmysql stc < framework.sql `
    将framework.sql导入数据库stc中。
 3. 执行`mvn clean package -DskipTests` 打包项目
 4. 执行`mvn spring-boot:run` 启动项目up
+
+### 数据库更新
+在部分版本更新的时候，由于改变了数据库内表单结构，需要进行数据库更新操作，即重新导入framework.sql内容。具体步骤如下：
+
+1. 执行命令
+`docker exec -it mymysql mysql -uroot -pmysql`
+进入数据库内部
+2. 删除原数据库`drop database stc;`
+3. 创建新数据库`create database stc;`
+4. 将更新过的framework导入数据库内部
+ `docker exec -i mymysql mysql -uroot -pmysql stc < framework.sql `
+5. 执行`exit;`退出数据库内部
+
+
+
 
 ### 命令解释
 #### dokcer-compose

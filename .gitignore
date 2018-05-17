@@ -22,7 +22,6 @@ springBeans
 /nbproject/private/
 /build/
 /nbbuild/
-/dist/
 /nbdist/
 /.nb-gradle/
 
@@ -43,7 +42,6 @@ springBeans
 ### Node ###
 node_modules
 npm-debug.log
-dist
 
 ### Maven ###
 target/
