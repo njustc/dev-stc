@@ -35,24 +35,20 @@ public class ConsignService extends BaseService<Consign> {
             System.out.println("queryConsigns--> query user role: " + user.getRoles().get(0).getRoleName());
         if (user.getRoles().get(0).getRoleName().equals("普通客户"))
         {
-//            Consign consign = new Consign();
-//            consign.setId(UUID.randomUUID().toString());
-//            consign.setConsignation("这是普通用户应该返回的委托");
             List<Consign> consigns = user.getConsigns();
             return JSON.parseArray(JSONArray.toJSONString(consigns));
         }
         else
         {
-//            Consign consign = new Consign();
-//            consign.setId(UUID.randomUUID().toString());
-//            consign.setConsignation("这是工作人员应该返回的所有委托");
             List<Consign> consigns = consignRepository.findByAllConsigns();
             return JSON.parseArray(JSONArray.toJSONString(consigns));
         }
     }
 
-    public JSONObject queryConsignByID(String id) {
+    public JSONObject queryConsignByID(String id) throws Exception{
         Consign consign = consignRepository.findById(id);
+        if (consign == null)
+            throw new Exception("Not found");
         return JSON.parseObject(JSONObject.toJSONString(consign));
     }
 

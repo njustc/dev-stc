@@ -38,6 +38,7 @@ public class ConsignController extends BaseController
         return response;
     }
 
+    //根据ID查询委托具体信息
     @RequestMapping(value = "/consign/{id}", method = RequestMethod.GET)
     public Response queryConsignByID(@PathVariable String id,  Request request) {
         Response response = new Response();
