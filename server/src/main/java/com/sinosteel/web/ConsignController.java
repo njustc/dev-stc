@@ -63,7 +63,7 @@ public class ConsignController extends BaseController
         Response response = new Response();
 
         try {
-            consignService.editConsign(request.getParams(), request.getFiles(), request.getUser());
+            response.data = consignService.editConsign(request.getParams(), request.getFiles(), request.getUser());
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -81,7 +81,7 @@ public class ConsignController extends BaseController
         Response response=new Response();
 
         try{
-            consignService.addConsign(request.getParams(),request.getFiles(),request.getUser());
+            response.data = consignService.addConsign(request.getParams(),request.getFiles(),request.getUser());
             response.status=ResponseType.SUCCESS;
         }
         catch(Exception e)

@@ -53,7 +53,7 @@ public class ConsignService extends BaseService<Consign> {
     }
 
     //更新委托
-    public void editConsign(JSONObject params, List<MultipartFile> files, User user) throws Exception
+    public JSONObject editConsign(JSONObject params, List<MultipartFile> files, User user) throws Exception
     {
         Consign tempconsign = JSONObject.toJavaObject(params, Consign.class);
         Consign consign;
@@ -62,12 +62,15 @@ public class ConsignService extends BaseService<Consign> {
         }
         //编辑委托时只编辑内容
         consign.setConsignation(tempconsign.getConsignation());
-
         this.updateEntity(consign, user);
+
+        //return the consign
+        consign = consignRepository.findById(tempconsign.getId());
+        return JSON.parseObject(JSONObject.toJSONString(consign));
     }
 
     //增加委托
-    public void addConsign(JSONObject params,List<MultipartFile> files,User user) throws Exception
+    public JSONObject addConsign(JSONObject params,List<MultipartFile> files,User user) throws Exception
     {
 
         String uid=UUID.randomUUID().toString();
@@ -80,6 +83,10 @@ public class ConsignService extends BaseService<Consign> {
         String procID = processInstanceService.createConsignProcess(params, user);
         consign.setProcessInstanceID(procID);
         this.saveEntity(consign, user);
+
+        //return the consign
+        consign = consignRepository.findById(uid);
+        return JSON.parseObject(JSONObject.toJSONString(consign));
     }
     //删除委托（不删除相关委托文件?）
 
