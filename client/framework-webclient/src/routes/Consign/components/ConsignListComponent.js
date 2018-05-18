@@ -69,7 +69,7 @@ export default class ConsignListComponent extends Component {
                 <span>
                 <Button type="default" onClick={this.viewContent(index)}><Icon type="eye-o" />查看详情</Button>
                 <Divider type="vertical" />
-                <Button type="danger" onClick={this.showDeleteConfirm(id)}><Icon type="close-circle-o" />取消委托</Button>
+                <Button type="danger" onClick={this.showDeleteConfirm(id)} ghost><Icon type="close-circle-o" />取消委托</Button>
                 </span>
             )
         }
@@ -90,13 +90,14 @@ export default class ConsignListComponent extends Component {
         const ID=id;
         confirm({
             title: 'Are you sure delete this consign?',
-            content: 'Some descriptions',
+            //content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
             onOk: () => {
                 //console.log(id);
                 //debugger;
+                //this.deleteConsign(id);
                 this.props.deleteConsign(id);
                 },
             onCancel() {},
