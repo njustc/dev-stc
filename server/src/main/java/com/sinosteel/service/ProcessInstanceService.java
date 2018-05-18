@@ -19,7 +19,7 @@ public class ProcessInstanceService
     @Autowired
     private ConsignActiviti consignActiviti;
 
-    public JSONObject queryProcessState(String processInstanceID)
+    public JSONObject queryProcessState(String processInstanceID) throws Exception
     {
         String state = consignActiviti.getProcessState(processInstanceID);
 
@@ -30,14 +30,14 @@ public class ProcessInstanceService
         return queryResultJson;
     }
 
-    public String createConsignProcess(JSONObject params, User user)
+    public String createConsignProcess(JSONObject params, User user) throws Exception
     {
         Consign consign = JSONObject.toJavaObject(params, Consign.class);
 
         return consignActiviti.createConsignProcess(consign.getId(), user.getId());
     }
 
-    public JSONObject updateProcessState(String processInstanceID, Request request)
+    public JSONObject updateProcessState(String processInstanceID, Request request) throws Exception
     {
         JSONObject params = request.getParams();
         String operation = params.getString("operation");
