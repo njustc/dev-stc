@@ -51,9 +51,9 @@ export default class ConsignListComponent extends Component {
         render: (id, record, index) => {
             return (
                 <span>
-                <Button type="content" onClick={this.viewContent(index)}><Icon type="plus-square-o" />查看详情</Button>
+                <Button type="content" onClick={this.viewContent(index)}>查看详情</Button>
                 <Divider type="vertical" />
-                <Button type="cancel" onClick={this.deleteConsign(id)}><Icon type="plus-square-o" />取消委托</Button>
+                <Button type="danger" onClick={this.deleteConsign(id)}>取消委托</Button>
                 </span>
             )
         }
