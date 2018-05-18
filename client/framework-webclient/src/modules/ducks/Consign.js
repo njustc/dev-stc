@@ -7,7 +7,7 @@ const SET_CONTENT = 'Consign/SET_CONTENT';
 const SET_FILTER = 'Consign/SET_FILTER';
 
 const initialState = {
-    listFilter: () => true,
+    listFilter: stateCode => stateCode != 'Finished',//() => true,
     list: [],
     index: -1,
 };

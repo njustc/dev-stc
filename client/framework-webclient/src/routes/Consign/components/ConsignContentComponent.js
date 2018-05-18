@@ -96,7 +96,7 @@ class ConsignContentComponent extends Component {
                     )}
                     </FormItem>
 
-                /*todo功能表*/
+                {/*todo功能表*/}
                 <FormItem {...formItemLayout} label={"委托单位(中文)"}>
                     {getFieldDecorator('consignUnit_C', {
                         rules: [{ required: true, message: '请正确输入委托单位(中文)！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
@@ -200,7 +200,7 @@ class ConsignContentComponent extends Component {
                     )}
                 </FormItem>
 
-                /*以上第一部分*//*如何设定至少一种*/
+                {/*以上第一部分*//*如何设定至少一种*/}
                 <FormItem{...formItemLayout} label={"软件规模(至少一种)"}>
                     <FormItem{...formItemLayout} label={"功能数："}>
                         {getFieldDecorator('software_scale.func_num',
@@ -287,7 +287,7 @@ class ConsignContentComponent extends Component {
                         })(
                             <Checkbox.Group disabled={this.props.disable}>
                                 <Checkbox value={"Windows"}/>Windows
-                                /*Todo 此处如何加入版本框*/
+                                {/*Todo 此处如何加入版本框*/}
                                 <Checkbox  value={"Linux"}/>Linux
                                 <Checkbox value={"其它"}/>其它
                             </Checkbox.Group>
@@ -494,7 +494,7 @@ class ConsignContentComponent extends Component {
                     )}
                 </FormItem>
 
-                /*以下第三部分*/
+                {/*以下第三部分*/}
                 <FormItem
                     label="委托单位信息"
                     {...formItemLayout}
@@ -762,7 +762,7 @@ class ConsignContentComponent extends Component {
                     <Button type="primary" htmlType={"submit"}>提交</Button>
                 </FormItem>
 
-                /* footer buttons */
+                {/* footer buttons */}
                 <FormItem {...formItemLayout}>
                     {this.props.buttons.map((button, index) =>
                         <Button onClick={this.onClick(index)}
