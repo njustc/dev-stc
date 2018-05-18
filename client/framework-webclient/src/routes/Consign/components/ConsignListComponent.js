@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider} from 'antd';
+import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal} from 'antd';
 import UserConsignContentView from "./ConsignContentComponent";
 
 const { Column } = Table;
 const Search = Input.Search;
+const confirm = Modal.confirm;
 
 export default class ConsignListComponent extends Component {
     constructor(props) {
@@ -19,6 +20,7 @@ export default class ConsignListComponent extends Component {
         getConsignList: PropTypes.func.isRequired,
         newConsign: PropTypes.func,
         enableNew: PropTypes.bool.isRequired,
+        showDeleteConfirm: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -51,9 +53,9 @@ export default class ConsignListComponent extends Component {
         render: (id, record, index) => {
             return (
                 <span>
-                <Button type="default" onClick={this.viewContent(index)}>查看详情</Button>
+                <Button type="default" onClick={this.viewContent(index)}><Icon type="eye-o" />查看详情</Button>
                 <Divider type="vertical" />
-                <Button type="danger" ghost className="cancel" onClick={this.deleteConsign(id)}><Icon type="close-circle-o" />取消委托</Button>
+                <Button type="danger" onClick={this.showDeleteConfirm(id)}><Icon type="close-circle-o" />取消委托</Button>
                 </span>
             )
         }
@@ -64,12 +66,24 @@ export default class ConsignListComponent extends Component {
         const reg = new RegExp(value, 'gi');
         this.props.setListFilter((record) => record.id.match(reg));
     };
-    //
     viewContent = (index) => () => {
         this.props.showContent(index);
     };
     deleteConsign = (id) => () => {
         this.props.deleteConsign(id);
+    };
+    showDeleteConfirm = (id) => () => {
+        confirm({
+            title: 'Are you sure delete this consign?',
+            content: 'Some descriptions',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk() {
+                
+            },
+            onCancel() {},
+        });
     };
 
     render() {
