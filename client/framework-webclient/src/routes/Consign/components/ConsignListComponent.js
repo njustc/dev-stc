@@ -51,9 +51,9 @@ export default class ConsignListComponent extends Component {
         render: (id, record, index) => {
             return (
                 <span>
-                <Button type="content" onClick={this.viewContent(index)}><Icon type="plus-square-o" />查看详情</Button>
+                <Button type="default" onClick={this.viewContent(index)}>查看详情</Button>
                 <Divider type="vertical" />
-                <Button type="cancel" onClick={this.deleteConsign(id)}><Icon type="plus-square-o" />取消委托</Button>
+                <Button type="danger" ghost className="cancel" onClick={this.deleteConsign(id)}><Icon type="close-circle-o" />取消委托</Button>
                 </span>
             )
         }
@@ -81,12 +81,11 @@ export default class ConsignListComponent extends Component {
                         placeholder="搜索委托ID"
                         onSearch={this.onSearch}
                         style={{ width: 200 }}
-                        enterButton={true}
                     />
                 </Card>
                 <br />
                 {this.props.enableNew ?
-                <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-square-o" />新建委托</Button>
+                <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
                     : <br/>}
                 <br /><br />
                 <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'} />
