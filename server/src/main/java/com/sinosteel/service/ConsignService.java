@@ -35,29 +35,29 @@ public class ConsignService extends BaseService<Consign> {
             System.out.println("queryConsigns--> query user role: " + user.getRoles().get(0).getRoleName());
         if (user.getRoles().get(0).getRoleName().equals("普通客户"))
         {
-//            Consign consign = new Consign();
-//            consign.setId(UUID.randomUUID().toString());
-//            consign.setConsignation("这是普通用户应该返回的委托");
             List<Consign> consigns = user.getConsigns();
-            return JSON.parseArray(JSONArray.toJSONString(consigns));
+            //对委托列表进行处理，去掉委托具体内容,并且添加委托状态
+            JSONArray resultArray = processConsigns(consigns);
+            return resultArray;
         }
         else
         {
-//            Consign consign = new Consign();
-//            consign.setId(UUID.randomUUID().toString());
-//            consign.setConsignation("这是工作人员应该返回的所有委托");
             List<Consign> consigns = consignRepository.findByAllConsigns();
-            return JSON.parseArray(JSONArray.toJSONString(consigns));
+            //对委托列表进行处理，去掉委托具体内容,并且添加委托状态
+            JSONArray resultArray = processConsigns(consigns);
+            return resultArray;
         }
     }
 
-    public JSONObject queryConsignByID(String id) {
+    public JSONObject queryConsignByID(String id) throws Exception{
         Consign consign = consignRepository.findById(id);
+        if (consign == null)
+            throw new Exception("Not found");
         return JSON.parseObject(JSONObject.toJSONString(consign));
     }
 
     //更新委托
-    public void editConsign(JSONObject params, List<MultipartFile> files, User user) throws Exception
+    public JSONObject editConsign(JSONObject params, List<MultipartFile> files, User user) throws Exception
     {
         Consign tempconsign = JSONObject.toJavaObject(params, Consign.class);
         Consign consign;
@@ -66,12 +66,15 @@ public class ConsignService extends BaseService<Consign> {
         }
         //编辑委托时只编辑内容
         consign.setConsignation(tempconsign.getConsignation());
-
         this.updateEntity(consign, user);
+
+        //return the consign
+        consign = consignRepository.findById(tempconsign.getId());
+        return JSON.parseObject(JSONObject.toJSONString(consign));
     }
 
     //增加委托
-    public void addConsign(JSONObject params,List<MultipartFile> files,User user) throws Exception
+    public JSONObject addConsign(JSONObject params,List<MultipartFile> files,User user) throws Exception
     {
 
         String uid=UUID.randomUUID().toString();
@@ -84,6 +87,10 @@ public class ConsignService extends BaseService<Consign> {
         String procID = processInstanceService.createConsignProcess(params, user);
         consign.setProcessInstanceID(procID);
         this.saveEntity(consign, user);
+
+        //return the consign
+        consign = consignRepository.findById(uid);
+        return JSON.parseObject(JSONObject.toJSONString(consign));
     }
     //删除委托（不删除相关委托文件?）
 
@@ -94,4 +101,17 @@ public class ConsignService extends BaseService<Consign> {
     }
 
 
+    private  JSONArray processConsigns(List<Consign> consigns) {
+        JSONArray resultArray = new JSONArray();
+        //去掉委托内容,添加状态
+        for (Consign consign: consigns) {
+            JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
+            jsonObject.remove("consignation");
+            String processState = (String)processInstanceService.queryProcessState(consign.getProcessInstanceID()).get("state");
+            jsonObject.put("state", processState);
+            resultArray.add(jsonObject);
+        }
+
+        return resultArray;
+    }
 }

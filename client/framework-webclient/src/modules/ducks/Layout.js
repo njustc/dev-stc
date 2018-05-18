@@ -59,7 +59,9 @@ export const setActiveKey = (activekey) => {
     }
 };
 
-export const addTabAction = (key, name, component) => {
+export const addTabAction = (name, component) => {
+    const now = new Date();
+    const key = now.getTime().toString();
     return {
         type: ADD_TAB,
         payload: {

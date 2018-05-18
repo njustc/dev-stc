@@ -5,34 +5,30 @@ import {setConsignContent, setConsignList, setConsignStatus} from "../modules/du
 const consignBase = baseServiceAddress + '/consign';
 const consignActivitiBase = baseServiceAddress + '/consignActiviti';
 
-export const getConsignStatus = (dispatch, i, processInstanceID) => {
+export const getConsignStatus = (dispatch, i, processInstanceID, callback) => {
     httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
         const {status, data} = result;
         if (status === 'SUCCESS') {
             dispatch(setConsignStatus(i, data.state));
         }
+        callback && callback(status);
     })
 };
 
-export const getConsignList = (dispatch) => {
+export const getConsignList = (dispatch, callback) => {
     httpGet(consignBase, (result) => {
         const {status, data} = result;
         if (status === 'SUCCESS') {
             dispatch(setConsignList(data));
             for (let i = 0; i < data.length; i ++) {
-                // httpGet(consignActivitiBase + '/' + data[i].processInstanceID, (result) => {
-                //     const {status, data} = result;
-                //     if (status === 'SUCCESS') {
-                //         dispatch(setConsignStatus(i, data.state));
-                //     }
-                // })
                 getConsignStatus(dispatch, i, data[i].processInstanceID);
             }
         }
+        callback && callback(status);
     });
 };
 
-export const deleteConsign = (dispatch) => {
+export const deleteConsign = (dispatch, callback) => {
     httpDelete(consignBase, {id:id}, (result) => {
         const {status} = result;
         if (status === 'SUCCESS') {
@@ -51,6 +47,7 @@ export const deleteConsign = (dispatch) => {
                 }
             });
         }
+        callback && callback(status);
     });
 };
 
