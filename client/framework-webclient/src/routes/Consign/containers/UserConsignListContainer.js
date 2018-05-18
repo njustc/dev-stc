@@ -24,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         showContent: (index) => {
-            dispatch(addTabAction('委托详情', StaffConsignContentView));
+            dispatch(addTabAction('委托详情', UserConsignContentView));
             dispatch(setConsignIndex(index));
         },
         newConsign: (id) => {
