@@ -23,8 +23,9 @@
         <modeler:editor-resource-id><![CDATA[sid-7345CD5A-EB33-4B78-90F0-3C1E3A116822]]></modeler:editor-resource-id>
       </extensionElements>
     </userTask>
-    <userTask id="checkcontract" name="评审合同" activiti:candidateGroups="质量部,市场部主任">
+    <userTask id="checkcontract" name="评审合同" activiti:candidateGroups="${marketEmployerId},${qualityEmployerId}">
       <extensionElements>
+        <activiti:formProperty id="Approval" name="Do you approve this Contract?" type="enum" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-1D47E8F1-A0ED-4383-B3FA-393923F11D77]]></modeler:editor-resource-id>
@@ -35,8 +36,9 @@
         <modeler:editor-resource-id><![CDATA[sid-6F8786E1-090A-4CDB-8444-505AA2147BCD]]></modeler:editor-resource-id>
       </extensionElements>
     </exclusiveGateway>
-    <userTask id="confirmcontract" name="确认合同" activiti:candidateGroups="客户">
+    <userTask id="confirmcontract" name="确认合同" activiti:assignee="${ClientID}">
       <extensionElements>
+        <activiti:formProperty id="Confirm" name="Do you confirm this Contract?" type="enum" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-1E977F25-65D9-4412-91E9-1029A9476267]]></modeler:editor-resource-id>
@@ -61,7 +63,7 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-9681CAAF-6246-4CB3-8EF9-CECA5F2C9990]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[通过]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Confirm == 'true'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f11" sourceRef="confirmcontract" targetRef="g5">
       <extensionElements>
@@ -72,13 +74,13 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-F46E0096-0D62-4D47-96A3-220199B55F26]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[不通过]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Confirm == 'false'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f13" name="不通过" sourceRef="g2" targetRef="submitcontract">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-9907F081-2168-4C99-A2A2-BA0EFCB62E43]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[不通过]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Approval == 'false'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f6" sourceRef="checkcontract" targetRef="g2">
       <extensionElements>
@@ -89,7 +91,7 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-93A61CD5-2AA5-4B6E-8CF8-C077BEBFF757]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[通过]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Approval == 'true'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f1" sourceRef="start" targetRef="newcontract">
       <extensionElements>
