@@ -12,63 +12,40 @@ const mapStateToProps = (state) => {
         values: list[index].consignation!==undefined?JSON.parse(list[index].consignation):{},
         consignData: list[index],
         disable: false,
-        // buttons: buttons,
     }
 };
 
 const buttons = (dispatch) => [{
     content: "保存",
     onClick: (consignData,values) => {
-        // let url = "http://127.0.0.1:8000/services/consign";
         let data = {
             id: consignData.id,
             consignation: values,
         };
         putConsign(dispatch, data, (status) => {});
-        // httpPut(url, data, (result) => {
-        //     if (result.status == 'SUCCESS') {
-        //         // consignData.consignation = values;
-        //         dispatch(setConsignContent(-1, values));
-        //     }
-        //     else {
-        //         console.log("点击“保存”错误");
-        //     }
-        // });
-        //
     },
 },{
     content: "提交",
     onClick: (consignData,values) => {
-        //
-        let url1 = "http://127.0.0.1:8000/services/consign";
         let data1 = {
             id: consignData.id,
             consignation: values,
         };
-        httpPut(url1, data1, (result) => {
-            if (result.status == 'SUCCESS') {
-                // consignData.consignation = values;
-                dispatch(setConsignContent(-1, values));
-            }
-            else {
-                console.log("点击“提交”错误");
-            }
-        });
+        putConsign(dispatch, data1);
 
-        let url2 = "http://127.0.0.1:8000/services/consignActiviti/" + consignData.processInstanceID;
-        let data2 = {
-            operation: "submit"
-        };
-        httpPut(url2, data2, (result) => {
-            if (result.status == 'SUCCESS') {
-                // consignData.status = "TobeCheck";
-                dispatch(setConsignState(-1, "TobeCheck"));
-            }
-            else {
-                console.log("点击“提交”错误");
-            }
-        });
-        //
+        // 后端接口调整ing:
+        // let url2 = "http://127.0.0.1:8000/services/consignActiviti/" + consignData.processInstanceID;
+        // let data2 = {
+        //     operation: "submit"
+        // };
+        // httpPut(url2, data2, (result) => {
+        //     if (result.status == 'SUCCESS') {
+        //         dispatch(setConsignState(-1, "TobeCheck"));
+        //     }
+        //     else {
+        //         console.log("点击“提交”错误");
+        //     }
+        // });
     },
 },
 ];
