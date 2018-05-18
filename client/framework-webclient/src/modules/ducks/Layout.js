@@ -22,7 +22,6 @@ const  containsPane = (key, panes) => {
 export const LayoutReducer = (state = initialState, action) =>{
     switch(action.type) {
         case SET_STATE:
-            debugger;
             return action.payload;
         case SET_ACTIVE_KEY:
             return {

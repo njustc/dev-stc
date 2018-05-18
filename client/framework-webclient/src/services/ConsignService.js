@@ -15,8 +15,14 @@ export const getConsignList = (dispatch, callback) => {
     });
 };
 
-export const getConsignContent = (dispatch, index, callback) => {
-     //TODO: 从后台获取content，并dispatch
+export const getConsignContent = (dispatch, index, id, callback) => {
+    httpGet(consignBase + '/' + id, (result) => {
+        const {status, data} = result;
+        if (status === 'SUCCESS') {
+            dispatch(setConsignContent(index, data.consignation));
+        }
+        callback && callback(status);
+    });
 };
 
 export const deleteConsign = (dispatch, id, callback) => {
@@ -43,8 +49,9 @@ export const newConsign = (dispatch, callback) => {
 
 export const putConsign = (dispatch, data, callback) => {
     httpPut(consignBase, data, (result) => {
-        if (result.status === 'SUCCESS') {
-            dispatch(setConsignContent(-1, values));
+        const {status, data} = result;
+        if (status === 'SUCCESS') {
+            dispatch(setConsignContent(-1, data.consignation));
         }
         callback && callback(status);
     });

@@ -26,11 +26,13 @@ class ConsignContentComponent extends Component {
     };
 
     onClick = (buttonIndex) => () => {
-        this.props.form.validateFields((err, values) => {
-            if (!err) {
-                this.props.buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(values));
-            }
-        });
+        // this.props.form.validateFields((err, values) => {
+        //     if (!err) {
+        //         this.props.buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(values));
+        //     }
+        // });
+        const {buttons, consignData, form} = this.props;
+        buttons[buttonIndex].onClick(consignData, JSON.stringify(form.getFieldsValue()));
     };
 
 
@@ -52,7 +54,7 @@ class ConsignContentComponent extends Component {
 
 
         return(
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
 
                 <FormItem {...formItemLayout}>
                     <h1>软件项目委托测试申请书</h1>

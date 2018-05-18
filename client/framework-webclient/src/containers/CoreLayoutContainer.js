@@ -14,7 +14,6 @@ function containsPane(key, panes)
 };
 
 const mapStateToProps = (state) => {
-    debugger;
     return {
         sysUser: state.System.sysUser,
         modules: state.System.modules,
