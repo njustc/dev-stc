@@ -57,7 +57,7 @@
   "author": "Aford",
   "license": "MIT",
   "dependencies": {
-    "antd": "^3.5.2",
+    "antd": "^3.0.0",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-import": "^1.1.1",
