@@ -23,6 +23,7 @@ const  containsPane = (key, panes) => {
 export const LayoutReducer = (state = initialState, action) =>{
     switch(action.type) {
         case SET_STATE:
+            debugger;
             return action.payload;
         case SET_ACTIVEKEY:
             return {
@@ -58,7 +59,9 @@ export const setActiveKey = (activekey) => {
     }
 };
 
-export const addTabAction = (key, name, component) => {
+export const addTabAction = (name, component) => {
+    const now = new Date();
+    const key = now.getTime().toString();
     return {
         type: ADD_TAB,
         payload: {

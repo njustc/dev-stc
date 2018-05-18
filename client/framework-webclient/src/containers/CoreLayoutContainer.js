@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import CoreLayout from 'layouts/CoreLayout'
-import {setState,setActiveKey} from "../modules/ducks/Layout";
+import {setState, setActiveKey, addTabAction} from "../modules/ducks/Layout";
 import React from "react";
 
 function containsPane(key, panes)
@@ -14,7 +14,6 @@ function containsPane(key, panes)
 };
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         sysUser: state.System.sysUser,
         modules: state.System.modules,
@@ -25,13 +24,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addTab: (Panes, key, name, component) => {
-            const panes = Panes;
-            const activeKey = key;
-            if(!containsPane(key, Panes)){
-                panes.push({ title: name, content: React.createElement(component), key: activeKey });
-            }
-            dispatch(setState({ panes,activeKey }))
+        addTab: (name, component) => {
+            dispatch(addTabAction(name,component));
         },
         removeTab: (Panes, activekey, targetKey) => {
             let activeKey = activekey;

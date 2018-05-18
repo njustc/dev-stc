@@ -1,13 +1,10 @@
 package com.sinosteel.web;
 
-import com.sinosteel.domain.Consign;
 import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
-import com.sinosteel.service.ConsignActivitiService;
 import com.sinosteel.service.ConsignService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -41,6 +38,7 @@ public class ConsignController extends BaseController
         return response;
     }
 
+    //根据ID查询委托具体信息
     @RequestMapping(value = "/consign/{id}", method = RequestMethod.GET)
     public Response queryConsignByID(@PathVariable String id,  Request request) {
         Response response = new Response();
@@ -65,7 +63,7 @@ public class ConsignController extends BaseController
         Response response = new Response();
 
         try {
-            consignService.editConsign(request.getParams(), request.getFiles(), request.getUser());
+            response.data = consignService.editConsign(request.getParams(), request.getFiles(), request.getUser());
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -83,7 +81,7 @@ public class ConsignController extends BaseController
         Response response=new Response();
 
         try{
-            consignService.addConsign(request.getParams(),request.getFiles(),request.getUser());
+            response.data = consignService.addConsign(request.getParams(),request.getFiles(),request.getUser());
             response.status=ResponseType.SUCCESS;
         }
         catch(Exception e)

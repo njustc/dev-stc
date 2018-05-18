@@ -3,26 +3,37 @@ import {connect} from "react-redux";
 import ConsignContentComponent from "../components/ConsignContentComponent";
 import {} from 'UTILS/FetchUtil';
 import {httpPut} from "UTILS/FetchUtil";
+import {setConsignContent, setConsignState} from "../../../modules/ducks/Consign";
+import {putConsign} from "SERVICES/ConsignService";
 
-const buttons = [{
+const mapStateToProps = (state) => {
+    const {list, index} = state.Consign;
+    return {
+        values: list[index].consignation!==undefined?JSON.parse(list[index].consignation):{},
+        consignData: list[index],
+        disable: false,
+        // buttons: buttons,
+    }
+};
+
+const buttons = (dispatch) => [{
     content: "保存",
     onClick: (consignData,values) => {
-        //
-        debugger
-        let url = "http://127.0.0.1:8000/services/consign";
+        // let url = "http://127.0.0.1:8000/services/consign";
         let data = {
             id: consignData.id,
             consignation: values,
         };
-        httpPut(url, data, (result) => {
-            debugger
-            if (result.status == 'SUCCESS') {
-                consignData.consignation = values;
-            }
-            else {
-                console.log("点击“保存”错误");
-            }
-        });
+        putConsign(dispatch, data, (status) => {});
+        // httpPut(url, data, (result) => {
+        //     if (result.status == 'SUCCESS') {
+        //         // consignData.consignation = values;
+        //         dispatch(setConsignContent(-1, values));
+        //     }
+        //     else {
+        //         console.log("点击“保存”错误");
+        //     }
+        // });
         //
     },
 },{
@@ -36,7 +47,8 @@ const buttons = [{
         };
         httpPut(url1, data1, (result) => {
             if (result.status == 'SUCCESS') {
-                consignData.consignation = values;  
+                // consignData.consignation = values;
+                dispatch(setConsignContent(-1, values));
             }
             else {
                 console.log("点击“提交”错误");
@@ -49,7 +61,8 @@ const buttons = [{
         };
         httpPut(url2, data2, (result) => {
             if (result.status == 'SUCCESS') {
-                consignData.status = "TobeCheck";
+                // consignData.status = "TobeCheck";
+                dispatch(setConsignState(-1, "TobeCheck"));
             }
             else {
                 console.log("点击“提交”错误");
@@ -60,18 +73,10 @@ const buttons = [{
 },
 ];
 
-const mapStateToProps = (state) => {
-    const {list, index} = state.Consign;
-    return {
-        values: list[index].consignation!==undefined?JSON.parse(list[index].consignation):{},
-        consignData: list[index],
-        disable: false,
-        buttons: buttons,
-    }
-};
-
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+        buttons: buttons(dispatch),
+    }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConsignContentComponent);
