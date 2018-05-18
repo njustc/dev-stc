@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {addTabAction, setState} from "MODULES/ducks/Layout";
 import {setConsignIndex, setConsignState, setFilter} from "MODULES/ducks/Consign"
 import {StaffConsignContentView} from "ROUTES/Consign";
-import {deleteConsign, getConsignList} from "SERVICES/ConsignService";
+import {deleteConsign, getConsignList, putConsign} from "SERVICES/ConsignService";
 
 const mapStateToProps = (state) => {
     return {
@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch) => {
         showContent: (index) => {
             dispatch(addTabAction('id', '委托详情', StaffConsignContentView));
             dispatch(setConsignIndex(index));
+
         },
         setListFilter: (listFilter) => dispatch(setFilter(listFilter)),
         getConsignList: () => getConsignList(dispatch),

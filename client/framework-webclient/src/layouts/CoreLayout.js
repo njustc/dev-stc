@@ -62,7 +62,6 @@ export default class CoreLayout extends Component
     );
 
 	render(){
-	    debugger;
 		return (
 			<Layout>
                 <Sider width={200} style={{ background: '#d9e2dd' }}>
@@ -102,9 +101,7 @@ export default class CoreLayout extends Component
 					        onEdit={this.onEdit}
 	                		hideAdd="true" 
 	                		activeKey={this.props.activeKey}>
-					      	{this.props.panes.map(pane => {
-					      	    debugger;
-					      	    return <TabPane tab={pane.title} key={pane.key}>{pane.content}</TabPane>})}
+					      	{this.props.panes.map(pane => <TabPane tab={pane.title} key={pane.key}>{pane.content}</TabPane>)}
 					    </Tabs>   
 			        </Content>
 			        <Footer style={{ textAlign: 'center' }}>
