@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal} from 'antd';
+import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message} from 'antd';
 import UserConsignContentView from "./ConsignContentComponent";
 
 const { Column } = Table;
@@ -20,7 +20,7 @@ export default class ConsignListComponent extends Component {
         getConsignList: PropTypes.func.isRequired,
         newConsign: PropTypes.func,
         enableNew: PropTypes.bool.isRequired,
-        showDeleteConfirm: PropTypes.func.isRequired,
+        //showDeleteConfirm: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -55,12 +55,34 @@ export default class ConsignListComponent extends Component {
                 <span>
                 <Button type="default" onClick={this.viewContent(index)}><Icon type="eye-o" />查看详情</Button>
                 <Divider type="vertical" />
-                <Button type="danger" onClick={this.showDeleteConfirm(id)}><Icon type="close-circle-o" />取消委托</Button>
+                <Button type="danger" onClick={this.showModal(id)}><Icon type="close-circle-o" />取消委托</Button>
                 </span>
             )
         }
     }
     ];
+
+    state = {
+        visible: false,
+        ID: 0,
+    }
+    showModal = (id) => {
+        this.setState({
+            visible: true,
+            ID: id,
+        });
+    }
+    hideModal = () => {
+        this.setState({
+            visible: false,
+        });
+    }
+    hideModalAfterDelete = () =>{
+        this.deleteConsign(this.state.ID);
+        this.setState({
+            visible: false,
+        });
+    }
 
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
@@ -72,19 +94,19 @@ export default class ConsignListComponent extends Component {
     deleteConsign = (id) => () => {
         this.props.deleteConsign(id);
     };
+    /*
     showDeleteConfirm = (id) => () => {
+        const ID=id;
         confirm({
             title: 'Are you sure delete this consign?',
             content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
-            onOk() {
-                
-            },
+            onOk() {},
             onCancel() {},
         });
-    };
+    };*/
 
     render() {
         return (
@@ -103,6 +125,16 @@ export default class ConsignListComponent extends Component {
                     : <br/>}
                 <br /><br />
                 <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'} />
+
+                <Modal
+                    title="Modal"
+                    visible={this.state.visible}
+                    onOk={this.hideModalAfterDelete}
+                    onCancel={this.hideModal}
+                    okText="确认"
+                    cancelText="取消"
+                >
+                </Modal>
 
             </div>
         );
