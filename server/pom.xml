@@ -211,7 +211,7 @@
 	</build>
 
 	<properties>
-		<activiti.version>6.0.0</activiti.version>
+		<activiti.version>5.22.0</activiti.version>
 		<start-class>com.sinosteel.FrameworkApplication</start-class>
 	</properties>
 </project>
