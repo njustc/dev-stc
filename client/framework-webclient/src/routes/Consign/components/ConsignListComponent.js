@@ -94,7 +94,11 @@ export default class ConsignListComponent extends Component {
             okText: 'Yes',
             okType: 'danger',
             cancelText: 'No',
-            onOk() {/*TODO*/},
+            onOk: () => {
+                //console.log(id);
+                //debugger;
+                this.props.deleteConsign(id);
+                },
             onCancel() {},
         });
     };
