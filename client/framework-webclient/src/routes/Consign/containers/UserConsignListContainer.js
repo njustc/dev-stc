@@ -10,7 +10,6 @@ import {
     setFilter
 } from "../../../modules/ducks/Consign"
 import {UserConsignContentView} from "ROUTES/Consign";
-import {httpDelete, httpGet, httpPost} from "UTILS/FetchUtil";
 import {deleteConsign, getConsignList, newConsign} from "SERVICES/ConsignService";
 
 // todo: 利用第二个参数ownProps来过滤，实现搜索，ownProps是被显示传入的属性值，不包括map进去的
