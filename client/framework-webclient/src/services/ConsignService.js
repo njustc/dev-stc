@@ -5,16 +5,6 @@ import {addConsign, removeConsign, setConsignContent, setConsignList, setConsign
 const consignBase = baseServiceAddress + '/consign';
 const consignActivitiBase = baseServiceAddress + '/consignActiviti';
 
-export const getConsignState = (dispatch, i, processInstanceID, callback) => {
-    httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
-        const {status, data} = result;
-        if (status === 'SUCCESS') {
-            dispatch(setConsignState(i, data.state));
-        }
-        callback && callback(status);
-    })
-};
-
 export const getConsignList = (dispatch, callback) => {
     httpGet(consignBase, (result) => {
         const {status, data} = result;
@@ -23,6 +13,10 @@ export const getConsignList = (dispatch, callback) => {
         }
         callback && callback(status);
     });
+};
+
+export const getConsignContent = (dispatch, index, callback) => {
+     //TODO: 从后台获取content，并dispatch
 };
 
 export const deleteConsign = (dispatch, id, callback) => {
@@ -51,6 +45,26 @@ export const putConsign = (dispatch, data, callback) => {
     httpPut(consignBase, data, (result) => {
         if (result.status === 'SUCCESS') {
             dispatch(setConsignContent(-1, values));
+        }
+        callback && callback(status);
+    });
+};
+
+export const getConsignState = (dispatch, i, processInstanceID, callback) => {
+    httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
+        const {status, data} = result;
+        if (status === 'SUCCESS') {
+            dispatch(setConsignState(i, data.state));
+        }
+        callback && callback(status);
+    })
+};
+
+export const putConsignState = (dispatch, pi, data, callback) => {
+    httpPut(consignActivitiBase + '/' + pi, data, (result) => {
+        const {status} = result;
+        if (status === 'SUCCESS') {
+            dispatch(setConsignState(-1, /*TODO*/));
         }
         callback && callback(status);
     });
