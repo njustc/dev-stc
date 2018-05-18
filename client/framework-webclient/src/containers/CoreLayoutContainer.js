@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import CoreLayout from 'layouts/CoreLayout'
-import {setState, setActiveKey, addTabAction} from "../modules/ducks/Layout";
+import {setState, setActiveKey, addTabAction} from "MODULES/ducks/Layout";
 import React from "react";
 
 function containsPane(key, panes)
