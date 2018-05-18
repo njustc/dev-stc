@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import ConsignContentComponent from "../components/ConsignContentComponent";
-import {} from 'UTILS/FetchUtil';
-import {httpPut} from "UTILS/FetchUtil";
-import {setConsignContent, setConsignState} from "../../../modules/ducks/Consign";
 import {putConsign} from "SERVICES/ConsignService";
 
 const mapStateToProps = (state) => {
