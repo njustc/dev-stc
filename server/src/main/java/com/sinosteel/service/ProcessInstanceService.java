@@ -1,7 +1,6 @@
 package com.sinosteel.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sinosteel.activiti.ConsignActiviti;
 import com.sinosteel.domain.Consign;
 import com.sinosteel.domain.User;
 import com.sinosteel.framework.core.web.Request;
