@@ -35,7 +35,7 @@ export default class CoreLayout extends Component
 	handleClick = (e) =>{
         let menu = findMenuByKey(e.key, this.props.modules);
         let component = findPageByPath(menu.menuPath, tabsMap);
-        this.props.addTab(menu.name, component);
+        this.props.addTab(e.key, menu.name, component);
     };
 
     handleMenuClick = (e) =>{
@@ -62,6 +62,7 @@ export default class CoreLayout extends Component
     );
 
 	render(){
+	    debugger;
 		return (
 			<Layout>
                 <Sider width={200} style={{ background: '#d9e2dd' }}>
@@ -88,7 +89,7 @@ export default class CoreLayout extends Component
                         <Header style={{ background: '#fff', padding: 0 }}>
                             <Dropdown overlay={this.menu}>
                                 <Button style={{ marginLeft: 8 }}>
-                                    <Icon type="user"/> {this.props.sysUser.userName} <Icon type="down" />
+                                    <Icon type="user"/> {this.props.sysUser.username} <Icon type="down" />
                                 </Button>
                             </Dropdown>
                         </Header>
@@ -101,7 +102,9 @@ export default class CoreLayout extends Component
 					        onEdit={this.onEdit}
 	                		hideAdd="true" 
 	                		activeKey={this.props.activeKey}>
-					      	{this.props.panes.map(pane => <TabPane tab={pane.title} key={pane.key}>{pane.content}</TabPane>)}
+					      	{this.props.panes.map(pane => {
+					      	    debugger;
+					      	    return <TabPane tab={pane.title} key={pane.key}>{pane.content}</TabPane>})}
 					    </Tabs>   
 			        </Content>
 			        <Footer style={{ textAlign: 'center' }}>

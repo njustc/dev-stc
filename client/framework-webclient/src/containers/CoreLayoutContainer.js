@@ -14,6 +14,7 @@ function containsPane(key, panes)
 };
 
 const mapStateToProps = (state) => {
+    debugger;
     return {
         sysUser: state.System.sysUser,
         modules: state.System.modules,
@@ -24,8 +25,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addTab: (name, component) => {
-            dispatch(addTabAction(name,component));
+        addTab: (key, name, component) => {
+            dispatch(addTabAction(key, name,component));
         },
         removeTab: (Panes, activekey, targetKey) => {
             let activeKey = activekey;
