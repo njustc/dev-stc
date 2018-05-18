@@ -2,7 +2,7 @@ const SET_LIST = 'Consign/SET_LIST';
 const REMOVE = 'Consign/REMOVE';
 const ADD = 'Consign/ADD';
 const SET_INDEX = 'Consign/SET_INDEX';
-const SET_STATUS = 'Consign/SET_STATUS';
+const SET_STATE = 'Consign/SET_STATE';
 const SET_CONTENT = 'Consign/SET_CONTENT';
 const SET_FILTER = 'Consign/SET_FILTER';
 
@@ -30,8 +30,8 @@ export const ConsignReducer = (state = initialState, action) => {
                   ...state,
                   list: state.list.concat([action.payload]),
               };
-          case SET_STATUS: {
-              let {index, status} = action.payload;
+          case SET_STATE: {
+              let {index, state} = action.payload;
               index === -1 ? index = state.index :null;
               // const newList = state.list;
               // newList[index].status = status;
@@ -40,7 +40,7 @@ export const ConsignReducer = (state = initialState, action) => {
                   list: state.list.map(
                       (consignData, idx) => {
                           if (idx === index) {
-                              consignData.status = status;
+                              consignData.state = state;
                           }
                       }
                   ),
@@ -61,7 +61,7 @@ export const ConsignReducer = (state = initialState, action) => {
                   list: state.list.map(
                       (consignData, idx) => {
                           if (idx === index) {
-                              consignData.status = status;
+                              consignData.consignation = values;
                           }
                       }
                   ),
@@ -97,12 +97,12 @@ export const addConsign = (consignData) => {
     }
 };
 
-export const setConsignStatus = (index, status) => {
+export const setConsignState = (index, state) => {
     return {
-        type: SET_STATUS,
+        type: SET_STATE,
         payload: {
             index: index,
-            status: status,
+            state: state,
         },
     }
 };
