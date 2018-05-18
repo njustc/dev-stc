@@ -46,7 +46,6 @@ export default class ConsignListComponent extends Component {
                     return '未定义状态';
             }
         },
-        /*TODO*/
         filters: [{
             text: '待提交',
             value: 'TobeSubmit',
@@ -57,6 +56,7 @@ export default class ConsignListComponent extends Component {
             text: '已通过',
             value: 'Finished',
         }],
+        filterMultiple: false,/*单选filter*/
         // specify the condition of filtering result
         // here is that finding the name started with `value`
         onFilter: (value, record) => record.state.indexOf(value) === 0,
