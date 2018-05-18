@@ -1,5 +1,6 @@
 package com.sinosteel.activiti;
 
+import com.sinosteel.FrameworkApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ import static org.junit.Assert.*;
 
 @IntegrationTest
 @RunWith(SpringJUnit4ClassRunner.class)
-//@SpringApplicationConfiguration(FrameworkApplication.class)
-@SpringApplicationConfiguration(classes=MyActiviti.class)
+@SpringApplicationConfiguration(FrameworkApplication.class)
+//@SpringApplicationConfiguration(classes=MyActiviti.class)
 public class ConsignActivitiTest {
 
     @Autowired
@@ -59,7 +60,7 @@ public class ConsignActivitiTest {
         assertNotNull(processInstanceID);
         System.out.println("委托实例成功创建。 ProcessInstanceID: " + processInstanceID);
         System.out.println("委托实例成功创建。 ProcessInstanceID: " + processInstanceID1);
-        System.out.println(consignActiviti.getClientTasks("0"));
+        System.out.println(consignActiviti.getUserTasks("0"));
 
        System.out.println("正在测试提交委托");
         consignActiviti.submitConsign(processInstanceID, "0");
@@ -135,12 +136,12 @@ public class ConsignActivitiTest {
         System.out.println("委托实例成功创建  ProcessInstanceID: " + processInstanceID1);
         System.out.println("委托实例成功创建  ProcessInstanceID: " + processInstanceID2);
         System.out.println("正在测试客户查询");
-        System.out.println(consignActiviti.getClientTasks("Cit0"));
-        System.out.println(consignActiviti.getClientTasks("Cit1"));
-        System.out.println(consignActiviti.getClientTasks("Cit2"));
+        System.out.println(consignActiviti.getUserTasks("Cit0"));
+        System.out.println(consignActiviti.getUserTasks("Cit1"));
+        System.out.println(consignActiviti.getUserTasks("Cit2"));
         System.out.println("Cit0提交一个委托后");
         consignActiviti.submitConsign(processInstanceID, "Cit0");
-        System.out.println(consignActiviti.getClientTasks("Cit0"));
+        System.out.println(consignActiviti.getUserTasks("Cit0"));
     }
 
     /*查询测试人员待处理的委托*/

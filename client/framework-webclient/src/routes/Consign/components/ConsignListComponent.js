@@ -31,7 +31,7 @@ export default class ConsignListComponent extends Component {
         sorter:(a, b) => a.id - b.id,
     }, {
         title:"状态",
-        dataIndex:"status",
+        dataIndex:"state",
         render: (stateCode) => {
             switch(stateCode) {
                 case 'TobeSubmit':

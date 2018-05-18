@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ConsignContentComponent from "ROUTES/Consign/components/ConsignContentComponent";
 import {connect} from "react-redux";
 import {httpPut} from "UTILS/FetchUtil";
-import {setConsignStatus} from "../../../modules/ducks/Consign";
+import {setConsignState} from "../../../modules/ducks/Consign";
 
 const mapStateToProps = (state) => {
     const {list, index} = state.Consign;
@@ -24,7 +24,7 @@ const buttons = (dispatch) => [{
         httpPut(url, data, (result) => {
             if (result.status == 'SUCCESS') {
                 // consignData.status = "Finished";
-                dispatch(setConsignStatus(-1, "Finished"));
+                dispatch(setConsignState(-1, "Finished"));
             }
             else {
                 console.log("点击“通过”错误");
@@ -41,7 +41,7 @@ const buttons = (dispatch) => [{
         httpPut(url, data, (result) => {
             if (result.status == 'SUCCESS') {
                 // consignData.status = "TobeSubmit";
-                dispatch(setConsignStatus(-1, "TobeSubmit"));
+                dispatch(setConsignState(-1, "TobeSubmit"));
             }
             else {
                 console.log("点击“否决”错误");
