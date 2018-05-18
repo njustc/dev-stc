@@ -494,7 +494,7 @@ class ConsignContentComponent extends Component {
                     )}
                 </FormItem>
 
-                /*以下第三部分*/
+                {/*以下第三部分*/}
                 <FormItem
                     label="委托单位信息"
                     {...formItemLayout}
