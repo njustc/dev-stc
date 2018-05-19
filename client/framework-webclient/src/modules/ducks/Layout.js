@@ -1,13 +1,18 @@
 import React from "react";
-
+import ProjectComponent from "../../routes/Project/components/ProjectComponent";
 const SET_STATE = "Layout/SET_STATE";
 const SET_ACTIVE_KEY = "Layout/SET_ACTIVE_KEY";
 const ADD_TAB = "Layout/ADD_TAB";
 const REMOVE_TAB = 'Layout/REMOVE_TAB';
 
 const initialState = {
-    panes: [],
-    activeKey: ''
+    panes: [{
+        title: '项目管理',
+        content: React.createElement(ProjectComponent),
+        key: 'project',
+        closable: false
+    }],
+    activeKey: 'project'
 };
 
 const  containsPane = (key, panes) => {

@@ -1,18 +1,18 @@
-const SET_LIST = 'Contrast/SET_LIST';
-const REMOVE = 'Contrast/REMOVE';
-const ADD = 'Contrast/ADD';
-const SET_INDEX = 'Contrast/SET_INDEX';
-const SET_STATE = 'Contrast/SET_STATE';
-const SET_CONTENT = 'Contrast/SET_CONTENT';
-const SET_FILTER = 'Contrast/SET_FILTER';
+const SET_LIST = 'Project/SET_LIST';
+const REMOVE = 'Project/REMOVE';
+const ADD = 'Project/ADD';
+const SET_INDEX = 'Project/SET_INDEX';
+const SET_STATE = 'Project/SET_STATE';
+const SET_CONTENT = 'Project/SET_CONTENT';
+const SET_FILTER = 'Project/SET_FILTER';
 
 const initialState = {
-    listFilter: stateCode => stateCode != 'Finished',//() => true,
-    list: [],
+    listFilter: () => true,//绑定按钮传入的过滤条件
+    list: [],//项目列表，每个列表项是一个对象
     index: -1,
 };
 
-export const ContrastReducer = (state = initialState, action) => {
+export const ProjectReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_LIST:
             return {
@@ -23,7 +23,7 @@ export const ContrastReducer = (state = initialState, action) => {
             return {
                 ...state,
                 list: state.list.filter(
-                    ContrastData => ContrastData.id !== action.payload),
+                    ProjectData => ProjectData.id !== action.payload),
             };
         case ADD:
             return {
@@ -36,8 +36,8 @@ export const ContrastReducer = (state = initialState, action) => {
             return {
                 ...state,
                 list: state.list.map(
-                    (ContrastData, idx) => idx === index ?
-                        { ...ContrastData, state: state} : ContrastData
+                    (ProjectData, idx) => idx === index ?
+                        { ...ProjectData, state: state} : ProjectData
                 ),
             };
         }
@@ -52,8 +52,8 @@ export const ContrastReducer = (state = initialState, action) => {
             return {
                 ...state,
                 list: state.list.map(
-                    (ContrastData, idx) => idx === index ?
-                        { ...ContrastData, Contrastation: values } : ContrastData
+                    (item, idx) => idx === index ?
+                        { ...item, content: values } : item
                 ),
             };
         case SET_FILTER:
@@ -66,28 +66,28 @@ export const ContrastReducer = (state = initialState, action) => {
     }
 };
 
-export const setContrastList = (list) => {
+export const setProjectList = (list) => {
     return {
         type: SET_LIST,
         payload: list,
     }
 };
 
-export const removeContrast = (id) => {
+export const removeProject = (id) => {
     return {
         type: REMOVE,
         payload: id,
     }
 };
 
-export const addContrast = (ContrastData) => {
+export const addProject = (ProjectData) => {
     return {
         type: ADD,
-        payload: ContrastData,
+        payload: ProjectData,
     }
 };
 
-export const setContrastState = (index, state) => {
+export const setProjectState = (index, state) => {
     return {
         type: SET_STATE,
         payload: {
@@ -97,7 +97,7 @@ export const setContrastState = (index, state) => {
     }
 };
 
-export const setContrastContent = (index, values) => {
+export const setProjectContent = (index, values) => {
     return {
         type: SET_CONTENT,
         payload: {
@@ -107,7 +107,7 @@ export const setContrastContent = (index, values) => {
     }
 };
 
-export const setContrastIndex = (index) => {
+export const setProjectIndex = (index) => {
     return {
         type: SET_INDEX,
         payload: index,
