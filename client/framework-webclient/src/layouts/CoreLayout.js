@@ -11,10 +11,10 @@ const FormItem = Form.Item;
 
 import Logo from './assets/logo.png';
 
-import tabsMap from 'routes/tabsMap';
+import tabsMap from '../routes/tabsMap';
 
-import {logoutService, resetPasswordService} from 'services';
-import {sysFetch} from 'utils/FetchUtil';
+//import {logoutService, resetPasswordService} from 'services';
+import {sysFetch} from '../utils/FetchUtil';
 
 export default class CoreLayout extends Component
 {
@@ -68,7 +68,7 @@ export default class CoreLayout extends Component
                     <Affix offsetTop={0}>
                         <Row>
                             <div className="logoV2Container" style={{marginBottom: '20px', background: '#c8e0bc'}}>
-                                <img src={Logo} className="logoV2"></img>
+                                <img src={Logo} className="logoV2"/>
                             </div>
                         </Row>
                     </Affix>
