@@ -20,7 +20,12 @@ public class ProcessInstanceService
     private ConsignActiviti consignActiviti;
 
 
+<<<<<<< HEAD
+    public JSONObject queryProcessState(String processInstanceID)throws Exception
+    {
+=======
     public JSONObject queryProcessState(String processInstanceID) throws Exception {
+>>>>>>> 6a7aef396c9f9b81231f9b1c9ef07febea40d1ba
         String state = consignActiviti.getProcessState(processInstanceID);
 
         JSONObject queryResultJson = new JSONObject();
@@ -38,7 +43,12 @@ public class ProcessInstanceService
     }
 
 
+<<<<<<< HEAD
+    public JSONObject updateProcessState(String processInstanceID, Request request)throws Exception
+    {
+=======
     public JSONObject updateProcessState(String processInstanceID, Request request) throws Exception {
+>>>>>>> 6a7aef396c9f9b81231f9b1c9ef07febea40d1ba
         JSONObject params = request.getParams();
         String operation = params.getString("operation");
 
