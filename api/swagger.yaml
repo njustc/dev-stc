@@ -1,254 +1,303 @@
-swagger: "2.0"
+swagger: '2.0'
 info:
-  description: "南大测试 REST API"
-  version: "1.0.0"
-  title: "南大测试 REST API 接口说明"
-  termsOfService: "http://swagger.io/terms/"
+  description: 南大测试 REST API
+  version: 1.0.0
+  title: 南大测试 REST API 接口说明
+  termsOfService: 'http://swagger.io/terms/'
   license:
-    name: "Apache 2.0"
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "localhost:8000"
-tags: 
-
-- name: "login"
-  description: "登录"
-  
-- name: "consign"
-  description: "委托"
-  
-- name: "consignActiviti"
-  description: "委托状态"
-
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: 'localhost:8000'
+tags:
+  - name: login
+    description: 登录
+  - name: consign
+    description: 委托
+  - name: processInstance
+    description: 委托状态
 schemes:
-- "http"
-
+  - http
 consumes:
-  - "application/x-www-form-urlencoded"
-produces: 
-  - "application/json"
-
+  - application/x-www-form-urlencoded
+produces:
+  - application/json
 paths:
   /login:
     post:
-      tags: 
-      - "login"
-      summary: "登录"
-      description: "登录系统"
-      operationId: "login"
-      consumes: 
-      - "application/x-www-form-urlencoded"
-      produces: 
-      - "application/json"
-      parameters: 
-      - name: "username"
-        in: "query"
-        description: "用户名. 此时应默认为 **undefined**"
-        type: "string"
-        required: true
-      - name: "clientDigest"
-        in: "query"
-        description: "摘要. 此时应默认为 **undefined**"
-        type: "string"
-        required: true
-      - in: "formData"
-        name: "params"
-        description: |
-          登录信息. JSON格式，需包含两个key， 'username' 以及 'password'.  eg.
-          ```
-          {
-            "username": "admin",
-            "password": "admin"
-          }
-          ```
-        type: "string"
-        
-        required: true
+      tags:
+        - login
+      summary: 登录
+      description: 登录系统
+      operationId: login
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名. 此时应默认为 **undefined**
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要. 此时应默认为 **undefined**
+          type: string
+          required: true
+        - in: formData
+          name: params
+          description: |
+            登录信息. JSON格式，需包含两个key， 'username' 以及 'password'.  eg.
+            ```
+            {
+              "username": "admin",
+              "password": "admin"
+            }
+            ```
+          type: string
+          required: true
       responses:
-        200:
-          description: "成功登录. data里包含User相关信息，例如clientDigest, menus等"
+        '200':
+          description: '成功登录. data里包含User相关信息，例如clientDigest, menus等'
           schema:
-            $ref: "#/definitions/Response"
-        405:
-          description: "Invalid input"
+            $ref: '#/definitions/Response'
+        '405':
+          description: Invalid input
   /services/consign:
     get:
       tags:
-      - "consign"
-      summary: "查询委托"
-      description: "用户为工作人员时，返回所有委托；用户为客户时，返回该客户的委托"
-      operationId: "queryConsign"
+        - consign
+      summary: 查询委托
+      description: 用户为工作人员时，返回所有委托；用户为客户时，返回该客户的委托
+      operationId: queryConsigns
       consumes:
-      - "application/x-www-form-urlencoded"
+        - application/x-www-form-urlencoded
       produces:
-      - "application/json"
+        - application/json
       parameters:
-      - name: "username"
-        in: "query"
-        description: "用户名"
-        type: "string"
-        required: true
-      - name: "clientDigest"
-        in: "query"
-        description: "摘要。登录时由后台传入，用以身份验证"
-        type: "string"
-        required: true
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
       responses:
-        200:
+        '200':
+          description: |
+            成功查询委托时返回委托. data内包含JsonArray格式的委托内容
+            查询失败时，返回一个失败的status
+            ```
+            {
+              "status":failure;
+            }
+            ```
+          schema:
+            $ref: '#/definitions/Response'
+        '405':
+          description: Invalid input
+    post:
+      tags:
+        - consign
+      summary: 添加委托
+      description: 向数据库中添加委托，成功时返回委托的具体信息以及一个success状态
+      operationId: addConsign
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+        - in: formData
+          name: params
+          description: |
+            委托内容具体内容. JSON格式
+            ```
+            {
+              "consignation": "content"
+            }
+            ```
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            成功添加委托时的样例response body
+            ```
+            {
+              "data": {
+                "processInstanceID": "24",
+                "createdUserId": "0",
+                "createdTime": "2018-05-19 20:34:22",
+                "id": "fa5078a3-07cb-458f-b30f-26f0d710b445",
+                "state": "State：提交委托 From: Consign:1:7",
+                "consignation": "content"
+                },
+              "status": "SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - consign
+      summary: 修改委托
+      description: 修改已有的委托，参数中需要包含委托的id
+      operationId: editConsign
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+        - in: formData
+          name: params
+          description: |
+            委托具体内容. JSON格式. 需要指明ID
+            ```
+            {
+              "id": 
+              "consignation":
+            }
+            ```
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            修改成功时的样例response body
+            ```
+            {
+              "data": {
+              "processInstanceID": "32",
+              "createdUserId": "2",
+              "alteredTime": "2018-05-19 20:54:42",
+              "createdTime": "2018-05-19 20:48:24",
+              "alteredUserId": "2",
+              "id": "1708445d-a5c6-4425-b0b4-4bf96486941d",
+              "state": "State：提交委托 From: Consign:1:7",
+              "consignation": "excellent"
+              },
+              "status": "SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - consign
+      summary: 删除委托
+      description: 删除一个委托，需要提供委托的具体id
+      operationId: deleteConsign
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+        - in: formData
+          name: params
+          description: |
+            委托具体内容. JSON格式. 需要指明ID,consignation为非必要
+            ```
+            {
+              "id": 
+              "consignation":
+            }
+            ```
+          type: string
+          required: true
+      responses:
+        '200':
+          description: 成功删除委托
+          schema:
+            $ref: '#/definitions/Response'
+        '405':
+          description: Invalid input
+  '/services/consign/{id}':
+    get:
+      tags:
+        - consign
+      summary: 根据id查询委托
+      description: 根据请求中的id查询委托
+      operationId: queryConsignByID
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 委托id
+          type: string
+          required: true
+      responses:
+        '200':
           description: |
             成功查询委托. data内包含JsonArray格式的委托内容
           schema:
-            $ref: "#/definitions/Response"
-        405:
-          description: "Invalid input"
-      
-    post:
-      tags:
-      - "consign"
-      summary: "添加委托"
-      operationId: "addConsign"
-      consumes:
-      - "application/x-www-form-urlencoded"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "username"
-        in: "query"
-        description: "用户名"
-        type: "string"
-        required: true
-      - name: "clientDigest"
-        in: "query"
-        description: "摘要。登录时由后台传入，用以身份验证"
-        type: "string"
-        required: true
-      - in: "formData"
-        name: "params"
-        description: |
-          委托具体内容. JSON格式
-          ```
-          {
-            "consignation": "content"
-          }
-          ```
-        type: "string"
-        required: true
-
-      responses:
-        200:
-          description: "成功添加委托"
-          schema:
-            $ref: "#/definitions/Response"
-        405:
-          description: "Invalid input"
-    put:
-      tags:
-      - "consign"
-      summary: "修改委托"
-      operationId: "editConsign"
-      consumes:
-      - "application/x-www-form-urlencoded"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "username"
-        in: "query"
-        description: "用户名"
-        type: "string"
-        required: true
-      - name: "clientDigest"
-        in: "query"
-        description: "摘要。登录时由后台传入，用以身份验证"
-        type: "string"
-        required: true
-      - in: "formData"
-        name: "params"
-        description: |
-          委托具体内容. JSON格式. 需要指明ID
-          ```
-          {
-            "id": 
-            "consignation":
-          }
-          ```
-        type: "string"
-        required: true
-
-      responses:
-        200:
-          description: "成功修改委托"
-          schema:
-            $ref: "#/definitions/Response"
-        405:
-          description: "Invalid input"
-    delete:
-      tags:
-      - "consign"
-      summary: "删除委托"
-      operationId: "deleteConsign"
-      consumes:
-      - "application/x-www-form-urlencoded"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "username"
-        in: "query"
-        description: "用户名"
-        type: "string"
-        required: true
-      - name: "clientDigest"
-        in: "query"
-        description: "摘要。登录时由后台传入，用以身份验证"
-        type: "string"
-        required: true
-      - in: "formData"
-        name: "params"
-        description: |
-          委托具体内容. JSON格式. 需要指明ID
-          ```
-          {
-            "id": 
-            "consignation":
-          }
-          ```
-        type: "string"
-        required: true
-
-      responses:
-        200:
-          description: "成功删除委托"
-          schema:
-            $ref: "#/definitions/Response"
-        405:
-          description: "Invalid input"
-          
-  /services/consignActiviti/{procID}:
+            $ref: '#/definitions/Response'
+        '405':
+          description: Invalid input
+  '/services/processInstance/{processInstanceID}':
     get:
-      summary: "获取委托状态"
-      tags: 
-        - "consignActiviti"
-      description: "根据procID获取该委托状态"
+      summary: 获取委托状态
+      tags:
+        - processInstance
+      description: 根据processInstanceID获取该委托状态
+      operationId: queryConsignState
       consumes:
-      - "application/x-www-form-urlencoded"
+        - application/x-www-form-urlencoded
       produces:
-      - "application/json"
-      parameters: 
-        - name: "procID"
-          in: "path"
-          type: "string"
-          description: "委托在Activiti中的进程ID"
+        - application/json
+      parameters:
+        - name: processInstanceID
+          in: path
+          type: string
+          description: 委托在Activiti中的进程ID
           required: true
-        - name: "username"
-          in: "query"
-          description: "用户名"
-          type: "string"
+        - name: username
+          in: query
+          description: 用户名
+          type: string
           required: true
-        - name: "clientDigest"
-          in: "query"
-          description: "摘要。登录时由后台传入，用以身份验证"
-          type: "string"
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
           required: true
       responses:
-        200:
+        '200':
           description: |
             成功获取委托状态. 
             data含两个属性：
@@ -263,43 +312,49 @@ paths:
           schema:
             $ref: '#/definitions/Response'
     put:
-      summary: "修改委托状态"
-      description: "根据procID修改该委托状态"
-      tags: 
-        - "consignActiviti"
+      summary: 修改委托状态
+      description: 根据processInstanceID修改该委托状态
+      operationId: updateConsignState
+      tags:
+        - processInstance
       consumes:
-      - "application/x-www-form-urlencoded"
+        - application/x-www-form-urlencoded
       produces:
-      - "application/json"
-      parameters: 
-        - name: "procID"
-          in: "path"
-          type: "string"
-          description: "委托在Activiti中的进程ID"
+        - application/json
+      parameters:
+        - name: processInstanceID
+          in: path
+          type: string
+          description: 委托在Activiti中的进程ID
           required: true
-        - name: "username"
-          in: "query"
-          description: "用户名"
-          type: "string"
+        - name: username
+          in: query
+          description: 用户名
+          type: string
           required: true
-        - name: "clientDigest"
-          in: "query"
-          description: "摘要。登录时由后台传入，用以身份验证"
-          type: "string"
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
           required: true
-        - name: "params"
-          in: "formData"
-          description: |
-            修改的操作内容。JSON格式。属性名为'operation', 值可以为 submit/pass/reject. 分别代表 提交/通过/否决. 
+        - name: params
+          in: formData
+          description: >
+            修改的操作内容。JSON格式。属性名为'operation', 值可以为 submit/pass/reject. 分别代表
+            提交/通过/否决. 
+            以及'object'，表明修改的对象
             eg.
+
             ```
+
             {
+              "object": "consign"
               "operation": "submit"
             }
           type: string
           required: true
       responses:
-        200:
+        '200':
           description: |
             成功修改委托状态，并在data中返回修改后的进程状态。 
             data含两个属性 ：
@@ -314,33 +369,31 @@ paths:
             $ref: '#/definitions/Response'
 securityDefinitions:
   petstore_auth:
-    type: "oauth2"
-    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
-    flow: "implicit"
+    type: oauth2
+    authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
+    flow: implicit
     scopes:
-      write:pets: "modify pets in your account"
-      read:pets: "read your pets"
+      'write:pets': modify pets in your account
+      'read:pets': read your pets
   api_key:
-    type: "apiKey"
-    name: "api_key"
-    in: "header"
+    type: apiKey
+    name: api_key
+    in: header
 definitions:
   Response:
-    type: "object"
+    type: object
     properties:
       status:
-        type: "string"
-        description: "用来表示状态。SUCCESS/FAILURE"
+        type: string
+        description: 用来表示状态。SUCCESS/FAILURE
         enum:
-          - "SUCCESS"
-          - "FAILURE"
+          - SUCCESS
+          - FAILURE
       data:
-        type: "string"
-        format: "json"
-        example: "json"
-        description: "用来传送数据，json格式"
+        type: string
+        format: json
+        example: json
+        description: 用来传送数据，json格式
       message:
-        type: "string"
-        description: "用于传输错误信息"
-
- 
+        type: string
+        description: 用于传输错误信息

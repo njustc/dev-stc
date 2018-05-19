@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 
-import {getStore} from 'STORE/globalStore';
 import {setModules,setSysUser} from "../../../modules/ducks/System";
 
 import './Blank.scss';

@@ -75,7 +75,7 @@ public class BaseService<T extends BaseEntity>
 			entity.setAlteredUserId(user.getId());
 		}
 		
-		entity.setAlteredTime(DateUtil.formatTime(new Date()));
+		entity.setAlteredTime(DateUtil.formatDateTime(new Date()));
 		
 		baseRepository.save(entity);
 		return entity;

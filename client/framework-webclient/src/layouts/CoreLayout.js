@@ -11,10 +11,10 @@ const FormItem = Form.Item;
 
 import Logo from './assets/logo.png';
 
-import tabsMap from 'routes/tabsMap';
+import tabsMap from '../routes/tabsMap';
 
-import {logoutService, resetPasswordService} from 'services';
-import {sysFetch} from 'utils/FetchUtil';
+//import {logoutService, resetPasswordService} from 'services';
+import {sysFetch} from '../utils/FetchUtil';
 
 export default class CoreLayout extends Component
 {
@@ -33,9 +33,10 @@ export default class CoreLayout extends Component
 	};
 
 	handleClick = (e) =>{
+	    debugger;
         let menu = findMenuByKey(e.key, this.props.modules);
         let component = findPageByPath(menu.menuPath, tabsMap);
-        this.props.addTab(this.props.panes, menu.id, menu.name, component);
+        this.props.addTab(e.key, menu.name, component);
     };
 
     handleMenuClick = (e) =>{
@@ -48,7 +49,7 @@ export default class CoreLayout extends Component
     };
 
     onEdit = (targetKey) => {
-        this.props.removeTab(this.props.panes,this.props.activeKey,targetKey);
+        this.props.removeTab(targetKey);
     };
 
     onChange = (activeKey) => {
@@ -68,7 +69,7 @@ export default class CoreLayout extends Component
                     <Affix offsetTop={0}>
                         <Row>
                             <div className="logoV2Container" style={{marginBottom: '20px', background: '#c8e0bc'}}>
-                                <img src={Logo} className="logoV2"></img>
+                                <img src={Logo} className="logoV2"/>
                             </div>
                         </Row>
                     </Affix>
@@ -88,7 +89,7 @@ export default class CoreLayout extends Component
                         <Header style={{ background: '#fff', padding: 0 }}>
                             <Dropdown overlay={this.menu}>
                                 <Button style={{ marginLeft: 8 }}>
-                                    <Icon type="user"/> {this.props.sysUser.userName} <Icon type="down" />
+                                    <Icon type="user"/> {this.props.sysUser.username} <Icon type="down" />
                                 </Button>
                             </Dropdown>
                         </Header>
