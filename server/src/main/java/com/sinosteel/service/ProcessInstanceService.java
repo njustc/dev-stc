@@ -20,7 +20,7 @@ public class ProcessInstanceService
     private ConsignActiviti consignActiviti;
 
 
-    public JSONObject queryProcessState(String processInstanceID)
+    public JSONObject queryProcessState(String processInstanceID)throws Exception
     {
         String state = consignActiviti.getProcessState(processInstanceID);
 
@@ -39,7 +39,7 @@ public class ProcessInstanceService
     }
 
 
-    public JSONObject updateProcessState(String processInstanceID, Request request)
+    public JSONObject updateProcessState(String processInstanceID, Request request)throws Exception
     {
         JSONObject params = request.getParams();
         String operation = params.getString("operation");
