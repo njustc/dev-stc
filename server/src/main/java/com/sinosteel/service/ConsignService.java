@@ -28,8 +28,7 @@ public class ConsignService extends BaseService<Consign> {
 
 
 
-    public JSON queryConsigns(User user)
-    {
+    public JSON queryConsigns(User user) throws Exception {
 
         if (user != null)
             System.out.println("queryConsigns--> query user role: " + user.getRoles().get(0).getRoleName());
@@ -72,7 +71,7 @@ public class ConsignService extends BaseService<Consign> {
     }
 
     //增加委托
-    public JSONObject addConsign(JSONObject params,List<MultipartFile> files,User user)
+    public JSONObject addConsign(JSONObject params,List<MultipartFile> files,User user) throws Exception
     {
 
         String uid=UUID.randomUUID().toString();
@@ -101,8 +100,7 @@ public class ConsignService extends BaseService<Consign> {
     }
 
 
-
-    private JSONObject processConsign(Consign consign) {
+    private JSONObject processConsign(Consign consign) throws Exception {
         //增加委托状态
         String processState = (String)processInstanceService.queryProcessState(consign.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
@@ -111,7 +109,7 @@ public class ConsignService extends BaseService<Consign> {
 
     }
 
-    private  JSONArray processConsigns(List<Consign> consigns) {
+    private  JSONArray processConsigns(List<Consign> consigns) throws Exception {
         JSONArray resultArray = new JSONArray();
         //去掉委托内容,添加状态
         for (Consign consign: consigns) {
