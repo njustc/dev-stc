@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import ConsignContentComponent from "ROUTES/Consign/components/ConsignContentComponent";
 import {connect} from "react-redux";
-import {httpPut} from "UTILS/FetchUtil";
-import {setConsignState} from "../../../modules/ducks/Consign";
 
 const mapStateToProps = (state) => {
     const {list, index} = state.Consign;

@@ -1,15 +1,8 @@
 package com.sinosteel.activiti;
 
-import com.sinosteel.FrameworkApplication;
-import org.activiti.engine.*;
-import org.activiti.engine.history.HistoricActivityInstance;
+
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

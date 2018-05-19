@@ -7,7 +7,7 @@ const SET_CONTENT = 'Consign/SET_CONTENT';
 const SET_FILTER = 'Consign/SET_FILTER';
 
 const initialState = {
-    listFilter: () => true,
+    listFilter: stateCode => stateCode != 'Finished',//() => true,
     list: [],
     index: -1,
 };
@@ -33,16 +33,11 @@ export const ConsignReducer = (state = initialState, action) => {
           case SET_STATE: {
               let {index, state} = action.payload;
               index === -1 ? index = state.index :null;
-              // const newList = state.list;
-              // newList[index].status = status;
               return {
                   ...state,
                   list: state.list.map(
-                      (consignData, idx) => {
-                          if (idx === index) {
-                              consignData.state = state;
-                          }
-                      }
+                      (consignData, idx) => idx === index ?
+                          { ...consignData, state: state} : consignData
                   ),
               };
           }
@@ -54,16 +49,11 @@ export const ConsignReducer = (state = initialState, action) => {
           case SET_CONTENT:
               let {index, values} = action.payload;
               index === -1 ? index = state.index :null;
-              // const newList = state.list;
-              // newList[index].consignation = values;
               return {
                   ...state,
                   list: state.list.map(
-                      (consignData, idx) => {
-                          if (idx === index) {
-                              consignData.consignation = values;
-                          }
-                      }
+                      (consignData, idx) => idx === index ?
+                          { ...consignData, consignation: values } : consignData
                   ),
               };
           case SET_FILTER:

@@ -28,7 +28,7 @@ public class ConsignService extends BaseService<Consign> {
 
 
 
-    public JSON queryConsigns(User user)throws Exception
+    public JSON queryConsigns(User user)
     {
 
         if (user != null)
@@ -37,15 +37,13 @@ public class ConsignService extends BaseService<Consign> {
         {
             List<Consign> consigns = user.getConsigns();
             //对委托列表进行处理，去掉委托具体内容,并且添加委托状态
-            JSONArray resultArray = processConsigns(consigns);
-            return resultArray;
+            return processConsigns(consigns);
         }
         else
         {
             List<Consign> consigns = consignRepository.findByAllConsigns();
             //对委托列表进行处理，去掉委托具体内容,并且添加委托状态
-            JSONArray resultArray = processConsigns(consigns);
-            return resultArray;
+            return processConsigns(consigns);
         }
     }
 
@@ -68,13 +66,13 @@ public class ConsignService extends BaseService<Consign> {
         consign.setConsignation(tempconsign.getConsignation());
         this.updateEntity(consign, user);
 
-        //return the consign
+        //return the consign with STATE!
         consign = consignRepository.findById(tempconsign.getId());
-        return JSON.parseObject(JSONObject.toJSONString(consign));
+        return processConsign(consign);
     }
 
     //增加委托
-    public JSONObject addConsign(JSONObject params,List<MultipartFile> files,User user) throws Exception
+    public JSONObject addConsign(JSONObject params,List<MultipartFile> files,User user)
     {
 
         String uid=UUID.randomUUID().toString();
@@ -88,10 +86,12 @@ public class ConsignService extends BaseService<Consign> {
         consign.setProcessInstanceID(procID);
         this.saveEntity(consign, user);
 
-        //return the consign
+        //return the consign with STATE!
         consign = consignRepository.findById(uid);
-        return JSON.parseObject(JSONObject.toJSONString(consign));
+        return processConsign(consign);
     }
+
+
     //删除委托（不删除相关委托文件?）
 
     public void deleteConsign(JSONObject params)
@@ -101,7 +101,17 @@ public class ConsignService extends BaseService<Consign> {
     }
 
 
-    private  JSONArray processConsigns(List<Consign> consigns)throws Exception {
+
+    private JSONObject processConsign(Consign consign) {
+        //增加委托状态
+        String processState = (String)processInstanceService.queryProcessState(consign.getProcessInstanceID()).get("state");
+        JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
+        jsonObject.put("state", processState);
+        return jsonObject;
+
+    }
+
+    private  JSONArray processConsigns(List<Consign> consigns) {
         JSONArray resultArray = new JSONArray();
         //去掉委托内容,添加状态
         for (Consign consign: consigns) {
