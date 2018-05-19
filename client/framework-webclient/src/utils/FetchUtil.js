@@ -1,4 +1,3 @@
-import {getStore} from 'store/globalStore';
 
 export const httpGet = (url, callback) => {
     return sysFetch('GET', url, null, callback);
