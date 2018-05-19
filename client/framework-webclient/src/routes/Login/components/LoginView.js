@@ -99,7 +99,7 @@ class LoginView extends React.Component {
                                 <Checkbox>记住密码</Checkbox>
                             )}
                             <a className="login-form-forgot" href="">忘记密码</a>
-                            <Button type="primary" htmlType="submit" className="login-form-button">
+                            <Button type="primary" htmlType="submit" className="login-form-button" id="login">
                                 登录
                             </Button>
                             或 <a href="">现在注册!</a>
