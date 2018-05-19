@@ -62,15 +62,22 @@ public class ConsignServiceTest {
 
     @Test
     public void testCURD() {
-        System.out.println("customer1 增加一个委托");
+        System.out.println("=====customer1 增加一个委托=====");
         JSONObject consign = new JSONObject();
         consign.put("consignation", "这是customer1测试中新建的一个委托");
         try {
-            consignService.addConsign(consign, null, customer1);
-
-            System.out.println("查询customer1的委托");
-            JSON resultArray = consignService.queryConsigns(customer1);
-            System.out.println(resultArray);
+            JSONObject jsonResult = consignService.addConsign(consign, null, customer1);
+            String id = jsonResult.getString("id");
+            System.out.println("新建成功。委托的ID为: " + id);
+            System.out.println("=====查询该委托=====");
+            JSONObject jsonConsign = consignService.queryConsignByID(id);
+            System.out.println(jsonConsign);
+            System.out.println("=====编辑该委托=====");
+            jsonConsign.put("consignation", "这是customer1在测试中修改的委托");
+            jsonConsign = consignService.editConsign(jsonConsign, null, customer1);
+            System.out.println(jsonConsign);
+            System.out.println("=====删除该委托=====");
+            consignService.deleteConsign(jsonConsign);
         } catch (Exception e) {
             e.printStackTrace();
         }
