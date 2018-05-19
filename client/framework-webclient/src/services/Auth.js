@@ -1,4 +1,4 @@
-import {baseAddress} from "SERVICES/baseAddress";
+import {baseAddress, STATUS} from "SERVICES/common";
 import {httpPost} from "UTILS/FetchUtil";
 import {setModules, setSysUser} from "MODULES/ducks/System";
 
@@ -8,7 +8,7 @@ export const setLogin = (dispatch, params, callback) => {
     httpPost(loginUrl, params, (result) => {
         const {status, data} = result;
         const {username, clientDigest} = data;
-        if (status === 'SUCCESS') {
+        if (status === STATUS.SUCCESS) {
             const sysUser = {
                 username: username,
                 clientDigest: clientDigest,

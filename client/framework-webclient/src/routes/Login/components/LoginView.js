@@ -6,6 +6,7 @@ import {} from 'UTILS/FetchUtil';
 import './LoginView.scss';
 import Logo from '../assets/logo-fav.png';
 import {httpPost} from "UTILS/FetchUtil";
+import {STATUS} from "SERVICES/common";
 
 class LoginView extends React.Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class LoginView extends React.Component {
                     password: values.password,
                 };
                 this.props.setLogin(data, (status) => {
-                    if (status === 'SUCCESS') {
+                    if (status === STATUS.SUCCESS) {
                         this.props.router.replace('/index');
                     }
                     else {
