@@ -25,6 +25,18 @@ public class Consign extends BaseEntity{
     @JSONField(serialize = false)
     private User user;
 
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "consign")
+    @JSONField(serialize = false)
+    private Contract contract;
+
+    public Contract getContract(){
+        return contract;
+    }
+
+    public void setContract(Contract contract)
+    {
+        this.contract = contract;
+    }
 
     public String getConsignation() {
         return consignation;

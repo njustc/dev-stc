@@ -6,6 +6,7 @@ import {} from 'UTILS/FetchUtil';
 import './LoginView.scss';
 import Logo from '../assets/logo-fav.png';
 import {httpPost} from "UTILS/FetchUtil";
+import {STATUS} from "SERVICES/common";
 
 class LoginView extends React.Component {
     constructor(props) {
@@ -13,67 +14,25 @@ class LoginView extends React.Component {
     };
 
     static propTypes = {
-        SetSysUser: PropTypes.func.isRequired,
-        SetModules: PropTypes.func.isRequired
+        setLogin: PropTypes.func.isRequired,
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
-            console.log(values);
             if (!err) {
-                //这里用values获取到用户的sysUser和module，数据结构见modules/ducks/system
-                //
-                let url = "http://127.0.0.1:8000/login";
-                let data = {
+                const data = {
                     username: values.username,
                     password: values.password,
                 };
-                httpPost(url, data, (result) => {
-                    if (result.status == 'SUCCESS') {
-                        let sysUser = {
-                            ...values,
-                            clientDigest: result.data.clientDigest,
-                        };
-                        this.props.SetSysUser(sysUser);
-                        console.log(result);
-                        if(values.username === 'marketing'){
-                            this.props.SetModules([{
-                                "code": "U-C",
-                                "id": "1",
-                                "menuIcon": "idcard",
-                                "menuPath": "/StaffConsignList",
-                                "name": "委托管理"
-                            },{
-                                "code": "U-C",
-                                "id": "2",
-                                "menuIcon": "idcard",
-                                "menuPath": "/StaffContrastList",
-                                "name": "合同管理"
-                            }]);
-                            this.props.router.replace('/index');
-                        }
-                        else if(values.username === 'customer1' || values.username === 'customer2'){
-                            this.props.SetModules([{
-                                "code": "U-C",
-                                "id": "1",
-                                "menuIcon": "idcard",
-                                "menuPath": "/UserConsignList",
-                                "name": "委托管理"
-                            },{
-                                "code": "U-C",
-                                "id": "2",
-                                "menuIcon": "idcard",
-                                "menuPath": "/UserContrastList",
-                                "name": "合同管理"
-                            }]);
-                            this.props.router.replace('/index');
-                        }
+                this.props.setLogin(data, (status) => {
+                    if (status === STATUS.SUCCESS) {
+                        this.props.router.replace('/index');
                     }
                     else {
                         message.error('登录失败，请重试');
                     }
-                });
+                })
             }
         });
     };

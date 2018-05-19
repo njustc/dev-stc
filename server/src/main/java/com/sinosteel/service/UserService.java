@@ -3,7 +3,6 @@ package com.sinosteel.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sinosteel.domain.Organization;
 import com.sinosteel.domain.Role;
 import com.sinosteel.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +12,9 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.framework.config.system.SystemConfig;
 import com.sinosteel.repository.RoleRepository;
-import com.sinosteel.framework.mybatis.OrganizationUserMapper;
-import com.sinosteel.framework.mybatis.UserMapper;
-import com.sinosteel.repository.OrganizationRepository;
 import com.sinosteel.repository.UserRepository;
 import com.sinosteel.framework.utils.encryption.MD5Util;
 import com.sinosteel.framework.utils.json.JsonUtil;
-import com.sinosteel.framework.utils.list.ListUtil;
 import com.sinosteel.framework.utils.string.StringUtil;
 
 @Service
@@ -30,18 +25,12 @@ public class UserService extends BaseService<User>
 	
 	@Autowired
 	private UserRepository userRepository;
-	
-	@Autowired
-	private UserMapper userMapper;
+
 	
 	@Autowired
 	private RoleRepository roleRepository;
-	
-	@Autowired
-	private OrganizationRepository organizationRepository;
-	
-	@Autowired
-	private OrganizationUserMapper organizationUserMapper;
+
+
 	
 	public User getUserByUsername(String username)
 	{
@@ -111,18 +100,7 @@ public class UserService extends BaseService<User>
 		}
 		
 		this.saveEntity(userToAdd, user);
-		
-		JSONArray organizationIds = params.getJSONArray("organizationIds");
-		if(organizationIds != null)
-		{
-			String userId = userToAdd.getId();
-			
-			for(int i = 0; i < organizationIds.size(); i++)
-			{
-				String organizationId = organizationIds.getString(i);
-				organizationUserMapper.insertOrganizationUser(organizationId, userId, "0");
-			}
-		}
+
 	}
 	
 	public void addUser(String userId, String username, String name, User user)
@@ -137,9 +115,7 @@ public class UserService extends BaseService<User>
 		userToAdd.setPassword(password);
 		
 		this.saveEntity(userToAdd, user);
-		
-		String primeOrganization = systemConfig.getProperty("primeOrganization");
-		organizationUserMapper.insertOrganizationUser(primeOrganization, userId, "0");
+
 	}
 	
 	public void editUser(JSONObject params, User user)
@@ -170,26 +146,7 @@ public class UserService extends BaseService<User>
 		}
 		
 		this.updateEntity(userToEdit, user);
-		
-		JSONArray organizationIdsJsonArray = params.getJSONArray("organizationIds");
-		if(organizationIdsJsonArray != null)
-		{
-			List<String> organizationIds = JsonUtil.toStringList(organizationIdsJsonArray);
-			List<String> existedOrganizationIds = organizationUserMapper.findOrganizationIdsByUserId(userId);
 
-			List<String> toBeAddedOrganizationIds = ListUtil.getDifference(organizationIds, existedOrganizationIds);
-			List<String> toBeDeletedOrganizationIds = ListUtil.getDifference(existedOrganizationIds, organizationIds);
-			
-			for(String organizationId : toBeAddedOrganizationIds)
-			{
-				organizationUserMapper.insertOrganizationUser(organizationId, userId, "0");
-			}
-			
-			for(String organizationId : toBeDeletedOrganizationIds)
-			{
-				organizationUserMapper.deleteOrganizationUser(organizationId, userId);
-			}
-		}
 		
 
 	}
@@ -201,17 +158,5 @@ public class UserService extends BaseService<User>
 		String username = user.getUsername();
 		
 		userRepository.delete(userId);
-		organizationUserMapper.deleteOrganizationUserByUserId(userId);
-		
-	}
-	
-	public List<Organization> getOrganizations(String username)
-	{
-		return userMapper.getOrganizations(username);
-	}
-	
-	public List<String> getOrganizationIdsByUserId(String userId)
-	{
-		return userMapper.getOrganizationIdsByUserId(userId);
 	}
 }

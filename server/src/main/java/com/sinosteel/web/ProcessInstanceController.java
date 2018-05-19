@@ -37,7 +37,7 @@ public class ProcessInstanceController extends BaseController
 
         return response;
     }
-
+    //params中需要两个参数：object：操作对象  operation: 操作方法
     @RequestMapping(value = "/processInstance/{processInstanceID}", method = RequestMethod.PUT)
     public Response updateConsignState(@PathVariable String processInstanceID, Request request)
     {
