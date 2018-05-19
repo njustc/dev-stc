@@ -42,13 +42,13 @@ class LoginView extends React.Component {
                                 "code": "U-C",
                                 "id": "1",
                                 "menuIcon": "idcard",
-                                "menuPath": "/AdminConsignList",
+                                "menuPath": "/StaffConsignList",
                                 "name": "委托管理"
                             },{
                                 "code": "U-C",
                                 "id": "2",
                                 "menuIcon": "idcard",
-                                "menuPath": "/AdminContrastList",
+                                "menuPath": "/StaffContrastList",
                                 "name": "合同管理"
                             }]);
                             this.props.router.replace('/index');

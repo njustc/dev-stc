@@ -22,11 +22,11 @@ const tabsMap =
         component: UserConsignContentView
     },
     {
-        path: '/AdminConsignList',
+        path: '/StaffConsignList',
         component: StaffConsignListView
     },
     {
-    	path: '/AdminConsignContent',
+    	path: '/StaffConsignContent',
     	component: StaffConsignContentView
     },
     {
@@ -38,11 +38,11 @@ const tabsMap =
         component: UserContrastContentView
     },
     {
-        path: '/AdminContrastList',
+        path: '/StaffContrastList',
         component: StaffContrastListView
     },
     {
-        path: '/AdminContrastContent',
+        path: '/StaffContrastContent',
         component: StaffContrastContentView
     }
 ];
