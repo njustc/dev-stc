@@ -3,13 +3,13 @@ import {
     StaffConsignListView,
     UserConsignContentView,
     UserConsignListView
-} from "../routes/Consign"
+} from './Consign'
 import {
     StaffContrastContentView,
     StaffContrastListView,
     UserContrastContentView,
     UserContrastListView
-} from "../routes/Contrast"
+} from "./Contrast"
 
 const tabsMap =
 [

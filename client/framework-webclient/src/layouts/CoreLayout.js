@@ -33,6 +33,7 @@ export default class CoreLayout extends Component
 	};
 
 	handleClick = (e) =>{
+	    debugger;
         let menu = findMenuByKey(e.key, this.props.modules);
         let component = findPageByPath(menu.menuPath, tabsMap);
         this.props.addTab(e.key, menu.name, component);
@@ -48,7 +49,7 @@ export default class CoreLayout extends Component
     };
 
     onEdit = (targetKey) => {
-        this.props.removeTab(this.props.panes,this.props.activeKey,targetKey);
+        this.props.removeTab(targetKey);
     };
 
     onChange = (activeKey) => {
