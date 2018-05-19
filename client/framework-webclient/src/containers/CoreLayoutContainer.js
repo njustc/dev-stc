@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import CoreLayout from 'layouts/CoreLayout'
-import {setState, setActiveKey, addTabAction} from "MODULES/ducks/Layout";
+import {setState, setActiveKey, addTabAction, removeTabAction} from "MODULES/ducks/Layout";
 import React from "react";
 
 function containsPane(key, panes)
@@ -28,19 +28,20 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(addTabAction(key, name,component));
         },
         removeTab: (Panes, activekey, targetKey) => {
-            let activeKey = activekey;
-            let lastIndex = -1;
-            const tmpPanes = Panes;
-            tmpPanes.forEach((pane, i) => {
-                if (pane.key === targetKey) {
-                    lastIndex = i - 1;
-                }
-            });
-            const panes = tmpPanes.filter(pane => pane.key !== targetKey);
-            if (lastIndex >= 0 && activeKey === targetKey) {
-                activeKey = panes[lastIndex].key;
-            }
-            dispatch(setState({ panes,activeKey }))
+            dispatch(removeTabAction(targetKey));
+            // let activeKey = activekey;
+            // let lastIndex = -1;
+            // const tmpPanes = Panes;
+            // tmpPanes.forEach((pane, i) => {
+            //     if (pane.key === targetKey) {
+            //         lastIndex = i - 1;
+            //     }
+            // });
+            // const panes = tmpPanes.filter(pane => pane.key !== targetKey);
+            // if (lastIndex >= 0 && activeKey === targetKey) {
+            //     activeKey = panes[lastIndex].key;
+            // }
+            // dispatch(setState({ panes,activeKey }))
         },
         switchTab: (activekey) => dispatch(setActiveKey(activekey))
     }
