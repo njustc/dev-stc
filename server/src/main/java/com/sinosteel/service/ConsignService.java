@@ -28,7 +28,7 @@ public class ConsignService extends BaseService<Consign> {
 
 
 
-    public JSON queryConsigns(User user)
+    public JSON queryConsigns(User user)throws Exception
     {
 
         if (user != null)
@@ -101,7 +101,7 @@ public class ConsignService extends BaseService<Consign> {
     }
 
 
-    private  JSONArray processConsigns(List<Consign> consigns) {
+    private  JSONArray processConsigns(List<Consign> consigns)throws Exception {
         JSONArray resultArray = new JSONArray();
         //去掉委托内容,添加状态
         for (Consign consign: consigns) {

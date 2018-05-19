@@ -30,7 +30,7 @@ public class ConsignActivitiTest {
   /*新建委托测试*/
 
     @Test
-    public void newConsign() {
+    public void newConsign() throws Exception{
 
        String processInstanceID =  consignActiviti.createConsignProcess("0", "0");
         assertNotNull(processInstanceID);
@@ -53,7 +53,7 @@ public class ConsignActivitiTest {
 
     /*提交委托测试*/
     @Test
-    public void submitConsign() {
+    public void submitConsign() throws Exception{
         String processInstanceID =  consignActiviti.createConsignProcess("0", "0");
         assertNotNull(processInstanceID);
         String processInstanceID1 =  consignActiviti.createConsignProcess("1", "0");
@@ -67,11 +67,13 @@ public class ConsignActivitiTest {
        consignActiviti.submitConsign(processInstanceID1, "0");
        System.out.println(consignActiviti.getProcessState(processInstanceID));
         System.out.println(consignActiviti.getProcessState(processInstanceID1));
+        //consignActiviti.queryHistoricActivitiyInstance(processInstanceID);
+        //consignActiviti.queryHistoricActivitiyInstance(processInstanceID1);
     }
 
     /*审核委托测试*/
     @Test
-    public void checkConsign() {
+    public void checkConsign() throws Exception{
         String processInstanceID =  consignActiviti.createConsignProcess("0", "0");
         assertNotNull(processInstanceID);
         System.out.println("委托实例成功创建  ProcessInstanceID: " + processInstanceID);
@@ -83,7 +85,7 @@ public class ConsignActivitiTest {
         System.out.println("正在测试否决委托");
         consignActiviti.checkConsign(false, processInstanceID, "W1" );
         System.out.println(consignActiviti.getProcessState(processInstanceID));
-
+        //consignActiviti.queryHistoricActivitiyInstance(processInstanceID);
         consignActiviti.submitConsign(processInstanceID, "0");
 
         System.out.println("正在测试通过委托");
@@ -92,7 +94,7 @@ public class ConsignActivitiTest {
     }
 
     /*根据委托ID查询测试*/
-    @Test public void getProcessState()
+    @Test public void getProcessState()throws Exception
     {
         String processInstanceID =  consignActiviti.createConsignProcess("0", "0");
         assertNotNull(processInstanceID);
@@ -125,7 +127,7 @@ public class ConsignActivitiTest {
 
     /*根据客户ID查询测试*/
     @Test
-    public void getClientTasks() {
+    public void getClientTasks() throws Exception{
         String processInstanceID =  consignActiviti.createConsignProcess("Con0", "Cit0");
         assertNotNull(processInstanceID);
         String processInstanceID1 =  consignActiviti.createConsignProcess("Con1", "Cit0");
@@ -146,7 +148,7 @@ public class ConsignActivitiTest {
 
     /*查询测试人员待处理的委托*/
     @Test
-    public void getWorkerTasks()
+    public void getWorkerTasks()throws Exception
     {
         String processInstanceID =  consignActiviti.createConsignProcess("Con0", "Cit0");
         assertNotNull(processInstanceID);
