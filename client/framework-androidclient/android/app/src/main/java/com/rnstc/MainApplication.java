@@ -1,4 +1,4 @@
-package com.androidstc;
+package com.rnstc;
 
 import android.app.Application;
 
