@@ -36,13 +36,20 @@ class LoginView extends React.Component {
                             clientDigest: result.data.clientDigest,
                         };
                         this.props.SetSysUser(sysUser);
+                        console.log(result);
                         if(values.username === 'marketing'){
                             this.props.SetModules([{
                                 "code": "U-C",
                                 "id": "1",
                                 "menuIcon": "idcard",
-                                "menuPath": "/admin_list",
+                                "menuPath": "/AdminConsignList",
                                 "name": "委托管理"
+                            },{
+                                "code": "U-C",
+                                "id": "2",
+                                "menuIcon": "idcard",
+                                "menuPath": "/AdminContrastList",
+                                "name": "合同管理"
                             }]);
                             this.props.router.replace('/index');
                         }
@@ -51,8 +58,14 @@ class LoginView extends React.Component {
                                 "code": "U-C",
                                 "id": "1",
                                 "menuIcon": "idcard",
-                                "menuPath": "/user_list",
+                                "menuPath": "/UserConsignList",
                                 "name": "委托管理"
+                            },{
+                                "code": "U-C",
+                                "id": "2",
+                                "menuIcon": "idcard",
+                                "menuPath": "/UserContrastList",
+                                "name": "合同管理"
                             }]);
                             this.props.router.replace('/index');
                         }
