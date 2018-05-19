@@ -29,7 +29,6 @@ public class ConsignService extends BaseService<Consign> {
 
 
     public JSON queryConsigns(User user) throws Exception {
-
         if (user != null)
             System.out.println("queryConsigns--> query user role: " + user.getRoles().get(0).getRoleName());
         if (user.getRoles().get(0).getRoleName().equals("普通客户"))
@@ -71,8 +70,7 @@ public class ConsignService extends BaseService<Consign> {
     }
 
     //增加委托
-    public JSONObject addConsign(JSONObject params,List<MultipartFile> files,User user) throws Exception
-    {
+    public JSONObject addConsign(JSONObject params,List<MultipartFile> files,User user) throws Exception {
 
         String uid=UUID.randomUUID().toString();
 
@@ -98,6 +96,7 @@ public class ConsignService extends BaseService<Consign> {
         String uid=params.getString("id");
         this.deleteEntity(uid);
     }
+
 
 
     private JSONObject processConsign(Consign consign) throws Exception {

@@ -8,6 +8,8 @@ import org.activiti.engine.task.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +17,7 @@ import java.util.Map;
 /**
  * @author Paul
  */
-
+@Service
 public class BaseActiviti {
     private static final Logger logger = LoggerFactory.getLogger(com.sinosteel.activiti.ConsignActiviti.class);
 
@@ -115,4 +117,6 @@ public class BaseActiviti {
         }
         return "Not Exist";
     }
+
+
 }

@@ -8,13 +8,6 @@
       </extensionElements>
     </startEvent>
     <!---->
-    <userTask id="newcontract" name="新建合同" activiti:assignee="${ClientID}">
-      <extensionElements>
-        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
-        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
-        <modeler:editor-resource-id><![CDATA[sid-4A2370E9-D3A1-49E0-B73F-51D76F52B290]]></modeler:editor-resource-id>
-      </extensionElements>
-    </userTask>
     <!--<userTask id="submitcontract" name="提交合同" activiti:candidateGroups="客户">-->
     <userTask id="submitcontract" name="提交合同" activiti:assignee="${ClientID}">
       <extensionElements>
@@ -93,14 +86,9 @@
       </extensionElements>
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Approval == 'true'}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="f1" sourceRef="start" targetRef="newcontract">
+    <sequenceFlow id="f1" sourceRef="start" targetRef="submitcontract">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-609AB58B-2A85-4A4F-B96F-51C83F9A5223]]></modeler:editor-resource-id>
-      </extensionElements>
-    </sequenceFlow>
-    <sequenceFlow id="f2" sourceRef="newcontract" targetRef="submitcontract">
-      <extensionElements>
-        <modeler:editor-resource-id><![CDATA[sid-2C8B75BF-E226-4C8B-9CF6-1EB282459B4B]]></modeler:editor-resource-id>
       </extensionElements>
     </sequenceFlow>
   </process>

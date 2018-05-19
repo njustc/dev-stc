@@ -3,26 +3,48 @@ import {
     StaffConsignListView,
     UserConsignContentView,
     UserConsignListView
-} from "ROUTES/Consign";
+} from './Consign'
+import {
+    StaffContrastContentView,
+    StaffContrastListView,
+    UserContrastContentView,
+    UserContrastListView
+} from "./Contrast"
 
 const tabsMap =
 [
 	{
-		path: '/user_list',
+		path: '/UserConsignList',
 		component: UserConsignListView
 	},
     {
-        path: '/user_content',
+        path: '/UserConsignContent',
         component: UserConsignContentView
     },
     {
-        path: '/admin_list',
+        path: '/StaffConsignList',
         component: StaffConsignListView
     },
     {
-    	path: '/admin_content',
+    	path: '/StaffConsignContent',
     	component: StaffConsignContentView
+    },
+    {
+        path: '/UserContrastList',
+        component: UserContrastListView
+    },
+    {
+        path: '/UserContrastContent',
+        component: UserContrastContentView
+    },
+    {
+        path: '/StaffContrastList',
+        component: StaffContrastListView
+    },
+    {
+        path: '/StaffContrastContent',
+        component: StaffContrastContentView
     }
-]
+];
 
 export default tabsMap
