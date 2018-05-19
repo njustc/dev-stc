@@ -9,7 +9,7 @@ import {
     setFilter
 } from "../../../modules/ducks/Consign"
 import {UserConsignContentView} from "ROUTES/Consign";
-import {deleteConsign, getConsignList, newConsign} from "SERVICES/ConsignService";
+import {deleteConsign, getConsignContent, getConsignList, newConsign} from "SERVICES/ConsignService";
 import {addTabAction} from "MODULES/ducks/Layout";
 
 const mapStateToProps = (state) => {
@@ -21,8 +21,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        showContent: (index) => {
+        showContent: (index, id) => {
             dispatch(addTabAction('id', '委托详情', UserConsignContentView));
+            getConsignContent(dispatch, index, id);
             dispatch(setConsignIndex(index));
         },
         newConsign: () => newConsign(dispatch),
