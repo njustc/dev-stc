@@ -20,8 +20,7 @@ public class ProcessInstanceService
     private ConsignActiviti consignActiviti;
 
 
-    public JSONObject queryProcessState(String processInstanceID)
-    {
+    public JSONObject queryProcessState(String processInstanceID) throws Exception {
         String state = consignActiviti.getProcessState(processInstanceID);
 
         JSONObject queryResultJson = new JSONObject();
@@ -39,20 +38,17 @@ public class ProcessInstanceService
     }
 
 
-    public JSONObject updateProcessState(String processInstanceID, Request request)
-    {
+    public JSONObject updateProcessState(String processInstanceID, Request request) throws Exception {
         JSONObject params = request.getParams();
         String operation = params.getString("operation");
 
         if (operation.equals("submit")) {
             consignActiviti.submitConsign(processInstanceID, request.getUser().getId());
         }
-        else if (operation.equals("pass")) {
+        else if (operation.equals("pass"))
             consignActiviti.checkConsign(true, processInstanceID, request.getUser().getId());
-        }
-        else if (operation.equals("reject")) {
+        else if (operation.equals("reject"))
             consignActiviti.checkConsign(false, processInstanceID, request.getUser().getId());
-        }
 
         return queryProcessState(processInstanceID);
     }
