@@ -42,7 +42,7 @@ public class ContractActiviti extends BaseActiviti{
         variables.put("qualityEmployerId",qualityEmployerId);
         //ProcessInstance pi=processEngine.getRuntimeService().startProcessInstanceByKey("Consign",variables);
         ProcessInstance pi=runtimeService.startProcessInstanceByKey("contract",variables);
-        this.submit(pi.getProcessInstanceId(),clientId);
+        //this.submit(pi.getProcessInstanceId(),clientId);
         return pi.getProcessInstanceId();
     }
 
