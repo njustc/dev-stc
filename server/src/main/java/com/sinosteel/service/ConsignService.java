@@ -72,7 +72,7 @@ public class ConsignService extends BaseService<Consign> {
     }
 
     //增加委托
-    public JSONObject addConsign(JSONObject params,List<MultipartFile> files,User user) throws Exception
+    public JSONObject addConsign(JSONObject params,List<MultipartFile> files,User user)
     {
 
         String uid=UUID.randomUUID().toString();
@@ -99,6 +99,7 @@ public class ConsignService extends BaseService<Consign> {
         String uid=params.getString("id");
         this.deleteEntity(uid);
     }
+
 
 
     private JSONObject processConsign(Consign consign) {
