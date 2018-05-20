@@ -13,57 +13,57 @@ const initialState = {
 };
 
 export const ConsignReducer = (state = initialState, action) => {
-      switch (action.type) {
-          case SET_LIST:
-              return {
-                  ...state,
-                  list: action.payload,
-              };
-          case REMOVE:
-              return {
-                  ...state,
-                  list: state.list.filter(
-                      consignData => consignData.id !== action.payload),
-              };
-          case ADD:
-              return {
-                  ...state,
-                  list: state.list.concat([action.payload]),
-              };
-          case SET_STATE: {
-              let {index, state} = action.payload;
-              index === -1 ? index = state.index :null;
-              return {
-                  ...state,
-                  list: state.list.map(
-                      (consignData, idx) => idx === index ?
-                          { ...consignData, state: state} : consignData
-                  ),
-              };
-          }
-          case SET_INDEX:
-              return {
-                  ...state,
-                  index: action.payload,
-              };
-          case SET_CONTENT:
-              let {index, values} = action.payload;
-              index === -1 ? index = state.index :null;
-              return {
-                  ...state,
-                  list: state.list.map(
-                      (consignData, idx) => idx === index ?
-                          { ...consignData, consignation: values } : consignData
-                  ),
-              };
-          case SET_FILTER:
-              return {
-                  ...state,
-                  listFilter: action.payload
-              };
-          default:
-              return state;
-      }
+    switch (action.type) {
+        case SET_LIST:
+            return {
+                ...state,
+                list: action.payload,
+            };
+        case REMOVE:
+            return {
+                ...state,
+                list: state.list.filter(
+                    consignData => consignData.id !== action.payload),
+            };
+        case ADD:
+            return {
+                ...state,
+                list: state.list.concat([action.payload]),
+            };
+        case SET_STATE: {
+            let {index, state} = action.payload;
+            index === -1 ? index = state.index :null;
+            return {
+                ...state,
+                list: state.list.map(
+                    (consignData, idx) => idx === index ?
+                        { ...consignData, state: state} : consignData
+                ),
+            };
+        }
+        case SET_INDEX:
+            return {
+                ...state,
+                index: action.payload,
+            };
+        case SET_CONTENT:
+            let {index, values} = action.payload;
+            index === -1 ? index = state.index :null;
+            return {
+                ...state,
+                list: state.list.map(
+                    (consignData, idx) => idx === index ?
+                        { ...consignData, consignation: values } : consignData
+                ),
+            };
+        case SET_FILTER:
+            return {
+                ...state,
+                listFilter: action.payload
+            };
+        default:
+            return state;
+    }
 };
 
 export const setConsignList = (list) => {
