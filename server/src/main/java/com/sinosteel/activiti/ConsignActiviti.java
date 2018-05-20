@@ -22,7 +22,6 @@ public class ConsignActiviti extends BaseActiviti{
         Map<String,Object> variables=new HashMap<String, Object>();
         variables.put("ConsignID",consignId);
         variables.put("ClientID",clientId);
-       //ProcessInstance pi=processEngine.getRuntimeService().startProcessInstanceByKey("Consign",variables);
         ProcessInstance pi=runtimeService.startProcessInstanceByKey("Consign",variables);
         return pi.getProcessInstanceId();
     }
@@ -37,7 +36,7 @@ public class ConsignActiviti extends BaseActiviti{
     //参数为Boolean类型的PassOrNot（同意为true，不同意为false），流程实例id（由startprocess返回）和用户ID
     public void checkConsign(Boolean passOrNot, String processInstanceId, String workerId) throws Exception
     {
-        Task task1=taskService.createTaskQuery().taskName("审核委托")
+        Task task1=taskService.createTaskQuery().taskName("TobeCheck")
                 .processInstanceId(processInstanceId).singleResult();
         taskService.setAssignee(task1.getId(),workerId);
         this.check(passOrNot,processInstanceId,workerId,"Approval");
@@ -50,8 +49,8 @@ public class ConsignActiviti extends BaseActiviti{
     {
         return this.getUserTasks(ClientId);
     }
-    //查询测试人员需处理的委托列表
 
+    //查询测试人员需处理的委托列表
     public String GetWorkerTasks()
     {
         List<Task> tasks=taskService.createTaskQuery().taskName("审核委托").list();

@@ -1,4 +1,4 @@
-import {getStore} from 'store/globalStore';
+import {STATUS} from "SERVICES/common";
 
 export const httpGet = (url, callback) => {
     return sysFetch('GET', url, null, callback);
@@ -19,7 +19,7 @@ export const httpDelete = (url, params, callback) => {
 const sysFetch = (Method, url, params, callback) => {
 
     let result = { 
-        status: "FAILURE"
+        status: STATUS.FAILURE,
     };
     let username = "undefined";
     let clientDigest = "undefined";
@@ -54,7 +54,7 @@ const sysFetch = (Method, url, params, callback) => {
     })
     .then(json => {
         if(json.status == "SUCCESS"){
-            result.status = "SUCCESS"
+            result.status = STATUS.SUCCESS;
             result.data = json.data;
             result.message = json.message;
         }

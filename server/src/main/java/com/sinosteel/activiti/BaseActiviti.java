@@ -42,14 +42,12 @@ public class BaseActiviti {
         try
         {Task task=taskService.createTaskQuery().taskAssignee(id)
                 .processInstanceId(processInstanceId).singleResult();
-        //if(task.getAssignee()!=null) {
             taskService.complete(task.getId());
-          //  }
         }
         catch (Exception e)
         {
-            System.out.println("Submit Failed");
-            throw e;
+           // System.out.println("Submit Failed");
+            throw new Exception("Submit Failed");
         }
 
     }
@@ -62,15 +60,12 @@ public class BaseActiviti {
         variables.put(activitiVari,passOrNot);
         Task task=taskService.createTaskQuery().taskAssignee(workerId)
                 .processInstanceId(processInstanceId).singleResult();
-        //if(task.getAssignee()!=null)
-        //{
             taskService.complete(task.getId(),variables);
-        //}
         }
         catch (Exception e)
         {
-            System.out.println("workerId can not match processInstanceId ");
-            throw e;
+            //System.out.println("workerId can not match processInstanceId ");
+            throw new Exception("workerId can not match processInstanceId");
         }
 
     }
@@ -111,12 +106,25 @@ public class BaseActiviti {
             {
                 for (HistoricTaskInstance hti:htiList.subList(0,1))
                 {
-                    return "State："+hti.getName()+" From: "+hti.getProcessDefinitionId();
+                    return hti.getName();
                 }
             }
         }
-        return "Not Exist";
+        return "NotExist";
     }
 
+    //查询某个流程实例的历史活动的详细信息
+    public String queryHistoricTask(String processInstanceId) throws Exception
+    {
+        String st="";
+        List<HistoricTaskInstance> htiList=historyService.createHistoricTaskInstanceQuery()
+                .processInstanceId(processInstanceId).orderByHistoricTaskInstanceStartTime().asc().list();
+        for(HistoricTaskInstance hti:htiList)
+        {
+            st+="taskId: "+hti.getId()+" name: "+hti.getName()+" pdId: "+hti.getProcessDefinitionId()
+            +" assignee: "+hti.getAssignee()+" startTime: "+hti.getStartTime()+" endTime: "+hti.getEndTime()+"\n";
+        }
+        return st;
+    }
 
 }
