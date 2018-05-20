@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.FrameworkApplication;
+import com.sinosteel.domain.Consign;
 import com.sinosteel.domain.User;
 import com.sinosteel.repository.UserRepository;
 import org.junit.After;
@@ -27,8 +28,10 @@ public class ConsignServiceTest {
     private User marketUser;
     private User customer1;
     private User customer2;
+
     @Autowired
     private ConsignService consignService;
+
     @Autowired
     private UserRepository userRepository;
 
