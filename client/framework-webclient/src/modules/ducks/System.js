@@ -25,7 +25,7 @@ export const SystemReducer = (state = initialState, action) =>
 };
 
 export const setSysUser = (sysUser) => {
-    sessionStorage.setItem('sysUser',JSON.stringify(sysUser.type));
+    sessionStorage.setItem('sysUser',JSON.stringify(sysUser));
     return {
         type: SET_SYS_USER,
         payload: sysUser

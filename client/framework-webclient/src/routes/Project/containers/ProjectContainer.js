@@ -12,8 +12,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
-            const sysUser = sessionStorage.getItem('sysUser')
-            const ContentView = sysUser==='customer'?UserConsignContentView:StaffConsignContentView;
+            const sysUser = JSON.parse(sessionStorage.getItem('sysUser')).username;
+            const ContentView = sysUser==='marketing'?StaffConsignContentView:UserConsignContentView;
             dispatch(addTabAction(id, '委托详情', ContentView));
         },
     }
