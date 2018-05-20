@@ -24,9 +24,7 @@ class LoginView extends React.Component {
                 const data = {
                     username: values.username,
                     password: values.password,
-                    type: getType(values.username)
                 };
-                console.log(data);
                 this.props.setLogin(data, (status) => {
                     if (status === STATUS.SUCCESS) {
                         this.props.router.replace('/index');

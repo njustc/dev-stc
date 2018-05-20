@@ -13,7 +13,7 @@ export const setLogin = (dispatch, params, callback) => {
                 username: username,
                 clientDigest: clientDigest,
             };
-            dispatch(setSysUser(params));
+            dispatch(setSysUser(sysUser));
             if(username === 'marketing'){
                 dispatch(setModules([{
                     "code": "U-C",
