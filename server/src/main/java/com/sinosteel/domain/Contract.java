@@ -16,18 +16,19 @@ public class Contract extends BaseEntity {
     @Column(name = "CONTRACTBODY")
     private String contractBody;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CONSIGN_ID")
+    //合同所在的工程
+    @OneToOne(mappedBy = "contract")
     @JSONField(serialize = false)
-    private Consign consign;
-
-    public Consign getConsign(){
-        return consign;
+    private Project project;
+    public Project getProject(){
+        return project;
     }
 
-    public void setConsign(Consign consign){
-        this.consign = consign;
+    public void setProject(Project project){
+        this.project = project;
     }
+    //===================================
+
 
     public String getContractBody()
     {

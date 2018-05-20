@@ -43,6 +43,21 @@ public class User extends BaseEntity
 		this.consigns = consigns;
 	}
 
+	//角色所对应的所有项目，项目包括委托合同等。
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USER_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+	@JSONField(serialize = false)
+	private List<Project> projects;
+
+	public List<Project> getProjects(){
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects){
+		this.projects = projects;
+	}
+	//==============================================
+
 	@Transient
 	private List<Function> functions;
 

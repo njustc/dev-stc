@@ -1,5 +1,6 @@
 import React from "react";
-
+import ProjectComponent from "../../routes/Project/components/ProjectComponent";
+import {mainKey} from "LAYOUTS/CoreLayout";
 const SET_STATE = "Layout/SET_STATE";
 const SET_ACTIVE_KEY = "Layout/SET_ACTIVE_KEY";
 const ADD_TAB = "Layout/ADD_TAB";
@@ -7,7 +8,7 @@ const REMOVE_TAB = 'Layout/REMOVE_TAB';
 
 const initialState = {
     panes: [],
-    activeKey: ''
+    activeKey: mainKey,
 };
 
 const  containsPane = (key, panes) => {
@@ -21,8 +22,6 @@ const  containsPane = (key, panes) => {
 
 export const LayoutReducer = (state = initialState, action) =>{
     switch(action.type) {
-        case SET_STATE:
-            return action.payload;
         case SET_ACTIVE_KEY:
             return {
                 ...state,
@@ -55,6 +54,9 @@ export const LayoutReducer = (state = initialState, action) =>{
             else if (lastIndex < 0 && panes.length > 0) {
                 activeKey = panes[0].key;
             }
+            else {
+                activeKey = mainKey;
+            }
             return {
                 panes: panes,
                 activeKey: activeKey,
@@ -62,13 +64,6 @@ export const LayoutReducer = (state = initialState, action) =>{
         default:
             return state;
     }
-};
-
-export const setState = (newState) =>{
-    return {
-        type: SET_STATE,
-        payload: newState
-    };
 };
 
 export const setActiveKey = (activekey) => {

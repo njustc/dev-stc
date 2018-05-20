@@ -1,35 +1,19 @@
 package com.sinosteel.activiti;
 
-import org.activiti.engine.*;
-import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * @author Paul
+ * 合同部分包括客户提交合同，工作人员审核合同，客户最终确认合同
+ * 以及查询流程实例进程，查询客户任务以及工作人员任务
  */
 
 @Service
 public class ContractActiviti extends BaseActiviti{
-    //部署整个引擎
-    /*@Autowired
-    public void deploy() {
-        processEngine= ProcessEngines.getDefaultProcessEngine();
-        // System.out.println(processEngine);
-        repositoryService = processEngine.getRepositoryService();
-        repositoryService.createDeployment()
-                .addClasspathResource("processes/contract.bpmn20.xml")
-                .deploy();
-    }*/
-
     //新建一个合同，返回这个流程实例的id
     //目前的参数为合同ID，客户ID，市场部主任ID和质量部主任ID
     //市场部主任和质量部主任应该是固定的吧？
@@ -40,9 +24,7 @@ public class ContractActiviti extends BaseActiviti{
         variables.put("ClientID",clientId);
         variables.put("marketEmployerId",marketEmployerId);
         variables.put("qualityEmployerId",qualityEmployerId);
-        //ProcessInstance pi=processEngine.getRuntimeService().startProcessInstanceByKey("Consign",variables);
         ProcessInstance pi=runtimeService.startProcessInstanceByKey("contract",variables);
-        //this.submit(pi.getProcessInstanceId(),clientId);
         return pi.getProcessInstanceId();
     }
 
@@ -50,7 +32,6 @@ public class ContractActiviti extends BaseActiviti{
     public void submitContract(String processInstanceId,String clientId) throws Exception
     {
         this.submit(processInstanceId,clientId);
-        //System.out.println("合同已提交");
     }
 
     //工作人员评审合同，参数为工作人员ID（市场部主任ID或质量部主任ID，二选一），布尔型的passOrNot
@@ -58,11 +39,10 @@ public class ContractActiviti extends BaseActiviti{
     //若不通过，跳转至提交合同状态
     public void checkContract(String processInstanceId,String workerId,Boolean passOrNot) throws Exception
     {
-        Task task1=taskService.createTaskQuery().taskName("评审合同")
+        Task task1=taskService.createTaskQuery().taskName("TobeCheck")
                 .processInstanceId(processInstanceId).singleResult();
         taskService.claim(task1.getId(),workerId);
         this.check(passOrNot,processInstanceId,workerId,"Approval");
-        //System.out.println("合同已审核");
     }
 
     //客户确认合同，参数为客户ID和布尔型的passOrNot
@@ -71,7 +51,6 @@ public class ContractActiviti extends BaseActiviti{
     public void confirmContract(String processInstanceId,String clientId,Boolean passOrNot)throws Exception
     {
         this.check(passOrNot,processInstanceId,clientId,"Confirm");
-        //System.out.println("合同已确认");
     }
 
     //查询市场部主任的任务列表
