@@ -4,10 +4,10 @@ import ConsignContentComponent from "../components/ConsignContentComponent";
 import {putConsign} from "SERVICES/ConsignService";
 
 const mapStateToProps = (state) => {
-    const {list, index} = state.Consign;
+//    const {list, index} = state.Consign;
     return {
-        values: list[index].consignation!==undefined?JSON.parse(list[index].consignation):{},
-        consignData: list[index],
+        values: {},/*fetch consign with pro id*/
+        consignData: {},/*fetch data with pro id*/
         disable: false,
     }
 };
