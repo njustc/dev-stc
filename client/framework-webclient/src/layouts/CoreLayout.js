@@ -12,6 +12,9 @@ const FormItem = Form.Item;
 import tabsMap from '../routes/tabsMap';
 
 import {sysFetch} from '../utils/FetchUtil';
+import {ProjectView} from "ROUTES/Project";
+
+export const mainKey = 'projectList';
 
 export default class CoreLayout extends Component
 {
@@ -46,6 +49,12 @@ export default class CoreLayout extends Component
         this.props.switchTab(activeKey);
     };
 
+    mainPane = (
+        <TabPane tab={'项目管理'} key={mainKey} closable={false}>
+            {React.createElement(ProjectView)}
+        </TabPane>
+    )
+
     menu = (
         <Menu onClick={this.handleMenuClick}>
             <Menu.Item key="logout">退出登录</Menu.Item>
@@ -73,7 +82,8 @@ export default class CoreLayout extends Component
                         onEdit={this.onEdit}
                         hideAdd="true"
                         activeKey={this.props.activeKey}>
-                        {this.props.panes.map(pane => <TabPane tab={pane.title} key={pane.key} closable={pane.closable}>{pane.content}</TabPane>)}
+                        {this.mainPane}
+                        {this.props.panes.map(pane => <TabPane tab={pane.title} key={pane.key}>{pane.content}</TabPane>)}
                     </Tabs>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
