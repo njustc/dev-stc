@@ -107,13 +107,21 @@ export default class ProjectComponent extends Component{
         return (
             <div>
                 <h3 style={{ marginBottom: 16 }}>项目管理</h3>
+                <Button type="primary">新建委托</Button>
+                <br /><br />
                 <InputGroup>
-                    <Select defaultValue="搜索委托ID" style={{ width: '10%' }}>{/*TODO*//*添加API来实现根据选择的option过滤*/}
+                    <Col span={2}>
+                    <Select defaultValue="搜索委托ID">{/*TODO*//*添加API来实现根据选择的option过滤*/}
                         <Option value="proID">搜索委托ID</Option>
                         <Option value="userID">搜索委托人ID</Option>
+                        <Option value="proName">搜索项目名称 </Option>
                     </Select>
-                    <Search placeholder='请输入' style={{ width: '20%' }}/>
-                    <Button type="primary">新建委托</Button>
+                    </Col>
+                    <Col span={4}>
+                    <Search placeholder='请输入' />
+                    </Col>
+                    <Col span={18}>
+                    </Col>
                 </InputGroup>
                 <br />
                 <Table dataSource={this./*props.*/dataSource} columns={this.columns} rowKey={'id'}
