@@ -74,7 +74,7 @@ export default class ProjectComponent extends Component{
         this.props.showContent(record);
     };
     consignView = (record) => {
-        if(0/*TODO*/){
+        if(1/*TODO*/){
             return (
                 <a href="javascript:void(0);" onClick={this.viewContent(record)}>委托</a>
             )
