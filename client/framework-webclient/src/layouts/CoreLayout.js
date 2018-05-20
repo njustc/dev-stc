@@ -62,7 +62,6 @@ export default class CoreLayout extends Component
     );
 
 	render(){
-	    console.log(this.props.panes);
 		return (
 			<Layout>
                 <Affix offsetTop={0}>
