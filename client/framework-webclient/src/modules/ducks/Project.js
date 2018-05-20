@@ -1,65 +1,50 @@
 const SET_LIST = 'Project/SET_LIST';
-const REMOVE = 'Project/REMOVE';
-const ADD = 'Project/ADD';
-const SET_INDEX = 'Project/SET_INDEX';
-const SET_STATE = 'Project/SET_STATE';
+const RM_CONTENT = 'Project/RM_CONTENT';
 const SET_CONTENT = 'Project/SET_CONTENT';
 const SET_FILTER = 'Project/SET_FILTER';
 
 const initialState = {
     listFilter: () => true,//绑定按钮传入的过滤条件
-    list: [],//项目列表，每个列表项是一个对象
-    index: -1,
+    listMap: { },  //项目集合，用key-value表示，key为id，value为projectData
+                //projectData为对象，仍然包含id字段
 };
 
 export const ProjectReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_LIST:
+            const list = action.payload;
             return {
                 ...state,
-                list: action.payload,
+                listMap: list.reduce((listMap, projectData) => {
+                    listMap[projectData.id] = projectData;
+                    return listMap;
+                }, {}),
             };
-        case REMOVE:
+        case RM_CONTENT:
+            const id = action.payload;
             return {
                 ...state,
-                list: state.list.filter(
-                    ProjectData => ProjectData.id !== action.payload),
+                listMap: {
+                    ...state.listMap,
+                    [id]: undefined,
+                },
             };
-        case ADD:
+        case SET_CONTENT: {
+            const {id} = action.payload;
+            const projectData = action.payload;
             return {
                 ...state,
-                list: state.list.concat([action.payload]),
-            };
-        case SET_STATE: {
-            let {index, state} = action.payload;
-            index === -1 ? index = state.index :null;
-            return {
-                ...state,
-                list: state.list.map(
-                    (ProjectData, idx) => idx === index ?
-                        { ...ProjectData, state: state} : ProjectData
-                ),
+                listMap: {
+                    ...state.listMap,
+                    [id]: projectData,
+                },
             };
         }
-        case SET_INDEX:
-            return {
-                ...state,
-                index: action.payload,
-            };
-        case SET_CONTENT:
-            let {index, values} = action.payload;
-            index === -1 ? index = state.index :null;
-            return {
-                ...state,
-                list: state.list.map(
-                    (item, idx) => idx === index ?
-                        { ...item, content: values } : item
-                ),
-            };
         case SET_FILTER:
+            const listFilter = action.payload;
             return {
                 ...state,
-                listFilter: action.payload
+                listFilter: listFilter,
             };
         default:
             return state;
@@ -75,48 +60,21 @@ export const setProjectList = (list) => {
 
 export const removeProject = (id) => {
     return {
-        type: REMOVE,
+        type: RM_CONTENT,
         payload: id,
     }
 };
 
-export const addProject = (ProjectData) => {
-    return {
-        type: ADD,
-        payload: ProjectData,
-    }
-};
-
-export const setProjectState = (index, state) => {
-    return {
-        type: SET_STATE,
-        payload: {
-            index: index,
-            state: state,
-        },
-    }
-};
-
-export const setProjectContent = (index, values) => {
+export const setProjectContent = (projectData) => {
     return {
         type: SET_CONTENT,
-        payload: {
-            index: index,
-            values: values,
-        }
-    }
-};
-
-export const setProjectIndex = (index) => {
-    return {
-        type: SET_INDEX,
-        payload: index,
+        payload: projectData,
     }
 };
 
 export const setFilter = (listFilter) => {
     return {
         type: SET_FILTER,
-        payload: listFilter
+        payload: listFilter,
     }
 };
