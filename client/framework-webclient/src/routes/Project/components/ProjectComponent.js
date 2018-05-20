@@ -1,10 +1,11 @@
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message} from 'antd';
+import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Steps, Badge} from 'antd';
 const { Column } = Table;
 const Search = Input.Search;
 const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
+const Step = Steps.Step;
 
 export default class ProjectComponent extends Component{
     constructor(props){
@@ -14,6 +15,7 @@ export default class ProjectComponent extends Component{
     columns = [{
         title:"项目ID",
         dataIndex:"proID",
+        width: '20%',
         sorter:(a, b) => a.proID - b.proID,/*TODO*//*比较的是字符串*/
     },{
         title:"项目名称",
@@ -24,6 +26,7 @@ export default class ProjectComponent extends Component{
     }, {
         title:"状态",/*TODO*//*有多少种状态、给状态增加一些渲染的花样*/
         dataIndex:"state",
+        render: (state) => <span><Badge status="success" text={state} /></span>
         /*render: (stateCode) => {
             switch(stateCode) {
                 case 'TobeSubmit':
@@ -60,17 +63,45 @@ export default class ProjectComponent extends Component{
     ];
 
     static propTypes = {
-        setListFilter: PropTypes.func.isRequired,
-        dataSource: PropTypes.array.isRequired,
-        showContent: PropTypes.func.isRequired,
-        deleteConsign: PropTypes.func.isRequired,
-        getConsignList: PropTypes.func.isRequired,
-        newConsign: PropTypes.func,
-        enableNew: PropTypes.bool.isRequired,
-        //showDeleteConfirm: PropTypes.func.isRequired,
+
     };
 
+    state2Status(){
 
+    }
+
+    viewContent = (record) => () => {
+        this.props.showContent(record);
+    };
+    consignView = (record) => {
+        if(0/*TODO*/){
+            return (
+                <a href="javascript:void(0);" onClick={this.viewContent(record)}>委托</a>
+            )
+        }
+        else{
+            return (
+                <text>委托</text>
+            )
+        }
+    }
+
+    expandedRowRender = (record) =>{
+        return (
+            <Steps current={/*TODO*//*this.props.*/1} size="small">
+                <Step title={this.consignView(record)} description='委托已通过 样品已接收' />{/*TODO*//*description要根据具体状态改变*/}
+                <Step title="合同" description="合同待确认" />
+                <Step title="测试方案" />
+                <Step title="测试报告" />
+                <Step title="归档结项" />
+            </Steps>
+        )
+    }
+
+    dataSource = [
+        { key: 1, proID: '1', proName: 'XYZ', userID: '151220134', state: 'TobeSubmit' },
+        { key: 2, proID: '2', proName: 'ZBJ', userID: '151220004', state: 'TobeCheck' },
+    ];
 
     render(){
         return (
@@ -82,9 +113,14 @@ export default class ProjectComponent extends Component{
                         <Option value="userID">搜索委托人ID</Option>
                     </Select>
                     <Search placeholder='请输入' style={{ width: '20%' }}/>
+                    <Button type="primary">新建委托</Button>
                 </InputGroup>
                 <br />
-                <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'} />
+                <Table dataSource={this./*props.*/dataSource} columns={this.columns} rowKey={'id'}
+                       expandedRowRender={this.expandedRowRender}
+                       expandRowByClick={true}
+                       //onExpandedRowsChange
+                />
             </div>
         );
     }
