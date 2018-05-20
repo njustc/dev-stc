@@ -50,7 +50,7 @@ export default class CoreLayout extends Component
     };
 
     mainPane = (
-        <TabPane tab={'项目管理'} key={mainKey} closable={false}>
+        <TabPane tab={<span><Icon type="database" />项目管理</span>} key={mainKey} closable={false}>
             {React.createElement(ProjectView)}
         </TabPane>
     )
