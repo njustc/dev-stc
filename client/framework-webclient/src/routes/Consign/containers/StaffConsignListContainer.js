@@ -1,8 +1,8 @@
 import React, {Component,PropTypes} from 'react';
 import ConsignListComponent from "../components/ConsignListComponent";
 import {connect} from "react-redux";
-import {addTabAction, setState} from "MODULES/ducks/Layout";
-import {setConsignIndex, setConsignState, setFilter} from "MODULES/ducks/Consign"
+import {addTabAction} from "MODULES/ducks/Layout";
+//import {setConsignIndex, setConsignState, setFilter} from "MODULES/ducks/Consign"
 import {StaffConsignContentView} from "ROUTES/Consign";
 import {deleteConsign, getConsignContent, getConsignList, putConsign} from "SERVICES/ConsignService";
 

@@ -9,14 +9,14 @@
     </startEvent>
     <!---->
     <!--<userTask id="submitcontract" name="提交合同" activiti:candidateGroups="客户">-->
-    <userTask id="submitcontract" name="提交合同" activiti:assignee="${ClientID}">
+    <userTask id="submitcontract" name="TobeSubmit" activiti:assignee="${ClientID}">
       <extensionElements>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-7345CD5A-EB33-4B78-90F0-3C1E3A116822]]></modeler:editor-resource-id>
       </extensionElements>
     </userTask>
-    <userTask id="checkcontract" name="评审合同" activiti:candidateGroups="${marketEmployerId},${qualityEmployerId}">
+    <userTask id="checkcontract" name="TobeCheck" activiti:candidateGroups="${marketEmployerId},${qualityEmployerId}">
       <extensionElements>
         <activiti:formProperty id="Approval" name="Do you approve this Contract?" type="enum" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
@@ -29,7 +29,7 @@
         <modeler:editor-resource-id><![CDATA[sid-6F8786E1-090A-4CDB-8444-505AA2147BCD]]></modeler:editor-resource-id>
       </extensionElements>
     </exclusiveGateway>
-    <userTask id="confirmcontract" name="确认合同" activiti:assignee="${ClientID}">
+    <userTask id="confirmcontract" name="TobeConfirm" activiti:assignee="${ClientID}">
       <extensionElements>
         <activiti:formProperty id="Confirm" name="Do you confirm this Contract?" type="enum" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
