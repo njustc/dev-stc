@@ -24,7 +24,9 @@ class LoginView extends React.Component {
                 const data = {
                     username: values.username,
                     password: values.password,
+                    type: getType(values.username)
                 };
+                console.log(data);
                 this.props.setLogin(data, (status) => {
                     if (status === STATUS.SUCCESS) {
                         this.props.router.replace('/index');
@@ -82,5 +84,14 @@ class LoginView extends React.Component {
         );
     }
 }
+
+const getType = (username) => {
+    switch (username) {
+        case 'customer1': return 'customer';
+        case 'customer2': return 'customer';
+        case 'marketing': return 'marketing';
+        default: return 'undefined';
+    }
+};
 
 export default Form.create()(LoginView);
