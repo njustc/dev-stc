@@ -4,6 +4,7 @@ import React, {Component,PropTypes} from 'react';
 
 const mapStateToProps = (state) => {
     return {
+        dataSource: Object.values(state.Project.listMap),
     }
 };
 

@@ -25,18 +25,19 @@ public class Consign extends BaseEntity{
     @JSONField(serialize = false)
     private User user;
 
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "consign")
+    //委托所在的工程
+    @OneToOne(mappedBy = "consign")
     @JSONField(serialize = false)
-    private Contract contract;
+    private Project project;
 
-    public Contract getContract(){
-        return contract;
+    public Project getProject(){
+        return project;
     }
+    public void setProject(Project project){
+        this.project = project;
+    }
+    //====================================
 
-    public void setContract(Contract contract)
-    {
-        this.contract = contract;
-    }
 
     public String getConsignation() {
         return consignation;
