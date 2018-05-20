@@ -21,27 +21,6 @@ public class AuthService
 	
 	@Autowired
 	private EditAuthorizationMapper editAuthorizationMapper;
-	
-	@Autowired
-	private RoleMapper roleMapper;
-	
-	public List<String> getOrganizationIdsByUserId(String userId)
-	{
-		return roleMapper.getOrganizationIdsByUserId(userId);
-	}
-	
-	public List<String> getQueryAuthorizedOrganizationIds(String userId)
-	{		
-		return queryAuthorizationMapper.getAuthorizedOrganizationIds(userId);
-	}
-	
-	public List<String> getEditAuthorizedOrganizationIds(String userId)
-	{
-		return editAuthorizationMapper.getAuthorizedOrganizationIds(userId);
-	}
-	
-	public List<String> getDeleteAuthorizedOrganizationIds(String userId)
-	{
-		return deleteAuthorizationMapper.getAuthorizedOrganizationIds(userId);
-	}
+
+
 }

@@ -18,7 +18,6 @@ import com.sinosteel.framework.mybatis.DeleteAuthorizationMapper;
 import com.sinosteel.framework.mybatis.EditAuthorizationMapper;
 import com.sinosteel.framework.mybatis.QueryAuthorizationMapper;
 import com.sinosteel.repository.FunctionRepository;
-import com.sinosteel.repository.OrganizationRepository;
 import com.sinosteel.framework.utils.json.JsonUtil;
 import com.sinosteel.framework.utils.list.ListUtil;
 
@@ -30,9 +29,6 @@ public class RoleService extends BaseService<Role>
 	
 	@Autowired
 	private FunctionRepository functionRepository;
-	
-	@Autowired
-	private OrganizationRepository organizationRepository;
 	
 	@Autowired
 	private QueryAuthorizationMapper queryAuthorizationMapper;

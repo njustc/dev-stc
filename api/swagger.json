@@ -21,7 +21,7 @@
       "description": "委托"
     },
     {
-      "name": "consignActiviti",
+      "name": "processInstance",
       "description": "委托状态"
     }
   ],
@@ -92,7 +92,7 @@
         ],
         "summary": "查询委托",
         "description": "用户为工作人员时，返回所有委托；用户为客户时，返回该客户的委托",
-        "operationId": "queryConsign",
+        "operationId": "queryConsigns",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -117,7 +117,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功查询委托. data内包含JsonArray格式的委托内容\n",
+            "description": "成功查询委托时返回委托. data内包含JsonArray格式的委托内容\n查询失败时，返回一个失败的status\n```\n{\n  \"status\":failure;\n}\n```\n",
             "schema": {
               "$ref": "#/definitions/Response"
             }
@@ -132,6 +132,7 @@
           "consign"
         ],
         "summary": "添加委托",
+        "description": "向数据库中添加委托，成功时返回委托的具体信息以及一个success状态",
         "operationId": "addConsign",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -157,17 +158,14 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "委托具体内容. JSON格式\n```\n{\n  \"consignation\": \"content\"\n}\n```\n",
+            "description": "委托内容具体内容. JSON格式\n```\n{\n  \"consignation\": \"content\"\n}\n```\n",
             "type": "string",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "成功添加委托",
-            "schema": {
-              "$ref": "#/definitions/Response"
-            }
+            "description": "成功添加委托时的样例response body\n```\n{\n  \"data\": {\n    \"processInstanceID\": \"24\",\n    \"createdUserId\": \"0\",\n    \"createdTime\": \"2018-05-19 20:34:22\",\n    \"id\": \"fa5078a3-07cb-458f-b30f-26f0d710b445\",\n    \"state\": \"State：提交委托 From: Consign:1:7\",\n    \"consignation\": \"content\"\n    },\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -179,6 +177,7 @@
           "consign"
         ],
         "summary": "修改委托",
+        "description": "修改已有的委托，参数中需要包含委托的id",
         "operationId": "editConsign",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -211,10 +210,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功修改委托",
-            "schema": {
-              "$ref": "#/definitions/Response"
-            }
+            "description": "修改成功时的样例response body\n```\n{\n  \"data\": {\n  \"processInstanceID\": \"32\",\n  \"createdUserId\": \"2\",\n  \"alteredTime\": \"2018-05-19 20:54:42\",\n  \"createdTime\": \"2018-05-19 20:48:24\",\n  \"alteredUserId\": \"2\",\n  \"id\": \"1708445d-a5c6-4425-b0b4-4bf96486941d\",\n  \"state\": \"State：提交委托 From: Consign:1:7\",\n  \"consignation\": \"excellent\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -226,6 +222,7 @@
           "consign"
         ],
         "summary": "删除委托",
+        "description": "删除一个委托，需要提供委托的具体id",
         "operationId": "deleteConsign",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -251,7 +248,7 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "委托具体内容. JSON格式. 需要指明ID\n```\n{\n  \"id\": \n  \"consignation\":\n}\n```\n",
+            "description": "委托具体内容. JSON格式. 需要指明ID,consignation为非必要\n```\n{\n  \"id\": \n  \"consignation\":\n}\n```\n",
             "type": "string",
             "required": true
           }
@@ -269,13 +266,14 @@
         }
       }
     },
-    "/services/consignActiviti/{procID}": {
+    "/services/consign/{id}": {
       "get": {
-        "summary": "获取委托状态",
         "tags": [
-          "consignActiviti"
+          "consign"
         ],
-        "description": "根据procID获取该委托状态",
+        "summary": "根据id查询委托",
+        "description": "根据请求中的id查询委托",
+        "operationId": "queryConsignByID",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -284,7 +282,43 @@
         ],
         "parameters": [
           {
-            "name": "procID",
+            "name": "id",
+            "in": "path",
+            "description": "委托id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功查询委托. data内包含JsonArray格式的委托内容\n",
+            "schema": {
+              "$ref": "#/definitions/Response"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/services/processInstance/{processInstanceID}": {
+      "get": {
+        "summary": "获取委托状态",
+        "tags": [
+          "processInstance"
+        ],
+        "description": "根据processInstanceID获取该委托状态",
+        "operationId": "queryConsignState",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "processInstanceID",
             "in": "path",
             "type": "string",
             "description": "委托在Activiti中的进程ID",
@@ -316,9 +350,10 @@
       },
       "put": {
         "summary": "修改委托状态",
-        "description": "根据procID修改该委托状态",
+        "description": "根据processInstanceID修改该委托状态",
+        "operationId": "updateConsignState",
         "tags": [
-          "consignActiviti"
+          "processInstance"
         ],
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -328,7 +363,7 @@
         ],
         "parameters": [
           {
-            "name": "procID",
+            "name": "processInstanceID",
             "in": "path",
             "type": "string",
             "description": "委托在Activiti中的进程ID",
@@ -351,7 +386,7 @@
           {
             "name": "params",
             "in": "formData",
-            "description": "修改的操作内容。JSON格式。属性名为'operation', 值可以为 submit/pass/reject. 分别代表 提交/通过/否决. \neg.\n```\n{\n  \"operation\": \"submit\"\n}\n",
+            "description": "修改的操作内容。JSON格式。属性名为'operation', 值可以为 submit/pass/reject. 分别代表 提交/通过/否决.  以及'object'，表明修改的对象 eg.\n```\n{\n  \"object\": \"consign\"\n  \"operation\": \"submit\"\n}\n",
             "type": "string",
             "required": true
           }

@@ -2,9 +2,9 @@ import React, {Component,PropTypes} from 'react';
 import ConsignListComponent from "../components/ConsignListComponent";
 import {connect} from "react-redux";
 import {addTabAction, setState} from "MODULES/ducks/Layout";
-import {setConsignIndex, setConsignState, setFilter} from "MODULES/ducks/Consign"
+//import {setConsignIndex, setConsignState, setFilter} from "MODULES/ducks/Consign"
 import {StaffConsignContentView} from "ROUTES/Consign";
-import {deleteConsign, getConsignList, putConsign} from "SERVICES/ConsignService";
+import {deleteConsign, getConsignContent, getConsignList, putConsign} from "SERVICES/ConsignService";
 
 const mapStateToProps = (state) => {
     return {
@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (index) => {
             dispatch(addTabAction('id', '委托详情', StaffConsignContentView));
+            getConsignContent(dispatch, index, id);
             dispatch(setConsignIndex(index));
 
         },

@@ -31,4 +31,17 @@ public class ConsignRepositoryTests {
         System.out.println("获取所有委托测试完成");
         System.out.println("==========================================");
     }
+    @Test
+    public void testfindByAllConsignId()
+    {
+        System.out.println("===========================================");
+        System.out.println("获取所有委托id测试开始");
+        List<String> consignIdList = consignRepository.findByAllConsignIds();
+        for(String str : consignIdList)
+        {
+            System.out.println("获取的记录为：" + str);
+        }
+        System.out.println("获取所有委托id测试完成");
+        System.out.println("============================================");
+    }
 }
