@@ -5,7 +5,7 @@ import {setSysUser} from "../../../modules/ducks/System";
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setLogin: (data, callback) => setLogin(dispatch(setSysUser(data)), data, callback),
+        setLogin: (data, callback) => setLogin(dispatch, data, callback),
     }
 };
 

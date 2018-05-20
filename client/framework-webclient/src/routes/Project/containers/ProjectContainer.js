@@ -2,6 +2,7 @@ import React, {Component,PropTypes} from 'react';
 import {connect} from "react-redux";
 import {addTabAction} from "MODULES/ducks/Layout";
 import {StaffConsignContentView,UserConsignContentView} from "../../Consign";
+import ProjectComponent from "../components/ProjectComponent";
 const mapStateToProps = (state) => {
     return {
         dataSource: Object.values(state.Project.listMap),
