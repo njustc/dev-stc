@@ -71,7 +71,7 @@ export default class ProjectComponent extends Component{
     }
 
     viewContent = (record) => () => {
-        this.props.showContent(record);
+        this.props.showContent(record.proID);
     };
     consignView = (record) => {
         if(1/*TODO*/){
