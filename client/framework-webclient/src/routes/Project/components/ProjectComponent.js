@@ -9,7 +9,11 @@ const Step = Steps.Step;
 
 export default class ProjectComponent extends Component{
     constructor(props){
-        super(props)
+        super(props);
+    }
+
+    state={
+        selectOption:'proID',
     }
 
     columns = [{
@@ -24,9 +28,15 @@ export default class ProjectComponent extends Component{
         title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
         dataIndex:"userID",
     }, {
-        title:"状态",/*TODO*//*有多少种状态、给状态增加一些渲染的花样*/
+        title:"状态",/*TODO*//*有多少种状态*/
         dataIndex:"state",
-        render: (state) => <span><Badge status={this.state2Status(state)} text={state} /></span>
+        render: (state) =>{
+            return (
+                <span>
+                    <Badge status={this.state2Status(state)} text={state} />
+                </span>
+            )
+        }
         /*render: (stateCode) => {
             switch(stateCode) {
                 case 'TobeSubmit':
@@ -56,7 +66,7 @@ export default class ProjectComponent extends Component{
         title:"操作",
         dataIndex:"id",
         key:"operation",
-        render: (id, record, index) => {
+        render: (id, record) => {
             /*TODO*/
             return (
                 <div>
@@ -70,8 +80,11 @@ export default class ProjectComponent extends Component{
     ];
 
     static propTypes = {
-
+        showContent: PropTypes.func.isRequired,
+        setListFilter: PropTypes.func.isRequired,
+        newConsign: PropTypes.func,
     };
+
 
     state2Status(state) {
         /*TODO*//*是否需要能让超级管理员可以添加新的状态？*/
@@ -128,9 +141,33 @@ export default class ProjectComponent extends Component{
         )
     }
 
-    onSelect(value, option) {
-        console.log(value);
+    onSelect = (value, option) => {
+        this.setState({
+            selectOption:value
+        });
+    }
+
+    onSearch = (value) => {
         /*TODO*/
+        const reg = new RegExp(value, 'gi');
+        switch (this.props.selectOption){
+            case 'proID':this.props.setListFilter((record) => record.proID.match(reg));break;
+            case 'userID':this.props.setListFilter((record) => record.userID.match(reg));break;
+            case 'proName':this.props.setListFilter((record) => record.proName.match(reg));break;
+            default:break;
+        }
+    };
+
+    setPlaceholder = () => {
+        switch (this.state.selectOption){
+            case 'proID':
+                return '请输入项目ID';
+            case 'userID':
+                return '请输入委托人ID';
+            case 'proName':
+                return '请输入项目名称';
+            default:break;
+        }
     }
 
     dataSource = [
@@ -144,18 +181,18 @@ export default class ProjectComponent extends Component{
                 <h3 style={{ marginBottom: 16 }}>项目管理</h3>
                 <InputGroup>
                     <Col span={3}>
-                    <Select defaultValue="搜索委托ID" onSelect={this.onSelect}>{/*TODO*//*添加API来实现根据选择的option过滤*/}
-                        <Option value="proID">搜索委托ID</Option>
+                    <Select defaultValue="搜索项目ID" onSelect={this.onSelect}>
+                        <Option value="proID">搜索项目ID</Option>
                         <Option value="userID">搜索委托人ID</Option>
                         <Option value="proName">搜索项目名称 </Option>
                     </Select>
                     </Col>
                     <Col span={8}>
-                        <Search placeholder='请输入' enterButton={true}/>
+                        <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
                     <Col span={2}>
-                        <Button type="primary">新建委托</Button>
+                        <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
                     </Col>
                 </InputGroup>
                 <br />
