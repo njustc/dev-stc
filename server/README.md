@@ -32,11 +32,12 @@ chmod +x /usr/local/bin/docker-compose
 1. 执行命令
 `docker exec -it mymysql mysql -uroot -pmysql`
 进入数据库内部
-2. 删除原数据库`drop database stc;`
-3. 创建新数据库`create database stc;`
-4. 将更新过的framework导入数据库内部
+2. 删除原数据库`drop database stc;`    (注意分号）
+3. 创建新数据库`create database stc;`（注意分号）
+4. 执行`exit;`退出数据库内部 (注意分号）
+5. 将更新过的framework导入数据库内部
  `docker exec -i mymysql mysql -uroot -pmysql stc < framework.sql `
-5. 执行`exit;`退出数据库内部
+
 
 
 
