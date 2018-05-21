@@ -7,8 +7,8 @@ const loginUrl = baseAddress + '/login';
 export const setLogin = (dispatch, params, callback) => {
     httpPost(loginUrl, params, (result) => {
         const {status, data} = result;
-        const {username, clientDigest} = data;
         if (status === STATUS.SUCCESS) {
+            const {username, clientDigest} = data;
             const sysUser = {
                 username: username,
                 clientDigest: clientDigest,
