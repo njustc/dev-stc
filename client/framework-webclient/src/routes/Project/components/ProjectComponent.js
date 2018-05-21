@@ -124,7 +124,7 @@ export default class ProjectComponent extends Component{
                     </Col>
                 </InputGroup>
                 <br />
-                <Table dataSource={this./*props.*/dataSource} columns={this.columns} rowKey={'id'}
+                <Table dataSource={this./*props.*/dataSource} columns={this.columns}
                        expandedRowRender={this.expandedRowRender}
                        expandRowByClick={true}
                        //onExpandedRowsChange
