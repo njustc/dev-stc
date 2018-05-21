@@ -5,16 +5,6 @@ import {addConsign, removeConsign, setConsignContent, setConsignState} from "../
 const consignBase = baseServiceAddress + '/consign';
 const consignActivitiBase = baseServiceAddress + '/consignActiviti';
 
-// export const getConsignList = (dispatch, callback) => {
-//     httpGet(consignBase, (result) => {
-//         const {status, data} = result;
-//         if (status === STATUS.SUCCESS) {
-//             dispatch(setConsignList(data));
-//         }
-//         callback && callback(status);
-//     });
-// };
-
 export const getConsignContent = (dispatch, index, id, callback) => {
     httpGet(consignBase + '/' + id, (result) => {
         const {status, data} = result;

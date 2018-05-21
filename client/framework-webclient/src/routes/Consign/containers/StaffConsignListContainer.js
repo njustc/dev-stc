@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {addTabAction} from "MODULES/ducks/Layout";
 //import {setConsignIndex, setConsignState, setFilter} from "MODULES/ducks/Consign"
 import {StaffConsignContentView} from "ROUTES/Consign";
-import {deleteConsign, getConsignContent, getConsignList, putConsign} from "SERVICES/ConsignService";
+import {deleteConsign, getConsignContent, updateConsign} from "SERVICES/ConsignService";
 
 const mapStateToProps = (state) => {
     return {
