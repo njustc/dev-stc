@@ -3,10 +3,10 @@ import ConsignContentComponent from "ROUTES/Consign/components/ConsignContentCom
 import {connect} from "react-redux";
 import {getConsign} from "../../../services/ConsignService";
 
-const authData = JSON.parse(sessionStorage.getItem('authData'));
-const competence = authData.functions.find(obj => obj.object === "Consign").function;
 
 const mapStateToProps = (state) => {
+    const authData = JSON.parse(sessionStorage.getItem('authData'));
+    const competence = authData.functions.find(obj => obj.object === "Consign").function;
     return {
         consignData: {},/*fetch data with pro id*/
         disable: competence==="confirmer"
@@ -40,6 +40,8 @@ const buttons = (dispatch,competence) => [{
 }];
 
 const mapDispatchToProps = (dispatch) => {
+    const authData = JSON.parse(sessionStorage.getItem('authData'));
+    const competence = authData.functions.find(obj => obj.object === "Consign").function;
     return {
         buttons: buttons(dispatch,competence).filter(button => button.enable===true),
         values: getConsign(dispatch,'ppp').consignation,/*TODO:用什么方式显示consign内容*/
