@@ -19,7 +19,6 @@ class ConsignContentComponent extends Component {
 
     static propTypes = {
         values: PropTypes.object.isRequired,
-        consignData: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
@@ -31,8 +30,8 @@ class ConsignContentComponent extends Component {
         //         this.props.buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(values));
         //     }
         // });
-        const {buttons, consignData, form} = this.props;
-        buttons[buttonIndex].onClick(consignData, JSON.stringify(form.getFieldsValue()));
+        const {buttons, form} = this.props;
+        buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));
     };
 
 
