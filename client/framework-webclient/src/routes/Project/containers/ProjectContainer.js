@@ -16,6 +16,7 @@ const mapDispatchToProps = (dispatch) => {
             const ContentView = sysUser==='marketing'?StaffConsignContentView:UserConsignContentView;
             dispatch(addTabAction(id, '委托详情', ContentView));
         },
+        setListFilter: (listFilter) => dispatch(setFilter(listFilter)),
     }
 };
 
