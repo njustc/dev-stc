@@ -6,7 +6,7 @@ const SET_FILTER = 'Project/SET_FILTER';
 const initialState = {
     listFilter: () => true,//绑定按钮传入的过滤条件
     listMap: { },  //项目集合，用key-value表示，key为id，value为projectData
-                //projectData为对象，仍然包含id字段
+    //projectData为对象，仍然包含id字段
 };
 
 export const ProjectReducer = (state = initialState, action) => {
