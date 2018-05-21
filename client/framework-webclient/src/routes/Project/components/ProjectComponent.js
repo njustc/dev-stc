@@ -60,7 +60,7 @@ export default class ProjectComponent extends Component{
             /*TODO*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(record)/*viewDetails(record)*/}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewDetails(record)}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);">更多</a>
             </div>
@@ -116,11 +116,6 @@ export default class ProjectComponent extends Component{
         }
     }
 
-    filterOption = (inputValue, option) => {
-        console.info(inputValue);
-        return true;
-    }
-
     expandedRowRender = (record) =>{
         return (
             <Steps current={/*TODO*//*this.props.*/1} size="small">
@@ -131,6 +126,11 @@ export default class ProjectComponent extends Component{
                 <Step title="归档结项" />
             </Steps>
         )
+    }
+
+    onSelect(value, option) {
+        console.log(value);
+        /*TODO*/
     }
 
     dataSource = [
@@ -144,7 +144,7 @@ export default class ProjectComponent extends Component{
                 <h3 style={{ marginBottom: 16 }}>项目管理</h3>
                 <InputGroup>
                     <Col span={3}>
-                    <Select defaultValue="搜索委托ID" filterOption={this.filterOption}>{/*TODO*//*添加API来实现根据选择的option过滤*/}
+                    <Select defaultValue="搜索委托ID" onSelect={this.onSelect}>{/*TODO*//*添加API来实现根据选择的option过滤*/}
                         <Option value="proID">搜索委托ID</Option>
                         <Option value="userID">搜索委托人ID</Option>
                         <Option value="proName">搜索项目名称 </Option>
