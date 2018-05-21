@@ -6,36 +6,40 @@ const mapStateToProps = (state) => {
     return {
         values: {},/*fetch consign with pro id*/
         consignData: {},/*fetch data with pro id*/
-        disable: true,
-        // buttons: buttons,
     }
 };
 
-const buttons = (dispatch) => [{
+const buttons = (dispatch,competence) => [{
     content: '保存',
     onClick: () =>{
 
-    }
+    },
+    enable: competence==="creator"
 },{
     content: '提交',
     onClick: () =>{
 
-    }
+    },
+    enable: competence==="creator"
 },{
     content: '通过',
     onClick: () =>{
 
-    }
+    },
+    enable: competence==="confirmer"
 },{
     content: '否决',
     onClick: () =>{
 
-    }
+    },
+    enable: competence==="confirmer"
 }];
 
 const mapDispatchToProps = (dispatch) => {
+    const authData = JSON.parse(sessionStorage.getItem('authData'));
+    const competence = authData.functions.find(obj => obj.object === "Consign").function;
     return {
-        buttons: buttons(dispatch),
+        buttons: buttons(dispatch,competence).filter(button => button.enable===true)
     }
 };
 

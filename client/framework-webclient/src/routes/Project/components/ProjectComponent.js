@@ -13,27 +13,27 @@ export default class ProjectComponent extends Component{
     }
 
     state={
-        selectOption:'proID',
-    }
+        selectOption:'id',
+    };
 
     columns = [{
         title:"项目ID",
-        dataIndex:"proID",
+        dataIndex:"id",
         width: '20%',
-        sorter:(a, b) => a.proID - b.proID,/*TODO*//*比较的是字符串*/
+        sorter:(a, b) => a.id - b.id,/*TODO*//*比较的是字符串*/
     },{
         title:"项目名称",
-        dataIndex:"proName",
+        dataIndex:"name",
     },{
         title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"userID",
+        dataIndex:"customerId",
     }, {
         title:"状态",/*TODO*//*有多少种状态*/
-        dataIndex:"state",
-        render: (state) =>{
+        dataIndex:"status",
+        render: (status) =>{
             return (
                 <span>
-                    <Badge status={this.state2Status(state)} text={state} />
+                    <Badge status={this.state2Status(status)} text={status} />
                 </span>
             )
         }
@@ -83,8 +83,12 @@ export default class ProjectComponent extends Component{
         showContent: PropTypes.func.isRequired,
         setListFilter: PropTypes.func.isRequired,
         newConsign: PropTypes.func,
+        getProjectList: PropTypes.func.isRequired
     };
 
+    componentDidMount() {
+        this.props.getProjectList();
+    }
 
     state2Status(state) {
         /*TODO*//*是否需要能让超级管理员可以添加新的状态？*/
@@ -96,7 +100,7 @@ export default class ProjectComponent extends Component{
     }
 
     viewContent = (record) => () => {
-        this.props.showContent(record.proID);
+        this.props.showContent(record.id);
     };
 
     consignView = (record) => {
@@ -110,7 +114,7 @@ export default class ProjectComponent extends Component{
                 <text>委托</text>
             )
         }
-    }
+    };
 
     viewContract = (record) => () => {
         //this.props.showContent(record.proID);
@@ -127,13 +131,14 @@ export default class ProjectComponent extends Component{
                 <text>委托</text>
             )
         }
-    }
+    };
 
     expandedRowRender = (record) =>{
+        console.log(record.state.consign);
         return (
             <Steps current={/*TODO*//*this.props.*/1} size="small">
-                <Step title={this.consignView(record)} description='委托已通过 样品已接收' />{/*TODO*//*description要根据具体状态改变*/}
-                <Step title={this.contractView(record)} description="合同待确认" />
+                <Step title={this.consignView(record)} description=''/*record.state.consign*/ />{/*TODO*//*description要根据具体状态改变*/}
+                <Step title={this.contractView(record)} description=''/*record.state.contract*/ />
                 <Step title="测试方案" />
                 <Step title="测试报告" />
                 <Step title="归档结项" />
@@ -151,29 +156,24 @@ export default class ProjectComponent extends Component{
         /*TODO*/
         const reg = new RegExp(value, 'gi');
         switch (this.props.selectOption){
-            case 'proID':this.props.setListFilter((record) => record.proID.match(reg));break;
-            case 'userID':this.props.setListFilter((record) => record.userID.match(reg));break;
-            case 'proName':this.props.setListFilter((record) => record.proName.match(reg));break;
+            case 'id':this.props.setListFilter((record) => record.id.match(reg));break;
+            case 'customerId':this.props.setListFilter((record) => record.customerId.match(reg));break;
+            case 'name':this.props.setListFilter((record) => record.name.match(reg));break;
             default:break;
         }
     };
 
     setPlaceholder = () => {
         switch (this.state.selectOption){
-            case 'proID':
+            case 'id':
                 return '请输入项目ID';
-            case 'userID':
+            case 'customerId':
                 return '请输入委托人ID';
-            case 'proName':
+            case 'name':
                 return '请输入项目名称';
             default:break;
         }
-    }
-
-    dataSource = [
-        { key: 1, proID: '1', proName: 'XYZ', userID: '151220134', state: 'TobeSubmit' },
-        { key: 2, proID: '2', proName: 'ZBJ', userID: '151220004', state: 'TobeCheck' },
-    ];
+    };
 
     render(){
         return (
@@ -182,9 +182,9 @@ export default class ProjectComponent extends Component{
                 <InputGroup>
                     <Col span={3}>
                     <Select defaultValue="搜索项目ID" onSelect={this.onSelect}>
-                        <Option value="proID">搜索项目ID</Option>
-                        <Option value="userID">搜索委托人ID</Option>
-                        <Option value="proName">搜索项目名称 </Option>
+                        <Option value="id">搜索项目ID</Option>
+                        <Option value="customerId">搜索委托人ID</Option>
+                        <Option value="name">搜索项目名称 </Option>
                     </Select>
                     </Col>
                     <Col span={8}>
@@ -196,7 +196,7 @@ export default class ProjectComponent extends Component{
                     </Col>
                 </InputGroup>
                 <br />
-                <Table dataSource={this./*props.*/dataSource} columns={this.columns}
+                <Table dataSource={this.props.dataSource} columns={this.columns} rowKey='id'
                        expandedRowRender={this.expandedRowRender}
                        expandRowByClick={true}
                        //onExpandedRowsChange

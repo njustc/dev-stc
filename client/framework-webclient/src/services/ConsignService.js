@@ -15,14 +15,16 @@ const consignActivitiBase = baseServiceAddress + '/consignActiviti';
 //     });
 // };
 
-export const getConsignContent = (dispatch, index, id, callback) => {
-    httpGet(consignBase + '/' + id, (result) => {
+export const getConsignContent = (dispatch, id, callback) => {
+/*    httpGet(consignBase + '/' + id, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setConsignContent(index, data.consignation));
-        }
+        }*/
+        const status = STATUS.SUCCESS;
         callback && callback(status);
-    });
+    //});
+    return {};
 };
 
 export const deleteConsign = (dispatch, id, callback) => {

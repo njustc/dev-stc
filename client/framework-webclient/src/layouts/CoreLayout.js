@@ -9,8 +9,6 @@ const { SubMenu } = Menu;
 const TabPane = Tabs.TabPane;
 const FormItem = Form.Item;
 
-import tabsMap from '../routes/tabsMap';
-
 import {sysFetch} from '../utils/FetchUtil';
 import {ProjectView} from "ROUTES/Project";
 
@@ -24,7 +22,6 @@ export default class CoreLayout extends Component
 
 	static propTypes = {
 	    sysUser: PropTypes.object.isRequired,
-		modules: PropTypes.array.isRequired,
 		panes: PropTypes.array.isRequired,
         activeKey: PropTypes.string.isRequired,
         addTab: PropTypes.func.isRequired,
@@ -35,7 +32,7 @@ export default class CoreLayout extends Component
     handleMenuClick = (e) =>{
         if(e.key==="logout"){
             sessionStorage.removeItem('sysUser');
-            sessionStorage.removeItem('sysModules');
+            sessionStorage.removeItem('authData');
             message.info('退出成功，正在跳转');
             this.props.router.replace('/login');
         }
@@ -91,30 +88,4 @@ export default class CoreLayout extends Component
             </Layout>
 		);
 	}
-}
-
-
-function findMenuByKey(key, menus) {
-	let _menu = null;
-
-	for(let i=0; i<menus.length; i++) {
-        let menu = menus[i];
-
-        if (menu.id === key) {
-            _menu = menu;
-            return _menu;
-        }
-    }
-	return _menu;
-}
-
-function findPageByPath(path, pages) {
-	for(let i=0; i<pages.length; i++) {
-		let page = pages[i];
-
-		if(page.path === path) {
-			return page.component;
-		}
-	}
-	return null;
 }
