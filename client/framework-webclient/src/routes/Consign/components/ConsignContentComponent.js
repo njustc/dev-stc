@@ -691,180 +691,183 @@ class ConsignContentComponent extends Component {
                   </span>
                 </FormItem>
 
-                <FormItem {...formItemLayout} label="测试样品：">
+                <FormItem
+                    {...formItemLayout}
+                    label="测试样品："
+                >
                     {getFieldDecorator('testingprodu', {
                         rules: [{ required: true, message: '请选择至少一项测试样品！'}],
                     })(
                         <Checkbox.Group disabled={this.props.disable}>
-                            <Checkbox value={"源代码"}/>源代码
-                                <Checkbox value={"可执行文件"}/>可执行文件
-                                </Checkbox.Group>
-                                )}
-                                </FormItem>
-                                <FormItem
-                                {...formItemLayout}
-                                label="需求文档："
-                                >
-                                {getFieldDecorator('Requirementsdocument', {
-                                    rules: [{ required: true, message: '请选择至少一项需求文档！'}],
-                                })(
-                                    <Checkbox.Group disabled={this.props.disable}>
-                                        <Checkbox value={"项目计划任务书"}/>项目计划任务书
-                                            <Checkbox value={"需求分析报告"}/>需求分析报告
-                                            <Checkbox value={"合同"}/>合同
-                                            </Checkbox.Group>
+                            <Checkbox>源代码</Checkbox>
+                            <Checkbox>可执行文件</Checkbox>
+                        </Checkbox.Group>
+                    )}
+                </FormItem>
+                <FormItem
+                    {...formItemLayout}
+                    label="需求文档："
+                >
+                    {getFieldDecorator('Requirementsdocument', {
+                        rules: [{ required: true, message: '请选择至少一项需求文档！'}],
+                    })(
+                        <Checkbox.Group disabled={this.props.disable}>
+                            <Checkbox>项目计划任务书</Checkbox>
+                            <Checkbox>需求分析报告</Checkbox>
+                            <Checkbox>合同</Checkbox>
+                        </Checkbox.Group>
 
-                                            )}
-                                            </FormItem>
+                    )}
+                </FormItem>
 
-                                            <FormItem
-                                            {...formItemLayout}
-                                            label="用户文档："
-                                            >
-                                            {getFieldDecorator('Userdocument', {
-                                                rules: [{ required: true, message: '请选择至少一项用户文档！'}],
-                                            })(
-                                                <Checkbox.Group disabled={this.props.disable}>
-                                                    <Checkbox value={"用户手册"}/>用户手册
-                                                        <Checkbox value={"用户指南"}/>用户指南
-                                                        </Checkbox.Group>
-                                                        )}
-                                                        </FormItem>
+                <FormItem
+                    {...formItemLayout}
+                    label="用户文档："
+                >
+                    {getFieldDecorator('Userdocument', {
+                        rules: [{ required: true, message: '请选择至少一项用户文档！'}],
+                    })(
+                        <Checkbox.Group disabled={this.props.disable}>
+                            <Checkbox>用户手册</Checkbox>
+                            <Checkbox>用户指南</Checkbox>
+                        </Checkbox.Group>
+                    )}
+                </FormItem>
 
-                                                        <FormItem
+                <FormItem
 
-                                                        {...formItemLayout}
-                                                        label="操作文档："
-                                                        >
-                                                        {getFieldDecorator('Oprationdocument', {
-                                                            rules: [{ required: true, message: '请选择至少一项操作文档！'}],
-                                                        })(
-                                                            <Checkbox.Group disabled={this.props.disable}>
-                                                                <Checkbox value={"操作员手册"}/>操作员手册
-                                                                    <Checkbox value={"安装手册"}/>安装手册
-                                                                    <Checkbox value={"诊断手册"}/>诊断手册
-                                                                    <Checkbox value={"支持手册"}/>支持手册
-                                                                    </Checkbox.Group>
-                                                                    )}
-                                                                    </FormItem>
+                    {...formItemLayout}
+                    label="操作文档："
+                >
+                    {getFieldDecorator('Oprationdocument', {
+                        rules: [{ required: true, message: '请选择至少一项操作文档！'}],
+                    })(
+                        <Checkbox.Group disabled={this.props.disable}>
+                            <Checkbox>操作员手册</Checkbox>
+                            <Checkbox>安装手册</Checkbox>
+                            <Checkbox>诊断手册</Checkbox>
+                            <Checkbox>支持手册</Checkbox>
+                        </Checkbox.Group>
+                    )}
+                </FormItem>
 
-                                                                    <FormItem
-                                                                    label="其他"
-                                                                    {...formItemLayout}
-                                                                    >
-                                                                    {getFieldDecorator('else', {
-                                                                        rules: [{ required: true, message: '请输入！'}],
-                                                                    })(
-                                                                        <Input placeholder="请输入" />
-                                                                    )}
-                                                                    </FormItem>
+                <FormItem
+                    label="其他"
+                    {...formItemLayout}
+                >
+                    {getFieldDecorator('else', {
+                        rules: [{ required: true, message: '请输入！'}],
+                    })(
+                        <Input placeholder="请输入" />
+                    )}
+                </FormItem>
 
-                                                                    <FormItem
-                                                                    {...formItemLayout}
-                                                                    label="确认意见："
-                                                                    >
-                                                                    {getFieldDecorator('Confirmation', {
-                                                                        rules: [{ required: true, message: '请选择确认意见！'}],
-                                                                    })(
-                                                                        <RadioGroup name={"确认意见:"} disabled={this.props.disable}>
-                                                                            <Radio value="a">测试所需材料不全，未达到受理条件。</Radio>
-                                                                            <Radio value="b">属依据国家标准或自编非标规范进行的常规检测，有资质、能力和资源满足委托方要求。</Radio>
-                                                                            <Radio value="c">无国家标准和规范依据，或实验室缺乏检测设备和工具，无法完成检测。</Radio>
-                                                                            <Radio value="d">超出实验室能力和资质范围，无法完成检测。</Radio>
-                                                                        </RadioGroup>
+                <FormItem
+                    {...formItemLayout}
+                    label="确认意见："
+                >
+                    {getFieldDecorator('Confirmation', {
+                        rules: [{ required: true, message: '请选择确认意见！'}],
+                    })(
+                        <RadioGroup name={"确认意见:"} disabled={this.props.disable}>
+                            <Radio value="a">测试所需材料不全，未达到受理条件。</Radio>
+                            <Radio value="b">属依据国家标准或自编非标规范进行的常规检测，有资质、能力和资源满足委托方要求。</Radio>
+                            <Radio value="c">无国家标准和规范依据，或实验室缺乏检测设备和工具，无法完成检测。</Radio>
+                            <Radio value="d">超出实验室能力和资质范围，无法完成检测。</Radio>
+                        </RadioGroup>
 
-                                                                    )}
-                                                                    </FormItem>
+                    )}
+                </FormItem>
 
-                                                                    <FormItem
-                                                                    {...formItemLayout}
-                                                                    label="受理意见："
-                                                                    >
-                                                                    {getFieldDecorator('Admissibility', {
-                                                                        rules: [{ required: true, message: '请选择受理意见！'}],
-                                                                    })(
-                                                                        <RadioGroup name={"受理意见:"} disabled={this.props.disable}>
-                                                                            <Radio value="a">受理-进入项目立项和合同评审流程。</Radio>
-                                                                            <Radio value="b">不受理</Radio>
-                                                                            <Radio value="c">进一步联系</Radio>
-                                                                        </RadioGroup>
+                <FormItem
+                    {...formItemLayout}
+                    label="受理意见："
+                >
+                    {getFieldDecorator('Admissibility', {
+                        rules: [{ required: true, message: '请选择受理意见！'}],
+                    })(
+                        <RadioGroup name={"受理意见:"} disabled={this.props.disable}>
+                            <Radio value="a">受理-进入项目立项和合同评审流程。</Radio>
+                            <Radio value="b">不受理</Radio>
+                            <Radio value="c">进一步联系</Radio>
+                        </RadioGroup>
 
-                                                                    )}
-                                                                    </FormItem>
+                    )}
+                </FormItem>
 
-                                                                    <FormItem
-                                                                    label="测试项目编号"
-                                                                    {...formItemLayout}
-                                                                    >
-                                                                    {getFieldDecorator('testingnumber', {
-                                                                        rules: [{ required: true, message: '请输入测试项目编号！'}],
-                                                                    })(
-                                                                        <Input placeholder="请输入测试项目编号" />
-                                                                    )}
-                                                                    </FormItem>
+                <FormItem
+                    label="测试项目编号"
+                    {...formItemLayout}
+                >
+                    {getFieldDecorator('testingnumber', {
+                        rules: [{ required: true, message: '请输入测试项目编号！'}],
+                    })(
+                        <Input placeholder="请输入测试项目编号" />
+                    )}
+                </FormItem>
 
-                                                                    <FormItem
-                                                                    label="备注"
-                                                                    {...formItemLayout}
-                                                                    >
-                                                                    {getFieldDecorator('Remarks', {
-                                                                        rules: [{ required: true, message: '请输入备注！'}],
-                                                                    })(
-                                                                        <TextArea rows={4} />
-                                                                    )}
-                                                                    </FormItem>
+                <FormItem
+                    label="备注"
+                    {...formItemLayout}
+                >
+                    {getFieldDecorator('Remarks', {
+                        rules: [{ required: true, message: '请输入备注！'}],
+                    })(
+                        <TextArea rows={4} />
+                    )}
+                </FormItem>
 
-                                                                    <FormItem
-                                                                    label="受理人（签字）"
-                                                                    {...formItemLayout}
-                                                                    >
+                <FormItem
+                    label="受理人（签字）"
+                    {...formItemLayout}
+                >
 
-                                                                    <span className="ant-form-text"></span>
-                                                                    </FormItem>
+                    <span className="ant-form-text"></span>
+                </FormItem>
 
-                                                                    <FormItem
-                                                                    label="日期"
-                                                                    {...formItemLayout}
-                                                                    >
-                                                                    <span className="ant-form-text"></span>
-                                                                    </FormItem>
+                <FormItem
+                    label="日期"
+                    {...formItemLayout}
+                >
+                    <span className="ant-form-text"></span>
+                </FormItem>
 
-                                                                    <FormItem
-                                                                    label="委托人填写"
-                                                                {...formItemLayout}
-                                                                    >
-                                                                    <TextArea rows={4} />
-                                                                    </FormItem>
+                <FormItem
+                    label="委托人填写"
+                    {...formItemLayout}
+                >
+                    <TextArea rows={4} />
+                </FormItem>
 
-                                                                    <FormItem
-                                                                    label="委托人（签字）"
-                                                                    {...formItemLayout}
-                                                                    >
-                                                                    <span className="ant-form-text"></span>
+                <FormItem
+                    label="委托人（签字）"
+                    {...formItemLayout}
+                >
+                    <span className="ant-form-text"></span>
 
-                                                                    </FormItem>
+                </FormItem>
 
-                                                                    <FormItem
-                                                                    label="日期"
-                                                                    {...formItemLayout}
-                                                                    >
-                                                                    <span className="ant-form-text"></span>
-                                                                    </FormItem>
+                <FormItem
+                    label="日期"
+                    {...formItemLayout}
+                >
+                    <span className="ant-form-text"></span>
+                </FormItem>
 
-                                                                    <FormItem {...buttonItemLayout}>
-                                                                    <Button type="primary" htmlType={"submit"}>提交</Button>
-                                                                    </FormItem>
+                <FormItem {...buttonItemLayout}>
+                    <Button type="primary" htmlType={"submit"}>提交</Button>
+                </FormItem>
 
-                                                                    {/* footer buttons */}
-                                                                    <FormItem {...formItemLayout}>
-                                                                    {this.props.buttons.map((button, index) =>
-                                                                        <Button onClick={this.onClick(index)}
-                                                                                key={button.content}>
-                                                                            {button.content}
-                                                                        </Button>)}
-                                                                    </FormItem>
-                                                                    </Form>
-                                                                    );
-                                                                    }
-                                                                    }
-                                                                    export default Form.create()(ConsignContentComponent);
+                {/* footer buttons */}
+                <FormItem {...formItemLayout}>
+                    {this.props.buttons.map((button, index) =>
+                        <Button onClick={this.onClick(index)}
+                                key={button.content}>
+                            {button.content}
+                        </Button>)}
+                </FormItem>
+            </Form>
+        );
+    }
+}
+export default Form.create()(ConsignContentComponent);
