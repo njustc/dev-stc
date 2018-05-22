@@ -12,10 +12,6 @@ export default class ProjectComponent extends Component{
         super(props);
     }
 
-    static propTypes = {
-
-    };
-
     state={
         selectOption:'id',
     };
@@ -77,24 +73,12 @@ export default class ProjectComponent extends Component{
                     <a href="javascript:void(0);" onClick={this.viewDetails(record)}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);">更多</a>
-            </div>
+                </div>
             )
         }
     }
     ];
 
-<<<<<<< HEAD
-    static propTypes = {
-        showContent: PropTypes.func.isRequired,
-        setListFilter: PropTypes.func.isRequired,
-        newConsign: PropTypes.func,
-        getProjectList: PropTypes.func.isRequired
-    };
-
-    componentDidMount() {
-        this.props.getProjectList();
-    }
-=======
     static propTypes = {
         showContent: PropTypes.func.isRequired,
         setListFilter: PropTypes.func.isRequired,
@@ -106,7 +90,6 @@ export default class ProjectComponent extends Component{
         this.props.getProjectList();
     }
 
->>>>>>> caochun/master
     state2Status(state) {
         /*TODO*//*是否需要能让超级管理员可以添加新的状态？*/
         return "success";
@@ -151,7 +134,6 @@ export default class ProjectComponent extends Component{
     };
 
     expandedRowRender = (record) =>{
-<<<<<<< HEAD
         console.log(record.state.consign);
         return (
             <Steps current={/*TODO*//*this.props.*/1} size="small">
@@ -162,18 +144,6 @@ export default class ProjectComponent extends Component{
                 <Step title="归档结项" />
             </Steps>
         )
-=======
-        console.log(record.state.consign);
-        return (
-            <Steps current={/*TODO*//*this.props.*/1} size="small">
-                <Step title={this.consignView(record)} description=''/*record.state.consign*/ />{/*TODO*//*description要根据具体状态改变*/}
-                <Step title={this.contractView(record)} description=''/*record.state.contract*/ />
-                <Step title="测试方案" />
-                <Step title="测试报告" />
-                <Step title="归档结项" />
-            </Steps>
-        )
->>>>>>> caochun/master
     }
 
     onSelect = (value, option) => {
@@ -211,11 +181,11 @@ export default class ProjectComponent extends Component{
                 <h3 style={{ marginBottom: 16 }}>项目管理</h3>
                 <InputGroup>
                     <Col span={3}>
-                    <Select defaultValue="搜索项目ID" onSelect={this.onSelect}>
-                        <Option value="id">搜索项目ID</Option>
-                        <Option value="customerId">搜索委托人ID</Option>
-                        <Option value="name">搜索项目名称 </Option>
-                    </Select>
+                        <Select defaultValue="搜索项目ID" onSelect={this.onSelect}>
+                            <Option value="id">搜索项目ID</Option>
+                            <Option value="customerId">搜索委托人ID</Option>
+                            <Option value="name">搜索项目名称 </Option>
+                        </Select>
                     </Col>
                     <Col span={8}>
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
@@ -229,7 +199,7 @@ export default class ProjectComponent extends Component{
                 <Table dataSource={this.props.dataSource} columns={this.columns} rowKey='id'
                        expandedRowRender={this.expandedRowRender}
                        expandRowByClick={true}
-                       //onExpandedRowsChange
+                    //onExpandedRowsChange
                 />
             </div>
         );
