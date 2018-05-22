@@ -1,9 +1,9 @@
-const SET_MODULES = "System/SET_MODULES";
+const SET_AUTHDATA = "System/SET_AUTHDATA";
 const SET_SYS_USER = 'System/SET_SYS_USER';
 
 const initialState = {
     sysUser: {},
-    modules: [],
+    authData: [],
 };
 
 export const SystemReducer = (state = initialState, action) =>
@@ -14,10 +14,10 @@ export const SystemReducer = (state = initialState, action) =>
                 ...state,
                 sysUser: action.payload,
             };
-        case SET_MODULES:
+        case SET_AUTHDATA:
             return {
                 ...state,
-                modules: action.payload
+                authData: action.payload
             };
         default:
             return state;
@@ -33,10 +33,10 @@ export const setSysUser = (sysUser) => {
 };
 
 
-export const setModules = (modules) => {
-    sessionStorage.setItem('sysModules',JSON.stringify(modules));
+export const setAuthData = (authData) => {
+    sessionStorage.setItem('authData',JSON.stringify(authData));
     return {
-        type: SET_MODULES,
-        payload: modules
+        type: SET_AUTHDATA,
+        payload: authData
     };
 };

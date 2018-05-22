@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-import {setModules,setSysUser} from "../../../modules/ducks/System";
+import {setAuthData,setSysUser} from "../../../modules/ducks/System";
 
 import './Blank.scss';
 import {connect} from "react-redux";
@@ -12,17 +12,17 @@ class BlankComponent extends Component {
 
     static propTypes = {
         SetUser: PropTypes.func.isRequired,
-        SetModules: PropTypes.func.isRequired
+        SetAuthData: PropTypes.func.isRequired
     };
 
 	componentWillMount() {
 		const curUserString = sessionStorage.getItem('sysUser');
-		const curModulesString = sessionStorage.getItem('sysModules');
+		const curAuthDataString = sessionStorage.getItem('authData');
 		const curUser = JSON.parse(curUserString);
-		const curModules = JSON.parse(curModulesString);
-		if(curUserString && curUserString !== 'null' && curModules && curModulesString !== 'null'){
+		const curAuthData = JSON.parse(curAuthDataString);
+		if(curUserString && curUserString !== 'null' && curAuthData && curAuthDataString !== 'null'){
             this.props.SetUser(curUser);
-            this.props.SetModules(curModules);
+            this.props.SetAuthData(curAuthData);
 		    this.props.router.replace('/index');
 		}
 		else {
@@ -32,12 +32,12 @@ class BlankComponent extends Component {
 
 	render() {
 		const curUser = sessionStorage.getItem('sysUser');
-		const curModules = sessionStorage.getItem('sysModules');
+		const curAuthData = sessionStorage.getItem('authData');
 		console.log(curUser);
-		console.log(curModules);
+		console.log(curAuthData);
 		return(
-            		<div className="blank">
-			{ this.props.children }
+			<div className="blank">
+				{ this.props.children }
 			</div>
 		);
 	}
@@ -46,7 +46,7 @@ class BlankComponent extends Component {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		SetUser: (sysUser) => dispatch(setSysUser(sysUser)),
-		SetModules: (modules) => dispatch(setModules(modules))
+		SetAuthData: (authData) => dispatch(setAuthData((authData)))
 	}
 }
 

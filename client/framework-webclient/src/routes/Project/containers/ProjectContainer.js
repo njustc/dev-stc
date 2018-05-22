@@ -1,22 +1,27 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from "react-redux";
 import {addTabAction} from "MODULES/ducks/Layout";
-import {StaffConsignContentView,UserConsignContentView} from "../../Consign";
+import {ConsignContentView} from "../../Consign";
 import ProjectComponent from "../components/ProjectComponent";
+import {getProjectList} from "../../../services/ProjectService";
+import {setProjectFilter} from "../../../modules/ducks/Project";
+import {setConsignContent} from "../../../modules/ducks/Consign";
+
 const mapStateToProps = (state) => {
+    console.log(state.Project.listMap);
     return {
-        dataSource: Object.values(state.Project.listMap),
+        dataSource: state.Project.listMap,
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
-            const sysUser = JSON.parse(sessionStorage.getItem('sysUser')).username;
-            const ContentView = sysUser==='marketing'?StaffConsignContentView:UserConsignContentView;
-            dispatch(addTabAction(id, '委托详情', ContentView));
+            dispatch(addTabAction(id, '委托详情', ConsignContentView));
+            dispatch(setConsignContent())
         },
-        setListFilter: (listFilter) => dispatch(setFilter(listFilter)),
+        setListFilter: (listFilter) => dispatch(setProjectFilter(listFilter)),
+        getProjectList: () => getProjectList(dispatch)
     }
 };
 
