@@ -12,6 +12,20 @@ export default class ProjectComponent extends Component{
         super(props);
     }
 
+    static propTypes = {
+        dataSource: PropTypes.array.isRequired,
+        showContent: PropTypes.func.isRequired,
+        setListFilter: PropTypes.func.isRequired,
+        newConsign: PropTypes.func,
+
+        //getConsignList: PropTypes.func.isRequired,
+        //enableNew: PropTypes.bool.isRequired,
+    };
+
+    /*componentDidMount() {
+        this.props.getConsignList();
+    }*/
+
     state={
         selectOption:'proID',
     }
@@ -79,13 +93,6 @@ export default class ProjectComponent extends Component{
     }
     ];
 
-    static propTypes = {
-        showContent: PropTypes.func.isRequired,
-        setListFilter: PropTypes.func.isRequired,
-        newConsign: PropTypes.func,
-    };
-
-
     state2Status(state) {
         /*TODO*//*是否需要能让超级管理员可以添加新的状态？*/
         return "success";
@@ -130,15 +137,15 @@ export default class ProjectComponent extends Component{
     }
 
     expandedRowRender = (record) =>{
-        return (
-            <Steps current={/*TODO*//*this.props.*/1} size="small">
-                <Step title={this.consignView(record)} description='委托已通过 样品已接收' />{/*TODO*//*description要根据具体状态改变*/}
-                <Step title={this.contractView(record)} description="合同待确认" />
-                <Step title="测试方案" />
-                <Step title="测试报告" />
-                <Step title="归档结项" />
-            </Steps>
-        )
+            return (
+                <Steps current={/*TODO*//*this.props.*/1} size="small">
+                    <Step title={this.consignView(record)} description='委托已通过 样品已接收' />{/*TODO*//*description要根据具体状态改变*/}
+                    <Step title={this.contractView(record)} description="合同待确认" />
+                    <Step title="测试方案" />
+                    <Step title="测试报告" />
+                    <Step title="归档结项" />
+                </Steps>
+            )
     }
 
     onSelect = (value, option) => {
