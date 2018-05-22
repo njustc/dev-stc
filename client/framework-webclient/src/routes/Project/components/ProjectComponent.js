@@ -13,8 +13,10 @@ export default class ProjectComponent extends Component{
     }
 
     static propTypes = {
-  
-    };
+         showContent: PropTypes.func.isRequired,
+         setListFilter: PropTypes.func.isRequired,
+         newConsign: PropTypes.func,
+     };
 
     /*componentDidMount() {
         this.props.getConsignList();
