@@ -13,13 +13,7 @@ export default class ProjectComponent extends Component{
     }
 
     static propTypes = {
-        dataSource: PropTypes.array.isRequired,
-        showContent: PropTypes.func.isRequired,
-        setListFilter: PropTypes.func.isRequired,
-        newConsign: PropTypes.func,
-
-        //getConsignList: PropTypes.func.isRequired,
-        //enableNew: PropTypes.bool.isRequired,
+  
     };
 
     /*componentDidMount() {
