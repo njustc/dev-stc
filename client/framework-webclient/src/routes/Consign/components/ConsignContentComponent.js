@@ -257,7 +257,7 @@ class ConsignContentComponent extends Component {
                         {getFieldDecorator('softwareType', {
                             rules: [{ required: true, message: '请选择！' }],
                         })(
-                                <Select style={{ width: 200 }} defaultValue="控制软件"
+                                <Select style={{ width: 200 }}
                                         onChange={handleChange} disabled={this.props.disable}>
                                     <OptGroup label={"系统软件"}>
                                         <Option value={"操作系统"}>操作系统</Option>

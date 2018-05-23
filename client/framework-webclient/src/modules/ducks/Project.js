@@ -5,8 +5,8 @@ const SET_FILTER = 'Project/SET_FILTER';
 
 const initialState = {
     listFilter: () => true,//绑定按钮传入的过滤条件
-    listMap: [],  //项目集合，用key-value表示，key为id，value为projectData
-    //projectData为对象，仍然包含id字段
+    listMap: { },  //项目集合，用key-value表示，key为id，value为ProjectData
+    //ProjectData为对象，仍然包含id字段
 };
 
 export const ProjectReducer = (state = initialState, action) => {
@@ -15,26 +15,29 @@ export const ProjectReducer = (state = initialState, action) => {
             const list = action.payload;
             return {
                 ...state,
-                listMap: list.reduce((listMap, projectData) => {
-                    listMap.push(projectData);
+                listMap: list.reduce((listMap, ProjectData) => {
+                    listMap[ProjectData.id] = ProjectData;
                     return listMap;
-                }, []),
+                }, {}),
             };
         case RM_CONTENT:
             const id = action.payload;
             return {
                 ...state,
-                listMap: listMap.filter(proj => proj.id !== id)
+                listMap: {
+                    ...state.listMap,
+                    [id]: undefined,
+                },
             };
         case SET_CONTENT: {
             const {id} = action.payload;
-            let {listFilter,listMap} = state;
-            const sid = listMap.findIndex(proj => proj.id === id);
-            const projectData = action.payload;
-            listMap.splice(sid, 1, projectData);
+            const ProjectData = action.payload;
             return {
-                listFilter: listFilter,
-                listMap: listMap
+                ...state,
+                listMap: {
+                    ...state.listMap,
+                    [id]: ProjectData,
+                },
             };
         }
         case SET_FILTER:
@@ -62,10 +65,10 @@ export const removeProject = (id) => {
     }
 };
 
-export const setProjectContent = (projectData) => {
+export const setProjectContent = (ProjectData) => {
     return {
         type: SET_CONTENT,
-        payload: projectData,
+        payload: ProjectData,
     }
 };
 
