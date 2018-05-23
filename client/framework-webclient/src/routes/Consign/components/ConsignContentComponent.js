@@ -502,24 +502,27 @@ class ConsignContentComponent extends Component {
                             {getFieldDecorator('sampleQuantity.toHandle', {
                                 rules: [{ required: true, message: '请选择！'}],
                             })(
-                                <RadioGroup name={"处理手段"} disabled={this.props.disable}>
-                                    <Radio value={"由本实验室销毁"}/>由本实验室销毁
-                                    <Radio value={"退还给我们"}/>退还给我们
-                                </RadioGroup>
+                                <Select style={{ width: 200 }} disabled={this.props.disable}
+                                        placeholder="请选择" onChange={handleChange}>
+                                    <Option value={"由本实验室销毁"}>由本实验室销毁</Option>
+                                    <Option value={"退还给我们"}>退还给我们</Option>
+                                </Select>
                             )}
                         </FormItem>
                     </Panel>
 
-                    <FormItem {...formItemLayout} label={"希望测试完成的时间"}>
-                        {getFieldDecorator('sampleQuantity.comTimeWish', {
-                            rules: [{ required: true, message: '请正确输入时间！',
-                                }],
-                        })(
-                            <DatePicker showTime format="YYYY-MM-DD"/>
-                        )}
-                    </FormItem>
+                   <Panel header="希望测试完成的时间" key="wishComTime" style={customPanelStyle}>
+                        <FormItem {...formItemLayout} label={"希望测试完成的时间"}>
+                            {getFieldDecorator('sampleQuantity.comTimeWish', {
+                                rules: [{ required: true, message: '请正确输入时间！',
+                                    }],
+                            })(
+                                <DatePicker showTime format="YYYY-MM-DD"/>
+                            )}
+                        </FormItem>
+                    </Panel>
 
-                    <Panel header="this is page 3" key="page3" style={customPanelStyle}>
+                    <Panel header="this is page 3" key="page3" style={customPanelStyle2}>
                     {/*以下第三部分*/}
                         <FormItem
                             label="委托单位信息"
