@@ -74,8 +74,8 @@ class ConsignContentComponent extends Component {
 
                 <FormItem>请用?选择：○——单选； ◻——多选。</FormItem>
 
-                <Collapse bordered={false} defaultActiveKey={['1']}>
-                    <Panel header="This is page 1" key="1" style={customPanelStyle}>
+                <Collapse bordered={false} defaultActiveKey={['page1']}>
+                    <Panel header="This is page 1" key={"page1"} style={customPanelStyle}>
                         <FormItem {...formItemLayout} label="测试类型">
                             {getFieldDecorator('testType', {
                                 rules: [{ required: true, message: '请选择至少一项测试类型!'}],
@@ -219,7 +219,7 @@ class ConsignContentComponent extends Component {
                     </FormItem>
                     </Panel>
 
-                    <Panel header="This is page2" key="2" style={customPanelStyle2}>
+                    <Panel header="This is page2" key="page2" style={customPanelStyle2}>
                     {/*以上第一部分*//*如何设定至少一种*/}
                     <FormItem{...formItemLayout} label={"软件规模(至少一种)"}>
                         <FormItem offset={1}>
@@ -298,9 +298,9 @@ class ConsignContentComponent extends Component {
                         </FormItem>
                     </Panel>
 
-                    <Panel header="运行环境" key="3" style={customPanelStyle}>
+                    <Panel header="运行环境" key="operateEnvironment" style={customPanelStyle}>
                         <Collapse bordered={false}>
-                            <Panel  header="客户端" key="1" style={customPanelStyle2}>
+                            <Panel  header="客户端" key="client" style={customPanelStyle2}>
                                 <FormItem{...formItemLayout} label={"操作系统"}>
                                     {getFieldDecorator('operateEnvironment.client.os', {
                                         rules: [{ required: true, message: '请填写操作系统及其版本！' }],
@@ -332,11 +332,11 @@ class ConsignContentComponent extends Component {
                                 </FormItem>
                             </Panel>
 
-                            <Panel header="服务器端" key={"2"} style={customPanelStyle}>
+                            <Panel header="服务器端" key={"service"} style={customPanelStyle}>
                                 <Collapse bordered={false}>
-                                    <Panel  header="硬件" key="1"style={customPanelStyle2}>
+                                    <Panel  header="硬件" key="hardware"style={customPanelStyle2}>
                                         <FormItem{...formItemLayout} label={"构架"}>
-                                            {getFieldDecorator('operateEnvironment.service.hardDisk.arch', {
+                                            {getFieldDecorator('operateEnvironment.service.hardware.arch', {
                                                 rules: [{ required: true, message: '请选择！' }],
                                             })(
                                                 <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
@@ -373,7 +373,7 @@ class ConsignContentComponent extends Component {
                                         </FormItem>
                                     </Panel>
 
-                                    <Panel  header="软件" key="2" style={customPanelStyle}>
+                                    <Panel  header="软件" key="software" style={customPanelStyle}>
                                         <FormItem {...formItemLayout} label={"操作系统"}>
                                             {getFieldDecorator('operateEnvironment.service.software.os',
                                                 {rules: [{ required: true, message: '请输入操作系统！'}],
@@ -438,7 +438,7 @@ class ConsignContentComponent extends Component {
                                  </Collapse>
                             </Panel>
 
-                            <Panel header={"网络环境"} key={"3"} style={customPanelStyle2}>
+                            <Panel header={"网络环境"} key={"netEnvironment"} style={customPanelStyle2}>
                                 <FormItem {...formItemLayout} label={"网络环境"}>
                                     {getFieldDecorator('operateEnvironment.netEnvironment', {
                                         rules: [{ required: true, message: '请输入网络环境！'}],
@@ -455,7 +455,7 @@ class ConsignContentComponent extends Component {
                     </Panel>
 
 
-                    <Panel header="样品和数量" key="4" style={customPanelStyle2}>
+                    <Panel header="样品和数量" key="sampleQuantity" style={customPanelStyle2}>
                         <FormItem {...formItemLayout} label={"软件介质"}>
                             <FormItem>
                                 {getFieldDecorator('sampleQuantity.softwareMedia.cd', {
@@ -519,7 +519,7 @@ class ConsignContentComponent extends Component {
                         )}
                     </FormItem>
 
-                    <Panel header="this is page 3" key="5" style={customPanelStyle}>
+                    <Panel header="this is page 3" key="page3" style={customPanelStyle}>
                     {/*以下第三部分*/}
                         <FormItem
                             label="委托单位信息"
