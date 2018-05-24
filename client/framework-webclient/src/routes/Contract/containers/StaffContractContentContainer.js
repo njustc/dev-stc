@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import ConsignContentComponent from "ROUTES/Consign/components/ConsignContentComponent";
+import ContractContentComponent from "ROUTES/Contract/components/ContractContentComponent";
 import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
 //    const {list, index} = state.Consign;
     return {
         values: {},/*fetch consign with pro id*/
-        consignData: {},/*fetch data with pro id*/
+        contractData: {},/*fetch data with pro id*/
         disable: true,
         // buttons: buttons,
     }
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 
 const buttons = (dispatch) => [{
     content: "通过",
-    onClick: (consignData) => {
+    onClick: (contractData) => {
         // 后端接口调整ing
         // let url = "http://127.0.0.1:8000/services/consignActiviti/" + consignData.processInstanceID;
         // let data = {
@@ -32,7 +32,7 @@ const buttons = (dispatch) => [{
     },
 },{
     content: "否决",
-    onClick: (consignData) => {
+    onClick: (contractData) => {
         // 后端接口调整ing
         // let url = "http://127.0.0.1:8000/services/consignActiviti/" + consignData.processInstanceID;
         // let data = {
@@ -57,4 +57,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConsignContentComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ContractContentComponent);

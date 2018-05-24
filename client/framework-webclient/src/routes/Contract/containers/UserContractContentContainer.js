@@ -1,34 +1,34 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import ConsignContentComponent from "../components/ConsignContentComponent";
-import {putConsign} from "SERVICES/ConsignService";
+import ContractContentComponent from "../components/ContractContentComponent";
+import {putContract} from "SERVICES/ContractService";
 
 const mapStateToProps = (state) => {
 //    const {list, index} = state.Consign;
     return {
-        values: {},/*fetch consign with pro id*/
-        consignData: {},/*fetch data with pro id*/
+        values: {},/*fetch contract with pro id*/
+        contractData: {},/*fetch data with pro id*/
         disable: false,
     }
 };
 
 const buttons = (dispatch) => [{
     content: "保存",
-    onClick: (consignData,values) => {
+    onClick: (contractData,values) => {
         let data = {
-            id: consignData.id,
-            consignation: values,
+            id: contractData.id,
+            contraction: values,
         };
-        putConsign(dispatch, data, (status) => {});
+        putContract(dispatch, data, (status) => {});
     },
 },{
     content: "提交",
-    onClick: (consignData,values) => {
+    onClick: (contractData,values) => {
         let data1 = {
-            id: consignData.id,
-            consignation: values,
+            id: contractData.id,
+            contraction: values,
         };
-        putConsign(dispatch, data1);
+        putContract(dispatch, data1);
 
         // 后端接口调整ing:
         // let url2 = "http://127.0.0.1:8000/services/consignActiviti/" + consignData.processInstanceID;
@@ -53,4 +53,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConsignContentComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ContractContentComponent);

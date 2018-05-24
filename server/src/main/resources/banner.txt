@@ -1,23 +1,28 @@
 ${AnsiColor.BRIGHT_YELLOW}
-////////////////////////////////////////////////////////////////////
-//                          _ooOoo_                               //
-//                         o8888888o                              //
-//                         88" . "88                              //
-//                         (| ^_^ |)                              //
-//                         O\  =  /O                              //
-//                      ____/`---'\____                           //
-//                    .'  \\|     |//  `.                         //
-//                   /  \\|||  :  |||//  \                        //
-//                  /  _||||| -:- |||||-  \                       //
-//                  |   | \\\  -  /// |   |                       //
-//                  | \_|  ''\---/''  |   |                       //
-//                  \  .-\__  `-`  ___/-. /                       //
-//                ___`. .'  /--.--\  `. . ___                     //
-//              ."" '<  `.___\_<|>_/___.'  >'"".                  //
-//            | | :  `- \`.;`\ _ /`;.`/ - ` : | |                 //
-//            \  \ `-.   \_ __\ /__ _/   .-` /  /                 //
-//      ========`-.____`-.___\_____/___.-`____.-'========         //
-//                           `=---='                              //
-//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        //
-//                     佛祖保佑       永不宕机     永无BUG                  //
-////////////////////////////////////////////////////////////////////
+
+                     ^       .51112222233323222119 .      ".
+                '///////b21334445555666666666555443331\///(//@
+                ' ..21234(66677889999999999999988776*7443311.
+               . t223466788liii!!llllllllllllll!!ii!9987664431f
+              '6*dI`'' .'''nL!!lIIIIIIIIIIIIIIIIlll!I7Yq9'...`iqY..
+          L{///('              . ,O;IIIIIIIIIII0///|'                .
+          J`:b766899ii!llIlllItw,urI;IIIIIIIIIl`1/\:!ll!!!li!86456rq`.;6
+        . 13344445444455567789iii!llllIIIIlllll!ii9977665666655444433t'
+        .12344444444444456666899ii!!lllllllll!i998766554444444444444322
+        924567899iii!!iii!!!l!!llllllllllllllllll!!!!iii9iiii9998876542, .
+        134679i!!lIIIIIIIIIIIIlllllllllllllllllllllIIIIIIIIIIlll!i976422 .
+        135688i!llIIIIIIIIIIIllllllllllllllllllllllIIIIIIIIIIIll!i986532..
+        23568ni!lIIIlIIIIIIIIllllllllllllllllllllllIIIIIIIIIIIllli186622'.
+        23568i!!llIIIIIlIIIIIIlllllllllllllllllllllIIIIIIIIIIIll!9976431 .
+        1245787!llIIIIIIIIIIIIIllllllllllllllllllIIIIlIIIIIIIlliil866321
+        .245679!6llIIIIIIIIIllIIIIllllllllllllIIIIIIIIIIIIIIll!19976432  .
+         ;2446779JIlIIIIIIIIIIlllIIIIIIIIIIIIIIIIIIIIIIIIIIlllC7976542'
+          :13467899Y::lIIIIIIIIIIIIIllIIIIIIIIIIIIIIIIIIII!IJ99876532.
+           .12346789iJU;!IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIl:YX998764421.
+             ,22356789i9vXJ2!IIIIIIIIIII;IIIIIIIIIIlfJUx9i98765421`
+               `2234667899iiIJJJYCb2,:II;l;"4bLUYCY;!ii987664422'
+                 '31234567788999ii!!i!l!!!ii!!iii9988766543223.
+                    .I22233455667777889989887777666544332t` .
+                         .2212222334544444444333222214..
+                          .    ..':11112211tf!' . .
+                                      ...

@@ -44,7 +44,7 @@ CREATE TABLE `act_evt_log` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `tbl_sys_entrust`
+-- 表的结构 `tbl_sys_consign`
 --
 
 CREATE TABLE `tbl_sys_consign`(
@@ -60,8 +60,9 @@ CREATE TABLE `tbl_sys_consign`(
   `USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-
-
+--
+--  表的结构 `tbl_sys_contract`
+--
 
 CREATE TABLE `tbl_sys_contract`(
   `CONTRACTBODY` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -74,6 +75,25 @@ CREATE TABLE `tbl_sys_contract`(
   `ALTERED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- 表的结构 `tbl_sys_project`
+--
+
+CREATE TABLE `tbl_sys_project` (
+  `ID` varchar(255) COLLATE utf8_bin NOT NULL,
+  `CODE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CONSIGN_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CONTRACT_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
 
 --
 -- 表的结构 `act_ge_bytearray`

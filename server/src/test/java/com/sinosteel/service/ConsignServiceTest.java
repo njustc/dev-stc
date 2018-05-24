@@ -1,21 +1,16 @@
 package com.sinosteel.service;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.FrameworkApplication;
 import com.sinosteel.domain.User;
 import com.sinosteel.repository.UserRepository;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-
-import static org.junit.Assert.*;
 
 /**
  * @author LBW
@@ -27,8 +22,10 @@ public class ConsignServiceTest {
     private User marketUser;
     private User customer1;
     private User customer2;
+
     @Autowired
     private ConsignService consignService;
+
     @Autowired
     private UserRepository userRepository;
 
