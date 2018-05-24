@@ -10,7 +10,7 @@ import {setConsignContent} from "../../../modules/ducks/Consign";
 const mapStateToProps = (state) => {
     console.log(state.Project.listMap);
     return {
-        dataSource: state.Project.listMap,
+        dataSource: Object.values(state.Project.listMap),
     }
 };
 
