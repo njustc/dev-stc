@@ -7,8 +7,12 @@ import {
     Text,
     TextInput,
     Image,
-    ToastAndroid
+    ToastAndroid,
+    Navigator
 } from 'react-native';
+
+
+import SideMenuScreen from "./SideMenu";
 
 
 let {width, height} = Dimensions.get('window');
@@ -24,7 +28,6 @@ export default class LoginView extends React.Component{
 
 
     renderClick(){
-        const { navigate } = this.props.navigation;
 
         let userName = this.state.username;
         let password = this.state.password;
@@ -46,7 +49,9 @@ export default class LoginView extends React.Component{
         if(userName=="wyy"&&password==123456){
             toastMsg = '登录成功';
             ToastAndroid.showWithGravity(toastMsg, 1000, ToastAndroid.CENTER);
-            navigate('SideMenu');//TODO: remember to change
+            this.props.navigation.replace('SideMenu');
+            //TODO: remember to change
+
         }
         else{
             toastMsg = '用户名或密码错误';

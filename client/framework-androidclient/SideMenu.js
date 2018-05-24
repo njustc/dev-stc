@@ -17,15 +17,20 @@ import {
 
 } from 'react-native';
 
+
 import modules from './Modules';
 
 const{width,height} = Dimensions.get('window')
 
 
-export default class SideMenu extends Component{
+export default class SideMenu extends React.Component{
     constructor(props){
         super(props);
     };
+
+    static navigationOptions = {
+        headerLeft: null,
+    };//remove back button
 
     render() {
         const { navigate } = this.props.navigation;
@@ -52,8 +57,8 @@ export default class SideMenu extends Component{
                     <Text style={[styles.textStyle, styles.textLarge]} /** 当一个组件需要使用多个style样式时，需要用[]将样式括起来 */ >Welcome</Text>
                     <Text style={[styles.textStyle, styles.textLarge]}>南大测试</Text>
 
-                    <TouchableOpacity onPress={this.open}>
-                        <Text style={[styles.textStyle, styles.textSmall]}>Start</Text>
+                    <TouchableOpacity>
+                        <Text onPress={this.open} style={[styles.textStyle, styles.textSmall]}>Start</Text>
                     </TouchableOpacity>
 
                 </View>
@@ -76,6 +81,10 @@ export default class SideMenu extends Component{
 
     close=()=>{
         this.drawer.closeDrawer();
+    }
+
+    goBack=()=>{
+        this.props.navigation.goBack();
     }
 }
 
