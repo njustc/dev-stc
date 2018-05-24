@@ -4,6 +4,7 @@ import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,13 +55,13 @@ public class ContractActiviti extends BaseActiviti{
     }
 
     //查询市场部主任的任务列表
-    public String getMarketEmployerTasks(String marketEmployerId)
+    public List<Task> getMarketEmployerTasks(String marketEmployerId)
     {
         return this.getUserTasks(marketEmployerId);
     }
 
     //查询质量部主任的任务列表
-    public String getQualityEmployerTasks(String qualityEmployerId)
+    public List<Task> getQualityEmployerTasks(String qualityEmployerId)
     {
         return this.getUserTasks(qualityEmployerId);
     }

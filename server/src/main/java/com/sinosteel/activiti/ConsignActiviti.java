@@ -16,12 +16,14 @@ import static org.junit.Assert.assertNotNull;
  * 包括新建委托、提交委托、审核委托、根据委托ID查询、根据客户ID查询和查询工作人员待处理委托
  */
 @Service
+enum bpmnVar{ConsignID,ClientID,Approval}
+enum bpmnTaskName{TobeSubmit,TobeCheck}
 public class ConsignActiviti extends BaseActiviti{
     //新建一个委托，参数为委托的ID，返回这个流程实例的id
     public String createConsignProcess(String consignId, String clientId){
         Map<String,Object> variables=new HashMap<String, Object>();
-        variables.put("ConsignID",consignId);
-        variables.put("ClientID",clientId);
+        variables.put(bpmnVar.ConsignID.name(),consignId);
+        variables.put(bpmnVar.ClientID.name(),clientId);
         ProcessInstance pi=runtimeService.startProcessInstanceByKey("Consign",variables);
         return pi.getProcessInstanceId();
     }
@@ -36,25 +38,26 @@ public class ConsignActiviti extends BaseActiviti{
     //参数为Boolean类型的PassOrNot（同意为true，不同意为false），流程实例id（由startprocess返回）和用户ID
     public void checkConsign(Boolean passOrNot, String processInstanceId, String workerId) throws Exception
     {
-        Task task1=taskService.createTaskQuery().taskName("TobeCheck")
+        Task task1=taskService.createTaskQuery().taskName(bpmnTaskName.TobeCheck.name())
                 .processInstanceId(processInstanceId).singleResult();
         taskService.setAssignee(task1.getId(),workerId);
-        this.check(passOrNot,processInstanceId,workerId,"Approval");
+        this.check(passOrNot,processInstanceId,workerId,bpmnVar.Approval.name());
     }
 
     //根据用户的ID查询该用户的委托列表，参数为用户ID
     //注意：返回的是委托的流程ID
     //UserID包括clientId和WorkerID
-    public String getClientTasks(String ClientId)
+    public List<Task> getClientTasks(String ClientId)
     {
         return this.getUserTasks(ClientId);
     }
 
     //查询测试人员需处理的委托列表
-    public String GetWorkerTasks()
+    public List<Task> GetWorkerTasks()
     {
-        List<Task> tasks=taskService.createTaskQuery().taskName("审核委托").list();
-        String st = "";
+        List<Task> tasks=taskService.createTaskQuery().taskName(bpmnTaskName.TobeCheck.name()).list();
+        return tasks;
+       /* String st = "";
         if(tasks.isEmpty())
             st=" have nothing to settle!!"+"\n";
         else
@@ -62,7 +65,7 @@ public class ConsignActiviti extends BaseActiviti{
             for (Task task : tasks) {
                 st+= "委托的流程ID为" + task.getProcessInstanceId() + " " + "目前的状态为:" + task.getName() + "\n";
             }}
-        return st;
+        return st;*/
     }
 
     //通过流程实例的id查询流程实例的状态，参数为流程实例的id和委托的id
