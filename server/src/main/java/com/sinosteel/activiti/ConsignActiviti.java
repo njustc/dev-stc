@@ -16,14 +16,14 @@ import static org.junit.Assert.assertNotNull;
  * 包括新建委托、提交委托、审核委托、根据委托ID查询、根据客户ID查询和查询工作人员待处理委托
  */
 @Service
-enum bpmnVar{ConsignID,ClientID,Approval}
-enum bpmnTaskName{TobeSubmit,TobeCheck}
+//enum bpmnVar{ConsignID,ClientID,Approval}
+//enum bpmnTaskName{TobeSubmit,TobeCheck}
 public class ConsignActiviti extends BaseActiviti{
     //新建一个委托，参数为委托的ID，返回这个流程实例的id
     public String createConsignProcess(String consignId, String clientId){
         Map<String,Object> variables=new HashMap<String, Object>();
-        variables.put(bpmnVar.ConsignID.name(),consignId);
-        variables.put(bpmnVar.ClientID.name(),clientId);
+        variables.put("ConsignID",consignId);
+        variables.put("ClientID",clientId);
         ProcessInstance pi=runtimeService.startProcessInstanceByKey("Consign",variables);
         return pi.getProcessInstanceId();
     }
@@ -38,10 +38,10 @@ public class ConsignActiviti extends BaseActiviti{
     //参数为Boolean类型的PassOrNot（同意为true，不同意为false），流程实例id（由startprocess返回）和用户ID
     public void checkConsign(Boolean passOrNot, String processInstanceId, String workerId) throws Exception
     {
-        Task task1=taskService.createTaskQuery().taskName(bpmnTaskName.TobeCheck.name())
+        Task task1=taskService.createTaskQuery().taskName("TobeCheck")
                 .processInstanceId(processInstanceId).singleResult();
         taskService.setAssignee(task1.getId(),workerId);
-        this.check(passOrNot,processInstanceId,workerId,bpmnVar.Approval.name());
+        this.check(passOrNot,processInstanceId,workerId,"Approval");
     }
 
     //根据用户的ID查询该用户的委托列表，参数为用户ID
@@ -55,7 +55,7 @@ public class ConsignActiviti extends BaseActiviti{
     //查询测试人员需处理的委托列表
     public List<Task> GetWorkerTasks()
     {
-        List<Task> tasks=taskService.createTaskQuery().taskName(bpmnTaskName.TobeCheck.name()).list();
+        List<Task> tasks=taskService.createTaskQuery().taskName("TobeCheck").list();
         return tasks;
        /* String st = "";
         if(tasks.isEmpty())

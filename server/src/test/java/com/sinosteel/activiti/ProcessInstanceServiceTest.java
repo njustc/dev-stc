@@ -1,10 +1,13 @@
-package com.sinosteel.service;
+package com.sinosteel.activiti;
 
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.FrameworkApplication;
+import com.sinosteel.activiti.MyActiviti;
 import com.sinosteel.activiti.ProcessInstanceUpdater;
 import com.sinosteel.domain.User;
 import com.sinosteel.framework.core.web.Request;
+import com.sinosteel.service.ConsignService;
+import com.sinosteel.service.UserService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +25,7 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
+//@SpringApplicationConfiguration(classes=MyActiviti.class)
 public class ProcessInstanceServiceTest {
 
     @Autowired

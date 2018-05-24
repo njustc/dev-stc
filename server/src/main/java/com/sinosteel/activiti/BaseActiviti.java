@@ -18,7 +18,7 @@ import java.util.Map;
  * @author Paul
  */
 @Service
-enum state{Finished,NotExist}
+//enum state{Finished,NotExist}
 public class BaseActiviti {
     private static final Logger logger = LoggerFactory.getLogger(com.sinosteel.activiti.ConsignActiviti.class);
 
@@ -98,8 +98,8 @@ public class BaseActiviti {
                 .processInstanceId(processInstanceId).list();
         if(pi==null&&pi1.isEmpty()==false)
         {
-            return state.Finished.name();
-            //return "Finished";
+            //return state.Finished.name();
+            return "Finished";
         }
         else if(pi!=null)
         {
@@ -113,7 +113,8 @@ public class BaseActiviti {
                 }
             }
         }
-        return state.NotExist.name();
+        //return state.NotExist.name();
+        return "NotExist";
     }
 
     //查询某个流程实例的历史活动的详细信息
