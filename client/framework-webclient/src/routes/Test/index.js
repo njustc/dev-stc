@@ -1,9 +1,13 @@
 //import UserContractListContainer from './containers/UserContractListContainer';
-import UserTestContentContainer from "ROUTES/Test/containers/UserTestContentContainer";
-import StaffTestContentContainer from "ROUTES/Test/containers/StaffTestContentContainer";
 //import StaffContractListContainer from "ROUTES/Contract/containers/StaffContractListContainer";
+import UserTestCaseContentContainer from "ROUTES/Test/containers/UserTestCaseContentContainer";
+import StaffTestCaseContentContainer from "ROUTES/Test/containers/StaffTestCaseContentContainer";
+import UserTestRecordContentContainer from "ROUTES/Test/containers/UserTestRecordContentContainer";
+import StaffTestRecordContentContainer from "ROUTES/Test/containers/StaffTestRecordContentContainer";
 
 //export const UserContractListView = UserContractListContainer;
-export const UserTestContentView = UserTestContentContainer;
-export const StaffTestContentView = StaffTestContentContainer;
 //export const StaffContractListView = StaffContractListContainer;
+export const UserTestCaseContentView = UserTestCaseContentContainer;
+export const StaffTestCaseContentView = StaffTestCaseContentContainer;
+export const UserTestRecordContentView = UserTestRecordContentContainer;
+export const StaffTestRecordContentView = StaffTestRecordContentContainer;
