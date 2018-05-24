@@ -10,7 +10,7 @@ const CheckboxGroup = Checkbox.Group;
 const { TextArea } = Input;
 
 function handleChange(value) {
-  console.log(`selected ${value}`);
+    console.log(`selected ${value}`);
 }
 
 class ConsignContentComponent extends Component {
@@ -49,20 +49,20 @@ class ConsignContentComponent extends Component {
         };
 
         const customPanelStyle = {
-          background: '#f9f9f9',
-          borderRadius: 6,
-          marginTop: 5,
-          marginBottom: 5,
-          border: 0,
-          overflow: 'hidden',
+            background: '#f9f9f9',
+            borderRadius: 6,
+            marginTop: 5,
+            marginBottom: 5,
+            border: 0,
+            overflow: 'hidden',
         };
         const customPanelStyle2 = {
-          background: '#ffffff',
-          borderRadius: 6,
-          marginTop: 5,
-          marginBottom: 5,
-          border: 0,
-          overflow: 'hidden',
+            background: '#ffffff',
+            borderRadius: 6,
+            marginTop: 5,
+            marginBottom: 5,
+            border: 0,
+            overflow: 'hidden',
         };
         return(
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
@@ -89,174 +89,174 @@ class ConsignContentComponent extends Component {
                                     <Option value={"其他"}>其他</Option>
                                 </Select>
                             )}
-                            </FormItem>
-
-
-                    <FormItem {...formItemLayout} label="请输入软件名称">
-                        {getFieldDecorator('softwareName', {
-                            rules: [{ required: true, message: '请输入软件名称！' }],
-                            initialValue: this.props.values.softwareName,
-                        })(
-                            <Input disabled={this.props.disable}/>
-                        )}
                         </FormItem>
 
 
-                    <FormItem {...formItemLayout} label={"版本号"}>
-                        {getFieldDecorator('version', {
-                            rules: [{ required: true, message: '请正确输入版本号！',pattern:"^[a-zA-Z0-9/.]+$"}],
-                            initialValue: this.props.values.version,
-                        })(
-                            <Input disabled={this.props.disable}/>
-                        )}
+                        <FormItem {...formItemLayout} label="请输入软件名称">
+                            {getFieldDecorator('softwareName', {
+                                rules: [{ required: true, message: '请输入软件名称！' }],
+                                initialValue: this.props.values.softwareName,
+                            })(
+                                <Input disabled={this.props.disable}/>
+                            )}
                         </FormItem>
 
-                    {/*todo功能表*/}
-                    <FormItem {...formItemLayout} label={"委托单位(中文)"}>
-                        {getFieldDecorator('consignUnitC', {
-                            rules: [{ required: true, message: '请正确输入委托单位(中文)！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                        })(
-                            <Input disabled={this.props.disable}/>
-                        )}
-                    </FormItem>
+
+                        <FormItem {...formItemLayout} label={"版本号"}>
+                            {getFieldDecorator('version', {
+                                rules: [{ required: true, message: '请正确输入版本号！',pattern:"^[a-zA-Z0-9/.]+$"}],
+                                initialValue: this.props.values.version,
+                            })(
+                                <Input disabled={this.props.disable}/>
+                            )}
+                        </FormItem>
+
+                        {/*todo功能表*/}
+                        <FormItem {...formItemLayout} label={"委托单位(中文)"}>
+                            {getFieldDecorator('consignUnitC', {
+                                rules: [{ required: true, message: '请正确输入委托单位(中文)！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                            })(
+                                <Input disabled={this.props.disable}/>
+                            )}
+                        </FormItem>
 
 
-                    <FormItem {...formItemLayout} label={"委托单位(英文)"}>
-                        {getFieldDecorator('consignUnitE', {
-                            rules: [{ required: true, message: '请正确输入委托单位(英文)！' ,pattern:"^[A-Za-z]+$"}],
-                        })(
-                            <Input disabled={this.props.disable}/>
-                        )}
-                    </FormItem>
+                        <FormItem {...formItemLayout} label={"委托单位(英文)"}>
+                            {getFieldDecorator('consignUnitE', {
+                                rules: [{ required: true, message: '请正确输入委托单位(英文)！' ,pattern:"^[A-Za-z]+$"}],
+                            })(
+                                <Input disabled={this.props.disable}/>
+                            )}
+                        </FormItem>
 
 
-                    <FormItem {...formItemLayout} label={"开发单位"}>
-                        {getFieldDecorator('developUnit', {
-                            rules: [{ required: true, message: '请正确输入开发单位！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
-                        })(
-                            <Input disabled={this.props.disable}/>
-                        )}
-                    </FormItem>
+                        <FormItem {...formItemLayout} label={"开发单位"}>
+                            {getFieldDecorator('developUnit', {
+                                rules: [{ required: true, message: '请正确输入开发单位！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
+                            })(
+                                <Input disabled={this.props.disable}/>
+                            )}
+                        </FormItem>
 
 
-                    <FormItem {...formItemLayout} label={"单位性质"}>
-                        {getFieldDecorator('unitProp', {
-                            rules: [{ required: true, message: '请选择！'}],
-                        })(
-                            <Select  style={{ width: 200 }} placeholder="请选择"
-                                     onChange={handleChange} disabled={this.props.disable}>
-                                <Option value={"内资企业"}>内资企业</Option>
-                                <Option value={"外(合)资企业"}>外(合)资企业</Option>
-                                <Option value={"港澳台(合)资企业"}>港澳台(合)资企业</Option>
-                                <Option value={"科研院校"}>科研院校</Option>
-                                <Option value={"政府事业团体"}>政府事业团体</Option>
-                                <Option value={"其它"}>其它</Option>
-                            </Select>
-                        )}
-                    </FormItem>
+                        <FormItem {...formItemLayout} label={"单位性质"}>
+                            {getFieldDecorator('unitProp', {
+                                rules: [{ required: true, message: '请选择！'}],
+                            })(
+                                <Select  style={{ width: 200 }} placeholder="请选择"
+                                         onChange={handleChange} disabled={this.props.disable}>
+                                    <Option value={"内资企业"}>内资企业</Option>
+                                    <Option value={"外(合)资企业"}>外(合)资企业</Option>
+                                    <Option value={"港澳台(合)资企业"}>港澳台(合)资企业</Option>
+                                    <Option value={"科研院校"}>科研院校</Option>
+                                    <Option value={"政府事业团体"}>政府事业团体</Option>
+                                    <Option value={"其它"}>其它</Option>
+                                </Select>
+                            )}
+                        </FormItem>
 
 
-                    <FormItem {...formItemLayout} label={"软件用户对象描述"}>
-                        {getFieldDecorator('objDesc', {
-                            rules: [{ required: true, message: '请输入！' }],
-                        })(
-                            <TextArea disabled={this.props.disable}
-                                      rows={"4"}  placeholder="请输入软件用户对象描述"/>
-                        )}
-                    </FormItem>
+                        <FormItem {...formItemLayout} label={"软件用户对象描述"}>
+                            {getFieldDecorator('objDesc', {
+                                rules: [{ required: true, message: '请输入！' }],
+                            })(
+                                <TextArea disabled={this.props.disable}
+                                          rows={"4"}  placeholder="请输入软件用户对象描述"/>
+                            )}
+                        </FormItem>
 
 
-                    <FormItem {...formItemLayout} label={"主要功能及用途简介"}>
-                        {getFieldDecorator('funcDesc', {
-                            rules: [{ required: true, message: '请输入主要功能及用途简介（限200字）！' ,max:200 }],
-                        })(
-                            <TextArea disabled={this.props.disable}
-                                      rows={"4"} placeholder="限200字"/>
-                        )}
-                    </FormItem>
+                        <FormItem {...formItemLayout} label={"主要功能及用途简介"}>
+                            {getFieldDecorator('funcDesc', {
+                                rules: [{ required: true, message: '请输入主要功能及用途简介（限200字）！' ,max:200 }],
+                            })(
+                                <TextArea disabled={this.props.disable}
+                                          rows={"4"} placeholder="限200字"/>
+                            )}
+                        </FormItem>
 
 
-                    <FormItem {...formItemLayout} label={"测试依据"}>
-                        {getFieldDecorator('testBasis', {
-                            rules: [{ required: true, message: '请选择至少一项测试依据！' }],
-                        })(
-                            <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
-                                    placeholder="请选择" onChange={handleChange}>
-                                <Option value={"GB/T 25000.51-2016"}>GB/T 25000.51-2016</Option>
-                                <Option value={"GB/T 25000.10-2016"}>GB/T 25000.10-2016</Option>
-                                <Option value={"GB/T 28452-2012"}>GB/T 28452-2012</Option>
-                                <Option value={"GB/T 30961-2014"}>GB/T 30961-2014</Option>
-                                <Option value={"NST-03-WI12-2011"}>NST-03-WI12-2011</Option>
-                                <Option value={"ST-03-WI13-2011"}>ST-03-WI13-2011</Option>
-                                <Option value={"NST-03-WI22-2014"}>NST-03-WI22-2014</Option>
-                                <Option value={"其他"}>其他</Option>
-                            </Select>
-                        )}
-                    </FormItem>
+                        <FormItem {...formItemLayout} label={"测试依据"}>
+                            {getFieldDecorator('testBasis', {
+                                rules: [{ required: true, message: '请选择至少一项测试依据！' }],
+                            })(
+                                <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
+                                        placeholder="请选择" onChange={handleChange}>
+                                    <Option value={"GB/T 25000.51-2016"}>GB/T 25000.51-2016</Option>
+                                    <Option value={"GB/T 25000.10-2016"}>GB/T 25000.10-2016</Option>
+                                    <Option value={"GB/T 28452-2012"}>GB/T 28452-2012</Option>
+                                    <Option value={"GB/T 30961-2014"}>GB/T 30961-2014</Option>
+                                    <Option value={"NST-03-WI12-2011"}>NST-03-WI12-2011</Option>
+                                    <Option value={"ST-03-WI13-2011"}>ST-03-WI13-2011</Option>
+                                    <Option value={"NST-03-WI22-2014"}>NST-03-WI22-2014</Option>
+                                    <Option value={"其他"}>其他</Option>
+                                </Select>
+                            )}
+                        </FormItem>
 
 
-                    <FormItem {...formItemLayout} label={"需要测试的技术指标"}>
-                        {getFieldDecorator('testIndicator', {
-                            rules: [{ required: true, message: '请选择至少一项技术指标！' }],
-                        })(
-                            <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
-                                    placeholder="请选择" onChange={handleChange}>
-                                <Option value={"功能性"}>功能性</Option>
-                                <Option value={"可靠性"}>可靠性</Option>
-                                <Option value={"易用性"}>易用性</Option>
-                                <Option value={"效率"}>效率</Option>
-                                <Option value={"可维护性"}>可维护性</Option>
-                                <Option value={"可移植性"}>可移植性</Option>
-                                <Option value={"代码覆盖度"}>代码覆盖度</Option>
-                                <Option value={"缺陷检测率"}>缺陷检测率</Option>
-                                <Option value={"代码风格符合度"}>代码风格符合度</Option>
-                                <Option value={"代码不符合项检测率"}>代码不符合项检测率</Option>
-                                <Option value={"产品说明要求"}>产品说明要求</Option>
-                                <Option value={"用户文档集要求"}>用户文档集要求</Option>
-                                <Option value={"其他"}>其他</Option>
-                            </Select>
-                        )}
-                    </FormItem>
+                        <FormItem {...formItemLayout} label={"需要测试的技术指标"}>
+                            {getFieldDecorator('testIndicator', {
+                                rules: [{ required: true, message: '请选择至少一项技术指标！' }],
+                            })(
+                                <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
+                                        placeholder="请选择" onChange={handleChange}>
+                                    <Option value={"功能性"}>功能性</Option>
+                                    <Option value={"可靠性"}>可靠性</Option>
+                                    <Option value={"易用性"}>易用性</Option>
+                                    <Option value={"效率"}>效率</Option>
+                                    <Option value={"可维护性"}>可维护性</Option>
+                                    <Option value={"可移植性"}>可移植性</Option>
+                                    <Option value={"代码覆盖度"}>代码覆盖度</Option>
+                                    <Option value={"缺陷检测率"}>缺陷检测率</Option>
+                                    <Option value={"代码风格符合度"}>代码风格符合度</Option>
+                                    <Option value={"代码不符合项检测率"}>代码不符合项检测率</Option>
+                                    <Option value={"产品说明要求"}>产品说明要求</Option>
+                                    <Option value={"用户文档集要求"}>用户文档集要求</Option>
+                                    <Option value={"其他"}>其他</Option>
+                                </Select>
+                            )}
+                        </FormItem>
                     </Panel>
 
                     <Panel header="This is page2" key="page2" style={customPanelStyle2}>
-                    {/*以上第一部分*//*如何设定至少一种*/}
-                    <FormItem{...formItemLayout} label={"软件规模(至少一种)"}>
-                        <FormItem offset={1}>
-                            {getFieldDecorator('softwareScale.funcNum',
-                                {rules: [{ required: false, message: '请输入功能数！',pattern:"^[0-9]+$"}],
-                                })(
-                                <Input disabled={this.props.disable}
-                                       addonBefore={"功能数"}  placeholder={"到最后一级菜单"}/>
-                            )}
-                        </FormItem>
+                        {/*以上第一部分*//*如何设定至少一种*/}
+                        <FormItem{...formItemLayout} label={"软件规模(至少一种)"}>
+                            <FormItem offset={1}>
+                                {getFieldDecorator('softwareScale.funcNum',
+                                    {rules: [{ required: false, message: '请输入功能数！',pattern:"^[0-9]+$"}],
+                                    })(
+                                    <Input disabled={this.props.disable}
+                                           addonBefore={"功能数"}  placeholder={"到最后一级菜单"}/>
+                                )}
+                            </FormItem>
 
-                        <FormItem offset={1}>
-                            {getFieldDecorator('softwareScale.funcPoint',
-                                {rules: [{ required: false, message: '请输入功能点数!',pattern:"^[0-9]+$"}],
-                                })(
-                                <Input disabled={this.props.disable}
-                                       addonBefore={"功能点数"} />
-                            )}
-                        </FormItem>
+                            <FormItem offset={1}>
+                                {getFieldDecorator('softwareScale.funcPoint',
+                                    {rules: [{ required: false, message: '请输入功能点数!',pattern:"^[0-9]+$"}],
+                                    })(
+                                    <Input disabled={this.props.disable}
+                                           addonBefore={"功能点数"} />
+                                )}
+                            </FormItem>
 
-                        <FormItem offset={1}>
-                            {getFieldDecorator('softwareScale.codeLine',
-                                {rules: [{ required: false, message: '请输入代码行数！',pattern:"^[0-9]+$"}],
-                                })(
-                                <Input disabled={this.props.disable}
-                                       addonBefore={"代码行数"}  placeholder={"不包括注释行和空行"}/>
-                            )}
+                            <FormItem offset={1}>
+                                {getFieldDecorator('softwareScale.codeLine',
+                                    {rules: [{ required: false, message: '请输入代码行数！',pattern:"^[0-9]+$"}],
+                                    })(
+                                    <Input disabled={this.props.disable}
+                                           addonBefore={"代码行数"}  placeholder={"不包括注释行和空行"}/>
+                                )}
+                            </FormItem>
                         </FormItem>
-                    </FormItem>
 
 
 
 
                         <FormItem {...formItemLayout} label="软件类型">
-                        {getFieldDecorator('softwareType', {
-                            rules: [{ required: true, message: '请选择！' }],
-                        })(
+                            {getFieldDecorator('softwareType', {
+                                rules: [{ required: true, message: '请选择！' }],
+                            })(
                                 <Select style={{ width: 200 }}
                                         onChange={handleChange} disabled={this.props.disable}>
                                     <OptGroup label={"系统软件"}>
@@ -294,7 +294,7 @@ class ConsignContentComponent extends Component {
                                         <Option value={"其他-其他"}>其他</Option>
                                     </OptGroup>
                                 </Select>
-                        )}
+                            )}
                         </FormItem>
                     </Panel>
 
@@ -435,7 +435,7 @@ class ConsignContentComponent extends Component {
                                             )}
                                         </FormItem>
                                     </Panel>
-                                 </Collapse>
+                                </Collapse>
                             </Panel>
 
                             <Panel header={"网络环境"} key={"netEnvironment"} style={customPanelStyle2}>
@@ -449,7 +449,7 @@ class ConsignContentComponent extends Component {
                             </Panel>
 
 
-                         </Collapse>
+                        </Collapse>
 
 
                     </Panel>
@@ -498,7 +498,10 @@ class ConsignContentComponent extends Component {
                             <br/>3、操作文档（例如：操作员手册、安装手册、诊断手册、支持手册等）（验收项目必须）
                         </FormItem>
 
-                        <FormItem {...formItemLayout} label={"提交的样品（硬拷贝资料、硬件）五年保存期满"}>
+                        <FormItem {...formItemLayout}   colon={false} label={"提交的样品（硬拷贝资料、"}>
+
+                        </FormItem>
+                        <FormItem {...formItemLayout} label={"硬件）五年保存期满"}>
                             {getFieldDecorator('sampleQuantity.toHandle', {
                                 rules: [{ required: true, message: '请选择！'}],
                             })(
@@ -511,11 +514,11 @@ class ConsignContentComponent extends Component {
                         </FormItem>
                     </Panel>
 
-                   <Panel header="希望测试完成的时间" key="wishComTime" style={customPanelStyle}>
+                    <Panel header="希望测试完成的时间" key="wishComTime" style={customPanelStyle}>
                         <FormItem {...formItemLayout} label={"希望测试完成的时间"}>
                             {getFieldDecorator('sampleQuantity.comTimeWish', {
                                 rules: [{ required: true, message: '请正确输入时间！',
-                                    }],
+                                }],
                             })(
                                 <DatePicker showTime format="YYYY-MM-DD"/>
                             )}
@@ -523,7 +526,7 @@ class ConsignContentComponent extends Component {
                     </Panel>
 
                     <Panel header="this is page 3" key="page3" style={customPanelStyle2}>
-                    {/*以下第三部分*/}
+                        {/*以下第三部分*/}
                         <FormItem
                             label="委托单位信息"
                             {...formItemLayout}
@@ -715,150 +718,150 @@ class ConsignContentComponent extends Component {
                       <span className="ant-form-text">
                       </span>
                         </FormItem>
-                    <FormItem
-                        {...formItemLayout}
-                        label="需求文档："
-                    >
-                        {getFieldDecorator('Requirementsdocument', {
-                            rules: [{ required: true, message: '请选择至少一项需求文档！'}],
-                        })(
-                            <Checkbox.Group disabled={this.props.disable}>
-                                <Checkbox value={"项目计划任务书"}/>项目计划任务书
-                                <Checkbox value={"需求分析报告"}/>需求分析报告
-                                <Checkbox value={"合同"}/>合同
-                            </Checkbox.Group>
-                        )}
+                        <FormItem
+                            {...formItemLayout}
+                            label="需求文档："
+                        >
+                            {getFieldDecorator('Requirementsdocument', {
+                                rules: [{ required: true, message: '请选择至少一项需求文档！'}],
+                            })(
+                                <Checkbox.Group disabled={this.props.disable}>
+                                    <Checkbox value={"项目计划任务书"}/>项目计划任务书
+                                    <Checkbox value={"需求分析报告"}/>需求分析报告
+                                    <Checkbox value={"合同"}/>合同
+                                </Checkbox.Group>
+                            )}
                         </FormItem>
 
-                    <FormItem
-                        {...formItemLayout}
-                        label="用户文档："
-                    >
-                        {getFieldDecorator('Userdocument', {
-                            rules: [{ required: true, message: '请选择至少一项用户文档！'}],
-                        })(
-                            <Checkbox.Group disabled={this.props.disable}>
-                                <Checkbox value={"用户手册"}/>用户手册
-                                <Checkbox value={"用户指南"}/>用户指南
-                            </Checkbox.Group>
-                        )}
+                        <FormItem
+                            {...formItemLayout}
+                            label="用户文档："
+                        >
+                            {getFieldDecorator('Userdocument', {
+                                rules: [{ required: true, message: '请选择至少一项用户文档！'}],
+                            })(
+                                <Checkbox.Group disabled={this.props.disable}>
+                                    <Checkbox value={"用户手册"}/>用户手册
+                                    <Checkbox value={"用户指南"}/>用户指南
+                                </Checkbox.Group>
+                            )}
                         </FormItem>
 
-                    <FormItem
+                        <FormItem
 
-                        {...formItemLayout}
-                        label="操作文档："
-                    >
-                        {getFieldDecorator('Oprationdocument', {
-                            rules: [{ required: true, message: '请选择至少一项操作文档！'}],
-                        })(
-                            <Checkbox.Group disabled={this.props.disable}>
-                                <Checkbox value={"操作员手册"}/>操作员手册
-                                <Checkbox value={"安装手册"}/>安装手册
-                                <Checkbox value={"诊断手册"}/>诊断手册
-                                <Checkbox value={"支持手册"}/>支持手册
-                            </Checkbox.Group>
-                        )}
+                            {...formItemLayout}
+                            label="操作文档："
+                        >
+                            {getFieldDecorator('Oprationdocument', {
+                                rules: [{ required: true, message: '请选择至少一项操作文档！'}],
+                            })(
+                                <Checkbox.Group disabled={this.props.disable}>
+                                    <Checkbox value={"操作员手册"}/>操作员手册
+                                    <Checkbox value={"安装手册"}/>安装手册
+                                    <Checkbox value={"诊断手册"}/>诊断手册
+                                    <Checkbox value={"支持手册"}/>支持手册
+                                </Checkbox.Group>
+                            )}
                         </FormItem>
 
-                    <FormItem
-                        label="其他"
-                        {...formItemLayout}
-                    >
-                        {getFieldDecorator('else', {
-                            rules: [{ required: true, message: '请输入！'}],
-                        })(
-                            <Input placeholder="请输入" />
-                        )}
+                        <FormItem
+                            label="其他"
+                            {...formItemLayout}
+                        >
+                            {getFieldDecorator('else', {
+                                rules: [{ required: true, message: '请输入！'}],
+                            })(
+                                <Input placeholder="请输入" />
+                            )}
                         </FormItem>
 
-                    <FormItem
-                        {...formItemLayout}
-                        label="确认意见："
-                    >
-                        {getFieldDecorator('Confirmation', {
-                            rules: [{ required: true, message: '请选择确认意见！'}],
-                        })(
-                            <RadioGroup name={"确认意见:"} disabled={this.props.disable}>
-                                <Radio value="a">测试所需材料不全，未达到受理条件。</Radio>
-                                <Radio value="b">属依据国家标准或自编非标规范进行的常规检测，有资质、能力和资源满足委托方要求。</Radio>
-                                <Radio value="c">无国家标准和规范依据，或实验室缺乏检测设备和工具，无法完成检测。</Radio>
-                                <Radio value="d">超出实验室能力和资质范围，无法完成检测。</Radio>
-                            </RadioGroup>
-                        )}
+                        <FormItem
+                            {...formItemLayout}
+                            label="确认意见："
+                        >
+                            {getFieldDecorator('Confirmation', {
+                                rules: [{ required: true, message: '请选择确认意见！'}],
+                            })(
+                                <RadioGroup name={"确认意见:"} disabled={this.props.disable}>
+                                    <Radio value="a">测试所需材料不全，未达到受理条件。</Radio>
+                                    <Radio value="b">属依据国家标准或自编非标规范进行的常规检测，有资质、能力和资源满足委托方要求。</Radio>
+                                    <Radio value="c">无国家标准和规范依据，或实验室缺乏检测设备和工具，无法完成检测。</Radio>
+                                    <Radio value="d">超出实验室能力和资质范围，无法完成检测。</Radio>
+                                </RadioGroup>
+                            )}
                         </FormItem>
 
-                    <FormItem
-                        {...formItemLayout}
-                        label="受理意见："
-                    >
-                        {getFieldDecorator('Admissibility', {
-                            rules: [{ required: true, message: '请选择受理意见！'}],
-                        })(
-                            <RadioGroup name={"受理意见:"} disabled={this.props.disable}>
-                                <Radio value="a">受理-进入项目立项和合同评审流程。</Radio>
-                                <Radio value="b">不受理</Radio>
-                                <Radio value="c">进一步联系</Radio>
-                            </RadioGroup>
+                        <FormItem
+                            {...formItemLayout}
+                            label="受理意见："
+                        >
+                            {getFieldDecorator('Admissibility', {
+                                rules: [{ required: true, message: '请选择受理意见！'}],
+                            })(
+                                <RadioGroup name={"受理意见:"} disabled={this.props.disable}>
+                                    <Radio value="a">受理-进入项目立项和合同评审流程。</Radio>
+                                    <Radio value="b">不受理</Radio>
+                                    <Radio value="c">进一步联系</Radio>
+                                </RadioGroup>
 
-                        )}
+                            )}
                         </FormItem>
-                    <FormItem label="测试项目编号"
-                              {...formItemLayout}
-                    >
-                        {getFieldDecorator('testingnumber', {
-                            rules: [{ required: true, message: '请输入测试项目编号！'}],
-                        })(
-                            <Input placeholder="请输入测试项目编号" />
-                        )}
+                        <FormItem label="测试项目编号"
+                                  {...formItemLayout}
+                        >
+                            {getFieldDecorator('testingnumber', {
+                                rules: [{ required: true, message: '请输入测试项目编号！'}],
+                            })(
+                                <Input placeholder="请输入测试项目编号" />
+                            )}
                         </FormItem>
-                    <FormItem
-                        label="备注"
-                        {...formItemLayout}
-                    >
-                        {getFieldDecorator('Remarks', {
-                            rules: [{ required: true, message: '请输入备注！'}],
-                        })(
+                        <FormItem
+                            label="备注"
+                            {...formItemLayout}
+                        >
+                            {getFieldDecorator('Remarks', {
+                                rules: [{ required: true, message: '请输入备注！'}],
+                            })(
+                                <TextArea rows={4} />
+                            )}
+                        </FormItem>
+
+                        <FormItem
+                            label="受理人（签字）"
+                            {...formItemLayout}
+                        >
+
+                            <span className="ant-form-text"></span>
+                        </FormItem>
+
+                        <FormItem
+                            label="日期"
+                            {...formItemLayout}
+                        >
+                            <span className="ant-form-text"></span>
+                        </FormItem>
+
+                        <FormItem
+                            label="委托人填写"
+                            {...formItemLayout}
+                        >
                             <TextArea rows={4} />
-                        )}
                         </FormItem>
 
-                    <FormItem
-                        label="受理人（签字）"
-                        {...formItemLayout}
-                    >
+                        <FormItem
+                            label="委托人（签字）"
+                            {...formItemLayout}
+                        >
+                            <span className="ant-form-text"></span>
 
-                        <span className="ant-form-text"></span>
-                    </FormItem>
+                        </FormItem>
 
-                    <FormItem
-                        label="日期"
-                        {...formItemLayout}
-                    >
-                        <span className="ant-form-text"></span>
-                    </FormItem>
-
-                    <FormItem
-                        label="委托人填写"
-                        {...formItemLayout}
-                    >
-                        <TextArea rows={4} />
-                    </FormItem>
-
-                    <FormItem
-                        label="委托人（签字）"
-                        {...formItemLayout}
-                    >
-                        <span className="ant-form-text"></span>
-
-                    </FormItem>
-
-                    <FormItem
-                        label="日期"
-                        {...formItemLayout}
-                    >
-                        <span className="ant-form-text"></span>
-                    </FormItem>
+                        <FormItem
+                            label="日期"
+                            {...formItemLayout}
+                        >
+                            <span className="ant-form-text"></span>
+                        </FormItem>
                     </Panel>
                 </Collapse>
 
@@ -868,8 +871,8 @@ class ConsignContentComponent extends Component {
                         <Button onClick={this.onClick(index)}
                                 key={button.content}>
                             {button.content}
-                            </Button>)}
-                            </FormItem>
+                        </Button>)}
+                </FormItem>
             </Form>
 
 
