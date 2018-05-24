@@ -2,6 +2,7 @@ package com.sinosteel.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.FrameworkApplication;
+import com.sinosteel.activiti.ProcessInstanceUpdater;
 import com.sinosteel.domain.User;
 import com.sinosteel.framework.core.web.Request;
 import org.junit.After;
@@ -24,7 +25,7 @@ import static org.junit.Assert.assertNotNull;
 public class ProcessInstanceServiceTest {
 
     @Autowired
-    private ProcessInstanceService processInstanceService;
+    private ProcessInstanceUpdater processInstanceUpdater;
     @Autowired
     private ConsignService consignService;
     @Autowired
@@ -55,7 +56,7 @@ public class ProcessInstanceServiceTest {
     public void queryProcessState() {
         JSONObject state = new JSONObject();
         try {
-            state = processInstanceService.queryProcessState(consignJson.getString("processInstanceID"));
+            state = processInstanceUpdater.queryProcessState(consignJson.getString("processInstanceID"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,7 +70,7 @@ public class ProcessInstanceServiceTest {
     public void updateProcessState() {
         try {
             System.out.println("======查询委托状态========");
-            System.out.println(processInstanceService.queryProcessState(consignJson.getString("processInstanceID")));
+            System.out.println(processInstanceUpdater.queryProcessState(consignJson.getString("processInstanceID")));
             System.out.println("======customer1提交委托=======");
             //构造提交委托请求
             Request request = new Request();
@@ -80,7 +81,7 @@ public class ProcessInstanceServiceTest {
             request.setParams(submitJson);
 
             Thread.sleep(2000);
-            System.out.println(processInstanceService.updateProcessState(consignJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceUpdater.updateProcessState(consignJson.getString("processInstanceID"), request));
 
             System.out.println("======市场部人员否决委托======");
             //构造提交委托请求
@@ -92,7 +93,7 @@ public class ProcessInstanceServiceTest {
             request.setParams(rejectJson);
 
             Thread.sleep(2000);
-            System.out.println(processInstanceService.updateProcessState(consignJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceUpdater.updateProcessState(consignJson.getString("processInstanceID"), request));
 
             System.out.println("======customer1再次委托======");
             //构造提交委托请求
@@ -100,7 +101,7 @@ public class ProcessInstanceServiceTest {
             request.setUser(customer1);
             request.setParams(submitJson);
             Thread.sleep(2000);
-            System.out.println(processInstanceService.updateProcessState(consignJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceUpdater.updateProcessState(consignJson.getString("processInstanceID"), request));
 
             System.out.println("======市场部人员通过委托======");
             //构造提交委托请求
@@ -112,7 +113,7 @@ public class ProcessInstanceServiceTest {
             request.setParams(passJson);
 
             Thread.sleep(2000);
-            System.out.println(processInstanceService.updateProcessState(consignJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceUpdater.updateProcessState(consignJson.getString("processInstanceID"), request));
         } catch (Exception e) {
             e.printStackTrace();
         }

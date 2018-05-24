@@ -7,7 +7,9 @@ import com.sinosteel.framework.core.web.Request;
 import jdk.nashorn.internal.ir.RuntimeNode;
 import org.activiti.spring.integration.Activiti;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProcessInstanceUpdater {
     @Autowired
     private BaseActiviti baseActiviti;
