@@ -33,7 +33,7 @@ export default class ProjectComponent extends Component{
         render: (status) =>{
             return (
                 <span>
-                    <Badge status={this.state2Status(status)} text={status} />
+                    <Badge status={this.state2SColor(status)} text={status} />
                 </span>
             )
         }
@@ -90,7 +90,7 @@ export default class ProjectComponent extends Component{
         this.props.getProjectList();
     }
 
-    state2Status(state) {
+    state2SColor(state) {
         /*TODO*//*是否需要能让超级管理员可以添加新的状态？*/
         return "success";
     }
@@ -178,7 +178,7 @@ export default class ProjectComponent extends Component{
     render(){
         return (
             <div>
-                <h3 style={{ marginBottom: 16 }}>项目管理</h3>
+                <h3 style={{ marginBottom: 16 }}>流程管理</h3>
                 <InputGroup>
                     <Col span={3}>
                         <Select defaultValue="搜索项目ID" onSelect={this.onSelect}>
