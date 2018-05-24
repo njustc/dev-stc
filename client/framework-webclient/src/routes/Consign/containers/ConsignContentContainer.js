@@ -1,61 +1,50 @@
 import React, {Component} from 'react';
 import ConsignContentComponent from "ROUTES/Consign/components/ConsignContentComponent";
 import {connect} from "react-redux";
+import {getConsign} from "../../../services/ConsignService";
+
 
 const mapStateToProps = (state) => {
+    const authData = JSON.parse(sessionStorage.getItem('authData'));
+    const competence = authData.functions.find(obj => obj.object === "Consign").function;
     return {
-        values: {},/*fetch consign with pro id*/
         consignData: {},/*fetch data with pro id*/
-        disable: true,
-        // buttons: buttons,
+        disable: competence==="confirmer"
     }
 };
 
-const buttons = (dispatch) => [{
-    content: "通过",
-    onClick: (consignData) => {
-        // 后端接口调整ing
-        // let url = "http://127.0.0.1:8000/services/consignActiviti/" + consignData.processInstanceID;
-        // let data = {
-        //     operation: "pass"
-        // };
-        // httpPut(url, data, (result) => {
-        //     if (result.status == 'SUCCESS') {
-        //         // consignData.status = "Finished";
-        //         dispatch(setConsignState(-1, "Finished"));
-        //     }
-        //     else {
-        //         console.log("点击“通过”错误");
-        //     }
-        // });
+const buttons = (dispatch,competence) => [{
+    content: '保存',
+    onClick: (consignation) =>{
+        console.log(consignation);
     },
+    enable: competence==="creator"
 },{
-    content: "否决",
-    onClick: (consignData) => {
-        // 后端接口调整ing
-        // let url = "http://127.0.0.1:8000/services/consignActiviti/" + consignData.processInstanceID;
-        // let data = {
-        //     operation: "reject"
-        // };
-        // httpPut(url, data, (result) => {
-        //     if (result.status == 'SUCCESS') {
-        //         // consignData.status = "TobeSubmit";
-        //         dispatch(setConsignState(-1, "TobeSubmit"));
-        //     }
-        //     else {
-        //         console.log("点击“否决”错误");
-        //     }
-        // });
-    },
-},
-    {
+    content: '提交',
+    onClick: (consignation) =>{
 
     },
-];
+    enable: competence==="creator"
+},{
+    content: '通过',
+    onClick: (consignation) =>{
+
+    },
+    enable: competence==="confirmer"
+},{
+    content: '否决',
+    onClick: (consignation) =>{
+
+    },
+    enable: competence==="confirmer"
+}];
 
 const mapDispatchToProps = (dispatch) => {
+    const authData = JSON.parse(sessionStorage.getItem('authData'));
+    const competence = authData.functions.find(obj => obj.object === "Consign").function;
     return {
-        buttons: buttons(dispatch),
+        buttons: buttons(dispatch,competence).filter(button => button.enable===true),
+        values: getConsign(dispatch,'ppp').consignation,/*TODO:用什么方式显示consign内容*/
     }
 };
 

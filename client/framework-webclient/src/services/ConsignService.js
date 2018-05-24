@@ -1,28 +1,32 @@
 import {baseServiceAddress, STATUS} from "SERVICES/common";
 import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
-import {addConsign, removeConsign, setConsignContent, setConsignList, setConsignState} from "../modules/ducks/Consign";
+import {addConsign, removeConsign, setConsignContent, setConsignState} from "../modules/ducks/Consign";
+import {valueData} from "./mockData";
 
 const consignBase = baseServiceAddress + '/consign';
 const consignActivitiBase = baseServiceAddress + '/consignActiviti';
 
-export const getConsignList = (dispatch, callback) => {
-    httpGet(consignBase, (result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            dispatch(setConsignList(data));
-        }
-        callback && callback(status);
-    });
-};
+// export const getConsignList = (dispatch, callback) => {
+//     httpGet(consignBase, (result) => {
+//         const {status, data} = result;
+//         if (status === STATUS.SUCCESS) {
+//             dispatch(setConsignList(data));
+//         }
+//         callback && callback(status);
+//     });
+// };
 
-export const getConsignContent = (dispatch, index, id, callback) => {
-    httpGet(consignBase + '/' + id, (result) => {
+export const getConsign = (dispatch, id, callback) => {
+/*    httpGet(consignBase + '/' + id, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setConsignContent(index, data.consignation));
-        }
+        }*/
+        const status = STATUS.SUCCESS;
+//        dispatch(setConsignContent(valueData));
         callback && callback(status);
-    });
+    //});
+    return valueData;
 };
 
 export const deleteConsign = (dispatch, id, callback) => {
@@ -47,7 +51,7 @@ export const newConsign = (dispatch, callback) => {
     });
 };
 
-export const putConsign = (dispatch, data, callback) => {
+export const updateConsign = (dispatch, data, callback) => {
     httpPut(consignBase, data, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {

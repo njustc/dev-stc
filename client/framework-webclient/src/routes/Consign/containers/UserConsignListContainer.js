@@ -11,6 +11,7 @@ import {connect} from "react-redux";
 import {UserConsignContentView} from "ROUTES/Consign";
 import {deleteConsign, getConsignContent, getConsignList, newConsign} from "SERVICES/ConsignService";
 import {addTabAction} from "MODULES/ducks/Layout";
+import {setConsignFilter} from "../../../modules/ducks/Consign";
 
 const mapStateToProps = (state) => {
     return {
@@ -29,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
         newConsign: () => newConsign(dispatch),
         getConsignList: () => getConsignList(dispatch),
         deleteConsign: (id) => deleteConsign(dispatch, id),
-        setListFilter: (listFilter) => dispatch(setFilter(listFilter)),
+        setListFilter: (listFilter) => dispatch(setConsignFilter(listFilter)),
     }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ConsignListComponent);
