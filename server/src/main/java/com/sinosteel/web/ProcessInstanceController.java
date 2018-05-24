@@ -1,6 +1,6 @@
 package com.sinosteel.web;
 
-import com.sinosteel.activiti.ProcessInstanceUpdater;
+import com.sinosteel.service.ProcessInstanceService;
 import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProcessInstanceController extends BaseController
 {
     @Autowired
-    private ProcessInstanceUpdater processInstanceUpdater;
+    private ProcessInstanceService processInstanceService;
 
     @RequestMapping(value = "/processInstance/{processInstanceID}", method = RequestMethod.GET)
     public Response queryConsignState(@PathVariable String processInstanceID,  Request request)
@@ -26,7 +26,7 @@ public class ProcessInstanceController extends BaseController
         Response response = new Response();
 
         try {
-            response.data = processInstanceUpdater.queryProcessState(processInstanceID);
+            response.data = processInstanceService.queryProcessState(processInstanceID);
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -46,7 +46,7 @@ public class ProcessInstanceController extends BaseController
 
         try
         {
-            response.data = processInstanceUpdater.updateProcessState(processInstanceID, request);
+            response.data = processInstanceService.updateProcessState(processInstanceID, request);
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
