@@ -1,4 +1,4 @@
-package com.sinosteel.activiti;
+package com.sinosteel.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.FrameworkApplication;
