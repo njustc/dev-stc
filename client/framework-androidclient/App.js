@@ -7,11 +7,16 @@
 import React, { Component } from 'react';
 
 import {
-    StackNavigator
+    Navigator
+}from 'react-native-deprecated-custom-components';
+
+import {
+    StackNavigator,
+    TabNavigator,
+    DrawerNavigator
 } from 'react-navigation';
 
 import LoginScreen from './Login'
-import CustomerScreen from './customer/Customer'
 import ConsignationScreen from './customer/Consignation'
 import ContractScreen from './customer/Contract'
 import ReportScreen from './customer/Report'
@@ -20,10 +25,30 @@ import SideMenuScreen from './SideMenu'
 const App=StackNavigator({
     Login:{screen: LoginScreen},
     SideMenu: {screen: SideMenuScreen},
-    Customer:{screen: CustomerScreen},
     Consignation:{screen: ConsignationScreen},
     Contract:{screen: ContractScreen},
     Report:{screen: ReportScreen},
 });
 
 export default App;
+// export default class App extends React.Component{
+//     renderScene=(route,navigator)=>{
+//         return(
+//             <route.scene
+//             navigator={navigator}/>
+//         );
+//     }
+//
+//     initialRoute={
+//         scene: LoginScreen,
+//     }
+//
+//     render(){
+//         return(
+//             <Navigator
+//             initialRoute={this.initialRoute}
+//             renderScene={this.renderScene}
+//             />
+//         );
+//     }
+// }
