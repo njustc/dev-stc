@@ -90,7 +90,7 @@ public class ConsignControllerTest{
         mockmvc.perform(MockMvcRequestBuilders.put("/services/consign")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                .param("uesrname",user_name)
+                .param("username",user_name)
                 .param("clientDigest",Client_Digest))
                 .andDo(MockMvcResultHandlers.print());
 
