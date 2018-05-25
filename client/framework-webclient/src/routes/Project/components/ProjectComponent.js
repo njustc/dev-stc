@@ -33,7 +33,7 @@ export default class ProjectComponent extends Component{
         render: (status) =>{
             return (
                 <span>
-                    <Badge status={this.state2Status(status)} text={status} />
+                    <Badge status={this.state2SColor(status)} text={status} />
                 </span>
             )
         }
@@ -73,7 +73,7 @@ export default class ProjectComponent extends Component{
                     <a href="javascript:void(0);" onClick={this.viewDetails(record)}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);">更多</a>
-            </div>
+                </div>
             )
         }
     }
@@ -90,7 +90,7 @@ export default class ProjectComponent extends Component{
         this.props.getProjectList();
     }
 
-    state2Status(state) {
+    state2SColor(state) {
         /*TODO*//*是否需要能让超级管理员可以添加新的状态？*/
         return "success";
     }
@@ -178,14 +178,14 @@ export default class ProjectComponent extends Component{
     render(){
         return (
             <div>
-                <h3 style={{ marginBottom: 16 }}>项目管理</h3>
+                <h3 style={{ marginBottom: 16 }}>流程管理</h3>
                 <InputGroup>
                     <Col span={3}>
-                    <Select defaultValue="搜索项目ID" onSelect={this.onSelect}>
-                        <Option value="id">搜索项目ID</Option>
-                        <Option value="customerId">搜索委托人ID</Option>
-                        <Option value="name">搜索项目名称 </Option>
-                    </Select>
+                        <Select defaultValue="搜索项目ID" onSelect={this.onSelect}>
+                            <Option value="id">搜索项目ID</Option>
+                            <Option value="customerId">搜索委托人ID</Option>
+                            <Option value="name">搜索项目名称 </Option>
+                        </Select>
                     </Col>
                     <Col span={8}>
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
@@ -199,7 +199,7 @@ export default class ProjectComponent extends Component{
                 <Table dataSource={this.props.dataSource} columns={this.columns} rowKey='id'
                        expandedRowRender={this.expandedRowRender}
                        expandRowByClick={true}
-                       //onExpandedRowsChange
+                    //onExpandedRowsChange
                 />
             </div>
         );
