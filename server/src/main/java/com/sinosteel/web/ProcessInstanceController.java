@@ -1,9 +1,10 @@
 package com.sinosteel.web;
 
+import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
-import com.sinosteel.service.ProcessInstanceService;
+//import com.sinosteel.service.ProcessInstanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

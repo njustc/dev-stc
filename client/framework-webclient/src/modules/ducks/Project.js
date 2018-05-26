@@ -5,8 +5,8 @@ const SET_FILTER = 'Project/SET_FILTER';
 
 const initialState = {
     listFilter: () => true,//绑定按钮传入的过滤条件
-    listMap: { },  //项目集合，用key-value表示，key为id，value为projectData
-                //projectData为对象，仍然包含id字段
+    listMap: { },  //项目集合，用key-value表示，key为id，value为ProjectData
+    //ProjectData为对象，仍然包含id字段
 };
 
 export const ProjectReducer = (state = initialState, action) => {
@@ -15,8 +15,8 @@ export const ProjectReducer = (state = initialState, action) => {
             const list = action.payload;
             return {
                 ...state,
-                listMap: list.reduce((listMap, projectData) => {
-                    listMap[projectData.id] = projectData;
+                listMap: list.reduce((listMap, ProjectData) => {
+                    listMap[ProjectData.id] = ProjectData;
                     return listMap;
                 }, {}),
             };
@@ -31,12 +31,12 @@ export const ProjectReducer = (state = initialState, action) => {
             };
         case SET_CONTENT: {
             const {id} = action.payload;
-            const projectData = action.payload;
+            const ProjectData = action.payload;
             return {
                 ...state,
                 listMap: {
                     ...state.listMap,
-                    [id]: projectData,
+                    [id]: ProjectData,
                 },
             };
         }
@@ -65,14 +65,14 @@ export const removeProject = (id) => {
     }
 };
 
-export const setProjectContent = (projectData) => {
+export const setProjectContent = (ProjectData) => {
     return {
         type: SET_CONTENT,
-        payload: projectData,
+        payload: ProjectData,
     }
 };
 
-export const setFilter = (listFilter) => {
+export const setProjectFilter = (listFilter) => {
     return {
         type: SET_FILTER,
         payload: listFilter,

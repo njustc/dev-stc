@@ -1,65 +1,50 @@
 const SET_LIST = 'Consign/SET_LIST';
-const REMOVE = 'Consign/REMOVE';
-const ADD = 'Consign/ADD';
-const SET_INDEX = 'Consign/SET_INDEX';
-const SET_STATE = 'Consign/SET_STATE';
+const RM_CONTENT = 'Consign/RM_CONTENT';
 const SET_CONTENT = 'Consign/SET_CONTENT';
 const SET_FILTER = 'Consign/SET_FILTER';
 
 const initialState = {
-    listFilter: stateCode => stateCode != 'Finished',//() => true,
-    list: [],
-    index: -1,
+    listFilter: () => true,//绑定按钮传入的过滤条件
+    listMap: { },  //项目集合，用key-value表示，key为id，value为ConsignData
+    //ConsignData为对象，仍然包含id字段
 };
 
 export const ConsignReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_LIST:
+            const list = action.payload;
             return {
                 ...state,
-                list: action.payload,
+                listMap: list.reduce((listMap, ConsignData) => {
+                    listMap[ConsignData.id] = ConsignData;
+                    return listMap;
+                }, {}),
             };
-        case REMOVE:
+        case RM_CONTENT:
+            const id = action.payload;
             return {
                 ...state,
-                list: state.list.filter(
-                    consignData => consignData.id !== action.payload),
+                listMap: {
+                    ...state.listMap,
+                    [id]: undefined,
+                },
             };
-        case ADD:
+        case SET_CONTENT: {
+            const {id} = action.payload;
+            const ConsignData = action.payload;
             return {
                 ...state,
-                list: state.list.concat([action.payload]),
-            };
-        case SET_STATE: {
-            let {index, state} = action.payload;
-            index === -1 ? index = state.index :null;
-            return {
-                ...state,
-                list: state.list.map(
-                    (consignData, idx) => idx === index ?
-                        { ...consignData, state: state} : consignData
-                ),
+                listMap: {
+                    ...state.listMap,
+                    [id]: ConsignData,
+                },
             };
         }
-        case SET_INDEX:
-            return {
-                ...state,
-                index: action.payload,
-            };
-        case SET_CONTENT:
-            let {index, values} = action.payload;
-            index === -1 ? index = state.index :null;
-            return {
-                ...state,
-                list: state.list.map(
-                    (consignData, idx) => idx === index ?
-                        { ...consignData, consignation: values } : consignData
-                ),
-            };
         case SET_FILTER:
+            const listFilter = action.payload;
             return {
                 ...state,
-                listFilter: action.payload
+                listFilter: listFilter,
             };
         default:
             return state;
@@ -75,48 +60,21 @@ export const setConsignList = (list) => {
 
 export const removeConsign = (id) => {
     return {
-        type: REMOVE,
+        type: RM_CONTENT,
         payload: id,
     }
 };
 
-export const addConsign = (consignData) => {
-    return {
-        type: ADD,
-        payload: consignData,
-    }
-};
-
-export const setConsignState = (index, state) => {
-    return {
-        type: SET_STATE,
-        payload: {
-            index: index,
-            state: state,
-        },
-    }
-};
-
-export const setConsignContent = (index, values) => {
+export const setConsignContent = (ConsignData) => {
     return {
         type: SET_CONTENT,
-        payload: {
-            index: index,
-            values: values,
-        }
+        payload: ConsignData,
     }
 };
 
-export const setConsignIndex = (index) => {
-    return {
-        type: SET_INDEX,
-        payload: index,
-    }
-};
-
-export const setFilter = (listFilter) => {
+export const setConsignFilter = (listFilter) => {
     return {
         type: SET_FILTER,
-        payload: listFilter
+        payload: listFilter,
     }
 };

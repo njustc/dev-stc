@@ -83,4 +83,13 @@ class LoginView extends React.Component {
     }
 }
 
+const getType = (username) => {
+    switch (username) {
+        case 'customer1': return 'customer';
+        case 'customer2': return 'customer';
+        case 'marketing': return 'marketing';
+        default: return 'undefined';
+    }
+};
+
 export default Form.create()(LoginView);

@@ -12,12 +12,48 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_b6fc1625ef568b9ff24c8c0e784bedf85e1849b1.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/weiyuyang/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
         <dex dex="/Users/weiyuyang/Mobilestc/RNstc2.0/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_e7eeb8ffd8e5f3b79965c04b71f99e48f94f4c31.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/jars/libs/infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_72f896e1495e3c727cfce2d675ae3a9e1a68a98e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_52fa3a188928fe7d2d5ca5035976ceaf6f68577e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_3bea7f05ede6d72aa07415f1a22689ba75dc091a.jar" />
     </item>
     <item
         is-multidex="false"
@@ -39,6 +75,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e31331bdf6b5952badadbfc171f04b95c55d3b16">
+        <dex dex="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.55.4_125e844ff4e9d508160bd19b176995138e6310eb.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/weiyuyang/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar"
         jumboMode="false"
         optimize="true"
@@ -54,6 +99,24 @@
         revision="23.0.1"
         sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
         <dex dex="/Users/weiyuyang/Mobilestc/RNstc2.0/android/app/build/intermediates/pre-dexed/debug/okhttp-3.6.0_e712f86605f4f322f75a2608e06c779d6b917d30.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1_32fb8bb2edf561cff1ff85710682653eb43773fb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.1.0_72fcfc330861e20662e1c829a9914c7ff9acfad9.jar" />
     </item>
     <item
         is-multidex="false"
@@ -111,6 +174,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_497fbc1d120955f03e532e69ae6a8b5e3e59f445.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/weiyuyang/Mobilestc/RNstc2.0/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -138,6 +210,24 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.0.1_d9b33399ce0633c30cab3e0fcbe1ef3f7e7aa9ed.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.0.1_d9943316fe28192c4cb6e547348e805597cd632b.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/weiyuyang/Mobilestc/RNstc2.0/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -153,6 +243,15 @@
         revision="23.0.1"
         sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
         <dex dex="/Users/weiyuyang/Mobilestc/RNstc2.0/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_cece9079bbf49582902568273ce7d5c6fe027cde.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_3a23daf20b018f6b8ca6f7eda6984291359ee731.jar" />
     </item>
     <item
         is-multidex="false"
@@ -174,12 +273,30 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.3.0_65e7e3f83423dd7bc7d36d5056b6fd1795fe9e7c.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/weiyuyang/Mobilestc/RNstc2.0/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
         <dex dex="/Users/weiyuyang/Mobilestc/RNstc2.0/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_7e1e8e85cb898869b69f6bf7f7cfb31633695760.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_98138c9f9ad28a76ae0b4d8e9e41832d842a30c6.jar" />
     </item>
     <item
         is-multidex="false"

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import CoreLayout from 'layouts/CoreLayout'
-import {setState, setActiveKey, addTabAction, removeTabAction} from "MODULES/ducks/Layout";
+import {setActiveKey, addTabAction, removeTabAction} from "MODULES/ducks/Layout";
 import React from "react";
 
 function containsPane(key, panes)
@@ -16,7 +16,6 @@ function containsPane(key, panes)
 const mapStateToProps = (state) => {
     return {
         sysUser: state.System.sysUser,
-        modules: state.System.modules,
         panes: state.Layout.panes,
         activeKey: state.Layout.activeKey
     }
