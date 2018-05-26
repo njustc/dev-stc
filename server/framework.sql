@@ -7,6 +7,10 @@
 -- 服务器版本： 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
+drop database stc;
+create database stc;
+use stc;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -640,54 +644,46 @@ CREATE TABLE `tbl_sys_file` (
 -- 表的结构 `tbl_sys_function`
 --
 
+-- CREATE TABLE `tbl_sys_function` (
+--   `id` varchar(255) COLLATE utf8_bin NOT NULL,
+--   `altered_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `altered_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `code` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `created_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `created_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `function_code` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `menu_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `function_path` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `function_string` varchar(255) COLLATE utf8_bin DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 CREATE TABLE `tbl_sys_function` (
   `id` varchar(255) COLLATE utf8_bin NOT NULL,
-  `altered_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `altered_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `code` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `created_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `created_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `function_code` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `menu_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `function_path` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `function_string` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `altered_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `altered_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `FUNCTION_TYPE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `FUNCTION_OBJECT` varchar(255) COLLATE utf8_bin DEFAULT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- 转存表中的数据 `tbl_sys_function`
 --
 
-INSERT INTO `tbl_sys_function` (`id`, `altered_time`, `altered_user_id`, `code`, `created_time`, `created_user_id`, `function_code`, `menu_id`, `name`, `function_path`, `function_string`) VALUES
--- ('0-0-F0', NULL, NULL, '0-0-F0', NULL, NULL, '0-0-F0', '0-0', '新增用户', '/addUser', 'addUser'),
--- ('0-0-F1', NULL, NULL, '0-0-F1', NULL, NULL, '0-0-F1', '0-0', '修改用户', '/editUser', 'editUser'),
--- ('0-0-F2', NULL, NULL, '0-0-F2', NULL, NULL, '0-0-F2', '0-0', '删除用户', '/deleteUser', 'deleteUser'),
--- ('0-0-F3', NULL, NULL, '0-0-F3', NULL, NULL, '0-0-F3', '0-0', '查询用户', '/queryUsers', 'queryUsers'),
--- ('0-1-F0', NULL, NULL, '0-1-F0', NULL, NULL, '0-1-F0', '0-1', '新增组织', '/addOrganization', 'addOrganization'),
--- ('0-1-F1', NULL, NULL, '0-1-F1', NULL, NULL, '0-1-F1', '0-1', '修改组织', '/editOrganization', 'editOrganization'),
--- ('0-1-F2', NULL, NULL, '0-1-F2', NULL, NULL, '0-1-F2', '0-1', '删除组织', '/deleteOrganization', 'deleteOrganization'),
--- ('0-1-F3', NULL, NULL, '0-1-F3', NULL, NULL, '0-1-F3', '0-1', '新增角色', '/addRole', 'addRole'),
--- ('0-1-F4', NULL, NULL, '0-1-F4', NULL, NULL, '0-1-F4', '0-1', '修改角色', '/editRole', 'editRole'),
--- ('0-1-F5', NULL, NULL, '0-1-F5', NULL, NULL, '0-1-F4', '0-1', '删除角色', '/deleteRole', 'deleteRole'),
--- ('0-2-F0', NULL, NULL, '0-2-F0', NULL, NULL, '0-2-F0', '0-2', '设置权限', NULL, 'placeholder0'),
--- ('1-0-F0', NULL, NULL, '1-0-F0', NULL, NULL, '1-0-F0', '1-0', '新增项目', '/addProject', 'addProject'),
--- ('1-0-F1', NULL, NULL, '1-0-F1', NULL, NULL, '1-0-F1', '1-0', '修改项目', '/editProject', 'editProject'),
--- ('1-0-F2', NULL, NULL, '1-0-F2', NULL, NULL, '1-0-F2', '1-0', '删除项目', '/deleteProject', 'deleteProject'),
--- ('1-0-F3', NULL, NULL, '1-0-F3', NULL, NULL, '1-0-F3', '1-0', '新增课题', '/addTopic', 'addTopic'),
--- ('1-0-F4', NULL, NULL, '1-0-F4', NULL, NULL, '1-0-F4', '1-0', '修改课题', '/editTopic', 'editTopic'),
--- ('1-0-F5', NULL, NULL, '1-0-F5', NULL, NULL, '1-0-F5', '1-0', '删除课题', '/deleteTopic', 'deleteTopic'),
--- ('1-0-F6', NULL, NULL, '1-0-F6', NULL, NULL, '1-0-F6', '1-0', '新增关键节点', '/addMilestone', 'addMilestone'),
--- ('1-0-F7', NULL, NULL, '1-0-F7', NULL, NULL, '1-0-F7', '1-0', '修改关键节点', '/editMilestone', 'editMilestone'),
--- ('1-0-F8', NULL, NULL, '1-0-F8', NULL, NULL, '1-0-F8', '1-0', '删除关键节点', '/deleteMilestone', 'deleteMilestone'),
--- ('1-0-F9', NULL, NULL, '1-0-F9', NULL, NULL, '1-0-F9', '1-0', '查询项目', '/queryProjects', 'queryProjects'),
--- ('4-0-F0', NULL, NULL, '4-0-F0', NULL, NULL, '4-0-F0', '4-0', '新增国家标准', '/addStandard', 'addStandard'),
--- ('4-0-F1', NULL, NULL, '4-0-F1', NULL, NULL, '4-0-F1', '4-0', '删除国家标准', '/deleteStandard', 'deleteStandard'),
--- ('4-0-F2', NULL, NULL, '4-0-F2', NULL, NULL, '4-0-F2', '4-0', '修改国家标准', '/editStandard', 'editStandard'),
--- ('4-0-F3', NULL, NULL, '4-0-F3', NULL, NULL, '4-0-F3', '4-0', '查询国家标准', '/queryStandards', 'queryStandards');
-('0-0-F0',NULL,NULL,'0-0-F0',NULL,NULL,'0-0-F0','0-0','新增委托','/addConsign','addConsign'),
-('0-0-F1',NULL,NULL,'0-0-F1',NULL,NULL,'0-0-F1','0-0','修改委托','/editConsign','editConsign'),
-('0-0-F2',NULL,NULL,'0-0-F2',NULL,NULL,'0-0-F2','0-0','删除委托','/deleteConsign','deleteConsign'),
-('0-0-F3',NULL,NULL,'0-0-F3',NULL,NULL,'0-0-F3','0-0','查询委托','/queryConsign','queryConsign');
+INSERT INTO `tbl_sys_function` (`id`,`code`,`name`,`created_time`,`created_user_id`,`altered_time`,`altered_user_id`,`FUNCTION_TYPE`,`FUNCTION_OBJECT`) VALUES
+('0-0',NULL,'ConsignAdd',NULL,NULL,NULL,NULL,'ADD','Consign'),
+('0-1',NULL,'ConsignDelete',NULL,NULL,NULL,NULL,'DELETE','Consign'),
+('0-2',NULL,'ConsignEdit',NULL,NULL,NULL,NULL,'EDIT','Consign'),
+('0-3',NULL,'ConsignView',NULL,NULL,NULL,NULL,'VIEW','Consign'),
+('1-0',NULL,'ContractAdd',NULL,NULL,NULL,NULL,'ADD','Contract'),
+('1-1',NULL,'ContractDelete',NULL,NULL,NULL,NULL,'DELETE','Contract'),
+('1-2',NULL,'ContractEdit',NULL,NULL,NULL,NULL,'EDIT','Contract'),
+('1-3',NULL,'ContractView',NULL,NULL,NULL,NULL,'VIEW','Contract');
+
 
 -- --------------------------------------------------------
 
@@ -858,40 +854,10 @@ CREATE TABLE `tbl_sys_role_function` (
 --
 
 INSERT INTO `tbl_sys_role_function` (`function_id`, `role_id`) VALUES
--- ('1-0-F0', '0'),
--- ('1-0-F1', '0'),
--- ('1-0-F2', '0'),
--- ('1-0-F3', '0'),
--- ('1-0-F4', '0'),
--- ('1-0-F5', '0'),
--- ('1-0-F6', '0'),
--- ('1-0-F7', '0'),
--- ('1-0-F8', '0'),
--- ('1-0-F9', '0'),
--- ('4-0-F0', '0'),
--- ('4-0-F1', '0'),
--- ('4-0-F2', '0'),
--- ('0-0-F0', '0'),
--- ('0-0-F1', '0'),
--- ('0-0-F2', '0'),
--- ('0-0-F3', '0'),
--- ('0-1-F0', '0'),
--- ('0-1-F1', '0'),
--- ('0-1-F2', '0'),
--- ('0-1-F3', '0'),
--- ('0-1-F4', '0'),
--- ('0-1-F5', '0'),
--- ('0-2-F0', '0'),
--- ('1-0-F9', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
--- ('4-0-F0', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
--- ('4-0-F1', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
--- ('4-0-F2', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
--- ('4-0-F3', '1fb22ed9-2261-4cac-9884-d5dc2a895648');
-('0-0-F3','1'),
-('0-0-F0','2'),
-('0-0-F1','2'),
-('0-0-F2','2'),
-('0-0-F3','2');
+('0-0','2'),
+('0-1','2'),
+('0-2','2'),
+('0-3','2');
 
 -- --------------------------------------------------------
 
@@ -1175,9 +1141,9 @@ ALTER TABLE `tbl_sys_file`
 --
 -- Indexes for table `tbl_sys_function`
 --
-ALTER TABLE `tbl_sys_function`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_itqdcta4ccyss9hycawsgucrm` (`menu_id`);
+-- ALTER TABLE `tbl_sys_function`
+--   ADD PRIMARY KEY (`id`),
+--   ADD KEY `FK_itqdcta4ccyss9hycawsgucrm` (`menu_id`);
 
 --
 -- Indexes for table `tbl_sys_menu`
@@ -1219,6 +1185,7 @@ ALTER TABLE `tbl_sys_role`
 ALTER TABLE `tbl_sys_role_function`
   ADD KEY `FK_tgfnmsm51p1heid7qd9wcghxj` (`function_id`),
   ADD KEY `FK_2r3mx5cv4q1eu6i7oex4a7y65` (`role_id`);
+--
 
 --
 -- Indexes for table `tbl_sys_role_user`

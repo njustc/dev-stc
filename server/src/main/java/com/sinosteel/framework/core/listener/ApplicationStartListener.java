@@ -14,14 +14,14 @@ public class ApplicationStartListener implements ApplicationListener<ContextRefr
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) 
 	{
-		try 
-		{
-			functionService.syncStructure();
-		} 
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			assert(false);
-		}
+//		try
+//		{
+//			functionService.syncStructure();
+//		}
+//		catch (Exception e)
+//		{
+//			e.printStackTrace();
+//			assert(false);
+//		}
 	}
 }

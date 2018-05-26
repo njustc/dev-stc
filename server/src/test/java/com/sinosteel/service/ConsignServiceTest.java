@@ -15,6 +15,8 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import javax.transaction.Transactional;
+
 import static org.junit.Assert.*;
 
 /**
@@ -39,6 +41,7 @@ public class ConsignServiceTest {
         customer2 = userRepository.findByUsername(("customer2"));
     }
     @Test
+    @Transactional
     public void queryConsigns() {
         System.out.println("开始测试工作人员获取委托");
         try {
