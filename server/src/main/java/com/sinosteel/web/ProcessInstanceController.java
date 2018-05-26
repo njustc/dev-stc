@@ -1,6 +1,6 @@
 package com.sinosteel.web;
 
-import com.sinosteel.service.ProcessInstanceService;
+import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;

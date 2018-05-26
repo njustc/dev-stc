@@ -30,10 +30,10 @@ public class ContractActiviti extends BaseActiviti{
     }
 
     //客户提交合同，参数为流程ID和客户ID
-    public void submitContract(String processInstanceId,String clientId) throws Exception
+    /* public void submitContract(String processInstanceId,String clientId) throws Exception
     {
         this.submit(processInstanceId,clientId);
-    }
+    }*/
 
     //工作人员评审合同，参数为工作人员ID（市场部主任ID或质量部主任ID，二选一），布尔型的passOrNot
     //若通过，流程继续
@@ -66,43 +66,4 @@ public class ContractActiviti extends BaseActiviti{
         return this.getUserTasks(qualityEmployerId);
     }
 
-    //查询合同状态，参数为合同流程ID
-    /*public String getContractProcessState(String processInstanceId)
-    {
-        ProcessInstance pi=runtimeService.createProcessInstanceQuery()
-                .processInstanceId(processInstanceId).singleResult();
-        if(pi!=null)
-        {
-            if(!(taskService.createTaskQuery().taskName("提交合同")
-                    .processInstanceId(processInstanceId).list()).isEmpty())
-            {
-                return "TobeSubmit";
-                //return "审核的ID为："+processInstanceId+" "+"目前的状态为：委托待提交"+"\n";
-            }
-            else if(!(taskService.createTaskQuery().taskName("评审合同")
-                    .processInstanceId(processInstanceId).list()).isEmpty())
-            {
-                return "TobeCheck";
-                //return "审核的ID为："+processInstanceId+" "+"目前的状态为：委托待审核"+"\n";
-            }
-            else if(!(taskService.createTaskQuery().taskName("确认合同")
-                    .processInstanceId(processInstanceId).list()).isEmpty())
-            {
-                return "TobeConfirm";
-                //return "审核的ID为："+processInstanceId+" "+"目前的状态为：委托待新建"+"\n";
-            }
-            else
-            {
-                return "TobeCreate";
-            }
-        }
-        else
-        {
-            List<HistoricActivityInstance> historicActivityInstanceList=historyService.createHistoricActivityInstanceQuery()
-                    .processInstanceId(processInstanceId).list();
-            if(historicActivityInstanceList.isEmpty()==false)
-                return "End";
-        }
-        return "Not Exist";
-    }*/
 }

@@ -1,10 +1,13 @@
-package com.sinosteel.service;
+package com.sinosteel.activiti;
 
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.FrameworkApplication;
 //import com.sinosteel.activiti.MyActiviti;
+import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.User;
 import com.sinosteel.framework.core.web.Request;
+import com.sinosteel.service.ConsignService;
+import com.sinosteel.service.UserService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -67,7 +70,7 @@ public class ProcessInstanceServiceTest {
 
     //TODO: It turns out that we can't update processState too quickly, so now I use Thread.sleep() to make it slow.
     @Test
-    public void updateProcessState() {
+    public void  updateProcessState() {
         try {
             System.out.println("======查询委托状态========");
             System.out.println(processInstanceService.queryProcessState(consignJson.getString("processInstanceID")));
@@ -82,7 +85,6 @@ public class ProcessInstanceServiceTest {
 
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(consignJson.getString("processInstanceID"), request));
-
             System.out.println("======市场部人员否决委托======");
             //构造提交委托请求
             request = new Request();
