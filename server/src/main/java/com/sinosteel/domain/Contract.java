@@ -16,6 +16,21 @@ public class Contract extends BaseEntity {
     @Column(name = "CONTRACTBODY")
     private String contractBody;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID",foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT))
+    @JSONField(serialize = false)
+    private User user;
+    public User getUser()
+    {
+        return user;
+    }
+
+    public void setUser(User user)
+    {
+        this.user = user;
+    }
+
+
     //合同所在的工程
     @OneToOne(mappedBy = "contract")
     @JSONField(serialize = false)

@@ -13,9 +13,17 @@ import {
 
 
 import SideMenuScreen from "./SideMenu";
+// import  PropTypes from 'prop-types';
+import {baseAddress,STATUS} from "./common";
+// import {httpPost} from "./FetchUtil";
 
 
+const loginBase = baseAddress + '/login';
 let {width, height} = Dimensions.get('window');
+
+const httpPost = (url, params, callback) => {
+    return sysFetch('POST', url, params, callback);
+};
 
 export default class LoginView extends React.Component{
     constructor(props) {
@@ -25,6 +33,11 @@ export default class LoginView extends React.Component{
             password: ''
         }
     }
+
+    // static propTypes = {
+    //     setLogin: PropTypes.func.isRequired,
+    // };
+
 
 
     renderClick(){
@@ -45,18 +58,64 @@ export default class LoginView extends React.Component{
         }
 
         //TODO: compare userName and password with 后台
+        const data = {
+            username: this.state.username,
+            password: this.state.password,
+        };
 
-        if(userName=="wyy"&&password==123456){
-            toastMsg = '登录成功';
-            ToastAndroid.showWithGravity(toastMsg, 1000, ToastAndroid.CENTER);
-            this.props.navigation.replace('SideMenu');
-            //TODO: remember to change
+        //
+        let result = {
+            status: STATUS.FAILURE,
+        };
 
-        }
-        else{
-            toastMsg = '用户名或密码错误';
-            ToastAndroid.showWithGravity(toastMsg, 1000, ToastAndroid.CENTER);
-        }
+        let fullUrl = loginBase;
+        let formData = new FormData();
+        formData.append('params', data ? JSON.stringify(data): '');
+
+        let request = { method: "POST" };
+
+        return fetch(fullUrl, request)
+            .then((res) =>
+            {
+                if(res.ok)
+                {
+                    return res.json();
+                }
+                else
+                {
+                    return Promise.reject();
+                }
+            })
+            .then(json => {
+                if(json.status == "SUCCESS"){
+                    result.status = STATUS.SUCCESS;
+                    result.data = json.data;
+                    result.message = json.message;
+                    toastMsg = '登录成功';
+                    ToastAndroid.showWithGravity(toastMsg, 1000, ToastAndroid.CENTER);
+                    this.props.navigation.replace('SideMenu');
+                }
+                else{
+                    toastMsg = '用户名或密码错误';
+                    ToastAndroid.showWithGravity(toastMsg, 1000, ToastAndroid.CENTER);
+                }
+                callback(result);
+            })
+            // .catch(err => {
+            //     callback(result);
+            // })
+
+        // if(userName=="wyy"&&password==123456){
+        //     toastMsg = '登录成功';
+        //     ToastAndroid.showWithGravity(toastMsg, 1000, ToastAndroid.CENTER);
+        //     this.props.navigation.replace('SideMenu');
+        //     //TODO: remember to change
+        //
+        // }
+        // else{
+        //     toastMsg = '用户名或密码错误';
+        //     ToastAndroid.showWithGravity(toastMsg, 1000, ToastAndroid.CENTER);
+        // }
 
     }//renderClick
 
@@ -162,3 +221,4 @@ const styles = StyleSheet.create({
     }
 
 });
+
