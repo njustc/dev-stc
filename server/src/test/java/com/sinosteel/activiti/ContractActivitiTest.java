@@ -22,6 +22,8 @@ import static org.junit.Assert.*;
 public class ContractActivitiTest {
 
     @Autowired
+    private BaseActiviti baseActiviti;
+    @Autowired
     private ConsignActiviti consignActiviti;
 
     @Autowired
@@ -52,11 +54,11 @@ public class ContractActivitiTest {
         System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID1);
 
         System.out.println("提交合同测试C0");
-        contractActiviti.submitContract(processInstanceID,"C0");
+        contractActiviti.submit(processInstanceID,"C0");
         System.out.println("合同流程ID "+processInstanceID+"  "+contractActiviti.getProcessState(processInstanceID));
 
         System.out.println("提交合同测试C1");
-        contractActiviti.submitContract(processInstanceID1,"C1");
+        contractActiviti.submit(processInstanceID1,"C1");
         System.out.println("合同流程ID "+processInstanceID1+"  "+contractActiviti.getProcessState(processInstanceID1));
     }
 
@@ -72,8 +74,8 @@ public class ContractActivitiTest {
         assertNotNull(processInstanceID1);
         System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID1);
 
-        contractActiviti.submitContract(processInstanceID,"C0");
-        contractActiviti.submitContract(processInstanceID1,"C1");
+        contractActiviti.submit(processInstanceID,"C0");
+        contractActiviti.submit(processInstanceID1,"C1");
         System.out.println(processInstanceID+"  "+contractActiviti.getProcessState(processInstanceID));
         System.out.println(processInstanceID1+"  "+contractActiviti.getProcessState(processInstanceID1));
 
@@ -100,8 +102,8 @@ public class ContractActivitiTest {
 
         System.out.println("测试确认合同");
 
-        contractActiviti.submitContract(processInstanceID,"C0");
-        contractActiviti.submitContract(processInstanceID1,"C1");
+        contractActiviti.submit(processInstanceID,"C0");
+        contractActiviti.submit(processInstanceID1,"C1");
         System.out.println(processInstanceID+"  "+contractActiviti.getProcessState(processInstanceID));
         System.out.println(processInstanceID1+"  "+contractActiviti.getProcessState(processInstanceID1));
 
@@ -130,7 +132,7 @@ public class ContractActivitiTest {
         System.out.println(processInstanceID+"  "+contractActiviti.getProcessState(processInstanceID));
 
         System.out.println("提交合同测试");
-        contractActiviti.submitContract(processInstanceID,"C0");
+        contractActiviti.submit(processInstanceID,"C0");
         System.out.println(processInstanceID+"  "+contractActiviti.getProcessState(processInstanceID));
 
         System.out.println("评审合同不通过测试");
@@ -138,7 +140,7 @@ public class ContractActivitiTest {
         System.out.println(processInstanceID+"  "+contractActiviti.getProcessState(processInstanceID));
 
         System.out.println("提交合同测试");
-        contractActiviti.submitContract(processInstanceID,"C0");
+        contractActiviti.submit(processInstanceID,"C0");
         System.out.println(processInstanceID+"  "+contractActiviti.getProcessState(processInstanceID));
 
         System.out.println("评审合同通过测试");
@@ -150,7 +152,7 @@ public class ContractActivitiTest {
         System.out.println(processInstanceID+"  "+contractActiviti.getProcessState(processInstanceID));
 
         System.out.println("提交合同测试");
-        contractActiviti.submitContract(processInstanceID,"C0");
+        contractActiviti.submit(processInstanceID,"C0");
         System.out.println(processInstanceID+"  "+contractActiviti.getProcessState(processInstanceID));
 
         System.out.println("评审合同通过测试");
@@ -176,8 +178,8 @@ public class ContractActivitiTest {
         assertNotNull(processInstanceID1);
         System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID1);
 
-        contractActiviti.submitContract(processInstanceID,"C0");
-        contractActiviti.submitContract(processInstanceID1,"C1");
+        contractActiviti.submit(processInstanceID,"C0");
+        contractActiviti.submit(processInstanceID1,"C1");
         System.out.println(processInstanceID+"  "+contractActiviti.getProcessState(processInstanceID));
         System.out.println(processInstanceID1+"  "+contractActiviti.getProcessState(processInstanceID1));
         //System.out.println(contractActiviti.getMarketEmployerTasks("E0"));

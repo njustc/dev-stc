@@ -3,6 +3,7 @@ package com.sinosteel.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.Consign;
 import com.sinosteel.domain.User;
 import com.sinosteel.repository.ConsignRepository;
@@ -101,7 +102,7 @@ public class ConsignService extends BaseService<Consign> {
 
     private JSONObject processConsign(Consign consign) throws Exception {
         //增加委托状态
-        String processState = (String)processInstanceService.queryProcessState(consign.getProcessInstanceID()).get("state");
+        String processState = (String) processInstanceService.queryProcessState(consign.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
         jsonObject.put("state", processState);
         return jsonObject;
@@ -114,7 +115,7 @@ public class ConsignService extends BaseService<Consign> {
         for (Consign consign: consigns) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
             jsonObject.remove("consignation");
-            String processState = (String)processInstanceService.queryProcessState(consign.getProcessInstanceID()).get("state");
+            String processState = (String) processInstanceService.queryProcessState(consign.getProcessInstanceID()).get("state");
             jsonObject.put("state", processState);
             resultArray.add(jsonObject);
         }

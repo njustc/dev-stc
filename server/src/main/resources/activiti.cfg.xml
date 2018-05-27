@@ -4,17 +4,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
-
-        <property name="jdbcUrl" value="jdbc:h2:mem:activiti;DB_CLOSE_DELAY=1000" />
-        <property name="jdbcDriver" value="org.h2.Driver" />
-        <property name="jdbcUsername" value="root" />
-        <property name="jdbcPassword" value="" />
-
+        <property name="jdbcUrl" value=" jdbc:mysql://localhost:33006/stc?characterEncoding=utf-8&useUnicode=true"/>
+        <property name="jdbcDriver" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUsername" value="root"/>
+        <property name="jdbcPassword" value="mysql"/>
         <property name="databaseSchemaUpdate" value="true" />
     </bean>
     <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
 
         <property name="processEngineConfiguration" ref="processEngineConfiguration" />
     </bean>
-
 </beans>

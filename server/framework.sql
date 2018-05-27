@@ -7,6 +7,10 @@
 -- 服务器版本： 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
+drop database stc;
+create database stc;
+use stc;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -26,7 +30,7 @@ SET time_zone = "+00:00";
 -- 表的结构 `act_evt_log`
 --
 
-CREATE TABLE `act_evt_log` (
+/*CREATE TABLE `act_evt_log` (
   `LOG_NR_` bigint(20) NOT NULL,
   `TYPE_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `PROC_DEF_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
@@ -39,7 +43,7 @@ CREATE TABLE `act_evt_log` (
   `LOCK_OWNER_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `LOCK_TIME_` timestamp NULL DEFAULT NULL,
   `IS_PROCESSED_` tinyint(4) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -99,14 +103,14 @@ CREATE TABLE `tbl_sys_project` (
 -- 表的结构 `act_ge_bytearray`
 --
 
-CREATE TABLE `act_ge_bytearray` (
+/*CREATE TABLE `act_ge_bytearray` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `REV_` int(11) DEFAULT NULL,
   `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `DEPLOYMENT_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `BYTES_` longblob,
   `GENERATED_` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -114,20 +118,20 @@ CREATE TABLE `act_ge_bytearray` (
 -- 表的结构 `act_ge_property`
 --
 
-CREATE TABLE `act_ge_property` (
+/*CREATE TABLE `act_ge_property` (
   `NAME_` varchar(64) COLLATE utf8_bin NOT NULL,
   `VALUE_` varchar(300) COLLATE utf8_bin DEFAULT NULL,
   `REV_` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 --
 -- 转存表中的数据 `act_ge_property`
 --
 
-INSERT INTO `act_ge_property` (`NAME_`, `VALUE_`, `REV_`) VALUES
+/*INSERT INTO `act_ge_property` (`NAME_`, `VALUE_`, `REV_`) VALUES
 ('next.dbid', '1', 1),
 ('schema.history', 'create(5.17.0.2)', 1),
-('schema.version', '5.17.0.2', 1);
+('schema.version', '5.17.0.2', 1);*/
 
 -- --------------------------------------------------------
 
@@ -135,22 +139,23 @@ INSERT INTO `act_ge_property` (`NAME_`, `VALUE_`, `REV_`) VALUES
 -- 表的结构 `act_hi_actinst`
 --
 
-CREATE TABLE `act_hi_actinst` (
-  `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8_bin NOT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8_bin NOT NULL,
-  `EXECUTION_ID_` varchar(64) COLLATE utf8_bin NOT NULL,
-  `ACT_ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `TASK_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
-  `CALL_PROC_INST_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
-  `ACT_NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `ACT_TYPE_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `ASSIGNEE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `START_TIME_` datetime NOT NULL,
-  `END_TIME_` datetime DEFAULT NULL,
-  `DURATION_` bigint(20) DEFAULT NULL,
-  `TENANT_ID_` varchar(255) COLLATE utf8_bin DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- CREATE TABLE `act_hi_actinst` (
+--  `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
+--  `PROC_DEF_ID_` varchar(64) COLLATE utf8_bin NOT NULL,
+--  `PROC_INST_ID_` varchar(64) COLLATE utf8_bin NOT NULL,
+--  `EXECUTION_ID_` varchar(64) COLLATE utf8_bin NOT NULL,
+--  `ACT_ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+--  `TASK_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
+--  `CALL_PROC_INST_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
+--  `ACT_NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--  `ACT_TYPE_` varchar(255) COLLATE utf8_bin NOT NULL,
+--  `ASSIGNEE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--  `START_TIME_` datetime NOT NULL,
+--  `END_TIME_` datetime DEFAULT NULL,
+--  `DURATION_` bigint(20) DEFAULT NULL,
+--  `DELETE_REASON_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--  `TENANT_ID_` varchar(255) COLLATE utf8_bin DEFAULT ''
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -158,7 +163,7 @@ CREATE TABLE `act_hi_actinst` (
 -- 表的结构 `act_hi_attachment`
 --
 
-CREATE TABLE `act_hi_attachment` (
+/*CREATE TABLE `act_hi_attachment` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `REV_` int(11) DEFAULT NULL,
   `USER_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -170,7 +175,7 @@ CREATE TABLE `act_hi_attachment` (
   `URL_` varchar(4000) COLLATE utf8_bin DEFAULT NULL,
   `CONTENT_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `TIME_` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -178,7 +183,7 @@ CREATE TABLE `act_hi_attachment` (
 -- 表的结构 `act_hi_comment`
 --
 
-CREATE TABLE `act_hi_comment` (
+/*CREATE TABLE `act_hi_comment` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `TYPE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `TIME_` datetime NOT NULL,
@@ -188,7 +193,7 @@ CREATE TABLE `act_hi_comment` (
   `ACTION_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `MESSAGE_` varchar(4000) COLLATE utf8_bin DEFAULT NULL,
   `FULL_MSG_` longblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -196,7 +201,7 @@ CREATE TABLE `act_hi_comment` (
 -- 表的结构 `act_hi_detail`
 --
 
-CREATE TABLE `act_hi_detail` (
+/*CREATE TABLE `act_hi_detail` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `TYPE_` varchar(255) COLLATE utf8_bin NOT NULL,
   `PROC_INST_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
@@ -212,7 +217,7 @@ CREATE TABLE `act_hi_detail` (
   `LONG_` bigint(20) DEFAULT NULL,
   `TEXT_` varchar(4000) COLLATE utf8_bin DEFAULT NULL,
   `TEXT2_` varchar(4000) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -220,14 +225,14 @@ CREATE TABLE `act_hi_detail` (
 -- 表的结构 `act_hi_identitylink`
 --
 
-CREATE TABLE `act_hi_identitylink` (
+/*CREATE TABLE `act_hi_identitylink` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `GROUP_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `TYPE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `USER_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `TASK_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `PROC_INST_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -235,7 +240,7 @@ CREATE TABLE `act_hi_identitylink` (
 -- 表的结构 `act_hi_procinst`
 --
 
-CREATE TABLE `act_hi_procinst` (
+/*CREATE TABLE `act_hi_procinst` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `PROC_INST_ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `BUSINESS_KEY_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -250,7 +255,7 @@ CREATE TABLE `act_hi_procinst` (
   `DELETE_REASON_` varchar(4000) COLLATE utf8_bin DEFAULT NULL,
   `TENANT_ID_` varchar(255) COLLATE utf8_bin DEFAULT '',
   `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -258,7 +263,7 @@ CREATE TABLE `act_hi_procinst` (
 -- 表的结构 `act_hi_taskinst`
 --
 
-CREATE TABLE `act_hi_taskinst` (
+/*CREATE TABLE `act_hi_taskinst` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `PROC_DEF_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `TASK_DEF_KEY_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -279,7 +284,7 @@ CREATE TABLE `act_hi_taskinst` (
   `FORM_KEY_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `CATEGORY_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `TENANT_ID_` varchar(255) COLLATE utf8_bin DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -287,7 +292,7 @@ CREATE TABLE `act_hi_taskinst` (
 -- 表的结构 `act_hi_varinst`
 --
 
-CREATE TABLE `act_hi_varinst` (
+/*CREATE TABLE `act_hi_varinst` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `PROC_INST_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `EXECUTION_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
@@ -302,7 +307,7 @@ CREATE TABLE `act_hi_varinst` (
   `TEXT2_` varchar(4000) COLLATE utf8_bin DEFAULT NULL,
   `CREATE_TIME_` datetime DEFAULT NULL,
   `LAST_UPDATED_TIME_` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -310,12 +315,12 @@ CREATE TABLE `act_hi_varinst` (
 -- 表的结构 `act_id_group`
 --
 
-CREATE TABLE `act_id_group` (
+/*CREATE TABLE `act_id_group` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `REV_` int(11) DEFAULT NULL,
   `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `TYPE_` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -323,7 +328,7 @@ CREATE TABLE `act_id_group` (
 -- 表的结构 `act_id_info`
 --
 
-CREATE TABLE `act_id_info` (
+/*CREATE TABLE `act_id_info` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `REV_` int(11) DEFAULT NULL,
   `USER_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
@@ -332,7 +337,7 @@ CREATE TABLE `act_id_info` (
   `VALUE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `PASSWORD_` longblob,
   `PARENT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -340,10 +345,10 @@ CREATE TABLE `act_id_info` (
 -- 表的结构 `act_id_membership`
 --
 
-CREATE TABLE `act_id_membership` (
+/*CREATE TABLE `act_id_membership` (
   `USER_ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `GROUP_ID_` varchar(64) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -351,7 +356,7 @@ CREATE TABLE `act_id_membership` (
 -- 表的结构 `act_id_user`
 --
 
-CREATE TABLE `act_id_user` (
+/*CREATE TABLE `act_id_user` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `REV_` int(11) DEFAULT NULL,
   `FIRST_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -359,7 +364,7 @@ CREATE TABLE `act_id_user` (
   `EMAIL_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `PWD_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `PICTURE_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -367,13 +372,13 @@ CREATE TABLE `act_id_user` (
 -- 表的结构 `act_re_deployment`
 --
 
-CREATE TABLE `act_re_deployment` (
+/*CREATE TABLE `act_re_deployment` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `CATEGORY_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `TENANT_ID_` varchar(255) COLLATE utf8_bin DEFAULT '',
   `DEPLOY_TIME_` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -381,7 +386,7 @@ CREATE TABLE `act_re_deployment` (
 -- 表的结构 `act_re_model`
 --
 
-CREATE TABLE `act_re_model` (
+/*CREATE TABLE `act_re_model` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `REV_` int(11) DEFAULT NULL,
   `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -395,7 +400,7 @@ CREATE TABLE `act_re_model` (
   `EDITOR_SOURCE_VALUE_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `EDITOR_SOURCE_EXTRA_VALUE_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `TENANT_ID_` varchar(255) COLLATE utf8_bin DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -403,7 +408,7 @@ CREATE TABLE `act_re_model` (
 -- 表的结构 `act_re_procdef`
 --
 
-CREATE TABLE `act_re_procdef` (
+/*CREATE TABLE `act_re_procdef` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `REV_` int(11) DEFAULT NULL,
   `CATEGORY_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -418,7 +423,7 @@ CREATE TABLE `act_re_procdef` (
   `HAS_GRAPHICAL_NOTATION_` tinyint(4) DEFAULT NULL,
   `SUSPENSION_STATE_` int(11) DEFAULT NULL,
   `TENANT_ID_` varchar(255) COLLATE utf8_bin DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -426,7 +431,7 @@ CREATE TABLE `act_re_procdef` (
 -- 表的结构 `act_ru_event_subscr`
 --
 
-CREATE TABLE `act_ru_event_subscr` (
+/*CREATE TABLE `act_ru_event_subscr` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `REV_` int(11) DEFAULT NULL,
   `EVENT_TYPE_` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -438,7 +443,7 @@ CREATE TABLE `act_ru_event_subscr` (
   `CREATED_` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `PROC_DEF_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `TENANT_ID_` varchar(255) COLLATE utf8_bin DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -446,7 +451,7 @@ CREATE TABLE `act_ru_event_subscr` (
 -- 表的结构 `act_ru_execution`
 --
 
-CREATE TABLE `act_ru_execution` (
+/*CREATE TABLE `act_ru_execution` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `REV_` int(11) DEFAULT NULL,
   `PROC_INST_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
@@ -464,7 +469,7 @@ CREATE TABLE `act_ru_execution` (
   `TENANT_ID_` varchar(255) COLLATE utf8_bin DEFAULT '',
   `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `LOCK_TIME_` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -472,7 +477,7 @@ CREATE TABLE `act_ru_execution` (
 -- 表的结构 `act_ru_identitylink`
 --
 
-CREATE TABLE `act_ru_identitylink` (
+/*CREATE TABLE `act_ru_identitylink` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `REV_` int(11) DEFAULT NULL,
   `GROUP_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -481,7 +486,7 @@ CREATE TABLE `act_ru_identitylink` (
   `TASK_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `PROC_INST_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `PROC_DEF_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -489,7 +494,7 @@ CREATE TABLE `act_ru_identitylink` (
 -- 表的结构 `act_ru_job`
 --
 
-CREATE TABLE `act_ru_job` (
+/*CREATE TABLE `act_ru_job` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `REV_` int(11) DEFAULT NULL,
   `TYPE_` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -507,7 +512,7 @@ CREATE TABLE `act_ru_job` (
   `HANDLER_TYPE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `HANDLER_CFG_` varchar(4000) COLLATE utf8_bin DEFAULT NULL,
   `TENANT_ID_` varchar(255) COLLATE utf8_bin DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -515,7 +520,7 @@ CREATE TABLE `act_ru_job` (
 -- 表的结构 `act_ru_task`
 --
 
-CREATE TABLE `act_ru_task` (
+/*CREATE TABLE `act_ru_task` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `REV_` int(11) DEFAULT NULL,
   `EXECUTION_ID_` varchar(64) COLLATE utf8_bin DEFAULT NULL,
@@ -535,7 +540,7 @@ CREATE TABLE `act_ru_task` (
   `SUSPENSION_STATE_` int(11) DEFAULT NULL,
   `TENANT_ID_` varchar(255) COLLATE utf8_bin DEFAULT '',
   `FORM_KEY_` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -543,7 +548,7 @@ CREATE TABLE `act_ru_task` (
 -- 表的结构 `act_ru_variable`
 --
 
-CREATE TABLE `act_ru_variable` (
+/*CREATE TABLE `act_ru_variable` (
   `ID_` varchar(64) COLLATE utf8_bin NOT NULL,
   `REV_` int(11) DEFAULT NULL,
   `TYPE_` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -556,7 +561,7 @@ CREATE TABLE `act_ru_variable` (
   `LONG_` bigint(20) DEFAULT NULL,
   `TEXT_` varchar(4000) COLLATE utf8_bin DEFAULT NULL,
   `TEXT2_` varchar(4000) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;*/
 
 -- --------------------------------------------------------
 
@@ -640,54 +645,46 @@ CREATE TABLE `tbl_sys_file` (
 -- 表的结构 `tbl_sys_function`
 --
 
+-- CREATE TABLE `tbl_sys_function` (
+--   `id` varchar(255) COLLATE utf8_bin NOT NULL,
+--   `altered_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `altered_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `code` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `created_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `created_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `function_code` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `menu_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `function_path` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+--   `function_string` varchar(255) COLLATE utf8_bin DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 CREATE TABLE `tbl_sys_function` (
   `id` varchar(255) COLLATE utf8_bin NOT NULL,
-  `altered_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `altered_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `code` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `created_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `created_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `function_code` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `menu_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `function_path` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `function_string` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `altered_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `altered_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `FUNCTION_TYPE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `FUNCTION_OBJECT` varchar(255) COLLATE utf8_bin DEFAULT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- 转存表中的数据 `tbl_sys_function`
 --
 
-INSERT INTO `tbl_sys_function` (`id`, `altered_time`, `altered_user_id`, `code`, `created_time`, `created_user_id`, `function_code`, `menu_id`, `name`, `function_path`, `function_string`) VALUES
--- ('0-0-F0', NULL, NULL, '0-0-F0', NULL, NULL, '0-0-F0', '0-0', '新增用户', '/addUser', 'addUser'),
--- ('0-0-F1', NULL, NULL, '0-0-F1', NULL, NULL, '0-0-F1', '0-0', '修改用户', '/editUser', 'editUser'),
--- ('0-0-F2', NULL, NULL, '0-0-F2', NULL, NULL, '0-0-F2', '0-0', '删除用户', '/deleteUser', 'deleteUser'),
--- ('0-0-F3', NULL, NULL, '0-0-F3', NULL, NULL, '0-0-F3', '0-0', '查询用户', '/queryUsers', 'queryUsers'),
--- ('0-1-F0', NULL, NULL, '0-1-F0', NULL, NULL, '0-1-F0', '0-1', '新增组织', '/addOrganization', 'addOrganization'),
--- ('0-1-F1', NULL, NULL, '0-1-F1', NULL, NULL, '0-1-F1', '0-1', '修改组织', '/editOrganization', 'editOrganization'),
--- ('0-1-F2', NULL, NULL, '0-1-F2', NULL, NULL, '0-1-F2', '0-1', '删除组织', '/deleteOrganization', 'deleteOrganization'),
--- ('0-1-F3', NULL, NULL, '0-1-F3', NULL, NULL, '0-1-F3', '0-1', '新增角色', '/addRole', 'addRole'),
--- ('0-1-F4', NULL, NULL, '0-1-F4', NULL, NULL, '0-1-F4', '0-1', '修改角色', '/editRole', 'editRole'),
--- ('0-1-F5', NULL, NULL, '0-1-F5', NULL, NULL, '0-1-F4', '0-1', '删除角色', '/deleteRole', 'deleteRole'),
--- ('0-2-F0', NULL, NULL, '0-2-F0', NULL, NULL, '0-2-F0', '0-2', '设置权限', NULL, 'placeholder0'),
--- ('1-0-F0', NULL, NULL, '1-0-F0', NULL, NULL, '1-0-F0', '1-0', '新增项目', '/addProject', 'addProject'),
--- ('1-0-F1', NULL, NULL, '1-0-F1', NULL, NULL, '1-0-F1', '1-0', '修改项目', '/editProject', 'editProject'),
--- ('1-0-F2', NULL, NULL, '1-0-F2', NULL, NULL, '1-0-F2', '1-0', '删除项目', '/deleteProject', 'deleteProject'),
--- ('1-0-F3', NULL, NULL, '1-0-F3', NULL, NULL, '1-0-F3', '1-0', '新增课题', '/addTopic', 'addTopic'),
--- ('1-0-F4', NULL, NULL, '1-0-F4', NULL, NULL, '1-0-F4', '1-0', '修改课题', '/editTopic', 'editTopic'),
--- ('1-0-F5', NULL, NULL, '1-0-F5', NULL, NULL, '1-0-F5', '1-0', '删除课题', '/deleteTopic', 'deleteTopic'),
--- ('1-0-F6', NULL, NULL, '1-0-F6', NULL, NULL, '1-0-F6', '1-0', '新增关键节点', '/addMilestone', 'addMilestone'),
--- ('1-0-F7', NULL, NULL, '1-0-F7', NULL, NULL, '1-0-F7', '1-0', '修改关键节点', '/editMilestone', 'editMilestone'),
--- ('1-0-F8', NULL, NULL, '1-0-F8', NULL, NULL, '1-0-F8', '1-0', '删除关键节点', '/deleteMilestone', 'deleteMilestone'),
--- ('1-0-F9', NULL, NULL, '1-0-F9', NULL, NULL, '1-0-F9', '1-0', '查询项目', '/queryProjects', 'queryProjects'),
--- ('4-0-F0', NULL, NULL, '4-0-F0', NULL, NULL, '4-0-F0', '4-0', '新增国家标准', '/addStandard', 'addStandard'),
--- ('4-0-F1', NULL, NULL, '4-0-F1', NULL, NULL, '4-0-F1', '4-0', '删除国家标准', '/deleteStandard', 'deleteStandard'),
--- ('4-0-F2', NULL, NULL, '4-0-F2', NULL, NULL, '4-0-F2', '4-0', '修改国家标准', '/editStandard', 'editStandard'),
--- ('4-0-F3', NULL, NULL, '4-0-F3', NULL, NULL, '4-0-F3', '4-0', '查询国家标准', '/queryStandards', 'queryStandards');
-('0-0-F0',NULL,NULL,'0-0-F0',NULL,NULL,'0-0-F0','0-0','新增委托','/addConsign','addConsign'),
-('0-0-F1',NULL,NULL,'0-0-F1',NULL,NULL,'0-0-F1','0-0','修改委托','/editConsign','editConsign'),
-('0-0-F2',NULL,NULL,'0-0-F2',NULL,NULL,'0-0-F2','0-0','删除委托','/deleteConsign','deleteConsign'),
-('0-0-F3',NULL,NULL,'0-0-F3',NULL,NULL,'0-0-F3','0-0','查询委托','/queryConsign','queryConsign');
+INSERT INTO `tbl_sys_function` (`id`,`code`,`name`,`created_time`,`created_user_id`,`altered_time`,`altered_user_id`,`FUNCTION_TYPE`,`FUNCTION_OBJECT`) VALUES
+('0-0',NULL,'ConsignAdd',NULL,NULL,NULL,NULL,'ADD','Consign'),
+('0-1',NULL,'ConsignDelete',NULL,NULL,NULL,NULL,'DELETE','Consign'),
+('0-2',NULL,'ConsignEdit',NULL,NULL,NULL,NULL,'EDIT','Consign'),
+('0-3',NULL,'ConsignView',NULL,NULL,NULL,NULL,'VIEW','Consign'),
+('1-0',NULL,'ContractAdd',NULL,NULL,NULL,NULL,'ADD','Contract'),
+('1-1',NULL,'ContractDelete',NULL,NULL,NULL,NULL,'DELETE','Contract'),
+('1-2',NULL,'ContractEdit',NULL,NULL,NULL,NULL,'EDIT','Contract'),
+('1-3',NULL,'ContractView',NULL,NULL,NULL,NULL,'VIEW','Contract');
+
 
 -- --------------------------------------------------------
 
@@ -858,40 +855,10 @@ CREATE TABLE `tbl_sys_role_function` (
 --
 
 INSERT INTO `tbl_sys_role_function` (`function_id`, `role_id`) VALUES
--- ('1-0-F0', '0'),
--- ('1-0-F1', '0'),
--- ('1-0-F2', '0'),
--- ('1-0-F3', '0'),
--- ('1-0-F4', '0'),
--- ('1-0-F5', '0'),
--- ('1-0-F6', '0'),
--- ('1-0-F7', '0'),
--- ('1-0-F8', '0'),
--- ('1-0-F9', '0'),
--- ('4-0-F0', '0'),
--- ('4-0-F1', '0'),
--- ('4-0-F2', '0'),
--- ('0-0-F0', '0'),
--- ('0-0-F1', '0'),
--- ('0-0-F2', '0'),
--- ('0-0-F3', '0'),
--- ('0-1-F0', '0'),
--- ('0-1-F1', '0'),
--- ('0-1-F2', '0'),
--- ('0-1-F3', '0'),
--- ('0-1-F4', '0'),
--- ('0-1-F5', '0'),
--- ('0-2-F0', '0'),
--- ('1-0-F9', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
--- ('4-0-F0', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
--- ('4-0-F1', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
--- ('4-0-F2', '1fb22ed9-2261-4cac-9884-d5dc2a895648'),
--- ('4-0-F3', '1fb22ed9-2261-4cac-9884-d5dc2a895648');
-('0-0-F3','1'),
-('0-0-F0','2'),
-('0-0-F1','2'),
-('0-0-F2','2'),
-('0-0-F3','2');
+('0-0','2'),
+('0-1','2'),
+('0-2','2'),
+('0-3','2');
 
 -- --------------------------------------------------------
 
@@ -965,191 +932,191 @@ INSERT INTO `tbl_sys_user` (`ID`, `CODE`, `USERNAME`, `PASSWORD`, `altered_time`
 --
 -- Indexes for table `act_evt_log`
 --
-ALTER TABLE `act_evt_log`
-  ADD PRIMARY KEY (`LOG_NR_`);
+/*ALTER TABLE `act_evt_log`
+  ADD PRIMARY KEY (`LOG_NR_`);*/
 
 --
 -- Indexes for table `act_ge_bytearray`
 --
-ALTER TABLE `act_ge_bytearray`
+/*ALTER TABLE `act_ge_bytearray`
   ADD PRIMARY KEY (`ID_`),
-  ADD KEY `ACT_FK_BYTEARR_DEPL` (`DEPLOYMENT_ID_`);
+  ADD KEY `ACT_FK_BYTEARR_DEPL` (`DEPLOYMENT_ID_`);*/
 
 --
 -- Indexes for table `act_ge_property`
 --
-ALTER TABLE `act_ge_property`
-  ADD PRIMARY KEY (`NAME_`);
+/*ALTER TABLE `act_ge_property`
+  ADD PRIMARY KEY (`NAME_`);*/
 
 --
 -- Indexes for table `act_hi_actinst`
 --
-ALTER TABLE `act_hi_actinst`
-  ADD PRIMARY KEY (`ID_`),
-  ADD KEY `ACT_IDX_HI_ACT_INST_START` (`START_TIME_`),
-  ADD KEY `ACT_IDX_HI_ACT_INST_END` (`END_TIME_`),
-  ADD KEY `ACT_IDX_HI_ACT_INST_PROCINST` (`PROC_INST_ID_`,`ACT_ID_`),
-  ADD KEY `ACT_IDX_HI_ACT_INST_EXEC` (`EXECUTION_ID_`,`ACT_ID_`);
+-- ALTER TABLE `act_hi_actinst`
+--  ADD PRIMARY KEY (`ID_`),
+--  ADD KEY `ACT_IDX_HI_ACT_INST_START` (`START_TIME_`),
+--  ADD KEY `ACT_IDX_HI_ACT_INST_END` (`END_TIME_`),
+--  ADD KEY `ACT_IDX_HI_ACT_INST_PROCINST` (`PROC_INST_ID_`,`ACT_ID_`),
+--  ADD KEY `ACT_IDX_HI_ACT_INST_EXEC` (`EXECUTION_ID_`,`ACT_ID_`);
 
 --
 -- Indexes for table `act_hi_attachment`
 --
-ALTER TABLE `act_hi_attachment`
-  ADD PRIMARY KEY (`ID_`);
+/*ALTER TABLE `act_hi_attachment`
+  ADD PRIMARY KEY (`ID_`);*/
 
 --
 -- Indexes for table `act_hi_comment`
 --
-ALTER TABLE `act_hi_comment`
-  ADD PRIMARY KEY (`ID_`);
+/*ALTER TABLE `act_hi_comment`
+  ADD PRIMARY KEY (`ID_`);*/
 
 --
 -- Indexes for table `act_hi_detail`
 --
-ALTER TABLE `act_hi_detail`
+/*ALTER TABLE `act_hi_detail`
   ADD PRIMARY KEY (`ID_`),
   ADD KEY `ACT_IDX_HI_DETAIL_PROC_INST` (`PROC_INST_ID_`),
   ADD KEY `ACT_IDX_HI_DETAIL_ACT_INST` (`ACT_INST_ID_`),
   ADD KEY `ACT_IDX_HI_DETAIL_TIME` (`TIME_`),
   ADD KEY `ACT_IDX_HI_DETAIL_NAME` (`NAME_`),
-  ADD KEY `ACT_IDX_HI_DETAIL_TASK_ID` (`TASK_ID_`);
+  ADD KEY `ACT_IDX_HI_DETAIL_TASK_ID` (`TASK_ID_`);*/
 
 --
 -- Indexes for table `act_hi_identitylink`
 --
-ALTER TABLE `act_hi_identitylink`
+/*ALTER TABLE `act_hi_identitylink`
   ADD PRIMARY KEY (`ID_`),
   ADD KEY `ACT_IDX_HI_IDENT_LNK_USER` (`USER_ID_`),
   ADD KEY `ACT_IDX_HI_IDENT_LNK_TASK` (`TASK_ID_`),
-  ADD KEY `ACT_IDX_HI_IDENT_LNK_PROCINST` (`PROC_INST_ID_`);
+  ADD KEY `ACT_IDX_HI_IDENT_LNK_PROCINST` (`PROC_INST_ID_`);*/
 
 --
 -- Indexes for table `act_hi_procinst`
 --
-ALTER TABLE `act_hi_procinst`
+/*ALTER TABLE `act_hi_procinst`
   ADD PRIMARY KEY (`ID_`),
   ADD UNIQUE KEY `PROC_INST_ID_` (`PROC_INST_ID_`),
   ADD KEY `ACT_IDX_HI_PRO_INST_END` (`END_TIME_`),
-  ADD KEY `ACT_IDX_HI_PRO_I_BUSKEY` (`BUSINESS_KEY_`);
+  ADD KEY `ACT_IDX_HI_PRO_I_BUSKEY` (`BUSINESS_KEY_`);*/
 
 --
 -- Indexes for table `act_hi_taskinst`
 --
-ALTER TABLE `act_hi_taskinst`
-  ADD PRIMARY KEY (`ID_`);
+/*ALTER TABLE `act_hi_taskinst`
+  ADD PRIMARY KEY (`ID_`);*/
 
 --
 -- Indexes for table `act_hi_varinst`
 --
-ALTER TABLE `act_hi_varinst`
+/*ALTER TABLE `act_hi_varinst`
   ADD PRIMARY KEY (`ID_`),
   ADD KEY `ACT_IDX_HI_PROCVAR_PROC_INST` (`PROC_INST_ID_`),
   ADD KEY `ACT_IDX_HI_PROCVAR_NAME_TYPE` (`NAME_`,`VAR_TYPE_`),
-  ADD KEY `ACT_IDX_HI_PROCVAR_TASK_ID` (`TASK_ID_`);
+  ADD KEY `ACT_IDX_HI_PROCVAR_TASK_ID` (`TASK_ID_`);*/
 
 --
 -- Indexes for table `act_id_group`
 --
-ALTER TABLE `act_id_group`
-  ADD PRIMARY KEY (`ID_`);
+/*ALTER TABLE `act_id_group`
+  ADD PRIMARY KEY (`ID_`);*/
 
 --
 -- Indexes for table `act_id_info`
 --
-ALTER TABLE `act_id_info`
-  ADD PRIMARY KEY (`ID_`);
+/*ALTER TABLE `act_id_info`
+  ADD PRIMARY KEY (`ID_`);*/
 
 --
 -- Indexes for table `act_id_membership`
 --
-ALTER TABLE `act_id_membership`
+/*ALTER TABLE `act_id_membership`
   ADD PRIMARY KEY (`USER_ID_`,`GROUP_ID_`),
-  ADD KEY `ACT_FK_MEMB_GROUP` (`GROUP_ID_`);
+  ADD KEY `ACT_FK_MEMB_GROUP` (`GROUP_ID_`);*/
 
 --
 -- Indexes for table `act_id_user`
 --
-ALTER TABLE `act_id_user`
-  ADD PRIMARY KEY (`ID_`);
+/*ALTER TABLE `act_id_user`
+  ADD PRIMARY KEY (`ID_`);*/
 
 --
 -- Indexes for table `act_re_deployment`
 --
-ALTER TABLE `act_re_deployment`
-  ADD PRIMARY KEY (`ID_`);
+/*ALTER TABLE `act_re_deployment`
+  ADD PRIMARY KEY (`ID_`);*/
 
 --
 -- Indexes for table `act_re_model`
 --
-ALTER TABLE `act_re_model`
+/*ALTER TABLE `act_re_model`
   ADD PRIMARY KEY (`ID_`),
   ADD KEY `ACT_FK_MODEL_SOURCE` (`EDITOR_SOURCE_VALUE_ID_`),
   ADD KEY `ACT_FK_MODEL_SOURCE_EXTRA` (`EDITOR_SOURCE_EXTRA_VALUE_ID_`),
-  ADD KEY `ACT_FK_MODEL_DEPLOYMENT` (`DEPLOYMENT_ID_`);
+  ADD KEY `ACT_FK_MODEL_DEPLOYMENT` (`DEPLOYMENT_ID_`);*/
 
 --
 -- Indexes for table `act_re_procdef`
 --
-ALTER TABLE `act_re_procdef`
+/*ALTER TABLE `act_re_procdef`
   ADD PRIMARY KEY (`ID_`),
-  ADD UNIQUE KEY `ACT_UNIQ_PROCDEF` (`KEY_`,`VERSION_`,`TENANT_ID_`);
+  ADD UNIQUE KEY `ACT_UNIQ_PROCDEF` (`KEY_`,`VERSION_`,`TENANT_ID_`);*/
 
 --
 -- Indexes for table `act_ru_event_subscr`
 --
-ALTER TABLE `act_ru_event_subscr`
+/*ALTER TABLE `act_ru_event_subscr`
   ADD PRIMARY KEY (`ID_`),
   ADD KEY `ACT_IDX_EVENT_SUBSCR_CONFIG_` (`CONFIGURATION_`),
-  ADD KEY `ACT_FK_EVENT_EXEC` (`EXECUTION_ID_`);
+  ADD KEY `ACT_FK_EVENT_EXEC` (`EXECUTION_ID_`);*/
 
 --
 -- Indexes for table `act_ru_execution`
 --
-ALTER TABLE `act_ru_execution`
+/*ALTER TABLE `act_ru_execution`
   ADD PRIMARY KEY (`ID_`),
   ADD KEY `ACT_IDX_EXEC_BUSKEY` (`BUSINESS_KEY_`),
   ADD KEY `ACT_FK_EXE_PROCINST` (`PROC_INST_ID_`),
   ADD KEY `ACT_FK_EXE_PARENT` (`PARENT_ID_`),
   ADD KEY `ACT_FK_EXE_SUPER` (`SUPER_EXEC_`),
-  ADD KEY `ACT_FK_EXE_PROCDEF` (`PROC_DEF_ID_`);
+  ADD KEY `ACT_FK_EXE_PROCDEF` (`PROC_DEF_ID_`);*/
 
 --
 -- Indexes for table `act_ru_identitylink`
 --
-ALTER TABLE `act_ru_identitylink`
+/*ALTER TABLE `act_ru_identitylink`
   ADD PRIMARY KEY (`ID_`),
   ADD KEY `ACT_IDX_IDENT_LNK_USER` (`USER_ID_`),
   ADD KEY `ACT_IDX_IDENT_LNK_GROUP` (`GROUP_ID_`),
   ADD KEY `ACT_IDX_ATHRZ_PROCEDEF` (`PROC_DEF_ID_`),
   ADD KEY `ACT_FK_TSKASS_TASK` (`TASK_ID_`),
-  ADD KEY `ACT_FK_IDL_PROCINST` (`PROC_INST_ID_`);
+  ADD KEY `ACT_FK_IDL_PROCINST` (`PROC_INST_ID_`);*/
 
 --
 -- Indexes for table `act_ru_job`
 --
-ALTER TABLE `act_ru_job`
+/*ALTER TABLE `act_ru_job`
   ADD PRIMARY KEY (`ID_`),
-  ADD KEY `ACT_FK_JOB_EXCEPTION` (`EXCEPTION_STACK_ID_`);
+  ADD KEY `ACT_FK_JOB_EXCEPTION` (`EXCEPTION_STACK_ID_`);*/
 
 --
 -- Indexes for table `act_ru_task`
 --
-ALTER TABLE `act_ru_task`
+/*ALTER TABLE `act_ru_task`
   ADD PRIMARY KEY (`ID_`),
   ADD KEY `ACT_IDX_TASK_CREATE` (`CREATE_TIME_`),
   ADD KEY `ACT_FK_TASK_EXE` (`EXECUTION_ID_`),
   ADD KEY `ACT_FK_TASK_PROCINST` (`PROC_INST_ID_`),
-  ADD KEY `ACT_FK_TASK_PROCDEF` (`PROC_DEF_ID_`);
+  ADD KEY `ACT_FK_TASK_PROCDEF` (`PROC_DEF_ID_`);*/
 
 --
 -- Indexes for table `act_ru_variable`
 --
-ALTER TABLE `act_ru_variable`
+/*ALTER TABLE `act_ru_variable`
   ADD PRIMARY KEY (`ID_`),
   ADD KEY `ACT_IDX_VARIABLE_TASK_ID` (`TASK_ID_`),
   ADD KEY `ACT_FK_VAR_EXE` (`EXECUTION_ID_`),
   ADD KEY `ACT_FK_VAR_PROCINST` (`PROC_INST_ID_`),
-  ADD KEY `ACT_FK_VAR_BYTEARRAY` (`BYTEARRAY_ID_`);
+  ADD KEY `ACT_FK_VAR_BYTEARRAY` (`BYTEARRAY_ID_`);*/
 
 --
 -- Indexes for table `tbl_milestone`
@@ -1175,9 +1142,9 @@ ALTER TABLE `tbl_sys_file`
 --
 -- Indexes for table `tbl_sys_function`
 --
-ALTER TABLE `tbl_sys_function`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_itqdcta4ccyss9hycawsgucrm` (`menu_id`);
+-- ALTER TABLE `tbl_sys_function`
+--   ADD PRIMARY KEY (`id`),
+--   ADD KEY `FK_itqdcta4ccyss9hycawsgucrm` (`menu_id`);
 
 --
 -- Indexes for table `tbl_sys_menu`
@@ -1219,6 +1186,7 @@ ALTER TABLE `tbl_sys_role`
 ALTER TABLE `tbl_sys_role_function`
   ADD KEY `FK_tgfnmsm51p1heid7qd9wcghxj` (`function_id`),
   ADD KEY `FK_2r3mx5cv4q1eu6i7oex4a7y65` (`role_id`);
+--
 
 --
 -- Indexes for table `tbl_sys_role_user`
@@ -1244,8 +1212,8 @@ ALTER TABLE `tbl_sys_user`
 --
 -- 使用表AUTO_INCREMENT `act_evt_log`
 --
-ALTER TABLE `act_evt_log`
-  MODIFY `LOG_NR_` bigint(20) NOT NULL AUTO_INCREMENT;
+/*ALTER TABLE `act_evt_log`
+  MODIFY `LOG_NR_` bigint(20) NOT NULL AUTO_INCREMENT;*/
 --
 -- 限制导出的表
 --
@@ -1253,68 +1221,68 @@ ALTER TABLE `act_evt_log`
 --
 -- 限制表 `act_ge_bytearray`
 --
-ALTER TABLE `act_ge_bytearray`
-  ADD CONSTRAINT `ACT_FK_BYTEARR_DEPL` FOREIGN KEY (`DEPLOYMENT_ID_`) REFERENCES `act_re_deployment` (`ID_`);
+/*ALTER TABLE `act_ge_bytearray`
+  ADD CONSTRAINT `ACT_FK_BYTEARR_DEPL` FOREIGN KEY (`DEPLOYMENT_ID_`) REFERENCES `act_re_deployment` (`ID_`);*/
 
 --
 -- 限制表 `act_id_membership`
 --
-ALTER TABLE `act_id_membership`
+/*ALTER TABLE `act_id_membership`
   ADD CONSTRAINT `ACT_FK_MEMB_GROUP` FOREIGN KEY (`GROUP_ID_`) REFERENCES `act_id_group` (`ID_`),
-  ADD CONSTRAINT `ACT_FK_MEMB_USER` FOREIGN KEY (`USER_ID_`) REFERENCES `act_id_user` (`ID_`);
+  ADD CONSTRAINT `ACT_FK_MEMB_USER` FOREIGN KEY (`USER_ID_`) REFERENCES `act_id_user` (`ID_`);*/
 
 --
 -- 限制表 `act_re_model`
 --
-ALTER TABLE `act_re_model`
+/*ALTER TABLE `act_re_model`
   ADD CONSTRAINT `ACT_FK_MODEL_DEPLOYMENT` FOREIGN KEY (`DEPLOYMENT_ID_`) REFERENCES `act_re_deployment` (`ID_`),
   ADD CONSTRAINT `ACT_FK_MODEL_SOURCE` FOREIGN KEY (`EDITOR_SOURCE_VALUE_ID_`) REFERENCES `act_ge_bytearray` (`ID_`),
-  ADD CONSTRAINT `ACT_FK_MODEL_SOURCE_EXTRA` FOREIGN KEY (`EDITOR_SOURCE_EXTRA_VALUE_ID_`) REFERENCES `act_ge_bytearray` (`ID_`);
+  ADD CONSTRAINT `ACT_FK_MODEL_SOURCE_EXTRA` FOREIGN KEY (`EDITOR_SOURCE_EXTRA_VALUE_ID_`) REFERENCES `act_ge_bytearray` (`ID_`);*/
 
 --
 -- 限制表 `act_ru_event_subscr`
 --
-ALTER TABLE `act_ru_event_subscr`
-  ADD CONSTRAINT `ACT_FK_EVENT_EXEC` FOREIGN KEY (`EXECUTION_ID_`) REFERENCES `act_ru_execution` (`ID_`);
+/*ALTER TABLE `act_ru_event_subscr`
+  ADD CONSTRAINT `ACT_FK_EVENT_EXEC` FOREIGN KEY (`EXECUTION_ID_`) REFERENCES `act_ru_execution` (`ID_`);*/
 
 --
 -- 限制表 `act_ru_execution`
 --
-ALTER TABLE `act_ru_execution`
+/*ALTER TABLE `act_ru_execution`
   ADD CONSTRAINT `ACT_FK_EXE_PARENT` FOREIGN KEY (`PARENT_ID_`) REFERENCES `act_ru_execution` (`ID_`),
   ADD CONSTRAINT `ACT_FK_EXE_PROCDEF` FOREIGN KEY (`PROC_DEF_ID_`) REFERENCES `act_re_procdef` (`ID_`),
   ADD CONSTRAINT `ACT_FK_EXE_PROCINST` FOREIGN KEY (`PROC_INST_ID_`) REFERENCES `act_ru_execution` (`ID_`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ACT_FK_EXE_SUPER` FOREIGN KEY (`SUPER_EXEC_`) REFERENCES `act_ru_execution` (`ID_`);
+  ADD CONSTRAINT `ACT_FK_EXE_SUPER` FOREIGN KEY (`SUPER_EXEC_`) REFERENCES `act_ru_execution` (`ID_`);*/
 
 --
 -- 限制表 `act_ru_identitylink`
 --
-ALTER TABLE `act_ru_identitylink`
+/*ALTER TABLE `act_ru_identitylink`
   ADD CONSTRAINT `ACT_FK_ATHRZ_PROCEDEF` FOREIGN KEY (`PROC_DEF_ID_`) REFERENCES `act_re_procdef` (`ID_`),
   ADD CONSTRAINT `ACT_FK_IDL_PROCINST` FOREIGN KEY (`PROC_INST_ID_`) REFERENCES `act_ru_execution` (`ID_`),
-  ADD CONSTRAINT `ACT_FK_TSKASS_TASK` FOREIGN KEY (`TASK_ID_`) REFERENCES `act_ru_task` (`ID_`);
+  ADD CONSTRAINT `ACT_FK_TSKASS_TASK` FOREIGN KEY (`TASK_ID_`) REFERENCES `act_ru_task` (`ID_`);*/
 
 --
 -- 限制表 `act_ru_job`
 --
-ALTER TABLE `act_ru_job`
-  ADD CONSTRAINT `ACT_FK_JOB_EXCEPTION` FOREIGN KEY (`EXCEPTION_STACK_ID_`) REFERENCES `act_ge_bytearray` (`ID_`);
+/*ALTER TABLE `act_ru_job`
+  ADD CONSTRAINT `ACT_FK_JOB_EXCEPTION` FOREIGN KEY (`EXCEPTION_STACK_ID_`) REFERENCES `act_ge_bytearray` (`ID_`);*/
 
 --
 -- 限制表 `act_ru_task`
 --
-ALTER TABLE `act_ru_task`
+/*ALTER TABLE `act_ru_task`
   ADD CONSTRAINT `ACT_FK_TASK_EXE` FOREIGN KEY (`EXECUTION_ID_`) REFERENCES `act_ru_execution` (`ID_`),
   ADD CONSTRAINT `ACT_FK_TASK_PROCDEF` FOREIGN KEY (`PROC_DEF_ID_`) REFERENCES `act_re_procdef` (`ID_`),
-  ADD CONSTRAINT `ACT_FK_TASK_PROCINST` FOREIGN KEY (`PROC_INST_ID_`) REFERENCES `act_ru_execution` (`ID_`);
+  ADD CONSTRAINT `ACT_FK_TASK_PROCINST` FOREIGN KEY (`PROC_INST_ID_`) REFERENCES `act_ru_execution` (`ID_`);*/
 
 --
 -- 限制表 `act_ru_variable`
 --
-ALTER TABLE `act_ru_variable`
+/*ALTER TABLE `act_ru_variable`
   ADD CONSTRAINT `ACT_FK_VAR_BYTEARRAY` FOREIGN KEY (`BYTEARRAY_ID_`) REFERENCES `act_ge_bytearray` (`ID_`),
   ADD CONSTRAINT `ACT_FK_VAR_EXE` FOREIGN KEY (`EXECUTION_ID_`) REFERENCES `act_ru_execution` (`ID_`),
-  ADD CONSTRAINT `ACT_FK_VAR_PROCINST` FOREIGN KEY (`PROC_INST_ID_`) REFERENCES `act_ru_execution` (`ID_`);
+  ADD CONSTRAINT `ACT_FK_VAR_PROCINST` FOREIGN KEY (`PROC_INST_ID_`) REFERENCES `act_ru_execution` (`ID_`);*/
 
 --
 -- 限制表 `tbl_standard_resource`
