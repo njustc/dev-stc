@@ -2,6 +2,7 @@ package com.sinosteel.Repository;
 
 
 import com.sinosteel.FrameworkApplication;
+import com.sinosteel.domain.Contract;
 import com.sinosteel.domain.Project;
 import com.sinosteel.domain.User;
 import com.sinosteel.repository.UserRepository;
@@ -36,6 +37,11 @@ public class UserRepositoryTests {
             System.out.println("项目对应的委托：" + project.getConsign().getConsignation());
             System.out.println("项目对应的合同: " + project.getContract().getContractBody());
             System.out.println("---------------------------------");
+        }
+        System.out.println("************************************");
+        List<Contract> contracts = user.getContracts();
+        for(Contract contract :contracts){
+            System.out.println("合同为" + contract.getContractBody());
         }
         System.out.println("=================================");
     }

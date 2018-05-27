@@ -3,9 +3,6 @@ package com.sinosteel.web;
 
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.FrameworkApplication;
-
-
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +16,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 
+import javax.transaction.Transactional;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -30,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
-
+@Transactional
 public class ConsignControllerTest{
 
     private MockMvc mockmvc;
@@ -93,7 +92,7 @@ public class ConsignControllerTest{
         mockmvc.perform(MockMvcRequestBuilders.put("/services/consign")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                .param("uesrname",user_name)
+                .param("username",user_name)
                 .param("clientDigest",Client_Digest))
                 .andDo(MockMvcResultHandlers.print());
 

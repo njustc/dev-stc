@@ -79,20 +79,20 @@ public class AuthTests {
         List<Function> marketuserFunctions = marketuser.getFunctions();
         for(Function function : marketuserFunctions)
         {
-            System.out.println("市场部工作人员函数 = " + function.getFunctionString());
+            System.out.println("市场部工作人员函数 = " + function.getFunctionType().toString());
         }
 
         List<Function> customuserFunctions = custom1user.getFunctions();
         for(Function function : customuserFunctions)
         {
-            System.out.println("客户1函数 = " + function.getFunctionString());
+            System.out.println("客户1函数 = " + function.getFunctionType().toString());
         }
 
         List<Function> customuser2Functions = custom2user.getFunctions();
 
         for(Function function : customuser2Functions)
         {
-            System.out.println("客户2函数 = "+function.getFunctionString());
+            System.out.println("客户2函数 = "+function.getFunctionType().toString());
         }
     }
     @Test
