@@ -66,25 +66,26 @@ export default class CoreLayout extends Component
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1">
                             <Icon type="pie-chart" />
-                            <span>Option 1</span>
+                            <span>委托管理</span>
                         </Menu.Item>
                         <Menu.Item key="2">
                             <Icon type="desktop" />
-                            <span>Option 2</span>
+                            <span>合同管理</span>
                         </Menu.Item>
                         <SubMenu
                             key="sub1"
-                            title={<span><Icon type="user" /><span>User</span></span>}
+                            title={<span><Icon type="inbox" /><span>测试管理</span></span>}
                         >
-                            <Menu.Item key="3">Tom</Menu.Item>
-                            <Menu.Item key="4">Bill</Menu.Item>
-                            <Menu.Item key="5">Alex</Menu.Item>
+                            <Menu.Item key="3"><Icon type="file-text" />测试方案</Menu.Item>
+                            <Menu.Item key="4"><Icon type="file-text" />测试用例</Menu.Item>
+                            <Menu.Item key="5"><Icon type="file-text" />测试记录</Menu.Item>
+                            <Menu.Item key="6"><Icon type="file-text" />测试问题清单</Menu.Item>
                         </SubMenu>
                         <SubMenu
                             key="sub2"
                             title={<span><Icon type="team" /><span>Team</span></span>}
                         >
-                            <Menu.Item key="6">Team 1</Menu.Item>
+                            <Menu.Item key="7">Team 1</Menu.Item>
                             <Menu.Item key="8">Team 2</Menu.Item>
                         </SubMenu>
                         <Menu.Item key="9">
