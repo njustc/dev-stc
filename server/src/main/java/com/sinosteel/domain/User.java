@@ -35,6 +35,21 @@ public class User extends BaseEntity
 	@JSONField(serialize = false)
 	private List<Consign> consigns;
 
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USER_ID",foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT))
+	@JSONField(serialize = false)
+	private List<Contract> contracts;
+
+	public void setContracts(List<Contract> contracts){
+		this.contracts = contracts;
+	}
+
+	public List<Contract> getContracts()
+	{
+		return this.contracts;
+	}
+
+
 	public List<Consign> getConsigns(){
 		return consigns;
 	}
