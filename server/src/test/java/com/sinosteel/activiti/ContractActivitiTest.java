@@ -42,7 +42,7 @@ public class ContractActivitiTest {
         workerIds.add("W0");
         workerIds.add("W1");
         workerIds.add("W2");
-        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0",workerIds);
+        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0","W0");
         assertNotNull(processInstanceID);
         System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID);
         System.out.println(processInstanceID+"  "+contractActiviti.getProcessState(processInstanceID));
@@ -57,11 +57,11 @@ public class ContractActivitiTest {
         workerIds.add("W1");
         workerIds.add("W2");
        // System.out.println("创建合同测试");
-        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0",workerIds);
+        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0","W0");
         assertNotNull(processInstanceID);
         System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID);
         System.out.println(processInstanceID+"  "+contractActiviti.getProcessState(processInstanceID));
-        String processInstanceID1 =  contractActiviti.createContractProcess("Contract1","C1",workerIds);
+        String processInstanceID1 =  contractActiviti.createContractProcess("Contract1","C1","W0");
         assertNotNull(processInstanceID1);
         System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID1);
 
@@ -83,10 +83,10 @@ public class ContractActivitiTest {
         workerIds.add("W1");
         workerIds.add("W2");
         //System.out.println("创建合同测试");
-        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0",workerIds);
+        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0","W0");
         assertNotNull(processInstanceID);
         System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID);
-        String processInstanceID1 =  contractActiviti.createContractProcess("Contract1","C1",workerIds);
+        String processInstanceID1 =  contractActiviti.createContractProcess("Contract1","C1","W0");
         assertNotNull(processInstanceID1);
         System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID1);
 
@@ -114,10 +114,10 @@ public class ContractActivitiTest {
         workerIds.add("W0");
         workerIds.add("W1");
         workerIds.add("W2");
-        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0",workerIds);
+        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0","W0");
         assertNotNull(processInstanceID);
         System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID);
-        String processInstanceID1 =  contractActiviti.createContractProcess("Contract1","C1",workerIds);
+        String processInstanceID1 =  contractActiviti.createContractProcess("Contract1","C1","W0");
         assertNotNull(processInstanceID1);
         System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID1);
 
@@ -151,7 +151,7 @@ public class ContractActivitiTest {
         workerIds.add("W1");
         workerIds.add("W2");
         System.out.println("创建合同测试");
-        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0",workerIds);
+        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0","W0");
         assertNotNull(processInstanceID);
         System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID);
         System.out.println(processInstanceID+"  "+contractActiviti.getProcessState(processInstanceID));
@@ -200,10 +200,10 @@ public class ContractActivitiTest {
         workerIds.add("W0");
         workerIds.add("W1");
         workerIds.add("W2");
-        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0",workerIds);
+        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0","W0");
         assertNotNull(processInstanceID);
         System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID);
-        String processInstanceID1 =  contractActiviti.createContractProcess("Contract1","C1",workerIds);
+        String processInstanceID1 =  contractActiviti.createContractProcess("Contract1","C1","W0");
         assertNotNull(processInstanceID1);
         System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID1);
 

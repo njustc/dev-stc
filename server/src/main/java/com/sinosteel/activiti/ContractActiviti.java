@@ -18,7 +18,18 @@ public class ContractActiviti extends BaseActiviti{
     //新建一个合同，返回这个流程实例的id
     //目前的参数为合同ID，客户ID，市场部主任ID和质量部主任ID
     //市场部主任和质量部主任应该是固定的吧？
-    public String createContractProcess(String contractId, String clientId,List<String> workerId)throws Exception{
+    public String createContractProcess(String contractId, String clientId,String workerId)throws Exception{
+        Map<String,Object> variables=new HashMap<String, Object>();
+        variables.put("ContractID",contractId);
+        variables.put("ClientID",clientId);
+        variables.put("WorkerIDs",workerId);
+        //variables.put("WorkerID",workerId);
+        //variables.put("marketEmployerId",marketEmployerId);
+        //variables.put("qualityEmployerId",qualityEmployerId);
+        ProcessInstance pi=runtimeService.startProcessInstanceByKey("contract",variables);
+        return pi.getProcessInstanceId();
+    }
+    /*public String createContractProcess(String contractId, String clientId,List<String> workerId)throws Exception{
         Map<String,Object> variables=new HashMap<String, Object>();
         variables.put("ContractID",contractId);
         variables.put("ClientID",clientId);
@@ -29,7 +40,7 @@ public class ContractActiviti extends BaseActiviti{
         //variables.put("qualityEmployerId",qualityEmployerId);
         ProcessInstance pi=runtimeService.startProcessInstanceByKey("contract",variables);
         return pi.getProcessInstanceId();
-    }
+    }*/
 
     //客户提交合同，参数为流程ID和客户ID
     /* public void submitContract(String processInstanceId,String clientId) throws Exception

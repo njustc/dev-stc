@@ -25,10 +25,10 @@ public class ProcessInstanceService {
     }
 
     //TODO: create contract processInstance
-    /*public String createContractProcess(JSONObject params, User user) throws Exception{
+    public String createContractProcess(JSONObject params, User user) throws Exception{
         Contract contract = JSONObject.toJavaObject(params, Contract.class);
-        return contractActiviti.createContractProcess(contract.getId(), user.getId(),);
-    }*/
+        return contractActiviti.createContractProcess(contract.getId(), user.getId(),"W0");
+    }
 
 
     /*更新具体流程实例状态*/
@@ -53,13 +53,13 @@ public class ProcessInstanceService {
          }
          else if(object.equals("contract"))
         {
-            if(operation.equals("pass"))
+            if(operation.equals("reviewpass"))
                 contractActiviti.checkContract(processInstanceID,request.getUser().getId(),true);
-            else if(operation.equals("reject"))
+            else if(operation.equals("reviewreject"))
                 contractActiviti.checkContract(processInstanceID,request.getUser().getId(),false);
-            else if(operation.equals(""))
+            else if(operation.equals("confirmpass"))
                 contractActiviti.confirmContract(processInstanceID,request.getUser().getId(),true);
-            else if(operation.equals(""))
+            else if(operation.equals("confirmreject"))
                 contractActiviti.confirmContract(processInstanceID,request.getUser().getId(),false);
         }
         else {
