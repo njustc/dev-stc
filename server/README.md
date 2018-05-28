@@ -27,16 +27,12 @@ chmod +x /usr/local/bin/docker-compose
 4. 执行`mvn spring-boot:run` 启动项目up
 
 ### 数据库更新
-在部分版本更新的时候，由于改变了数据库内表单结构，需要进行数据库更新操作，即重新导入framework.sql内容。具体步骤如下：
+在部分版本更新的时候，由于改变了数据库内表单结构，需要进行数据库更新操作，即重新导入framework.sql内容。使用以下命令将更新过的framework导入数据库内部.
 
-1. 执行命令
-`docker exec -it mymysql mysql -uroot -pmysql`
-进入数据库内部
-2. 删除原数据库`drop database stc;`    (注意分号）
-3. 创建新数据库`create database stc;`（注意分号）
-4. 执行`exit;`退出数据库内部 (注意分号）
-5. 将更新过的framework导入数据库内部
- `docker exec -i mymysql mysql -uroot -pmysql stc < framework.sql `
+ ```
+ cd server
+ docker exec -i mymysql mysql -uroot -pmysql stc < framework.sql 
+ ```
 
 
 

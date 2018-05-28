@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge} from 'antd';
-import UserConsignContentView from "./ConsignContentComponent";
+import TestCaseContentView from "./TestCaseContentComponent";
 import {STATE} from "../../../services/common"
 
 const { Column } = Table;
@@ -10,7 +10,7 @@ const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
 
-export default class ConsignListComponent extends Component {
+export default class TestCaseListComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -64,8 +64,8 @@ export default class ConsignListComponent extends Component {
 
     state2C(state) {
         switch (state){
-            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
-            case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
+            case STATE.TO_SUBMIT: return "待提交";
+            case STATE.TO_CHECK: return "待评审";
             case STATE.CANCELED: return "已取消";
             default: return "未定义状态";
         }
@@ -73,7 +73,7 @@ export default class ConsignListComponent extends Component {
 
     /*table列设置*/
     columns = [{
-        title:"委托ID",
+        title:"测试用例ID",
         dataIndex:"id",
         sorter:(a, b) => a.id - b.id,
     }, {
@@ -123,7 +123,7 @@ export default class ConsignListComponent extends Component {
         title:"操作",
         dataIndex:"id",
         key:"operation",
-        render: (record) => {
+        render: (id, record) => {
             /*TODO*/
             return (
                 <div>
@@ -144,7 +144,7 @@ export default class ConsignListComponent extends Component {
     /*取消委托提示框*/
     showDeleteConfirm = (record) => () => {
         confirm({
-            title: 'Are you sure to delete this consign?',
+            title: 'Are you sure delete this consign?',
             //content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
@@ -169,7 +169,7 @@ export default class ConsignListComponent extends Component {
     render() {
         return (
             <div>
-                <h3 style={{ marginBottom: 16 }}>委托列表</h3>
+                <h3 style={{ marginBottom: 16 }}>测试用例列表</h3>
                 <InputGroup>
                     <Col span={3}>
                         <Select defaultValue="搜索委托ID" onSelect={this.onSelect}>

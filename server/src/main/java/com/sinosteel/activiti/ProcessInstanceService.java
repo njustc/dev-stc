@@ -16,19 +16,21 @@ public class ProcessInstanceService {
     private ConsignActiviti consignActiviti;
     @Autowired
     private ContractActiviti contractActiviti;
-    //@Autowired
-    //private ContractActiviti contractActiviti;
+
     /*开启一个委托实例*/
     public String createConsignProcess(JSONObject params, User user)
     {
         Consign consign = JSONObject.toJavaObject(params, Consign.class);
         return consignActiviti.createConsignProcess(consign.getId(), user.getId());
     }
+
     //TODO: create contract processInstance
     public String createContractProcess(JSONObject params, User user) throws Exception{
         Contract contract = JSONObject.toJavaObject(params, Contract.class);
-        return contractActiviti.createContractProcess(contract.getId(), user.getId(), "0", "1");
+        return contractActiviti.createContractProcess(contract.getId(), user.getId(),"W0");
     }
+
+
     /*更新具体流程实例状态*/
     public JSONObject updateProcessState(String processInstanceID, Request request) throws Exception {
         JSONObject params = request.getParams();
@@ -36,7 +38,6 @@ public class ProcessInstanceService {
         String operation = params.getString("operation");
         if (operation.compareTo("submit")==0)
         {
-            //System.out.println("submit");
             baseActiviti.submit(processInstanceID, request.getUser().getId());
         }
          else if (object == null) {
@@ -52,7 +53,14 @@ public class ProcessInstanceService {
          }
          else if(object.equals("contract"))
         {
-
+            if(operation.equals("reviewpass"))
+                contractActiviti.checkContract(processInstanceID,request.getUser().getId(),true);
+            else if(operation.equals("reviewreject"))
+                contractActiviti.checkContract(processInstanceID,request.getUser().getId(),false);
+            else if(operation.equals("confirmpass"))
+                contractActiviti.confirmContract(processInstanceID,request.getUser().getId(),true);
+            else if(operation.equals("confirmreject"))
+                contractActiviti.confirmContract(processInstanceID,request.getUser().getId(),false);
         }
         else {
             throw new Exception("can't recognize object");

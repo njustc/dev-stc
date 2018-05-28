@@ -16,7 +16,8 @@
         <modeler:editor-resource-id><![CDATA[sid-7345CD5A-EB33-4B78-90F0-3C1E3A116822]]></modeler:editor-resource-id>
       </extensionElements>
     </userTask>
-    <userTask id="checkcontract" name="TobeCheck" activiti:candidateGroups="${marketEmployerId},${qualityEmployerId}">
+   <!-- <userTask id="checkcontract" name="TobeCheck" activiti:candidateGroups="${marketEmployerId},${qualityEmployerId}">-->
+    <userTask id="checkcontract" name="TobeCheck" activiti:candidateGroups="${WorkerIDs}}">
       <extensionElements>
         <activiti:formProperty id="Approval" name="Do you approve this Contract?" type="enum" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
