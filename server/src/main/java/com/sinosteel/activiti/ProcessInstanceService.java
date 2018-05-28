@@ -1,13 +1,10 @@
 package com.sinosteel.activiti;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sinosteel.activiti.BaseActiviti;
-import com.sinosteel.activiti.ConsignActiviti;
 import com.sinosteel.domain.Consign;
+import com.sinosteel.domain.Contract;
 import com.sinosteel.domain.User;
 import com.sinosteel.framework.core.web.Request;
-import jdk.nashorn.internal.ir.RuntimeNode;
-import org.activiti.spring.integration.Activiti;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +14,8 @@ public class ProcessInstanceService {
     private BaseActiviti baseActiviti;
     @Autowired
     private ConsignActiviti consignActiviti;
+    @Autowired
+    private ContractActiviti contractActiviti;
     //@Autowired
     //private ContractActiviti contractActiviti;
     /*开启一个委托实例*/
@@ -24,6 +23,11 @@ public class ProcessInstanceService {
     {
         Consign consign = JSONObject.toJavaObject(params, Consign.class);
         return consignActiviti.createConsignProcess(consign.getId(), user.getId());
+    }
+    //TODO: create contract processInstance
+    public String createContractProcess(JSONObject params, User user) throws Exception{
+        Contract contract = JSONObject.toJavaObject(params, Contract.class);
+        return contractActiviti.createContractProcess(contract.getId(), user.getId(), "0", "1");
     }
     /*更新具体流程实例状态*/
     public JSONObject updateProcessState(String processInstanceID, Request request) throws Exception {
