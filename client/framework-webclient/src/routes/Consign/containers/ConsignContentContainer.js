@@ -1,50 +1,55 @@
 import React, {Component} from 'react';
-import ConsignContentComponent from "ROUTES/Consign/components/ConsignContentComponent";
+import ConsignContentComponent from "../components/ConsignContentComponent";
 import {connect} from "react-redux";
-import {getConsign} from "../../../services/ConsignService";
+import {getConsign, updateConsign} from "../../../services/ConsignService";
 
 
 const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
+    console.log(authData);
     return {
         consignData: {},/*fetch data with pro id*/
-        disable: authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1,
+        disable: authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1,
         curKey: state.Layout.activeKey /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
     }
 };
 
-const buttons = (dispatch,competence) => [{
+const buttons = (dispatch,isEditor) => [{
     content: '保存',
-    onClick: (consignation) =>{
-        console.log(consignation);
+    onClick: (id,consignation) =>{
+        const valueData = {
+            id: id,
+            consignation: consignation
+        };
+        updateConsign(dispatch,valueData);
     },
-    enable: competence==="creator"
+    enable: isEditor
 },{
     content: '提交',
-    onClick: (consignation) =>{
+    onClick: (id,consignation) =>{
 
     },
-    enable: competence==="creator"
+    enable: isEditor
 },{
     content: '通过',
-    onClick: (consignation) =>{
+    onClick: (id,consignation) =>{
 
     },
-    enable: competence==="confirmer"
+    enable: !isEditor
 },{
     content: '否决',
-    onClick: (consignation) =>{
+    onClick: (id,consignation) =>{
 
     },
-    enable: competence==="confirmer"
+    enable: !isEditor
 }];
 
 const mapDispatchToProps = (dispatch) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    const competence = authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1;
+    const isEditor = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     return {
-        buttons: buttons(dispatch,competence).filter(button => button.enable===true),
-        getValues: (id) => getConsign(dispatch,id).consignation /*TODO:用什么方式显示consign内容*/
+        buttons: buttons(dispatch,isEditor).filter(button => button.enable===true),
+        getValues: (id) => getConsign(dispatch,id).consignation
     }
 };
 

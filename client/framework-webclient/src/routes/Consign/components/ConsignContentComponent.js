@@ -45,7 +45,7 @@ class ConsignContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));
+        buttons[buttonIndex].onClick(this.curID,JSON.stringify(form.getFieldsValue()));
     };
 
     render() {
