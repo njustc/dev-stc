@@ -19,7 +19,6 @@ class ConsignContentComponent extends Component {
     };
 
     static defaultProps = {
-        curID: '',
         values: {},
         disable:false,
         buttons: [],
@@ -30,13 +29,7 @@ class ConsignContentComponent extends Component {
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
-//        curKey: PropTypes.string.isRequired
     };
-
-//    componentWillMount() {
-//        this.curID = this.props.curKey;
-//        this.values = this.props.getValues(this.curID);
-//    }
 
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
@@ -45,7 +38,7 @@ class ConsignContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(this.curID,JSON.stringify(form.getFieldsValue()));
+        buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));
     };
 
     render() {
