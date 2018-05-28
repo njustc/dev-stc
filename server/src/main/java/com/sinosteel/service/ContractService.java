@@ -74,6 +74,8 @@ public class ContractService extends BaseService<Contract> {
         contract.setUser(user);
 
         //TODO: start process Instance
+        String processInstanceID = processInstanceService.createContractProcess(params, user);
+        contract.setProcessInstanceID(processInstanceID);
 
         this.saveEntity(contract, user);
 
@@ -104,10 +106,10 @@ public class ContractService extends BaseService<Contract> {
     }
 
     //TODO: 增加状态
-    private JSONObject processContract(Contract contract) {
-        //String processState = (String) processInstanceService.queryProcessState(contract.getProcessInstanceID()).get("state");
+    private JSONObject processContract(Contract contract) throws Exception{
+        String processState = (String) processInstanceService.queryProcessState(contract.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(contract));
-        //jsonObject.put("state", processState);
+        jsonObject.put("state", processState);
         return jsonObject;
     }
 }
