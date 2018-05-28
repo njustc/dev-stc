@@ -6,6 +6,7 @@ import com.sinosteel.domain.Contract;
 import com.sinosteel.domain.Project;
 import com.sinosteel.domain.User;
 import com.sinosteel.repository.UserRepository;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,24 +27,11 @@ public class UserRepositoryTests {
     @Transactional
     public void testUserProject()
     {
-        System.out.println("=================================");
-        System.out.println("用户项目测试");
         User user = userRepository.findByUsername("customer1");
         List<Project> projects = user.getProjects();
-        for(Project project : projects)
-        {
-            System.out.println("项目名称为："+ project.getName());
-            System.out.println("项目对应的用户名称："+project.getUser().getUsername());
-            System.out.println("项目对应的委托：" + project.getConsign().getConsignation());
-            System.out.println("项目对应的合同: " + project.getContract().getContractBody());
-            System.out.println("---------------------------------");
-        }
-        System.out.println("************************************");
+        Assert.assertNotNull("projects为空",projects);
         List<Contract> contracts = user.getContracts();
-        for(Contract contract :contracts){
-            System.out.println("合同为" + contract.getContractBody());
-        }
-        System.out.println("=================================");
+        Assert.assertNotNull("contract为空",contracts);
     }
 
 }
