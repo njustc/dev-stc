@@ -71,7 +71,7 @@ export default class ProjectListComponent extends Component{
             /*TODO*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewDetails(record)}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
                     {/*<Divider type="vertical"/>
                     <a href="javascript:void(0);">添加操作</a>*/}
                 </div>

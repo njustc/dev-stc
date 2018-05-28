@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge} from 'antd';
-import UserConsignContentView from "./ConsignContentComponent";
+//import UserConsignContentView from "./ConsignContentComponent";
 import {STATE} from "../../../services/common"
 
 const { Column } = Table;
