@@ -128,8 +128,8 @@ export default class ConsignListComponent extends Component {
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
-                    <Divider type="vertical"/>
-                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>
+                    {/*<Divider type="vertical"/>
+                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>*/}
                 </div>
             )
         }
@@ -138,7 +138,7 @@ export default class ConsignListComponent extends Component {
 
     /*查看详情*/
     viewContent = (record) => () => {
-        console.log(record);
+        //console.log(record);
         this.props.showContent(record);
     };
 

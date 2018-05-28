@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectComponent from "../../routes/Project/components/ProjectComponent";
+import ProjectListComponent from "../../routes/Project/components/ProjectListComponent";
 import {mainKey} from "LAYOUTS/CoreLayout";
 const SET_STATE = "Layout/SET_STATE";
 const SET_ACTIVE_KEY = "Layout/SET_ACTIVE_KEY";
