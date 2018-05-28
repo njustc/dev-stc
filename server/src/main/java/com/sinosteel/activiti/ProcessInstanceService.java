@@ -25,10 +25,10 @@ public class ProcessInstanceService {
     }
 
     //TODO: create contract processInstance
-    public String createContractProcess(JSONObject params, User user) throws Exception{
+    /*public String createContractProcess(JSONObject params, User user) throws Exception{
         Contract contract = JSONObject.toJavaObject(params, Contract.class);
-        return contractActiviti.createContractProcess(contract.getId(), user.getId(), "0");
-    }
+        return contractActiviti.createContractProcess(contract.getId(), user.getId(),);
+    }*/
 
 
     /*更新具体流程实例状态*/
@@ -38,7 +38,6 @@ public class ProcessInstanceService {
         String operation = params.getString("operation");
         if (operation.compareTo("submit")==0)
         {
-            //System.out.println("submit");
             baseActiviti.submit(processInstanceID, request.getUser().getId());
         }
          else if (object == null) {

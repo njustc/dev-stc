@@ -18,12 +18,13 @@ public class ContractActiviti extends BaseActiviti{
     //新建一个合同，返回这个流程实例的id
     //目前的参数为合同ID，客户ID，市场部主任ID和质量部主任ID
     //市场部主任和质量部主任应该是固定的吧？
-    public String createContractProcess(String contractId, String clientId,
-                                         String  workerId )throws Exception{
+    public String createContractProcess(String contractId, String clientId,List<String> workerId)throws Exception{
         Map<String,Object> variables=new HashMap<String, Object>();
         variables.put("ContractID",contractId);
         variables.put("ClientID",clientId);
-        variables.put("WorkerID",workerId);
+        for(String worker:workerId)
+            variables.put("WorkerIDs",worker);
+        //variables.put("WorkerID",workerId);
         //variables.put("marketEmployerId",marketEmployerId);
         //variables.put("qualityEmployerId",qualityEmployerId);
         ProcessInstance pi=runtimeService.startProcessInstanceByKey("contract",variables);
@@ -43,6 +44,7 @@ public class ContractActiviti extends BaseActiviti{
     {
         Task task1=taskService.createTaskQuery().taskName("TobeCheck")
                 .processInstanceId(processInstanceId).singleResult();
+        //taskService.setAssignee(task1.getId(),workerId);
         taskService.claim(task1.getId(),workerId);
         this.check(passOrNot,processInstanceId,workerId,"Approval");
     }
