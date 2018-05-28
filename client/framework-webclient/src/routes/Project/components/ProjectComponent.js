@@ -134,15 +134,23 @@ export default class ProjectComponent extends Component{
     };
 
     expandedRowRender = (record) =>{
-        console.log(record.state.consign);
+        //console.log(record.state.consign);
         return (
-            <Steps current={/*TODO*//*this.props.*/1} size="small">
-                <Step title={this.consignView(record)} description=''/*record.state.consign*/ />{/*TODO*//*description要根据具体状态改变*/}
-                <Step title={this.contractView(record)} description=''/*record.state.contract*/ />
-                <Step title="测试方案" />
-                <Step title="测试报告" />
-                <Step title="归档结项" />
-            </Steps>
+            //<Steps current={/*TODO*//*this.props.*/1} size="small">
+            //    <Step title={this.consignView(record)} description=''/*record.state.consign*/ />
+            //    <Step title={this.contractView(record)} description=''/*record.state.contract*/ />
+            //    <Step title="测试方案" />
+            //    <Step title="测试报告" />
+            //    <Step title="归档结项" />
+            //</Steps>
+            <div>
+                <p>{record.state.consign}</p>
+                <a href="javascript:void(0);" onClick={this.viewContent(record)}>委托表</a>
+                <Divider type='vertical'/>
+                <a href="javascript:void(0);" onClick={this.viewContent(record)}>合同书</a>
+                <Divider type='vertical'/>
+                <a href="javascript:void(0);" onClick={this.viewContent(record)}>合同评审表</a>
+            </div>
         )
     }
 
