@@ -12,11 +12,11 @@ import {
 } from 'react-native';
 
 
-import SideMenuScreen from "./SideMenu";
 import {baseAddress,STATUS} from "./common";
 import {httpPost} from "./FetchUtil";
 
 const loginBase = baseAddress + '/login';
+
 let {width, height} = Dimensions.get('window');
 
 export default class LoginView extends React.Component{
