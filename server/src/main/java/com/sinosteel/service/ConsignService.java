@@ -59,7 +59,7 @@ public class ConsignService extends BaseService<Consign> {
         Consign tempconsign = JSONObject.toJavaObject(params, Consign.class);
         Consign consign;
         if ((consign = this.findEntityById(tempconsign.getId())) == null) {
-            throw new Exception("Can't find id: " + tempconsign.getId());
+            throw new Exception("Not found");
         }
         //编辑委托时只编辑内容
         consign.setConsignation(tempconsign.getConsignation());
@@ -99,9 +99,8 @@ public class ConsignService extends BaseService<Consign> {
     }
 
 
-
+    //增加委托状态
     private JSONObject processConsign(Consign consign) throws Exception {
-        //增加委托状态
         String processState = (String) processInstanceService.queryProcessState(consign.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
         jsonObject.put("state", processState);
@@ -109,9 +108,9 @@ public class ConsignService extends BaseService<Consign> {
 
     }
 
+    //去掉委托内容,添加状态
     private  JSONArray processConsigns(List<Consign> consigns) throws Exception {
         JSONArray resultArray = new JSONArray();
-        //去掉委托内容,添加状态
         for (Consign consign: consigns) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
             jsonObject.remove("consignation");
