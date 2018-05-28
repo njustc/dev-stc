@@ -1,0 +1,595 @@
+{
+	"info": {
+		"_postman_id": "57e725f6-b252-40b7-8504-3ab426d3f810",
+		"name": "dev-stc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "consign",
+			"description": "",
+			"item": [
+				{
+					"name": "createConsign",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "params",
+									"value": "{\"consignation\": \"{}\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/consign?username=customer2&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"consign"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "customer2"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "queryConsigns",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8000/services/consign/?username=customer2&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"consign",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "customer2"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editConsign",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "params",
+									"value": "{\"id\": \"7ead5783-06ee-485e-a116-8c799c3868c3\",\n        \"consignation\": \"这是customer2修改的又一个委托\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/consign?username=customer1&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"consign"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "customer1"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteConsign",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "params",
+									"value": "{\n            \"processInstanceID\": \"45001\",\n            \"createdUserId\": \"2\",\n            \"createdTime\": \"2018-05-19 23:31:17\",\n            \"id\": \"dbbcb832-14c6-41d2-ae3a-18f1f9ba225d\",\n            \"state\": \"State：提交委托 From: Consign:13:27506\"\n        }",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/consign?username=admin&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"consign"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateConsignState",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"object\": \"consign\", \"operation\": \"pass\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/processInstance/7509?username=customer2&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"processInstance",
+								"7509"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "customer2"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "queryConsignByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8000/services/consign/a11b8fa8-679a-4fa1-a0ad-4b78e09ce028?username=admin&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"consign",
+								"a11b8fa8-679a-4fa1-a0ad-4b78e09ce028"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"description": "",
+			"item": [
+				{
+					"name": "login_admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"username\": \"admin\", \"password\":\"admin\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/login?username=undefined&clientDigest=undefined",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "undefined"
+								},
+								{
+									"key": "clientDigest",
+									"value": "undefined"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login_customer1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"username\": \"customer1\", \"password\":\"admin\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/login?username=undefined&clientDigest=undefined",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "undefined"
+								},
+								{
+									"key": "clientDigest",
+									"value": "undefined"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "processInstance",
+			"description": "",
+			"item": [
+				{
+					"name": "updateProcessState",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"object\": \"consign\", \"operation\": \"submit\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/processInstance/2501?username=customer2&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"processInstance",
+								"2501"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "customer2"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "queryProcessState",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "params",
+									"value": "{\"consignation\": \"这是customer2新建的一个委托\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/processInstance/2501?username=admin&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"processInstance",
+								"2501"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "contract",
+			"description": "",
+			"item": [
+				{
+					"name": "addContract",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"contractBody\": \"admin新建的合同\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/contract/?username=admin&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"contract",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "queryContracts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8000/services/contract/?username=admin&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"contract",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editContract",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\n            \"id\": \"c835a832-209d-4d0b-8338-a1c75480240c\",\n            \"contractBody\": \"这是admin修改的合同\"\n}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/contract/?username=admin&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"contract",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteContract",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\n            \"id\": \"c835a832-209d-4d0b-8338-a1c75480240c\",\n            \"contractBody\": \"这是admin修改的合同\"\n}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/contract/?username=admin&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"contract",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
