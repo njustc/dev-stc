@@ -32,7 +32,7 @@ public class ConsignActivitiTest {
     @Test
     public void newConsign() throws Exception{
 
-       String processInstanceID =  consignActiviti.createConsignProcess("0", "0");
+       String processInstanceID =  consignActiviti.createConsignProcess("0", "汤聪");
         assertNotNull(processInstanceID);
        System.out.println("委托实例成功创建。 ProcessInstanceID: " + processInstanceID);
 
@@ -41,7 +41,7 @@ public class ConsignActivitiTest {
         System.out.println(queryResult);
 
         System.out.println("正在测试提交委托");
-        consignActiviti.submit(processInstanceID, "0");
+        consignActiviti.submit(processInstanceID, "汤聪");
         System.out.println(consignActiviti.getProcessState(processInstanceID));
 
        // consignActiviti.setWorker(processInstanceID, "1");

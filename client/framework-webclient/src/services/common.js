@@ -11,6 +11,6 @@ export const STATUS = {
 export const STATE = {
     TO_SUBMIT: 'TobeSubmit',
     TO_CHECK: 'TobeCheck',
-    CANCELED: '',
+    CANCELED: 'Canceled',
     FINISHED: 'Finished',
 };

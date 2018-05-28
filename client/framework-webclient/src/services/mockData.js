@@ -87,7 +87,7 @@ export const mockSiderData = [{
     name : "委托列表",
 },{
     key : "3",
-    disable : true,
+    disable : false,
     name : "测试合同列表",
 },{
     key : "4",
@@ -99,15 +99,15 @@ export const mockSiderData = [{
     name : "测试方案列表",
 },{
     key : "6",
-    disable : true,
+    disable : false,
     name : "测试用例列表",
 },{
     key : "7",
-    disable : true,
+    disable : false,
     name : "测试记录列表",
 },{
     key : "8",
-    disable : true,
+    disable : false,
     name : "测试问题清单",
 },{
     key : "9",
