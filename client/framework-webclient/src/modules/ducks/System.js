@@ -4,7 +4,7 @@ const SET_SIDER = 'System/SET_SIDER';
 
 const initialState = {
     sysUser: {},
-    authData: [],
+    authData: {},
     siderData: {}
 };
 
