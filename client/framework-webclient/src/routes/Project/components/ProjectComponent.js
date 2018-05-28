@@ -72,7 +72,7 @@ export default class ProjectComponent extends Component{
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewDetails(record)}>查看详情</a>
                     <Divider type="vertical"/>
-                    <a href="javascript:void(0);">更多</a>
+                    <a href="javascript:void(0);">添加操作</a>
                 </div>
             )
         }
@@ -91,7 +91,7 @@ export default class ProjectComponent extends Component{
     }
 
     state2SColor(state) {
-        /*TODO*//*是否需要能让超级管理员可以添加新的状态？*/
+        /*TODO*/
         return "success";
     }
 

@@ -6,6 +6,7 @@ import UserConsignContentView from "./ConsignContentComponent";
 const { Column } = Table;
 const Search = Input.Search;
 const confirm = Modal.confirm;
+const InputGroup = Input.Group;
 
 export default class ConsignListComponent extends Component {
     constructor(props) {
@@ -31,9 +32,19 @@ export default class ConsignListComponent extends Component {
         dataIndex:"id",
         sorter:(a, b) => a.id - b.id,
     }, {
+        title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex:"customerId",
+    }, {
         title:"状态",
-        dataIndex:"state",
-        render: (stateCode) => {
+        dataIndex:"status",
+        render: (status) =>{
+            return (
+                <span>
+                    <Badge status={this.state2SColor(status)} text={status} />
+                </span>
+            )
+        },
+        /*render: (stateCode) => {
             switch(stateCode) {
                 case 'TobeSubmit':
                     return '待提交';
@@ -55,10 +66,10 @@ export default class ConsignListComponent extends Component {
             text: '已通过',
             value: 'Finished',
         }],
-        filterMultiple: false,/*单选filter*/
+        filterMultiple: false,*/
         // specify the condition of filtering result
         // here is that finding the name started with `value`
-        onFilter: (value, record) => record.state.indexOf(value) === 0,
+        //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
         dataIndex:"id",
@@ -75,6 +86,10 @@ export default class ConsignListComponent extends Component {
     }
     ];
 
+    state2SColor(state) {
+        /*TODO*/
+        return "success";
+    }
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         this.props.setListFilter((record) => record.id.match(reg));
@@ -106,19 +121,19 @@ export default class ConsignListComponent extends Component {
     render() {
         return (
             <div>
-                <h3 style={{ marginBottom: 16 }}>客户委托列表</h3>
-                <Card>
-                    <Search
-                        placeholder="搜索委托ID"
-                        onSearch={this.onSearch}
-                        style={{ width: 200 }}
-                    />
-                </Card>
+                <h3 style={{ marginBottom: 16 }}>委托列表</h3>
+                <InputGroup>
+                    <Col span={8}>
+                        <Search placeholder="搜索委托ID" onSearch={this.onSearch} enterButton={true}/>
+                    </Col>
+                    <Col span={1}></Col>
+                    {this.props.enableNew ?
+                        <Col span={2}>
+                            <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
+                        </Col>
+                        : <Col span={2}></Col>}
+                </InputGroup>
                 <br />
-                {this.props.enableNew ?
-                <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
-                    : <br/>}
-                <br /><br />
                 <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'} />
 
             </div>

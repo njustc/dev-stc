@@ -15,7 +15,7 @@ export const getConsignList = (dispatch, callback) => {
             callback && callback(status);
         });*/
     /*TEMP*/
-    dispatch(setConsignList([]));
+    dispatch(setConsignList([]));/*TODO*//*可以在这里加一些数据用于测试*/
     const status = STATUS.SUCCESS;
     callback && callback(status);
 };

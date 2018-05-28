@@ -99,7 +99,7 @@ export const mockSiderData = [{
     name : "测试方案列表",
 },{
     key : "6",
-    disable : true,
+    disable : false,
     name : "测试用例列表",
 },{
     key : "7",
