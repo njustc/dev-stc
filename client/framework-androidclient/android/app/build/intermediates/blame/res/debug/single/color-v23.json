@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/jieyang/Desktop/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/color-v23/abc_color_highlight_material.xml",
+        "source": "/Users/jieyang/Desktop/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color-v23/abc_color_highlight_material.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/RNstc/android/app/build/intermediates/res/merged/debug/color-v23/abc_color_highlight_material.xml",
         "source": "/Users/weiyuyang/RNstc/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color-v23/abc_color_highlight_material.xml"
     },
