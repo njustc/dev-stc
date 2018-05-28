@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge} from 'antd';
-import TestCaseContentView from "./TestCaseContentComponent";
+//import UserConsignContentView from "./ConsignContentComponent";
 import {STATE} from "../../../services/common"
 
 const { Column } = Table;
@@ -16,17 +16,17 @@ export default class TestCaseListComponent extends Component {
     }
 
     static propTypes = {
-        setListFilter: PropTypes.func,
+        //setListFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
-        deleteConsign: PropTypes.func,
-        getConsignList: PropTypes.func,
-        newConsign: PropTypes.func,
-        enableNew: PropTypes.bool,
+        //deleteConsign: PropTypes.func,
+        getTestCaseList: PropTypes.func,
+        //newContract: PropTypes.func,
+        //enableNew: PropTypes.bool,
     };
 
     componentDidMount() {
-        this.props.getConsignList();
+        this.props.getTestCaseList();
     }
 
     /*搜索框选项相关*/
@@ -43,11 +43,13 @@ export default class TestCaseListComponent extends Component {
     setPlaceholder = () => {
         switch (this.state.selectOption){
             case 'id':
-                return '请输入委托ID';
+                return '请输入测试用例ID';
             case 'customerId':
                 return '请输入委托人ID';
             case 'name':
-                return '请输入委托名称';
+                return '请输入项目名称';
+            case 'pid':
+                return '请输入项目ID';
             default:break;
         }
     };
@@ -63,9 +65,9 @@ export default class TestCaseListComponent extends Component {
     }
 
     state2C(state) {
-        switch (state){
-            case STATE.TO_SUBMIT: return "待提交";
-            case STATE.TO_CHECK: return "待评审";
+        switch (state){/*TODO*/
+            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.CANCELED: return "已取消";
             default: return "未定义状态";
         }
@@ -73,11 +75,15 @@ export default class TestCaseListComponent extends Component {
 
     /*table列设置*/
     columns = [{
+        title:"项目ID",
+        dataIndex:"pid",
+        sorter:(a, b) => a.pid - b.pid,
+    }, {
         title:"测试用例ID",
         dataIndex:"id",
         sorter:(a, b) => a.id - b.id,
     }, {
-        title:"委托名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        title:"项目名称",
         dataIndex:"name",
     }, {
         title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
@@ -93,18 +99,7 @@ export default class TestCaseListComponent extends Component {
             )
         },
         /*TODO 给状态列加个过滤*/
-        /*render: (stateCode) => {
-            switch(stateCode) {
-                case 'TobeSubmit':
-                    return '待提交';
-                case 'TobeCheck':
-                    return '待审核';
-                case 'Finished':
-                    return '已通过';
-                default:
-                    return '未定义状态';
-            }
-        },
+        /*
         filters: [{
             text: '待提交',
             value: 'TobeSubmit',
@@ -123,13 +118,13 @@ export default class TestCaseListComponent extends Component {
         title:"操作",
         dataIndex:"id",
         key:"operation",
-        render: (id, record) => {
+        render: (record) => {
             /*TODO*/
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
-                    <Divider type="vertical"/>
-                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>
+                    {/*<Divider type="vertical"/>
+                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>*/}
                 </div>
             )
         }
@@ -138,13 +133,14 @@ export default class TestCaseListComponent extends Component {
 
     /*查看详情*/
     viewContent = (record) => () => {
-        this.props.showContent(record.id);
+        //console.log(record);
+        this.props.showContent(record);
     };
 
     /*取消委托提示框*/
     showDeleteConfirm = (record) => () => {
         confirm({
-            title: 'Are you sure delete this consign?',
+            title: 'Are you sure to delete this consign?',
             //content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
@@ -172,19 +168,20 @@ export default class TestCaseListComponent extends Component {
                 <h3 style={{ marginBottom: 16 }}>测试用例列表</h3>
                 <InputGroup>
                     <Col span={3}>
-                        <Select defaultValue="搜索委托ID" onSelect={this.onSelect}>
-                            <Option value="id">搜索委托ID</Option>
+                        <Select defaultValue="搜索测试用例ID" onSelect={this.onSelect}>
+                            <Option value="id">搜索测试用例ID</Option>
+                            <Option value="pid">搜索项目ID</Option>
                             <Option value="customerId">搜索委托人ID</Option>
-                            <Option value="name">搜索委托名称 </Option>
+                            <Option value="name">搜索项目名称 </Option>
                         </Select>
                     </Col>
                     <Col span={8}>
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    {this.props.enableNew ?
+                    {/*this.props.enableNew*/0 ?
                         <Col span={2}>
-                            <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
+                            <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建测试用例</Button>
                         </Col>
                         : <Col span={2}></Col>}
                 </InputGroup>

@@ -1,25 +1,25 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from "react-redux";
 import {addTabAction} from "MODULES/ducks/Layout";
-/*import {ConsignContentView} from "../../Consign";
-import {getConsignList} from "../../../services/ConsignService";
-import {setConsignFilter} from "../../../modules/ducks/Consign";*/
+import {TestProgramContentView} from "../../Test";
+import {getTestProgramList} from "../../../services/TestService";
+//import {setTestRecordFilter} from "../../../modules/ducks/Consign";
 import TestProgramListComponent from "../components/TestProgramListComponent";
 
 const mapStateToProps = (state) => {
     return {
-        //dataSource: Object.values(state.Consign.listMap),
+        dataSource: Object.values(state.TestProgram.listMap),
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {/*
+    return {
         showContent: (id) => {
-            dispatch(addTabAction(id, '委托详情', ConsignContentView));
+            dispatch(addTabAction(id, '测试方案详情', TestProgramContentView));
 //            dispatch(setConsignContent())
         },
-        setListFilter: (listFilter) => dispatch(setConsignFilter(listFilter)),
-        getConsignList: () => getConsignList(dispatch)*/
+        //setListFilter: (listFilter) => dispatch(setConsignFilter(listFilter)),
+        getTestProgramList: () => getTestProgramList(dispatch)
     }
 };
 
