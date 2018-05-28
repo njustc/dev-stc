@@ -1,5 +1,5 @@
-import SatisfactionListContainer from "./containers/SatisfactionListContainer";
-import TestWorkCheckListContainer from "./containers/TestWorkCheckListContainer";
+import SatisfactionContentContainer from "./containers/SatisfactionContentContainer";
+import CheckListContentContainer from "./containers/CheckListContentContainer";
 
-export const SatisfactionListView = SatisfactionListContainer;
-export const TestWorkCheckListView = TestWorkCheckListContainer;
+export const SatisfactionListView = SatisfactionContentContainer;
+export const TestWorkCheckListView = CheckListContentContainer;

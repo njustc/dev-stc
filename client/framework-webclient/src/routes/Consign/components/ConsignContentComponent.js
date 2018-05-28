@@ -30,13 +30,13 @@ class ConsignContentComponent extends Component {
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
-        curKey: PropTypes.string.isRequired
+//        curKey: PropTypes.string.isRequired
     };
 
-    componentWillMount() {
-        this.curID = this.props.curKey;
-        this.values = this.props.getValues(this.curID);
-    }
+//    componentWillMount() {
+//        this.curID = this.props.curKey;
+//        this.values = this.props.getValues(this.curID);
+//    }
 
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {

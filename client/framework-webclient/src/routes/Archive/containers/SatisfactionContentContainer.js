@@ -1,50 +1,41 @@
 import React, {Component} from 'react';
-import SatisfactionContentComponent from "ROUTES/Archive/components/SatisfactionContentComponent";
+import SatisfactionContentComponent from "../components/SatisfactionContentComponent";
 import {connect} from "react-redux";
-import {getConsign} from "../../../services/ConsignService";
-
 
 const mapStateToProps = (state) => {
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
-    const competence = authData.functions.find(obj => obj.object === "Consign").function;
     return {
-        consignData: {},/*fetch data with pro id*/
-        disable: competence==="confirmer"
+        values: {},/*fetch consign with pro id*/
+        contractData: {},/*fetch data with pro id*/
+        disable: true,
+        // buttons: buttons,
     }
 };
 
-const buttons = (dispatch,competence) => [{
+const buttons = (dispatch) => [{
     content: '保存',
-    onClick: (consignation) =>{
-        console.log(consignation);
-    },
-    enable: competence==="creator"
+    onClick: () =>{
+
+    }
 },{
     content: '提交',
-    onClick: (consignation) =>{
+    onClick: () =>{
 
-    },
-    enable: competence==="creator"
+    }
 },{
     content: '通过',
-    onClick: (consignation) =>{
+    onClick: () =>{
 
-    },
-    enable: competence==="confirmer"
+    }
 },{
     content: '否决',
-    onClick: (consignation) =>{
+    onClick: () =>{
 
-    },
-    enable: competence==="confirmer"
+    }
 }];
 
 const mapDispatchToProps = (dispatch) => {
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
-    const competence = authData.functions.find(obj => obj.object === "Consign").function;
     return {
-        buttons: buttons(dispatch,competence).filter(button => button.enable===true),
-        values: getConsign(dispatch,'ppp').consignation,/*TODO:用什么方式显示consign内容*/
+        buttons: buttons(dispatch),
     }
 };
 
