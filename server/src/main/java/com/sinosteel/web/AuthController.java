@@ -1,5 +1,9 @@
 package com.sinosteel.web;
 
+import com.alibaba.fastjson.JSONArray;
+import com.sinosteel.domain.Function;
+import com.sinosteel.domain.FunctionType;
+import com.sinosteel.domain.Role;
 import com.sinosteel.domain.User;
 import com.sinosteel.service.FunctionService;
 import com.sinosteel.service.UserService;
@@ -13,6 +17,11 @@ import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
 import com.sinosteel.framework.utils.encryption.HmacSHA256Util;
 import com.sinosteel.framework.utils.encryption.MD5Util;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 public class AuthController 
@@ -34,10 +43,34 @@ public class AuthController
 		{
 			User user = userService.getLoginUser(request.getParams());
 			JSONObject userJson = JSONObject.parseObject(JSONObject.toJSONString(user));
-			//user中没有modules信息，但前端需要，故这里将该用户可以管理的modules发给前端，
-			//前端根据这些modules决定侧边栏显示哪些modules
-			userJson.put("modules", functionService.getFunctionsHierarchies(user.getFunctions()));
-			
+			//去掉roles以及function等冗杂信息
+			userJson.remove("roles");
+			userJson.remove("functions");
+			//将与角色及其功能相关信息写入该jsonarray里面，返回给前端
+			JSONArray rolesJson = new JSONArray();
+			List<Role> roles = user.getRoles();
+			for (Role role: roles) {
+				JSONObject roleJson = new JSONObject();
+				//将角色名称放入json内
+				roleJson.put("name", role.getRoleString());
+
+				List<Function> roleFunctions = role.getFunctions();
+				Map<String, ArrayList<FunctionType>> functionGroup = new HashMap<String, ArrayList<FunctionType>>();
+				for (Function function: roleFunctions) {
+					if (functionGroup.get(function.getObject()) == null) {
+						functionGroup.put(function.getObject(), new ArrayList<FunctionType>());
+					}
+					ArrayList<FunctionType> functionTypeArrayList = functionGroup.get(function.getObject());
+					functionTypeArrayList.add(function.getFunctionType());
+
+				}
+				//将角色的功能相关放入json内
+				roleJson.put("functionGroup", functionGroup);
+				//将该角色的所有信息放入总的jsonArray内
+				rolesJson.add(roleJson);
+			}
+			//userJson.put("modules", functionService.getFunctionsHierarchies(user.getFunctions()));
+			userJson.put("roles", rolesJson);
 			String digest = HmacSHA256Util.digest(user.getUsername(), user.getPassword());
 			userJson.put("clientDigest", digest);
 			
@@ -93,3 +126,4 @@ public class AuthController
 		return response;
 	}
 }
+
