@@ -19,10 +19,11 @@ public class ContractActiviti extends BaseActiviti{
     //目前的参数为合同ID，客户ID，市场部主任ID和质量部主任ID
     //市场部主任和质量部主任应该是固定的吧？
     public String createContractProcess(String contractId, String clientId,
-                                         String  marketEmployerId ,String  qualityEmployerId )throws Exception{
+                                         String  workerId )throws Exception{
         Map<String,Object> variables=new HashMap<String, Object>();
         variables.put("ContractID",contractId);
         variables.put("ClientID",clientId);
+        variables.put("WorkerID",workerId);
         //variables.put("marketEmployerId",marketEmployerId);
         //variables.put("qualityEmployerId",qualityEmployerId);
         ProcessInstance pi=runtimeService.startProcessInstanceByKey("contract",variables);
