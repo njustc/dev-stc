@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import ConsignContentComponent from "ROUTES/Consign/components/ConsignContentComponent";
+import ConsignContentComponent from "../components/ConsignContentComponent";
 import {connect} from "react-redux";
 import {getConsign} from "../../../services/ConsignService";
 
 
 const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
+    console.log(authData);
     return {
         consignData: {},/*fetch data with pro id*/
         disable: authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1,
