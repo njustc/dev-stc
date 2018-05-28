@@ -23,6 +23,10 @@
     {
       "name": "processInstance",
       "description": "委托状态"
+    },
+    {
+      "name": "contract",
+      "description": "合同"
     }
   ],
   "schemes": [
@@ -74,10 +78,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功登录. data里包含User相关信息，例如clientDigest, menus等",
-            "schema": {
-              "$ref": "#/definitions/Response"
-            }
+            "description": "成功登录,data里包含User各种信息\n  eg.\n```\n{\n  \"data\": {\n    \"password\": \"21232F297A57A5A743894A0E4A801FC3\",\n    \"code\": \"2\",\n    \"createdUserId\": \"2\",\n    \"roles\": [\n      {\n        \"functionGroup\": {\n          \"Consign\": [\n            \"ADD\",\n            \"DELETE\",\n            \"EDIT\",\n            \"VIEW\"\n          ]\n        },\n        \"name\": \"normal_customer\"\n      }\n    ],\n    \"name\": \"Customer1\",\n    \"id\": \"2\",\n    \"credentialsSalt\": \"customer1null\",\n    \"clientDigest\": \"dfcbbdfef1f8561cc04cf219736922c07af9be789ca53aa24af6594e89e81ccb\",\n    \"username\": \"customer1\"\n  },\n  \"message\": \"\",\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -397,6 +398,214 @@
             "schema": {
               "$ref": "#/definitions/Response"
             }
+          }
+        }
+      }
+    },
+    "/services/contract": {
+      "get": {
+        "tags": [
+          "contract"
+        ],
+        "summary": "查询合同",
+        "description": "用户为普通客户时，返回当前该客户的所有合同，如果是工作人员返回所有合同",
+        "operationId": "queryContracts",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功查询合同时返回合同. data内包含JsonArray格式的内容内容\n目前没有返回合同的contractBody？\n查询失败时，返回一个失败的status\n```\n{\n  \"data\": [\n    {\n      \"processInstanceID\": \"5001\",\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-05-28 18:47:22\",\n      \"id\": \"1399d1ac-9aad-4ca3-9f44-e49972d147cf\"\n    },\n    {\n      \"processInstanceID\": \"5011\",\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-05-28 19:00:56\",\n      \"id\": \"7356e68f-c01f-4a32-8c5e-4fce3f5508d7\"\n    },\n    {\n      \"processInstanceID\": \"5021\",\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-05-28 19:02:09\",\n      \"id\": \"f0c26114-403c-484b-982b-2aea3c58d1a9\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "contract"
+        ],
+        "summary": "添加合同",
+        "description": "向数据库中添加合同，成功时返回合同的具体信息以及一个success状态",
+        "operationId": "addContract",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "合同的具体内容. JSON格式\n```\n{\n  \"contractBody\": \"content\"\n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功添加合同时的样例response body\n```\n{\n  \"data\": {\n    \"processInstanceID\": \"5001\",\n    \"createdUserId\": \"2\",\n    \"contractBody\": \"I Love TaylorSwift\",\n    \"createdTime\": \"2018-05-28 18:47:22\",\n    \"id\": \"1399d1ac-9aad-4ca3-9f44-e49972d147cf\",\n    \"state\": \"TobeSubmit\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "contract"
+        ],
+        "summary": "修改合同",
+        "description": "修改已有的合同，参数中需要包含合同的id",
+        "operationId": "editContract",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "合同具体内容. JSON格式. 需要指明合同的ID\n```\n{\n  \"id\": \n  \"contractBody\":\n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "修改成功时的样例response body\n```\n{\n  \"data\": {\n  \"processInstanceID\": \"5001\",\n    \"createdUserId\": \"2\",\n    \"contractBody\": \"I Love TaylorSwift So Much\",\n    \"alteredTime\": \"2018-05-28 19:16:02\",\n    \"createdTime\": \"2018-05-28 18:47:22\",\n    \"id\": \"1399d1ac-9aad-4ca3-9f44-e49972d147cf\",\n    \"state\": \"TobeSubmit\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "contract"
+        ],
+        "summary": "删除合同",
+        "description": "删除一个合同，需要提供委托的具体id",
+        "operationId": "deleteContract",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "合同具体内容. JSON格式. 需要指明ID,contractBody为非必要\n```\n{\n  \"id\": \n  \"contractBody\":\n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功删除合同\n```\n{\n  \"status\":\"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/services/contract/{id}": {
+      "get": {
+        "tags": [
+          "contract"
+        ],
+        "summary": "根据id查询合同",
+        "description": "根据请求中的id查询对应合同",
+        "operationId": "queryContractByID",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "合同的id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功查询合同. data内包含JsonArray格式的合同内容\n```\n{\n  \"data\": {\n  \"processInstanceID\": \"5011\",\n  \"createdUserId\": \"2\",\n  \"contractBody\": \"I Love TaylorSwift So Much\",\n  \"alteredTime\": \"2018-05-28 19:26:22\",\n  \"createdTime\": \"2018-05-28 19:00:56\",\n  \"alteredUserId\": \"2\",\n  \"id\": \"7356e68f-c01f-4a32-8c5e-4fce3f5508d7\"\n},\n\"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
           }
         }
       }

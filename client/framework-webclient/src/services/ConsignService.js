@@ -2,6 +2,7 @@ import {baseServiceAddress, STATUS} from "SERVICES/common";
 import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
 import {addConsign, removeConsign, setConsignContent, setConsignList, setConsignState} from "../modules/ducks/Consign";
 import {mockProjectData, valueData} from "./mockData";
+import {STATE} from "./common";
 
 const consignBase = baseServiceAddress + '/consign';
 const consignActivitiBase = baseServiceAddress + '/consignActiviti';
@@ -15,7 +16,24 @@ export const getConsignList = (dispatch, callback) => {
             callback && callback(status);
         });*/
     /*TEMP*/
-    dispatch(setConsignList([]));
+    dispatch(setConsignList([
+        {
+            id : "110",
+            name : "快乐星球小杨杰",
+            customerId : "151220140",
+            status: STATE.TO_SUBMIT
+        },{
+            id : "120",
+            name : "不快乐星球小杨杰",
+            customerId : "151220140",
+            status: STATE.TO_CHECK
+        },{
+            id : "119",
+            name : "不快乐星球老杨杰",
+            customerId : "151220140",
+            status: STATE.CANCELED
+        }
+    ]));/*TODO 可以在这里加一些数据用于测试*/
     const status = STATUS.SUCCESS;
     callback && callback(status);
 };
