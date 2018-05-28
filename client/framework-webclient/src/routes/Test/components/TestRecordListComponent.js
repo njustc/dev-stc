@@ -10,7 +10,7 @@ class TestRecordContentComponent extends Component {
 
     render(){
         return(
-            <h3>测试问题清单列表</h3>
+            <h3>测试记录列表</h3>
         )
     }
 }

@@ -6,10 +6,9 @@ import {getConsign} from "../../../services/ConsignService";
 
 const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    const competence = authData.functions.find(obj => obj.object === "Consign").function;
     return {
         consignData: {},/*fetch data with pro id*/
-        disable: competence==="confirmer",
+        disable: authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1,
         curKey: state.Layout.activeKey /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
     }
 };
@@ -42,7 +41,7 @@ const buttons = (dispatch,competence) => [{
 
 const mapDispatchToProps = (dispatch) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    const competence = authData.functions.find(obj => obj.object === "Consign").function;
+    const competence = authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1;
     return {
         buttons: buttons(dispatch,competence).filter(button => button.enable===true),
         getValues: (id) => getConsign(dispatch,id).consignation /*TODO:用什么方式显示consign内容*/

@@ -305,11 +305,11 @@
     },
     "/services/processInstance/{processInstanceID}": {
       "get": {
-        "summary": "获取委托状态",
+        "summary": "获取流程实例状态",
         "tags": [
           "processInstance"
         ],
-        "description": "根据processInstanceID获取该委托状态",
+        "description": "根据processInstanceID获取该流程实例状态",
         "operationId": "queryConsignState",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -322,7 +322,7 @@
             "name": "processInstanceID",
             "in": "path",
             "type": "string",
-            "description": "委托在Activiti中的进程ID",
+            "description": "流程实例在Activiti中的进程ID",
             "required": true
           },
           {
@@ -350,8 +350,8 @@
         }
       },
       "put": {
-        "summary": "修改委托状态",
-        "description": "根据processInstanceID修改该委托状态",
+        "summary": "修改流程实例状态",
+        "description": "根据processInstanceID修改该流程实例状态",
         "operationId": "updateConsignState",
         "tags": [
           "processInstance"
@@ -367,7 +367,7 @@
             "name": "processInstanceID",
             "in": "path",
             "type": "string",
-            "description": "委托在Activiti中的进程ID",
+            "description": "流程实例在Activiti中的进程ID",
             "required": true
           },
           {
@@ -387,14 +387,14 @@
           {
             "name": "params",
             "in": "formData",
-            "description": "修改的操作内容。JSON格式。属性名为'operation', 值可以为 submit/pass/reject. 分别代表 提交/通过/否决.  以及'object'，表明修改的对象 eg.\n```\n{\n  \"object\": \"consign\"\n  \"operation\": \"submit\"\n}\n",
+            "description": "修改的操作内容。JSON格式。对象名为'object',属性名为'operation', object为consign时，operation有submit/pass/reject\n  object为contract时，operation有submit/reviewpass/reviewreject/confirmpass/confirmreject\neg.\n```\n{\n  \"object\": \"consign\"\n  \"operation\": \"submit\"\n}\n",
             "type": "string",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "成功修改委托状态，并在data中返回修改后的进程状态。 \ndata含两个属性 ：\nprocessInstanceID->委托进程ID .\nstate->委托状态\n```\n{\n  \"processInstanceID\": \"xxx\"\n  \"state\": \"xxx\"\n}\n",
+            "description": "成功修改流程实例状态，并在data中返回修改后的进程状态。 \ndata含两个属性 ：\nprocessInstanceID->流程实例进程ID .\nstate->流程实例状态\n```\n{\n  \"processInstanceID\": \"xxx\"\n  \"state\": \"xxx\"\n}\n",
             "schema": {
               "$ref": "#/definitions/Response"
             }

@@ -169,7 +169,7 @@ export default class TestCaseListComponent extends Component {
     render() {
         return (
             <div>
-                <h3 style={{ marginBottom: 16 }}>委托列表</h3>
+                <h3 style={{ marginBottom: 16 }}>测试用例列表</h3>
                 <InputGroup>
                     <Col span={3}>
                         <Select defaultValue="搜索委托ID" onSelect={this.onSelect}>

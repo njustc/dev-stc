@@ -98,9 +98,6 @@
       <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
         <omgdc:Bounds height="30.0" width="30.0" x="100.0" y="280.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="newcontract" id="BPMNShape_newcontract">
-        <omgdc:Bounds height="80.0" width="100.0" x="175.0" y="255.0"/>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="submitcontract" id="BPMNShape_submitcontract">
         <omgdc:Bounds height="80.0" width="100.0" x="320.0" y="255.0"/>
       </bpmndi:BPMNShape>
@@ -150,10 +147,6 @@
       <bpmndi:BPMNEdge bpmnElement="f1" id="BPMNEdge_f1">
         <omgdi:waypoint x="130.0" y="295.0"/>
         <omgdi:waypoint x="175.0" y="295.0"/>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="f2" id="BPMNEdge_f2">
-        <omgdi:waypoint x="275.0" y="295.0"/>
-        <omgdi:waypoint x="320.0" y="295.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="f3" id="BPMNEdge_f3">
         <omgdi:waypoint x="420.0" y="295.0"/>
