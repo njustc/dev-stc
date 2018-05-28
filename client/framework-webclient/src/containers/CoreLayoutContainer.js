@@ -25,11 +25,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addTab: (key, name, component) => {
-            console.log(key);
-            console.log(name);
-            console.log(component);
-            /*TODO正确获取component*/
-            dispatch(addTabAction(key, name ,component));
+            dispatch(addTabAction(key, name , component));
         },
         removeTab: (targetKey) => {
             dispatch(removeTabAction(targetKey));

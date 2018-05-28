@@ -9,10 +9,9 @@ const { SubMenu } = Menu;
 const TabPane = Tabs.TabPane;
 const FormItem = Form.Item;
 
-import {sysFetch} from '../utils/FetchUtil';
 import {ProjectView} from "ROUTES/Project";
 
-export const mainKey = 'projectList';
+import tabsMap from "../routes/tabsMap";
 
 export default class CoreLayout extends Component
 {
@@ -24,7 +23,7 @@ export default class CoreLayout extends Component
         sider: PropTypes.object.isRequired,
         sysUser: PropTypes.object.isRequired,
         panes: PropTypes.array.isRequired,
-        activeKey: PropTypes.string.isRequired,
+        activeKey: PropTypes.string,
         addTab: PropTypes.func.isRequired,
         removeTab: PropTypes.func.isRequired,
         switchTab: PropTypes.func.isRequired
@@ -40,12 +39,8 @@ export default class CoreLayout extends Component
     };
 
     onClick = (e) => {
-        if(e.key === "1")
-            this.props.switchTab(mainKey);
-        else{
-            const page = this.props.sider[e.key];
-            this.props.addTab(page.key,page.name,page.component);
-        }
+        const page = this.props.sider[e.key];
+        this.props.addTab(page.key,page.name,tabsMap[page.key]);
     };
 
     onEdit = (targetKey) => {
@@ -56,12 +51,6 @@ export default class CoreLayout extends Component
         this.props.switchTab(activeKey);
     };
 
-    mainPane = (
-        <TabPane tab={<span><Icon type="database" />项目管理</span>} key={mainKey} closable={false}>
-            {React.createElement(ProjectView)}
-        </TabPane>
-    );
-
     menu = (
         <Menu onClick={this.handleMenuClick}>
             <Menu.Item key="logout">退出登录</Menu.Item>
@@ -69,10 +58,8 @@ export default class CoreLayout extends Component
     );
 
     render(){
-        console.log(this.props.sider);
         return (
             <Layout style = {{ minHeight: '100vh' }}>
-<<<<<<< HEAD
                 <Affix offsetTop={0}>
                     <Header style={{ background: '#fff', padding: 0 }}>
                         <Dropdown overlay={this.menu}>
@@ -138,7 +125,6 @@ export default class CoreLayout extends Component
                                 onEdit={this.onEdit}
                                 hideAdd="true"
                                 activeKey={this.props.activeKey}>
-                                {this.mainPane}
                                 {this.props.panes.map(pane => <TabPane tab={pane.title} key={pane.key}>{pane.content}</TabPane>)}
                             </Tabs>
                         </Content>
@@ -148,67 +134,6 @@ export default class CoreLayout extends Component
                 <Footer style={{ textAlign: 'center' }}>
                     出品：南京大学计算机系15级软工在线业务组
                 </Footer>
-=======
-                <Sider>
-                    <div className="logo" />
-                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                        <Menu.Item key="1">
-                            <Icon type="pie-chart" />
-                            <span>委托管理</span>
-                        </Menu.Item>
-                        <Menu.Item key="2">
-                            <Icon type="desktop" />
-                            <span>合同管理</span>
-                        </Menu.Item>
-                        <SubMenu
-                            key="sub1"
-                            title={<span><Icon type="inbox" /><span>测试管理</span></span>}
-                        >
-                            <Menu.Item key="3"><Icon type="file-text" />测试方案</Menu.Item>
-                            <Menu.Item key="4"><Icon type="file-text" />测试用例</Menu.Item>
-                            <Menu.Item key="5"><Icon type="file-text" />测试记录</Menu.Item>
-                            <Menu.Item key="6"><Icon type="file-text" />测试问题清单</Menu.Item>
-                        </SubMenu>
-                        <SubMenu
-                            key="sub2"
-                            title={<span><Icon type="team" /><span>Team</span></span>}
-                        >
-                            <Menu.Item key="7">Team 1</Menu.Item>
-                            <Menu.Item key="8">Team 2</Menu.Item>
-                        </SubMenu>
-                        <Menu.Item key="9">
-                            <Icon type="file" />
-                            <span>File</span>
-                        </Menu.Item>
-                    </Menu>
-                </Sider>
-                <Layout>
-                    <Affix offsetTop={0}>
-                        <Header style={{ background: '#fff', padding: 0 }}>
-                            <Dropdown overlay={this.menu}>
-                                <Button style={{ marginLeft: 8 }}>
-                                    <Icon type="user"/> {this.props.sysUser.username} <Icon type="down" />
-                                </Button>
-                            </Dropdown>
-                        </Header>
-                    </Affix>
-                    <Content style={{ margin: '0px 16px', padding: 24, background: '#fff', minHeight: 800 }}>
-                        <Tabs
-                            className="contentTab"
-                            type="editable-card"
-                            onChange={this.onChange}
-                            onEdit={this.onEdit}
-                            hideAdd="true"
-                            activeKey={this.props.activeKey}>
-                            {this.mainPane}
-                            {this.props.panes.map(pane => <TabPane tab={pane.title} key={pane.key}>{pane.content}</TabPane>)}
-                        </Tabs>
-                    </Content>
-                    <Footer style={{ textAlign: 'center' }}>
-                        出品：南京大学计算机系15级软工在线业务组
-                    </Footer>
-                </Layout>
->>>>>>> 1102970baf92c169957af1133d2a04d887e2ef38
             </Layout>
         );
     }

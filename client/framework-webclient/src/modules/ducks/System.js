@@ -53,6 +53,7 @@ export const setAuthData = (authData) => {
 };
 
 export const setSiderData = (list) => {
+    sessionStorage.setItem('sider',JSON.stringify(list));
     return {
         type: SET_SIDER,
         payload: list,
