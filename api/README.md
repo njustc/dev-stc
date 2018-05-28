@@ -19,3 +19,6 @@ cd api
 http-server --cors
 ```
 运行成功后，进入`swagger-ui-dist`目录下用浏览器打开`index.html`即可
+
+# Postman Collection使用说明
+如果使用postman，可以将文件`dev-stc.postman_collection.json`导入postman中，便可得到所有的请求及实例
