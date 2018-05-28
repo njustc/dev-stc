@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
     const competence = authData.functions.find(obj => obj.object === "Consign").function;
     return {
         consignData: {},/*fetch data with pro id*/
-        disable: competence==="confirmer"
+        disable: competence==="confirmer",
+        curKey: state.Layout.activeKey /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
     }
 };
 
@@ -44,7 +45,7 @@ const mapDispatchToProps = (dispatch) => {
     const competence = authData.functions.find(obj => obj.object === "Consign").function;
     return {
         buttons: buttons(dispatch,competence).filter(button => button.enable===true),
-        values: getConsign(dispatch,'ppp').consignation,/*TODO:用什么方式显示consign内容*/
+        getValues: (id) => getConsign(dispatch,id).consignation /*TODO:用什么方式显示consign内容*/
     }
 };
 

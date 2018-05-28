@@ -17,14 +17,15 @@ const mapStateToProps = (state) => {
     return {
         sysUser: state.System.sysUser,
         panes: state.Layout.panes,
-        activeKey: state.Layout.activeKey
+        activeKey: state.Layout.activeKey,
+        sider: state.System.siderData
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         addTab: (key, name, component) => {
-            dispatch(addTabAction(key, name,component));
+            dispatch(addTabAction(key, name , component));
         },
         removeTab: (targetKey) => {
             dispatch(removeTabAction(targetKey));
