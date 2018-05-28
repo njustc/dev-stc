@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message} from 'antd';
+import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge} from 'antd';
 import UserConsignContentView from "./ConsignContentComponent";
+import {STATE} from "../../../services/common"
 
 const { Column } = Table;
 const Search = Input.Search;
@@ -27,10 +28,56 @@ export default class ConsignListComponent extends Component {
         this.props.getConsignList();
     }
 
+    /*搜索框选项相关*/
+    state={
+        selectOption:'id',
+    };
+
+    onSelect = (value, option) => {
+        this.setState({
+            selectOption:value
+        });
+    }
+
+    setPlaceholder = () => {
+        switch (this.state.selectOption){
+            case 'id':
+                return '请输入委托ID';
+            case 'customerId':
+                return '请输入委托人ID';
+            case 'name':
+                return '请输入委托名称';
+            default:break;
+        }
+    };
+
+    /*状态列颜色渲染*/
+    state2SColor(state) {
+        switch (state){
+            case STATE.TO_SUBMIT: return "processing";
+            case STATE.TO_CHECK: return "processing";
+            case STATE.CANCELED: return "default";
+            default: return "error";
+        }
+    }
+
+    state2C(state) {
+        switch (state){
+            case STATE.TO_SUBMIT: return "待提交";
+            case STATE.TO_CHECK: return "待评审";
+            case STATE.CANCELED: return "已取消";
+            default: return "未定义状态";
+        }
+    }
+
+    /*table列设置*/
     columns = [{
         title:"委托ID",
         dataIndex:"id",
         sorter:(a, b) => a.id - b.id,
+    }, {
+        title:"委托名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex:"name",
     }, {
         title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
         dataIndex:"customerId",
@@ -40,7 +87,7 @@ export default class ConsignListComponent extends Component {
         render: (status) =>{
             return (
                 <span>
-                    <Badge status={this.state2SColor(status)} text={status} />
+                    <Badge status={this.state2SColor(status)} text={this.state2C(status)} />
                 </span>
             )
         },
@@ -74,22 +121,24 @@ export default class ConsignListComponent extends Component {
         title:"操作",
         dataIndex:"id",
         key:"operation",
-        render: (id, record, index) => {
+        render: (id, record) => {
+            /*TODO*/
             return (
-                <span>
-                <Button type="default" onClick={this.viewContent(index, id)}><Icon type="eye-o" />查看详情</Button>
-                <Divider type="vertical" />
-                <Button type="danger" onClick={this.showDeleteConfirm(id)} ghost><Icon type="close-circle-o" />取消委托</Button>
-                </span>
+                <div>
+                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
+                    <Divider type="vertical"/>
+                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>
+                </div>
             )
         }
     }
     ];
 
-    state2SColor(state) {
-        /*TODO*/
-        return "success";
-    }
+    /*查看详情*/
+    viewContent = (record) => () => {
+        this.props.showContent(record.id);
+    };
+
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         this.props.setListFilter((record) => record.id.match(reg));
@@ -97,11 +146,10 @@ export default class ConsignListComponent extends Component {
     viewContent = (index, id) => () => {
         this.props.showContent(id);
     };
-    deleteConsign = (id) => () => {
-        this.props.deleteConsign(id);
+    deleteConsign = (record) => () => {
+        this.props.deleteConsign(record);
     };
-    showDeleteConfirm = (id) => () => {
-        const ID=id;
+    showDeleteConfirm = (record) => () => {
         confirm({
             title: 'Are you sure delete this consign?',
             //content: 'Some descriptions',
@@ -112,7 +160,7 @@ export default class ConsignListComponent extends Component {
                 //console.log(id);
                 //debugger;
                 //this.deleteConsign(id);
-                this.props.deleteConsign(id);
+                this.props.deleteConsign(record);
                 },
             onCancel() {},
         });
@@ -123,8 +171,15 @@ export default class ConsignListComponent extends Component {
             <div>
                 <h3 style={{ marginBottom: 16 }}>委托列表</h3>
                 <InputGroup>
+                    <Col span={3}>
+                        <Select defaultValue="搜索委托ID" onSelect={this.onSelect}>
+                            <Option value="id">搜索委托ID</Option>
+                            <Option value="customerId">搜索委托人ID</Option>
+                            <Option value="name">搜索委托名称 </Option>
+                        </Select>
+                    </Col>
                     <Col span={8}>
-                        <Search placeholder="搜索委托ID" onSearch={this.onSearch} enterButton={true}/>
+                        <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
                     {this.props.enableNew ?

@@ -199,9 +199,6 @@ export default class ProjectComponent extends Component{
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    <Col span={2}>
-                        <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
-                    </Col>
                 </InputGroup>
                 <br />
                 <Table dataSource={this.props.dataSource} columns={this.columns} rowKey='id'

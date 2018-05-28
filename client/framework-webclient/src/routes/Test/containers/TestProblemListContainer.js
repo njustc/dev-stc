@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 import {addTabAction} from "MODULES/ducks/Layout";
 /*import {ConsignContentView} from "../../Consign";
 import {getConsignList} from "../../../services/ConsignService";
-import {setConsignFilter} from "../../../modules/ducks/Consign";
-import ConsignListComponent from "../components/ConsignListComponent";*/
+import {setConsignFilter} from "../../../modules/ducks/Consign";*/
+import TestProblemListComponent from "../components/TestProblemListComponent";
 
 const mapStateToProps = (state) => {
     return {
