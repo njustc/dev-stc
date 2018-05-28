@@ -8,6 +8,7 @@ const { Column } = Table;
 const Search = Input.Search;
 const confirm = Modal.confirm;
 const InputGroup = Input.Group;
+const Option = Select.Option;
 
 export default class ConsignListComponent extends Component {
     constructor(props) {
@@ -91,6 +92,7 @@ export default class ConsignListComponent extends Component {
                 </span>
             )
         },
+        /*TODO 给状态列加个过滤*/
         /*render: (stateCode) => {
             switch(stateCode) {
                 case 'TobeSubmit':
@@ -139,19 +141,10 @@ export default class ConsignListComponent extends Component {
         this.props.showContent(record.id);
     };
 
-    onSearch = (value) => {
-        const reg = new RegExp(value, 'gi');
-        this.props.setListFilter((record) => record.id.match(reg));
-    };
-    viewContent = (index, id) => () => {
-        this.props.showContent(id);
-    };
-    deleteConsign = (record) => () => {
-        this.props.deleteConsign(record);
-    };
+    /*取消委托提示框*/
     showDeleteConfirm = (record) => () => {
         confirm({
-            title: 'Are you sure delete this consign?',
+            title: 'Are you sure to delete this consign?',
             //content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
@@ -160,10 +153,17 @@ export default class ConsignListComponent extends Component {
                 //console.log(id);
                 //debugger;
                 //this.deleteConsign(id);
+                /*TODO 取消委托的函数的参数需要优化*/
                 this.props.deleteConsign(record);
-                },
+            },
             onCancel() {},
         });
+    };
+
+    /*TODO 搜索功能*/
+    onSearch = (value) => {
+        const reg = new RegExp(value, 'gi');
+        this.props.setListFilter((record) => record.id.match(reg));
     };
 
     render() {
@@ -189,8 +189,7 @@ export default class ConsignListComponent extends Component {
                         : <Col span={2}></Col>}
                 </InputGroup>
                 <br />
-                <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'} />
-
+                <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'}/>
             </div>
         );
     }
