@@ -1,3 +1,3 @@
-import ProjectContainer from './containers/ProjectContainer'
+import ProjectContainer from './containers/ProjectListContainer'
 
 export const ProjectView = ProjectContainer;

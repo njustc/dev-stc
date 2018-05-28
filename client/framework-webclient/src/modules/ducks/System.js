@@ -1,14 +1,25 @@
 const SET_AUTHDATA = "System/SET_AUTHDATA";
 const SET_SYS_USER = 'System/SET_SYS_USER';
+const SET_SIDER = 'System/SET_SIDER';
 
 const initialState = {
     sysUser: {},
-    authData: [],
+    authData: {},
+    siderData: {}
 };
 
 export const SystemReducer = (state = initialState, action) =>
 {
     switch(action.type) {
+        case SET_SIDER:
+            const list = action.payload;
+            return {
+                ...state,
+                siderData: list.reduce((listMap, ProjectData) => {
+                    listMap[ProjectData.key] = ProjectData;
+                    return listMap;
+                }, {}),
+            };
         case SET_SYS_USER:
             return {
                 ...state,
@@ -39,4 +50,12 @@ export const setAuthData = (authData) => {
         type: SET_AUTHDATA,
         payload: authData
     };
+};
+
+export const setSiderData = (list) => {
+    sessionStorage.setItem('sider',JSON.stringify(list));
+    return {
+        type: SET_SIDER,
+        payload: list,
+    }
 };

@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message} from 'antd';
-import UserConsignContentView from "./ConsignContentComponent";
+import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge} from 'antd';
+//import UserConsignContentView from "./ConsignContentComponent";
+import {STATE} from "../../../services/common"
 
 const { Column } = Table;
 const Search = Input.Search;
 const confirm = Modal.confirm;
+const InputGroup = Input.Group;
+const Option = Select.Option;
 
 export default class ConsignListComponent extends Component {
     constructor(props) {
@@ -13,28 +16,84 @@ export default class ConsignListComponent extends Component {
     }
 
     static propTypes = {
-        setListFilter: PropTypes.func.isRequired,
-        dataSource: PropTypes.array.isRequired,
-        showContent: PropTypes.func.isRequired,
-        deleteConsign: PropTypes.func.isRequired,
-        getConsignList: PropTypes.func.isRequired,
+        setListFilter: PropTypes.func,
+        dataSource: PropTypes.array,
+        showContent: PropTypes.func,
+        deleteConsign: PropTypes.func,
+        getConsignList: PropTypes.func,
         newConsign: PropTypes.func,
-        enableNew: PropTypes.bool.isRequired,
-        //showDeleteConfirm: PropTypes.func.isRequired,
+        enableNew: PropTypes.bool,
     };
 
     componentDidMount() {
         this.props.getConsignList();
     }
 
+    /*搜索框选项相关*/
+    state={
+        selectOption:'id',
+    };
+
+    onSelect = (value, option) => {
+        this.setState({
+            selectOption:value
+        });
+    }
+
+    setPlaceholder = () => {
+        switch (this.state.selectOption){
+            case 'id':
+                return '请输入委托ID';
+            case 'customerId':
+                return '请输入委托人ID';
+            case 'name':
+                return '请输入委托名称';
+            default:break;
+        }
+    };
+
+    /*状态列颜色渲染*/
+    state2SColor(state) {
+        switch (state){
+            case STATE.TO_SUBMIT: return "processing";
+            case STATE.TO_CHECK: return "processing";
+            case STATE.CANCELED: return "default";
+            default: return "error";
+        }
+    }
+
+    state2C(state) {
+        switch (state){
+            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
+            case STATE.CANCELED: return "已取消";
+            default: return "未定义状态";
+        }
+    }
+
+    /*table列设置*/
     columns = [{
         title:"委托ID",
         dataIndex:"id",
         sorter:(a, b) => a.id - b.id,
     }, {
+        title:"委托名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex:"name",
+    }, {
+        title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex:"customerId",
+    }, {
         title:"状态",
-        dataIndex:"state",
-        render: (stateCode) => {
+        dataIndex:"status",
+        render: (status) =>{
+            return (
+                <span>
+                    <Badge status={this.state2SColor(status)} text={this.state2C(status)} />
+                </span>
+            )
+        },
+        /*TODO 给状态列加个过滤*/
+        /*render: (stateCode) => {
             switch(stateCode) {
                 case 'TobeSubmit':
                     return '待提交';
@@ -56,40 +115,37 @@ export default class ConsignListComponent extends Component {
             text: '已通过',
             value: 'Finished',
         }],
-        filterMultiple: false,/*单选filter*/
+        filterMultiple: false,*/
         // specify the condition of filtering result
         // here is that finding the name started with `value`
-        onFilter: (value, record) => record.state.indexOf(value) === 0,
+        //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
         dataIndex:"id",
         key:"operation",
-        render: (id, record, index) => {
+        render: (record) => {
+            /*TODO*/
             return (
-                <span>
-                <Button type="default" onClick={this.viewContent(index, id)}><Icon type="eye-o" />查看详情</Button>
-                <Divider type="vertical" />
-                <Button type="danger" onClick={this.showDeleteConfirm(id)} ghost><Icon type="close-circle-o" />取消委托</Button>
-                </span>
+                <div>
+                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
+                    {/*<Divider type="vertical"/>
+                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>*/}
+                </div>
             )
         }
     }
     ];
 
-    onSearch = (value) => {
-        const reg = new RegExp(value, 'gi');
-        this.props.setListFilter((record) => record.id.match(reg));
+    /*查看详情*/
+    viewContent = (record) => () => {
+        //console.log(record);
+        this.props.showContent(record);
     };
-    viewContent = (index, id) => () => {
-        this.props.showContent(index, id);
-    };
-    deleteConsign = (id) => () => {
-        this.props.deleteConsign(id);
-    };
-    showDeleteConfirm = (id) => () => {
-        const ID=id;
+
+    /*取消委托提示框*/
+    showDeleteConfirm = (record) => () => {
         confirm({
-            title: 'Are you sure delete this consign?',
+            title: 'Are you sure to delete this consign?',
             //content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
@@ -98,30 +154,43 @@ export default class ConsignListComponent extends Component {
                 //console.log(id);
                 //debugger;
                 //this.deleteConsign(id);
-                this.props.deleteConsign(id);
-                },
+                /*TODO 取消委托的函数的参数需要优化*/
+                this.props.deleteConsign(record);
+            },
             onCancel() {},
         });
+    };
+
+    /*TODO 搜索功能*/
+    onSearch = (value) => {
+        const reg = new RegExp(value, 'gi');
+        this.props.setListFilter((record) => record.id.match(reg));
     };
 
     render() {
         return (
             <div>
-                <h3 style={{ marginBottom: 16 }}>客户委托列表</h3>
-                <Card>
-                    <Search
-                        placeholder="搜索委托ID"
-                        onSearch={this.onSearch}
-                        style={{ width: 200 }}
-                    />
-                </Card>
+                <h3 style={{ marginBottom: 16 }}>委托列表</h3>
+                <InputGroup>
+                    <Col span={3}>
+                        <Select defaultValue="搜索委托ID" onSelect={this.onSelect}>
+                            <Option value="id">搜索委托ID</Option>
+                            <Option value="customerId">搜索委托人ID</Option>
+                            <Option value="name">搜索委托名称 </Option>
+                        </Select>
+                    </Col>
+                    <Col span={8}>
+                        <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
+                    </Col>
+                    <Col span={1}></Col>
+                    {this.props.enableNew ?
+                        <Col span={2}>
+                            <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
+                        </Col>
+                        : <Col span={2}></Col>}
+                </InputGroup>
                 <br />
-                {this.props.enableNew ?
-                <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
-                    : <br/>}
-                <br /><br />
-                <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'} />
-
+                <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'}/>
             </div>
         );
     }

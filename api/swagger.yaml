@@ -15,6 +15,8 @@ tags:
     description: 委托
   - name: processInstance
     description: 委托状态
+  - name: contract
+    description: 合同
 schemes:
   - http
 consumes:
@@ -58,9 +60,38 @@ paths:
           required: true
       responses:
         '200':
-          description: '成功登录. data里包含User相关信息，例如clientDigest, menus等'
-          schema:
-            $ref: '#/definitions/Response'
+          description: |
+            成功登录,data里包含User各种信息
+              eg.
+            ```
+            {
+              "data": {
+                "password": "21232F297A57A5A743894A0E4A801FC3",
+                "code": "2",
+                "createdUserId": "2",
+                "roles": [
+                  {
+                    "functionGroup": {
+                      "Consign": [
+                        "ADD",
+                        "DELETE",
+                        "EDIT",
+                        "VIEW"
+                      ]
+                    },
+                    "name": "normal_customer"
+                  }
+                ],
+                "name": "Customer1",
+                "id": "2",
+                "credentialsSalt": "customer1null",
+                "clientDigest": "dfcbbdfef1f8561cc04cf219736922c07af9be789ca53aa24af6594e89e81ccb",
+                "username": "customer1"
+              },
+              "message": "",
+              "status": "SUCCESS"
+            }
+            ```
         '405':
           description: Invalid input
   /services/consign:
@@ -271,10 +302,10 @@ paths:
           description: Invalid input
   '/services/processInstance/{processInstanceID}':
     get:
-      summary: 获取委托状态
+      summary: 获取流程实例状态
       tags:
         - processInstance
-      description: 根据processInstanceID获取该委托状态
+      description: 根据processInstanceID获取该流程实例状态
       operationId: queryConsignState
       consumes:
         - application/x-www-form-urlencoded
@@ -284,7 +315,7 @@ paths:
         - name: processInstanceID
           in: path
           type: string
-          description: 委托在Activiti中的进程ID
+          description: 流程实例在Activiti中的进程ID
           required: true
         - name: username
           in: query
@@ -312,8 +343,8 @@ paths:
           schema:
             $ref: '#/definitions/Response'
     put:
-      summary: 修改委托状态
-      description: 根据processInstanceID修改该委托状态
+      summary: 修改流程实例状态
+      description: 根据processInstanceID修改该流程实例状态
       operationId: updateConsignState
       tags:
         - processInstance
@@ -325,7 +356,7 @@ paths:
         - name: processInstanceID
           in: path
           type: string
-          description: 委托在Activiti中的进程ID
+          description: 流程实例在Activiti中的进程ID
           required: true
         - name: username
           in: query
@@ -340,9 +371,8 @@ paths:
         - name: params
           in: formData
           description: >
-            修改的操作内容。JSON格式。属性名为'operation', 值可以为 submit/pass/reject. 分别代表
-            提交/通过/否决. 
-            以及'object'，表明修改的对象
+            修改的操作内容。JSON格式。对象名为'object',属性名为'operation', object为consign时，operation有submit/pass/reject
+              object为contract时，operation有submit/reviewpass/reviewreject/confirmpass/confirmreject
             eg.
 
             ```
@@ -356,10 +386,10 @@ paths:
       responses:
         '200':
           description: |
-            成功修改委托状态，并在data中返回修改后的进程状态。 
+            成功修改流程实例状态，并在data中返回修改后的进程状态。 
             data含两个属性 ：
-            processInstanceID->委托进程ID .
-            state->委托状态
+            processInstanceID->流程实例进程ID .
+            state->流程实例状态
             ```
             {
               "processInstanceID": "xxx"
@@ -367,6 +397,246 @@ paths:
             }
           schema:
             $ref: '#/definitions/Response'
+  /services/contract:
+    get:
+      tags:
+        - contract
+      summary: 查询合同
+      description: 用户为普通客户时，返回当前该客户的所有合同，如果是工作人员返回所有合同
+      operationId: queryContracts
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            成功查询合同时返回合同. data内包含JsonArray格式的内容内容
+            目前没有返回合同的contractBody？
+            查询失败时，返回一个失败的status
+            ```
+            {
+              "data": [
+                {
+                  "processInstanceID": "5001",
+                  "createdUserId": "2",
+                  "createdTime": "2018-05-28 18:47:22",
+                  "id": "1399d1ac-9aad-4ca3-9f44-e49972d147cf"
+                },
+                {
+                  "processInstanceID": "5011",
+                  "createdUserId": "2",
+                  "createdTime": "2018-05-28 19:00:56",
+                  "id": "7356e68f-c01f-4a32-8c5e-4fce3f5508d7"
+                },
+                {
+                  "processInstanceID": "5021",
+                  "createdUserId": "2",
+                  "createdTime": "2018-05-28 19:02:09",
+                  "id": "f0c26114-403c-484b-982b-2aea3c58d1a9"
+                }
+              ],
+              "status": "SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+    post:
+      tags:
+        - contract
+      summary: 添加合同
+      description: 向数据库中添加合同，成功时返回合同的具体信息以及一个success状态
+      operationId: addContract
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+        - in: formData
+          name: params
+          description: |
+            合同的具体内容. JSON格式
+            ```
+            {
+              "contractBody": "content"
+            }
+            ```
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            成功添加合同时的样例response body
+            ```
+            {
+              "data": {
+                "processInstanceID": "5001",
+                "createdUserId": "2",
+                "contractBody": "I Love TaylorSwift",
+                "createdTime": "2018-05-28 18:47:22",
+                "id": "1399d1ac-9aad-4ca3-9f44-e49972d147cf",
+                "state": "TobeSubmit"
+              },
+              "status": "SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - contract
+      summary: 修改合同
+      description: 修改已有的合同，参数中需要包含合同的id
+      operationId: editContract
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+        - in: formData
+          name: params
+          description: |
+            合同具体内容. JSON格式. 需要指明合同的ID
+            ```
+            {
+              "id": 
+              "contractBody":
+            }
+            ```
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            修改成功时的样例response body
+            ```
+            {
+              "data": {
+              "processInstanceID": "5001",
+                "createdUserId": "2",
+                "contractBody": "I Love TaylorSwift So Much",
+                "alteredTime": "2018-05-28 19:16:02",
+                "createdTime": "2018-05-28 18:47:22",
+                "id": "1399d1ac-9aad-4ca3-9f44-e49972d147cf",
+                "state": "TobeSubmit"
+              },
+              "status": "SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - contract
+      summary: 删除合同
+      description: 删除一个合同，需要提供委托的具体id
+      operationId: deleteContract
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+        - in: formData
+          name: params
+          description: |
+            合同具体内容. JSON格式. 需要指明ID,contractBody为非必要
+            ```
+            {
+              "id": 
+              "contractBody":
+            }
+            ```
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            成功删除合同
+            ```
+            {
+              "status":"SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+  '/services/contract/{id}':
+    get:
+      tags:
+        - contract
+      summary: 根据id查询合同
+      description: 根据请求中的id查询对应合同
+      operationId: queryContractByID
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 合同的id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            成功查询合同. data内包含JsonArray格式的合同内容
+            ```
+            {
+              "data": {
+              "processInstanceID": "5011",
+              "createdUserId": "2",
+              "contractBody": "I Love TaylorSwift So Much",
+              "alteredTime": "2018-05-28 19:26:22",
+              "createdTime": "2018-05-28 19:00:56",
+              "alteredUserId": "2",
+              "id": "7356e68f-c01f-4a32-8c5e-4fce3f5508d7"
+            },
+            "status": "SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
 securityDefinitions:
   petstore_auth:
     type: oauth2

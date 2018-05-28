@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,12 +69,10 @@ public class BaseActiviti {
         variables.put(activitiVari,passOrNot);
         Task task=taskService.createTaskQuery().taskAssignee(workerId)
                 .processInstanceId(processInstanceId).singleResult();
-        if(task!=null)
-            { taskService.complete(task.getId(),variables);}
-
+        if(task!=null) {
+            taskService.complete(task.getId(),variables);}
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             //System.out.println("workerId can not match processInstanceId ");
             throw new Exception("workerId can not match processInstanceId");
         }
@@ -103,8 +102,7 @@ public class BaseActiviti {
                 .processInstanceId(processInstanceId).singleResult();
         List<HistoricActivityInstance> pi1=historyService.createHistoricActivityInstanceQuery()
                 .processInstanceId(processInstanceId).list();
-        if(pi==null&&pi1.isEmpty()==false)
-        {
+        if(pi==null&&pi1.isEmpty()==false) {
             //return state.Finished.toString();
             return "Finished";
         }
@@ -114,23 +112,26 @@ public class BaseActiviti {
                     .processInstanceId(processInstanceId).orderByHistoricTaskInstanceStartTime().desc().list();
             if(htiList.isEmpty()==false)
             {
-                for (HistoricTaskInstance hti:htiList.subList(0,1))
-                {
+                for (HistoricTaskInstance hti:htiList.subList(0,1)) {
                     return hti.getName();
                 }
             }
         }
-        //return state.NotExist.toString();
         return "NotExist";
     }
 
     //查询某个流程实例的历史活动的详细信息
-    public List<HistoricTaskInstance> queryHistoricTask(String processInstanceId) throws Exception
+    public List<String> queryHistoricTask(String processInstanceId) throws Exception
     {
-        //String st="";
-        List<HistoricTaskInstance> htiList=historyService.createHistoricTaskInstanceQuery()
+        List<HistoricTaskInstance> hti=historyService.createHistoricTaskInstanceQuery()
                 .processInstanceId(processInstanceId).orderByHistoricTaskInstanceStartTime().asc().list();
-        return htiList;
+        List<String> htiList=new ArrayList<String>();
+        if(hti.isEmpty()==false)
+        {
+        for(HistoricTaskInstance temp:hti)
+        htiList.add(temp.getId()+" "+temp.getAssignee()+" "+temp.getName()+" "+temp.getEndTime()+'\n');
+        return htiList;}
+        else throw new Exception("historicList is null");
     }
 
 }
