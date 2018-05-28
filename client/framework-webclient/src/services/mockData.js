@@ -1,6 +1,4 @@
 import {STATE} from "./common";
-import {ProjectView} from "../routes/Project";
-import {ConsignListView} from "../routes/Consign";
 
 export const valueData = {
     id: 'happy_yj',
@@ -82,61 +80,49 @@ export const mockProjectData = [{
 export const mockSiderData = [{
     key : "1",
     disable : false,
-    name : "projectList",
-    component : ProjectView
+    name : "项目列表",
 },{
     key : "2",
     disable : false,
-    name : "consignList",
-    component : ConsignListView
+    name : "委托列表",
 },{
     key : "3",
     disable : true,
-    name : "testContractList",
-    component : ProjectView
+    name : "测试合同列表",
 },{
     key : "4",
     disable : true,
-    name : "contractReviewList",
-    component : ProjectView
+    name : "合同评审列表",
 },{
     key : "5",
     disable : true,
-    name : "testMethodList",
-    component : ProjectView
+    name : "测试方案列表",
 },{
     key : "6",
     disable : true,
-    name : "testCaseList",
-    component : ProjectView
+    name : "测试用例列表",
 },{
     key : "7",
     disable : true,
-    name : "testLogList",
-    component : ProjectView
+    name : "测试记录列表",
 },{
     key : "8",
     disable : true,
-    name : "testProblemList",
-    component : ProjectView
+    name : "测试问题清单",
 },{
     key : "9",
     disable : true,
-    name : "testReportList",
-    component : ProjectView
+    name : "测试报告列表",
 },{
     key : "10",
     disable : true,
-    name : "reportReviewList",
-    component : ProjectView
+    name : "报告检查列表",
 },{
     key : "11",
     disable : true,
-    name : "testReviewList",
-    component : ProjectView
+    name : "工作检查列表",
 },{
     key : "12",
     disable : true,
-    name : "satisfactionSurveyList",
-    component : ProjectView
+    name : "满意度调查列表",
 }];

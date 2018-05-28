@@ -1,28 +1,10 @@
-import {
-    StaffConsignContentView,
-    StaffConsignListView,
-    UserConsignContentView,
-    UserConsignListView
-} from './Consign'
+import {ProjectView} from "./Project";
+import {ConsignListView} from "./Consign";
 
-const tabsMap =
-[
-	{
-		path: '/UserConsignList',
-		component: UserConsignListView
-	},
-    {
-        path: '/UserConsignContent',
-        component: UserConsignContentView
-    },
-    {
-        path: '/StaffConsignList',
-        component: StaffConsignListView
-    },
-    {
-    	path: '/StaffConsignContent',
-    	component: StaffConsignContentView
-    }
-];
 
-export default tabsMap
+const tabsMap = {
+    "1" : ProjectView,
+    "2" : ConsignListView
+};
+
+export default tabsMap;

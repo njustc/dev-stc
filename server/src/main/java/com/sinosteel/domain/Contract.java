@@ -30,7 +30,14 @@ public class Contract extends BaseEntity {
         this.user = user;
     }
 
-
+    @Column(name = "PROCESS_INSTANCE_ID")
+    private String processInstanceID;
+    public String getProcessInstanceID()
+    {
+        return processInstanceID;
+    }
+    public void setProcessInstanceID(String processInstanceID){this.processInstanceID = processInstanceID;}
+    
     //合同所在的工程
     @OneToOne(mappedBy = "contract")
     @JSONField(serialize = false)
