@@ -16,6 +16,8 @@ function handleChange(value) {
 class ConsignContentComponent extends Component {
     constructor(props) {
         super(props);
+//        curID = '';
+//        values = {};
     }
 
     static defaultProps = {
@@ -25,11 +27,17 @@ class ConsignContentComponent extends Component {
     };
 
     static propTypes = {
-        values: PropTypes.object.isRequired,
+        getValues: PropTypes.func.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
+//        curKey: PropTypes.string.isRequired
     };
+
+//    componentDidMount() {
+//        this.curID = this.props.curKey;
+ //       this.values = this.props.getValues(this.curID);
+//    }
 
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
@@ -56,6 +64,7 @@ class ConsignContentComponent extends Component {
             border: 0,
             overflow: 'hidden',
         };
+
         const customPanelStyle2 = {
             background: '#ffffff',
             borderRadius: 6,
