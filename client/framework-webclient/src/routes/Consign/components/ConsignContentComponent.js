@@ -16,11 +16,10 @@ function handleChange(value) {
 class ConsignContentComponent extends Component {
     constructor(props) {
         super(props);
-        curID = '';
-        values = {};
-    }
+    };
 
     static defaultProps = {
+        curID: '',
         values: {},
         disable:false,
         buttons: [],
@@ -34,7 +33,7 @@ class ConsignContentComponent extends Component {
         curKey: PropTypes.string.isRequired
     };
 
-    componentDidMount() {
+    componentWillMount() {
         this.curID = this.props.curKey;
         this.values = this.props.getValues(this.curID);
     }
