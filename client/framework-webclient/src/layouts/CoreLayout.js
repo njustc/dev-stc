@@ -109,7 +109,7 @@ export default class CoreLayout extends Component
                                 </SubMenu>
                                 <SubMenu
                                     key="sub5"
-                                    title={<span><Icon type="smile-o" /><span>报告</span></span>}
+                                    title={<span><Icon type="smile-o" /><span>结项</span></span>}
                                 >
                                     <Menu.Item key={this.props.sider["11"].key} disabled={this.props.sider["11"].disable}>测试工作检查表</Menu.Item>
                                     <Menu.Item key={this.props.sider["12"].key} disabled={this.props.sider["12"].disable}>满意度调查表</Menu.Item>

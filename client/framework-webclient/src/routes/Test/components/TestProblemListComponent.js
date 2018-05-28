@@ -272,7 +272,7 @@ class TestProblemContentComponent extends Component {
         }*/
     render(){
         return(
-            <h3>测试记录表</h3>
+            <h3>测试问题清单列表</h3>
         )
     }
 }
