@@ -64,8 +64,8 @@ export default class ConsignListComponent extends Component {
 
     state2C(state) {
         switch (state){
-            case STATE.TO_SUBMIT: return "待提交";
-            case STATE.TO_CHECK: return "待评审";
+            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.CANCELED: return "已取消";
             default: return "未定义状态";
         }
@@ -123,7 +123,7 @@ export default class ConsignListComponent extends Component {
         title:"操作",
         dataIndex:"id",
         key:"operation",
-        render: (id, record) => {
+        render: (record) => {
             /*TODO*/
             return (
                 <div>
