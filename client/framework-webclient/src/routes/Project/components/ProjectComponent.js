@@ -72,7 +72,7 @@ export default class ProjectComponent extends Component{
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewDetails(record)}>查看详情</a>
                     <Divider type="vertical"/>
-                    <a href="javascript:void(0);">更多</a>
+                    <a href="javascript:void(0);">添加操作</a>
                 </div>
             )
         }
@@ -91,7 +91,7 @@ export default class ProjectComponent extends Component{
     }
 
     state2SColor(state) {
-        /*TODO*//*是否需要能让超级管理员可以添加新的状态？*/
+        /*TODO*/
         return "success";
     }
 
@@ -134,15 +134,23 @@ export default class ProjectComponent extends Component{
     };
 
     expandedRowRender = (record) =>{
-        console.log(record.state.consign);
+        //console.log(record.state.consign);
         return (
-            <Steps current={/*TODO*//*this.props.*/1} size="small">
-                <Step title={this.consignView(record)} description=''/*record.state.consign*/ />{/*TODO*//*description要根据具体状态改变*/}
-                <Step title={this.contractView(record)} description=''/*record.state.contract*/ />
-                <Step title="测试方案" />
-                <Step title="测试报告" />
-                <Step title="归档结项" />
-            </Steps>
+            //<Steps current={/*TODO*//*this.props.*/1} size="small">
+            //    <Step title={this.consignView(record)} description=''/*record.state.consign*/ />
+            //    <Step title={this.contractView(record)} description=''/*record.state.contract*/ />
+            //    <Step title="测试方案" />
+            //    <Step title="测试报告" />
+            //    <Step title="归档结项" />
+            //</Steps>
+            <div>
+                <p>{record.state.consign}</p>
+                <a href="javascript:void(0);" onClick={this.viewContent(record)}>委托表</a>
+                <Divider type='vertical'/>
+                <a href="javascript:void(0);" onClick={this.viewContent(record)}>合同书</a>
+                <Divider type='vertical'/>
+                <a href="javascript:void(0);" onClick={this.viewContent(record)}>合同评审表</a>
+            </div>
         )
     }
 
@@ -191,9 +199,6 @@ export default class ProjectComponent extends Component{
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    <Col span={2}>
-                        <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
-                    </Col>
                 </InputGroup>
                 <br />
                 <Table dataSource={this.props.dataSource} columns={this.columns} rowKey='id'
