@@ -8,7 +8,6 @@ import {setProjectFilter} from "../../../modules/ducks/Project";
 import {setConsignContent} from "../../../modules/ducks/Consign";
 
 const mapStateToProps = (state) => {
-    console.log(state.Project.listMap);
     return {
         dataSource: Object.values(state.Project.listMap),
     }
@@ -18,10 +17,10 @@ const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
             dispatch(addTabAction(id, '委托详情', ConsignContentView));
-            dispatch(setConsignContent())
+//            dispatch(setConsignContent())
         },
         setListFilter: (listFilter) => dispatch(setProjectFilter(listFilter)),
-        getProjectList: () => getProjectList(dispatch)
+        getProjectList: () => getProjectList(dispatch),
     }
 };
 

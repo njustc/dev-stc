@@ -35,6 +35,10 @@ export const marketingData = {
     ],
 };
 
+export  const mockConsignData = [{
+
+}];
+
 export const mockProjectData = [{
     id : "110",
     name : "快乐星球小杨杰",
@@ -71,4 +75,54 @@ export const mockProjectData = [{
         testReport : STATE.TO_SUBMIT,
         endProject : STATE.TO_SUBMIT
     }
+}];
+
+export const mockSiderData = [{
+    key : "1",
+    disable : false,
+    name : "项目列表",
+},{
+    key : "2",
+    disable : false,
+    name : "委托列表",
+},{
+    key : "3",
+    disable : true,
+    name : "测试合同列表",
+},{
+    key : "4",
+    disable : true,
+    name : "合同评审列表",
+},{
+    key : "5",
+    disable : true,
+    name : "测试方案列表",
+},{
+    key : "6",
+    disable : true,
+    name : "测试用例列表",
+},{
+    key : "7",
+    disable : true,
+    name : "测试记录列表",
+},{
+    key : "8",
+    disable : true,
+    name : "测试问题清单",
+},{
+    key : "9",
+    disable : true,
+    name : "测试报告列表",
+},{
+    key : "10",
+    disable : true,
+    name : "报告检查列表",
+},{
+    key : "11",
+    disable : true,
+    name : "工作检查列表",
+},{
+    key : "12",
+    disable : true,
+    name : "满意度调查列表",
 }];

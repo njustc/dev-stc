@@ -35,23 +35,15 @@ public class RoleRepositoryTests {
         System.out.println("测试角色对应Function");
         List<Role> roles = roleRepository.executeHql("Select role from Role role where 1=1",null);
 
-        List<Function> allfunctions = functionRepository.executeHql("Select function from Function function where 1=1",null);
-        //Assert.assertNotNull("角色为空",roles);
+        //List<Function> allfunctions = functionRepository.executeHql("Select function from Function function where 1=1",null);
+        Assert.assertNotNull("角色为空",roles);
         for (Role role : roles){
             List<Function> functions = role.getFunctions();
-            System.out.println("rolename = " + role.getRoleName() + "\n\n\n\n");
-            //Assert.assertNotNull("functions为空",functions);
-            if(functions == null)
-                System.out.println("function为空");
-            int i =0;
+            Assert.assertNotNull("functions为空",functions);
             for (Function function : functions)
             {
-                i++;
                 Assert.assertNotNull("function为空",function);
-                System.out.println("function id = " + function.getId());
-                System.out.println("functionType为");
             }
-            System.out.println("i = "+ i);
         }
     }
 

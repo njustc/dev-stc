@@ -13,14 +13,13 @@ export default class ConsignListComponent extends Component {
     }
 
     static propTypes = {
-        setListFilter: PropTypes.func.isRequired,
-        dataSource: PropTypes.array.isRequired,
-        showContent: PropTypes.func.isRequired,
-        deleteConsign: PropTypes.func.isRequired,
-        getConsignList: PropTypes.func.isRequired,
+        setListFilter: PropTypes.func,
+        dataSource: PropTypes.array,
+        showContent: PropTypes.func,
+        deleteConsign: PropTypes.func,
+        getConsignList: PropTypes.func,
         newConsign: PropTypes.func,
-        enableNew: PropTypes.bool.isRequired,
-        //showDeleteConfirm: PropTypes.func.isRequired,
+        enableNew: PropTypes.bool,
     };
 
     componentDidMount() {
@@ -81,7 +80,7 @@ export default class ConsignListComponent extends Component {
         this.props.setListFilter((record) => record.id.match(reg));
     };
     viewContent = (index, id) => () => {
-        this.props.showContent(index, id);
+        this.props.showContent(id);
     };
     deleteConsign = (id) => () => {
         this.props.deleteConsign(id);
