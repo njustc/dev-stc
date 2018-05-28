@@ -32,6 +32,7 @@ const sysFetch = (Method, url, params, callback) => {
     }
 
     let fullUrl = url + '?username=' + username + '&clientDigest=' + clientDigest;
+
     let formData = new FormData();
     formData.append('params', params ? JSON.stringify(params): '');
 

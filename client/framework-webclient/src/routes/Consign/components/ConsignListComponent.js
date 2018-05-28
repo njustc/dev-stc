@@ -138,6 +138,7 @@ export default class ConsignListComponent extends Component {
 
     /*查看详情*/
     viewContent = (record) => () => {
+        console.log(record);
         this.props.showContent(record);
     };
 
