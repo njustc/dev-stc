@@ -3,7 +3,7 @@ import {LayoutReducer} from "./ducks/Layout";
 import {ProjectReducer} from "./ducks/Project";
 import {ConsignReducer} from "./ducks/Consign";
 import {ContractReducer} from "./ducks/Contract";
-//import {TestReducer} from "./ducks/Test";
+import {TestProgramReducer,TestCaseReducer,TestRecordReducer,TestProblemReducer} from "./ducks/Test";
 //import {ReportReducer} from "./ducks/Report";
 //import {ArchiveReducer} from "./ducks/Archive";
 
@@ -13,7 +13,10 @@ export const moduleReducers = {
     Project: ProjectReducer,
     Consign: ConsignReducer,
     Contract: ContractReducer,
-    //Test: TestReducer,
+    TestProgram: TestProgramReducer,
+    TestCase: TestCaseReducer,
+    TestRecord: TestRecordReducer,
+    TestProblem: TestProblemReducer,
     //Report: ReportReducer,
     //Archive: ArchiveReducer,
 };

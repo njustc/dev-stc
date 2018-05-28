@@ -4,6 +4,10 @@ import TestCaseListContainer from "./containers/TestCaseListContainer";
 import TestRecordListContainer from "./containers/TestRecordListContainer";
 import TestProblemListContainer from "./containers/TestProblemListContainer";
 import TestProgramListContainer from "./containers/TestProgramListContainer";
+import TestCaseContentContainer from "./containers/TestCaseContentContainer";
+import TestRecordContentContainer from "./containers/TestRecordContentContainer";
+import TestProblemContentContainer from "./containers/TestProblemContentContainer";
+import TestProgramContentContainer from "./containers/TestProgramContentContainer";
 
 //export const UserContractListView = UserContractListContainer;
 //export const StaffContractListView = StaffContractListContainer;
@@ -11,3 +15,7 @@ export const TestCaseListView = TestCaseListContainer;
 export const TestRecordListView = TestRecordListContainer;
 export const TestProblemListView = TestProblemListContainer;
 export const TestProgramListView = TestProgramListContainer;
+export const TestCaseContentView = TestCaseContentContainer;
+export const TestRecordContentView = TestRecordContentContainer;
+export const TestProblemContentView = TestProblemContentContainer;
+export const TestProgramContentView = TestProgramContentContainer;
