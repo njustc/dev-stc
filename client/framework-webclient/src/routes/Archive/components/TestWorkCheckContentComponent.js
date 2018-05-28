@@ -10,7 +10,7 @@ function handleChange(value) {
     console.log(`selected ${value}`);
 }
 
-class ChecklistContentComponent extends Component {
+class TestWorkCheckContentComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -348,4 +348,4 @@ class ChecklistContentComponent extends Component {
     }
 }
 
-export default Form.create()(ChecklistContentComponent);
+export default Form.create()(TestWorkCheckContentComponent);

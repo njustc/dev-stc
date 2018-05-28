@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import SatisfactionContentComponent from "../components/SatisfactionContentComponent";
+import TestWorkCheckContentComponent from "../components/TestWorkCheckContentComponent";
 import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
@@ -39,4 +39,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SatisfactionContentComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(TestWorkCheckContentComponent);
