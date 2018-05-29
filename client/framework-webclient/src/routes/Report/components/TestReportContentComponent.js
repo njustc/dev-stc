@@ -34,10 +34,10 @@ class TestReportContentComponent extends Component {
         curKey: PropTypes.string.isRequired
     };
 
-/*    componentDidMount() {
+    componentDidMount() {
         this.curID = this.props.curKey;
         this.values = this.props.getValues(this.curID);
-    }*/
+    }
 
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
