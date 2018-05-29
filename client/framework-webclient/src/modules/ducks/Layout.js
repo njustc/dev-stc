@@ -28,7 +28,7 @@ export const LayoutReducer = (state = initialState, action) =>{
                 activeKey: action.payload
             };
         case ADD_TAB: {
-            debugger;
+            // debugger;
             const panes = state.panes.slice();
             const {key, name, component, props} = action.payload;
             if (!containsPane(key, panes)) {

@@ -8,14 +8,6 @@ const consignBase = baseServiceAddress + '/consign';
 const consignActivitiBase = baseServiceAddress + '/consignActiviti';
 
 export const getConsignList = (dispatch, callback) => {
-    /*    httpGet(projectBase, (result) => {
-            const {status, data} = result;
-            if (status === STATUS.SUCCESS) {
-                dispatch(setProjectList(data));
-            }
-            callback && callback(status);
-        });*/
-    /*TEMP*/
     httpGet(consignBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
@@ -23,9 +15,8 @@ export const getConsignList = (dispatch, callback) => {
         }
         callback && callback(status);
     });
-    // dispatch(setConsignList([]));/*TODO 可以在这里加一些数据用于测试*/
-    const status = STATUS.SUCCESS;
-    callback && callback(status);
+    // const status = STATUS.SUCCESS;
+    // callback && callback(status);
 };
 
 export const getConsign = (dispatch, id, callback) => {
@@ -34,26 +25,27 @@ export const getConsign = (dispatch, id, callback) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setConsignContent(data));
-            console.log(data);
-            const {consignation} = data;
-            let res = {};
-            if (consignation!==undefined) {
-                res = JSON.parse(consignation);
-            }
-            const resStatus = STATUS.SUCCESS;
+            // console.log(data);
+            // const {consignation} = data;
+            // let res = {};
+            // if (consignation!==undefined) {
+            //     res = JSON.parse(consignation);
+            // }
+            // const resStatus = STATUS.SUCCESS;
             // console.log(res);
-            // callback && callback(resStatus);
-            console.log(res);
-            return res;
+            // return res;
         }
+        callback && callback(status);
     });
 };
 
 export const deleteConsign = (dispatch, id, callback) => {
     httpDelete(consignBase, {id:id}, (result) => {
-        console.log("before remove");
-        dispatch(removeConsign(id));
+        // console.log("before remove");
+        // dispatch(removeConsign(id));
         const {status} = result;
+        if(status === STATUS.SUCCESS)
+            dispatch(removeConsign(id));
         callback && callback(status);
     });
 };

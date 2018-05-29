@@ -5,7 +5,7 @@ import {getConsign, updateConsign} from "../../../services/ConsignService";
 
 
 const mapStateToProps = (state, ownProps) => {
-    debugger;
+    // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     console.log(authData);
     const consignation = state.Consign.listMap[ownProps.id].consignation;

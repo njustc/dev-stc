@@ -63,7 +63,7 @@ export default class ConsignListComponent extends Component {
     }
 
     state2C(state) {
-        debugger;
+        // debugger;
         switch (state){
             case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
             case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
