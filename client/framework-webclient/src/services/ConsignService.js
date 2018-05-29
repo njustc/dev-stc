@@ -1,6 +1,6 @@
 import {baseServiceAddress, STATUS} from "SERVICES/common";
 import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
-import {addConsign, removeConsign, setConsignContent, setConsignList, setConsignState} from "../modules/ducks/Consign";
+import {removeConsign, setConsignContent, setConsignList, setConsignState} from "../modules/ducks/Consign";
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 
@@ -39,17 +39,23 @@ export const getConsignList = (dispatch, callback) => {
 };
 
 export const getConsign = (dispatch, id, callback) => {
-/*    httpGet(consignBase + '/' + id, (result) => {
+    console.log(id);
+    httpGet(consignBase + '/' + id, (result) => {
+        console.log(result);
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setConsignContent(index, data.consignation));
-        }*/
+            // dispatch(setConsignContent(index, data.consignation));
+        }
         console.log(id);
-        const status = STATUS.SUCCESS;
-//        dispatch(setConsignContent(valueData));
-        callback && callback(status);
-    //});
-    return valueData;
+        console.log(data);
+        debugger
+        const {consignation} = data;
+        const res = JSON.parse(consignation);
+        console.log(res);
+        const resStatus = STATUS.SUCCESS;
+        callback && callback(resStatus);
+        return res;
+    });
 };
 
 export const deleteConsign = (dispatch, id, callback) => {
@@ -68,7 +74,7 @@ export const newConsign = (dispatch, callback) => {
     httpPost(consignBase, {consignation:null,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(addConsign(data));
+            dispatch(setConsignContent(data));
         }
         callback && callback(status);
     });
