@@ -16,56 +16,41 @@ export const getConsignList = (dispatch, callback) => {
             callback && callback(status);
         });*/
     /*TEMP*/
-    dispatch(setConsignList([
-        {
-            id : "110",
-            name : "快乐星球小杨杰",
-            customerId : "151220140",
-            status: STATE.TO_SUBMIT
-        },{
-            id : "120",
-            name : "不快乐星球小杨杰",
-            customerId : "151220140",
-            status: STATE.TO_CHECK
-        },{
-            id : "119",
-            name : "不快乐星球老杨杰",
-            customerId : "151220140",
-            status: STATE.CANCELED
+    httpGet(consignBase,(result) => {
+        const {status, data} = result;
+        if (status === STATUS.SUCCESS) {
+            dispatch(setConsignList(data));
         }
-    ]));/*TODO 可以在这里加一些数据用于测试*/
+        callback && callback(status);
+    });
+    // dispatch(setConsignList([]));/*TODO 可以在这里加一些数据用于测试*/
     const status = STATUS.SUCCESS;
     callback && callback(status);
 };
 
 export const getConsign = (dispatch, id, callback) => {
-    console.log(id);
     httpGet(consignBase + '/' + id, (result) => {
-        console.log(result);
+//        console.log(result);
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            // dispatch(setConsignContent(index, data.consignation));
+            dispatch(setConsignContent(data));
+            console.log(data);
+            const {consignation} = data;
+            let res = {};
+            if (consignation!==undefined)
+                res = JSON.parse(consignation);
+            const resStatus = STATUS.SUCCESS;
+            callback && callback(resStatus);
+            return res;
         }
-        console.log(id);
-        console.log(data);
-        debugger
-        const {consignation} = data;
-        const res = JSON.parse(consignation);
-        console.log(res);
-        const resStatus = STATUS.SUCCESS;
-        callback && callback(resStatus);
-        return res;
     });
 };
 
 export const deleteConsign = (dispatch, id, callback) => {
     httpDelete(consignBase, {id:id}, (result) => {
+        console.log("before remove");
+        dispatch(removeConsign(id));
         const {status} = result;
-        if (status === STATUS.SUCCESS) {
-            httpGet(consignBase, (result) => {
-                dispatch(removeConsign(id));
-            });
-        }
         callback && callback(status);
     });
 };
@@ -84,7 +69,7 @@ export const updateConsign = (dispatch, data, callback) => {
     httpPut(consignBase, data, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setConsignContent(-1, data.consignation));
+            dispatch(setConsignContent(data));
         }
         callback && callback(status);
     });
