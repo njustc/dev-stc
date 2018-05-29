@@ -1,25 +1,26 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from "react-redux";
 import {addTabAction} from "MODULES/ducks/Layout";
-/*import {ConsignContentView} from "../../Consign";
-import {getConsignList} from "../../../services/ConsignService";
-import {setConsignFilter} from "../../../modules/ducks/Consign";*/
+import {ContractCheckContentView} from "../../Contract";
+import {getContractCheckList} from "../../../services/ContractService";
+//import {setContractFilter} from "../../../modules/ducks/Contract";
 import ContractCheckListComponent from "../components/ContractCheckListComponent";
 
 const mapStateToProps = (state) => {
+    console.log(state);//
     return {
-        //dataSource: Object.values(state.Consign.listMap),
+        dataSource: Object.values(state.ContractCheck.listMap),
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {/*
+    return {
         showContent: (id) => {
-            dispatch(addTabAction(id, '委托详情', ConsignContentView));
-//            dispatch(setConsignContent())
+            dispatch(addTabAction(id, '合同检查表详情', ContractCheckContentView));
+//            dispatch(setContractContent())
         },
-        setListFilter: (listFilter) => dispatch(setConsignFilter(listFilter)),
-        getConsignList: () => getConsignList(dispatch)*/
+        setListFilter: (listFilter) => dispatch(setContractFilter(listFilter)),
+        getContractCheckList: () => getContractCheckList(dispatch)
     }
 };
 

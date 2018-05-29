@@ -183,7 +183,7 @@ export default class ConsignListComponent extends Component {
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    {this.props.enableNew ?
+                    {/*this.props.enableNew*/1 ?
                         <Col span={2}>
                             <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
                         </Col>

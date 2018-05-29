@@ -1,305 +1,193 @@
-import React, {Component, PropTypes} from 'react';
-import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse} from 'antd';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge} from 'antd';
+//import UserConsignContentView from "./ConsignContentComponent";
+import {STATE} from "../../../services/common"
 
-const Panel = Collapse.Panel;
-const Option=Select.Option;
-const OptGroup=Select.OptGroup;
-const FormItem=Form.Item;
-const RadioGroup = Radio.Group;
-const CheckboxGroup = Checkbox.Group;
-const { TextArea } = Input;
+const { Column } = Table;
+const Search = Input.Search;
+const confirm = Modal.confirm;
+const InputGroup = Input.Group;
+const Option = Select.Option;
 
-function handleChange(value) {
-    console.log(`selected ${value}`);
-}
-
-class TestReportCheckListComponent extends Component {
+export default class TestReportCheckListComponent extends Component {
     constructor(props) {
         super(props);
-       
     }
 
-    static defaultProps = {
-        curID: '',
-        values: {},
-        disable:false,
-        buttons: [],
-    };
-
     static propTypes = {
-        getValues: PropTypes.func.isRequired,
-        disable: PropTypes.bool.isRequired,
-        buttons: PropTypes.array.isRequired,
-        form: PropTypes.object.isRequired,
-        curKey: PropTypes.string.isRequired
+        //setListFilter: PropTypes.func,
+        dataSource: PropTypes.array,
+        showContent: PropTypes.func,
+        //deleteConsign: PropTypes.func,
+        getTestReportCheckList: PropTypes.func,
+        //newContract: PropTypes.func,
+        //enableNew: PropTypes.bool,
     };
 
     componentDidMount() {
-        this.curID = this.props.curKey;
-        this.values = this.props.getValues(this.curID);
+        this.props.getTestReportCheckList();
     }
 
-    onClick = (buttonIndex) => () => {
-        // this.props.form.validateFields((err, values) => {
-        //     if (!err) {
-        //         this.props.buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(values));
-        //     }
-        // });
-        const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));
+    /*搜索框选项相关*/
+    state={
+        selectOption:'id',
+    };
+
+    onSelect = (value, option) => {
+        this.setState({
+            selectOption:value
+        });
+    }
+
+    setPlaceholder = () => {
+        switch (this.state.selectOption){
+            case 'id':
+                return '请输入测试报告检查ID';
+            case 'customerId':
+                return '请输入委托人ID';
+            case 'name':
+                return '请输入项目名称';
+            case 'pid':
+                return '请输入项目ID';
+            default:break;
+        }
+    };
+
+    /*状态列颜色渲染*/
+    state2SColor(state) {
+        switch (state){
+            case STATE.TO_SUBMIT: return "processing";
+            case STATE.TO_CHECK: return "processing";
+            case STATE.CANCELED: return "default";
+            default: return "error";
+        }
+    }
+
+    state2C(state) {
+        switch (state){/*TODO*/
+            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
+            case STATE.CANCELED: return "已取消";
+            default: return "未定义状态";
+        }
+    }
+
+    /*table列设置*/
+    columns = [{
+        title:"项目ID",
+        dataIndex:"pid",
+        sorter:(a, b) => a.pid - b.pid,
+    }, {
+        title:"测试报告检查ID",
+        dataIndex:"id",
+        sorter:(a, b) => a.id - b.id,
+    }, {
+        title:"项目名称",
+        dataIndex:"name",
+    }, {
+        title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex:"customerId",
+    }, {
+        title:"状态",
+        dataIndex:"status",
+        render: (status) =>{
+            return (
+                <span>
+                    <Badge status={this.state2SColor(status)} text={this.state2C(status)} />
+                </span>
+            )
+        },
+        /*TODO 给状态列加个过滤*/
+        /*
+        filters: [{
+            text: '待提交',
+            value: 'TobeSubmit',
+        }, {
+            text: '待审核',
+            value: 'TobeCheck',
+        }, {
+            text: '已通过',
+            value: 'Finished',
+        }],
+        filterMultiple: false,*/
+        // specify the condition of filtering result
+        // here is that finding the name started with `value`
+        //onFilter: (value, record) => record.state.indexOf(value) === 0,
+    }, {
+        title:"操作",
+        dataIndex:"id",
+        key:"operation",
+        render: (record) => {
+            /*TODO*/
+            return (
+                <div>
+                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
+                    {/*<Divider type="vertical"/>
+                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>*/}
+                </div>
+            )
+        }
+    }
+    ];
+
+    /*查看详情*/
+    viewContent = (record) => () => {
+        //console.log(record);
+        this.props.showContent(record);
+    };
+
+    /*取消委托提示框*/
+    showDeleteConfirm = (record) => () => {
+        confirm({
+            title: 'Are you sure to delete this consign?',
+            //content: 'Some descriptions',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => {
+                //console.log(id);
+                //debugger;
+                //this.deleteConsign(id);
+                /*TODO 取消委托的函数的参数需要优化*/
+                this.props.deleteConsign(record);
+            },
+            onCancel() {},
+        });
+    };
+
+    /*TODO 搜索功能*/
+    onSearch = (value) => {
+        const reg = new RegExp(value, 'gi');
+        this.props.setListFilter((record) => record.id.match(reg));
     };
 
     render() {
-        const { getFieldDecorator } = this.props.form;
-        const formItemLayout =  {
-            labelCol: { span: 30 },
-            wrapperCol: { span: 19 },
-        };
-
-        return(
-            <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
-
-                <FormItem {...formItemLayout}>
-                    <h1>测试报告检查表</h1>
-                </FormItem>
-                                        
-			<FormItem
-                            {...formItemLayout}
-                            label="1.报告编号:检查报告编号的正确性（是否符合编码规则）与前后的一致性（报告首页与每页页眉）"
-                        >
-                            {getFieldDecorator('reportName', {
-                                rules: [{ required: true, message: '请选择！'}],
-                            })(
-                                <RadioGroup name={"报告编号"} disabled={this.props.disable}>
-                                    <Radio value="a">是</Radio>
-                                    <Radio value="b">否</Radio>
-                                </RadioGroup>
-
-                            )}
-                        </FormItem>
-      			
-			<FormItem
-                            {...formItemLayout}
-                            label="2.页码:检查页码与总页数是否正确（报告首页与每页页眉）"
-                        >
-                            {getFieldDecorator('pageNumber', {
-                                rules: [{ required: true, message: '请选择！'}],
-                            })(
-                                <RadioGroup name={"报告编号"} disabled={this.props.disable}>
-                                    <Radio value="a">是</Radio>
-                                    <Radio value="b">否</Radio>
-                                </RadioGroup>
-
-                            )}
-                        </FormItem>
-
-			<FormItem
-                            {...formItemLayout}
-                            label="3.软件名称:是否和确认单一致，是否前后一致（共三处，包括首页、报告页、附件三）"
-                        >
-                            {getFieldDecorator('softwareName', {
-                                rules: [{ required: true, message: '请选择！'}],
-                            })(
-                                <RadioGroup name={"软件名称"} disabled={this.props.disable}>
-                                    <Radio value="a">是</Radio>
-                                    <Radio value="b">否</Radio>
-                                </RadioGroup>
-
-                            )}
-                        </FormItem>
-			
-
-			<FormItem
-                            {...formItemLayout}
-                            label="4.版本号:是否和确认单一致，是否前后一致（共二处，包括首页、报告页）"
-                        >
-                            {getFieldDecorator('versionNumber', {
-                                rules: [{ required: true, message: '请选择！'}],
-                            })(
-                                <RadioGroup name={"版本号"} disabled={this.props.disable}>
-                                    <Radio value="a">是</Radio>
-                                    <Radio value="b">否</Radio>
-                                </RadioGroup>
-
-                            )}
-                        </FormItem>
-			
-
-
-			<FormItem
-                            {...formItemLayout}
-                            label="5.委托单位:是否和确认单一致，是否前后一致（共二处，包括首页、报告页）"
-                        >
-                            {getFieldDecorator('consignUnit', {
-                                rules: [{ required: true, message: '请选择！'}],
-                            })(
-                                <RadioGroup name={"委托单位"} disabled={this.props.disable}>
-                                    <Radio value="a">是</Radio>
-                                    <Radio value="b">否</Radio>
-                                </RadioGroup>
-
-                            )}
-                        </FormItem>
-
-
-			<FormItem
-                            {...formItemLayout}
-                            label="6.完成日期:是否前后一致（共二处，包括首页、报告页页末）。"
-                        >
-                            {getFieldDecorator('finishedTime', {
-                                rules: [{ required: true, message: '请选择！'}],
-                            })(
-                                <RadioGroup name={"完成日期"} disabled={this.props.disable}>
-                                    <Radio value="a">是</Radio>
-                                    <Radio value="b">否</Radio>
-                                </RadioGroup>
-
-                            )}
-                        </FormItem>
-
-
-			<FormItem
-                            {...formItemLayout}
-                            label="7.委托单位地址:是否和确认单一致（共一处，报告页）"
-                        >
-                            {getFieldDecorator('consignUnitAdress', {
-                                rules: [{ required: true, message: '请选择！'}],
-                            })(
-                                <RadioGroup name={"委托单位地址"} disabled={this.props.disable}>
-                                    <Radio value="a">是</Radio>
-                                    <Radio value="b">否</Radio>
-                                </RadioGroup>
-
-                            )}
-                        </FormItem>
-			
-
-			<FormItem
-                            {...formItemLayout}
-                            label="8.序号:附件二、附件三中的序号是否正确、连续"
-                        >
-                            {getFieldDecorator('Number', {
-                                rules: [{ required: true, message: '请选择！'}],
-                            })(
-                                <RadioGroup name={"序号"} disabled={this.props.disable}>
-                                    <Radio value="a">是</Radio>
-                                    <Radio value="b">否</Radio>
-                                </RadioGroup>
-
-                            )}
-                        </FormItem>
-
-
-			<FormItem
-                            {...formItemLayout}
-                            label="9.测试样品:样品名称是否正确，数量是否正确"
-                        >
-                            {getFieldDecorator('testSample', {
-                                rules: [{ required: true, message: '请选择！'}],
-                            })(
-                                <RadioGroup name={"测试样品"} disabled={this.props.disable}>
-                                    <Radio value="a">是</Radio>
-                                    <Radio value="b">否</Radio>
-                                </RadioGroup>
-
-                            )}
-                        </FormItem>
-
-
-			<FormItem
-                            {...formItemLayout}
-                            label="10.软、硬件列表:列表是否完整（如打印机），用途描述是否合理正确"
-                        >
-                            {getFieldDecorator('softwareList', {
-                                rules: [{ required: true, message: '请选择！'}],
-                            })(
-                                <RadioGroup name={"软、硬件列表"} disabled={this.props.disable}>
-                                    <Radio value="a">是</Radio>
-                                    <Radio value="b">否</Radio>
-                                </RadioGroup>
-
-                            )}
-                        </FormItem>
-
-
-			<FormItem
-                            {...formItemLayout}
-                            label="11.1 错别字:报告中是否还有错别字"
-                        >
-                            {getFieldDecorator('wrongWord', {
-                                rules: [{ required: true, message: '请选择！'}],
-                            })(
-                                <RadioGroup name={"错别字"} disabled={this.props.disable}>
-                                    <Radio value="a">是</Radio>
-                                    <Radio value="b">否</Radio>
-                                </RadioGroup>
-
-                            )}
-                        </FormItem>
-
-
-			<FormItem
-                            {...formItemLayout}
-                            label="11.2语句:报告的语句是否通顺合理；每个功能描述结束后是否都有句号"
-                        >
-                            {getFieldDecorator('sentences', {
-                                rules: [{ required: true, message: '请选择！'}],
-                            })(
-                                <RadioGroup name={"语句"} disabled={this.props.disable}>
-                                    <Radio value="a">是</Radio>
-                                    <Radio value="b">否</Radio>
-                                </RadioGroup>
-
-                            )}
-                        </FormItem>
-		
-
-			<FormItem
-                            {...formItemLayout}
-                            label="11.3格式:报告的格式是否美观，字体是否一致，表格大小是否一致。（如无特殊情况请尽量不要将报告页中的表格分为2页。）"
-                        >
-                            {getFieldDecorator('format', {
-                                rules: [{ required: true, message: '请选择！'}],
-                            })(
-                                <RadioGroup name={"格式"} disabled={this.props.disable}>
-                                    <Radio value="a">是</Radio>
-                                    <Radio value="b">否</Radio>
-                                </RadioGroup>
-
-                            )}
-                        </FormItem>
-
-
-			<FormItem
-                            {...formItemLayout}
-                            label="12用户文档测试报告:语句是否通顺，是否准确描述用户的文档"
-                        >
-                            {getFieldDecorator('userDocTestReport', {
-                                rules: [{ required: true, message: '请选择！'}],
-                            })(
-                                <RadioGroup name={"用户文档测试报告"} disabled={this.props.disable}>
-                                    <Radio value="a">是</Radio>
-                                    <Radio value="b">否</Radio>
-                                </RadioGroup>
-
-                            )}
-                        </FormItem>
-
-			 {/* footer buttons */}
-                <FormItem {...formItemLayout}>
-                    {this.props.buttons.map((button, index) =>
-                        <Button onClick={this.onClick(index)}
-                                key={button.content}>
-                            {button.content}
-                        </Button>)}
-                </FormItem>
-           
-            
-			</Form>
-
-
-
+        return (
+            <div>
+                <h3 style={{ marginBottom: 16 }}>测试报告检查表列表</h3>
+                <InputGroup>
+                    <Col span={3}>
+                        <Select defaultValue="搜索测试报告检查ID" onSelect={this.onSelect}>
+                            <Option value="id">搜索测试报告检查ID</Option>
+                            <Option value="pid">搜索项目ID</Option>
+                            <Option value="customerId">搜索委托人ID</Option>
+                            <Option value="name">搜索项目名称 </Option>
+                        </Select>
+                    </Col>
+                    <Col span={8}>
+                        <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
+                    </Col>
+                    <Col span={1}></Col>
+                    {/*this.props.enableNew*/0 ?
+                        <Col span={2}>
+                            <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建测试报告检查表</Button>
+                        </Col>
+                        : <Col span={2}></Col>}
+                </InputGroup>
+                <br />
+                <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'}/>
+            </div>
         );
     }
 }
-export default Form.create()(TestReportCheckListComponent);
