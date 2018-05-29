@@ -37,10 +37,13 @@ export const getConsign = (dispatch, id, callback) => {
             console.log(data);
             const {consignation} = data;
             let res = {};
-            if (consignation!==undefined)
+            if (consignation!==undefined) {
                 res = JSON.parse(consignation);
+            }
             const resStatus = STATUS.SUCCESS;
-            callback && callback(resStatus);
+            // console.log(res);
+            // callback && callback(resStatus);
+            console.log(res);
             return res;
         }
     });
@@ -66,6 +69,7 @@ export const newConsign = (dispatch, callback) => {
 };
 
 export const updateConsign = (dispatch, data, callback) => {
+    console.log(data);
     httpPut(consignBase, data, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
