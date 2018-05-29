@@ -31,10 +31,10 @@ class ConsignContentComponent extends Component {
         form: PropTypes.object.isRequired,
     };
 
-//    componentWillMount() {
-//        this.curID = this.props.curKey;
-//        this.values = this.props.getValues(this.curID);
-//    }
+    componentWillMount() {
+        this.curID = this.props.curKey;
+        this.values = this.props.getValues(this.curID);
+    }
 
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {

@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => {
     const isEditor = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     return {
         buttons: buttons(dispatch,isEditor).filter(button => button.enable===true),
-        getValues: (id) => getConsign(dispatch,id).consignation
+        getValues: (id) => getConsign(dispatch,id)
     }
 };
 
