@@ -30,13 +30,13 @@ class ConsignContentComponent extends Component {
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
-        curKey: PropTypes.string.isRequired
+//        curKey: PropTypes.string.isRequired
     };
 
-    componentWillMount() {
-        this.curID = this.props.curKey;
-        this.values = this.props.getValues(this.curID);
-    }
+//    componentWillMount() {
+//        this.curID = this.props.curKey;
+//        this.values = this.props.getValues(this.curID);
+//    }
 
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
@@ -74,12 +74,12 @@ class ConsignContentComponent extends Component {
         return(
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
 
-                <FormItem {...formItemLayout}>
-                    <h1>软件项目委托测试申请书</h1>
+                <FormItem >
+                    <h1 style={{textAlign:'center'}}>软件项目委托测试申请书</h1>
                 </FormItem>
 
 
-                <FormItem>请用?选择：○——单选； ◻——多选。</FormItem>
+                <FormItem>请用✓选择：○——单选； ◻——多选。</FormItem>
 
                 <Collapse bordered={false} defaultActiveKey={['page1']}>
                     <Panel header="This is page 1" key={"page1"} style={customPanelStyle}>
@@ -873,7 +873,7 @@ class ConsignContentComponent extends Component {
                 </Collapse>
 
                 {/* footer buttons */}
-                <FormItem {...formItemLayout}>
+                <FormItem style={{textAlign:'center'}}>
                     {this.props.buttons.map((button, index) =>
                         <Button onClick={this.onClick(index)}
                                 key={button.content}>
