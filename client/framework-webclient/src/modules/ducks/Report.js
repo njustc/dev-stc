@@ -17,7 +17,7 @@ export const TestReportReducer = (state = initialTestReportState, action) => {
             return {
                 ...state,
                 listMap: list.reduce((listMap, TestReportData) => {
-                    listMap[TestReportData.id] = TestReporttData;
+                    listMap[TestReportData.id] = TestReportData;
                     return listMap;
                 }, {}),
             };

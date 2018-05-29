@@ -41,7 +41,7 @@ export const getTestReportList = (dispatch, callback) => {
     callback && callback(status);
 };
 
-export const getTestReportList = (dispatch, callback) => {
+export const getTestReportCheckList = (dispatch, callback) => {
     /*    httpGet(projectBase, (result) => {
             const {status, data} = result;
             if (status === STATUS.SUCCESS) {
@@ -50,7 +50,7 @@ export const getTestReportList = (dispatch, callback) => {
             callback && callback(status);
         });*/
     /*TEMP*/
-    dispatch(setTestReportList([
+    dispatch(setTestReportCheckList([
         {
             pid : "110",
             id : "110",

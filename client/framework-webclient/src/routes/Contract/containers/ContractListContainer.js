@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {addTabAction} from "MODULES/ducks/Layout";
 import {ContractContentView} from "../../Contract";
 import {getContractList} from "../../../services/ContractService";
-import {setContractFilter} from "../../../modules/ducks/Contract";
+//import {setContractFilter} from "../../../modules/ducks/Contract";
 import ContractListComponent from "../components/ContractListComponent";
 
 const mapStateToProps = (state) => {
