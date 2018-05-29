@@ -1,7 +1,7 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from "react-redux";
 import {addTabAction} from "MODULES/ducks/Layout";
-import {TestReportCheckContentView} from "../../Archive";
+import {TestReportCheckContentView} from "../../Report";
 import {getTestReportCheckList} from "../../../services/ReportService";
 //import {setTestRecordFilter} from "../../../modules/ducks/Consign";
 import TestReportCheckListComponent from "../components/TestReportCheckListComponent";
