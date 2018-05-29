@@ -4,11 +4,14 @@ import {connect} from "react-redux";
 import {getConsign, updateConsign} from "../../../services/ConsignService";
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+    debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     console.log(authData);
+    const consignation = state.Consign.listMap[ownProps.id].consignation;
     return {
-        consignData: {},/*fetch data with pro id*/
+        // consignData: {},/*fetch data with pro id*/
+        values: consignation ? JSON.parse(consignation) : {},
         disable: authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1,
         curKey: state.Layout.activeKey /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
     }
