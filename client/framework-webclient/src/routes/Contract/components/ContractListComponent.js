@@ -19,9 +19,9 @@ export default class ContractListComponent extends Component {
         setListFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
-        deleteItem: PropTypes.func,
-        getList: PropTypes.func,
-        newItem: PropTypes.func,
+        deleteContract: PropTypes.func,
+        getContractList: PropTypes.func,
+        newContract: PropTypes.func,
         enableNew: PropTypes.bool,
     };
 
@@ -100,7 +100,7 @@ export default class ContractListComponent extends Component {
                 //debugger;
                 //this.deleteConsign(id);
                 /*TODO 取消委托的函数的参数需要优化*/
-                this.props.deleteItem(record);
+                this.props.deleteContract(record);
             },
             onCancel() {},
         });
@@ -172,7 +172,7 @@ export default class ContractListComponent extends Component {
                     <Col span={1}></Col>
                     {/*this.props.enableNew*/1 ?
                         <Col span={2}>
-                            <Button type="primary" onClick={this.props.newItem}><Icon type="plus-circle-o" />新建合同</Button>
+                            <Button type="primary" onClick={this.props.newContract}><Icon type="plus-circle-o" />新建合同</Button>
                         </Col>
                         : <Col span={2}></Col>}
                 </InputGroup>

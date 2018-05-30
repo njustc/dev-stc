@@ -22,9 +22,9 @@ const mapDispatchToProps = (dispatch) => {
 //            dispatch(setContractContent())
         },
         setListFilter: (listFilter) => dispatch(setContractFilter(listFilter)),
-        getList: () => getContractList(dispatch),
-        deleteItem: (id) => deleteContract(dispatch,id),
-        newItem: () => newContract(dispatch)
+        getContractList: () => getContractList(dispatch),
+        deleteContract: (id) => deleteContract(dispatch,id),
+        newContract: () => newContract(dispatch)
     }
 };
 
