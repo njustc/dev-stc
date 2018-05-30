@@ -33,10 +33,10 @@ class ConsignContentComponent extends Component {
     };
 
     componentWillMount() {
-        this.curID = this.props.curKey;
-        // console.log(this.curID);
-        this.props.getValues(this.curID);
-        // console.log(this.values);
+    //     this.curID = this.props.curKey;
+    //     // console.log(this.curID);
+         this.props.getValues(this.props.consignData.id);
+    //     // console.log(this.values);
     };
 
     // componentDidMount() {
@@ -50,7 +50,7 @@ class ConsignContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(this.curID,JSON.stringify(form.getFieldsValue()));
+        buttons[buttonIndex].onClick(this.props.consignData,JSON.stringify(form.getFieldsValue()));
     };
 
     render() {

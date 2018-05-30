@@ -8,7 +8,7 @@ import ConsignListComponent from "../components/ConsignListComponent";
 
 const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    console.log(state.Consign.listMap);
+    //console.log(state.Consign.listMap);
     return {
         dataSource: Object.values(state.Consign.listMap),
         enableNew: authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "ADD")!==-1

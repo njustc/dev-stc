@@ -7,7 +7,7 @@ import {getConsign, updateConsign} from "../../../services/ConsignService";
 const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    console.log(authData);
+    // console.log(authData);
     const consignation = state.Consign.listMap[ownProps.id].consignation;
     return {
         // consignData: {},/*fetch data with pro id*/
@@ -53,10 +53,7 @@ const mapDispatchToProps = (dispatch) => {
     const isEditor = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     return {
         buttons: buttons(dispatch,isEditor).filter(button => button.enable===true),
-        getValues: (id) => {
-            const res = getConsign(dispatch,id);
-            console.log(res);
-        }
+        getValues: (id) => getConsign(dispatch,id)
     }
 };
 
