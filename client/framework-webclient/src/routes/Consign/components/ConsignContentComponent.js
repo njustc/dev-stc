@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse} from 'antd';
+import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message} from 'antd';
 
 const Panel = Collapse.Panel;
 const Option=Select.Option;
@@ -22,6 +22,7 @@ class ConsignContentComponent extends Component {
         values: {},
         disable:false,
         buttons: [],
+        //buttonDisabled:false,
     };
 
     static propTypes = {
@@ -29,6 +30,7 @@ class ConsignContentComponent extends Component {
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
+        //buttonDisabled: PropTypes.bool.isRequired,
         form: PropTypes.object.isRequired,
     };
 
@@ -51,6 +53,13 @@ class ConsignContentComponent extends Component {
         // });
         const {buttons, form} = this.props;
         buttons[buttonIndex].onClick(this.props.consignData,JSON.stringify(form.getFieldsValue()));
+        switch (buttonIndex) {
+            case 0: message.success('保存成功');break;
+            case 1: message.success('提交成功');break;
+            case 2: message.success('委托已通过');break;
+            //case 3: message.success('提交成功');break;
+            default:break;
+        }
     };
 
     render() {
@@ -880,7 +889,8 @@ class ConsignContentComponent extends Component {
                 {/* footer buttons */}
                 <FormItem style={{textAlign:'center'}}>
                     {this.props.buttons.map((button, index) =>
-                        <Button onClick={this.onClick(index)}
+                        <Button
+                                onClick={this.onClick(index)}
                                 key={button.content}>
                             {button.content}
                         </Button>)}

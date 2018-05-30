@@ -1,7 +1,8 @@
 const C_SET_LIST = 'Contract/SET_LIST';
-/*const RM_CONTENT = 'Contract/RM_CONTENT';
-const SET_CONTENT = 'Contract/SET_CONTENT';
-const SET_FILTER = 'Contract/SET_FILTER';*/
+const C_RM_CONTENT = 'Contract/RM_CONTENT';
+const C_SET_CONTENT = 'Contract/SET_CONTENT';
+const C_SET_FILTER = 'Contract/SET_FILTER';
+
 const CC_SET_LIST = 'ContractCheck/SET_LIST';
 
 const initialContractState = {
@@ -21,16 +22,15 @@ export const ContractReducer = (state = initialContractState, action) => {
                     return listMap;
                 }, {}),
             };
-        /*case RM_CONTENT:
+        case C_RM_CONTENT:
             const id = action.payload;
+            const newListMap = state.listMap;
+            delete newListMap[id];
             return {
                 ...state,
-                listMap: {
-                    ...state.listMap,
-                    [id]: undefined,
-                },
+                listMap: newListMap
             };
-        case SET_CONTENT: {
+        case C_SET_CONTENT: {
             const {id} = action.payload;
             const ContractData = action.payload;
             return {
@@ -41,12 +41,12 @@ export const ContractReducer = (state = initialContractState, action) => {
                 },
             };
         }
-        case SET_FILTER:
+        case C_SET_FILTER:
             const listFilter = action.payload;
             return {
                 ...state,
                 listFilter: listFilter,
-            };*/
+            };
         default:
             return state;
     }
@@ -58,28 +58,28 @@ export const setContractList = (list) => {
         payload: list,
     }
 };
-/*
+
 export const removeContract = (id) => {
     return {
-        type: RM_CONTENT,
+        type: C_RM_CONTENT,
         payload: id,
     }
 };
 
 export const setContractContent = (ContractData) => {
     return {
-        type: SET_CONTENT,
+        type: C_SET_CONTENT,
         payload: ContractData,
     }
 };
 
 export const setContractFilter = (listFilter) => {
     return {
-        type: SET_FILTER,
+        type: C_SET_FILTER,
         payload: listFilter,
     }
 };
-*/
+
 
 const initialContractCheckState = {
     listFilter: () => true,//绑定按钮传入的过滤条件
