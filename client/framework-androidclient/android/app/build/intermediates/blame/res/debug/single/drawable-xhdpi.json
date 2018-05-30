@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/Users/weiyuyang/RNstc/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_list_divider_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/RNstc/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_popup_background_mtrl_mult.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_popup_background_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/RNstc/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/RNstc/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-xhdpi/abc_list_divider_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/GitHub/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-xhdpi/abc_ic_search_api_mtrl_alpha.png",

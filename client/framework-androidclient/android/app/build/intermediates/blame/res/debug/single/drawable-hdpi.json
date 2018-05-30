@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/Users/jieyang/Desktop/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_btn_radio_to_on_mtrl_000.png",
-        "source": "/Users/jieyang/Desktop/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_btn_radio_to_on_mtrl_000.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc2.0/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_textfield_search_default_mtrl_alpha.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc2.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_textfield_search_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_btn_radio_to_on_mtrl_000.png",
+        "source": "/Users/jieyang/Desktop/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_btn_radio_to_on_mtrl_000.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_btn_radio_to_on_mtrl_000.png",
@@ -36,12 +36,12 @@
         "source": "/Users/weiyuyang/GitHub/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_list_selector_disabled_holo_light.9.png"
     },
     {
-        "merged": "/Users/jieyang/Desktop/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_list_divider_mtrl_alpha.9.png",
-        "source": "/Users/jieyang/Desktop/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc2.0/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_list_selector_disabled_holo_light.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc2.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/Users/jieyang/Desktop/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-hdpi/abc_list_divider_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/jieyang/Desktop/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_spinner_mtrl_am_alpha.9.png",

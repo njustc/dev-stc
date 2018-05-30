@@ -28,10 +28,11 @@ export const LayoutReducer = (state = initialState, action) =>{
                 activeKey: action.payload
             };
         case ADD_TAB: {
+            // debugger;
             const panes = state.panes.slice();
-            const {key, name, component} = action.payload;
+            const {key, name, component, props} = action.payload;
             if (!containsPane(key, panes)) {
-                panes.push({title: name, content: React.createElement(component), key: key});
+                panes.push({title: name, content: React.createElement(component, props), key: key});
             }
             return {
                 panes: panes,
@@ -73,13 +74,14 @@ export const setActiveKey = (activekey) => {
     }
 };
 
-export const addTabAction = (key, name, component) => {
+export const addTabAction = (key, name, component, props) => {
     return {
         type: ADD_TAB,
         payload: {
             key: key,
             name: name,
             component: component,
+            props: props,
         },
     }
 };

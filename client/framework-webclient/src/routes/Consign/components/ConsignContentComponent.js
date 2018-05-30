@@ -25,6 +25,7 @@ class ConsignContentComponent extends Component {
     };
 
     static propTypes = {
+        consignData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
@@ -33,8 +34,14 @@ class ConsignContentComponent extends Component {
 
     componentWillMount() {
         this.curID = this.props.curKey;
-        this.values = this.props.getValues(this.curID);
-    }
+        // console.log(this.curID);
+        this.props.getValues(this.curID);
+        // console.log(this.values);
+    };
+
+    // componentDidMount() {
+    //     this.values = this.props.getValues(this.curID);
+    // };
 
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
@@ -43,7 +50,7 @@ class ConsignContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));
+        buttons[buttonIndex].onClick(this.curID,JSON.stringify(form.getFieldsValue()));
     };
 
     render() {
@@ -84,7 +91,7 @@ class ConsignContentComponent extends Component {
                         <FormItem {...formItemLayout} label="测试类型">
                             {getFieldDecorator('testType', {
                                 rules: [{ required: true, message: '请选择至少一项测试类型!'}],
- //                               initialValue: this.values.testType,
+                               initialValue: this.props.values.testType,
                             })(
                                 <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
                                         placeholder="请选择" onChange={handleChange}>
@@ -100,7 +107,7 @@ class ConsignContentComponent extends Component {
                         <FormItem {...formItemLayout} label="请输入软件名称">
                             {getFieldDecorator('softwareName', {
                                 rules: [{ required: true, message: '请输入软件名称！' }],
-//                                initialValue: this.values.softwareName,
+                               initialValue: this.props.values.softwareName,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -110,7 +117,7 @@ class ConsignContentComponent extends Component {
                         <FormItem {...formItemLayout} label={"版本号"}>
                             {getFieldDecorator('version', {
                                 rules: [{ required: true, message: '请正确输入版本号！',pattern:"^[a-zA-Z0-9/.]+$"}],
- //                               initialValue: this.values.version,
+                               initialValue: this.props.values.version,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}

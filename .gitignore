@@ -31,6 +31,8 @@ springBeans
 
 # Log file
 *.log
+*.log.*
+nohup.out
 
 # OSX
 # =========================
