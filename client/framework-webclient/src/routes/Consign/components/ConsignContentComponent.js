@@ -22,7 +22,7 @@ class ConsignContentComponent extends Component {
         values: {},
         disable:false,
         buttons: [],
-        buttonDisabled:false,
+        //buttonDisabled:false,
     };
 
     static propTypes = {
@@ -30,7 +30,7 @@ class ConsignContentComponent extends Component {
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
-        buttonDisabled: PropTypes.array.isRequired,
+        //buttonDisabled: PropTypes.bool.isRequired,
         form: PropTypes.object.isRequired,
     };
 
@@ -53,7 +53,13 @@ class ConsignContentComponent extends Component {
         // });
         const {buttons, form} = this.props;
         buttons[buttonIndex].onClick(this.props.consignData,JSON.stringify(form.getFieldsValue()));
-        message.success('manage to save');
+        switch (buttonIndex) {
+            case 0: message.success('保存成功');break;
+            case 1: message.success('提交成功');break;
+            case 2: message.success('委托已通过');break;
+            //case 3: message.success('提交成功');break;
+            default:break;
+        }
     };
 
     render() {
@@ -884,7 +890,6 @@ class ConsignContentComponent extends Component {
                 <FormItem style={{textAlign:'center'}}>
                     {this.props.buttons.map((button, index) =>
                         <Button
-                                disabled={this.props.buttonDisabled}
                                 onClick={this.onClick(index)}
                                 key={button.content}>
                             {button.content}

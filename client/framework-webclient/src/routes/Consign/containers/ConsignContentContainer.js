@@ -12,9 +12,9 @@ const mapStateToProps = (state, ownProps) => {
         // consignData: {},/*fetch data with pro id*/
         consignData: state.Consign.listMap[ownProps.id],
         values: consignation ? JSON.parse(consignation) : {},
-        disable: authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1||state.Consign.listMap[ownProps.id].state==="TobeCheck",
+        disable: authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1||state.Consign.listMap[ownProps.id].state!=="TobeSubmit",
         curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
-        buttonDisabled: state.Consign.listMap[ownProps.id].state==="TobeCheck"
+        //buttonDisabled: state.Consign.listMap[ownProps.id].state==="TobeCheck"
     }
 };
 
@@ -25,7 +25,6 @@ const buttons = (dispatch,isVisible) => [{
             id: consignData.id,
             consignation: consignation
         };
-        console.log(consignData);
         updateConsign(dispatch,valueData);
     },
     enable: isVisible,
