@@ -16,74 +16,26 @@ export default class ContractListComponent extends Component {
     }
 
     static propTypes = {
-        //setListFilter: PropTypes.func,
+        setListFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
-        //deleteConsign: PropTypes.func,
-        getContractList: PropTypes.func,
-        newContract: PropTypes.func,
+        deleteItem: PropTypes.func,
+        getList: PropTypes.func,
+        newItem: PropTypes.func,
         enableNew: PropTypes.bool,
     };
 
     componentDidMount() {
-        this.props.getContractList();
-    }
-
-    /*搜索框选项相关*/
-    state={
-        selectOption:'id',
-    };
-
-    onSelect = (value, option) => {
-        this.setState({
-            selectOption:value
-        });
-    }
-
-    setPlaceholder = () => {
-        switch (this.state.selectOption){
-            case 'id':
-                return '请输入合同ID';
-            case 'customerId':
-                return '请输入委托人ID';
-            case 'name':
-                return '请输入项目名称';
-            case 'pid':
-                return '请输入项目ID';
-            default:break;
-        }
-    };
-
-    /*状态列颜色渲染*/
-    state2SColor(state) {
-        switch (state){
-            case STATE.TO_SUBMIT: return "processing";
-            case STATE.TO_CHECK: return "processing";
-            case STATE.CANCELED: return "default";
-            default: return "error";
-        }
-    }
-
-    state2C(state) {
-        switch (state){/*TODO*/
-            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
-            case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
-            case STATE.CANCELED: return "已取消";
-            default: return "未定义状态";
-        }
+        this.props.getList();
     }
 
     /*table列设置*/
     columns = [{
-        title:"项目ID",
-        dataIndex:"pid",
-        sorter:(a, b) => a.pid - b.pid,
-    }, {
         title:"合同ID",
         dataIndex:"id",
         sorter:(a, b) => a.id - b.id,
     }, {
-        title:"项目名称",
+        title:"合同名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
         dataIndex:"name",
     }, {
         title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
@@ -99,8 +51,7 @@ export default class ContractListComponent extends Component {
             )
         },
         /*TODO 给状态列加个过滤*/
-        /*
-        filters: [{
+        /*filters: [{
             text: '待提交',
             value: 'TobeSubmit',
         }, {
@@ -123,8 +74,8 @@ export default class ContractListComponent extends Component {
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
-                    {/*<Divider type="vertical"/>
-                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>*/}
+                    <Divider type="vertical"/>
+                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>
                 </div>
             )
         }
@@ -133,7 +84,6 @@ export default class ContractListComponent extends Component {
 
     /*查看详情*/
     viewContent = (record) => () => {
-        //console.log(record);
         this.props.showContent(record);
     };
 
@@ -150,16 +100,58 @@ export default class ContractListComponent extends Component {
                 //debugger;
                 //this.deleteConsign(id);
                 /*TODO 取消委托的函数的参数需要优化*/
-                this.props.deleteConsign(record);
+                this.props.deleteItem(record);
             },
             onCancel() {},
         });
     };
 
+    /*搜索框选项相关*/
+    state={
+        selectOption:'id',
+    };
+
+    onSelect = (value, option) => {
+        this.setState({
+            selectOption:value
+        });
+    }
+
+    setPlaceholder = () => {
+        switch (this.state.selectOption){
+            case 'id':
+                return '请输入合同ID';
+            case 'customerId':
+                return '请输入委托人ID';
+            case 'name':
+                return '请输入委托名称';
+            default:break;
+        }
+    };
+
+    /*状态列颜色渲染*/
+    state2SColor(state) {
+        switch (state){
+            case STATE.TO_SUBMIT: return "processing";
+            case STATE.TO_CHECK: return "processing";
+            case STATE.CANCELED: return "default";
+            default: return "error";
+        }
+    }
+
+    state2C(state) {
+        switch (state){
+            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
+            case STATE.CANCELED: return "已取消";
+            default: return "未定义状态";
+        }
+    }
+
     /*TODO 搜索功能*/
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
-        this.props.setListFilter((record) => record.id.match(reg));
+        this.props.setListFilter((record) => record.match(reg));
     };
 
     render() {
@@ -170,18 +162,17 @@ export default class ContractListComponent extends Component {
                     <Col span={3}>
                         <Select defaultValue="搜索合同ID" onSelect={this.onSelect}>
                             <Option value="id">搜索合同ID</Option>
-                            <Option value="pid">搜索项目ID</Option>
                             <Option value="customerId">搜索委托人ID</Option>
-                            <Option value="name">搜索项目名称 </Option>
+                            <Option value="name">搜索委托名称 </Option>
                         </Select>
                     </Col>
                     <Col span={8}>
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    {this.props.enableNew ?
+                    {/*this.props.enableNew*/1 ?
                         <Col span={2}>
-                            <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建合同</Button>
+                            <Button type="primary" onClick={this.props.newItem}><Icon type="plus-circle-o" />新建合同</Button>
                         </Col>
                         : <Col span={2}></Col>}
                 </InputGroup>

@@ -22,9 +22,9 @@ const mapDispatchToProps = (dispatch) => {
 //            dispatch(setConsignContent())
         },
         setListFilter: (listFilter) => dispatch(setConsignFilter(listFilter)),
-        getConsignList: () => getConsignList(dispatch),
-        deleteConsign: (id) => deleteConsign(dispatch,id),
-        newConsign: () => newConsign(dispatch)
+        getList: () => getConsignList(dispatch),
+        deleteItem: (id) => deleteConsign(dispatch,id),
+        newItem: () => newConsign(dispatch)
     }
 };
 
