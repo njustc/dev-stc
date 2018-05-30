@@ -34,6 +34,7 @@ export default class ConsignListComponent extends Component {
     columns = [{
         title:"委托ID",
         dataIndex:"id",
+        //width: '25%',
         sorter:(a, b) => a.id - b.id,
     }, {
         title:"委托名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
@@ -70,6 +71,7 @@ export default class ConsignListComponent extends Component {
         title:"操作",
         dataIndex:"id",
         key:"operation",
+        //width: '12%',
         render: (record) => {
             /*TODO*/
             return (

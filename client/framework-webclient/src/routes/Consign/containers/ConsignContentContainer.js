@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ConsignContentComponent from "../components/ConsignContentComponent";
 import {connect} from "react-redux";
-import {getConsign, updateConsign} from "../../../services/ConsignService";
+import {getConsign, updateConsign, putConsignState} from "../../../services/ConsignService";
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -18,7 +18,7 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
-const buttons = (dispatch,isEditor) => [{
+const buttons = (dispatch,isVisible) => [{
     content: '保存',
     onClick: (consignData,consignation) =>{
         const valueData = {
@@ -27,32 +27,42 @@ const buttons = (dispatch,isEditor) => [{
         };
         updateConsign(dispatch,valueData);
     },
-    enable: isEditor
+    enable: isVisible
 },{
     content: '提交',
     onClick: (consignData,consignation) =>{
-
+        const valueData = {
+            id: consignData.id,
+            consignation: consignation
+        };
+        updateConsign(dispatch,valueData);
+        const params = {
+            "object" : "consign",
+            "operation" : "submit"
+        };
+        //console.log(consignData.processInstanceID);
+        putConsignState(dispatch,consignData.id,params);
     },
-    enable: isEditor
+    enable: isVisible
 },{
     content: '通过',
-    onClick: (consignData,consignation) =>{
+    onClick: (consignData) =>{
 
     },
-    enable: !isEditor
+    enable: !isVisible
 },{
     content: '否决',
-    onClick: (consignData,consignation) =>{
+    onClick: (consignData) =>{
 
     },
-    enable: !isEditor
+    enable: !isVisible
 }];
 
 const mapDispatchToProps = (dispatch) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    const isEditor = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
+    const isVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     return {
-        buttons: buttons(dispatch,isEditor).filter(button => button.enable===true),
+        buttons: buttons(dispatch,isVisible).filter(button => button.enable===true),
         getValues: (id) => getConsign(dispatch,id)
     }
 };
