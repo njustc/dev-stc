@@ -36,6 +36,7 @@ const buttons = (dispatch,isEditor) => [{
             consignation: consignation
         };
         updateConsign(dispatch,valueData);
+
         const putData = {
             "object": "consign",
             "operation": "submit"
@@ -47,13 +48,23 @@ const buttons = (dispatch,isEditor) => [{
 },{
     content: '通过',
     onClick: (consignData,consignation) =>{
-
+        const putData = {
+            "object": "consign",
+            "operation": "pass"
+        }
+        const {processInstanceID,id} = consignData;
+        putConsignState(dispatch,processInstanceID,putData,id);
     },
     enable: !isEditor
 },{
     content: '否决',
     onClick: (consignData,consignation) =>{
-
+        const putData = {
+            "object": "consign",
+            "operation": "reject"
+        }
+        const {processInstanceID,id} = consignData;
+        putConsignState(dispatch,processInstanceID,putData,id);
     },
     enable: !isEditor
 }];
