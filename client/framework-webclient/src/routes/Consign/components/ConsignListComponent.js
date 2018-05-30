@@ -121,7 +121,7 @@ export default class ConsignListComponent extends Component {
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
                     <Divider type="vertical"/>
-                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>
+                    <a href="javascript:void(0);" disabled={!this.props.enableNew} onClick={this.showDeleteConfirm(record)}>取消委托</a>
                 </div>
             )
         }
@@ -176,7 +176,7 @@ export default class ConsignListComponent extends Component {
                     <Col span={1}></Col>
                     {/*this.props.enableNew*/1 ?
                         <Col span={2}>
-                            <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
+                            <Button disabled={!this.props.enableNew} type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
                         </Col>
                         : <Col span={2}></Col>}
                 </InputGroup>
