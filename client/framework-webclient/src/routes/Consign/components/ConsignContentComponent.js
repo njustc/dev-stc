@@ -25,6 +25,7 @@ class ConsignContentComponent extends Component {
     };
 
     static propTypes = {
+        consignData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,

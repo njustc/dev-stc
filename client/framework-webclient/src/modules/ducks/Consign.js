@@ -31,11 +31,15 @@ export const ConsignReducer = (state = initialState, action) => {
         case SET_CONTENT: {
             const {id} = action.payload;
             const ConsignData = action.payload;
+            const newData = {
+                ...ConsignData,
+                ...state.listMap[id],
+            };
             return {
                 ...state,
                 listMap: {
                     ...state.listMap,
-                    [id]: ConsignData,
+                    [id]: newData,
                 },
             };
         }
