@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse} from 'antd';
+import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message} from 'antd';
 
 const Panel = Collapse.Panel;
 const Option=Select.Option;

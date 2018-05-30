@@ -31,7 +31,7 @@ const buttons = (dispatch,isVisible) => [{
 },{
     content: '提交',
     onClick: (consignData,consignation) =>{
-        
+
     },
     enable: isVisible
 },{
