@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ConsignContentComponent from "../components/ConsignContentComponent";
 import {connect} from "react-redux";
-import {getConsign, updateConsign} from "../../../services/ConsignService";
+import {getConsign, putConsignState, updateConsign} from "../../../services/ConsignService";
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -31,7 +31,17 @@ const buttons = (dispatch,isEditor) => [{
 },{
     content: '提交',
     onClick: (consignData,consignation) =>{
-
+        const valueData = {
+            id: consignData.id,
+            consignation: consignation
+        };
+        updateConsign(dispatch,valueData);
+        const putData = {
+            "object": "consign",
+            "operation": "submit"
+        }
+        const {processInstanceID,id} = consignData;
+        putConsignState(dispatch,processInstanceID,putData,id);
     },
     enable: isEditor
 },{

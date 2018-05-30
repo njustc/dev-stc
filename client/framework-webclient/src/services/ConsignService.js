@@ -5,7 +5,7 @@ import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 
 const consignBase = baseServiceAddress + '/consign';
-const consignActivitiBase = baseServiceAddress + '/consignActiviti';
+const consignActivitiBase = baseServiceAddress + '/processInstance';
 
 export const getConsignList = (dispatch, callback) => {
     httpGet(consignBase,(result) => {

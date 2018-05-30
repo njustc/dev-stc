@@ -33,8 +33,8 @@ export const ConsignReducer = (state = initialState, action) => {
             const {id} = action.payload;
             const ConsignData = action.payload;
             const newData = {
-                ...ConsignData,
                 ...state.listMap[id],
+                ...ConsignData,
             };
             return {
                 ...state,
