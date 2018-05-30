@@ -68,6 +68,7 @@ export default class ConsignListComponent extends Component {
             case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
             case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.CANCELED: return "已取消";
+            case STATE.FINISHED: return "已通过";
             default: return "未定义状态";
         }
     }
