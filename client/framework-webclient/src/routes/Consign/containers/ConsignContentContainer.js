@@ -5,34 +5,32 @@ import {getConsign, updateConsign} from "../../../services/ConsignService";
 
 
 const mapStateToProps = (state, ownProps) => {
-    debugger;
+    // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    // console.log(authData);
+    console.log(authData);
     const consignation = state.Consign.listMap[ownProps.id].consignation;
-    console.log(consignation);
     return {
-        consignData: state.Consign.listMap[ownProps.id],
+        // consignData: {},/*fetch data with pro id*/
         values: consignation ? JSON.parse(consignation) : {},
         disable: authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1,
-        // curKey: state.Layout.activeKey /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
+        curKey: state.Layout.activeKey /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
     }
 };
 
 const buttons = (dispatch,isEditor) => [{
     content: '保存',
-    onClick: (consignData,consignation) =>{
+    onClick: (id,consignation) =>{
         const valueData = {
-            consignation: consignation,
-            id: consignData.id,
+            id: id,
+            consignation: consignation
         };
         updateConsign(dispatch,valueData);
     },
     enable: isEditor
 },{
     content: '提交',
-    onClick: (consignData,consignation) =>{
-        const valueData = {
-        }
+    onClick: (id,consignation) =>{
+
     },
     enable: isEditor
 },{
@@ -54,7 +52,10 @@ const mapDispatchToProps = (dispatch) => {
     const isEditor = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     return {
         buttons: buttons(dispatch,isEditor).filter(button => button.enable===true),
-        getValues: (id) => getConsign(dispatch,id)
+        getValues: (id) => {
+            const res = getConsign(dispatch,id);
+            console.log(res);
+        }
     }
 };
 

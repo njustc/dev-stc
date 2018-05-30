@@ -25,12 +25,22 @@ class ConsignContentComponent extends Component {
     };
 
     static propTypes = {
-        consignData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };
+
+    componentWillMount() {
+        this.curID = this.props.curKey;
+        // console.log(this.curID);
+        this.props.getValues(this.curID);
+        // console.log(this.values);
+    };
+
+    // componentDidMount() {
+    //     this.values = this.props.getValues(this.curID);
+    // };
 
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
@@ -39,7 +49,7 @@ class ConsignContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(this.props.consignData,form.getFieldsValue());
+        buttons[buttonIndex].onClick(this.curID,JSON.stringify(form.getFieldsValue()));
     };
 
     render() {

@@ -29,17 +29,13 @@ export const ConsignReducer = (state = initialState, action) => {
                 listMap: newListMap
             };
         case SET_CONTENT: {
+            const {id} = action.payload;
             const ConsignData = action.payload;
-            const newData = {
-                ...ConsignData,
-                ...state.listMap[ConsignData.id]
-            };
-            debugger;
             return {
                 ...state,
                 listMap: {
                     ...state.listMap,
-                    [ConsignData.id]: newData
+                    [id]: ConsignData,
                 },
             };
         }
