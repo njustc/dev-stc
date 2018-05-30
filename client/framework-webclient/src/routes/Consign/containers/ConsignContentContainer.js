@@ -31,17 +31,7 @@ const buttons = (dispatch,isVisible) => [{
 },{
     content: '提交',
     onClick: (consignData,consignation) =>{
-        const valueData = {
-            id: consignData.id,
-            consignation: consignation
-        };
-        updateConsign(dispatch,valueData);
-        const params = {
-            "object" : "consign",
-            "operation" : "submit"
-        };
-        //console.log(consignData.processInstanceID);
-        putConsignState(dispatch,consignData.id,params);
+        
     },
     enable: isVisible
 },{
