@@ -22,7 +22,7 @@ class ConsignContentComponent extends Component {
         values: {},
         disable:false,
         buttons: [],
-        //buttonDisabled:false,
+        buttonDisabled:false,
     };
 
     static propTypes = {
@@ -30,7 +30,7 @@ class ConsignContentComponent extends Component {
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
-        //buttonDisabled: PropTypes.bool.isRequired,
+        buttonDisabled: PropTypes.bool.isRequired,
         form: PropTypes.object.isRequired,
     };
 
@@ -53,10 +53,10 @@ class ConsignContentComponent extends Component {
         // });
         const {buttons, form} = this.props;
         buttons[buttonIndex].onClick(this.props.consignData,JSON.stringify(form.getFieldsValue()));
-        switch (buttonIndex) {
-            case 0: message.success('保存成功');break;
-            case 1: message.success('提交成功');break;
-            case 2: message.success('委托已通过');break;
+        switch (buttons[buttonIndex].content) {
+            case '保存': message.success('保存成功');break;
+            case '提交': message.success('提交成功');break;
+            case '通过': message.success('委托已通过');break;
             //case 3: message.success('提交成功');break;
             default:break;
         }
@@ -886,17 +886,17 @@ class ConsignContentComponent extends Component {
                     </Panel>
                 </Collapse>
 
-                {/* footer buttons */}
+                {/* footer buttons */}        {/*console.log(buttonsDisabled)*/}
                 <FormItem style={{textAlign:'center'}}>
                     {this.props.buttons.map((button, index) =>
                         <Button
+                                disabled={this.props.buttonDisabled}
                                 onClick={this.onClick(index)}
                                 key={button.content}>
                             {button.content}
                         </Button>)}
                 </FormItem>
             </Form>
-
 
 
         );
