@@ -3,18 +3,18 @@ import ConsignContentComponent from "../components/ConsignContentComponent";
 import {connect} from "react-redux";
 import {getConsign, putConsignState, updateConsign} from "../../../services/ConsignService";
 
-
 const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    // console.log(authData);
+    //console.log(authData);
     const consignation = state.Consign.listMap[ownProps.id].consignation;
     return {
         // consignData: {},/*fetch data with pro id*/
         consignData: state.Consign.listMap[ownProps.id],
         values: consignation ? JSON.parse(consignation) : {},
-        disable: authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1,
-        curKey: state.Layout.activeKey /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
+        disable: authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1||state.Consign.listMap[ownProps.id].state==="TobeCheck",
+        curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
+        buttonDisabled: state.Consign.listMap[ownProps.id].state==="TobeCheck"
     }
 };
 
@@ -25,9 +25,10 @@ const buttons = (dispatch,isVisible) => [{
             id: consignData.id,
             consignation: consignation
         };
+        console.log(consignData);
         updateConsign(dispatch,valueData);
     },
-    enable: isVisible
+    enable: isVisible,
 },{
     content: '提交',
     onClick: (consignData,consignation) =>{
@@ -40,7 +41,7 @@ const buttons = (dispatch,isVisible) => [{
         const putData = {
             "object": "consign",
             "operation": "submit"
-        }
+        };
         const {processInstanceID,id} = consignData;
         putConsignState(dispatch,processInstanceID,putData,id);
     },
@@ -51,7 +52,7 @@ const buttons = (dispatch,isVisible) => [{
         const putData = {
             "object": "consign",
             "operation": "pass"
-        }
+        };
         const {processInstanceID,id} = consignData;
         putConsignState(dispatch,processInstanceID,putData,id);
     },
@@ -62,7 +63,7 @@ const buttons = (dispatch,isVisible) => [{
         const putData = {
             "object": "consign",
             "operation": "reject"
-        }
+        };
         const {processInstanceID,id} = consignData;
         putConsignState(dispatch,processInstanceID,putData,id);
     },

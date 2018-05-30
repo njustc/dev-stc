@@ -22,6 +22,7 @@ class ConsignContentComponent extends Component {
         values: {},
         disable:false,
         buttons: [],
+        buttonDisabled:false,
     };
 
     static propTypes = {
@@ -29,6 +30,7 @@ class ConsignContentComponent extends Component {
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
+        buttonDisabled: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };
 
@@ -51,6 +53,7 @@ class ConsignContentComponent extends Component {
         // });
         const {buttons, form} = this.props;
         buttons[buttonIndex].onClick(this.props.consignData,JSON.stringify(form.getFieldsValue()));
+        message.success('manage to save');
     };
 
     render() {
@@ -880,7 +883,9 @@ class ConsignContentComponent extends Component {
                 {/* footer buttons */}
                 <FormItem style={{textAlign:'center'}}>
                     {this.props.buttons.map((button, index) =>
-                        <Button onClick={this.onClick(index)}
+                        <Button
+                                disabled={this.props.buttonDisabled}
+                                onClick={this.onClick(index)}
                                 key={button.content}>
                             {button.content}
                         </Button>)}

@@ -29,8 +29,6 @@ export default class ConsignListComponent extends Component {
         this.props.getConsignList();
     }
 
-<<<<<<< HEAD
-=======
     /*搜索框选项相关*/
     state={
         selectOption:'id',
@@ -74,7 +72,6 @@ export default class ConsignListComponent extends Component {
             default: return "未定义状态";
         }
     }
->>>>>>> caochun/master
 
     /*table列设置*/
     columns = [{
@@ -154,48 +151,6 @@ export default class ConsignListComponent extends Component {
             onCancel() {},
         });
     };
-
-    /*搜索框选项相关*/
-    state={
-        selectOption:'id',
-    };
-
-    onSelect = (value, option) => {
-        this.setState({
-            selectOption:value
-        });
-    }
-
-    setPlaceholder = () => {
-        switch (this.state.selectOption){
-            case 'id':
-                return '请输入委托ID';
-            case 'customerId':
-                return '请输入委托人ID';
-            case 'name':
-                return '请输入委托名称';
-            default:break;
-        }
-    };
-
-    /*状态列颜色渲染*/
-    state2SColor(state) {
-        switch (state){
-            case STATE.TO_SUBMIT: return "processing";
-            case STATE.TO_CHECK: return "processing";
-            case STATE.CANCELED: return "default";
-            default: return "error";
-        }
-    }
-
-    state2C(state) {
-        switch (state){
-            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
-            case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
-            case STATE.CANCELED: return "已取消";
-            default: return "未定义状态";
-        }
-    }
 
     /*TODO 搜索功能*/
     onSearch = (value) => {
