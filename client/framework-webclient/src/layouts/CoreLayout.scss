@@ -42,13 +42,19 @@
   display: none;
 }
 
-.navmenu
+.userMenu
 {
     display: block;
-    float: right !important;
+    float: right;
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 auto;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     background: #FFF;
+}
+
+.logo {
+	height: 32px;
+	background: rgba(255,255,255,.2);
+	margin: 16px;
 }

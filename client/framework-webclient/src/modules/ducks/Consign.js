@@ -13,6 +13,7 @@ export const ConsignReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_LIST:
             const list = action.payload;
+            console.log(list);
             return {
                 ...state,
                 listMap: list.reduce((listMap, ConsignData) => {
@@ -22,21 +23,24 @@ export const ConsignReducer = (state = initialState, action) => {
             };
         case RM_CONTENT:
             const id = action.payload;
+            const newListMap = state.listMap;
+            delete newListMap[id];
             return {
                 ...state,
-                listMap: {
-                    ...state.listMap,
-                    [id]: undefined,
-                },
+                listMap: newListMap
             };
         case SET_CONTENT: {
             const {id} = action.payload;
             const ConsignData = action.payload;
+            const newData = {
+                ...state.listMap[id],
+                ...ConsignData,
+            };
             return {
                 ...state,
                 listMap: {
                     ...state.listMap,
-                    [id]: ConsignData,
+                    [id]: newData,
                 },
             };
         }

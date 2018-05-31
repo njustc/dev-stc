@@ -24,14 +24,14 @@ const sysFetch = (Method, url, params, callback) => {
     let username = "undefined";
     let clientDigest = "undefined";
 
-    const curUserString = sessionStorage.getItem('sysUser');
-    const curUser = JSON.parse(curUserString);
-    if (curUserString && curUserString !== 'null') {
-        username = curUser.username;
-        clientDigest = curUser.clientDigest;
-    }
+    // const curUserString = sessionStorage.getItem('sysUser');
+    // const curUser = JSON.parse(curUserString);
+    // if (curUserString && curUserString !== 'null') {
+    //     username = curUser.username;
+    //     clientDigest = curUser.clientDigest;
+    // }
 
-    let fullUrl = url + '?username=' + username + '&clientDigest=' + clientDigest;
+    // let fullUrl = url + '?username=' + username + '&clientDigest=' + clientDigest;
     let formData = new FormData();
     formData.append('params', params ? JSON.stringify(params): '');
 
@@ -40,7 +40,7 @@ const sysFetch = (Method, url, params, callback) => {
         request.body = formData;
     }
 
-    return fetch(fullUrl, request)
+    return fetch(url, request)
         .then((res) =>
         {
             if(res.ok)

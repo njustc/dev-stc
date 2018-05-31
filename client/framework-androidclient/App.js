@@ -17,9 +17,9 @@ import {
 } from 'react-navigation';
 
 import LoginScreen from './Login'
-import ConsignationScreen from './customer/Consignation'
-import ContractScreen from './customer/Contract'
-import ReportScreen from './customer/Report'
+import ConsignationScreen from './consign/Consignation'
+import ContractScreen from './contract/Contract'
+import ReportScreen from './report/Report'
 import SideMenuScreen from './SideMenu'
 
 const App=StackNavigator({

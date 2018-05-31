@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse} from 'antd';
+import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message} from 'antd';
 
 const Panel = Collapse.Panel;
 const Option=Select.Option;
@@ -16,28 +16,34 @@ function handleChange(value) {
 class ConsignContentComponent extends Component {
     constructor(props) {
         super(props);
-        curID = '';
-        values = {};
-    }
+    };
 
     static defaultProps = {
         values: {},
         disable:false,
         buttons: [],
+        buttonDisabled:false,
     };
 
     static propTypes = {
-        getValues: PropTypes.func.isRequired,
+        consignData: PropTypes.object.isRequired,
+        values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
+        buttonDisabled: PropTypes.bool.isRequired,
         form: PropTypes.object.isRequired,
-        curKey: PropTypes.string.isRequired
     };
 
-    componentDidMount() {
-        this.curID = this.props.curKey;
-        this.values = this.props.getValues(this.curID);
-    }
+    componentWillMount() {
+    //     this.curID = this.props.curKey;
+    //     // console.log(this.curID);
+         this.props.getValues(this.props.consignData.id);
+    //     // console.log(this.values);
+    };
+
+    // componentDidMount() {
+    //     this.values = this.props.getValues(this.curID);
+    // };
 
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
@@ -46,7 +52,14 @@ class ConsignContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));
+        buttons[buttonIndex].onClick(this.props.consignData,JSON.stringify(form.getFieldsValue()));
+        switch (buttons[buttonIndex].content) {
+            case '保存': message.success('保存成功');break;
+            case '提交': message.success('提交成功');break;
+            case '通过': message.success('委托已通过');break;
+            //case 3: message.success('提交成功');break;
+            default:break;
+        }
     };
 
     render() {
@@ -75,19 +88,19 @@ class ConsignContentComponent extends Component {
         return(
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
 
-                <FormItem {...formItemLayout}>
-                    <h1>软件项目委托测试申请书</h1>
+                <FormItem >
+                    <h1 style={{textAlign:'center'}}>软件项目委托测试申请书</h1>
                 </FormItem>
 
 
-                <FormItem>请用?选择：○——单选； ◻——多选。</FormItem>
+                <FormItem>请用✓选择：○——单选； ◻——多选。</FormItem>
 
                 <Collapse bordered={false} defaultActiveKey={['page1']}>
                     <Panel header="This is page 1" key={"page1"} style={customPanelStyle}>
                         <FormItem {...formItemLayout} label="测试类型">
                             {getFieldDecorator('testType', {
                                 rules: [{ required: true, message: '请选择至少一项测试类型!'}],
-                                initialValue: this.values.testType,
+                               initialValue: this.props.values.testType,
                             })(
                                 <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
                                         placeholder="请选择" onChange={handleChange}>
@@ -103,7 +116,7 @@ class ConsignContentComponent extends Component {
                         <FormItem {...formItemLayout} label="请输入软件名称">
                             {getFieldDecorator('softwareName', {
                                 rules: [{ required: true, message: '请输入软件名称！' }],
-                                initialValue: this.values.softwareName,
+                               initialValue: this.props.values.softwareName,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -113,7 +126,7 @@ class ConsignContentComponent extends Component {
                         <FormItem {...formItemLayout} label={"版本号"}>
                             {getFieldDecorator('version', {
                                 rules: [{ required: true, message: '请正确输入版本号！',pattern:"^[a-zA-Z0-9/.]+$"}],
-                                initialValue: this.values.version,
+                               initialValue: this.props.values.version,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -873,16 +886,17 @@ class ConsignContentComponent extends Component {
                     </Panel>
                 </Collapse>
 
-                {/* footer buttons */}
-                <FormItem {...formItemLayout}>
+                {/* footer buttons */}        {/*console.log(buttonsDisabled)*/}
+                <FormItem style={{textAlign:'center'}}>
                     {this.props.buttons.map((button, index) =>
-                        <Button onClick={this.onClick(index)}
+                        <Button
+                                disabled={this.props.buttonDisabled}
+                                onClick={this.onClick(index)}
                                 key={button.content}>
                             {button.content}
                         </Button>)}
                 </FormItem>
             </Form>
-
 
 
         );

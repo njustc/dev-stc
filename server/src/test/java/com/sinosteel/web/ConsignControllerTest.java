@@ -1,4 +1,4 @@
-package com.sinosteel.web;
+/*package com.sinosteel.web;
 
 
 import com.alibaba.fastjson.JSONObject;
@@ -15,39 +15,70 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.junit.Before;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.WebApplicationContext;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import javax.transaction.Transactional;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;*/
 
 
 
 /**
- *  @author Lumpy
+ *  @author Lumpy&SQW
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
+/*@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"classpath:spring-config.xml"})
+@WebAppConfiguration
 @SpringApplicationConfiguration(FrameworkApplication.class)
-@Transactional
-public class ConsignControllerTest{
 
-    private MockMvc mockmvc;
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
+@Transactional*/
+
+/*public class ConsignControllerTest{
+    @Autowired
+    protected WebApplicationContext wac;
+    protected MockMvc mockmvc;
 
     @Before
     public void setup() throws Exception {
-        this.mockmvc = MockMvcBuilders.standaloneSetup(new ConsignController()).build();
+        this.mockmvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
     @Test
     public void Test_queryConsigns() throws Exception{
         System.out.println("测试 委托查询");
-        mockmvc.perform(MockMvcRequestBuilders.get("/services/consign")
-                .accept(MediaType.APPLICATION_JSON)
+        String mvcResult=this.mockmvc.perform(
+                get("/services/consign")
                 .param("username","admin")  //传入参数"username"
-                .param("clientDigest","admin"))  //传入参数"clientDigest"
-                .andExpect(MockMvcResultMatchers.status().isOk()) //返回的状态是200
-                .andDo(MockMvcResultHandlers.print());   //打印出请求和相应的内容
+                .param("clientDigest","admin") //传入参数"clientDigest"
+        ).andExpect(MockMvcResultMatchers.status().isOk()) //返回的状态是200
+                .andDo(MockMvcResultHandlers.print())   //打印出请求和相应的内容
+                .andReturn().getResponse().getContentAsString();
+        System.out.println("-----返回的json=" + mvcResult);
                 //.andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("SUCCESS")));
     }
 
@@ -117,4 +148,4 @@ public class ConsignControllerTest{
                 .andDo(MockMvcResultHandlers.print());
                 //.andExpect(status().isNoContent());
     }
-}
+}*/

@@ -1,47 +1,42 @@
 import {baseServiceAddress, STATUS} from "SERVICES/common";
 import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
-import {addConsign, removeConsign, setConsignContent, setConsignList, setConsignState} from "../modules/ducks/Consign";
+import {removeConsign, setConsignContent, setConsignList, setConsignState} from "../modules/ducks/Consign";
 import {mockProjectData, valueData} from "./mockData";
+import {STATE} from "./common";
 
 const consignBase = baseServiceAddress + '/consign';
-const consignActivitiBase = baseServiceAddress + '/consignActiviti';
+const consignActivitiBase = baseServiceAddress + '/processInstance';
 
 export const getConsignList = (dispatch, callback) => {
-    /*    httpGet(projectBase, (result) => {
-            const {status, data} = result;
-            if (status === STATUS.SUCCESS) {
-                dispatch(setProjectList(data));
-            }
-            callback && callback(status);
-        });*/
-    /*TEMP*/
-    dispatch(setConsignList([]));
-    const status = STATUS.SUCCESS;
-    callback && callback(status);
+    httpGet(consignBase,(result) => {
+        const {status, data} = result;
+        if (status === STATUS.SUCCESS) {
+            dispatch(setConsignList(data));
+        }
+        callback && callback(status);
+    });
+    // const status = STATUS.SUCCESS;
+    // callback && callback(status);
 };
 
 export const getConsign = (dispatch, id, callback) => {
-/*    httpGet(consignBase + '/' + id, (result) => {
+    httpGet(consignBase + '/' + id, (result) => {
+//        console.log(result);
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setConsignContent(index, data.consignation));
-        }*/
-        console.log(id);
-        const status = STATUS.SUCCESS;
-//        dispatch(setConsignContent(valueData));
+            dispatch(setConsignContent(data));
+        }
         callback && callback(status);
-    //});
-    return valueData;
+    });
 };
 
 export const deleteConsign = (dispatch, id, callback) => {
     httpDelete(consignBase, {id:id}, (result) => {
+        // console.log("before remove");
+        // dispatch(removeConsign(id));
         const {status} = result;
-        if (status === STATUS.SUCCESS) {
-            httpGet(consignBase, (result) => {
-                dispatch(removeConsign(id));
-            });
-        }
+        if(status === STATUS.SUCCESS)
+            dispatch(removeConsign(id));
         callback && callback(status);
     });
 };
@@ -50,37 +45,42 @@ export const newConsign = (dispatch, callback) => {
     httpPost(consignBase, {consignation:null,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(addConsign(data));
+            dispatch(setConsignContent(data));
         }
         callback && callback(status);
     });
 };
 
 export const updateConsign = (dispatch, data, callback) => {
+    console.log(data);
     httpPut(consignBase, data, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setConsignContent(-1, data.consignation));
+            dispatch(setConsignContent(data));
         }
         callback && callback(status);
     });
 };
 
-export const getConsignState = (dispatch, i, processInstanceID, callback) => {
+export const getConsignState = (dispatch, processInstanceID, callback) => {
     httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setConsignState(i, data.state));
+            dispatch(setConsignContent(data));
         }
         callback && callback(status);
     })
 };
 
-export const putConsignState = (dispatch, pi, data, callback) => {
-    httpPut(consignActivitiBase + '/' + pi, data, (result) => {
-        const {status} = result;
+export const putConsignState = (dispatch, processInstanceID, data, id, callback) => {
+    httpPut(consignActivitiBase + '/' + processInstanceID, data, (result) => {
+        const {status,data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setConsignState(-1, /*TODO*/));
+             const newData = {
+                ...data,
+                id: id,
+            };
+            dispatch(setConsignContent(newData));
         }
         callback && callback(status);
     });
