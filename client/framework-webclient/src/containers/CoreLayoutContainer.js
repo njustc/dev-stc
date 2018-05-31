@@ -14,7 +14,7 @@ function containsPane(key, panes)
 };
 
 const mapStateToProps = (state) => {
-    console.log(state.Layout.panes);
+    // console.log(state.Layout.panes);
     return {
         sysUser: state.System.sysUser,
         panes: state.Layout.panes,

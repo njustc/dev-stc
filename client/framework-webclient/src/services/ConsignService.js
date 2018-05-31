@@ -5,7 +5,7 @@ import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 
 const consignBase = baseServiceAddress + '/consign';
-const consignActivitiBase = baseServiceAddress + '/consignActiviti';
+const consignActivitiBase = baseServiceAddress + '/processInstance';
 
 export const getConsignList = (dispatch, callback) => {
     httpGet(consignBase,(result) => {
@@ -25,15 +25,6 @@ export const getConsign = (dispatch, id, callback) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setConsignContent(data));
-            // console.log(data);
-            // const {consignation} = data;
-            // let res = {};
-            // if (consignation!==undefined) {
-            //     res = JSON.parse(consignation);
-            // }
-            // const resStatus = STATUS.SUCCESS;
-            // console.log(res);
-            // return res;
         }
         callback && callback(status);
     });
@@ -71,21 +62,25 @@ export const updateConsign = (dispatch, data, callback) => {
     });
 };
 
-export const getConsignState = (dispatch, i, processInstanceID, callback) => {
+export const getConsignState = (dispatch, processInstanceID, callback) => {
     httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setConsignState(i, data.state));
+            dispatch(setConsignContent(data));
         }
         callback && callback(status);
     })
 };
 
-export const putConsignState = (dispatch, pi, data, callback) => {
-    httpPut(consignActivitiBase + '/' + pi, data, (result) => {
-        const {status} = result;
+export const putConsignState = (dispatch, processInstanceID, data, id, callback) => {
+    httpPut(consignActivitiBase + '/' + processInstanceID, data, (result) => {
+        const {status,data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setConsignState(-1, /*TODO*/));
+             const newData = {
+                ...data,
+                id: id,
+            };
+            dispatch(setConsignContent(newData));
         }
         callback && callback(status);
     });

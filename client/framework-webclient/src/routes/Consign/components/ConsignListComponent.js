@@ -68,6 +68,7 @@ export default class ConsignListComponent extends Component {
             case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
             case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.CANCELED: return "已取消";
+            case STATE.FINISHED: return "已通过";
             default: return "未定义状态";
         }
     }
@@ -76,6 +77,7 @@ export default class ConsignListComponent extends Component {
     columns = [{
         title:"委托ID",
         dataIndex:"id",
+        //width: '25%',
         sorter:(a, b) => a.id - b.id,
     }, {
         title:"委托名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
@@ -94,19 +96,7 @@ export default class ConsignListComponent extends Component {
             )
         },
         /*TODO 给状态列加个过滤*/
-        /*render: (stateCode) => {
-            switch(stateCode) {
-                case 'TobeSubmit':
-                    return '待提交';
-                case 'TobeCheck':
-                    return '待审核';
-                case 'Finished':
-                    return '已通过';
-                default:
-                    return '未定义状态';
-            }
-        },
-        filters: [{
+        /*filters: [{
             text: '待提交',
             value: 'TobeSubmit',
         }, {
@@ -124,13 +114,14 @@ export default class ConsignListComponent extends Component {
         title:"操作",
         dataIndex:"id",
         key:"operation",
+        //width: '12%',
         render: (record) => {
             /*TODO*/
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
                     <Divider type="vertical"/>
-                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>
+                    <a href="javascript:void(0);" disabled={!this.props.enableNew} onClick={this.showDeleteConfirm(record)}>取消委托</a>
                 </div>
             )
         }
@@ -139,14 +130,13 @@ export default class ConsignListComponent extends Component {
 
     /*查看详情*/
     viewContent = (record) => () => {
-        //console.log(record);
         this.props.showContent(record);
     };
 
     /*取消委托提示框*/
     showDeleteConfirm = (record) => () => {
         confirm({
-            title: 'Are you sure to delete this consign?',
+            title: '您确定要取消当前委托吗?',
             //content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
@@ -165,7 +155,7 @@ export default class ConsignListComponent extends Component {
     /*TODO 搜索功能*/
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
-        this.props.setListFilter((record) => record.id.match(reg));
+        this.props.setListFilter((record) => record.match(reg));
     };
 
     render() {
@@ -186,7 +176,7 @@ export default class ConsignListComponent extends Component {
                     <Col span={1}></Col>
                     {/*this.props.enableNew*/1 ?
                         <Col span={2}>
-                            <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
+                            <Button disabled={!this.props.enableNew} type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
                         </Col>
                         : <Col span={2}></Col>}
                 </InputGroup>
