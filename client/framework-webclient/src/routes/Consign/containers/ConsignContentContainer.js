@@ -21,7 +21,7 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
-const buttons = (dispatch,isVisible) => [{
+const buttons = (dispatch,isVisible) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
     onClick: (consignData,consignation) =>{
         const valueData = {
