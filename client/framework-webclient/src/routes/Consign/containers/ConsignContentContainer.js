@@ -15,11 +15,13 @@ const mapStateToProps = (state, ownProps) => {
         disable: authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1||state.Consign.listMap[ownProps.id].state!=="TobeSubmit",
         curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
         //buttonDisabled: state.Consign.listMap[ownProps.id].state==="TobeCheck"
-        buttonDisabled: authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1 ? state.Consign.listMap[ownProps.id].state==="TobeSubmit"||state.Consign.listMap[ownProps.id].state==="Finished" : state.Consign.listMap[ownProps.id].state==="TobeCheck"||state.Consign.listMap[ownProps.id].state==="Finished"
+        buttonDisabled: authData.functionGroup["Consign"]===undefined ||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1
+            ? state.Consign.listMap[ownProps.id].state==="TobeSubmit"||state.Consign.listMap[ownProps.id].state==="Finished"
+            : state.Consign.listMap[ownProps.id].state==="TobeCheck"||state.Consign.listMap[ownProps.id].state==="Finished"
     }
 };
 
-const buttons = (dispatch,isVisible) => [{
+const buttons = (dispatch,isVisible) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
     onClick: (consignData,consignation) =>{
         const valueData = {
