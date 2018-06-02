@@ -75,10 +75,12 @@ public class Project extends BaseEntity {
     }
 
     @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private List<TestResult> testResults;
 
     @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name ="PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private List<TestPlan> testPlans;
 

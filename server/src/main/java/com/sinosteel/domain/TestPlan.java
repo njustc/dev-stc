@@ -17,8 +17,8 @@ public class TestPlan extends BaseEntity {
         this.project = project;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private Project project;
 
@@ -30,8 +30,20 @@ public class TestPlan extends BaseEntity {
         this.testResult = testResult;
     }
 
-    @OneToOne(mappedBy = "testResult")
+    @OneToOne(mappedBy = "testPlan")
+    @JoinColumn(name = "TESTPLAN_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private TestResult testResult;
+
+    public String getPlan() {
+        return plan;
+    }
+
+    public void setPlan(String plan) {
+        this.plan = plan;
+    }
+
+    @Column(name = "PLAN")
+    private String plan;
 
 }

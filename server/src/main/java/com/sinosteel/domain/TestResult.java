@@ -9,6 +9,17 @@ import javax.persistence.*;
 @Table(name = "TBL_SYS_TESTRESULT")
 public class TestResult extends BaseEntity {
 
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    @Column(name = "RESULT")
+    private String result;
+
     public Project getProject() {
         return project;
     }
@@ -17,8 +28,8 @@ public class TestResult extends BaseEntity {
         this.project = project;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private Project project;
 
@@ -30,7 +41,7 @@ public class TestResult extends BaseEntity {
         this.testPlan = testPlan;
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TESTPLAN_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private TestPlan testPlan;

@@ -2,10 +2,7 @@ package com.sinosteel.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 //测试报告
@@ -13,7 +10,19 @@ import javax.persistence.Table;
 @Table(name = "TBL_SYS_TESTREPORT")
 public class TestReport extends BaseEntity {
 
+    public String getReport() {
+        return report;
+    }
+
+    public void setReport(String report) {
+        this.report = report;
+    }
+
+    @Column(name = "REPORT")
+    private String report;
+
     @OneToOne(mappedBy = "testReport")
+    @JoinColumn(name = "TESTREPORT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private Project project;
 
