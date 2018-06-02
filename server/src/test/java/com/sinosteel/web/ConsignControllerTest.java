@@ -1,4 +1,4 @@
-/*package com.sinosteel.web;
+package com.sinosteel.web;
 
 
 import com.alibaba.fastjson.JSONObject;
@@ -15,71 +15,40 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.junit.Before;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.WebApplicationContext;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import javax.transaction.Transactional;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;*/
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 
 /**
- *  @author Lumpy&SQW
+ *  @author Lumpy
  */
 
-/*@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:spring-config.xml"})
-@WebAppConfiguration
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
+@Transactional
+public class ConsignControllerTest{
 
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
-@Transactional*/
-
-/*public class ConsignControllerTest{
-    @Autowired
-    protected WebApplicationContext wac;
-    protected MockMvc mockmvc;
+    private MockMvc mockmvc;
 
     @Before
     public void setup() throws Exception {
-        this.mockmvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+        this.mockmvc = MockMvcBuilders.standaloneSetup(new ConsignController()).build();
     }
 
     @Test
     public void Test_queryConsigns() throws Exception{
         System.out.println("测试 委托查询");
-        String mvcResult=this.mockmvc.perform(
-                get("/services/consign")
+        mockmvc.perform(MockMvcRequestBuilders.get("/services/consign")
+                .accept(MediaType.APPLICATION_JSON)
                 .param("username","admin")  //传入参数"username"
-                .param("clientDigest","admin") //传入参数"clientDigest"
-        ).andExpect(MockMvcResultMatchers.status().isOk()) //返回的状态是200
-                .andDo(MockMvcResultHandlers.print())   //打印出请求和相应的内容
-                .andReturn().getResponse().getContentAsString();
-        System.out.println("-----返回的json=" + mvcResult);
-                //.andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("SUCCESS")));
+                .param("clientDigest","admin"))  //传入参数"clientDigest"
+                .andExpect(MockMvcResultMatchers.status().isOk()) //返回的状态是200
+                .andDo(MockMvcResultHandlers.print());   //打印出请求和相应的内容
+        //.andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("SUCCESS")));
     }
 
     @Test
@@ -90,7 +59,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                 //.param("id","0433ce93-4118-46e0-b55c-1c54a458ed67"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
-                //.andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("SUCCESS")));
+        //.andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("SUCCESS")));
     }
 
     @Test
@@ -111,7 +80,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                 //.andExpect(model().hasErrors()) //验证模型有错误
                 //.andExpect(model().attributeDoesNotExist("username")) //验证存在错误的属性
                 .andDo(MockMvcResultHandlers.print());
-                //.andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("SUCCESS")));
+        //.andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("SUCCESS")));
     }
 
     @Test
@@ -146,6 +115,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                 .param("clientDigest","admin"))
                 .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print());
-                //.andExpect(status().isNoContent());
+        //.andExpect(status().isNoContent());
     }
-}*/
+}
