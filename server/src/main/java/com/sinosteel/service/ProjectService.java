@@ -76,7 +76,8 @@ public class ProjectService extends BaseService<Project>{
         if((project = projectRepository.findById(tempProject.getId())) == null) {
             throw new Exception("Not Found");
         }
-        //TODO:编辑具体的工程内容
+        //TODO:更新具体的工程内容
+        this.updateEntity(project, user);
 
         project = projectRepository.findById(tempProject.getId());
         return processProject(project);
