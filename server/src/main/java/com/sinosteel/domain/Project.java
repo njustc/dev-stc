@@ -45,7 +45,7 @@ public class Project extends BaseEntity {
         this.contract = contract;
     }
 
-    /*@OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TESTREPORT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private TestReport testReport;
@@ -82,7 +82,7 @@ public class Project extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name ="PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
-    private List<TestPlan> testPlans;*/
+    private List<TestPlan> testPlans;
 
 
 }
