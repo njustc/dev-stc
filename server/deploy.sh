@@ -4,6 +4,8 @@
 # $ chmod +x deploy.sh
 # $ ./deploy.sh
 #######################
+echo "Start to  pull source code"
+git pull
 echo "Start to pacakge "
 mvn clean package -DskipTests
 
