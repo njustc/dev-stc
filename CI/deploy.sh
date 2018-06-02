@@ -4,9 +4,16 @@
 # $ chmod +x deploy.sh
 # $ ./deploy.sh
 #######################
+PROJECT_PATH = '/home/stc-dev/develop/dev-stc/server'
+
+
 echo "Start to  pull source code"
+cd $PROJECT_PATH
 git pull
-echo "Start to pacakge "
+
+echo "Start to deploy back-end"
+cd ./server
+echo "Start to clean and pacakge "
 mvn clean package -DskipTests
 
 echo "Start to update database"
