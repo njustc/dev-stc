@@ -41,12 +41,14 @@ export default class ContractListComponent extends Component {
 
     setPlaceholder = () => {
         switch (this.state.selectOption){
+            case 'pid':
+                return '请输入项目ID';
             case 'id':
-                return '请输入委托ID';
+                return '请输入合同ID';
             case 'customerId':
                 return '请输入委托人ID';
             case 'name':
-                return '请输入委托名称';
+                return '请输入合同名称';
             default:break;
         }
     };
@@ -73,16 +75,15 @@ export default class ContractListComponent extends Component {
     }
 
     /*table列设置*/
-    columns = [{
+    columns = [/*{
         title:"项目ID",
         dataIndex:"pid",
         //width: '25%',
         sorter:(a, b) => a.pid - b.pid,
         render:(pid,record)=>{
-            /*TODO*/
             return (<a href="javascript:void(0);" onClick={this.viewProject(record)}>{pid}</a>)
         }
-    },{
+    },*/{
         title:"合同ID",
         dataIndex:"id",
         //width: '25%',
@@ -129,7 +130,9 @@ export default class ContractListComponent extends Component {
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
                     <Divider type="vertical"/>
-                    <a href="javascript:void(0);" disabled={!this.props.enableNew} onClick={this.showDeleteConfirm(record)}>取消委托</a>
+                    <a href="javascript:void(0);"
+                       //disabled={!this.props.enableNew}
+                       onClick={this.showDeleteConfirm(record)}>取消委托</a>
                 </div>
             )
         }
@@ -148,7 +151,7 @@ export default class ContractListComponent extends Component {
     /*取消委托提示框*/
     showDeleteConfirm = (record) => () => {
         confirm({
-            title: '您确定要取消当前委托吗?',
+            title: '您确定要取消当前合同吗?',
             //content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
@@ -157,7 +160,7 @@ export default class ContractListComponent extends Component {
                 //console.log(id);
                 //debugger;
                 //this.deleteContract(id);
-                /*TODO 取消委托的函数的参数需要优化*/
+                /*TODO 取消合同的函数的参数需要优化*/
                 this.props.deleteContract(record);
             },
             onCancel() {},
@@ -173,24 +176,25 @@ export default class ContractListComponent extends Component {
     render() {
         return (
             <div>
-                <h3 style={{ marginBottom: 16 }}>委托列表</h3>
+                <h3 style={{ marginBottom: 16 }}>合同列表</h3>
                 <InputGroup>
                     <Col span={3}>
-                        <Select defaultValue="搜索委托ID" onSelect={this.onSelect}>
-                            <Option value="id">搜索委托ID</Option>
+                        <Select defaultValue="搜索合同ID" onSelect={this.onSelect}>
+                            <Option value="pid">搜索项目ID</Option>
+                            <Option value="id">搜索合同ID</Option>
                             <Option value="customerId">搜索委托人ID</Option>
-                            <Option value="name">搜索委托名称 </Option>
+                            <Option value="name">搜索合同名称 </Option>
                         </Select>
                     </Col>
                     <Col span={8}>
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    {this.props.enableNew ?
+                    {/*this.props.enableNew*/1 ?
                         <Col span={2}>
                             <Button
                                 //disabled={!this.props.enableNew}
-                                type="primary" onClick={this.props.newContract}><Icon type="plus-circle-o" />新建委托</Button>
+                                type="primary" onClick={this.props.newContract}><Icon type="plus-circle-o" />新建合同</Button>
                         </Col>
                         : <Col span={2}></Col>}
                 </InputGroup>
