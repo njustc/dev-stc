@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
             // debugger;
-            dispatch(addTabAction(id, '委托详情', ContractContentView, {id: id}));
+            dispatch(addTabAction(id, '合同详情', ContractContentView, {id: id}));
 //            dispatch(setContractContent())
         },
         setListFilter: (listFilter) => dispatch(setContractFilter(listFilter)),

@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
         // contractData: {},/*fetch data with pro id*/
         contractData: state.Contract.listMap[ownProps.id],
         values: contract ? JSON.parse(contract) : {},
-        disable: authData.functionGroup["Contract"]===undefined||authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===-1||state.Contract.listMap[ownProps.id].state!=="TobeSubmit",
+        disable: false/*authData.functionGroup["Contract"]===undefined||authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===-1||state.Contract.listMap[ownProps.id].state!=="TobeSubmit"*/,
         curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
         //buttonDisabled: state.Contract.listMap[ownProps.id].state==="TobeCheck"
         buttonDisabled: authData.functionGroup["Contract"]===undefined ||authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===-1
@@ -74,7 +74,7 @@ const buttons = (dispatch,isVisible) => [{/*TODO:buttons的显示和禁用还存
 
 const mapDispatchToProps = (dispatch) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    const isVisible = authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "EDIT")!==-1;
+    const isVisible = true;//authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "EDIT")!==-1;
     return {
         buttons: buttons(dispatch,isVisible).filter(button => button.enable===true),
         getValues: (id) => getContract(dispatch,id)
