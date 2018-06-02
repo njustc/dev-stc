@@ -1,8 +1,9 @@
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Table, Checkbox,Icon,DatePicker,Collapse} from 'antd';
+import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Table, Checkbox,Icon,DatePicker, Switch, Collapse} from 'antd';
 
 const Panel = Collapse.Panel;
 const FormItem=Form.Item;
+const RadioGroup = Radio.Group;
 const CheckboxGroup = Checkbox.Group;
 const { TextArea } = Input;
 
@@ -146,6 +147,42 @@ class TestWorkCheckContentComponent extends Component {
                 <Collapse bordered={false} defaultActiveKey={['process1']}>
                     <Panel header="一、前期指导工作" key="process1" style={customPanelStyle}>
                         <Collapse bordered={false} defaultActiveKey={['process11', 'process12', 'process13']}>
+                            <Panel  header="2. test" key="process11" style={customPanelStyle}>
+                                <Row style={rowStyle} gutter={32}>
+                                    <Col span={16}>
+                                        1.2 建议委托单位阅读《软件项目委托测试流程图和工作介绍》，了解申报流程。
+                                    </Col>
+                                    <Col span={8}>
+                                        <RadioGroup>
+                                            <Radio value={1}>是</Radio><Radio value={2}>否</Radio>
+                                        </RadioGroup>
+                                    </Col>
+                                </Row>
+                                <Row style={rowStyle} gutter={32}>
+                                    <Col span={16}>
+                                        1.3 根据《软件项目委托测试提交材料》，指导委托单位提交申报资料。
+                                    </Col>
+                                    <Col span={8}>
+                                        <RadioGroup>
+                                            <Radio value={1}>是</Radio><Radio value={2}>否</Radio>
+                                        </RadioGroup>
+                                    </Col>
+                                </Row>
+                                <Row style={rowStyle} gutter={32}>
+                                    <Col span={16}>
+                                        实验室在收到委托单位的有关资料后，即成立测试项目小组，该项目小组的任务是消化用户提供的有关资料，对委托软件的可测状态进行评估，
+                                        若委托软件未达到可测状态，则向委托方提出改进建议，直到委托软件达到可测状态为止。
+                                        项目小组的任务包括负责编制测试方案，搭建测试环境，执行测试过程，记录测试结果，编制测试报告，提交测试报告，将有关资料归档等。
+                                    </Col>
+                                    <Col span={8}>
+                                        <RadioGroup>
+                                            <Radio value={1}>是</Radio><Radio value={2}>否</Radio>
+                                        </RadioGroup>
+                                    </Col>
+                                </Row>
+                            </Panel>
+
+                            {/*
                             <Panel  header="1. 接受委托单位委托测试申请" key="process11" style={customPanelStyle}>
                                 <FormItem{...formItemLayout}>
                                     {getFieldDecorator('problem11', {
@@ -165,6 +202,7 @@ class TestWorkCheckContentComponent extends Component {
                                     )}
                                 </FormItem>
                             </Panel>
+                            */}
 
                             <Panel  header="2. 填写《软件项目委托测试申请表》、《委托测试软件功能列表》，按《软件项目委托测试提交材料》提交材料" key="process12" style={customPanelStyle2}>
                                 <FormItem{...formItemLayout}>
