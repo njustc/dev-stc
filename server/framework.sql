@@ -95,11 +95,45 @@ CREATE TABLE `tbl_sys_project` (
   `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `CONSIGN_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `CONTRACT_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
+  `CONTRACT_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `TESTREPORT_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+CREATE TABLE `tbl_sys_testreport`(
+  `ID` varchar(255) COLLATE utf8_bin NOT NULL,
+  `CODE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `REPORT` varchar(255) COLLATE utf8_bin DEFAULT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+CREATE TABLE `tbl_sys_testresult`(
+  `ID` varchar(255) COLLATE utf8_bin NOT NULL,
+  `CODE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `RESULT` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `PROJECT_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `TESTPLAN_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+CREATE TABLE `tbl_sys_testplan`(
+ `ID` varchar(255) COLLATE utf8_bin NOT NULL,
+  `CODE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `PLAN` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `PROJECT_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 --
 -- 表的结构 `act_ge_bytearray`
 --
@@ -1209,7 +1243,8 @@ ALTER TABLE `tbl_sys_user`
 --
 -- Indexes for table `tbl_topic`
 --
-
+ALTER TABLE `tbl_sys_project`
+  ADD PRIMARY KEY (`ID`);
 --
 -- 在导出的表使用AUTO_INCREMENT
 --

@@ -116,7 +116,7 @@ export default class ConsignListComponent extends Component {
         key:"operation",
         //width: '12%',
         render: (record) => {
-            /*TODO*/
+            /*TODO:操作应该由后台传过来*/
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
@@ -152,7 +152,7 @@ export default class ConsignListComponent extends Component {
         });
     };
 
-    /*TODO 搜索功能*/
+    /*TODO:搜索功能*/
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         this.props.setListFilter((record) => record.match(reg));
@@ -174,9 +174,11 @@ export default class ConsignListComponent extends Component {
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    {/*this.props.enableNew*/1 ?
+                    {this.props.enableNew ?
                         <Col span={2}>
-                            <Button disabled={!this.props.enableNew} type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
+                            <Button
+                                //disabled={!this.props.enableNew}
+                                type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建委托</Button>
                         </Col>
                         : <Col span={2}></Col>}
                 </InputGroup>
