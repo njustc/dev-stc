@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
         //buttonDisabled: state.Contract.listMap[ownProps.id].state==="TobeCheck"
         buttonDisabled: authData.functionGroup["Contract"]===undefined ||authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===-1
             ? state.Contract.listMap[ownProps.id].state==="TobeSubmit"||state.Contract.listMap[ownProps.id].state==="Finished"
-            : state.Contract.listMap[ownProps.id].state==="TobeCheck"||state.Contract.listMap[ownProps.id].state==="Finished"
+            : state.Contract.listMap[ownProps.id].state==="TobeReview"||state.Contract.listMap[ownProps.id].state==="Finished"
     }
 };
 
@@ -67,6 +67,28 @@ const buttons = (dispatch,isVisible) => [{/*TODO:buttons的显示和禁用还存
         const putData = {
             "object": "contract",
             "operation": "reviewreject"
+        };
+        const {processInstanceID,id} = contractData;
+        putContractState(dispatch,processInstanceID,putData,id);
+    },
+    enable: !isVisible
+},{
+    content: '确认',
+    onClick: (contractData,contract) =>{
+        const putData = {
+            "object": "contract",
+            "operation": "confirmpass"
+        };
+        const {processInstanceID,id} = contractData;
+        putContractState(dispatch,processInstanceID,putData,id);
+    },
+    enable: !isVisible
+},{
+    content: '拒绝',
+    onClick: (contractData,contract) =>{
+        const putData = {
+            "object": "contract",
+            "operation": "confirmreject"
         };
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id);

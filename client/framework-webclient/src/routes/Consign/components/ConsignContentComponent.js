@@ -886,6 +886,15 @@ class ConsignContentComponent extends Component {
                     </Panel>
                 </Collapse>
 
+                {
+                    this.props.buttons[0].content!='保存'?<FormItem
+                    label="委托评审意见"
+                    //{...formItemLayout}
+                >
+                    <TextArea rows={4}/>
+                </FormItem>:<p></p>
+                }
+                
                 {/* footer buttons */}        {/*console.log(buttonsDisabled)*/}
                 <FormItem style={{textAlign:'center'}}>
                     {this.props.buttons.map((button, index) =>
