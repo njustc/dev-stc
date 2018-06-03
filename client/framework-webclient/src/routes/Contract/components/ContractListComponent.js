@@ -132,7 +132,7 @@ export default class ContractListComponent extends Component {
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
                        //disabled={!this.props.enableNew}
-                       onClick={this.showDeleteConfirm(record)}>取消委托</a>
+                       onClick={this.showDeleteConfirm(record)}>取消合同</a>
                 </div>
             )
         }
