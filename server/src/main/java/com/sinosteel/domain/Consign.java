@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "TBL_SYS_CONSIGN")
+@Table(name = "TBL_SYS_CONSIGNS")
 public class Consign extends BaseEntity{
 
 
