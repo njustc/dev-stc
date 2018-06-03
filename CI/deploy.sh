@@ -6,7 +6,7 @@
 # $ ./deploy.sh
 #######################
 
-PROJECT_PATH='/home/stc-dev/develop/dev-stc/server'
+PROJECT_PATH='/home/stc-dev/develop/dev-stc/'
 
 
 echo "Start to pull source code"
