@@ -79,7 +79,7 @@ class ContractContentComponent extends Component {
                         <FormItem {...formItemLayout} label="项目名称">
                             {getFieldDecorator('projectName', {
                                 rules: [{ required: true, message: '请输入项目名称！' }],
-                                initialValue: this.props.values.ProjectName,
+                                initialValue: this.props.values.projectName,
                             })(
                                 <Input size="larger" disabled={this.props.disable} placeholder={"（软件测试）"}/>
                             )}
