@@ -90,7 +90,6 @@ public class ContractService extends BaseService<Contract> {
         this.deleteEntity(uid);
     }
 
-    //TODO: 添加状态
     private JSONArray processContracts(List<Contract> contracts) throws Exception{
         JSONArray resultArray = new JSONArray();
         //去掉合同内容,添加状态
@@ -105,7 +104,6 @@ public class ContractService extends BaseService<Contract> {
         return resultArray;
     }
 
-    //TODO: 增加状态
     private JSONObject processContract(Contract contract) throws Exception{
         String processState = (String) processInstanceService.queryProcessState(contract.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(contract));
