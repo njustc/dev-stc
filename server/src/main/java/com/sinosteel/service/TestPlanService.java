@@ -35,13 +35,13 @@ public class TestPlanService extends BaseService<TestPlan> {
         if (user.getRoles().get(0).getRoleName().equals("普通客户"))
         {
             List<TestPlan> testplans = user.getTestPlans();
-            //TODO:对委托列表进行处理，去掉委托具体内容,并且添加委托状态
+            //TODO:对测试计划进行处理，去掉具体内容,并且添加测试计划状态
             return processTestPlans(testplans);
         }
         else
         {
             List<TestPlan> testplans = testplanRepository.findByAllTestPlans();
-            //对委托列表进行处理，去掉委托具体内容,并且添加委托状态
+            //对测试计划进行处理，去掉具体内容,并且添加测试计划状态
             return processTestPlans(testplans);
         }
     }*/
@@ -84,7 +84,7 @@ public class TestPlanService extends BaseService<TestPlan> {
         //testplan.setProcessInstanceID(procID);
         this.saveEntity(testplan, user);
 
-        //TODO:return the consign with STATE!
+        //TODO:添加testplan状态
         testplan = testplanRepository.findById(uid);
         return processTestPlan(testplan);
     }

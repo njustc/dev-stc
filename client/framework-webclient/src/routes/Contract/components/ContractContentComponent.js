@@ -26,6 +26,13 @@ class ContractContentComponent extends Component {
         form: PropTypes.object.isRequired,
     };
 
+    componentWillMount() {
+        //     this.curID = this.props.curKey;
+        //     // console.log(this.curID);
+        this.props.getValues(this.props.contractData.id);
+        //     // console.log(this.values);
+    };
+
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
         //     if (!err) {
