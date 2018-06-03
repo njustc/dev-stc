@@ -41,11 +41,11 @@ export default class ContractListComponent extends Component {
 
     setPlaceholder = () => {
         switch (this.state.selectOption){
-            case 'pid':
+            case 'processInstanceID':
                 return '请输入项目ID';
             case 'id':
                 return '请输入合同ID';
-            case 'customerId':
+            case 'createdUserId':
                 return '请输入委托人ID';
             case 'name':
                 return '请输入合同名称';
@@ -77,11 +77,11 @@ export default class ContractListComponent extends Component {
     /*table列设置*/
     columns = [/*{
         title:"项目ID",
-        dataIndex:"pid",
+        dataIndex:"processInstanceID",
         //width: '25%',
-        sorter:(a, b) => a.pid - b.pid,
-        render:(pid,record)=>{
-            return (<a href="javascript:void(0);" onClick={this.viewProject(record)}>{pid}</a>)
+        //sorter:(a, b) => a.processInstanceID - b.processInstanceID,
+        render:(processInstanceID,record)=>{
+            return (<a href="javascript:void(0);" onClick={this.viewProject(record)}>{processInstanceID}</a>)
         }
     },*/{
         title:"合同ID",
@@ -93,14 +93,14 @@ export default class ContractListComponent extends Component {
         dataIndex:"name",
     }, {
         title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"customerId",
+        dataIndex:"createdUserId",
     }, {
         title:"状态",
         dataIndex:"state",
-        render: (status) =>{
+        render: (state) =>{
             return (
                 <span>
-                    <Badge status={this.state2SColor(status)} text={this.state2C(status)} />
+                    <Badge status={this.state2SColor(state)} text={this.state2C(state)} />
                 </span>
             )
         },
@@ -132,7 +132,7 @@ export default class ContractListComponent extends Component {
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
                        //disabled={!this.props.enableNew}
-                       onClick={this.showDeleteConfirm(record)}>取消委托</a>
+                       onClick={this.showDeleteConfirm(record)}>取消合同</a>
                 </div>
             )
         }
@@ -180,9 +180,9 @@ export default class ContractListComponent extends Component {
                 <InputGroup>
                     <Col span={3}>
                         <Select defaultValue="搜索合同ID" onSelect={this.onSelect}>
-                            <Option value="pid">搜索项目ID</Option>
+                            <Option value="processInstanceID">搜索项目ID</Option>
                             <Option value="id">搜索合同ID</Option>
-                            <Option value="customerId">搜索委托人ID</Option>
+                            <Option value="createdUserId">搜索委托人ID</Option>
                             <Option value="name">搜索合同名称 </Option>
                         </Select>
                     </Col>
