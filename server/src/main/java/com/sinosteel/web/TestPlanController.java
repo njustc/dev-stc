@@ -3,7 +3,7 @@ package com.sinosteel.web;
 import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
-import com.sinosteel.service.ConsignService;
+import com.sinosteel.service.TestPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,21 +12,20 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-public class ConsignController extends BaseController
-{
+public class TestPlanController extends BaseController {
     @Autowired
-    private ConsignService consignService;
+    private TestPlanService testplanService;
 
 
-    //对于客户，查询该客户的委托；对于工作人员，查询所有委托
-    @RequestMapping(value = "/consign", method = RequestMethod.GET)
-    public Response queryConsigns(Request request)
+    //TODO:搞清楚到底如何查询
+    /*@RequestMapping(value = "/testplan", method = RequestMethod.GET)
+    public Response queryTestplans(Request request)
     {
         Response response = new Response();
 
         try
         {
-            response.data = consignService.queryConsigns(request.getUser());
+            response.data = testplanService.queryTestPlans(request.getUser());
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -37,16 +36,16 @@ public class ConsignController extends BaseController
         }
 
         return response;
-    }
+    }*/
 
-    //根据ID查询委托具体信息
-    @RequestMapping(value = "/consign/{id}", method = RequestMethod.GET)
-    public Response queryConsignByID(@PathVariable String id,  Request request) {
+    //根据ID查询测试计划具体信息
+    @RequestMapping(value = "/testplan/{id}", method = RequestMethod.GET)
+    public Response queryTestPlanByID(@PathVariable String id,  Request request) {
         Response response = new Response();
 
         try
         {
-            response.data = consignService.queryConsignByID(id);
+            response.data = testplanService.queryTestPlanByID(id);
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -58,13 +57,13 @@ public class ConsignController extends BaseController
         return response;
     }
 
-    @RequestMapping(value = "/consign",method = RequestMethod.PUT)
-    public Response editConsign(Request request)
+    @RequestMapping(value = "/testplan",method = RequestMethod.PUT)
+    public Response editTestPlan(Request request)
     {
         Response response = new Response();
 
         try {
-            response.data = consignService.editConsign(request.getParams(), request.getFiles(), request.getUser());
+            response.data = testplanService.editTestPlan(request.getParams(), request.getFiles(), request.getUser());
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -76,13 +75,13 @@ public class ConsignController extends BaseController
         return response;
 
     }
-    @RequestMapping(value="/consign",method=RequestMethod.POST)
-    public Response addConsign(Request request)
+    @RequestMapping(value="/testplan",method=RequestMethod.POST)
+    public Response addTestPlan(Request request)
     {
         Response response=new Response();
 
         try{
-            response.data = consignService.addConsign(request.getParams(),request.getFiles(),request.getUser());
+            response.data = testplanService.addTestPlan(request.getParams(),request.getFiles(),request.getUser());
             response.status=ResponseType.SUCCESS;
         }
         catch(Exception e)
@@ -94,13 +93,13 @@ public class ConsignController extends BaseController
         }
         return response;
     }
-    @RequestMapping(value="/consign",method=RequestMethod.DELETE)
-    public Response deleteConsign(Request request)
+    @RequestMapping(value="/testplan",method=RequestMethod.DELETE)
+    public Response deleteTestPlan(Request request)
     {
         Response response=new Response();
 
         try{
-            consignService.deleteConsign(request.getParams());
+            testplanService.deleteTestPlan(request.getParams());
             response.status=ResponseType.SUCCESS;
         }
         catch(Exception e)
