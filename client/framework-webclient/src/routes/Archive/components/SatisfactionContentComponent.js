@@ -21,10 +21,18 @@ class SatisfactionContentComponent extends Component {
     };
 
     static propTypes = {
+        satisfactionData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
+    };
+
+    componentWillMount() {
+    //     this.curID = this.props.curKey;
+    //     // console.log(this.curID);
+         this.props.getValues(this.props.satisfactionData.id);
+    //     // console.log(this.values);
     };
 
     onClick = (buttonIndex) => () => {
@@ -34,7 +42,7 @@ class SatisfactionContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));
+        buttons[buttonIndex].onClick(this.props.satisfactionData, JSON.stringify(form.getFieldsValue()));
     };
 
     render() {

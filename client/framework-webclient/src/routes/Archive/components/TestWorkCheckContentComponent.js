@@ -23,10 +23,18 @@ class TestWorkCheckContentComponent extends Component {
     };
 
     static propTypes = {
+        testWorkCheckData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
+    };
+
+    componentWillMount() {
+    //     this.curID = this.props.curKey;
+    //     // console.log(this.curID);
+         this.props.getValues(this.props.testWorkCheckData.id);
+    //     // console.log(this.values);
     };
 
     onClick = (buttonIndex) => () => {
@@ -36,7 +44,7 @@ class TestWorkCheckContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));
+        buttons[buttonIndex].onClick(this.props.testWorkCheckData, JSON.stringify(form.getFieldsValue()));
     };
 
     render() {
