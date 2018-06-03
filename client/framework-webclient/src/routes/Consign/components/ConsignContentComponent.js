@@ -22,7 +22,7 @@ class ConsignContentComponent extends Component {
         values: {},
         disable:false,
         buttons: [],
-        buttonDisabled:false,
+        //buttonDisabled:false,
     };
 
     static propTypes = {
@@ -30,8 +30,8 @@ class ConsignContentComponent extends Component {
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
-        buttonDisabled: PropTypes.bool.isRequired,
         form: PropTypes.object.isRequired,
+        //buttonDisabled: PropTypes.bool.isRequired,
     };
 
     componentWillMount() {
@@ -53,13 +53,6 @@ class ConsignContentComponent extends Component {
         // });
         const {buttons, form} = this.props;
         buttons[buttonIndex].onClick(this.props.consignData,JSON.stringify(form.getFieldsValue()));
-        switch (buttons[buttonIndex].content) {
-            case '保存': message.success('保存成功');break;
-            case '提交': message.success('提交成功');break;
-            case '通过': message.success('委托已通过');break;
-            //case 3: message.success('提交成功');break;
-            default:break;
-        }
     };
 
     render() {
@@ -886,20 +879,20 @@ class ConsignContentComponent extends Component {
                     </Panel>
                 </Collapse>
 
-                {
+                {/*{
                     this.props.buttons[0].content!='保存'?<FormItem
                     label="委托评审意见"
                     //{...formItemLayout}
                 >
                     <TextArea rows={4}/>
                 </FormItem>:<p></p>
-                }
+                }*/}
                 
                 {/* footer buttons */}        {/*console.log(buttonsDisabled)*/}
                 <FormItem style={{textAlign:'center'}}>
                     {this.props.buttons.map((button, index) =>
                         <Button
-                                disabled={this.props.buttonDisabled}
+                                //disabled={this.props.buttonDisabled}
                                 onClick={this.onClick(index)}
                                 key={button.content}>
                             {button.content}
