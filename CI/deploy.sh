@@ -1,3 +1,4 @@
+#!/bin/bash
 # deploy script. Run this to deploy.
 # Instruction:
 #######################

@@ -20,9 +20,21 @@ npm install
 npm run dev
 ```
 
-
-
 运行成功后可浏览器登录 localhost:3000 查看界面。
+
+### dist部署
+为了使前端在云服务器上及时更新，需要在本地更新仓库中的`client/framework-webclient/dist`内文件并上传至仓库（云服务器环境无法编译）。
+
+为了方便dist文件的编译生成（修改host -> 生成dist -> 还原host），我在本目录下（`client/framework-webclient/`)放置了脚本`auto-build-dist.sh`。
+
+执行`./auto-build-dist.sh`即可自动执行以上步骤生成dist文件,无需手动修改host.
+
+> 注意：由于GNU与BSD的sed命令有所不同，对于Mac用户，需要执行以下命令将sed命令替换为GNU下的形式方可成功运行。具体步骤如下：
+
+> ```
+> brew install gnu-sed --with-default-names
+> ```
+> (以上命令需要Homebrew支持。未安装Homebrew的Mac用户可以自行Google解决）
 
 ### 注意事项
 
