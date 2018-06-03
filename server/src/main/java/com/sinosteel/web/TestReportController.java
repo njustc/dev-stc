@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-public class TestReportController {
+public class TestReportController extends BaseController{
 
     @Autowired
     private TestReportService testReportService;
 
-    @RequestMapping(value = "/TestReport",method = RequestMethod.GET)
+    @RequestMapping(value = "/testReport",method = RequestMethod.GET)
     public Response queryTestReport(Request request){
         Response response = new Response();
 
@@ -37,7 +37,7 @@ public class TestReportController {
         return  response;
     }
 
-    @RequestMapping(value = "/TestReport/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/testReport/{id}", method = RequestMethod.GET)
     public Response queryTestReportByID(@PathVariable String id,Request request){
 
         Response response = new Response();
@@ -54,7 +54,7 @@ public class TestReportController {
         return response;
     }
 
-    @RequestMapping(value = "/TestReport",method = RequestMethod.POST)
+    @RequestMapping(value = "/testReport",method = RequestMethod.POST)
     public Response addTestReport(Request request) {
         Response response = new Response();
         try{
@@ -68,7 +68,7 @@ public class TestReportController {
         return response;
     }
 
-    @RequestMapping(value = "/TestReport", method = RequestMethod.PUT)
+    @RequestMapping(value = "/testReport", method = RequestMethod.PUT)
     public  Response editProject(Request request) {
 
         Response response = new Response();
@@ -85,7 +85,7 @@ public class TestReportController {
         return response;
     }
 
-    @RequestMapping(value = "/TestReport", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/testReport", method = RequestMethod.DELETE)
     public Response deleteProject(Request request) {
 
         Response response = new Response();
