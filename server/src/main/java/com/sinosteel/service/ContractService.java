@@ -97,8 +97,8 @@ public class ContractService extends BaseService<Contract> {
         for (Contract contract: contracts) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(contract));
             jsonObject.remove("contractBody");
-           // String processState = (String) processInstanceService.queryProcessState(contract.getProcessInstanceID()).get("state");
-            //jsonObject.put("state", processState);
+            String processState = (String) processInstanceService.queryProcessState(contract.getProcessInstanceID()).get("state");
+            jsonObject.put("state", processState);
             resultArray.add(jsonObject);
         }
 
