@@ -356,7 +356,7 @@
       "put": {
         "summary": "修改流程实例状态",
         "description": "根据processInstanceID修改该流程实例状态",
-        "operationId": "updateConsignState",
+        "operationId": "update\"Consign\"State",
         "tags": [
           "processInstance"
         ],
@@ -391,7 +391,7 @@
           {
             "name": "params",
             "in": "formData",
-            "description": "修改的操作内容。JSON格式。对象名为'object',属性名为'operation', object为consign时，operation有submit/reviewpass/reviewreject\n  object为contract时，operation有submit/reviewpass/reviewreject/confirmpass/confirmreject\neg.\n```\n{\n  \"object\": \"consign\"\n  \"operation\": \"submit\"\n}\n",
+            "description": "修改的操作内容。JSON格式。对象名为'object',属性名为'operation', object为consign时，operation有submit/reviewpass/reviewreject\n  object为contract时，operation有submit/reviewpass/reviewreject/confirmpass/confirmreject\n  object为testplan时，operation有write/reviewpass/reviewreject/confirmpass/confirmreject/implement\neg.\n```\n{\n  \"object\": \"consign\"\n  \"operation\": \"submit\"\n}\n",
             "type": "string",
             "required": true
           }
