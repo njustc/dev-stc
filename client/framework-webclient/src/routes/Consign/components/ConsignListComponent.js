@@ -88,12 +88,17 @@ export default class ConsignListComponent extends Component {
     }, {
         title:"状态",
         dataIndex:"state",
-        render: (status) =>{
+        render: (/*status*/state) =>{
             return (
+                <span>
+                    <Badge status={this.state2SColor(state)} text={this.state2C(state)} />
+                </span>
+            )
+            /*return (
                 <span>
                     <Badge status={this.state2SColor(status)} text={this.state2C(status)} />
                 </span>
-            )
+            )*/
         },
         /*TODO 给状态列加个过滤*/
         /*filters: [{
