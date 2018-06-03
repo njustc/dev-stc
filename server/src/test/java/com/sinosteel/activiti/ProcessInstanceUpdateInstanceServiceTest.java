@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import springfox.documentation.spring.web.json.Json;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -26,7 +27,7 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
-public class ProcessInstanceServiceTest {
+public class ProcessInstanceUpdateInstanceServiceTest {
 
     @Autowired
     private ProcessInstanceService processInstanceService;
@@ -39,28 +40,24 @@ public class ProcessInstanceServiceTest {
 
     //测试中使用的代表consign的 jsonObject
     private JSONObject consignJson;
-    private JSONObject contractJson;
     //测试中使用的用户
+    private JSONObject contractJson;
     private User customer1;
     private User marketing;
-
+    private User customer2;
     @Before
     public void setUp() {
         customer1 = userService.getUserByUsername("customer1");
         marketing = userService.getUserByUsername("marketing");
-
+        customer2 = userService.getUserByUsername("customer2");
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("consignation", "这是customer1在ProcessInstanceServiceTest中新建的委托");
+        JSONObject jsonObject1 = new JSONObject();
+       // jsonObject.put("contractation", "这是customer2在ProcessInstanceServiceTest中新建的hetong");
         try {
             consignJson = consignService.addConsign(jsonObject, null, customer1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        jsonObject.put("contractBody", "这是marketing在ProcessInstanceServiceTest中新建的合同");
-        try {
-            contractJson = contractService.addContract(jsonObject, null, marketing);
+            contractJson=contractService.addContract(jsonObject1,null,customer2);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,15 +68,6 @@ public class ProcessInstanceServiceTest {
         JSONObject state = new JSONObject();
         try {
             state = processInstanceService.queryProcessState(consignJson.getString("processInstanceID"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println(state);
-        //确认state不为空
-        assertNotNull(state.getString("state"));
-
-        try {
-            state = processInstanceService.queryProcessState(contractJson.getString("processInstanceID"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,7 +98,7 @@ public class ProcessInstanceServiceTest {
             request = new Request();
             request.setUser(marketing);
             JSONObject rejectJson = new JSONObject();
-            rejectJson.put("operation", "reject");
+            rejectJson.put("operation", "reviewreject");
             rejectJson.put("object", "consign");
             request.setParams(rejectJson);
 
@@ -130,7 +118,7 @@ public class ProcessInstanceServiceTest {
             request = new Request();
             request.setUser(marketing);
             JSONObject passJson = new JSONObject();
-            passJson.put("operation", "pass");
+            passJson.put("operation", "reviewpass");
             passJson.put("object", "consign");
             request.setParams(passJson);
 
@@ -191,7 +179,68 @@ public class ProcessInstanceServiceTest {
         }
 
     }
+    @Test
+    public void  updateProcessContractState() {
+        try {
+            System.out.println("======查询合同状态========");
+            System.out.println(processInstanceService.queryProcessState(contractJson.getString("processInstanceID")));
+            System.out.println("======customer2提交合同=======");
+            //构造提交委托请求
+            Request request = new Request();
+            request.setUser(customer2);
+            JSONObject submitJson = new JSONObject();
+            submitJson.put("operation", "submit");
+            submitJson.put("object", "contract");
+            request.setParams(submitJson);
 
+            Thread.sleep(2000);
+            System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            System.out.println("======工作人员否决合同======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(marketing);
+            JSONObject rejectJson = new JSONObject();
+            rejectJson.put("operation", "reviewreject");
+            rejectJson.put("object", "contract");
+            request.setParams(rejectJson);
+
+            Thread.sleep(2000);
+            System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+
+            System.out.println("======customer2再次请求======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(customer2);
+            request.setParams(submitJson);
+            Thread.sleep(2000);
+            System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+
+            System.out.println("======工作人员通过合同======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(marketing);
+            JSONObject passJson = new JSONObject();
+            passJson.put("operation", "reviewpass");
+            passJson.put("object", "contract");
+            request.setParams(passJson);
+
+            Thread.sleep(2000);
+            System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+
+            System.out.println("=====客户通过合同======");
+
+            request=new Request();
+            request.setUser(customer2);
+            JSONObject confirmJson=new JSONObject();
+            confirmJson.put("operation","confirmpass");
+            confirmJson.put("object","contract");
+            request.setParams(confirmJson);
+            System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     //测试结束后删除该委托
     @After
     public void cleanUp() {

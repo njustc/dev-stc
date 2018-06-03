@@ -30,7 +30,7 @@
     },
     {
       "name": "project",
-      "description": "工程（当前完全是初始版本，传入参数以及返回数据内容孑需修改）"
+      "description": "工程（当前完全是初始版本，传入参数以及返回数据内容孑需修改,且流程实例状态更新没有添加此类）"
     }
   ],
   "schemes": [
@@ -391,7 +391,7 @@
           {
             "name": "params",
             "in": "formData",
-            "description": "修改的操作内容。JSON格式。对象名为'object',属性名为'operation', object为consign时，operation有submit/pass/reject\n  object为contract时，operation有submit/reviewpass/reviewreject/confirmpass/confirmreject\neg.\n```\n{\n  \"object\": \"consign\"\n  \"operation\": \"submit\"\n}\n",
+            "description": "修改的操作内容。JSON格式。对象名为'object',属性名为'operation', object为consign时，operation有submit/reviewpass/reviewreject\n  object为contract时，operation有submit/reviewpass/reviewreject/confirmpass/confirmreject\neg.\n```\n{\n  \"object\": \"consign\"\n  \"operation\": \"submit\"\n}\n",
             "type": "string",
             "required": true
           }
