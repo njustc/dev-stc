@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 //测试方案
 @Entity
-@Table(name = "TBL_SYS_TESTPLAN")
+@Table(name = "TBL_SYS_TESTPLANS")
 public class TestPlan extends BaseEntity {
 
     public Project getProject() {
@@ -18,7 +18,7 @@ public class TestPlan extends BaseEntity {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private Project project;
 

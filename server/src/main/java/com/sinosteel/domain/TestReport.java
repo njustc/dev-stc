@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 //测试报告
 @Entity
-@Table(name = "TBL_SYS_TESTREPORT")
+@Table(name = "TBL_SYS_TESTREPORTS")
 public class TestReport extends BaseEntity {
 
     public String getReport() {
