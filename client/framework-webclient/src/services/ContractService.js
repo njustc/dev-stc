@@ -56,6 +56,7 @@ export const updateContract = (dispatch, data, callback) => {
     httpPut(contractBase, data, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
+            console.log(data);
             dispatch(setContractContent(data));
         }
         callback && callback(status);

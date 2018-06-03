@@ -56,7 +56,7 @@ export default class ConsignListComponent extends Component {
     state2SColor(state) {
         switch (state){
             case STATE.TO_SUBMIT: return "processing";
-            case STATE.TO_CHECK: return "processing";
+            case STATE.TO_REVIEW: return "processing";
             case STATE.CANCELED: return "default";
             default: return "error";
         }
@@ -66,7 +66,7 @@ export default class ConsignListComponent extends Component {
         // debugger;
         switch (state){
             case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
-            case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
+            case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.CANCELED: return "已取消";
             case STATE.FINISHED: return "已通过";
             default: return "未定义状态";
