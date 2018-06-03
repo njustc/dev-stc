@@ -18,7 +18,8 @@ class ContractContentComponent extends Component {
         buttons: [],
     };
 
-    static propTypes = {
+    static propTypes ={
+        contractData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
@@ -32,7 +33,7 @@ class ContractContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));          //此处附近接口？？
+        buttons[buttonIndex].onClick(this.props.contractData,JSON.stringify(form.getFieldsValue()));          //此处附近接口？？
         switch (buttons[buttonIndex].content) {
             case '保存': message.success('保存成功');break;
             case '提交': message.success('提交成功');break;

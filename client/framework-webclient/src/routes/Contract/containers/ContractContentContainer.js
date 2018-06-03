@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //console.log(authData);
-    const contract = state.Contract.listMap[ownProps.id].contract;
+    const contract = state.Contract.listMap[ownProps.id].contractBody;
     return {
         // contractData: {},/*fetch data with pro id*/
         contractData: state.Contract.listMap[ownProps.id],
@@ -24,9 +24,10 @@ const mapStateToProps = (state, ownProps) => {
 const buttons = (dispatch,isVisible) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
     onClick: (contractData,contract) =>{
+        console.log(contract);
         const valueData = {
             id: contractData.id,
-            contract: contract
+            contractBody: contract
         };
         updateContract(dispatch,valueData);
     },
@@ -36,7 +37,7 @@ const buttons = (dispatch,isVisible) => [{/*TODO:buttons的显示和禁用还存
     onClick: (contractData,contract) =>{
         const valueData = {
             id: contractData.id,
-            contract: contract
+            contractBody: contract
         };
         updateContract(dispatch,valueData);
 
@@ -45,6 +46,7 @@ const buttons = (dispatch,isVisible) => [{/*TODO:buttons的显示和禁用还存
             "operation": "submit"
         };
         const {processInstanceID,id} = contractData;
+        console.log(putData);
         putContractState(dispatch,processInstanceID,putData,id);
     },
     enable: isVisible
@@ -53,7 +55,7 @@ const buttons = (dispatch,isVisible) => [{/*TODO:buttons的显示和禁用还存
     onClick: (contractData,contract) =>{
         const putData = {
             "object": "contract",
-            "operation": "pass"
+            "operation": "reviewpass"
         };
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id);
@@ -64,7 +66,7 @@ const buttons = (dispatch,isVisible) => [{/*TODO:buttons的显示和禁用还存
     onClick: (contractData,contract) =>{
         const putData = {
             "object": "contract",
-            "operation": "reject"
+            "operation": "reviewreject"
         };
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id);
