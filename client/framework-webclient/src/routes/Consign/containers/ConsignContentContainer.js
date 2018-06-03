@@ -53,7 +53,7 @@ const buttons = (dispatch,isVisible) => [{/*TODO:buttons的显示和禁用还存
     onClick: (consignData,consignation) =>{
         const putData = {
             "object": "consign",
-            "operation": "pass"
+            "operation": "reviewpass"
         };
         const {processInstanceID,id} = consignData;
         putConsignState(dispatch,processInstanceID,putData,id);
@@ -64,7 +64,7 @@ const buttons = (dispatch,isVisible) => [{/*TODO:buttons的显示和禁用还存
     onClick: (consignData,consignation) =>{
         const putData = {
             "object": "consign",
-            "operation": "reject"
+            "operation": "reviewreject"
         };
         const {processInstanceID,id} = consignData;
         putConsignState(dispatch,processInstanceID,putData,id);

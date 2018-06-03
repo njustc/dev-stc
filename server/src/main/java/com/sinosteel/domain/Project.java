@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "TBL_SYS_PROJECT")
+@Table(name = "TBL_SYS_PROJECTS")
 public class Project extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)

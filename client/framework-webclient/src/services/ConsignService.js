@@ -72,6 +72,7 @@ export const getConsignState = (dispatch, processInstanceID, callback) => {
 };
 
 export const putConsignState = (dispatch, processInstanceID, data, id, callback) => {
+    console.log("ID = " + processInstanceID);
     httpPut(consignActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
         if (status === STATUS.SUCCESS) {

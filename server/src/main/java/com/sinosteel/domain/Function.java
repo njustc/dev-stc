@@ -8,11 +8,10 @@ import static javax.management.openmbean.SimpleType.STRING;
 
 
 @Entity
-@Table(name = "TBL_SYS_FUNCTION")
+@Table(name = "TBL_SYS_FUNCTIONS")
 public class Function extends BaseEntity
 {
-	private static final long serialVersionUID = -5461914450646641917L;
-	
+
 //	@Column(name = "FUNCTION_PATH")
 //	@JSONField(serialize = false)
 //	private String functionPath;

@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "TBL_SYS_CONTRACT")
+@Table(name = "TBL_SYS_CONTRACTS")
 public class Contract extends BaseEntity {
 
     @Column(name = "CONTRACTBODY")
