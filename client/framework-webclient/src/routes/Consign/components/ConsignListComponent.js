@@ -44,7 +44,7 @@ export default class ConsignListComponent extends Component {
         switch (this.state.selectOption){
             case 'id':
                 return '请输入委托ID';
-            case 'customerId':
+            case 'createdUserId':
                 return '请输入委托人ID';
             case 'name':
                 return '请输入委托名称';
@@ -84,7 +84,7 @@ export default class ConsignListComponent extends Component {
         dataIndex:"name",
     }, {
         title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"customerId",
+        dataIndex:"createdUserId",
     }, {
         title:"状态",
         dataIndex:"state",
@@ -166,7 +166,7 @@ export default class ConsignListComponent extends Component {
                     <Col span={3}>
                         <Select defaultValue="搜索委托ID" onSelect={this.onSelect}>
                             <Option value="id">搜索委托ID</Option>
-                            <Option value="customerId">搜索委托人ID</Option>
+                            <Option value="createdUserId">搜索委托人ID</Option>
                             <Option value="name">搜索委托名称 </Option>
                         </Select>
                     </Col>

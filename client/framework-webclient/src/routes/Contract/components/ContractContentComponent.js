@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import {Form,Button,Input,DatePicker,InputNumber,Collapse} from 'antd'
-import {message} from "antd/lib/index";
+import {Form,Button,Input,DatePicker,InputNumber,Collapse,message} from 'antd'
+//import {message} from "antd/lib/index";
 
 const FormItem=Form.Item;
 const InputGroup = Input.Group;
@@ -36,7 +36,7 @@ class ContractContentComponent extends Component {
         switch (buttons[buttonIndex].content) {
             case '保存': message.success('保存成功');break;
             case '提交': message.success('提交成功');break;
-            case '通过': message.success('委托已通过');break;
+            case '通过': message.success('合同已通过');break;
             //case 3: message.success('提交成功');break;
             default:break;
         }
