@@ -13,63 +13,32 @@ public class ProcessInstanceService {
     @Autowired
     private BaseActiviti baseActiviti;
     @Autowired
-    private ConsignActiviti consignActiviti;
-    @Autowired
-    private ContractActiviti contractActiviti;
-
+    private ProcessInstanceUpdate processInstanceUpdate;
     /*开启一个委托实例*/
     public String createConsignProcess(JSONObject params, User user)
     {
         Consign consign = JSONObject.toJavaObject(params, Consign.class);
-        return consignActiviti.createConsignProcess(consign.getId(), user.getId());
+       // return baseActiviti.consignActiviti.createConsignProcess(consign.getId(), user.getId());
+        return processInstanceUpdate.createConsignProcess(consign.getId(),user.getId());
     }
 
     //TODO: create contract processInstance
     public String createContractProcess(JSONObject params, User user) throws Exception{
         Contract contract = JSONObject.toJavaObject(params, Contract.class);
-        return contractActiviti.createContractProcess(contract.getId(), user.getId(),"W0");
+        //return baseActiviti.contractActiviti.createContractProcess(contract.getId(), user.getId(),"W0");
+        return processInstanceUpdate.createContractProcess(contract.getId(),user.getId());
     }
 
 
     /*更新具体流程实例状态*/
     public JSONObject updateProcessState(String processInstanceID, Request request) throws Exception {
-        JSONObject params = request.getParams();
-        String object = params.getString("object");
-        String operation = params.getString("operation");
-        if (operation.compareTo("submit")==0)
-        {
-            baseActiviti.submit(processInstanceID, request.getUser().getId());
-        }
-         else if (object == null) {
-            throw new Exception("object is null");
-        }
-        else if(object.equals("consign")) {
-             //if (object.equals("review")) {
-             if (operation.equals("pass"))
-                 consignActiviti.checkConsign(true, processInstanceID, request.getUser().getId());
-             else if (operation.equals("reject"))
-                 consignActiviti.checkConsign(false, processInstanceID, request.getUser().getId());
-             //}
-         }
-         else if(object.equals("contract"))
-        {
-            if(operation.equals("reviewpass"))
-                contractActiviti.checkContract(processInstanceID,request.getUser().getId(),true);
-            else if(operation.equals("reviewreject"))
-                contractActiviti.checkContract(processInstanceID,request.getUser().getId(),false);
-            else if(operation.equals("confirmpass"))
-                contractActiviti.confirmContract(processInstanceID,request.getUser().getId(),true);
-            else if(operation.equals("confirmreject"))
-                contractActiviti.confirmContract(processInstanceID,request.getUser().getId(),false);
-        }
-        else {
-            throw new Exception("can't recognize object");
-        }
+        //baseActiviti.updateProcessInstanceState(processInstanceID,request);
+        processInstanceUpdate.updateProcess(processInstanceID,request);
         return queryProcessState(processInstanceID);
     }
     /*查询具体流程实例状态*/
     public JSONObject queryProcessState(String processInstanceID) throws Exception {
-        String state = baseActiviti.getProcessState(processInstanceID);
+        String state = processInstanceUpdate.getProcessState(processInstanceID);
         JSONObject queryResultJson = new JSONObject();
         queryResultJson.put("processInstanceID",  processInstanceID);
         queryResultJson.put("state", state);

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * @author LBW & SQW
  */
+
 @RestController
 public class ConsignController extends BaseController
 {

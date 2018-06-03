@@ -42,7 +42,7 @@ export const deleteContract = (dispatch, id, callback) => {
 };
 
 export const newContract = (dispatch, callback) => {
-    httpPost(contractBase, {contract:null,}, (result) => {
+    httpPost(contractBase, {contractBody:null,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setContractContent(data));
@@ -56,6 +56,7 @@ export const updateContract = (dispatch, data, callback) => {
     httpPut(contractBase, data, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
+            console.log(data);
             dispatch(setContractContent(data));
         }
         callback && callback(status);

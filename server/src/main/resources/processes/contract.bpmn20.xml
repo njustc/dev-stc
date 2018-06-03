@@ -17,9 +17,9 @@
       </extensionElements>
     </userTask>
    <!-- <userTask id="checkcontract" name="TobeCheck" activiti:candidateGroups="${marketEmployerId},${qualityEmployerId}">-->
-    <userTask id="checkcontract" name="TobeCheck" activiti:candidateGroups="${WorkerIDs}}">
+    <userTask id="reviewcontract" name="TobeReview" activiti:candidateGroups="${WorkerIDs}">
       <extensionElements>
-        <activiti:formProperty id="Approval" name="Do you approve this Contract?" type="enum" required="true"/>
+        <activiti:formProperty id="approval" name="Do you approve this Contract?" type="enum" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-1D47E8F1-A0ED-4383-B3FA-393923F11D77]]></modeler:editor-resource-id>
@@ -32,7 +32,7 @@
     </exclusiveGateway>
     <userTask id="confirmcontract" name="TobeConfirm" activiti:assignee="${ClientID}">
       <extensionElements>
-        <activiti:formProperty id="Confirm" name="Do you confirm this Contract?" type="enum" required="true"/>
+        <activiti:formProperty id="approval" name="Do you confirm this Contract?" type="enum" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-1E977F25-65D9-4412-91E9-1029A9476267]]></modeler:editor-resource-id>
@@ -48,7 +48,7 @@
         <modeler:editor-resource-id><![CDATA[sid-6F74CC60-3575-4817-BA5A-4D65F393718D]]></modeler:editor-resource-id>
       </extensionElements>
     </endEvent>
-    <sequenceFlow id="f3" sourceRef="submitcontract" targetRef="checkcontract">
+    <sequenceFlow id="f3" sourceRef="submitcontract" targetRef="reviewcontract">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-D100B008-E3D9-4D77-883D-AAD64110E67E]]></modeler:editor-resource-id>
       </extensionElements>
@@ -57,7 +57,7 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-9681CAAF-6246-4CB3-8EF9-CECA5F2C9990]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Confirm == 'true'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'confirmpass'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f11" sourceRef="confirmcontract" targetRef="g5">
       <extensionElements>
@@ -68,15 +68,15 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-F46E0096-0D62-4D47-96A3-220199B55F26]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Confirm == 'false'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'confirmreject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f13" name="不通过" sourceRef="g2" targetRef="submitcontract">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-9907F081-2168-4C99-A2A2-BA0EFCB62E43]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Approval == 'false'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'reviewreject'}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="f6" sourceRef="checkcontract" targetRef="g2">
+    <sequenceFlow id="f6" sourceRef="reviewcontract" targetRef="g2">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-30F64A29-83F3-457E-A45D-9CA0EE77F90C]]></modeler:editor-resource-id>
       </extensionElements>
@@ -85,7 +85,7 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-93A61CD5-2AA5-4B6E-8CF8-C077BEBFF757]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${Approval == 'true'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'reviewpass'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f1" sourceRef="start" targetRef="submitcontract">
       <extensionElements>
@@ -101,7 +101,7 @@
       <bpmndi:BPMNShape bpmnElement="submitcontract" id="BPMNShape_submitcontract">
         <omgdc:Bounds height="80.0" width="100.0" x="320.0" y="255.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="checkcontract" id="BPMNShape_checkcontract">
+      <bpmndi:BPMNShape bpmnElement="reviewcontract" id="BPMNShape_checkcontract">
         <omgdc:Bounds height="80.0" width="100.0" x="495.0" y="255.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="g2" id="BPMNShape_g2">

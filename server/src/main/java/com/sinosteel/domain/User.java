@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "TBL_SYS_USER")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "TBL_SYS_USERS")
 public class User extends BaseEntity
 {
-	private static final long serialVersionUID = 6536862440622576274L;
 	
 	@Column(name = "USERNAME")
 	private String username;
@@ -21,7 +19,7 @@ public class User extends BaseEntity
 	private String salt;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "TBL_SYS_ROLE_USER", joinColumns = 
+	@JoinTable(name = "TBL_SYS_ROLE_USERS", joinColumns =
 	{
 		@JoinColumn(name = "USER_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
 	}, inverseJoinColumns = 
