@@ -21,7 +21,7 @@ public class TestReportController extends BaseController{
     @Autowired
     private TestReportService testReportService;
 
-    @RequestMapping(value = "/testReport",method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/testReport",method = RequestMethod.GET)
     public Response queryTestReport(Request request){
         Response response = new Response();
 
@@ -37,7 +37,7 @@ public class TestReportController extends BaseController{
         return  response;
     }
 
-    @RequestMapping(value = "/testReport/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/testReport/{id}", method = RequestMethod.GET)
     public Response queryTestReportByID(@PathVariable String id,Request request){
 
         Response response = new Response();
@@ -54,7 +54,7 @@ public class TestReportController extends BaseController{
         return response;
     }
 
-    @RequestMapping(value = "/testReport",method = RequestMethod.POST)
+    @RequestMapping(value = "/v1/testReport",method = RequestMethod.POST)
     public Response addTestReport(Request request) {
         Response response = new Response();
         try{
@@ -68,7 +68,7 @@ public class TestReportController extends BaseController{
         return response;
     }
 
-    @RequestMapping(value = "/testReport", method = RequestMethod.PUT)
+    @RequestMapping(value = "/v1/testReport", method = RequestMethod.PUT)
     public  Response editProject(Request request) {
 
         Response response = new Response();
@@ -85,7 +85,7 @@ public class TestReportController extends BaseController{
         return response;
     }
 
-    @RequestMapping(value = "/testReport", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/v1/testReport", method = RequestMethod.DELETE)
     public Response deleteProject(Request request) {
 
         Response response = new Response();
