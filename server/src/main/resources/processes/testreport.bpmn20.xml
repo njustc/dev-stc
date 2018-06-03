@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef" xmlns:modeler="http://activiti.com/modeler" modeler:version="1.0en" modeler:exportDateTime="20180602193236400" modeler:modelId="3004" modeler:modelVersion="1" modeler:modelLastUpdated="1527939148980">
+  <process id="testreport" name="testreport" isExecutable="true">
+    <startEvent id="start">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[startEvent1]]></modeler:editor-resource-id>
+      </extensionElements>
+    </startEvent>
+    <userTask id="writereport" name="编写测试报告" activiti:candidateGroups="测试部工作人员">
+      <extensionElements>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-A0F87A75-775A-40B0-8F7E-6C2BCAE70468]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <userTask id="checkreport" name="审核测试报告" activiti:candidateUsers="测试部主任">
+      <extensionElements>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-9102BEBF-1604-435A-8988-BACA3D835F2A]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <userTask id="approvereport" name="批准测试报告" activiti:candidateGroups="质量部">
+      <extensionElements>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-1B1252BB-E43A-4E86-AEA4-455AD28CF94D]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="g1">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-0757D637-C70B-45F7-A714-3FD07A392BD6]]></modeler:editor-resource-id>
+      </extensionElements>
+    </exclusiveGateway>
+    <exclusiveGateway id="g2">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-7A0F0287-02BD-421E-8FE3-9B44111EC00C]]></modeler:editor-resource-id>
+      </extensionElements>
+    </exclusiveGateway>
+    <userTask id="providereport" name="发放测试报告" activiti:candidateGroups="市场部工作人员">
+      <extensionElements>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-E5EBD068-6887-4339-9371-7D50789342BF]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <userTask id="confirmreport" name="确认测试报告" activiti:candidateGroups="客户">
+      <extensionElements>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-E33AD7C3-DEFA-44A7-BAAA-8ED933956D5B]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="g3">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-4877C8D8-40DB-47CD-99E1-721D85697311]]></modeler:editor-resource-id>
+      </extensionElements>
+    </exclusiveGateway>
+    <userTask id="satisfaction" name="满意度反馈" activiti:candidateGroups="客户">
+      <extensionElements>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-400DA8A0-0ACD-42F7-AAD3-9543DE389B6C]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <userTask id="done" name="结项" activiti:candidateGroups="质量部">
+      <extensionElements>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-BBE6B76E-E6AD-4ACE-9DE6-8FE748B2291B]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <userTask id="file" name="归档" activiti:candidateGroups="质量部">
+      <extensionElements>
+        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
+        <modeler:editor-resource-id><![CDATA[sid-A8C78231-A6B8-47D6-ABF9-A4DEF426CBD1]]></modeler:editor-resource-id>
+      </extensionElements>
+    </userTask>
+    <endEvent id="end">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-48522234-CC00-49B7-B55B-4CBBA2D3BAC2]]></modeler:editor-resource-id>
+      </extensionElements>
+    </endEvent>
+    <sequenceFlow id="f2" sourceRef="writereport" targetRef="checkreport">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-FD92D30A-04C8-48B8-B95D-31195E2FFE3B]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="f4" sourceRef="checkreport" targetRef="g1">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-508DEB25-F8E4-4B4A-ACB3-1F3DD59DC4C2]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="f6" sourceRef="approvereport" targetRef="g2">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-490CBF93-F6C4-433D-99D4-7D3CF4977851]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="f5" name="通过" sourceRef="g1" targetRef="approvereport">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-B69F48E1-7BF6-49AA-BF00-57C3E36B37E9]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[通过]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f7" name="通过" sourceRef="g2" targetRef="providereport">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-78824EF3-C975-4124-A86D-0DBC830ED15F]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[通过]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f8" sourceRef="providereport" targetRef="confirmreport">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-99AF8724-DB2A-4EE2-942C-21EE15776291]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="f9" sourceRef="confirmreport" targetRef="g3">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-281725DC-3DD6-4BF7-A54A-FFD203106A2A]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="f10" name="通过" sourceRef="g3" targetRef="satisfaction">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-3469E39D-9B78-4D62-A35D-881E4DCD2264]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[通过]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f11" sourceRef="satisfaction" targetRef="done">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-DB538051-38BD-42A6-9FD9-B28E38C7F244]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="f12" sourceRef="done" targetRef="file">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-5C77BBFD-7A6B-4EF0-A890-8D0EE574F71C]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="f1" sourceRef="start" targetRef="writereport">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-FE0B28E3-A908-4967-B2FA-6BEEB35ABD6A]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <endEvent id="end2">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-84D272FE-6567-473F-8193-2007B5AFD477]]></modeler:editor-resource-id>
+      </extensionElements>
+    </endEvent>
+    <sequenceFlow id="f13" sourceRef="file" targetRef="end">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-3354274E-E57E-476D-A503-C701C30FE820]]></modeler:editor-resource-id>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="f14" name="不通过" sourceRef="g1" targetRef="writereport">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-A2F3F0F3-8B5F-47F7-A118-FC4D7606FE79]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[不通过]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f15" name="不通过" sourceRef="g2" targetRef="writereport">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-E23FD817-8714-418D-B8B7-58792B3476B6]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[不通过]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f16" name="不通过" sourceRef="g3" targetRef="writereport">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-CC917695-8687-46AC-A1E6-7670C83386B4]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[不通过]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="f17" name="放弃" sourceRef="g3" targetRef="end2">
+      <extensionElements>
+        <modeler:editor-resource-id><![CDATA[sid-3C5BE11B-1BDC-4C4E-A52D-09F21A2BF479]]></modeler:editor-resource-id>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[放弃]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_testreport">
+    <bpmndi:BPMNPlane bpmnElement="testreport" id="BPMNPlane_testreport">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="30.0" width="30.0" x="90.0" y="150.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="writereport" id="BPMNShape_writereport">
+        <omgdc:Bounds height="80.0" width="100.0" x="165.0" y="125.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="checkreport" id="BPMNShape_checkreport">
+        <omgdc:Bounds height="80.0" width="100.0" x="390.0" y="125.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="approvereport" id="BPMNShape_approvereport">
+        <omgdc:Bounds height="80.0" width="100.0" x="690.0" y="125.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="g1" id="BPMNShape_g1">
+        <omgdc:Bounds height="40.0" width="40.0" x="600.0" y="145.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="g2" id="BPMNShape_g2">
+        <omgdc:Bounds height="40.0" width="40.0" x="835.0" y="145.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="providereport" id="BPMNShape_providereport">
+        <omgdc:Bounds height="80.0" width="100.0" x="920.0" y="125.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="confirmreport" id="BPMNShape_confirmreport">
+        <omgdc:Bounds height="80.0" width="100.0" x="1065.0" y="125.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="g3" id="BPMNShape_g3">
+        <omgdc:Bounds height="40.0" width="40.0" x="1210.0" y="145.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="satisfaction" id="BPMNShape_satisfaction">
+        <omgdc:Bounds height="80.0" width="100.0" x="1295.0" y="125.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="done" id="BPMNShape_done">
+        <omgdc:Bounds height="80.0" width="100.0" x="1440.0" y="125.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="file" id="BPMNShape_file">
+        <omgdc:Bounds height="80.0" width="100.0" x="1585.0" y="125.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
+        <omgdc:Bounds height="28.0" width="28.0" x="1730.0" y="151.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end2" id="BPMNShape_end2">
+        <omgdc:Bounds height="28.0" width="28.0" x="1331.0" y="270.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="f10" id="BPMNEdge_f10">
+        <omgdi:waypoint x="1249.5833333333333" y="165.41666666666666"/>
+        <omgdi:waypoint x="1295.0" y="165.2183406113537"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f12" id="BPMNEdge_f12">
+        <omgdi:waypoint x="1540.0" y="165.0"/>
+        <omgdi:waypoint x="1585.0" y="165.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f11" id="BPMNEdge_f11">
+        <omgdi:waypoint x="1395.0" y="165.0"/>
+        <omgdi:waypoint x="1440.0" y="165.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f14" id="BPMNEdge_f14">
+        <omgdi:waypoint x="620.5" y="184.5"/>
+        <omgdi:waypoint x="620.5" y="271.0"/>
+        <omgdi:waypoint x="215.0" y="271.0"/>
+        <omgdi:waypoint x="215.0" y="205.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f13" id="BPMNEdge_f13">
+        <omgdi:waypoint x="1685.0" y="165.0"/>
+        <omgdi:waypoint x="1730.0" y="165.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f16" id="BPMNEdge_f16">
+        <omgdi:waypoint x="1230.5" y="145.5"/>
+        <omgdi:waypoint x="1230.5" y="64.47189164597688"/>
+        <omgdi:waypoint x="215.0" y="64.47189164597688"/>
+        <omgdi:waypoint x="215.0" y="125.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f1" id="BPMNEdge_f1">
+        <omgdi:waypoint x="120.0" y="165.0"/>
+        <omgdi:waypoint x="165.0" y="165.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f15" id="BPMNEdge_f15">
+        <omgdi:waypoint x="855.5" y="145.5"/>
+        <omgdi:waypoint x="855.5" y="62.62625123004426"/>
+        <omgdi:waypoint x="215.0" y="62.62625123004426"/>
+        <omgdi:waypoint x="215.0" y="125.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f2" id="BPMNEdge_f2">
+        <omgdi:waypoint x="265.0" y="165.0"/>
+        <omgdi:waypoint x="390.0" y="165.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f17" id="BPMNEdge_f17">
+        <omgdi:waypoint x="1230.5" y="184.5"/>
+        <omgdi:waypoint x="1230.5" y="284.0"/>
+        <omgdi:waypoint x="1331.0" y="284.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f4" id="BPMNEdge_f4">
+        <omgdi:waypoint x="490.0" y="165.13850415512465"/>
+        <omgdi:waypoint x="600.4444444444445" y="165.44444444444446"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f5" id="BPMNEdge_f5">
+        <omgdi:waypoint x="639.5798319327731" y="165.42016806722688"/>
+        <omgdi:waypoint x="690.0" y="165.2092050209205"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f6" id="BPMNEdge_f6">
+        <omgdi:waypoint x="790.0" y="165.2164502164502"/>
+        <omgdi:waypoint x="835.4130434782609" y="165.41304347826087"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f7" id="BPMNEdge_f7">
+        <omgdi:waypoint x="874.5833333333334" y="165.41666666666666"/>
+        <omgdi:waypoint x="920.0" y="165.2183406113537"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f8" id="BPMNEdge_f8">
+        <omgdi:waypoint x="1020.0" y="165.0"/>
+        <omgdi:waypoint x="1065.0" y="165.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="f9" id="BPMNEdge_f9">
+        <omgdi:waypoint x="1165.0" y="165.2164502164502"/>
+        <omgdi:waypoint x="1210.4130434782608" y="165.41304347826087"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
