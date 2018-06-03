@@ -36,19 +36,9 @@ public class ConsignActivitiTest {
         assertNotNull(processInstanceID);
        System.out.println("委托实例成功创建。 ProcessInstanceID: " + processInstanceID);
 
-        String queryResult = consignActiviti.getProcessState(processInstanceID);
+        String queryResult = baseActiviti.getProcessState(processInstanceID);
         assertNotNull(queryResult);
         System.out.println(queryResult);
-
-        System.out.println("正在测试提交委托");
-        consignActiviti.submit(processInstanceID, "汤聪");
-        System.out.println(consignActiviti.getProcessState(processInstanceID));
-
-       // consignActiviti.setWorker(processInstanceID, "1");
-
-        System.out.println("正在测试否决委托");
-        consignActiviti.checkConsign(false, processInstanceID, "1" );
-        System.out.println(consignActiviti.getProcessState(processInstanceID));
     }
 
     /*提交委托测试*/
@@ -60,15 +50,13 @@ public class ConsignActivitiTest {
         assertNotNull(processInstanceID);
         System.out.println("委托实例成功创建。 ProcessInstanceID: " + processInstanceID);
         System.out.println("委托实例成功创建。 ProcessInstanceID: " + processInstanceID1);
-        System.out.println(consignActiviti.getUserTasks("0"));
+        System.out.println(baseActiviti.getUserTasks("0"));
 
        System.out.println("正在测试提交委托");
         consignActiviti.submit(processInstanceID, "0");
        consignActiviti.submit(processInstanceID1, "0");
-       System.out.println(consignActiviti.getProcessState(processInstanceID));
-        System.out.println(consignActiviti.getProcessState(processInstanceID1));
-        //consignActiviti.queryHistoricActivitiyInstance(processInstanceID);
-        //consignActiviti.queryHistoricActivitiyInstance(processInstanceID1);
+       System.out.println(baseActiviti.getProcessState(processInstanceID));
+        System.out.println(baseActiviti.getProcessState(processInstanceID1));
     }
 
     /*审核委托测试*/
@@ -78,52 +66,20 @@ public class ConsignActivitiTest {
         assertNotNull(processInstanceID);
         System.out.println("委托实例成功创建  ProcessInstanceID: " + processInstanceID);
 
-        String queryResult = consignActiviti.getProcessState(processInstanceID);
+        String queryResult = baseActiviti.getProcessState(processInstanceID);
         assertNotNull(queryResult);
         consignActiviti.submit(processInstanceID, "0");
 
         System.out.println("正在测试否决委托");
-        consignActiviti.checkConsign(false, processInstanceID, "W1" );
-        System.out.println(consignActiviti.getProcessState(processInstanceID));
+        consignActiviti.reviewConsign("reviewreject", processInstanceID, "W1" );
+        System.out.println(baseActiviti.getProcessState(processInstanceID));
         //consignActiviti.queryHistoricActivitiyInstance(processInstanceID);
         consignActiviti.submit(processInstanceID, "0");
 
         System.out.println("正在测试通过委托");
-        consignActiviti.checkConsign(true, processInstanceID, "W1" );
-        System.out.println(consignActiviti.getProcessState(processInstanceID));
+        consignActiviti.reviewConsign("reviewpass", processInstanceID, "W1" );
+        System.out.println(baseActiviti.getProcessState(processInstanceID));
     }
-
-    /*根据委托ID查询测试*/
-    @Test public void getProcessState()throws Exception
-    {
-        String processInstanceID =  consignActiviti.createConsignProcess("0", "0");
-        assertNotNull(processInstanceID);
-        System.out.println("委托实例成功创建。 ProcessInstanceID: " + processInstanceID);
-
-       String queryResult = consignActiviti.getProcessState(processInstanceID);
-       assertNotNull(queryResult);
-        System.out.println(queryResult);
-       System.out.println("正在测试提交委托");
-       consignActiviti.submit(processInstanceID, "0");
-       System.out.println(consignActiviti.getProcessState(processInstanceID));
-
-       // consignActiviti.setWorker(processInstanceID, "1");
-
-        System.out.println("正在测试否决委托");
-        consignActiviti.checkConsign(false, processInstanceID, "1" );
-        System.out.println(consignActiviti.getProcessState(processInstanceID));
-
-        System.out.println("正在测试提交委托");
-        consignActiviti.submit(processInstanceID, "0");
-        System.out.println(consignActiviti.getProcessState(processInstanceID));
-
-        System.out.println("正在测试通过委托");
-        consignActiviti.checkConsign(true, processInstanceID, "1" );
-        System.out.println(consignActiviti.getProcessState(processInstanceID));
-
-        System.out.println(consignActiviti.getProcessState("2333"));
-    }
-
 
     /*根据客户ID查询测试*/
     @Test
@@ -138,12 +94,12 @@ public class ConsignActivitiTest {
         System.out.println("委托实例成功创建  ProcessInstanceID: " + processInstanceID1);
         System.out.println("委托实例成功创建  ProcessInstanceID: " + processInstanceID2);
         System.out.println("正在测试客户查询");
-        System.out.println(consignActiviti.getUserTasks("Cit0"));
-        System.out.println(consignActiviti.getUserTasks("Cit1"));
-        System.out.println(consignActiviti.getUserTasks("Cit2"));
+       // System.out.println(consignActiviti.getUserTasks("Cit0"));
+        //System.out.println(consignActiviti.getUserTasks("Cit1"));
+        //System.out.println(consignActiviti.getUserTasks("Cit2"));
         System.out.println("Cit0提交一个委托后");
         consignActiviti.submit(processInstanceID, "Cit0");
-        System.out.println(consignActiviti.getUserTasks("Cit0"));
+       // System.out.println(consignActiviti.getUserTasks("Cit0"));
     }
 
     /*查询测试人员待处理的委托*/
@@ -163,11 +119,11 @@ public class ConsignActivitiTest {
         consignActiviti.submit(processInstanceID1, "Cit0");
         consignActiviti.submit(processInstanceID2, "Cit1");
         System.out.println("正在测试测试人员查询");
-        System.out.println(consignActiviti.GetWorkerTasks());
+        //System.out.println(consignActiviti.GetWorkerTasks());
         System.out.println("通过第一个合同");
-        consignActiviti.checkConsign(true,processInstanceID,"W1");
+        consignActiviti.reviewConsign("pass",processInstanceID,"W1");
         System.out.println("正在测试测试人员查询");
-        System.out.println(consignActiviti.GetWorkerTasks());
+        //System.out.println(consignActiviti.GetWorkerTasks());
    }
 }
 

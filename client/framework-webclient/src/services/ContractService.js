@@ -1,144 +1,88 @@
 import {baseServiceAddress, STATUS} from "SERVICES/common";
 import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
-import {setContractList,setContractCheckList,/*addContract, removeContract, setContractContent, setContractState*/} from "../modules/ducks/Contract";
+import {removeContract, setContractContent, setContractList, setContractState} from "../modules/ducks/Contract";
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 
-//const contractBase = baseServiceAddress + '/contract';
-//const contractActivitiBase = baseServiceAddress + '/contractActiviti';
+const contractBase = baseServiceAddress + '/contract';
+const contractActivitiBase = baseServiceAddress + '/processInstance';
 
 export const getContractList = (dispatch, callback) => {
-    /*    httpGet(projectBase, (result) => {
-            const {status, data} = result;
-            if (status === STATUS.SUCCESS) {
-                dispatch(setProjectList(data));
-            }
-            callback && callback(status);
-        });*/
-    /*TEMP*/
-    dispatch(setContractList([
-        {
-            pid : "110",
-            id : "110",
-            name : "快乐星球小杨杰",
-            customerId : "151220140",
-            status: STATE.TO_SUBMIT
-        },{
-            pid :"120",
-            id : "120",
-            name : "不快乐星球小杨杰",
-            customerId : "151220140",
-            status: STATE.TO_CHECK
-        },{
-            pid : "119",
-            id : "119",
-            name : "不快乐星球老杨杰",
-            customerId : "151220140",
-            status: STATE.CANCELED
+    httpGet(contractBase,(result) => {
+        const {status, data} = result;
+        if (status === STATUS.SUCCESS) {
+            dispatch(setContractList(data));
         }
-    ]));/*TODO 可以在这里加一些数据用于测试*/
-    const status = STATUS.SUCCESS;
-    callback && callback(status);
+        callback && callback(status);
+    });
+    // const status = STATUS.SUCCESS;
+    // callback && callback(status);
 };
-
 
 export const getContract = (dispatch, id, callback) => {
-    /*    httpGet(consignBase + '/' + id, (result) => {
-            const {status, data} = result;
-            if (status === STATUS.SUCCESS) {
-                dispatch(setConsignContent(index, data.consignation));
-            }*/
-    console.log(id);
-    const status = STATUS.SUCCESS;
-//        dispatch(setConsignContent(valueData));
-    callback && callback(status);
-    //});
-    return valueData;
-};
-
-export const deleteContract = (dispatch, id, callback) => {
-    httpDelete(contractBase, {id:id}, (result) => {
-        const {status} = result;
+    httpGet(contractBase + '/' + id, (result) => {
+//        console.log(result);
+        const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            httpGet(contractBase, (result) => {
-                dispatch(removeContract(id));
-            });
+            dispatch(setContractContent(data));
         }
         callback && callback(status);
     });
 };
 
-/*TODO:consignation是啥*/
+export const deleteContract = (dispatch, id, callback) => {
+    httpDelete(contractBase, {id:id}, (result) => {
+        // console.log("before remove");
+        // dispatch(removeContract(id));
+        const {status} = result;
+        if(status === STATUS.SUCCESS)
+            dispatch(removeContract(id));
+        callback && callback(status);
+    });
+};
+
 export const newContract = (dispatch, callback) => {
-    httpPost(contractBase, {consignation:null,}, (result) => {
+    httpPost(contractBase, {contract:null,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(addContract(data));
+            dispatch(setContractContent(data));
         }
         callback && callback(status);
     });
 };
 
 export const updateContract = (dispatch, data, callback) => {
+    console.log(data);
     httpPut(contractBase, data, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setContractContent(-1, data.consignation));
+            console.log(data);
+            dispatch(setContractContent(data));
         }
         callback && callback(status);
     });
 };
 
-export const getContractState = (dispatch, i, processInstanceID, callback) => {
+export const getContractState = (dispatch, processInstanceID, callback) => {
     httpGet(contractActivitiBase + '/' + processInstanceID, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setContractState(i, data.state));
+            dispatch(setContractContent(data));
         }
         callback && callback(status);
     })
 };
 
-export const putContractState = (dispatch, pi, data, callback) => {
-    httpPut(contractActivitiBase + '/' + pi, data, (result) => {
-        const {status} = result;
+export const putContractState = (dispatch, processInstanceID, data, id, callback) => {
+    httpPut(contractActivitiBase + '/' + processInstanceID, data, (result) => {
+        const {status,data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setContractState(-1, /*TODO*/));
+            const newData = {
+                ...data,
+                id: id,
+            };
+            dispatch(setContractContent(newData));
         }
         callback && callback(status);
     });
-};
-
-export const getContractCheckList = (dispatch, callback) => {
-    /*    httpGet(projectBase, (result) => {
-            const {status, data} = result;
-            if (status === STATUS.SUCCESS) {
-                dispatch(setProjectList(data));
-            }
-            callback && callback(status);
-        });*/
-    /*TEMP*/
-    dispatch(setContractCheckList([
-        {
-            pid : "110",
-            id : "110",
-            name : "快乐星球小杨杰",
-            customerId : "151220140",
-            status: STATE.TO_SUBMIT
-        },{
-            pid :"120",
-            id : "120",
-            name : "不快乐星球小杨杰",
-            customerId : "151220140",
-            status: STATE.TO_CHECK
-        },{
-            pid : "119",
-            id : "119",
-            name : "不快乐星球老杨杰",
-            customerId : "151220140",
-            status: STATE.CANCELED
-        }
-    ]));/*TODO 可以在这里加一些数据用于测试*/
-    const status = STATUS.SUCCESS;
-    callback && callback(status);
 };

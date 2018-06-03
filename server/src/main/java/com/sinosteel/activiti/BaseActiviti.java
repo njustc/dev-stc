@@ -1,5 +1,7 @@
 package com.sinosteel.activiti;
 
+import com.alibaba.fastjson.JSONObject;
+import com.sinosteel.framework.core.web.Request;
 import org.activiti.engine.*;
 import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
@@ -21,7 +23,6 @@ import java.util.Map;
 @Service
 public class BaseActiviti {
     private static final Logger logger = LoggerFactory.getLogger(com.sinosteel.activiti.ConsignActiviti.class);
-
     @Autowired
     protected RuntimeService runtimeService;
 
@@ -32,65 +33,43 @@ public class BaseActiviti {
     protected HistoryService historyService;
 
     @Autowired
-    protected ProcessEngine processEngine;
+    protected ConsignActiviti consignActiviti;
 
     @Autowired
-    protected RepositoryService repositoryService;
+    protected ContractActiviti contractActiviti;
 
-    /**
-     * the submit function when the client submit a consign or a contract
-     * @param processInstanceId
-     * @param ClientId
-     */
-    public void submit (String processInstanceId,String ClientId) throws  Exception
+
+    public void updateProcessInstanceState(String processInstanceID, Request request)throws Exception
     {
-        try {
-            Task task=taskService.createTaskQuery().taskAssignee(ClientId)
-                .processInstanceId(processInstanceId).singleResult();
-            taskService.complete(task.getId());
+        JSONObject params = request.getParams();
+        String object = params.getString("object");
+        String operation = params.getString("operation");
+        if (object == null) {
+            throw new Exception("object is null");
         }
-        catch (Exception e)
-        {
-            throw new Exception("Submit Failed");
+        else if(object.equals("consign")) {
+            if (operation.equals("submit")) {
+                consignActiviti.submit(processInstanceID, request.getUser().getId());
+            }
+            else {
+                consignActiviti.reviewConsign(operation, processInstanceID, request.getUser().getId());
+            }
+        }
+        else if(object.equals("contract")) {
+            if(operation.equals("submit")) {
+                contractActiviti.submit(processInstanceID, request.getUser().getId());
+            }
+            else if(operation.contains("review")) {
+                contractActiviti.reviewContract(processInstanceID,request.getUser().getId(),operation);
+            }
+            else if(operation.contains("confirm")) {
+                contractActiviti.confirmContract(processInstanceID,request.getUser().getId(),operation);
+            }
+        }
+        else {
+            throw new Exception("can't recognize object");
         }
     }
-
-    /**
-     * 基类的评审，适用于需要提供判断的情况,不单独使用，需要子类调用
-     * @param passOrNot pass:true reject:false
-     * @param processInstanceId
-     * @param workerId  the worker who check the processInstance
-     * @param activitiVari the param in the bpmnmodel
-     */
-    public void check(Boolean passOrNot,String processInstanceId,String workerId,String activitiVari) throws Exception
-    {
-        try {
-            Map<String,Object> variables=new HashMap<String, Object>();
-        variables.put(activitiVari,passOrNot);
-        Task task=taskService.createTaskQuery().taskAssignee(workerId)
-                .processInstanceId(processInstanceId).singleResult();
-        if(task!=null) {
-            taskService.complete(task.getId(),variables);}
-        }
-        catch (Exception e) {
-            //System.out.println("workerId can not match processInstanceId ");
-            throw new Exception("workerId can not match processInstanceId");
-        }
-
-    }
-
-
-    /**
-     * 根据用户的ID查询该用户的任务列表
-     * @param userId
-     * @return return the task list need to finish
-     */
-    public List<Task> getUserTasks(String userId)
-    {
-        List<Task> tasks=taskService.createTaskQuery().taskAssignee(userId).list();
-        return tasks;
-    }
-
     /**
      * 根据流程实例的id查询流程实例当前的状态
      * @param processInstanceId
@@ -103,21 +82,15 @@ public class BaseActiviti {
         List<HistoricActivityInstance> pi1=historyService.createHistoricActivityInstanceQuery()
                 .processInstanceId(processInstanceId).list();
         if(pi==null&&pi1.isEmpty()==false) {
-            //return state.Finished.toString();
             return "Finished";
         }
-        else if(pi!=null)
-        {
-            List<HistoricTaskInstance> htiList=historyService.createHistoricTaskInstanceQuery()
-                    .processInstanceId(processInstanceId).orderByHistoricTaskInstanceStartTime().desc().list();
-            if(htiList.isEmpty()==false)
-            {
-                for (HistoricTaskInstance hti:htiList.subList(0,1)) {
-                    return hti.getName();
-                }
-            }
+        else if(pi!=null) {
+            Task task=taskService.createTaskQuery()
+                    .processInstanceId(processInstanceId).singleResult();
+            return task.getName();
         }
-        return "NotExist";
+        else{
+            return "NotExist";}
     }
 
     //查询某个流程实例的历史活动的详细信息
@@ -126,12 +99,22 @@ public class BaseActiviti {
         List<HistoricTaskInstance> hti=historyService.createHistoricTaskInstanceQuery()
                 .processInstanceId(processInstanceId).orderByHistoricTaskInstanceStartTime().asc().list();
         List<String> htiList=new ArrayList<String>();
-        if(hti.isEmpty()==false)
-        {
-        for(HistoricTaskInstance temp:hti)
-        htiList.add(temp.getId()+" "+temp.getAssignee()+" "+temp.getName()+" "+temp.getEndTime()+'\n');
-        return htiList;}
+        if(hti.isEmpty()==false) {
+            for(HistoricTaskInstance temp:hti){
+                htiList.add(temp.getId()+" "+temp.getAssignee()+" "+temp.getName()+" "+temp.getEndTime()+'\n');
+            }
+            return htiList;
+        }
         else throw new Exception("historicList is null");
     }
-
+    /**
+     * 根据用户的ID查询该用户的任务列表
+     * @param userId
+     * @return return the task list need to finish
+     */
+    public List<Task> getUserTasks(String userId)
+    {
+        List<Task> tasks=taskService.createTaskQuery().taskAssignee(userId).list();
+        return tasks;
+    }
 }

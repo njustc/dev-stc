@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "TBL_SYS_CONTRACT")
+@Table(name = "TBL_SYS_CONTRACTS")
 public class Contract extends BaseEntity {
 
     @Column(name = "CONTRACTBODY")
@@ -37,7 +37,7 @@ public class Contract extends BaseEntity {
         return processInstanceID;
     }
     public void setProcessInstanceID(String processInstanceID){this.processInstanceID = processInstanceID;}
-    
+
     //合同所在的工程
     @OneToOne(mappedBy = "contract")
     @JSONField(serialize = false)

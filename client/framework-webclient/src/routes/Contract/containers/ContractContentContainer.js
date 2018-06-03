@@ -1,41 +1,107 @@
 import React, {Component} from 'react';
-import ContractContentComponent from "ROUTES/Contract/components/ContractContentComponent";
+import ContractContentComponent from "../components/ContractContentComponent";
 import {connect} from "react-redux";
+import {getContract, putContractState, updateContract} from "../../../services/ContractService";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+    // debugger;
+    const authData = JSON.parse(sessionStorage.getItem('authData'));
+    //console.log(authData);
+    const contract = state.Contract.listMap[ownProps.id].contractBody;
     return {
-        values: {},/*fetch consign with pro id*/
-        contractData: {},/*fetch data with pro id*/
-        disable: true,
-        // buttons: buttons,
+        // contractData: {},/*fetch data with pro id*/
+        contractData: state.Contract.listMap[ownProps.id],
+        values: contract ? JSON.parse(contract) : {},
+        disable: false/*authData.functionGroup["Contract"]===undefined||authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===-1||state.Contract.listMap[ownProps.id].state!=="TobeSubmit"*/,
+        curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
+        //buttonDisabled: state.Contract.listMap[ownProps.id].state==="TobeCheck"
+        buttonDisabled: authData.functionGroup["Contract"]===undefined ||authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===-1
+            ? state.Contract.listMap[ownProps.id].state==="TobeSubmit"||state.Contract.listMap[ownProps.id].state==="Finished"
+            : state.Contract.listMap[ownProps.id].state==="TobeReview"||state.Contract.listMap[ownProps.id].state==="Finished"
     }
 };
 
-const buttons = (dispatch) => [{
+const buttons = (dispatch,isVisible) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
-    onClick: () =>{
-
-    }
+    onClick: (contractData,contract) =>{
+        console.log(contract);
+        const valueData = {
+            id: contractData.id,
+            contractBody: contract
+        };
+        updateContract(dispatch,valueData);
+    },
+    enable: isVisible,
 },{
     content: '提交',
-    onClick: () =>{
+    onClick: (contractData,contract) =>{
+        const valueData = {
+            id: contractData.id,
+            contractBody: contract
+        };
+        updateContract(dispatch,valueData);
 
-    }
+        const putData = {
+            "object": "contract",
+            "operation": "submit"
+        };
+        const {processInstanceID,id} = contractData;
+        console.log(putData);
+        putContractState(dispatch,processInstanceID,putData,id);
+    },
+    enable: isVisible
 },{
     content: '通过',
-    onClick: () =>{
-
-    }
+    onClick: (contractData,contract) =>{
+        const putData = {
+            "object": "contract",
+            "operation": "reviewpass"
+        };
+        const {processInstanceID,id} = contractData;
+        putContractState(dispatch,processInstanceID,putData,id);
+    },
+    enable: !isVisible
 },{
     content: '否决',
-    onClick: () =>{
-
-    }
+    onClick: (contractData,contract) =>{
+        const putData = {
+            "object": "contract",
+            "operation": "reviewreject"
+        };
+        const {processInstanceID,id} = contractData;
+        putContractState(dispatch,processInstanceID,putData,id);
+    },
+    enable: !isVisible
+},{
+    content: '确认',
+    onClick: (contractData,contract) =>{
+        const putData = {
+            "object": "contract",
+            "operation": "confirmpass"
+        };
+        const {processInstanceID,id} = contractData;
+        putContractState(dispatch,processInstanceID,putData,id);
+    },
+    enable: !isVisible
+},{
+    content: '拒绝',
+    onClick: (contractData,contract) =>{
+        const putData = {
+            "object": "contract",
+            "operation": "confirmreject"
+        };
+        const {processInstanceID,id} = contractData;
+        putContractState(dispatch,processInstanceID,putData,id);
+    },
+    enable: !isVisible
 }];
 
 const mapDispatchToProps = (dispatch) => {
+    const authData = JSON.parse(sessionStorage.getItem('authData'));
+    const isVisible = true;//authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "EDIT")!==-1;
     return {
-        buttons: buttons(dispatch),
+        buttons: buttons(dispatch,isVisible).filter(button => button.enable===true),
+        getValues: (id) => getContract(dispatch,id)
     }
 };
 

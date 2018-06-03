@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import {Form,Button,Input,DatePicker,InputNumber,Collapse} from 'antd'
+import {Form,Button,Input,DatePicker,InputNumber,Collapse,message} from 'antd'
+//import {message} from "antd/lib/index";
 
 const FormItem=Form.Item;
 const InputGroup = Input.Group;
@@ -17,7 +18,8 @@ class ContractContentComponent extends Component {
         buttons: [],
     };
 
-    static propTypes = {
+    static propTypes ={
+        contractData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
@@ -31,7 +33,14 @@ class ContractContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));          //此处附近接口？？
+        buttons[buttonIndex].onClick(this.props.contractData,JSON.stringify(form.getFieldsValue()));          //此处附近接口？？
+        switch (buttons[buttonIndex].content) {
+            case '保存': message.success('保存成功');break;
+            case '提交': message.success('提交成功');break;
+            case '通过': message.success('合同已通过');break;
+            //case 3: message.success('提交成功');break;
+            default:break;
+        }
     };
     render() {
         const { getFieldDecorator } = this.props.form;
@@ -70,7 +79,7 @@ class ContractContentComponent extends Component {
                         <FormItem {...formItemLayout} label="项目名称">
                             {getFieldDecorator('projectName', {
                                 rules: [{ required: true, message: '请输入项目名称！' }],
-                                initialValue: this.props.values.ProjectName,
+                                initialValue: this.props.values.projectName,
                             })(
                                 <Input size="larger" disabled={this.props.disable} placeholder={"（软件测试）"}/>
                             )}
