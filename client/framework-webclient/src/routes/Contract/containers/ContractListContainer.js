@@ -1,25 +1,30 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from "react-redux";
 import {addTabAction} from "MODULES/ducks/Layout";
-/*import {ConsignContentView} from "../../Consign";
-import {getConsignList} from "../../../services/ConsignService";
-import {setConsignFilter} from "../../../modules/ducks/Consign";*/
+import {ContractContentView} from "../../Contract";
+import {deleteContract, getContractList, newContract} from "../../../services/ContractService";
+import {setContractFilter} from "../../../modules/ducks/Contract";
 import ContractListComponent from "../components/ContractListComponent";
 
 const mapStateToProps = (state) => {
+    const authData = JSON.parse(sessionStorage.getItem('authData'));
     return {
-        //dataSource: Object.values(state.Consign.listMap),
+        dataSource: Object.values(state.Contract.listMap),
+        enableNew: authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "ADD")!==-1
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {/*
+    return {
         showContent: (id) => {
-            dispatch(addTabAction(id, '委托详情', ConsignContentView));
-//            dispatch(setConsignContent())
+            // debugger;
+            dispatch(addTabAction(id, '合同详情', ContractContentView, {id: id}));
+//            dispatch(setContractContent())
         },
-        setListFilter: (listFilter) => dispatch(setConsignFilter(listFilter)),
-        getConsignList: () => getConsignList(dispatch)*/
+        setListFilter: (listFilter) => dispatch(setContractFilter(listFilter)),
+        getContractList: () => getContractList(dispatch),
+        deleteContract: (id) => deleteContract(dispatch,id),
+        newContract: () => newContract(dispatch)
     }
 };
 

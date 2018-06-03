@@ -1,18 +1,6 @@
 [
     {
-        "merged": "/Users/jieyang/Desktop/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
-        "source": "/Users/jieyang/Desktop/dev-stc/client/framework-androidclient/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc3.0/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/RNstc/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
-        "source": "/Users/weiyuyang/RNstc/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc2.0/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc2.0/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
     }
 ]

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ContractContentComponent from "ROUTES/Contract/components/ContractContentComponent";
+import TestRecordContentComponent from "../components/TestRecordContentComponent";
 import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
@@ -39,4 +39,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContractContentComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(TestRecordContentComponent);

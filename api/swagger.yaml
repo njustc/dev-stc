@@ -14,9 +14,11 @@ tags:
   - name: consign
     description: 委托
   - name: processInstance
-    description: 委托状态
+    description: 流程实例状态
   - name: contract
     description: 合同
+  - name: project
+    description: 工程（当前完全是初始版本，传入参数以及返回数据内容孑需修改）
 schemes:
   - http
 consumes:
@@ -633,6 +635,224 @@ paths:
               "id": "7356e68f-c01f-4a32-8c5e-4fce3f5508d7"
             },
             "status": "SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+  /services/project:
+    get:
+      tags:
+        - project
+      summary: 查询工程
+      description: 用户为普通客户时，返回当前该客户的所有合同，如果是工作人员返回所有工程
+      operationId: queryProjects
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            成功查询合同时返回工程.返回内容还没有确定
+            查询失败时，返回一个失败的status
+            ```
+            {
+              
+              "data": [
+                {
+                  "createdUserId": "2",
+                  "createdTime": "2018-06-02 20:16:29",
+                  "id": "cdd340fa-501c-42ab-9596-6c55b1a694c2"
+                }
+              ],
+              "status": "SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+    post:
+      tags:
+        - project
+      summary: 添加工程
+      description: 向数据库中添加工程，但是添加的内容还没有确定，成功时返回合同的具体信息以及一个success状态
+      operationId: addProject
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+        - in: formData
+          name: params
+          description: |
+            合同的具体内容. JSON格式
+            ```
+            {
+              "xxx": "xxx"
+            }
+            ```
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            成功添加合同时的样例response body
+            ```
+            {
+              "data": {
+                "createdUserId": "2",
+                "createdTime": "2018-06-02 20:16:29",
+                "id": "cdd340fa-501c-42ab-9596-6c55b1a694c2"
+              },
+              "status": "SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - project
+      summary: 修改工程
+      description: 修改已有的工程，参数中需要包含工程的id，但是还未商定具体内容所以不知道可以对哪些参数进行改动
+      operationId: editProject
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+        - in: formData
+          name: params
+          description: |
+            合同具体内容. JSON格式. 需要指明合同的ID
+            ```
+            {
+              "id": 
+              "xxx":
+            }
+            ```
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            修改成功时的样例response body
+            ```
+            {
+              "data": {
+                "createdUserId": "2",
+                "alteredTime": "2018-06-02 20:25:16",
+                "createdTime": "2018-06-02 20:24:49",
+                "alteredUserId": "2",
+                "id": "028c9856-6d00-48ab-8b24-9328c29ef3a8"
+              },
+              "status": "SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - project
+      summary: 删除工程
+      description: 删除一个工程，需要提工程的具体id
+      operationId: deleteProject
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+        - in: formData
+          name: params
+          description: |
+            合同具体内容. JSON格式. 需要指明ID,其他内容为非必要
+            ```
+            {
+              "id": 
+              "xxx":
+            }
+            ```
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            成功删除工程
+            ```
+            {
+              "status":"SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+  '/services/project/{id}':
+    get:
+      tags:
+        - project
+      summary: 根据id查询工程
+      description: 根据请求中的id查询对应工程
+      operationId: queryProjectById
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 工程的id
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            成功查询工程. data内包含JsonArray格式的合同内容
+            ```
+            {
+              "data": {
+                "createdUserId": "2",
+                "createdTime": "2018-06-02 20:27:01",
+                "id": "0aee06e8-f44b-4594-8919-bd93e8f3a49f"
+              },
+              "status": "SUCCESS"
             }
             ```
         '405':

@@ -31,6 +31,8 @@ springBeans
 
 # Log file
 *.log
+*.log.*
+nohup.out
 
 # OSX
 # =========================
@@ -56,6 +58,9 @@ buildNumber.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
+
+# Avoid ignoring gradle-wrapper.jar in android
+!/client/framework-androidclient/android/gradle/wrapper/gradle-wrapper.jar
 
 # BlueJ files
 *.ctxt
