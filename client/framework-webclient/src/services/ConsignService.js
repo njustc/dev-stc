@@ -61,15 +61,15 @@ export const updateConsign = (dispatch, data, callback) => {
     });
 };
 
-export const getConsignState = (dispatch, processInstanceID, callback) => {
-    httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            dispatch(setConsignContent(data));
-        }
-        callback && callback(status);
-    })
-};
+// export const getConsignState = (dispatch, processInstanceID, callback) => {
+//     httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
+//         const {status, data} = result;
+//         if (status === STATUS.SUCCESS) {
+//             dispatch(setConsignContent(data));
+//         }
+//         callback && callback(status);
+//     })
+// };
 
 export const putConsignState = (dispatch, processInstanceID, data, id, callback) => {
     // console.log("ID = " + processInstanceID);
