@@ -181,7 +181,7 @@ export default class TestRecordListComponent extends Component {
                     <Col span={1}></Col>
                     {/*this.props.enableNew*/1 ?
                         <Col span={2}>
-                            <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建测试方案</Button>
+                            <Button type="primary" onClick={this.props.newTestProgram}><Icon type="plus-circle-o" />新建测试方案</Button>
                         </Col>
                         : <Col span={2}></Col>}
                 </InputGroup>
