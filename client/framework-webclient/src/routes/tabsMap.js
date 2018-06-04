@@ -2,7 +2,7 @@ import {ProjectView} from "./Project";
 import {ConsignListView} from "./Consign";
 import {ContractListView, ContractCheckListView} from "./Contract"
 import {TestCaseListView, TestRecordListView, TestProblemListView, TestProgramListView} from "./Test";
-import {TestReportListView, TestReportCheckListView} from "./Report"
+import {TestReportListView, TestReportCheckListView} from "./TestReport"
 import {TestWorkCheckListView, SatisfactionListView} from "./Archive";
 
 const tabsMap = {

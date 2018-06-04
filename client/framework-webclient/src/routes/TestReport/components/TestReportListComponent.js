@@ -16,13 +16,13 @@ export default class TestReportListComponent extends Component {
     }
 
     static propTypes = {
-        //setListFilter: PropTypes.func,
+        setListFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
-        //deleteConsign: PropTypes.func,
+        deleteTestReport: PropTypes.func,
         getTestReportList: PropTypes.func,
-        //newContract: PropTypes.func,
-        //enableNew: PropTypes.bool,
+        newTestReport: PropTypes.func,
+        enableNew: PropTypes.bool,
     };
 
     componentDidMount() {
@@ -44,12 +44,10 @@ export default class TestReportListComponent extends Component {
         switch (this.state.selectOption){
             case 'id':
                 return '请输入测试报告ID';
-            case 'customerId':
+            case 'createdUserId':
                 return '请输入委托人ID';
             case 'name':
-                return '请输入项目名称';
-            case 'pid':
-                return '请输入项目ID';
+                return '请输入测试报告名称';
             default:break;
         }
     };
@@ -65,42 +63,45 @@ export default class TestReportListComponent extends Component {
     }
 
     state2C(state) {
-        switch (state){/*TODO*/
+        // debugger;
+        switch (state){
             case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
             case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.CANCELED: return "已取消";
+            case STATE.FINISHED: return "已通过";
             default: return "未定义状态";
         }
     }
 
     /*table列设置*/
     columns = [{
-        title:"项目ID",
-        dataIndex:"pid",
-        sorter:(a, b) => a.pid - b.pid,
-    }, {
         title:"测试报告ID",
         dataIndex:"id",
+        //width: '25%',
         sorter:(a, b) => a.id - b.id,
     }, {
-        title:"项目名称",
+        title:"测试报告名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
         dataIndex:"name",
     }, {
         title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"customerId",
+        dataIndex:"createdUserId",
     }, {
         title:"状态",
-        dataIndex:"status",
-        render: (status) =>{
+        dataIndex:"state",
+        render: (/*status*/state) =>{
             return (
+                <span>
+                    <Badge status={this.state2SColor(state)} text={this.state2C(state)} />
+                </span>
+            )
+            /*return (
                 <span>
                     <Badge status={this.state2SColor(status)} text={this.state2C(status)} />
                 </span>
-            )
+            )*/
         },
         /*TODO 给状态列加个过滤*/
-        /*
-        filters: [{
+        /*filters: [{
             text: '待提交',
             value: 'TobeSubmit',
         }, {
@@ -118,13 +119,14 @@ export default class TestReportListComponent extends Component {
         title:"操作",
         dataIndex:"id",
         key:"operation",
+        //width: '12%',
         render: (record) => {
-            /*TODO*/
+            /*TODO:操作应该由后台传过来*/
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
-                    {/*<Divider type="vertical"/>
-                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>*/}
+                    <Divider type="vertical"/>
+                    <a href="javascript:void(0);" disabled={!this.props.enableNew} onClick={this.showDeleteConfirm(record)}>取消测试报告</a>
                 </div>
             )
         }
@@ -133,14 +135,13 @@ export default class TestReportListComponent extends Component {
 
     /*查看详情*/
     viewContent = (record) => () => {
-        //console.log(record);
         this.props.showContent(record);
     };
 
     /*取消委托提示框*/
     showDeleteConfirm = (record) => () => {
         confirm({
-            title: 'Are you sure to delete this consign?',
+            title: '您确定要取消当前测试报告吗?',
             //content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
@@ -148,40 +149,41 @@ export default class TestReportListComponent extends Component {
             onOk: () => {
                 //console.log(id);
                 //debugger;
-                //this.deleteConsign(id);
+                //this.deleteTestReportn(id);
                 /*TODO 取消委托的函数的参数需要优化*/
-                this.props.deleteConsign(record);
+                this.props.deleteTestReportn(record);
             },
             onCancel() {},
         });
     };
 
-    /*TODO 搜索功能*/
+    /*TODO:搜索功能*/
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
-        this.props.setListFilter((record) => record.id.match(reg));
+        this.props.setListFilter((record) => record.match(reg));
     };
 
     render() {
         return (
             <div>
-                <h3 style={{ marginBottom: 16 }}>测试报告列表</h3>
+                <h3 style={{ marginBottom: 16 }}>委托列表</h3>
                 <InputGroup>
                     <Col span={3}>
                         <Select defaultValue="搜索测试报告ID" onSelect={this.onSelect}>
                             <Option value="id">搜索测试报告ID</Option>
-                            <Option value="pid">搜索项目ID</Option>
-                            <Option value="customerId">搜索委托人ID</Option>
-                            <Option value="name">搜索项目名称 </Option>
+                            <Option value="createdUserId">搜索委托人ID</Option>
+                            <Option value="name">搜索测试报告名称 </Option>
                         </Select>
                     </Col>
                     <Col span={8}>
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    {/*this.props.enableNew*/0 ?
+                    {/*this.props.enableNew*/1 ?
                         <Col span={2}>
-                            <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建测试报告</Button>
+                            <Button
+                                //disabled={!this.props.enableNew}
+                                type="primary" onClick={this.props.newTestReport}><Icon type="plus-circle-o" />新建测试报告</Button>
                         </Col>
                         : <Col span={2}></Col>}
                 </InputGroup>
