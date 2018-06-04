@@ -8,7 +8,6 @@ import {STATUS} from "../../../services/common";
 const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    //console.log(authData);
     const consignation = state.Consign.listMap[ownProps.id].consignation;
     return {
         // consignData: {},/*fetch data with pro id*/
@@ -94,8 +93,8 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttonsçš„æ
 const mapDispatchToProps = (dispatch) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //const isVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
-    const isEditVisible = true||authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===1;
-    const isReviewVisible = true&&authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "REVIEW")===1;
+    const isEditVisible = true||authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===true;
+    const isReviewVisible = true&&authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "REVIEW")===true;
     return {
         buttons: buttons(dispatch,isEditVisible,isReviewVisible).filter(button => button.enable===true),
         getValues: (id) => getConsign(dispatch,id)
