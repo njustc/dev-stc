@@ -129,7 +129,7 @@ class ContractContentComponent extends Component {
                                 本合同由作为委托方的
                                 {getFieldDecorator('ConsignA.unitName', {
                                     rules: [{ required: true, message: '请输入单位全称！' }],
-                                    initialValue: this.props.values.ConsignA.unitName,
+                                    //initialValue: this.props.values.ConsignA.unitName,
                                 })(
                                     <Input style={InputStyle} disabled={this.props.disable}/>
                                 )}（以下简称“甲方”）与作为受托方的
