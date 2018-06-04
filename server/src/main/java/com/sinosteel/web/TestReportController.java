@@ -85,7 +85,7 @@ public class TestReportController extends BaseController{
         return response;
     }
 
-    @RequestMapping(value = "/v1git add ./testReport", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/v1/testReport", method = RequestMethod.DELETE)
     public Response deleteProject(Request request) {
 
         Response response = new Response();
