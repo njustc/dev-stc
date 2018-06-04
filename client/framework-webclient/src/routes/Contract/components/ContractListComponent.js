@@ -71,7 +71,7 @@ export default class ContractListComponent extends Component {
             case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.TO_CONFIRM: return "待确认";
             case STATE.CANCELED: return "已取消";
-            case STATE.FINISHED: return "已通过";
+            case STATE.FINISHED: return "已确认";
             default: return "未定义状态";
         }
     }
