@@ -43,7 +43,7 @@ public class ProjectService extends BaseService<Project>{
     }
 
     //根据工程id查询工程
-    public JSON queryProjectById(String id) throws Exception{
+    public JSONObject queryProjectById(String id) throws Exception{
         Project project = projectRepository.findById(id);
         if(project == null) {
             throw new Exception("Not found");
