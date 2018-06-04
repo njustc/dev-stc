@@ -127,15 +127,15 @@ class ContractContentComponent extends Component {
                         <FormItem {...formItemLayout}>
                             <InputGroup compact>
                                 本合同由作为委托方的
-                                {getFieldDecorator('ConsignA', {
+                                {getFieldDecorator('ConsignA.unitName', {
                                     rules: [{ required: true, message: '请输入单位全称！' }],
-                                    initialValue: this.props.values.ConsignA,
+                                    initialValue: this.props.values.ConsignA.unitName,
                                 })(
                                     <Input style={InputStyle} disabled={this.props.disable}/>
                                 )}（以下简称“甲方”）与作为受托方的
-                                {getFieldDecorator('ConsignB', {
+                                {getFieldDecorator('ConsignB.unitName', {
                                     rules: [{ required: true, message: '请输入单位全称！' }],
-                                    initialValue: this.props.values.ConsignB,
+                                    initialValue: this.props.values.ConsignB.unitName,
                                 })(
                                     <Input style={InputStyle} disabled={this.props.disable}/>
                                 )}（以下简称“乙方”）在平等自愿的基础上，依据《中华人民共和国合同法》有关规定就项目的执行，经友好协商后订立。
@@ -231,6 +231,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"单位全称"}>
                                             {getFieldDecorator('ConsignA.unitName', {
                                                 rules: [{ required: true, message: '请输入单位全称！' }],
+                                                initialValue: this.props.values.ConsignA.unitName,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -239,6 +240,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"授权代表"}>
                                             {getFieldDecorator('ConsignA.authRepresent', {
                                                 rules: [{ required: true, message: '请输入授权代表！' }],
+                                                initialValue: this.props.values.ConsignA.authRepresent,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -248,6 +250,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"签章日期"}>
                                             {getFieldDecorator('ConsignA.signData', {
                                                 rules: [{ required: true, message: '请输入签章日期！' }],
+                                                initialValue: this.props.values.ConsignA.signData,
                                             })(
                                                 <DatePicker showTime format="YYYY-MM-DD"/>
                                             )}
@@ -256,6 +259,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"联系人"}>
                                             {getFieldDecorator('ConsignA.contact', {
                                                 rules: [{ required: true, message: '请输入联系人！' ,pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$"}],
+                                                initialValue: this.props.values.ConsignA.contact,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -264,6 +268,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"通讯地址"}>
                                             {getFieldDecorator('ConsignA.poAddress', {
                                                 rules: [{ required: true, message: '请输入通讯地址！' }],
+                                                initialValue: this.props.values.ConsignA.poAddress,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -272,6 +277,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"电话"}>
                                             {getFieldDecorator('ConsignA.phone', {
                                                 rules: [{ required: true, message: '请输入电话！',pattern:"^[0-9/-]+$"}],
+                                                initialValue: this.props.values.ConsignA.phone,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -280,6 +286,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"传真"}>
                                             {getFieldDecorator('ConsignA.fax', {
                                                 rules: [{ required: true, message: '请输入传真！',pattern:"^[0-9/-]+$" }],
+                                                initialValue: this.props.values.ConsignA.fax,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -288,6 +295,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"开户银行"}>
                                             {getFieldDecorator('ConsignA.accountBank', {
                                                 rules: [{ required: true, message: '请输入开户银行！',pattern:"^[a-zA-Z\u4E00-\u9FA5]+$" }],
+                                                initialValue: this.props.values.ConsignA.accountBank,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -296,6 +304,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"账号"}>
                                             {getFieldDecorator('ConsignA.accountNum', {
                                                 rules: [{ required: true, message: '请输入账号！',pattern:"^[a-zA-Z0-9]+$" }],
+                                                initialValue: this.props.values.ConsignA.accountNum,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -304,6 +313,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"邮编"}>
                                             {getFieldDecorator('ConsignA.postCode', {
                                                 rules: [{ required: true, message: '请输入邮编！',pattern:"^[0-9/-]+$",max:6 }],
+                                                initialValue: this.props.values.ConsignA.postCode,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -314,6 +324,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"单位全称"}>
                                             {getFieldDecorator('ConsignB.unitName', {
                                                 rules: [{ required: true, message: '请输入单位全称！' }],
+                                                initialValue: this.props.values.ConsignB.unitName,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -322,6 +333,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"授权代表"}>
                                             {getFieldDecorator('ConsignB.authRepresent', {
                                                 rules: [{ required: true, message: '请输入授权代表！' }],
+                                                initialValue: this.props.values.ConsignB.authRepresent,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -330,6 +342,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"签章日期"}>
                                             {getFieldDecorator('ConsignB.signData', {
                                                 rules: [{ required: true, message: '请输入签章日期！' }],
+                                                initialValue: this.props.values.ConsignB.signData,
                                             })(
                                                 <DatePicker showTime format="YYYY-MM-DD"/>
                                             )}
@@ -338,6 +351,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"联系人"}>
                                             {getFieldDecorator('ConsignB.contact', {
                                                 rules: [{ required: true, message: '请输入联系人！' ,pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$"}],
+                                                initialValue: this.props.values.ConsignB.contact,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -346,6 +360,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"通讯地址"}>
                                             {getFieldDecorator('ConsignB.poAddress', {
                                                 rules: [{ required: true, message: '请输入通讯地址！' }],
+                                                initialValue: this.props.values.ConsignB.poAddress,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -354,6 +369,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"电话"}>
                                             {getFieldDecorator('ConsignB.phone', {
                                                 rules: [{ required: true, message: '请输入电话！',pattern:"^[0-9/-]+$"}],
+                                                initialValue: this.props.values.ConsignB.phone,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -362,6 +378,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"传真"}>
                                             {getFieldDecorator('ConsignB.fax', {
                                                 rules: [{ required: true, message: '请输入传真！',pattern:"^[0-9/-]+$" }],
+                                                initialValue: this.props.values.ConsignB.fax,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -370,6 +387,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"开户银行"}>
                                             {getFieldDecorator('ConsignB.accountBank', {
                                                 rules: [{ required: true, message: '请输入开户银行！',pattern:"^[a-zA-Z\u4E00-\u9FA5]+$" }],
+                                                initialValue: this.props.values.ConsignB.accountBank,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -378,6 +396,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"账号"}>
                                             {getFieldDecorator('ConsignB.accountNum', {
                                                 rules: [{ required: true, message: '请输入账号！',pattern:"^[a-zA-Z0-9]+$" }],
+                                                initialValue: this.props.values.ConsignB.accountNum,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
@@ -386,6 +405,7 @@ class ContractContentComponent extends Component {
                                         <FormItem {...formItemLayout} label={"邮编"}>
                                             {getFieldDecorator('ConsignB.postCode', {
                                                 rules: [{ required: true, message: '请输入邮编！',pattern:"^[0-9/-]+$",max:6 }],
+                                                initialValue: this.props.values.ConsignB.postCode,
                                             })(
                                                 <Input disabled={this.props.disable}/>
                                             )}
