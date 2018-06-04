@@ -16,10 +16,10 @@ export default class TestRecordListComponent extends Component {
     }
 
     static propTypes = {
-        //setListFilter: PropTypes.func,
+        setListFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
-        //deleteConsign: PropTypes.func,
+        deleteTestProgram: PropTypes.func,
         getTestProgramList: PropTypes.func,
         //newContract: PropTypes.func,
         //enableNew: PropTypes.bool,
@@ -123,8 +123,9 @@ export default class TestRecordListComponent extends Component {
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
-                    {/*<Divider type="vertical"/>
-                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>*/}
+                    <Divider type="vertical"/>
+                    <a href="javascript:void(0);"
+                       onClick={this.showDeleteConfirm(record)}>删除测试方案</a>
                 </div>
             )
         }
