@@ -58,6 +58,7 @@ export default class ContractListComponent extends Component {
         switch (state){
             case STATE.TO_SUBMIT: return "processing";
             case STATE.TO_REVIEW: return "processing";
+            case STATE.TO_CONFIRM: return "processing";
             case STATE.CANCELED: return "default";
             default: return "error";
         }
@@ -68,6 +69,7 @@ export default class ContractListComponent extends Component {
         switch (state){
             case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
             case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
+            case STATE.TO_CONFIRM: return "待确认";
             case STATE.CANCELED: return "已取消";
             case STATE.FINISHED: return "已通过";
             default: return "未定义状态";

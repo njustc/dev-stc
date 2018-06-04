@@ -52,26 +52,24 @@ export const newContract = (dispatch, callback) => {
 };
 
 export const updateContract = (dispatch, data, callback) => {
-    console.log(data);
     httpPut(contractBase, data, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            console.log(data);
             dispatch(setContractContent(data));
         }
         callback && callback(status);
     });
 };
 
-export const getContractState = (dispatch, processInstanceID, callback) => {
-    httpGet(contractActivitiBase + '/' + processInstanceID, (result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            dispatch(setContractContent(data));
-        }
-        callback && callback(status);
-    })
-};
+// export const getContractState = (dispatch, processInstanceID, callback) => {
+//     httpGet(contractActivitiBase + '/' + processInstanceID, (result) => {
+//         const {status, data} = result;
+//         if (status === STATUS.SUCCESS) {
+//             dispatch(setContractContent(data));
+//         }
+//         callback && callback(status);
+//     })
+// };
 
 export const putContractState = (dispatch, processInstanceID, data, id, callback) => {
     httpPut(contractActivitiBase + '/' + processInstanceID, data, (result) => {
