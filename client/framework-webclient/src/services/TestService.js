@@ -3,7 +3,7 @@ import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
 import {setTestProgramList,setTestCaseList,setTestRecordList,setTestProblemList/*, addConsign, removeConsign, setConsignContent,  setConsignState*/} from "../modules/ducks/Test";
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
-import {setConsignContent} from "../modules/ducks/Consign";
+import {setTestProgramContent} from "../modules/ducks/Test";
 import {setContractContent} from "../modules/ducks/Contract";
 
 const testProgramBase = baseServiceAddress + '/v1/testplan';
