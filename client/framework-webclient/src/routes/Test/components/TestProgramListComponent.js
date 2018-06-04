@@ -179,7 +179,7 @@ export default class TestRecordListComponent extends Component {
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    {/*this.props.enableNew*/0 ?
+                    {/*this.props.enableNew*/1 ?
                         <Col span={2}>
                             <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建测试方案</Button>
                         </Col>
