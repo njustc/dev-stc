@@ -16,12 +16,19 @@ class ContractCheckContentComponent extends Component {
     };
 
     static propTypes = {
+        contractCheckData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };
 
+    componentWillMount() {
+        //     this.curID = this.props.curKey;
+        //     // console.log(this.curID);
+        this.props.getValues(this.props.contractCheckData.id);
+        //     // console.log(this.values);
+    };
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
         //     if (!err) {
@@ -29,7 +36,7 @@ class ContractCheckContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));
+        buttons[buttonIndex].onClick(this.props.contractCheckData,JSON.stringify(form.getFieldsValue()));
     };
 
     render() {
@@ -71,9 +78,9 @@ class ContractCheckContentComponent extends Component {
                     )}
                 </FormItem>
 
-                <FormItem {...formItemLayout} label={"评审内容"}>
+                <FormItem {...formItemLayout} label={"检测内容"}>
                     {getFieldDecorator('testContent', {
-                        rules: [{ required: true, message: '请输入评审内容！' }],
+                        rules: [{ required: true, message: '请输入检测内容！' }],
                         initialValue: this.props.values.testContent,
                     })(
                         <TextArea disabled={this.props.disable}
