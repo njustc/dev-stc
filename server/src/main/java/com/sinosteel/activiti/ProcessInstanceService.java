@@ -10,10 +10,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProcessInstanceService {
-    @Autowired
-    private BaseActiviti baseActiviti;
+/*    @Autowired
+    private BaseActiviti baseActiviti;*/
     @Autowired
     private ProcessInstanceUpdate processInstanceUpdate;
+
     /*开启一个委托实例*/
     public String createConsignProcess(JSONObject params, User user)
     {
@@ -21,8 +22,7 @@ public class ProcessInstanceService {
        // return baseActiviti.consignActiviti.createConsignProcess(consign.getId(), user.getId());
         return processInstanceUpdate.createConsignProcess(consign.getId(),user.getId());
     }
-
-    //TODO: create contract processInstance
+    /*开启一个合同实例*/
     public String createContractProcess(JSONObject params, User user) throws Exception{
         Contract contract = JSONObject.toJavaObject(params, Contract.class);
         //return baseActiviti.contractActiviti.createContractProcess(contract.getId(), user.getId(),"W0");
