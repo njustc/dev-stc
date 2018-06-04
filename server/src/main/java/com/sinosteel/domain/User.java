@@ -71,6 +71,19 @@ public class User extends BaseEntity
 	}
 	//==============================================
 
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USER_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+	@JSONField(serialize = false)
+	private List<TestReport> testReports;
+
+	public List<TestReport> getTestReports(){
+		return testReports;
+	}
+
+	public void setTestReports(List<TestReport>testReports){
+		this.testReports = testReports;
+	}
+
 	@Transient
 	private List<Function> functions;
 

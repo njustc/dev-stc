@@ -2,9 +2,10 @@ import React, {Component,PropTypes} from 'react';
 import {connect} from "react-redux";
 import {addTabAction} from "MODULES/ducks/Layout";
 import {TestProgramContentView} from "../../Test";
-import {getTestProgramList} from "../../../services/TestService";
+import {getTestProgramList, newTestProgram} from "../../../services/TestService";
 //import {setTestRecordFilter} from "../../../modules/ducks/Consign";
 import TestProgramListComponent from "../components/TestProgramListComponent";
+import {deleteContract, newContract} from "../../../services/ContractService";
 
 const mapStateToProps = (state) => {
     return {
@@ -19,7 +20,8 @@ const mapDispatchToProps = (dispatch) => {
 //            dispatch(setConsignContent())
         },
         //setListFilter: (listFilter) => dispatch(setConsignFilter(listFilter)),
-        getTestProgramList: () => getTestProgramList(dispatch)
+        getTestProgramList: () => getTestProgramList(dispatch),
+        newTestProgram: () => newTestProgram(dispatch)
     }
 };
 

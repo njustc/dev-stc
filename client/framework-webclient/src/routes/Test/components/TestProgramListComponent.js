@@ -16,10 +16,10 @@ export default class TestRecordListComponent extends Component {
     }
 
     static propTypes = {
-        //setListFilter: PropTypes.func,
+        setListFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
-        //deleteConsign: PropTypes.func,
+        deleteTestProgram: PropTypes.func,
         getTestProgramList: PropTypes.func,
         //newContract: PropTypes.func,
         //enableNew: PropTypes.bool,
@@ -58,7 +58,7 @@ export default class TestRecordListComponent extends Component {
     state2SColor(state) {
         switch (state){
             case STATE.TO_SUBMIT: return "processing";
-            case STATE.TO_CHECK: return "processing";
+            case STATE.TO_REVIEW: return "processing";
             case STATE.CANCELED: return "default";
             default: return "error";
         }
@@ -67,7 +67,7 @@ export default class TestRecordListComponent extends Component {
     state2C(state) {
         switch (state){/*TODO*/
             case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
-            case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
+            case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.CANCELED: return "已取消";
             default: return "未定义状态";
         }
@@ -123,8 +123,9 @@ export default class TestRecordListComponent extends Component {
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
-                    {/*<Divider type="vertical"/>
-                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>*/}
+                    <Divider type="vertical"/>
+                    <a href="javascript:void(0);"
+                       onClick={this.showDeleteConfirm(record)}>删除测试方案</a>
                 </div>
             )
         }
@@ -179,9 +180,9 @@ export default class TestRecordListComponent extends Component {
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    {/*this.props.enableNew*/0 ?
+                    {/*this.props.enableNew*/1 ?
                         <Col span={2}>
-                            <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建测试方案</Button>
+                            <Button type="primary" onClick={this.props.newTestProgram}><Icon type="plus-circle-o" />新建测试方案</Button>
                         </Col>
                         : <Col span={2}></Col>}
                 </InputGroup>

@@ -27,7 +27,7 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
-public class ProcessInstanceUpdateInstanceServiceTest {
+public class ProcessInstanceServiceTest {
 
     @Autowired
     private ProcessInstanceService processInstanceService;
@@ -57,7 +57,7 @@ public class ProcessInstanceUpdateInstanceServiceTest {
        // jsonObject.put("contractation", "这是customer2在ProcessInstanceServiceTest中新建的hetong");
         try {
             consignJson = consignService.addConsign(jsonObject, null, customer1);
-            contractJson=contractService.addContract(jsonObject1,null,customer2);
+            contractJson= contractService.addContract(jsonObject1,null,customer2);
         } catch (Exception e) {
             e.printStackTrace();
         }

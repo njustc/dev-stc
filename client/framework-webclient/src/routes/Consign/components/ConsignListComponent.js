@@ -44,7 +44,7 @@ export default class ConsignListComponent extends Component {
         switch (this.state.selectOption){
             case 'id':
                 return '请输入委托ID';
-            case 'customerId':
+            case 'createdUserId':
                 return '请输入委托人ID';
             case 'name':
                 return '请输入委托名称';
@@ -56,7 +56,7 @@ export default class ConsignListComponent extends Component {
     state2SColor(state) {
         switch (state){
             case STATE.TO_SUBMIT: return "processing";
-            case STATE.TO_CHECK: return "processing";
+            case STATE.TO_REVIEW: return "processing";
             case STATE.CANCELED: return "default";
             default: return "error";
         }
@@ -66,7 +66,7 @@ export default class ConsignListComponent extends Component {
         // debugger;
         switch (state){
             case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
-            case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
+            case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.CANCELED: return "已取消";
             case STATE.FINISHED: return "已通过";
             default: return "未定义状态";
@@ -84,16 +84,21 @@ export default class ConsignListComponent extends Component {
         dataIndex:"name",
     }, {
         title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"customerId",
+        dataIndex:"createdUserId",
     }, {
         title:"状态",
         dataIndex:"state",
-        render: (status) =>{
+        render: (/*status*/state) =>{
             return (
+                <span>
+                    <Badge status={this.state2SColor(state)} text={this.state2C(state)} />
+                </span>
+            )
+            /*return (
                 <span>
                     <Badge status={this.state2SColor(status)} text={this.state2C(status)} />
                 </span>
-            )
+            )*/
         },
         /*TODO 给状态列加个过滤*/
         /*filters: [{
@@ -166,7 +171,7 @@ export default class ConsignListComponent extends Component {
                     <Col span={3}>
                         <Select defaultValue="搜索委托ID" onSelect={this.onSelect}>
                             <Option value="id">搜索委托ID</Option>
-                            <Option value="customerId">搜索委托人ID</Option>
+                            <Option value="createdUserId">搜索委托人ID</Option>
                             <Option value="name">搜索委托名称 </Option>
                         </Select>
                     </Col>

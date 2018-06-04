@@ -21,7 +21,7 @@ public class ProjectController extends BaseController{
     private ProjectService projectService;
 
     //根据用户查询
-    @RequestMapping(value = "/project", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/project", method = RequestMethod.GET)
     public Response queryProjects(Request request) {
         Response response = new Response();
 
@@ -38,7 +38,7 @@ public class ProjectController extends BaseController{
     }
 
     //根据id查询工程
-    @RequestMapping(value = "/project/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/project/{id}", method = RequestMethod.GET)
     public Response queryProjectByID(@PathVariable String id, Request request) {
 
         Response response = new Response();
@@ -56,7 +56,7 @@ public class ProjectController extends BaseController{
     }
 
     //添加
-    @RequestMapping(value = "/project", method = RequestMethod.POST)
+    @RequestMapping(value = "/v1/project", method = RequestMethod.POST)
     public Response addProject(Request request) {
         Response response = new Response();
         try {
@@ -72,7 +72,7 @@ public class ProjectController extends BaseController{
     }
 
     //更新
-    @RequestMapping(value = "/project", method = RequestMethod.PUT)
+    @RequestMapping(value = "/v1/project", method = RequestMethod.PUT)
     public Response editProject(Request request) {
 
         Response response = new Response();
@@ -90,7 +90,7 @@ public class ProjectController extends BaseController{
     }
 
     //删除
-    @RequestMapping(value = "/project", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/v1/project", method = RequestMethod.DELETE)
     public Response deleteProject(Request request) {
 
         Response response = new Response();

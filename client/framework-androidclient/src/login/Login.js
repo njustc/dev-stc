@@ -65,7 +65,7 @@ export default class LoginView extends React.Component{
                 toastMsg = '用户名或密码错误';
                 ToastAndroid.showWithGravity(toastMsg, 1000, ToastAndroid.CENTER);
             }
-            //callback && callback(status);
+            // callback && callback(status);
         })
     }
 

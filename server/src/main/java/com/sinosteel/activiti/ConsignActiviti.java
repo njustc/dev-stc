@@ -17,8 +17,6 @@ import java.util.Map;
  * 包括新建委托、提交委托、审核委托、根据委托ID查询、根据客户ID查询和查询工作人员待处理委托
  */
 @Service
-//enum bpmnVar{ConsignID,ClientID,Approval}
-//enum bpmnTaskName{TobeSubmit,TobeCheck}
 public class ConsignActiviti {
     @Autowired
     protected RuntimeService runtimeService;
