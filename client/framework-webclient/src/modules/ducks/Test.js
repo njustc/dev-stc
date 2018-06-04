@@ -1,4 +1,5 @@
 const TPG_SET_LIST = 'TestProgram/SET_LIST';
+const TPG_SET_CONTENT = 'TestProgram/SET_CONTENT';
 const TC_SET_LIST = 'TestCase/SET_LIST';
 const TR_SET_LIST = 'TestRecord/SET_LIST';
 const TPB_SET_LIST = 'TestProblem/SET_LIST';
@@ -38,32 +39,21 @@ export const TestProgramReducer = (state = initialTestProgramState, action) => {
                     return listMap;
                 }, {}),
             };
-        /*case RM_CONTENT:
-            const id = action.payload;
-            return {
-                ...state,
-                listMap: {
-                    ...state.listMap,
-                    [id]: undefined,
-                },
-            };
-        case SET_CONTENT: {
+        case TPG_SET_CONTENT: {
             const {id} = action.payload;
-            const ConsignData = action.payload;
+            const TestProgramData = action.payload;
+            const newData = {
+                ...state.listMap[id],
+                ...TestProgramData,
+            };
             return {
                 ...state,
                 listMap: {
                     ...state.listMap,
-                    [id]: ConsignData,
+                    [id]: newData,
                 },
             };
         }
-        case SET_FILTER:
-            const listFilter = action.payload;
-            return {
-                ...state,
-                listFilter: listFilter,
-            };*/
         default:
             return state;
     }
@@ -73,6 +63,13 @@ export const setTestProgramList = (list) => {
     return {
         type: TPG_SET_LIST,
         payload: list,
+    }
+};
+
+export const setTestProgramContent = (data) => {
+    return {
+        type: TPG_SET_CONTENT,
+        payload: data,
     }
 };
 
@@ -222,25 +219,3 @@ export const setTestProblemList = (list) => {
         payload: list,
     }
 };
-/*
-export const removeConsign = (id) => {
-    return {
-        type: RM_CONTENT,
-        payload: id,
-    }
-};
-
-export const setConsignContent = (ConsignData) => {
-    return {
-        type: SET_CONTENT,
-        payload: ConsignData,
-    }
-};
-
-export const setConsignFilter = (listFilter) => {
-    return {
-        type: SET_FILTER,
-        payload: listFilter,
-    }
-};
-*/

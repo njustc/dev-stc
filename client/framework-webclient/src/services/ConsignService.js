@@ -15,8 +15,6 @@ export const getConsignList = (dispatch, callback) => {
         }
         callback && callback(status);
     });
-    // const status = STATUS.SUCCESS;
-    // callback && callback(status);
 };
 
 export const getConsign = (dispatch, id, callback) => {
