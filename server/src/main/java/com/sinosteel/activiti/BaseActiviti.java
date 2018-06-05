@@ -17,9 +17,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
+/*
  * @author Paul
  */
+
 @Service
 public class BaseActiviti {
     private static final Logger logger = LoggerFactory.getLogger(com.sinosteel.activiti.ConsignActiviti.class);
@@ -70,11 +71,12 @@ public class BaseActiviti {
             throw new Exception("can't recognize object");
         }
     }
-    /**
+/*
      * 根据流程实例的id查询流程实例当前的状态
      * @param processInstanceId
      * @return return the state of processInstance
-     */
+ */
+
     public String getProcessState(String processInstanceId) throws Exception
     {
         ProcessInstance pi=runtimeService.createProcessInstanceQuery()
@@ -107,11 +109,12 @@ public class BaseActiviti {
         }
         else throw new Exception("historicList is null");
     }
-    /**
+/*
      * 根据用户的ID查询该用户的任务列表
      * @param userId
      * @return return the task list need to finish
-     */
+ */
+
     public List<Task> getUserTasks(String userId)
     {
         List<Task> tasks=taskService.createTaskQuery().taskAssignee(userId).list();
