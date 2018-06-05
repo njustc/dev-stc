@@ -16,7 +16,7 @@ public class ProcessInstanceService {
     private ProcessInstanceUpdate processInstanceUpdate;
 
     /*开启一个委托实例*/
-    public String createConsignProcess(JSONObject params, User user)
+    public String createConsignProcess(JSONObject params, User user)throws Exception
     {
         Consign consign = JSONObject.toJavaObject(params, Consign.class);
        // return baseActiviti.consignActiviti.createConsignProcess(consign.getId(), user.getId());

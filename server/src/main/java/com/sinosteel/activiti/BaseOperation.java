@@ -43,7 +43,7 @@ public class BaseOperation {
         Task task=taskService.createTaskQuery()
                 .processInstanceId(processInstanceId).singleResult();
         if(task.getName().equals(state.TobeReview.name())||task.getName().equals(state.TobeConfirm.name())){
-            //taskService.claim(task.getId(),workerId);
+            taskService.claim(task.getId(),workerId);
             Map<String,Object> variables=new HashMap<String, Object>();
             variables.put("approval",operation);
             taskService.complete(task.getId(),variables);}

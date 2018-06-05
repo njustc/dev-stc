@@ -3,6 +3,7 @@ package com.sinosteel.activiti;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.domain.User;
 import com.sinosteel.framework.core.web.Request;
+import com.sinosteel.framework.mybatis.UserMapper;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -31,6 +32,8 @@ public class ProcessInstanceUpdate {
 
     enum TaskOperation{submit,review,confirm,write,implement}
 
+    @Autowired
+    private UserMapper userMapper;
     /**
      * TODO 将用户组传入流程实例
      *  新建一个新的委托实例
@@ -38,12 +41,18 @@ public class ProcessInstanceUpdate {
      * @param clientId 客户ID
      *
      */
-    public String createConsignProcess(String consignId, String clientId){
+    public String createConsignProcess(String consignId, String clientId)throws Exception{
         Map<String,Object> variables=new HashMap<String, Object>();
         variables.put("ConsignID",consignId);
         variables.put("ClientID",clientId);
-/*        variables.put("WorkerIDs","W0");
-        variables.put("WorkerIDs","W1");*/
+        List<String> userids = userMapper.getUserIdsByRoleId("1");
+        if(userids.isEmpty()==false) {
+            for(String userid : userids){
+                variables.put("WorkerIDs",userid);
+            }
+        }
+        else
+            throw new Exception("EMPTY");
         ProcessInstance pi=runtimeService.startProcessInstanceByKey("Consign",variables);
         return pi.getProcessInstanceId();
     }
@@ -59,8 +68,14 @@ public class ProcessInstanceUpdate {
         Map<String,Object> variables=new HashMap<String, Object>();
         variables.put("ContractID",contractId);
         variables.put("ClientID",clientId);
-/*        variables.put("WorkerIDs","W0");
-        variables.put("WorkerIDs","W1");*/
+        List<String> userids = userMapper.getUserIdsByRoleId("1");
+        if(userids.isEmpty()==false) {
+            for(String userid : userids){
+                variables.put("WorkerIDs",userid);
+            }
+        }
+        else
+            throw new Exception("EMPTY");
         ProcessInstance pi=runtimeService.startProcessInstanceByKey("contract",variables);
         return pi.getProcessInstanceId();
     }
@@ -80,13 +95,12 @@ public class ProcessInstanceUpdate {
             throw new Exception("object is null");
         }
         if(operation.contains(TaskOperation.submit.name())||operation.contains(TaskOperation.write.name())
-                ||operation.contains(TaskOperation.implement.name()))
-            baseOperation.noGate(processInstanceId);
-        else if(operation.contains(TaskOperation.review.name())||operation.contains(TaskOperation.confirm.name()))
-            baseOperation.containGate(operation,processInstanceId,request.getUser().getId());
-        else
-            throw new Exception("Operation match failed");
-
+                ||operation.contains(TaskOperation.implement.name())) {
+            baseOperation.noGate(processInstanceId);}
+        else if(operation.contains(TaskOperation.review.name())||operation.contains(TaskOperation.confirm.name())) {
+            baseOperation.containGate(operation,processInstanceId,request.getUser().getId());}
+        else{
+            throw new Exception("Operation match failed");}
     }
 
     /**

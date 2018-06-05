@@ -14,9 +14,10 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-/**
+/*
  * @author Paul
  */
+
 
 @IntegrationTest
 @RunWith(SpringJUnit4ClassRunner.class)

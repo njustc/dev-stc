@@ -12,9 +12,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.*;
 
-/**
+/*
 * @author LBW&Paul
  */
+
 
 @IntegrationTest
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,7 +28,7 @@ public class ConsignActivitiTest {
     @Autowired
     private ConsignActiviti consignActiviti;
 
-  /*新建委托测试*/
+
 
     @Test
     public void newConsign() throws Exception{
@@ -41,25 +42,24 @@ public class ConsignActivitiTest {
         System.out.println(queryResult);
     }
 
-    /*提交委托测试*/
+
     @Test
-    public void submitConsign() throws Exception{
-        String processInstanceID =  consignActiviti.createConsignProcess("0", "0");
+    public void submitConsign() throws Exception {
+        String processInstanceID = consignActiviti.createConsignProcess("0", "0");
         assertNotNull(processInstanceID);
-        String processInstanceID1 =  consignActiviti.createConsignProcess("1", "0");
+        String processInstanceID1 = consignActiviti.createConsignProcess("1", "0");
         assertNotNull(processInstanceID);
         System.out.println("委托实例成功创建。 ProcessInstanceID: " + processInstanceID);
         System.out.println("委托实例成功创建。 ProcessInstanceID: " + processInstanceID1);
         System.out.println(baseActiviti.getUserTasks("0"));
 
-       System.out.println("正在测试提交委托");
+        System.out.println("正在测试提交委托");
         consignActiviti.submit(processInstanceID, "0");
-       consignActiviti.submit(processInstanceID1, "0");
-       System.out.println(baseActiviti.getProcessState(processInstanceID));
+        consignActiviti.submit(processInstanceID1, "0");
+        System.out.println(baseActiviti.getProcessState(processInstanceID));
         System.out.println(baseActiviti.getProcessState(processInstanceID1));
     }
 
-    /*审核委托测试*/
     @Test
     public void checkConsign() throws Exception{
         String processInstanceID =  consignActiviti.createConsignProcess("0", "0");
@@ -81,7 +81,8 @@ public class ConsignActivitiTest {
         System.out.println(baseActiviti.getProcessState(processInstanceID));
     }
 
-    /*根据客户ID查询测试*/
+/*根据客户ID查询测试*/
+
     @Test
     public void getClientTasks() throws Exception{
         String processInstanceID =  consignActiviti.createConsignProcess("Con0", "Cit0");
@@ -102,7 +103,7 @@ public class ConsignActivitiTest {
        // System.out.println(consignActiviti.getUserTasks("Cit0"));
     }
 
-    /*查询测试人员待处理的委托*/
+
     @Test
     public void getWorkerTasks()throws Exception
     {
