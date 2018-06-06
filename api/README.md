@@ -7,7 +7,7 @@
 有两种方式使用Swagger API文档
 
 1. 在线访问我们的[Swagger API](http://121.42.175.137/swagger-ui-dist/)。
-2. 本地进行[部署](#deploy)并访问。
+2. 本地进行[部署](#Swagger本地部署说明)并访问。
 
 
 
