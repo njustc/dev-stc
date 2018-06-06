@@ -4,9 +4,17 @@
 * 界面优美，清晰明了
 * 能够直接进行测试
 
-需要使用Swagger-UI进行部署之后才能完整的使用本文档。
+有两种方式使用Swagger API文档
 
-## 部署说明
+1. 在线访问我们的[Swagger API](http://121.42.175.137/swagger-ui-dist/)。
+2. 本地进行[部署](#deploy)并访问。
+
+
+
+# Postman Collection使用说明
+如果使用postman，可以将文件`dev-stc.postman_collection.json`导入postman中，便可得到相关请求及实例。
+
+## <span id="deploy">Swagger本地部署说明</span>
 首先需要安装 http-server
 
 ```
@@ -20,5 +28,3 @@ http-server --cors
 ```
 运行成功后，进入`swagger-ui-dist`目录下用浏览器打开`index.html`即可
 
-# Postman Collection使用说明
-如果使用postman，可以将文件`dev-stc.postman_collection.json`导入postman中，便可得到所有的请求及实例

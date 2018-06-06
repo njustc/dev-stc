@@ -32,6 +32,6 @@ rm -rf /usr/share/nginx/dist
 \cp -rf ./dist/ /usr/share/nginx/
 cd ../../api/
 \cp -f ./swagger.json /usr/share/nginx/dist/
-\cp -rf ./swagger-ui-dist/ /usr/share/nginx/dist/
+#\cp -rf ./swagger-ui-dist/ /usr/share/nginx/dist/
 service nginx restart
 echo "Finish deploying front-end and swagger"
