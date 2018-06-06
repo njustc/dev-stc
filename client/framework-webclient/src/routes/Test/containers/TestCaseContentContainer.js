@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
     }
 };
 
-const buttons = (dispatch) => [{
+const buttons = (dispatch) => [/*{
     content: '保存',
     onClick: () =>{
 
@@ -31,7 +31,7 @@ const buttons = (dispatch) => [{
     onClick: () =>{
 
     }
-}];
+}*/];
 
 const mapDispatchToProps = (dispatch) => {
     return {
