@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge, Steps,Layout,Menu,List} from 'antd';
+import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge, Steps,Layout,Menu,List,Timeline} from 'antd';
 import {STATE} from "../../../services/common"
 
 const Search = Input.Search;
@@ -16,7 +16,7 @@ export default class ProjectContentComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            current: 0,
+            current: 4,
         };
     }
 
@@ -39,19 +39,19 @@ export default class ProjectContentComponent extends Component {
         //content: 'First-content',
     }, {
         title: '合同',
-        description: "This is a description.",
+        description: "合同已确认",
         //content: 'Second-content',
     }, {
         title: '测试',
-        description: "This is a description.",
+        description: "测试已完成",
         //content: 'Last-content',
     }, {
         title: '报告',
-        description: "This is a description.",
+        description: "测试报告已确认",
         //content: 'Last-content',
     }, {
         title: '结项',
-        description: "This is a description.",
+        description: "满意度调查表待提交",
         //content: 'Last-content',
     }];
 
@@ -67,7 +67,13 @@ export default class ProjectContentComponent extends Component {
         '测试报告检查表',
         '测试工作检查表',
         '满意度调查表'
-    ]
+    ];
+
+    onTitle() {
+      return (
+          <div>流程当前状态为：满意度调查表待提交</div>
+      );
+    };
     /*查看详情*/
     viewContent = (record) => () => {
         this.props.showContent(record);
@@ -102,6 +108,7 @@ export default class ProjectContentComponent extends Component {
                     <Layout style={{ background: '#fff' }}>
                 <h3>流程详情</h3>
                         <Card title="流程进度"
+                              hoverable
                               //bordered={false}
                         >
                             <Steps current={this.state.current}>
@@ -154,7 +161,7 @@ export default class ProjectContentComponent extends Component {
                             <Col span={3}>
                                 <List
                                     size="small"
-                                    header={<div style={letterStyle}>文档</div>}
+                                    header={<div>文档</div>}
                                     //footer={<div>Footer</div>}
                                     bordered
                                     //loadMore={loadMore}
@@ -172,33 +179,53 @@ export default class ProjectContentComponent extends Component {
                                         )}*/
                                 />
                             </Col>
-                            <Col span={21}>
-                                <Card title="Card title"
-                                      //bordered={false}
-                                >Card content</Card>
+                            <Col span={6}>
+                                <Card title='流程摘要信息' hoverable >
+                                    <div>流程ID：110</div>
+                                    <br/>
+                                    <div>项目名称：快乐星球小杨杰</div>
+                                    <br/>
+                                    <div>委托人ID：15120140</div>
+                                    <br/>
+                                    <div>委托人用户名：快乐星球小杨杰</div>
+                                    <br/>
+                                    <div>测试人：小猪佩奇</div>
+                                    <br/>
+                                    <div>项目价格：¥0.5</div>
+                                    <br/>
+                                    <div>备注：感谢曹老板指导,给曹老板打call</div>
+                                </Card>
                             </Col>
+                            <Col span={15}>
+                                <Card title={this.onTitle()}
+                                      hoverable
+                                      //bordered={false}
+                                >
+                                    <div>您现在可以：<a>提交满意度调查表</a></div>
+                                    <Divider/>
+                                    <Timeline>
+                                        <Timeline.Item color="green">委托通过评审 2015-09-01</Timeline.Item>
+                                        <Timeline.Item color="green">测试样品已提交 2015-09-01</Timeline.Item>
+                                        <Timeline.Item color="green">合同通过确认 2015-09-01</Timeline.Item>
+                                        <Timeline.Item color="green">测试方案通过评审 2015-09-01</Timeline.Item>
+                                        <Timeline.Item color="green">测试报告通过确认 2015-09-01</Timeline.Item>
+                                        <Timeline.Item color="blue">满意度调查表待提交 2015-09-01</Timeline.Item>
+                                    </Timeline>
+                                </Card>
+                            </Col>
+
                         </Row>
                 </Content>
-                        <Footer style={{ background: '#fff' }}>
+                        {/*TODO: 取消流程*/
+                            /*<Footer style={{ background: '#fff' }}>
                             <TextArea rows={4} />
                             <Button>
                                 取消
                             </Button>
-                        </Footer>
+                        </Footer>*/}
                 </Layout>
 
             </div>
         );
     }
 }
-
-var letterStyle = {
-    /*padding: 10,
-    margin: 10,
-    backgroundColor: "#fff",
-    color: "#333",
-    display: "inline-block",
-    fontFamily: "monospace",*/
-    fontSize: "32",
-    textAlign: "center"
-};
