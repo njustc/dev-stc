@@ -28,6 +28,6 @@ echo "Finish deploying back-end"
 
 echo "Start to deploy front-end"
 cd ../client/framework-webclient/
-docker cp ./dist mynginx:/usr/share/ngin/
+docker cp ./dist mynginx:/usr/share/nginx/
 docker exec -it mynginx nginx -s reload
 echo "Finish deploying front-end"
