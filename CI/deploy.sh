@@ -27,11 +27,12 @@ nohup java -jar target/framework-1.0.0.jar &
 echo "Finish deploying back-end"
 
 echo "Start to deploy front-end and swagger"
+service nginx stop
 cd ../client/framework-webclient/
-rm -rf /usr/share/nginx/dist
+rm -rf /usr/share/nginx/dist/
 \cp -rf ./dist/ /usr/share/nginx/
 cd ../../api/
 \cp -f ./swagger.json /usr/share/nginx/dist/
-#\cp -rf ./swagger-ui-dist/ /usr/share/nginx/dist/
-service nginx restart
+\cp -rf ./swagger-ui-dist/ /usr/share/nginx/dist/
+service nginx start
 echo "Finish deploying front-end and swagger"
