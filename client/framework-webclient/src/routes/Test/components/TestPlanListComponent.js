@@ -10,7 +10,7 @@ const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
 
-export default class TestRecordListComponent extends Component {
+export default class TestPlanListComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -19,14 +19,14 @@ export default class TestRecordListComponent extends Component {
         setListFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
-        deleteTestProgram: PropTypes.func,
-        getTestProgramList: PropTypes.func,
+        deleteTestPlan: PropTypes.func,
+        getTestPlanList: PropTypes.func,
         //newContract: PropTypes.func,
         //enableNew: PropTypes.bool,
     };
 
     componentDidMount() {
-        this.props.getTestProgramList();
+        this.props.getTestPlanList();
     }
 
     /*搜索框选项相关*/
@@ -182,7 +182,7 @@ export default class TestRecordListComponent extends Component {
                     <Col span={1}></Col>
                     {/*this.props.enableNew*/1 ?
                         <Col span={2}>
-                            <Button type="primary" onClick={this.props.newTestProgram}><Icon type="plus-circle-o" />新建测试方案</Button>
+                            <Button type="primary" onClick={this.props.newTestPlan}><Icon type="plus-circle-o" />新建测试方案</Button>
                         </Col>
                         : <Col span={2}></Col>}
                 </InputGroup>

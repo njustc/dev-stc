@@ -86,7 +86,7 @@ export default class CoreLayout extends Component
                             title={<span><Icon type="team" /><span>合同</span></span>}
                         >
                             <Menu.Item key="3" disabled={this.props.sider["3"].disable}>测试合同书</Menu.Item>
-                            <Menu.Item key="4" disabled={this.props.sider["4"].disable}>合同评审表</Menu.Item>
+                            {/*<Menu.Item key="4" disabled={this.props.sider["4"].disable}>合同评审表</Menu.Item>*/}
                         </SubMenu>
                         <SubMenu
                             key="sub3"
