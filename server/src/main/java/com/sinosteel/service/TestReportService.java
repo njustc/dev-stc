@@ -86,18 +86,19 @@ public class TestReportService extends BaseService<TestReport>{
         this.deleteEntity(uid);
     }
 
-
+    //删除测试报告内容 Todo：添加状态
     private JSONArray processTestReports(List<TestReport> testReports) throws Exception{
         JSONArray resultArray = new JSONArray();
         for (TestReport testReport: testReports){
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testReport));
+            jsonObject.remove("report");
             resultArray.add(jsonObject);
         }
 
         return  resultArray;
     }
 
-
+    //Todo: 增加测试报告状态
     private  JSONObject processTestReport(TestReport testReport) throws Exception{
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(testReport));
         return  jsonObject;

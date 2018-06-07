@@ -184,11 +184,12 @@ class TestCaseContentComponent extends Component {
                                 )}
                             </FormItem>
                             <FormItem {...formItemLayout}>
-                                {this.props.buttons.map((button, index) =>
+                                 {/*this.props.buttons.map((button, index) =>
                                     <Button onClick={this.onClick(index)}
                                             key={button.content}>
                                         {button.content}
-                                    </Button>)}
+                                    </Button>)*/}
+                                    <Button type='primary'><Icon type="plus-circle-o" />添加测试用例</Button>
                             </FormItem>
                         </Form>
                     </Card>

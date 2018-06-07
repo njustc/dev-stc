@@ -1,81 +1,104 @@
-import {removeProject, setProjectContent, setProjectList} from "MODULES/ducks/Project";
-import {baseServiceAddress, STATUS, STATE} from "SERVICES/common";
+import {baseServiceAddress, STATUS} from "SERVICES/common";
 import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
-import {addConsign, removeConsign, setConsignContent} from "MODULES/ducks/Consign";
-import {mockProjectData} from "./mockData";
+import {removeProject, setProjectContent, setProjectList/*, setProjectState*/} from "../modules/ducks/Project";
+import {mockProjectData, valueData} from "./mockData";
+import {STATE} from "./common";
 
-/*ToDo*/
-/*接口需要与后台确认*/
-/*注意每一个http方法的url*/
-
-const projectBase = baseServiceAddress + '/project';
+const consignBase = baseServiceAddress + '/consign';
+const consignActivitiBase = baseServiceAddress + '/processInstance';
 
 export const getProjectList = (dispatch, callback) => {
-/*    httpGet(projectBase, (result) => {
+    httpGet(consignBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setProjectList(data));
+            dispatch(setProjectList(/*data*/
+                [
+                    {
+                        id : "110",
+                        name : "快乐星球小杨杰",
+                        createdUserId : "151220140",
+                        state: 'TobeSubmit'
+                    },{
+                        id : "120",
+                        name : "不快乐星球小杨杰",
+                        createdUserId : "151220140",
+                        state: 'TobeSubmit'
+                    },{
+                        id : "119",
+                        name : "不快乐星球老杨杰",
+                        createdUserId : "151220140",
+                        state: 'TobeSubmit'
+                    }
+                ]
+            ));
         }
         callback && callback(status);
-    });*/
-    /*TEMP*/
-    dispatch(setProjectList(mockProjectData));
-    const status = STATUS.SUCCESS;
-    callback && callback(status);
+    });
 };
 
-/*export const getProjectContent = (dispatch, id, callback) => {
-    httpGet(projectBase + '/' + id, (result) => {
+export const getProject = (dispatch, id, callback) => {
+    httpGet(consignBase + '/' + id, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setProjectContent(data));
         }
         callback && callback(status);
     });
-};*/
+};
 
 export const deleteProject = (dispatch, id, callback) => {
-/*    httpDelete(projectBase, {id:id}, (result) => {
+    httpDelete(consignBase, {id:id}, (result) => {
+        // console.log("before remove");
+        // dispatch(removeProject(id));
         const {status} = result;
-        if (status === STATUS.SUCCESS) {
-            httpGet(projectBase, (result) => {
-                dispatch(removeProject(id));
-            });
-        }
+        if(status === STATUS.SUCCESS)
+            dispatch(removeProject(id));
         callback && callback(status);
-    });*/
-    /*TEMP*/
-    dispatch(removeProject(id));
-    const status = STATUS.SUCCESS;
-    callback && callback(status);
+    });
 };
 
-export const newProject = (dispatch, callback) => {
-/*    httpPost(projectBase, mockProjectData, (result) => {
+/*export const newConsign = (dispatch, callback) => {
+    httpPost(consignBase, {consignation:null,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setProjectContent(data));
+            dispatch(setConsignContent(data));
         }
         callback && callback(status);
-    });*/
-    /*TODO:想好新建项目的步骤*/
-    const projectData = {
-        id: Math.random().toString(36).slice(2),
-    };
-    dispatch(setProjectContent(projectData));
-    const status = STATUS.SUCCESS;
-    callback && callback(status);
-};
+    });
+};*/
 
-export const updateProject = (dispatch, projectData, callback) => {
-/*    httpPut(projectBase, mockProjectData, (result) => {
+export const updateProject = (dispatch, data, callback) => {
+    //console.log(data);
+    httpPut(consignBase, data, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setProjectContent(data));
         }
         callback && callback(status);
-    });*/
-    dispatch(setProjectContent(projectData));
-    const status = STATUS.SUCCESS;
-    callback && callback(status);
+    });
+};
+
+// export const getConsignState = (dispatch, processInstanceID, callback) => {
+//     httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
+//         const {status, data} = result;
+//         if (status === STATUS.SUCCESS) {
+//             dispatch(setConsignContent(data));
+//         }
+//         callback && callback(status);
+//     })
+// };
+
+export const putProjectState = (dispatch, processInstanceID, data, id, callback) => {
+    // console.log("ID = " + processInstanceID);
+    httpPut(consignActivitiBase + '/' + processInstanceID, data, (result) => {
+        const {status,data} = result;
+        if (status === STATUS.SUCCESS) {
+            const newData = {
+                ...data,
+                id: id,
+            };
+            dispatch(setProjectContent(newData));
+        }
+        callback && callback(status);
+    });
 };
