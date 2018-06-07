@@ -26,8 +26,13 @@ ps aux | grep java | grep -v grep | awk '{print $2}' | xargs kill -9
 nohup java -jar target/framework-1.0.0.jar &
 echo "Finish deploying back-end"
 
-echo "Start to deploy front-end"
+echo "Start to deploy front-end and swagger"
+service nginx stop
 cd ../client/framework-webclient/
-docker cp ./dist mynginx:/usr/share/nginx/
-docker exec -it mynginx nginx -s reload
-echo "Finish deploying front-end"
+rm -rf /usr/share/nginx/dist/
+\cp -rf ./dist/ /usr/share/nginx/
+cd ../../api/
+\cp -f ./swagger.json /usr/share/nginx/dist/
+\cp -rf ./swagger-ui-dist/ /usr/share/nginx/dist/
+service nginx start
+echo "Finish deploying front-end and swagger"

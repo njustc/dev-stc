@@ -58,31 +58,31 @@ public class Project extends BaseEntity {
         this.testReport = testReport;
     }
 
-    public List<TestResult> getTestResults() {
-        return testResults;
+    public List<TestRecord> gettestRecords() {
+        return testRecords;
     }
 
-    public void setTestResults(List<TestResult> testResults) {
-        this.testResults = testResults;
+    public void settestRecords(List<TestRecord> testRecords) {
+        this.testRecords = testRecords;
     }
 
-    public List<TestPlan> getTestPlans() {
-        return testPlans;
+    public List<TestCase> getTestCase() {
+        return testCases;
     }
 
-    public void setTestPlans(List<TestPlan> testPlans) {
-        this.testPlans = testPlans;
+    public void setTestCase(List<TestCase> testCases) {
+        this.testCases = testCases;
     }
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
-    private List<TestResult> testResults;
+    private List<TestRecord> testRecords;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name ="PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
-    private List<TestPlan> testPlans;
+    private List<TestCase> testCases;
 
 
 }

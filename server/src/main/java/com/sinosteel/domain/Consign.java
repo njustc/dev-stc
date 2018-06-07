@@ -17,6 +17,10 @@ public class Consign extends BaseEntity{
     @Column(name = "CONSIGNATION")
     private String consignation;
 
+    @Column(name = "TESTTYPE")
+    private String testType;
+
+
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
 
