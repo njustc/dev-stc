@@ -26,5 +26,5 @@ npm install -g http-server
 cd api
 http-server --cors
 ```
-运行成功后，进入`swagger-ui-dist`目录下用浏览器打开`index.html`即可
+运行成功后，进入`swagger-ui-local-dist`目录下用浏览器打开`index.html`即可
 
