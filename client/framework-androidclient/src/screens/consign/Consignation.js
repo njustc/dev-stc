@@ -40,7 +40,7 @@ export  default class Consignation extends Component {
           text: "Consign001"
         },
         {
-          route:"ConsianPage",
+          route:"ConsignPage",
           text:"Consign002"
         },
 

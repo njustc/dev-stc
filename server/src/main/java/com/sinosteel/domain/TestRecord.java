@@ -6,19 +6,19 @@ import javax.persistence.*;
 
 //测试结果
 @Entity
-@Table(name = "TBL_SYS_TESTRESULTS")
-public class TestResult extends BaseEntity {
+@Table(name = "TBL_SYS_TESTRECORDS")
+public class TestRecord extends BaseEntity {
 
-    public String getResult() {
-        return result;
+    public String getRecord() {
+        return record;
     }
 
-    public void setResult(String result) {
-        this.result = result;
+    public void setRecord(String record) {
+        this.record = record;
     }
 
-    @Column(name = "RESULT")
-    private String result;
+    @Column(name = "RECORD")
+    private String record;
 
     public Project getProject() {
         return project;
@@ -33,16 +33,16 @@ public class TestResult extends BaseEntity {
     @JSONField(serialize = false)
     private Project project;
 
-    public TestPlan getTestPlan() {
-        return testPlan;
+    public TestCase getTestCase() {
+        return testCase;
     }
 
-    public void setTestPlan(TestPlan testPlan) {
-        this.testPlan = testPlan;
+    public void setTestCase(TestCase testCase) {
+        this.testCase = testCase;
     }
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TESTPLAN_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "TESTCASE_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
-    private TestPlan testPlan;
+    private TestCase testCase;
 }
