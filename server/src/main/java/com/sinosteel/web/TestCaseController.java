@@ -3,7 +3,7 @@ package com.sinosteel.web;
 import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
-import com.sinosteel.service.TestPlanService;
+import com.sinosteel.service.TestCaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-public class TestPlanController extends BaseController {
+public class TestCaseController extends BaseController {
     @Autowired
-    private TestPlanService testplanService;
+    private TestCaseService testCaseService;
 
 
     //TODO:搞清楚到底如何查询
@@ -25,7 +25,7 @@ public class TestPlanController extends BaseController {
 
         /*try
         {
-            response.data = testplanService.queryTestPlans(request.getUser());
+            response.data = testCaseService.queryTestCases(request.getUser());
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -45,7 +45,7 @@ public class TestPlanController extends BaseController {
 
         try
         {
-            response.data = testplanService.queryTestPlanByID(id);
+            response.data = testCaseService.queryTestCaseByID(id);
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -63,7 +63,7 @@ public class TestPlanController extends BaseController {
         Response response = new Response();
 
         try {
-            response.data = testplanService.editTestPlan(request.getParams(), request.getFiles(), request.getUser());
+            response.data = testCaseService.editTestCase(request.getParams(), request.getFiles(), request.getUser());
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -81,7 +81,7 @@ public class TestPlanController extends BaseController {
         Response response=new Response();
 
         try{
-            response.data = testplanService.addTestPlan(request.getParams(),request.getFiles(),request.getUser());
+            response.data = testCaseService.addTestCase(request.getParams(),request.getFiles(),request.getUser());
             response.status=ResponseType.SUCCESS;
         }
         catch(Exception e)
@@ -99,7 +99,7 @@ public class TestPlanController extends BaseController {
         Response response=new Response();
 
         try{
-            testplanService.deleteTestPlan(request.getParams());
+            testCaseService.deleteTestCase(request.getParams());
             response.status=ResponseType.SUCCESS;
         }
         catch(Exception e)

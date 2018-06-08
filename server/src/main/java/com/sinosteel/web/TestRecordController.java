@@ -3,7 +3,7 @@ package com.sinosteel.web;
 import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
-import com.sinosteel.service.TestResultService;
+import com.sinosteel.service.TestRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,20 +12,20 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-public class TestResultController extends BaseController {
+public class TestRecordController extends BaseController {
     @Autowired
-    private TestResultService testResultService;
+    private TestRecordService testRecordService;
 
 
     //TODO:搞清楚到底如何查询
     @RequestMapping(value = "/v1/testResult", method = RequestMethod.GET)
-    public Response queryTestResults(Request request)
+    public Response queryTestRecords(Request request)
     {
         Response response = new Response();
 
         /*try
         {
-            response.data = testResultService.queryTestResults(request.getUser());
+            response.data = testRecordService.queryTestRecords(request.getUser());
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -40,12 +40,12 @@ public class TestResultController extends BaseController {
 
     //根据ID查询测试计划具体信息
     @RequestMapping(value = "/v1/testResult/{id}", method = RequestMethod.GET)
-    public Response queryTestResultByID(@PathVariable String id,  Request request) {
+    public Response queryTestRecordByID(@PathVariable String id,  Request request) {
         Response response = new Response();
 
         try
         {
-            response.data = testResultService.queryTestResultByID(id);
+            response.data = testRecordService.queryTestRecordByID(id);
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -58,12 +58,12 @@ public class TestResultController extends BaseController {
     }
 
     @RequestMapping(value = "/v1/testResult",method = RequestMethod.PUT)
-    public Response editTestResult(Request request)
+    public Response editTestRecord(Request request)
     {
         Response response = new Response();
 
         try {
-            response.data = testResultService.editTestResult(request.getParams(), request.getFiles(), request.getUser());
+            response.data = testRecordService.editTestRecord(request.getParams(), request.getFiles(), request.getUser());
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -76,12 +76,12 @@ public class TestResultController extends BaseController {
 
     }
     @RequestMapping(value = "/v1/testResult",method=RequestMethod.POST)
-    public Response addTestResult(Request request)
+    public Response addTestRecord(Request request)
     {
         Response response=new Response();
 
         try{
-            response.data = testResultService.addTestResult(request.getParams(),request.getFiles(),request.getUser());
+            response.data = testRecordService.addTestRecord(request.getParams(),request.getFiles(),request.getUser());
             response.status=ResponseType.SUCCESS;
         }
         catch(Exception e)
@@ -94,12 +94,12 @@ public class TestResultController extends BaseController {
         return response;
     }
     @RequestMapping(value = "/v1/testResult",method=RequestMethod.DELETE)
-    public Response deleteTestResult(Request request)
+    public Response deleteTestRecord(Request request)
     {
         Response response=new Response();
 
         try{
-            testResultService.deleteTestResult(request.getParams());
+            testRecordService.deleteTestRecord(request.getParams());
             response.status=ResponseType.SUCCESS;
         }
         catch(Exception e)
