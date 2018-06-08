@@ -12,6 +12,7 @@ import {
   Badge
 } from "native-base";
 import styles from "./style";
+import { SIDEBAR_DISABLE } from "../../common";
 
 const drawerCover = require("../../../assets/drawer-cover.png");
 const drawerImage = require("../../../assets/logo-kitchen-sink.png");
@@ -19,32 +20,37 @@ const datas = [
   {
     name: "委托",
     route: "Consign",
-    icon: "menu",
-    bg: "#C5F442"
+    icon: "person",
+    bg: "#C5F442",
+    disable:SIDEBAR_DISABLE.CONSIGN,
   },
   {
     name: "合同",
     route: "Contract",
-    icon: "menu",
-    bg: "#C5F442"
+    icon: "chatbubbles",
+    bg: "#C5F442",
+    disable:SIDEBAR_DISABLE.CONTRACT,
   },
   {
     name: "测试",
     route: "Testing",
-    icon: "menu",
-    bg: "#C5F442"
+    icon: "paper",
+    bg: "#C5F442",
+    disable:SIDEBAR_DISABLE.TESTING,
   },
   {
     name: "报告",
     route: "Report",
-    icon: "menu",
-    bg: "#C5F442"
+    icon: "clipboard",
+    bg: "#C5F442",
+    disable:SIDEBAR_DISABLE.REPORT,
   },
   {
     name: "结项",
     route: "ProjectClosing",
-    icon: "menu",
-    bg: "#C5F442"
+    icon: "happy",
+    bg: "#C5F442",
+    disable:SIDEBAR_DISABLE.PROJECTCLOSING,
   }
 
 ];
@@ -71,9 +77,11 @@ class SideBar extends Component {
           <List
             dataArray={datas}
             renderRow={data =>
+              !data.disable?
               <ListItem
                 button
                 noBorder
+                disabled={data.disable}
                 onPress={() => this.props.navigation.navigate(data.route)}
               >
                 <Left>
@@ -101,7 +109,8 @@ class SideBar extends Component {
                       >{`${data.types} Types`}</Text>
                     </Badge>
                   </Right>}
-              </ListItem>}
+              </ListItem> :null
+            }
           />
         </Content>
       </Container>

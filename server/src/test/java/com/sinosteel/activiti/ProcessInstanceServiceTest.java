@@ -10,6 +10,7 @@ import com.sinosteel.service.ConsignService;
 import com.sinosteel.service.ContractService;
 import com.sinosteel.service.UserService;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,6 +59,8 @@ public class ProcessInstanceServiceTest {
         try {
             consignJson = consignService.addConsign(jsonObject, null, customer1);
             contractJson= contractService.addContract(jsonObject1,null,customer2);
+            Assert.assertNotNull(consignJson);
+            Assert.assertNotNull(contractJson);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,9 +82,11 @@ public class ProcessInstanceServiceTest {
     //TODO: It turns out that we can't update processState too quickly, so now I use Thread.sleep() to make it slow.
     @Test
     public void  updateProcessState() {
+        JSONObject state = new JSONObject();
         try {
             System.out.println("======查询委托状态========");
             System.out.println(processInstanceService.queryProcessState(consignJson.getString("processInstanceID")));
+
             System.out.println("======customer1提交委托=======");
             //构造提交委托请求
             Request request = new Request();
@@ -90,9 +95,11 @@ public class ProcessInstanceServiceTest {
             submitJson.put("operation", "submit");
             submitJson.put("object", "consign");
             request.setParams(submitJson);
-
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(consignJson.getString("processInstanceID"), request));
+            state = processInstanceService.queryProcessState(consignJson.getString("processInstanceID"));
+            Assert.assertEquals("TobeReview",state.getString("state"));
+
             System.out.println("======市场部人员否决委托======");
             //构造提交委托请求
             request = new Request();
@@ -101,9 +108,10 @@ public class ProcessInstanceServiceTest {
             rejectJson.put("operation", "reviewreject");
             rejectJson.put("object", "consign");
             request.setParams(rejectJson);
-
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(consignJson.getString("processInstanceID"), request));
+            state = processInstanceService.queryProcessState(consignJson.getString("processInstanceID"));
+            Assert.assertEquals("TobeSubmit",state.getString("state"));
 
             System.out.println("======customer1再次委托======");
             //构造提交委托请求
@@ -112,6 +120,8 @@ public class ProcessInstanceServiceTest {
             request.setParams(submitJson);
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(consignJson.getString("processInstanceID"), request));
+            state = processInstanceService.queryProcessState(consignJson.getString("processInstanceID"));
+            Assert.assertEquals("TobeReview",state.getString("state"));
 
             System.out.println("======市场部人员通过委托======");
             //构造提交委托请求
@@ -121,9 +131,10 @@ public class ProcessInstanceServiceTest {
             passJson.put("operation", "reviewpass");
             passJson.put("object", "consign");
             request.setParams(passJson);
-
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(consignJson.getString("processInstanceID"), request));
+            state = processInstanceService.queryProcessState(consignJson.getString("processInstanceID"));
+            Assert.assertEquals("Finished",state.getString("state"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -140,9 +151,11 @@ public class ProcessInstanceServiceTest {
             submitJson.put("operation", "submit");
             submitJson.put("object", "contract");
             request.setParams(submitJson);
-
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            state = processInstanceService.queryProcessState(contractJson.getString("processInstanceID"));
+            Assert.assertEquals("TobeReview",state.getString("state"));
+
             System.out.println("======市场部人员否决合同======");
             //构造提交合同请求
             request = new Request();
@@ -151,9 +164,10 @@ public class ProcessInstanceServiceTest {
             rejectJson.put("operation", "reviewreject");
             rejectJson.put("object", "contract");
             request.setParams(rejectJson);
-
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            state = processInstanceService.queryProcessState(contractJson.getString("processInstanceID"));
+            Assert.assertEquals("TobeSubmit",state.getString("state"));
 
             System.out.println("======marketing再次合同======");
             //构造提交合同请求
@@ -162,6 +176,8 @@ public class ProcessInstanceServiceTest {
             request.setParams(submitJson);
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            state = processInstanceService.queryProcessState(contractJson.getString("processInstanceID"));
+            Assert.assertEquals("TobeReview",state.getString("state"));
 
             System.out.println("======市场部人员通过合同======");
             //构造提交合同请求
@@ -171,9 +187,10 @@ public class ProcessInstanceServiceTest {
             passJson.put("operation", "reviewpass");
             passJson.put("object", "contract");
             request.setParams(passJson);
-
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            state = processInstanceService.queryProcessState(contractJson.getString("processInstanceID"));
+            Assert.assertEquals("TobeConfirm",state.getString("state"));
         } catch (Exception e) {
             e.printStackTrace();
         }
