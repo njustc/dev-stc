@@ -16,9 +16,8 @@ function handleChange(value) {
 class ConsignContentComponent extends Component {
     constructor(props) {
         super(props);
+        this.state = { visible: false};
     };
-
-    state = { visible: false, };
 
     static defaultProps = {
         values: {},
@@ -55,9 +54,11 @@ class ConsignContentComponent extends Component {
         // });
         const {buttons, form} = this.props;
         console.log(buttonIndex);
-        if( buttonIndex === 2 ) {
+        if( buttons[buttonIndex].content==="通过" ) {
             this.setState({
+                ...this.state,
                 visible: true,
+                curButtonIdx: buttonIndex,
             });
         }
         else {
@@ -72,13 +73,12 @@ class ConsignContentComponent extends Component {
         }*/
     };
 
-    onReviewPass = (value) =>   {
-
-    };
-
     handleOk = (e) => {
-        console.log(e);
+        const processNo = this.props.form.getFieldsValue().processNo;
+        console.log(processNo);
+        this.props.buttons[this.state.curButtonIdx].onClick(this.props.consignData,processNo);
         this.setState({
+            ...this.state,
             visible: false,
         });
     };
@@ -86,12 +86,13 @@ class ConsignContentComponent extends Component {
     handleCancel = (e) => {
         console.log(e);
         this.setState({
+            ...this.state,
             visible: false,
         });
     };
 
     render() {
-        const { getFieldDecorator } = this.props.form;
+        const { getFieldDecorator,getFieldProps } = this.props.form;
         const formItemLayout =  {
             labelCol: { span: 4 },
             wrapperCol: { span: 19 },
@@ -977,13 +978,18 @@ class ConsignContentComponent extends Component {
                         </Button>)}
                 </FormItem>
                 <FormItem style={{textAlign:'center'}}>
-                    <Modal
-                        title="Basic Modal"
-                        visible={this.PageState.visible}
-                        onOk={ value => this.handleOk(value) }
-                        onCancel={this.handleCancel}
-                    >
-
+                    <Modal title="新建流程" visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
+                        <Form>
+                            <FormItem
+                                {...formItemLayout}
+                                label="流程编号"
+                            >
+                                <Input {...getFieldProps('processNo', {rules: [{ required: true, message: '请输入密码!' }]})}
+                                       prefix={<Icon type="edit" />}
+                                       type="text" autoComplete="off"
+                                />
+                            </FormItem>
+                        </Form>
                     </Modal>
                 </FormItem>
             </Form>
