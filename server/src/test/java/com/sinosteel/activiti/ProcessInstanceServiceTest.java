@@ -10,6 +10,7 @@ import com.sinosteel.service.ConsignService;
 import com.sinosteel.service.ContractService;
 import com.sinosteel.service.UserService;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,6 +59,8 @@ public class ProcessInstanceServiceTest {
         try {
             consignJson = consignService.addConsign(jsonObject, null, customer1);
             contractJson= contractService.addContract(jsonObject1,null,customer2);
+            Assert.assertNotNull(consignJson);
+            Assert.assertNotNull(contractJson);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,9 +82,11 @@ public class ProcessInstanceServiceTest {
     //TODO: It turns out that we can't update processState too quickly, so now I use Thread.sleep() to make it slow.
     @Test
     public void  updateProcessState() {
+        JSONObject state = new JSONObject();
         try {
             System.out.println("======查询委托状态========");
             System.out.println(processInstanceService.queryProcessState(consignJson.getString("processInstanceID")));
+
             System.out.println("======customer1提交委托=======");
             //构造提交委托请求
             Request request = new Request();
@@ -90,9 +95,11 @@ public class ProcessInstanceServiceTest {
             submitJson.put("operation", "submit");
             submitJson.put("object", "consign");
             request.setParams(submitJson);
-
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(consignJson.getString("processInstanceID"), request));
+            state = processInstanceService.queryProcessState(consignJson.getString("processInstanceID"));
+            Assert.assertEquals("TobeReview",state.getString("state"));
+
             System.out.println("======市场部人员否决委托======");
             //构造提交委托请求
             request = new Request();
