@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message} from 'antd';
+import {Modal, Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message} from 'antd';
 
 const Panel = Collapse.Panel;
 const Option=Select.Option;
@@ -17,6 +17,8 @@ class ConsignContentComponent extends Component {
     constructor(props) {
         super(props);
     };
+
+    state = { visible: false, };
 
     static defaultProps = {
         values: {},
@@ -52,7 +54,15 @@ class ConsignContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(this.props.consignData,JSON.stringify(form.getFieldsValue()));
+        console.log(buttonIndex);
+        if( buttonIndex === 2 ) {
+            this.setState({
+                visible: true,
+            });
+        }
+        else {
+            buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(form.getFieldsValue()));
+        }
         /*switch (buttons[buttonIndex].content) {
             case '保存': message.success('保存成功');break;
             case '提交': message.success('提交成功');break;
@@ -60,6 +70,24 @@ class ConsignContentComponent extends Component {
             //case 3: message.success('提交成功');break;
             default:break;
         }*/
+    };
+
+    onReviewPass = (value) =>   {
+
+    };
+
+    handleOk = (e) => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    };
+
+    handleCancel = (e) => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
     };
 
     render() {
@@ -947,6 +975,16 @@ class ConsignContentComponent extends Component {
                             key={button.content}>
                             {button.content}
                         </Button>)}
+                </FormItem>
+                <FormItem style={{textAlign:'center'}}>
+                    <Modal
+                        title="Basic Modal"
+                        visible={this.PageState.visible}
+                        onOk={ value => this.handleOk(value) }
+                        onCancel={this.handleCancel}
+                    >
+
+                    </Modal>
                 </FormItem>
             </Form>
 

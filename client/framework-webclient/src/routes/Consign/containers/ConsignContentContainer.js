@@ -62,10 +62,11 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
     enable: isEditVisible
 },{
     content: '通过',
-    onClick: (consignData,consignation) =>{
+    onClick: (consignData,ProjectNum) =>{
         const putData = {
             "object": "consign",
-            "operation": "reviewpass"
+            "operation": "reviewpass",
+            "number": ProjectNum
         };
         const {processInstanceID,id} = consignData;
         putConsignState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
