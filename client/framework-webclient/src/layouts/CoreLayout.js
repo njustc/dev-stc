@@ -86,30 +86,29 @@ export default class CoreLayout extends Component
                             title={<span><Icon type="team" /><span>合同</span></span>}
                         >
                             <Menu.Item key="3" disabled={this.props.sider["3"].disable}>测试合同书</Menu.Item>
-                            {/*<Menu.Item key="4" disabled={this.props.sider["4"].disable}>合同评审表</Menu.Item>*/}
                         </SubMenu>
                         <SubMenu
                             key="sub3"
                             title={<span><Icon type="copy" /><span>测试</span></span>}
                         >
-                            <Menu.Item key="5" disabled={this.props.sider["5"].disable}>测试方案书</Menu.Item>
-                            <Menu.Item key="6" disabled={this.props.sider["6"].disable}>测试用例表</Menu.Item>
-                            <Menu.Item key="7" disabled={this.props.sider["7"].disable}>测试记录表</Menu.Item>
-                            <Menu.Item key="8" disabled={this.props.sider["8"].disable}>测试问题清单</Menu.Item>
+                            <Menu.Item key="4" disabled={this.props.sider["4"].disable}>测试方案书</Menu.Item>
+                            <Menu.Item key="5" disabled={this.props.sider["5"].disable}>测试用例表</Menu.Item>
+                            <Menu.Item key="6" disabled={this.props.sider["6"].disable}>测试记录表</Menu.Item>
+                            <Menu.Item key="7" disabled={this.props.sider["7"].disable}>测试问题清单</Menu.Item>
                         </SubMenu>
                         <SubMenu
                             key="sub4"
                             title={<span><Icon type="appstore-o" /><span>报告</span></span>}
                         >
-                            <Menu.Item key="9" disabled={this.props.sider["9"].disable}>测试报告书</Menu.Item>
-                            <Menu.Item key="10" disabled={this.props.sider["10"].disable}>测试报告检查表</Menu.Item>
+                            <Menu.Item key="8" disabled={this.props.sider["8"].disable}>测试报告书</Menu.Item>
+                            <Menu.Item key="9" disabled={this.props.sider["9"].disable}>测试报告检查表</Menu.Item>
                         </SubMenu>
                         <SubMenu
                             key="sub5"
                             title={<span><Icon type="smile-o" /><span>结项</span></span>}
                         >
-                            <Menu.Item key="11" disabled={this.props.sider["11"].disable}>测试工作检查表</Menu.Item>
-                            <Menu.Item key="12" disabled={this.props.sider["12"].disable}>满意度调查表</Menu.Item>
+                            <Menu.Item key="10" disabled={this.props.sider["10"].disable}>测试工作检查表</Menu.Item>
+                            <Menu.Item key="11" disabled={this.props.sider["11"].disable}>满意度调查表</Menu.Item>
                         </SubMenu>
                     </Menu>
                 </Sider>

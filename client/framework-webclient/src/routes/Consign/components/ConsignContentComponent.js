@@ -36,10 +36,7 @@ class ConsignContentComponent extends Component {
     };
 
     componentWillMount() {
-        //     this.curID = this.props.curKey;
-        //     // console.log(this.curID);
         this.props.getValues(this.props.consignData.id);
-        //     // console.log(this.values);
     };
 
     // componentDidMount() {
