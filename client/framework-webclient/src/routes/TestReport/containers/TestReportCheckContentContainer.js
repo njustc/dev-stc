@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import TestReportCheckContentComponent from "../components/TestReportCheckContentComponent";
 import {connect} from "react-redux";
+import {getTestReportCheck} from "../../../services/TestReportCheckService";
 
 const mapStateToProps = (state) => {
     return {
         values: {},/*fetch consign with pro id*/
-        contractData: {},/*fetch data with pro id*/
+        testReportCheckData: {},/*fetch data with pro id*/
         disable: true,
         // buttons: buttons,
     }
@@ -36,6 +37,7 @@ const buttons = (dispatch) => [{
 const mapDispatchToProps = (dispatch) => {
     return {
         buttons: buttons(dispatch),
+        getValues: (id) => getTestReportCheck(id),
     }
 };
 
