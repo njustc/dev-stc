@@ -1,59 +1,59 @@
 import {baseServiceAddress, STATUS} from "SERVICES/common";
 import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
-import {removeConsign, setConsignContent, setConsignList/*, setConsignState*/} from "../modules/ducks/Consign";
+import {removeTestCase, setTestCaseContent, setTestCaseList/*, setTestCaseState*/} from "../modules/ducks/TestCase";
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 
-const consignBase = baseServiceAddress + '/consign';
-const consignActivitiBase = baseServiceAddress + '/processInstance';
+const testCaseBase = baseServiceAddress + '/testCase';
+const testCaseActivitiBase = baseServiceAddress + '/processInstance';
 
-export const getConsignList = (dispatch, callback) => {
-    httpGet(consignBase,(result) => {
+export const getTestCaseList = (dispatch, callback) => {
+    httpGet(testCaseBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setConsignList(data));
+            dispatch(setTestCaseList(data));
         }
         callback && callback(status);
     });
 };
 
-export const getConsign = (dispatch, id, callback) => {
-    httpGet(consignBase + '/' + id, (result) => {
+export const getTestCase = (dispatch, id, callback) => {
+    httpGet(testCaseBase + '/' + id, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setConsignContent(data));
+            dispatch(setTestCaseContent(data));
         }
         callback && callback(status);
     });
 };
 
-export const deleteConsign = (dispatch, id, callback) => {
-    httpDelete(consignBase, {id:id}, (result) => {
+export const deleteTestCase = (dispatch, id, callback) => {
+    httpDelete(testCaseBase, {id:id}, (result) => {
         // console.log("before remove");
-        // dispatch(removeConsign(id));
+        // dispatch(removeTestCase(id));
         const {status} = result;
         if(status === STATUS.SUCCESS)
-            dispatch(removeConsign(id));
+            dispatch(removeTestCase(id));
         callback && callback(status);
     });
 };
 
-export const newConsign = (dispatch, callback) => {
-    httpPost(consignBase, {consignation:null,}, (result) => {
+export const newTestCase = (dispatch, callback) => {
+    httpPost(testCaseBase, {testcase:null,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setConsignContent(data));
+            dispatch(setTestCaseContent(data));
         }
         callback && callback(status);
     });
 };
 
-export const updateConsign = (dispatch, data, callback) => {
+export const updateTestCase = (dispatch, data, callback) => {
     //console.log(data);
-    httpPut(consignBase, data, (result) => {
+    httpPut(testCaseBase, data, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setConsignContent(data));
+            dispatch(setTestCaseContent(data));
         }
         callback && callback(status);
     });
@@ -69,16 +69,16 @@ export const updateConsign = (dispatch, data, callback) => {
 //     })
 // };
 
-export const putConsignState = (dispatch, processInstanceID, data, id, callback) => {
+export const putTestCaseState = (dispatch, processInstanceID, data, id, callback) => {
     // console.log("ID = " + processInstanceID);
-    httpPut(consignActivitiBase + '/' + processInstanceID, data, (result) => {
+    httpPut(testCaseActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
         if (status === STATUS.SUCCESS) {
              const newData = {
                 ...data,
                 id: id,
             };
-            dispatch(setConsignContent(newData));
+            dispatch(setTestCaseContent(newData));
         }
         callback && callback(status);
     });

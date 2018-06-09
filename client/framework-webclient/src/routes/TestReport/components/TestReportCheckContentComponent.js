@@ -31,13 +31,11 @@ class TestReportCheckContentComponent extends Component {
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
-        curKey: PropTypes.string.isRequired
     };
 
-    componentDidMount() {
-        this.curID = this.props.curKey;
-        this.values = this.props.getValues(this.curID);
-    }
+    componentWillMount() {
+        this.props.getValues(this.props.testReportCheckData.id);
+    };
 
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
@@ -60,7 +58,7 @@ class TestReportCheckContentComponent extends Component {
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
 
                 <FormItem {...formItemLayout}>
-                    <h1>测试报告检查表</h1>
+                    <h1>报告检查表</h1>
                 </FormItem>
                                         
 			<FormItem
