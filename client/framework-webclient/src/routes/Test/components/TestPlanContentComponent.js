@@ -4,7 +4,7 @@ import {Form,Button,Input,DatePicker,InputNumber,Collapse,Table} from 'antd'
 const FormItem=Form.Item;
 const InputGroup = Input.Group;
 const Panel=Collapse.Panel;
-class TestProgramContentComponent extends Component {
+class TestPlanContentComponent extends Component {
     constructor(props) {
         super(props);
     };
@@ -19,7 +19,7 @@ class TestProgramContentComponent extends Component {
     };
 
     static propTypes = {
-        testProgramData: PropTypes.object.isRequired,
+        testPlanData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
@@ -28,7 +28,7 @@ class TestProgramContentComponent extends Component {
     componentWillMount() {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
-        this.props.getValues(this.props.testProgramData.id);
+        this.props.getValues(this.props.testPlanData.id);
         //     // console.log(this.values);
     };
     onClick = (buttonIndex) => () => {
@@ -38,7 +38,7 @@ class TestProgramContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(this.props.testProgramData,JSON.stringify(form.getFieldsValue()));          //此处附近接口？？
+        buttons[buttonIndex].onClick(this.props.testPlanData,JSON.stringify(form.getFieldsValue()));          //此处附近接口？？
     };
 
     render() {
@@ -331,4 +331,4 @@ class TestProgramContentComponent extends Component {
         );
     }
 }
-export default Form.create()(TestProgramContentComponent);
+export default Form.create()(TestPlanContentComponent);

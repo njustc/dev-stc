@@ -10,13 +10,14 @@ class TestCaseContentComponent extends Component {
     }
 
     static propTypes = {
-        //setListFilter: PropTypes.func,
-        dataSource: PropTypes.array,
-        showContent: PropTypes.func,
-        //deleteConsign: PropTypes.func,
-        //getConsignList: PropTypes.func,
-        //newConsign: PropTypes.func,
-        //enableNew: PropTypes.bool,
+        testCaseData: PropTypes.object.isRequired,
+    };
+
+    componentWillMount() {
+        //     this.curID = this.props.curKey;
+        //     // console.log(this.curID);
+        this.props.getValues(this.props.testCaseData.id);
+        //     // console.log(this.values);
     };
 
     expandedRowRender = (record) => {

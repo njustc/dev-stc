@@ -1,10 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import {Form,Button,Input,DatePicker,InputNumber,Collapse,message} from 'antd'
+//import TextArea from "../../../../../framework-androidclient/src/screens/form/textArea";
 //import {message} from "antd/lib/index";
 
 const FormItem=Form.Item;
 const InputGroup = Input.Group;
 const Panel=Collapse.Panel;
+const { TextArea } = Input;
+
 class ContractContentComponent extends Component {
     constructor(props) {
         super(props);
@@ -425,6 +428,8 @@ class ContractContentComponent extends Component {
                             {button.content}
                         </Button>)}
                 </FormItem>
+                {true?<FormItem label='评审内容'><TextArea row={4}/></FormItem>:<div></div>}
+                {/*<FormItem label='评审结论'><TextArea row={4}/></FormItem>*/}
             </Form>
 
         );

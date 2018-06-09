@@ -119,9 +119,9 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
 const mapDispatchToProps = (dispatch) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //const isVisible = true;//authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "EDIT")!==-1;
-    const isEditVisible = true||authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===1;
-    const isReviewVisible = true||authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "REVIEW")===1;
-    const isConfirmVisible = true||authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "CONFIRM")===1;
+    const isEditVisible = authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===1;
+    const isReviewVisible = authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "REVIEW")===1;
+    const isConfirmVisible = authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "CONFIRM")===1;
     return {
         buttons: buttons(dispatch,isEditVisible,isReviewVisible,isConfirmVisible).filter(button => button.enable===true),
         getValues: (id) => getContract(dispatch,id)
