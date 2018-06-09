@@ -1,6 +1,6 @@
 import {baseServiceAddress, STATUS} from "SERVICES/common";
 import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
-import {removeConsign, setConsignContent, setConsignList, setConsignState} from "../modules/ducks/Consign";
+import {removeConsign, setConsignContent, setConsignList/*, setConsignState*/} from "../modules/ducks/Consign";
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 

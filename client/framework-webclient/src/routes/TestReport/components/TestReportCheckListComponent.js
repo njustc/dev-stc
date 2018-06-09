@@ -16,13 +16,13 @@ export default class TestReportCheckListComponent extends Component {
     }
 
     static propTypes = {
-        //setListFilter: PropTypes.func,
+        setCheckListFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
-        //deleteConsign: PropTypes.func,
+        deleteTestReportCheck: PropTypes.func,
         getTestReportCheckList: PropTypes.func,
-        //newContract: PropTypes.func,
-        //enableNew: PropTypes.bool,
+        newTestReportCheck: PropTypes.func,
+        enableNew: PropTypes.bool,
     };
 
     componentDidMount() {
@@ -43,7 +43,7 @@ export default class TestReportCheckListComponent extends Component {
     setPlaceholder = () => {
         switch (this.state.selectOption){
             case 'id':
-                return '请输入测试报告检查ID';
+                return '请输入报告检查ID';
             case 'customerId':
                 return '请输入委托人ID';
             case 'name':
@@ -79,7 +79,7 @@ export default class TestReportCheckListComponent extends Component {
         dataIndex:"pid",
         sorter:(a, b) => a.pid - b.pid,
     }, {
-        title:"测试报告检查ID",
+        title:"报告检查ID",
         dataIndex:"id",
         sorter:(a, b) => a.id - b.id,
     }, {
@@ -159,17 +159,17 @@ export default class TestReportCheckListComponent extends Component {
     /*TODO 搜索功能*/
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
-        this.props.setListFilter((record) => record.id.match(reg));
+        this.props.setCheckListFilter((record) => record.id.match(reg));
     };
 
     render() {
         return (
             <div>
-                <h3 style={{ marginBottom: 16 }}>测试报告检查表列表</h3>
+                <h3 style={{ marginBottom: 16 }}>报告检查表列表</h3>
                 <InputGroup>
                     <Col span={3}>
-                        <Select defaultValue="搜索测试报告检查ID" onSelect={this.onSelect}>
-                            <Option value="id">搜索测试报告检查ID</Option>
+                        <Select defaultValue="搜索报告检查ID" onSelect={this.onSelect}>
+                            <Option value="id">搜索报告检查ID</Option>
                             <Option value="pid">搜索项目ID</Option>
                             <Option value="customerId">搜索委托人ID</Option>
                             <Option value="name">搜索项目名称 </Option>
@@ -181,7 +181,7 @@ export default class TestReportCheckListComponent extends Component {
                     <Col span={1}></Col>
                     {/*this.props.enableNew*/0 ?
                         <Col span={2}>
-                            <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建测试报告检查表</Button>
+                            <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建报告检查表</Button>
                         </Col>
                         : <Col span={2}></Col>}
                 </InputGroup>

@@ -9,31 +9,23 @@ const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //console.log(authData);
-    const consignation = state.TestReport.listMap[ownProps.id].consignation;
+    const testReport = state.TestReport.listMap[ownProps.id].testReport;
     return {
-        // consignData: {},/*fetch data with pro id*/
-        consignData: state.TestReport.listMap[ownProps.id],
-        values: consignation ? JSON.parse(consignation) : {},
-        disable: authData.functionGroup["TestReport"]===undefined||authData.functionGroup["TestReport"].findIndex(element => element === "EDIT")===-1||state.Consign.listMap[ownProps.id].state!=="TobeSubmit",
-        curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
-        //buttonDisabled: state.Consign.listMap[ownProps.id].state==="TobeCheck"
-        /*buttonDisabled: authData.functionGroup["Consign"]===undefined ||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1
-            ? state.Consign.listMap[ownProps.id].state==="TobeSubmit"||state.Consign.listMap[ownProps.id].state==="Finished"
-            : state.Consign.listMap[ownProps.id].state==="TobeCheck"||state.Consign.listMap[ownProps.id].state==="Finished"*/
-        buttonsDisabled:[
-
-        ]
+        // testReportData: {},/*fetch data with pro id*/
+        testReportData: state.TestReport.listMap[ownProps.id],
+        values: testReport ? JSON.parse(testReport) : {},
+        disable: authData.functionGroup["TestReport"]===undefined||authData.functionGroup["TestReport"].findIndex(element => element === "EDIT")===-1||state.testReport.listMap[ownProps.id].state!=="TobeSubmit",
     }
 };
 
 const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
-    onClick: (consignData,consignation) =>{
+    onClick: (testReportData,testReport) =>{
         const valueData = {
-            id: consignData.id,
-            consignation: consignation
+            id: testReportData.id,
+            testReport: testReport
         };
-        updateConsign(dispatch,valueData,(status)=>{console.log(status);});
+        updateTestReport(dispatch,valueData,(status)=>{console.log(status);});
 
         if(status=STATUS.SUCCESS) message.success('保存成功');
         else message.error('保存失败');
@@ -41,18 +33,18 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
     enable: isEditVisible
 },{
     content: '提交',
-    onClick: (consignData,consignation) =>{
+    onClick: (testReportData,testReport) =>{
         const valueData = {
-            id: consignData.id,
-            consignation: consignation
+            id: testReportData.id,
+            testReport: testReport
         };
-        updateConsign(dispatch,valueData,(status)=>{console.log(status);});
+        updateTestReport(dispatch,valueData,(status)=>{console.log(status);});
         if(status=STATUS.SUCCESS){
             const putData = {
-                "object": "consign",
+                "object": "testReport",
                 "operation": "submit"
             };
-            const {processInstanceID,id} = consignData;
+            const {processInstanceID,id} = testReportData;
             putTestReportState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
             if(status=STATUS.SUCCESS) message.success('提交成功');
@@ -63,12 +55,12 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
     enable: isEditVisible
 },{
     content: '通过',
-    onClick: (consignData,consignation) =>{
+    onClick: (testReportData,testReport) =>{
         const putData = {
-            "object": "consign",
+            "object": "testReport",
             "operation": "reviewpass"
         };
-        const {processInstanceID,id} = consignData;
+        const {processInstanceID,id} = testReportData;
         putTestReportState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
         if(status=STATUS.SUCCESS) message.success('通过成功');
@@ -77,12 +69,12 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
     enable: isReviewVisible
 },{
     content: '否决',
-    onClick: (consignData,consignation) =>{
+    onClick: (testReportData,testReport) =>{
         const putData = {
-            "object": "consign",
+            "object": "testReport",
             "operation": "reviewreject"
         };
-        const {processInstanceID,id} = consignData;
+        const {processInstanceID,id} = testReportData;
         putTestReportState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
         if(status=STATUS.SUCCESS) message.success('已否决');
@@ -93,9 +85,9 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
 
 const mapDispatchToProps = (dispatch) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    //const isVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
+    //const isVisible = authData.functionGroup["testReport"]!==undefined&&authData.functionGroup["testReport"].findIndex(element => element === "EDIT")!==-1;
     const isEditVisible = true||authData.functionGroup["TestReport"]!==undefined&&authData.functionGroup["TestReport"].findIndex(element => element === "EDIT")===1;
-    const isReviewVisible = true&&authData.functionGroup["TestReport"]!==undefined&&authData.functionGroup["TestReport"].findIndex(element => element === "REVIEW")===1;
+    const isReviewVisible = authData.functionGroup["TestReport"]!==undefined&&authData.functionGroup["TestReport"].findIndex(element => element === "REVIEW")===1;
     return {
         buttons: buttons(dispatch,isEditVisible,isReviewVisible).filter(button => button.enable===true),
         getValues: (id) => getTestReport(dispatch,id)

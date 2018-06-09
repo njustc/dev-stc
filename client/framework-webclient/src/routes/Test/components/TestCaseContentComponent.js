@@ -10,13 +10,14 @@ class TestCaseContentComponent extends Component {
     }
 
     static propTypes = {
-        //setListFilter: PropTypes.func,
-        dataSource: PropTypes.array,
-        showContent: PropTypes.func,
-        //deleteConsign: PropTypes.func,
-        //getConsignList: PropTypes.func,
-        //newConsign: PropTypes.func,
-        //enableNew: PropTypes.bool,
+        testCaseData: PropTypes.object.isRequired,
+    };
+
+    componentWillMount() {
+        //     this.curID = this.props.curKey;
+        //     // console.log(this.curID);
+        this.props.getValues(this.props.testCaseData.id);
+        //     // console.log(this.values);
     };
 
     expandedRowRender = (record) => {
@@ -184,11 +185,12 @@ class TestCaseContentComponent extends Component {
                                 )}
                             </FormItem>
                             <FormItem {...formItemLayout}>
-                                {this.props.buttons.map((button, index) =>
+                                 {/*this.props.buttons.map((button, index) =>
                                     <Button onClick={this.onClick(index)}
                                             key={button.content}>
                                         {button.content}
-                                    </Button>)}
+                                    </Button>)*/}
+                                    <Button type='primary'><Icon type="plus-circle-o" />添加测试用例</Button>
                             </FormItem>
                         </Form>
                     </Card>

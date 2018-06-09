@@ -92,37 +92,33 @@ export const mockSiderData = [{
 },{
     key : "4",
     disable : false,
-    name : "合同评审列表",
+    name : "测试方案列表",
 },{
     key : "5",
     disable : false,
-    name : "测试方案列表",
+    name : "测试用例列表",
 },{
     key : "6",
     disable : false,
-    name : "测试用例列表",
+    name : "测试记录列表",
 },{
     key : "7",
     disable : false,
-    name : "测试记录列表",
+    name : "测试问题清单",
 },{
     key : "8",
     disable : false,
-    name : "测试问题清单",
+    name : "测试报告列表",
 },{
     key : "9",
     disable : false,
-    name : "测试报告列表",
+    name : "报告检查列表",
 },{
     key : "10",
     disable : false,
-    name : "报告检查列表",
-},{
-    key : "11",
-    disable : false,
     name : "工作检查列表",
 },{
-    key : "12",
+    key : "11",
     disable : false,
     name : "满意度调查列表",
 }];

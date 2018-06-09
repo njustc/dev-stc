@@ -1,5 +1,5 @@
-const TPG_SET_LIST = 'TestProgram/SET_LIST';
-const TPG_SET_CONTENT = 'TestProgram/SET_CONTENT';
+const TPG_SET_LIST = 'TestPlan/SET_LIST';
+const TPG_SET_CONTENT = 'TestPlan/SET_CONTENT';
 const TC_SET_LIST = 'TestCase/SET_LIST';
 const TR_SET_LIST = 'TestRecord/SET_LIST';
 const TPB_SET_LIST = 'TestProblem/SET_LIST';
@@ -7,7 +7,7 @@ const TPB_SET_LIST = 'TestProblem/SET_LIST';
 const SET_CONTENT = 'TestRecord/SET_CONTENT';
 const SET_FILTER = 'TestRecord/SET_FILTER';*/
 
-const initialTestProgramState = {
+const initialTestPlanState = {
     listFilter: () => true,//绑定按钮传入的过滤条件
     listMap: { },  //项目集合，用key-value表示，key为id，value为ConsignData
     //ConsignData为对象，仍然包含id字段
@@ -28,23 +28,23 @@ const initialTestProblemState = {
     //ConsignData为对象，仍然包含id字段
 };
 
-export const TestProgramReducer = (state = initialTestProgramState, action) => {
+export const TestPlanReducer = (state = initialTestPlanState, action) => {
     switch (action.type) {
         case TPG_SET_LIST:
             const list = action.payload;
             return {
                 ...state,
-                listMap: list.reduce((listMap, TestProgramData) => {
-                    listMap[TestProgramData.id] = TestProgramData;
+                listMap: list.reduce((listMap, TestPlanData) => {
+                    listMap[TestPlanData.id] = TestPlanData;
                     return listMap;
                 }, {}),
             };
         case TPG_SET_CONTENT: {
             const {id} = action.payload;
-            const TestProgramData = action.payload;
+            const TestPlanData = action.payload;
             const newData = {
                 ...state.listMap[id],
-                ...TestProgramData,
+                ...TestPlanData,
             };
             return {
                 ...state,
@@ -59,14 +59,14 @@ export const TestProgramReducer = (state = initialTestProgramState, action) => {
     }
 };
 
-export const setTestProgramList = (list) => {
+export const setTestPlanList = (list) => {
     return {
         type: TPG_SET_LIST,
         payload: list,
     }
 };
 
-export const setTestProgramContent = (data) => {
+export const setTestPlanContent = (data) => {
     return {
         type: TPG_SET_CONTENT,
         payload: data,
