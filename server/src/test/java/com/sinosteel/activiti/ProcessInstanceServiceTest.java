@@ -8,6 +8,7 @@ import com.sinosteel.domain.User;
 import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.service.ConsignService;
 import com.sinosteel.service.ContractService;
+import com.sinosteel.service.TestPlanService;
 import com.sinosteel.service.UserService;
 import org.junit.After;
 import org.junit.Before;
@@ -37,11 +38,13 @@ public class ProcessInstanceServiceTest {
     private UserService userService;
     @Autowired
     private ContractService contractService;
-
+    @Autowired
+    private TestPlanService testPlanService;
     //测试中使用的代表consign的 jsonObject
     private JSONObject consignJson;
     //测试中使用的用户
     private JSONObject contractJson;
+    private JSONObject testplanJson;
     private User customer1;
     private User marketing;
     private User customer2;
@@ -54,10 +57,12 @@ public class ProcessInstanceServiceTest {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("consignation", "这是customer1在ProcessInstanceServiceTest中新建的委托");
         JSONObject jsonObject1 = new JSONObject();
+        JSONObject jsonObject2 = new JSONObject();
        // jsonObject.put("contractation", "这是customer2在ProcessInstanceServiceTest中新建的hetong");
         try {
             consignJson = consignService.addConsign(jsonObject, null, customer1);
             contractJson= contractService.addContract(jsonObject1,null,customer2);
+            testplanJson=testPlanService.addTestPlan(jsonObject2,null,customer1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -236,6 +241,79 @@ public class ProcessInstanceServiceTest {
             confirmJson.put("object","contract");
             request.setParams(confirmJson);
             System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void updateProcessTestPlanState()
+    {
+        try {
+            System.out.println("======查询测试方案状态========");
+            System.out.println(processInstanceService.queryProcessState(testplanJson.getString("processInstanceID")));
+            System.out.println("======customer1提交测试方案=======");
+            //构造提交委托请求
+            Request request = new Request();
+            request.setUser(marketing);
+            JSONObject writeJson = new JSONObject();
+            writeJson.put("operation", "write");
+            writeJson.put("object", "testplan");
+            request.setParams(writeJson);
+
+            Thread.sleep(2000);
+            System.out.println(processInstanceService.updateProcessState(testplanJson.getString("processInstanceID"), request));
+            System.out.println("======工作人员否决测试方案======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(marketing);
+            JSONObject rejectJson = new JSONObject();
+            rejectJson.put("operation", "reviewreject");
+            rejectJson.put("object", "testplan");
+            request.setParams(rejectJson);
+
+            Thread.sleep(2000);
+            System.out.println(processInstanceService.updateProcessState(testplanJson.getString("processInstanceID"), request));
+
+            System.out.println("======customer2再次请求======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(customer2);
+            request.setParams(writeJson);
+            Thread.sleep(2000);
+            System.out.println(processInstanceService.updateProcessState(testplanJson.getString("processInstanceID"), request));
+
+            System.out.println("======工作人员通过测试方案======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(marketing);
+            JSONObject passJson = new JSONObject();
+            passJson.put("operation", "reviewpass");
+            passJson.put("object", "testplan");
+            request.setParams(passJson);
+
+            Thread.sleep(2000);
+            System.out.println(processInstanceService.updateProcessState(testplanJson.getString("processInstanceID"), request));
+
+            System.out.println("=====客户通过测试方案======");
+
+            request=new Request();
+            request.setUser(customer2);
+            JSONObject confirmJson=new JSONObject();
+            confirmJson.put("operation","confirmpass");
+            confirmJson.put("object","testplan");
+            request.setParams(confirmJson);
+            System.out.println(processInstanceService.updateProcessState(testplanJson.getString("processInstanceID"), request));
+
+            System.out.println("=====客户实施测试方案======");
+
+            request=new Request();
+            request.setUser(customer2);
+            JSONObject implementJson=new JSONObject();
+            implementJson.put("operation","implement");
+            implementJson.put("object","testplan");
+            request.setParams(implementJson);
+            System.out.println(processInstanceService.updateProcessState(testplanJson.getString("processInstanceID"), request));
 
         } catch (Exception e) {
             e.printStackTrace();
