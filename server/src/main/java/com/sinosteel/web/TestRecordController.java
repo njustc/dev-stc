@@ -18,7 +18,7 @@ public class TestRecordController extends BaseController {
 
 
     //TODO:搞清楚到底如何查询
-    @RequestMapping(value = "/v1/testResult", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/testRecord", method = RequestMethod.GET)
     public Response queryTestRecords(Request request)
     {
         Response response = new Response();
@@ -39,7 +39,7 @@ public class TestRecordController extends BaseController {
     }
 
     //根据ID查询测试计划具体信息
-    @RequestMapping(value = "/v1/testResult/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/testRecord/{id}", method = RequestMethod.GET)
     public Response queryTestRecordByID(@PathVariable String id,  Request request) {
         Response response = new Response();
 
@@ -57,7 +57,7 @@ public class TestRecordController extends BaseController {
         return response;
     }
 
-    @RequestMapping(value = "/v1/testResult",method = RequestMethod.PUT)
+    @RequestMapping(value = "/v1/testRecord",method = RequestMethod.PUT)
     public Response editTestRecord(Request request)
     {
         Response response = new Response();
@@ -75,7 +75,7 @@ public class TestRecordController extends BaseController {
         return response;
 
     }
-    @RequestMapping(value = "/v1/testResult",method=RequestMethod.POST)
+    @RequestMapping(value = "/v1/testRecord",method=RequestMethod.POST)
     public Response addTestRecord(Request request)
     {
         Response response=new Response();
@@ -93,7 +93,7 @@ public class TestRecordController extends BaseController {
         }
         return response;
     }
-    @RequestMapping(value = "/v1/testResult",method=RequestMethod.DELETE)
+    @RequestMapping(value = "/v1/testRecord",method=RequestMethod.DELETE)
     public Response deleteTestRecord(Request request)
     {
         Response response=new Response();
