@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge} from 'antd';
-//import UserConsignContentView from "./ConsignContentComponent";
 import {STATE} from "../../../services/common"
 
 const { Column } = Table;
@@ -16,10 +15,10 @@ export default class TestCaseListComponent extends Component {
     }
 
     static propTypes = {
-        //setListFilter: PropTypes.func,
+        setListFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
-        //deleteConsign: PropTypes.func,
+        deleteTestCase: PropTypes.func,
         getTestCaseList: PropTypes.func,
         //newContract: PropTypes.func,
         //enableNew: PropTypes.bool,
@@ -140,7 +139,7 @@ export default class TestCaseListComponent extends Component {
     /*取消委托提示框*/
     showDeleteConfirm = (record) => () => {
         confirm({
-            title: 'Are you sure to delete this consign?',
+            title: 'Are you sure to delete this test case?',
             //content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
@@ -150,7 +149,7 @@ export default class TestCaseListComponent extends Component {
                 //debugger;
                 //this.deleteConsign(id);
                 /*TODO 取消委托的函数的参数需要优化*/
-                this.props.deleteConsign(record);
+                this.props.deleteTestCase(record);
             },
             onCancel() {},
         });
@@ -179,11 +178,11 @@ export default class TestCaseListComponent extends Component {
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    {/*this.props.enableNew*/0 ?
+                    {/*this.props.enableNew0 ?
                         <Col span={2}>
-                            <Button type="primary" onClick={this.props.newConsign}><Icon type="plus-circle-o" />新建测试用例</Button>
+                            <Button type="primary" onClick={this.props.newTestCase}><Icon type="plus-circle-o" />新建测试用例</Button>
                         </Col>
-                        : <Col span={2}></Col>}
+                        : <Col span={2}></Col>*/}
                 </InputGroup>
                 <br />
                 <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'}/>
