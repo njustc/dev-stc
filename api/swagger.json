@@ -372,7 +372,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功获取委托状态. \ndata含两个属性：\nprocessInstanceID->委托进程ID\nstate->委托状态. 格式为\n```\n{\n  \"processInstanceID\": \"xxx\"\n  \"state\": \"xxx\"\n}\n```\n",
+            "description": "成功获取委托状态. \ntestReport的state有：TobeWrite/ TobeReview/ TobeApprove/ TobeSend/ TobeConfirm/ Satisfaction/ TobeDone/ TobeFiling/ Finished\ndata含两个属性：\nprocessInstanceID->委托进程ID\nstate->委托状态. 格式为\n```\n{\n  \"processInstanceID\": \"xxx\"\n  \"state\": \"xxx\"\n}\n```\n",
             "schema": {
               "$ref": "#/definitions/Response"
             }
@@ -417,7 +417,7 @@
           {
             "name": "params",
             "in": "formData",
-            "description": "修改的操作内容。JSON格式。对象名为'object',属性名为'operation', object为consign时，operation有submit/reviewpass/reviewreject\n  object为contract时，operation有submit/reviewpass/reviewreject/confirmpass/confirmreject\n  object为testplan时，operation有write/reviewpass/reviewreject/confirmpass/confirmreject/implement\neg.\n```\n{\n  \"object\": \"consign\"\n  \"operation\": \"submit\"\n}\n",
+            "description": "修改的操作内容。JSON格式。对象名为'object',属性名为'operation',  目前去操作流程实例的具体状态为：Write/ ReviewPass - ReviewReject/ ApprovePass- ApproveReject/ Send/ ConfirmPass- ConfirmReject/ SatisfactoryFeedback/ ConfirmAbort/ Done/ File eg.\n```\n{\n  \"object\": \"consign\"\n  \"operation\": \"submit\"\n}\n",
             "type": "string",
             "required": true
           }

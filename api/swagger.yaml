@@ -349,6 +349,7 @@ paths:
         '200':
           description: |
             成功获取委托状态. 
+            testReport的state有：TobeWrite/ TobeReview/ TobeApprove/ TobeSend/ TobeConfirm/ Satisfaction/ TobeDone/ TobeFiling/ Finished
             data含两个属性：
             processInstanceID->委托进程ID
             state->委托状态. 格式为
@@ -389,9 +390,8 @@ paths:
         - name: params
           in: formData
           description: >
-            修改的操作内容。JSON格式。对象名为'object',属性名为'operation', object为consign时，operation有submit/reviewpass/reviewreject
-              object为contract时，operation有submit/reviewpass/reviewreject/confirmpass/confirmreject
-              object为testplan时，operation有write/reviewpass/reviewreject/confirmpass/confirmreject/implement
+            修改的操作内容。JSON格式。对象名为'object',属性名为'operation', 
+            目前去操作流程实例的具体状态为：Write/ ReviewPass - ReviewReject/ ApprovePass- ApproveReject/ Send/ ConfirmPass- ConfirmReject/ SatisfactoryFeedback/ ConfirmAbort/ Done/ File
             eg.
 
             ```
