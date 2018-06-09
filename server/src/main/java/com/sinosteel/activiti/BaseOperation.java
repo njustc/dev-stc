@@ -1,11 +1,16 @@
 package com.sinosteel.activiti;
 
+import org.activiti.engine.FormService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.form.FormProperty;
+import org.activiti.engine.form.TaskFormData;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -13,7 +18,8 @@ public class BaseOperation {
 
     @Autowired
     TaskService taskService;
-
+    @Autowired
+    FormService formService;
     enum state{TobeSubmit,TobeReview,TobeConfirm,TobeWrite,TobeImplement}
 
     /**
@@ -21,13 +27,18 @@ public class BaseOperation {
      * @param processInstanceId
      * @throws Exception
      */
-    public void noGate (String processInstanceId) throws  Exception
+    public void noGate (String processInstanceId,String workerId) throws  Exception
     {
         Task task=taskService.createTaskQuery()
                 .processInstanceId(processInstanceId).singleResult();
-        if(task.getName().equals(state.TobeSubmit.name())||task.getName().equals(state.TobeWrite.name())
-                    ||task.getName().equals(state.TobeImplement.name()))
+        if(task.getName().equals(state.TobeSubmit.name()))
             taskService.complete(task.getId());
+        else if(task.getName().equals(state.TobeWrite.name())
+            ||task.getName().equals(state.TobeImplement.name()))
+        {
+            taskService.claim(task.getId(),workerId);
+            taskService.complete(task.getId());
+        }
         else throw new Exception( task.getName()+"error");
     }
 
@@ -42,10 +53,21 @@ public class BaseOperation {
     {
         Task task=taskService.createTaskQuery()
                 .processInstanceId(processInstanceId).singleResult();
+        TaskFormData taskFormData=formService.getTaskFormData(task.getId());
+        List<FormProperty> formProperties=taskFormData.getFormProperties();
+        List<String> varies=new ArrayList<String>() ;
+        for(FormProperty formProperty:formProperties) {
+            if("enum".equals(formProperty.getType().getName())) {
+                //System.out.print(formProperty.getId()+"  +"+formProperty.getName()+" +"+formProperty.getValue());
+                varies.add(formProperty.getId());
+            }
+        }
         if(task.getName().equals(state.TobeReview.name())||task.getName().equals(state.TobeConfirm.name())){
             taskService.claim(task.getId(),workerId);
             Map<String,Object> variables=new HashMap<String, Object>();
-            variables.put("approval",operation);
+            for(String tmp:varies) {
+                variables.put(tmp,operation);
+            }
             taskService.complete(task.getId(),variables);}
         else {
             throw new Exception(task.getProcessDefinitionId()+ "error");

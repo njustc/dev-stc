@@ -4,20 +4,21 @@ import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.domain.User;
 import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.framework.mybatis.UserMapper;
-import org.activiti.engine.HistoryService;
-import org.activiti.engine.RuntimeService;
-import org.activiti.engine.TaskService;
+import org.activiti.bpmn.model.BpmnModel;
+import org.activiti.bpmn.model.FlowElement;
+import org.activiti.bpmn.model.SequenceFlow;
+import org.activiti.bpmn.model.UserTask;
+import org.activiti.engine.*;
 import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 @Service
-public class ProcessInstanceUpdate {
+public class TCProcessEngine {
     @Autowired
     RuntimeService runtimeService;
 
@@ -27,6 +28,10 @@ public class ProcessInstanceUpdate {
     @Autowired
     HistoryService historyService;
 
+    @Autowired
+    RepositoryService repositoryService;
+    @Autowired
+    ProcessEngine processEngine;
     @Autowired
     private BaseOperation baseOperation;
 
@@ -80,6 +85,21 @@ public class ProcessInstanceUpdate {
         return pi.getProcessInstanceId();
     }
 
+    public String createTestplanProcess(String testPlanId, String workerId)throws Exception{
+        Map<String,Object> variables=new HashMap<String, Object>();
+        //variables.put("testPlanID",testPlanId);
+        //variables.put("testEmployerId",workerId);
+        List<String> userids = userMapper.getUserIdsByRoleId("1");
+        if(userids.isEmpty()==false) {
+            for(String userid : userids){
+                variables.put("WorkerIDs",userid);
+            }
+        }
+        else
+            throw new Exception("EMPTY");
+        ProcessInstance pi=runtimeService.startProcessInstanceByKey("testplan",variables);
+        return pi.getProcessInstanceId();
+    }
     /**
      * 根据具体流程实例的ID，更新其状态
      * @param processInstanceId 流程实例ID
@@ -96,7 +116,7 @@ public class ProcessInstanceUpdate {
         }
         if(operation.contains(TaskOperation.submit.name())||operation.contains(TaskOperation.write.name())
                 ||operation.contains(TaskOperation.implement.name())) {
-            baseOperation.noGate(processInstanceId);}
+            baseOperation.noGate(processInstanceId,request.getUser().getId());}
         else if(operation.contains(TaskOperation.review.name())||operation.contains(TaskOperation.confirm.name())) {
             baseOperation.containGate(operation,processInstanceId,request.getUser().getId());}
         else{
@@ -126,4 +146,7 @@ public class ProcessInstanceUpdate {
         else{
             return "NotExist";}
     }
+
+    public void getUserOperation(String processInstanceId) throws Exception
+    { }
 }
