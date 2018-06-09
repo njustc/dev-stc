@@ -9,15 +9,14 @@ const tabsMap = {
     "1" : ProjectListView,
     "2" : ConsignListView,
     "3" : ContractListView,
-    "4" : ContractCheckListView,
-    "5" : TestProgramListView,
-    "6" : TestCaseListView,
-    "7" : TestRecordListView,
-    "8" : TestProblemListView,
-    "9" : TestReportListView,
-    "10" : TestReportCheckListView,
-    "11" : TestWorkCheckListView,
-    "12" : SatisfactionListView
+    "4" : TestProgramListView,
+    "5" : TestCaseListView,
+    "6" : TestRecordListView,
+    "7" : TestProblemListView,
+    "8" : TestReportListView,
+    "9" : TestReportCheckListView,
+    "10" : TestWorkCheckListView,
+    "11" : SatisfactionListView
 };
 
 export default tabsMap;
