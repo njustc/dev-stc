@@ -9,5 +9,5 @@ import java.util.List;
 public interface TestCaseRepository extends BaseRepository<TestCase> {
     TestCase findById(String id);
     @Query("SELECT testCase from TestCase testCase where 1 = 1")
-    List<TestCase> findByAllTestPlans();
+    List<TestCase> findByAllTestCases();
 }

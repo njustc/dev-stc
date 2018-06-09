@@ -9,5 +9,5 @@ import java.util.List;
 public interface TestRecordRepository extends BaseRepository<TestRecord> {
     TestRecord findById(String id);
     @Query("SELECT testRecord from TestRecord testRecord where 1 = 1")
-    List<TestRecord> findByAllTestResults();
+    List<TestRecord> findByAllTestRecords();
 }

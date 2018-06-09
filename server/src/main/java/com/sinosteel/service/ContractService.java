@@ -7,6 +7,7 @@ import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.Contract;
 import com.sinosteel.domain.User;
 import com.sinosteel.repository.ContractRepository;
+import com.sinosteel.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +23,8 @@ public class ContractService extends BaseService<Contract> {
 
     @Autowired
     private ContractRepository contractRepository;
+    @Autowired
+    private ProjectRepository projectRepository;
 
     @Autowired
     private ProcessInstanceService processInstanceService;
@@ -67,11 +70,12 @@ public class ContractService extends BaseService<Contract> {
     }
 
     public JSONObject addContract(JSONObject params, List<MultipartFile> files, User user) throws Exception{
-        String uid = UUID.randomUUID().toString();
-
+        //String uid = UUID.randomUUID().toString();
+        String uid = params.getString("id");
         Contract contract = JSONObject.toJavaObject(params, Contract.class);
         contract.setId(uid);
         contract.setUser(user);
+        contract.setProject(projectRepository.findById(uid));
 
         //TODO: start process Instance
         String processInstanceID = processInstanceService.createContractProcess(params, user);

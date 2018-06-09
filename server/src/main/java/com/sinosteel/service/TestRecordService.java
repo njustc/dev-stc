@@ -7,11 +7,14 @@ import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.TestRecord;
 import com.sinosteel.repository.TestRecordRepository;
 import com.sinosteel.domain.User;
+import com.sinosteel.domain.Project;
+import com.sinosteel.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -22,18 +25,24 @@ import java.util.UUID;
 public class TestRecordService extends BaseService<TestRecord> {
     @Autowired
     private TestRecordRepository testRecordRepository;
+    @Autowired
+    private ProjectRepository projectRepository;
 
     @Autowired
     private ProcessInstanceService processInstanceService;
 
 
-    //以工程为来源查询testRecord，但是工程那里并没有设置好，TODO:设置好工程
-    /*public JSON queryTestRecords(User user) throws Exception {
+    //以工程为来源查询testRecord
+    public JSON queryTestRecords(User user) throws Exception {
         if (user != null)
             System.out.println("queryTestRecords--> query user role: " + user.getRoles().get(0).getRoleName());
         if (user.getRoles().get(0).getRoleName().equals("普通客户"))
         {
-            List<TestRecord> testRecords = user.getTestRecords();
+            List<Project> projects = user.getProjects();
+            List<TestRecord> testRecords = new ArrayList<TestRecord>();
+            for (Project project: projects){
+                testRecords.addAll(project.gettestRecords());
+            }
             //TODO:对测试结果进行处理，去掉具体内容,并且添加测试结果状态
             return processTestRecords(testRecords);
         }
@@ -43,7 +52,7 @@ public class TestRecordService extends BaseService<TestRecord> {
             //对测试结果进行处理，去掉具体内容,并且添加测试结果状态
             return processTestRecords(testRecords);
         }
-    }*/
+    }
 
     public JSONObject queryTestRecordByID(String id) throws Exception{
         TestRecord testRecord = testRecordRepository.findById(id);
@@ -72,11 +81,12 @@ public class TestRecordService extends BaseService<TestRecord> {
     //增加测试结果
     public JSONObject addTestRecord(JSONObject params,List<MultipartFile> files,User user) throws Exception {
 
-        String uid=UUID.randomUUID().toString();
+        //String uid=UUID.randomUUID().toString();
+        String uid = params.getString("id");
 
         TestRecord testRecord=JSONObject.toJavaObject(params,TestRecord.class);
         testRecord.setId(uid);
-        /*testRecord.setUser(user);*/
+        testRecord.setProject(projectRepository.findById(uid));
 
         //TODO:start activiti process
         //String procID = processInstanceService.createTestRecordProcess(params, user);

@@ -17,13 +17,12 @@ public class TestRecordController extends BaseController {
     private TestRecordService testRecordService;
 
 
-    //TODO:搞清楚到底如何查询
     @RequestMapping(value = "/v1/testRecord", method = RequestMethod.GET)
     public Response queryTestRecords(Request request)
     {
         Response response = new Response();
 
-        /*try
+        try
         {
             response.data = testRecordService.queryTestRecords(request.getUser());
             response.status = ResponseType.SUCCESS;
@@ -33,7 +32,7 @@ public class TestRecordController extends BaseController {
             e.printStackTrace();
             response.status = ResponseType.FAILURE;
             response.message = e.getMessage();
-        }*/
+        }
 
         return response;
     }

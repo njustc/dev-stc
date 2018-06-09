@@ -20,9 +20,9 @@ tags:
   - name: project
     description: 工程（当前完全是初始版本，传入参数以及返回数据内容孑需修改,且流程实例状态更新没有添加此类）
   - name: testCase
-    description: 测试计划（同工程，而且当前没有按照用户查询的功能，孑需改进，流程实例方面同样没有更新）
+    description: 测试方案（同工程，而且当前没有按照用户查询的功能，孑需改进，流程实例方面同样没有更新）
   - name: testReport
-    description: 测试报告（同测试计划）
+    description: 测试报告（同测试计划，有问题）
   - name: testRecord
     description: 测试结果（同测试计划）
 schemes:
@@ -700,8 +700,16 @@ paths:
               "data": [
                 {
                   "createdUserId": "2",
-                  "createdTime": "2018-06-02 20:16:29",
-                  "id": "cdd340fa-501c-42ab-9596-6c55b1a694c2"
+                  "createdTime": "2018-06-09 17:37:22",
+                  "id": "aa1a57fc-3ba5-414a-89fb-a9eea5b33a3f",
+                  "testCase": [
+                    {
+                      "createdUserId": "2",
+                      "createdTime": "2018-06-09 17:40:30",
+                      "id": "aa1a57fc-3ba5-414a-89fb-a9eea5b33a3f",
+                      "testcase": "I love taylorSwift"
+                    }
+                    ]
                 }
               ],
               "status": "SUCCESS"
@@ -900,7 +908,7 @@ paths:
     get:
       tags:
         - testCase
-      summary: 查询测试计划
+      summary: 查询测试方案
       description: 根据当前用户身份选择返回当前客户的testCase或者是全部testCase
       operationId: queryTestCases
       consumes:
@@ -921,7 +929,7 @@ paths:
       responses:
         '200':
           description: |
-            成功查询测试计划时返回测试计划.返回内容还没有确定
+            成功查询测试方案时返回测试方案
             查询失败时，返回一个失败的status
             ```
             {
@@ -941,8 +949,8 @@ paths:
     post:
       tags:
         - testCase
-      summary: 添加测试计划
-      description: 向数据库中添加测试计划，除了内容testcase还要前端提供project的id，成功时返回测试计划的具体信息以及一个success状态
+      summary: 添加测试方案
+      description: 向数据库中添加测试方案，除了内容testcase还要前端提供project的id，成功时返回测试方案的具体信息以及一个success状态
       operationId: addTestCase
       consumes:
         - application/x-www-form-urlencoded
@@ -962,7 +970,7 @@ paths:
         - in: formData
           name: params
           description: |
-            测试计划的具体内容. JSON格式
+            测试方案的具体内容. JSON格式
             ```
             {
               "id":"xxx"
@@ -974,7 +982,7 @@ paths:
       responses:
         '200':
           description: |
-            成功添加测试计划时的样例response body
+            成功添加测试方案时的样例response body
             ```
             {
               "data": {
@@ -991,8 +999,8 @@ paths:
     put:
       tags:
         - testCase
-      summary: 修改测试计划
-      description: 修改已有的测试计划，参数中需要包含测试计划的id
+      summary: 修改测试方案
+      description: 修改已有的测试方案，参数中需要包含测试方案的id
       operationId: editTestCase
       consumes:
         - application/x-www-form-urlencoded
@@ -1012,7 +1020,7 @@ paths:
         - in: formData
           name: params
           description: |
-            具体内容. JSON格式. 需要指明测试计划的ID
+            具体内容. JSON格式. 需要指明测试方案的ID
             ```
             {
               "id": 
@@ -1043,8 +1051,8 @@ paths:
     delete:
       tags:
         - testCase
-      summary: 删除测试计划
-      description: 删除一个测试计划，需要提供具体id
+      summary: 删除测试方案
+      description: 删除一个测试方案，需要提供具体id
       operationId: deleteTestCase
       consumes:
         - application/x-www-form-urlencoded
@@ -1076,7 +1084,7 @@ paths:
       responses:
         '200':
           description: |
-            成功删除测试计划
+            成功删除测试方案
             ```
             {
               "status":"SUCCESS"
@@ -1088,8 +1096,8 @@ paths:
     get:
       tags:
         - testCase
-      summary: 根据id查询测试计划
-      description: 根据请求中的id查询对应测试计划
+      summary: 根据id查询测试方案
+      description: 根据请求中的id查询对应测试方案
       operationId: queryTestPlanById
       consumes:
         - application/x-www-form-urlencoded
@@ -1098,7 +1106,7 @@ paths:
       parameters:
         - name: id
           in: path
-          description: 测试计划的id
+          description: 测试方案的id
           type: string
           required: true
         - name: username
@@ -1114,7 +1122,7 @@ paths:
       responses:
         '200':
           description: |
-            成功查询测试计划. data内包含JsonArray格式的内容
+            成功查询测试方案. data内包含JsonArray格式的内容
             ```
             {
               "data": {
