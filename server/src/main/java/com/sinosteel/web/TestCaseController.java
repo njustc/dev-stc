@@ -18,7 +18,7 @@ public class TestCaseController extends BaseController {
 
 
     //TODO:搞清楚到底如何查询
-    @RequestMapping(value = "/v1/testplan", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/testCase", method = RequestMethod.GET)
     public Response queryTestplans(Request request)
     {
         Response response = new Response();
@@ -39,7 +39,7 @@ public class TestCaseController extends BaseController {
     }
 
     //根据ID查询测试计划具体信息
-    @RequestMapping(value = "/v1/testplan/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/testCase/{id}", method = RequestMethod.GET)
     public Response queryTestPlanByID(@PathVariable String id,  Request request) {
         Response response = new Response();
 
@@ -57,7 +57,7 @@ public class TestCaseController extends BaseController {
         return response;
     }
 
-    @RequestMapping(value = "/v1/testplan",method = RequestMethod.PUT)
+    @RequestMapping(value = "/v1/testCase",method = RequestMethod.PUT)
     public Response editTestPlan(Request request)
     {
         Response response = new Response();
@@ -75,7 +75,7 @@ public class TestCaseController extends BaseController {
         return response;
 
     }
-    @RequestMapping(value = "/v1/testplan",method=RequestMethod.POST)
+    @RequestMapping(value = "/v1/testCase",method=RequestMethod.POST)
     public Response addTestPlan(Request request)
     {
         Response response=new Response();
@@ -93,7 +93,7 @@ public class TestCaseController extends BaseController {
         }
         return response;
     }
-    @RequestMapping(value = "/v1/testplan",method=RequestMethod.DELETE)
+    @RequestMapping(value = "/v1/testCase",method=RequestMethod.DELETE)
     public Response deleteTestPlan(Request request)
     {
         Response response=new Response();

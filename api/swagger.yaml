@@ -19,11 +19,11 @@ tags:
     description: 合同
   - name: project
     description: 工程（当前完全是初始版本，传入参数以及返回数据内容孑需修改,且流程实例状态更新没有添加此类）
-  - name: testplan
+  - name: testCase
     description: 测试计划（同工程，而且当前没有按照用户查询的功能，孑需改进，流程实例方面同样没有更新）
   - name: testReport
     description: 测试报告（同测试计划）
-  - name: testResult
+  - name: testRecord
     description: 测试结果（同测试计划）
 schemes:
   - http
@@ -300,6 +300,16 @@ paths:
           description: 委托id
           type: string
           required: true
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
       responses:
         '200':
           description: |
@@ -465,7 +475,7 @@ paths:
       tags:
         - contract
       summary: 添加合同
-      description: 向数据库中添加合同，成功时返回合同的具体信息以及一个success状态
+      description: 向数据库中添加合同，添加时要给定一个id，是所在project的id（project的id是在创建project时前端传入的对应绑定consign的一个id），成功时返回合同的具体信息以及一个success状态
       operationId: addContract
       consumes:
         - application/x-www-form-urlencoded
@@ -488,6 +498,7 @@ paths:
             合同的具体内容. JSON格式
             ```
             {
+              "id":"xxx"
               "contractBody": "content"
             }
             ```
@@ -661,7 +672,7 @@ paths:
       tags:
         - project
       summary: 查询工程
-      description: 用户为普通客户时，返回当前该客户的所有合同，如果是工作人员返回所有工程
+      description: 用户为普通客户时，返回当前该客户的所有工程，如果是工作人员返回所有工程
       operationId: queryProjects
       consumes:
         - application/x-www-form-urlencoded
@@ -702,7 +713,7 @@ paths:
       tags:
         - project
       summary: 添加工程
-      description: 向数据库中添加工程，但是添加的内容还没有确定，成功时返回合同的具体信息以及一个success状态
+      description: 向数据库中添加工程，添加时需要前端提供去绑定的consign的id，成功时返回合同的具体信息以及一个success状态
       operationId: addProject
       consumes:
         - application/x-www-form-urlencoded
@@ -725,6 +736,7 @@ paths:
             合同的具体内容. JSON格式
             ```
             {
+              "id":"xxx"
               "xxx": "xxx"
             }
             ```
@@ -884,13 +896,13 @@ paths:
             ```
         '405':
           description: Invalid input
-  /services/v1/testplan:
+  /services/v1/testCase:
     get:
       tags:
-        - testplan
+        - testCase
       summary: 查询测试计划
-      description: 尚未实现成功，用户为普通客户时，返回当前该客户的所有合同，如果是工作人员返回所有工程
-      operationId: queryTestPlans
+      description: 根据当前用户身份选择返回当前客户的testCase或者是全部testCase
+      operationId: queryTestCases
       consumes:
         - application/x-www-form-urlencoded
       produces:
@@ -928,10 +940,10 @@ paths:
           description: Invalid input
     post:
       tags:
-        - testplan
+        - testCase
       summary: 添加测试计划
-      description: 向数据库中添加测试计划，但是添加的内容还没有确定，添加到的位置没有确定，成功时返回测试计划的具体信息以及一个success状态
-      operationId: addTestPlan
+      description: 向数据库中添加测试计划，除了内容testcase还要前端提供project的id，成功时返回测试计划的具体信息以及一个success状态
+      operationId: addTestCase
       consumes:
         - application/x-www-form-urlencoded
       produces:
@@ -953,7 +965,8 @@ paths:
             测试计划的具体内容. JSON格式
             ```
             {
-              "plan": "xxx"
+              "id":"xxx"
+              "testcase": "xxx"
             }
             ```
           type: string
@@ -968,7 +981,7 @@ paths:
                 "createdUserId": "2",
                 "createdTime": "2018-06-03 20:16:31",
                 "id": "49e9b994-064c-47f9-9a2e-f02260ed9d11",
-                "plan": "I love taylorswift"
+                "testcase": "I love taylorswift"
               },
               "status": "SUCCESS"
             }
@@ -977,10 +990,10 @@ paths:
           description: Invalid input
     put:
       tags:
-        - testplan
+        - testCase
       summary: 修改测试计划
       description: 修改已有的测试计划，参数中需要包含测试计划的id
-      operationId: editTestPlan
+      operationId: editTestCase
       consumes:
         - application/x-www-form-urlencoded
       produces:
@@ -1020,7 +1033,7 @@ paths:
                 "createdTime": "2018-06-03 20:16:31",
                 "alteredUserId": "2",
                 "id": "49e9b994-064c-47f9-9a2e-f02260ed9d11",
-                "plan": "love shawnmendes"
+                "testcase": "love shawnmendes"
               },
               "status": "SUCCESS"
             }
@@ -1029,10 +1042,10 @@ paths:
           description: Invalid input
     delete:
       tags:
-        - testplan
+        - testCase
       summary: 删除测试计划
       description: 删除一个测试计划，需要提供具体id
-      operationId: deleteTestPlan
+      operationId: deleteTestCase
       consumes:
         - application/x-www-form-urlencoded
       produces:
@@ -1071,10 +1084,10 @@ paths:
             ```
         '405':
           description: Invalid input
-  '/services/v1/testplan/{id}':
+  '/services/v1/testCase/{id}':
     get:
       tags:
-        - testplan
+        - testCase
       summary: 根据id查询测试计划
       description: 根据请求中的id查询对应测试计划
       operationId: queryTestPlanById
@@ -1108,7 +1121,7 @@ paths:
                 "createdUserId": "2",
                 "createdTime": "2018-06-03 20:19:30",
                 "id": "ad402346-a514-4e0b-9fec-6ac13f0a2a98",
-                "plan": "I love taylorswift"
+                "testcase": "I love taylorswift"
               },
               "status": "SUCCESS"
             }
@@ -1161,7 +1174,7 @@ paths:
       tags:
         - testReport
       summary: 添加测试报告
-      description: 向数据库中添加测试报告，但是添加的内容还没有确定，添加到的位置没有确定，成功时返回测试计划的具体信息以及一个success状态
+      description: 向数据库中添加测试报告，除了内容report还要提供绑定project的id，成功时返回测试计划的具体信息以及一个success状态
       operationId: addTestReport
       consumes:
         - application/x-www-form-urlencoded
@@ -1184,6 +1197,7 @@ paths:
             测试计划的具体内容. JSON格式
             ```
             {
+              "id":"xxx"
               "report": "xxx"
             }
             ```
@@ -1348,10 +1362,10 @@ paths:
             ```
         '405':
           description: Invalid input
-  /services/v1/testResult:
+  /services/v1/testRecord:
     get:
       tags:
-        - testResult
+        - testRecord
       summary: 查询测试结果
       description: 尚未实现成功（未绑定project）
       operationId: queryTestResults
@@ -1392,9 +1406,9 @@ paths:
           description: Invalid input
     post:
       tags:
-        - testResult
+        - testRecord
       summary: 添加测试结果
-      description: 向数据库中添加测试结果，但是添加的内容还没有确定，添加到的位置没有确定（project），成功时返回测试计划的具体信息以及一个success状态
+      description: 向数据库中添加测试结果，除了一个record还要有对应project的id，成功时返回测试计划的具体信息以及一个success状态
       operationId: addTestResult
       consumes:
         - application/x-www-form-urlencoded
@@ -1417,7 +1431,8 @@ paths:
             测试计划的具体内容. JSON格式
             ```
             {
-              "result": "xxx"
+              "id":"xxx"
+              "record": "xxx"
             }
             ```
           type: string
@@ -1429,7 +1444,7 @@ paths:
             ```
             {
               "data": {
-                "result": "end game",
+                "record": "end game",
                 "createdUserId": "2",
                 "createdTime": "2018-06-08 14:19:55",
                 "id": "a6ae9603-ca4a-4fb0-bc7a-341313eacbe3"
@@ -1441,7 +1456,7 @@ paths:
           description: Invalid input
     put:
       tags:
-        - testResult
+        - testRecord
       summary: 修改测试结果
       description: 修改已有的测试结果，参数中需要包含测试结果的id
       operationId: editTestResult
@@ -1467,7 +1482,7 @@ paths:
             ```
             {
               "id": 
-              "result":
+              "record":
             }
             ```
           type: string
@@ -1479,7 +1494,7 @@ paths:
             ```
             {
               "data": {
-                "result": "gorgeous",
+                "record": "gorgeous",
                 "createdUserId": "2",
                 "alteredTime": "2018-06-08 14:21:30",
                 "createdTime": "2018-06-08 14:19:55",
@@ -1493,10 +1508,10 @@ paths:
           description: Invalid input
     delete:
       tags:
-        - testResult
+        - testRecord
       summary: 删除测试结果
       description: 删除一个测试结果，需要提供具体id
-      operationId: deleteTestResult
+      operationId: deleteTestRecord
       consumes:
         - application/x-www-form-urlencoded
       produces:
@@ -1535,10 +1550,10 @@ paths:
             ```
         '405':
           description: Invalid input
-  '/services/v1/testResult/{id}':
+  '/services/v1/testRecord/{id}':
     get:
       tags:
-        - testResult
+        - testRecord
       summary: 根据id查询测试结果
       description: 根据请求中的id查询对应测试结果
       operationId: queryTestResultById
@@ -1569,7 +1584,7 @@ paths:
             ```
             {
               "data": {
-                "result": "gorgeous",
+                "record": "gorgeous",
                 "createdUserId": "2",
                 "alteredTime": "2018-06-08 14:21:30",
                 "createdTime": "2018-06-08 14:19:55",
