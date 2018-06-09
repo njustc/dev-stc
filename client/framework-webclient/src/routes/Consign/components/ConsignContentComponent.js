@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message} from 'antd';
+import {Modal, Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message} from 'antd';
 
 const Panel = Collapse.Panel;
 const Option=Select.Option;
@@ -16,6 +16,7 @@ function handleChange(value) {
 class ConsignContentComponent extends Component {
     constructor(props) {
         super(props);
+        this.state = { visible: false};
     };
 
     static defaultProps = {
@@ -52,7 +53,17 @@ class ConsignContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(this.props.consignData,JSON.stringify(form.getFieldsValue()));
+        console.log(buttonIndex);
+        if( buttons[buttonIndex].content==="通过" ) {
+            this.setState({
+                ...this.state,
+                visible: true,
+                curButtonIdx: buttonIndex,
+            });
+        }
+        else {
+            buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(form.getFieldsValue()));
+        }
         /*switch (buttons[buttonIndex].content) {
             case '保存': message.success('保存成功');break;
             case '提交': message.success('提交成功');break;
@@ -62,8 +73,26 @@ class ConsignContentComponent extends Component {
         }*/
     };
 
+    handleOk = (e) => {
+        const processNo = this.props.form.getFieldsValue().processNo;
+        console.log(processNo);
+        this.props.buttons[this.state.curButtonIdx].onClick(this.props.consignData,processNo);
+        this.setState({
+            ...this.state,
+            visible: false,
+        });
+    };
+
+    handleCancel = (e) => {
+        console.log(e);
+        this.setState({
+            ...this.state,
+            visible: false,
+        });
+    };
+
     render() {
-        const { getFieldDecorator } = this.props.form;
+        const { getFieldDecorator,getFieldProps } = this.props.form;
         const formItemLayout =  {
             labelCol: { span: 4 },
             wrapperCol: { span: 19 },
@@ -947,6 +976,21 @@ class ConsignContentComponent extends Component {
                             key={button.content}>
                             {button.content}
                         </Button>)}
+                </FormItem>
+                <FormItem style={{textAlign:'center'}}>
+                    <Modal title="新建流程" visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
+                        <Form>
+                            <FormItem
+                                {...formItemLayout}
+                                label="流程编号"
+                            >
+                                <Input {...getFieldProps('processNo', {rules: [{ required: true, message: '请输入密码!' }]})}
+                                       prefix={<Icon type="edit" />}
+                                       type="text" autoComplete="off"
+                                />
+                            </FormItem>
+                        </Form>
+                    </Modal>
                 </FormItem>
             </Form>
 

@@ -62,10 +62,11 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
     enable: isEditVisible
 },{
     content: '通过',
-    onClick: (consignData,consignation) =>{
+    onClick: (consignData,ProcessNo) =>{
         const putData = {
             "object": "consign",
-            "operation": "reviewpass"
+            "operation": "reviewpass",
+            "number": ProcessNo
         };
         const {processInstanceID,id} = consignData;
         putConsignState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
@@ -93,8 +94,8 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
 const mapDispatchToProps = (dispatch) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //const isVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
-    const isEditVisible = true||authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===true;
-    const isReviewVisible = true&&authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "REVIEW")===true;
+    const isEditVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
+    const isReviewVisible = true||authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "REVIEW")!==-1;
     return {
         buttons: buttons(dispatch,isEditVisible,isReviewVisible).filter(button => button.enable===true),
         getValues: (id) => getConsign(dispatch,id)
