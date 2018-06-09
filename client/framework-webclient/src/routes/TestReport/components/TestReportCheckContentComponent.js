@@ -60,7 +60,7 @@ class TestReportCheckContentComponent extends Component {
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
 
                 <FormItem {...formItemLayout}>
-                    <h1>测试报告检查表</h1>
+                    <h1>报告检查表</h1>
                 </FormItem>
                                         
 			<FormItem

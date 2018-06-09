@@ -6,6 +6,7 @@ import {ContractReducer/*,ContractCheckReducer*/} from "./ducks/Contract";
 import {TestProgramReducer,TestCaseReducer,TestRecordReducer,TestProblemReducer} from "./ducks/Test";
 import {TestReportReducer/*,TestReportCheckReducer*/} from "./ducks/TestReport";
 import {TestWorkCheckReducer,SatisfactionReducer} from "./ducks/Archive";
+import {TestReportCheckReducer} from "./ducks/TestReportCheck";
 
 export const moduleReducers = {
     System: SystemReducer,
@@ -19,7 +20,7 @@ export const moduleReducers = {
     TestRecord: TestRecordReducer,
     TestProblem: TestProblemReducer,
     TestReport: TestReportReducer,
-    //TestReportCheck: TestReportCheckReducer,
+    TestReportCheck: TestReportCheckReducer,
     TestWorkCheck: TestWorkCheckReducer,
     Satisfaction: SatisfactionReducer,
 };
