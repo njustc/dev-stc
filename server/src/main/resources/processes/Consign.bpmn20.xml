@@ -47,13 +47,13 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-D43AE9A4-86AA-4C13-B9CF-8FAF5660FEC5]]></modeler:editor-resource-id>
       </extensionElements>
-     <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'reviewpass'}]]></conditionExpression>
+     <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewPass'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f5" name="不通过" sourceRef="gate1" targetRef="submitconsign">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-4791BF60-AD89-40AA-820E-EECED7315C5F]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'reviewreject'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f3" sourceRef="reviewconsign" targetRef="gate1">
       <extensionElements>
