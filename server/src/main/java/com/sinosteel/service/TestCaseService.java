@@ -6,12 +6,15 @@ import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.TestCase;
 import com.sinosteel.domain.User;
+import com.sinosteel.domain.Project;
 import com.sinosteel.repository.TestCaseRepository;
+import com.sinosteel.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -22,18 +25,24 @@ import java.util.UUID;
 public class TestCaseService extends BaseService<TestCase> {
     @Autowired
     private TestCaseRepository testCaseRepository;
+    @Autowired
+    private ProjectRepository projectRepository;
 
     @Autowired
     private ProcessInstanceService processInstanceService;
 
 
-    //以工程为来源查询testcase，但是工程那里并没有设置好，TODO:设置好工程
-    /*public JSON queryTestCases(User user) throws Exception {
+    //以工程为来源查询testCase
+    public JSON queryTestCases(User user) throws Exception {
         if (user != null)
             System.out.println("queryTestCases--> query user role: " + user.getRoles().get(0).getRoleName());
         if (user.getRoles().get(0).getRoleName().equals("普通客户"))
         {
-            List<TestCase> testCases = user.getTestCases();
+            List<Project> projects = user.getProjects();
+            List<TestCase> testCases = new ArrayList<TestCase>();
+            for (Project project: projects){
+                testCases.addAll(project.getTestCase());
+            }
             //TODO:对测试计划进行处理，去掉具体内容,并且添加测试计划状态
             return processTestCases(testCases);
         }
@@ -43,7 +52,7 @@ public class TestCaseService extends BaseService<TestCase> {
             //对测试计划进行处理，去掉具体内容,并且添加测试计划状态
             return processTestCases(testCases);
         }
-    }*/
+    }
 
     public JSONObject queryTestCaseByID(String id) throws Exception{
         TestCase testCase = testCaseRepository.findById(id);
@@ -69,21 +78,22 @@ public class TestCaseService extends BaseService<TestCase> {
         return processTestCase(testCase);
     }
 
-    //增加测试计划
+    //增加testCase
     public JSONObject addTestCase(JSONObject params,List<MultipartFile> files,User user) throws Exception {
 
-        String uid=UUID.randomUUID().toString();
+        //String uid=UUID.randomUUID().toString();
+        String uid = params.getString("id");
 
         TestCase testCase=JSONObject.toJavaObject(params,TestCase.class);
         testCase.setId(uid);
-        /*testCase.setUser(user);*/
+        testCase.setProject(projectRepository.findById(uid));
 
         //TODO:start activiti process
         //String procID = processInstanceService.createTestCaseProcess(params, user);
         //testCase.setProcessInstanceID(procID);
         this.saveEntity(testCase, user);
 
-        //TODO:添加testplan状态
+        //TODO:添加testCase状态
         testCase = testCaseRepository.findById(uid);
         return processTestCase(testCase);
     }

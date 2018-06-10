@@ -53,7 +53,8 @@ public class ProjectService extends BaseService<Project>{
 
     //添加工程
     public JSONObject addProject(JSONObject params, List<MultipartFile> files,User user) throws Exception{
-        String uid = UUID.randomUUID().toString();
+        //String uid = UUID.randomUUID().toString();
+        String uid = params.getString("id");
 
         Project project = JSONObject.toJavaObject(params, Project.class);
         project.setId(uid);

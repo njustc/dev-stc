@@ -6,14 +6,14 @@
         <modeler:editor-resource-id><![CDATA[startEvent1]]></modeler:editor-resource-id>
       </extensionElements>
     </startEvent>
-    <userTask id="writeplan" name="TobeWrite" activiti:candidateGroups="${testEmployerId}">
+    <userTask id="writeplan" name="TobeWrite" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-044F4685-CDC4-42B6-B5FF-CA8F0A2E01C2]]></modeler:editor-resource-id>
       </extensionElements>
     </userTask>
-    <userTask id="reviewplan" name="TobeReview" activiti:candidateGroups="${qualityEmployerId}">
+    <userTask id="reviewplan" name="TobeReview" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
         <activiti:formProperty id="approval" name="Do you approve this testplan?" type="enum" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
@@ -26,7 +26,7 @@
         <modeler:editor-resource-id><![CDATA[sid-125BF5A9-61A6-4614-B6B8-068A99FC7793]]></modeler:editor-resource-id>
       </extensionElements>
     </exclusiveGateway>
-    <userTask id="confirmplan" name="TobeConfirm" activiti:candidateUsers="${testEmployeeId}">
+    <userTask id="confirmplan" name="TobeConfirm" activiti:candidateUsers="${WorkerId}">
       <extensionElements>
         <activiti:formProperty id="approval" name="Do you approve this testplan?" type="enum" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
@@ -39,7 +39,7 @@
         <modeler:editor-resource-id><![CDATA[sid-54849EB5-2C82-41E5-85E4-76270668D3C0]]></modeler:editor-resource-id>
       </extensionElements>
     </exclusiveGateway>
-    <userTask id="implementplan" name="TobeImplement" activiti:candidateGroups="${testEmployerId}">
+    <userTask id="implementplan" name="TobeImplement" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>

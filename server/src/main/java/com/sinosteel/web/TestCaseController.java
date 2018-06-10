@@ -17,13 +17,13 @@ public class TestCaseController extends BaseController {
     private TestCaseService testCaseService;
 
 
-    //TODO:搞清楚到底如何查询
+
     @RequestMapping(value = "/v1/testCase", method = RequestMethod.GET)
-    public Response queryTestplans(Request request)
+    public Response queryTestCases(Request request)
     {
         Response response = new Response();
 
-        /*try
+        try
         {
             response.data = testCaseService.queryTestCases(request.getUser());
             response.status = ResponseType.SUCCESS;
@@ -33,7 +33,7 @@ public class TestCaseController extends BaseController {
             e.printStackTrace();
             response.status = ResponseType.FAILURE;
             response.message = e.getMessage();
-        }*/
+        }
 
         return response;
     }

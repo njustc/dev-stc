@@ -8,12 +8,14 @@ import com.sinosteel.domain.Project;
 import com.sinosteel.domain.User;
 import com.sinosteel.domain.TestReport;
 import com.sinosteel.repository.TestReportRepository;
+import com.sinosteel.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.ArrayList;
 
 /**
  * @author LBW & Lumpy
@@ -24,6 +26,8 @@ public class TestReportService extends BaseService<TestReport>{
 
     @Autowired
     private TestReportRepository testReportRepository;
+    @Autowired
+    private ProjectRepository projectRepository;
 
     @Autowired
     private ProcessInstanceService processInstanceService;
@@ -33,7 +37,11 @@ public class TestReportService extends BaseService<TestReport>{
             System.out.println("queryTestReports --> query user role: " + user.getRoles().get(0).getRoleName());
         }
         if (user.getRoles().get(0).getRoleName().equals("普通客户")){
-            List<TestReport> testReports = user.getTestReports();
+            List<Project> projects = user.getProjects();
+            List<TestReport> testReports = new ArrayList<TestReport>();
+            for (Project project: projects){
+                testReports.add(project.getTestReport());
+            }
             return processTestReports(testReports);
         }
         else {
@@ -69,10 +77,12 @@ public class TestReportService extends BaseService<TestReport>{
 
 
     public JSONObject addTestReport(JSONObject params, List<MultipartFile> files, User user) throws Exception{
-        String uid = UUID.randomUUID().toString();
+        //String uid = UUID.randomUUID().toString();
+        String uid = params.getString("id");
 
         TestReport testReport = JSONObject.toJavaObject(params, TestReport.class);
         testReport.setId(uid);
+        testReport.setProject(projectRepository.findById(uid));
 
         this.saveEntity(testReport,user);
 
