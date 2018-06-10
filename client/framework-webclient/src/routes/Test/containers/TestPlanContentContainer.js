@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import TestPlanContentComponent from "../components/TestPlanContentComponent";
 import {connect} from "react-redux";
+import {getTestPlan} from "../../../services/TestService";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state,ownProps) => {
     return {
+        testPlanData: state.TestPlan.listMap[ownProps.id],
         values: {},/*fetch consign with pro id*/
         contractData: {},/*fetch data with pro id*/
         disable: true,
@@ -36,6 +38,7 @@ const buttons = (dispatch) => [{
 const mapDispatchToProps = (dispatch) => {
     return {
         buttons: buttons(dispatch),
+        getValues: (id) => getTestPlan(dispatch,id),
     }
 };
 

@@ -3,28 +3,53 @@ import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
 import {removeTestRecord, setTestRecordContent, setTestRecordList/*, setTestRecordState*/} from "../modules/ducks/TestRecord";
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
+import {setTestCaseContent, setTestCaseList} from "../modules/ducks/TestCase";
 
 const testRecordBase = baseServiceAddress + '/testRecord';
 const testRecordActivitiBase = baseServiceAddress + '/processInstance';
 
 export const getTestRecordList = (dispatch, callback) => {
-    httpGet(testRecordBase,(result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            dispatch(setTestRecordList(data));
+    dispatch(setTestRecordList(/*data*/
+        [
+            {
+                pid : "110",
+                id : "110",
+                name : "快乐星球小杨杰",
+                customerId : "151220140",
+                status: STATE.TO_SUBMIT
+            },{
+            pid :"120",
+            id : "120",
+            name : "不快乐星球小杨杰",
+            customerId : "151220140",
+            status: STATE.TO_CHECK
+        },{
+            pid : "119",
+            id : "119",
+            name : "不快乐星球老杨杰",
+            customerId : "151220140",
+            status: STATE.CANCELED
         }
-        callback && callback(status);
-    });
+        ]
+    ));
+    // httpGet(testRecordBase,(result) => {
+    //     const {status, data} = result;
+    //     if (status === STATUS.SUCCESS) {
+    //         dispatch(setTestRecordList(data));
+    //     }
+    //     callback && callback(status);
+    // });
 };
 
 export const getTestRecord = (dispatch, id, callback) => {
-    httpGet(testRecordBase + '/' + id, (result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            dispatch(setTestRecordContent(data));
-        }
-        callback && callback(status);
-    });
+    dispatch(setTestRecordContent({id:id,}));
+    // httpGet(testRecordBase + '/' + id, (result) => {
+    //     const {status, data} = result;
+    //     if (status === STATUS.SUCCESS) {
+    //         dispatch(setTestRecordContent(data));
+    //     }
+    //     callback && callback(status);
+    // });
 };
 
 export const deleteTestRecord = (dispatch, id, callback) => {

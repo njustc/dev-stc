@@ -3,30 +3,55 @@ import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
 import {removeTestReportCheck, setTestReportCheckContent, setTestReportCheckList, setTestReportCheckState} from "../modules/ducks/TestReportCheck";
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
+import {setTestRecordContent, setTestRecordList} from "../modules/ducks/TestRecord";
 
 const TestReportCheckBase = baseServiceAddress + '/TestReportCheck';
 const TestReportCheckActivitiBase = baseServiceAddress + '/processInstance';
 
 export const getTestReportCheckList = (dispatch, callback) => {
-    httpGet(TestReportCheckBase,(result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            dispatch(setTestReportCheckList(data));
+    dispatch(setTestReportCheckList(/*data*/
+        [
+            {
+                pid : "110",
+                id : "110",
+                name : "快乐星球小杨杰",
+                customerId : "151220140",
+                status: STATE.TO_SUBMIT
+            },{
+            pid :"120",
+            id : "120",
+            name : "不快乐星球小杨杰",
+            customerId : "151220140",
+            status: STATE.TO_CHECK
+        },{
+            pid : "119",
+            id : "119",
+            name : "不快乐星球老杨杰",
+            customerId : "151220140",
+            status: STATE.CANCELED
         }
-        callback && callback(status);
-    });
+        ]
+    ));
+    // httpGet(TestReportCheckBase,(result) => {
+    //     const {status, data} = result;
+    //     if (status === STATUS.SUCCESS) {
+    //         dispatch(setTestReportCheckList(data));
+    //     }
+    //     callback && callback(status);
+    // });
     // const status = STATUS.SUCCESS;
     // callback && callback(status);
 };
 
 export const getTestReportCheck = (dispatch, id, callback) => {
-    httpGet(TestReportCheckBase + '/' + id, (result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            dispatch(setTestReportCheckContent(data));
-        }
-        callback && callback(status);
-    });
+    dispatch(setTestReportCheckContent({id:id,}));
+    // httpGet(TestReportCheckBase + '/' + id, (result) => {
+    //     const {status, data} = result;
+    //     if (status === STATUS.SUCCESS) {
+    //         dispatch(setTestReportCheckContent(data));
+    //     }
+    //     callback && callback(status);
+    // });
 };
 
 export const deleteTestReportCheck = (dispatch, id, callback) => {

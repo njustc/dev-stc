@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import TestWorkCheckContentComponent from "../components/TestWorkCheckContentComponent";
 import {connect} from "react-redux";
+import {setTestWorkCheckContent} from "../../../modules/ducks/Archive";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state,ownProps) => {
     return {
+        testWorkCheckData: state.TestWorkCheck.listMap[ownProps.id],
         values: {},/*fetch consign with pro id*/
         contractData: {},/*fetch data with pro id*/
         disable: true,
@@ -36,6 +38,7 @@ const buttons = (dispatch) => [{
 const mapDispatchToProps = (dispatch) => {
     return {
         buttons: buttons(dispatch),
+        getValues: (id) => dispatch(setTestWorkCheckContent({id:id}))
     }
 };
 

@@ -11,13 +11,36 @@ const consignActivitiBase = baseServiceAddress + '/processInstance';
 
 
 export const getTestPlanList = (dispatch, callback) => {
-    httpGet(testPlanBase, (result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            dispatch(setTestPlanList(data));
+    dispatch(setTestPlanList(
+        [
+            {
+                pid : "110",
+                id : "110",
+                name : "快乐星球小杨杰",
+                customerId : "151220140",
+                status: STATE.TO_SUBMIT
+            },{
+            pid :"120",
+            id : "120",
+            name : "不快乐星球小杨杰",
+            customerId : "151220140",
+            status: STATE.TO_CHECK
+        },{
+            pid : "119",
+            id : "119",
+            name : "不快乐星球老杨杰",
+            customerId : "151220140",
+            status: STATE.CANCELED
         }
-        callback && callback(status);
-    });
+        ]
+    ));
+    // httpGet(testPlanBase, (result) => {
+    //     const {status, data} = result;
+    //     if (status === STATUS.SUCCESS) {
+    //         dispatch(setTestPlanList(data));
+    //     }
+    //     callback && callback(status);
+    // });
 };
 
 export const newTestPlan = (dispatch, callback) => {
@@ -31,13 +54,14 @@ export const newTestPlan = (dispatch, callback) => {
 };
 
 export const getTestPlan = (dispatch, id, callback) => {
-    httpGet(testPlanBase + '/' + id, (result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            dispatch(setTestPlanContent(data));
-        }
-        callback && callback(status);
-    });
+    dispatch(setTestPlanContent({id:id}));
+    // httpGet(testPlanBase + '/' + id, (result) => {
+    //     const {status, data} = result;
+    //     if (status === STATUS.SUCCESS) {
+    //         dispatch(setTestPlanContent(data));
+    //     }
+    //     callback && callback(status);
+    // });
 };
 
 export const getTestCaseList = (dispatch, callback) => {

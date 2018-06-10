@@ -37,7 +37,7 @@ const buttons = (dispatch) => [{
 const mapDispatchToProps = (dispatch) => {
     return {
         buttons: buttons(dispatch),
-        getValues: (id) => getTestReportCheck(id),
+        getValues: (id) => getTestReportCheck(dispatch,id),
     }
 };
 
