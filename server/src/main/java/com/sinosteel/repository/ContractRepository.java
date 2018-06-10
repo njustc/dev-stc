@@ -7,9 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author Songjunju
+ * @author SongJunju
  */
-
 @Repository
 public interface ContractRepository extends BaseRepository<Contract> {
 

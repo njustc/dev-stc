@@ -5,6 +5,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+
+/**
+ * @author SongJunju
+ */
+
 @Repository
 public interface TestCaseRepository extends BaseRepository<TestCase> {
     TestCase findById(String id);

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * @author Songjunju
+ * @author SongJunju
  */
 @Entity
 @Table(name = "TBL_SYS_PROJECTS")

@@ -7,7 +7,13 @@ import org.junit.Test;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+/**
+ * @author SongJunju
+ */
 
+/**
+ * 测试方案
+ */
 @Entity
 @Table(name = "TBL_SYS_TESTPLANS")
 public class TestPlan extends BaseEntity {

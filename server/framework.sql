@@ -84,6 +84,10 @@ CREATE TABLE `tbl_sys_projects` (
   `TESTPLAN_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- 表的结构 `tbl_sys_testreports`
+--
+
 CREATE TABLE `tbl_sys_testreports`(
   `ID` varchar(255) COLLATE utf8_bin NOT NULL,
   `CODE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -94,6 +98,10 @@ CREATE TABLE `tbl_sys_testreports`(
   `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `REPORT` text COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- 表的结构 `tbl_sys_testrecords`
+--
 
 CREATE TABLE `tbl_sys_testrecords`(
   `ID` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -108,6 +116,11 @@ CREATE TABLE `tbl_sys_testrecords`(
   `TESTCASE_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+
+--
+-- 表的结构 `tbl_sys_testcases`
+--
+
 CREATE TABLE `tbl_sys_testcases`(
   `ID` varchar(255) COLLATE utf8_bin NOT NULL,
   `CODE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -120,6 +133,9 @@ CREATE TABLE `tbl_sys_testcases`(
   `PROJECT_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- 表的结构 `tbl_sys_testbugs`
+--
 
 CREATE TABLE `tbl_sys_testbugs`(
   `ID` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -132,6 +148,10 @@ CREATE TABLE `tbl_sys_testbugs`(
   `PROJECT_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- 表的结构 `tbl_sys_testfunctions`
+--
+
 CREATE TABLE `tbl_sys_testfunctions`(
   `ID` varchar(255) COLLATE utf8_bin NOT NULL,
   `CODE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -143,6 +163,10 @@ CREATE TABLE `tbl_sys_testfunctions`(
   `PROJECT_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- 表的结构 `tbl_sys_testplans`
+--
+
 CREATE TABLE `tbl_sys_testplans`(
   `ID` varchar(255) COLLATE utf8_bin NOT NULL,
   `CODE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -153,6 +177,10 @@ CREATE TABLE `tbl_sys_testplans`(
   `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- 表的结构 `tbl_sys_testreportchecks`
+--
+
 CREATE TABLE `tbl_sys_testreportchecks`(
   `ID` varchar(255) COLLATE utf8_bin NOT NULL,
   `CODE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -162,6 +190,10 @@ CREATE TABLE `tbl_sys_testreportchecks`(
   `ALTERED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- 表的结构 `tbl_sys_testworkchecks`
+--
 
 CREATE TABLE `tbl_sys_testworkchecks`(
   `ID` varchar(255) COLLATE utf8_bin NOT NULL,

@@ -3,7 +3,13 @@ package com.sinosteel.domain;
 import com.alibaba.fastjson.annotation.JSONField;
 
 import javax.persistence.*;
+/**
+ * @author SongJunju
+ */
 
+/**
+ * 软件功能表
+ */
 @Entity
 @Table(name = "TBL_SYS_TESTFUNCTIONS")
 public class TestFunction extends BaseEntity {

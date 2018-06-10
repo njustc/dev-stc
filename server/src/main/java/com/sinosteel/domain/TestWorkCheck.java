@@ -6,6 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
+/**
+ * @author SongJunju
+ */
+
+/**
+ * 测试工作检查表
+ */
 @Entity
 @Table(name = "TBL_SYS_TESTWORKCHECKS")
 public class TestWorkCheck extends BaseEntity{

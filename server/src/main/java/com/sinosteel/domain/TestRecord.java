@@ -4,7 +4,13 @@ import com.alibaba.fastjson.annotation.JSONField;
 
 import javax.persistence.*;
 
-//测试结果
+/**
+ * @author SongJunju
+ */
+
+/**
+ * 测试记录
+ */
 @Entity
 @Table(name = "TBL_SYS_TESTRECORDS")
 public class TestRecord extends BaseEntity {
