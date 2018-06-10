@@ -4,7 +4,14 @@ import com.alibaba.fastjson.annotation.JSONField;
 
 import javax.persistence.*;
 
-//测试方案
+/**
+ * @author SongJunju
+ */
+
+
+/**
+ * 测试用例
+ */
 @Entity
 @Table(name = "TBL_SYS_TESTCASES")
 public class TestCase extends BaseEntity {

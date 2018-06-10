@@ -1,5 +1,6 @@
 package com.sinosteel.activiti;
 
+import com.sinosteel.framework.mybatis.UserMapper;
 import org.activiti.engine.FormService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.form.FormProperty;
@@ -20,7 +21,11 @@ public class BaseOperation {
     TaskService taskService;
     @Autowired
     FormService formService;
-    enum state{TobeSubmit,TobeReview,TobeConfirm,TobeWrite,TobeImplement}
+    @Autowired
+    private UserMapper userMapper;
+
+    enum state{TobeSubmit,TobeReview,TobeConfirm,TobeWrite,TobeImplement,
+                TobeApprove,TobeSend,TobeDone,TobeFiling,Satisfaction}
 
     /**
      * 没有gate的task,对应于所有流程图中的提交,编写，实施等
@@ -29,14 +34,15 @@ public class BaseOperation {
      */
     public void noGate (String processInstanceId,String workerId) throws  Exception
     {
+        List<String> userids = userMapper.getUserIdsByRoleId("1");
         Task task=taskService.createTaskQuery()
                 .processInstanceId(processInstanceId).singleResult();
-        if(task.getName().equals(state.TobeSubmit.name()))
-            taskService.complete(task.getId());
-        else if(task.getName().equals(state.TobeWrite.name())
-            ||task.getName().equals(state.TobeImplement.name()))
-        {
-            taskService.claim(task.getId(),workerId);
+        if(task.getName().equals(state.TobeSubmit.name())||task.getName().equals(state.TobeWrite.name())
+                ||task.getName().equals(state.TobeImplement.name())||task.getName().equals(state.TobeDone.name())
+                ||task.getName().equals(state.Satisfaction.name())||task.getName().equals(state.TobeFiling.name())
+                ||task.getName().equals(state.TobeSend.name())){
+            if(userids.contains(workerId))
+                taskService.claim(task.getId(),workerId);
             taskService.complete(task.getId());
         }
         else throw new Exception( task.getName()+"error");
@@ -51,6 +57,7 @@ public class BaseOperation {
      */
     public void containGate(String operation,String processInstanceId,String workerId ) throws Exception
     {
+        List<String> userids = userMapper.getUserIdsByRoleId("1");
         Task task=taskService.createTaskQuery()
                 .processInstanceId(processInstanceId).singleResult();
         TaskFormData taskFormData=formService.getTaskFormData(task.getId());
@@ -62,8 +69,10 @@ public class BaseOperation {
                 varies.add(formProperty.getId());
             }
         }
-        if(task.getName().equals(state.TobeReview.name())||task.getName().equals(state.TobeConfirm.name())){
-            taskService.claim(task.getId(),workerId);
+        if(task.getName().equals(state.TobeReview.name())||task.getName().equals(state.TobeConfirm.name())
+                ||task.getName().equals(state.TobeApprove.name())){
+            if(userids.contains(workerId))
+                taskService.claim(task.getId(),workerId);
             Map<String,Object> variables=new HashMap<String, Object>();
             for(String tmp:varies) {
                 variables.put(tmp,operation);

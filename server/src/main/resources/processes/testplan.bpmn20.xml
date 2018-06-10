@@ -80,25 +80,25 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-673C7A41-BBC6-4F9C-B2AC-9A19F51EE182]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'reviewreject'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f5" name="通过" sourceRef="g1" targetRef="confirmplan">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-D6128948-5F7F-4A09-AE66-4427E0B63D16]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'reviewpass'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewPass'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f10" name="不通过" sourceRef="g2" targetRef="writeplan">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-B8670296-BB27-4124-B683-26CC2A6C6AA7]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'confirmreject'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ConfirmReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f7" name="通过" sourceRef="g2" targetRef="implementplan">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-75D85D5D-E95F-404D-A53B-C2C2C47D17B2]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'confirmpass'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ConfirmPass'}]]></conditionExpression>
     </sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_testplan">

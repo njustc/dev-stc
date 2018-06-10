@@ -6,9 +6,8 @@ import com.alibaba.fastjson.annotation.JSONField;
 import javax.persistence.*;
 
 /**
- * @author Songjunju
+ * @author SongJunju
  */
-
 @Entity
 @Table(name = "TBL_SYS_CONTRACTS")
 public class Contract extends BaseEntity {
