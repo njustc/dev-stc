@@ -6,22 +6,24 @@
         <modeler:editor-resource-id><![CDATA[startEvent1]]></modeler:editor-resource-id>
       </extensionElements>
     </startEvent>
-    <userTask id="writereport" name="编写测试报告" activiti:candidateGroups="测试部工作人员">
+    <userTask id="writereport" name="TobeWrite" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-A0F87A75-775A-40B0-8F7E-6C2BCAE70468]]></modeler:editor-resource-id>
       </extensionElements>
     </userTask>
-    <userTask id="checkreport" name="审核测试报告" activiti:candidateUsers="测试部主任">
+    <userTask id="reviewreport" name="TobeReview" activiti:candidateUsers="${WorkerId}">
       <extensionElements>
+        <activiti:formProperty id="approval" name="Do you approve this testreport?" type="enum" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-9102BEBF-1604-435A-8988-BACA3D835F2A]]></modeler:editor-resource-id>
       </extensionElements>
     </userTask>
-    <userTask id="approvereport" name="批准测试报告" activiti:candidateGroups="质量部">
+    <userTask id="approvereport" name="TobeApprove" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
+        <activiti:formProperty id="approval" name="Do you approve this testplan?" type="enum" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-1B1252BB-E43A-4E86-AEA4-455AD28CF94D]]></modeler:editor-resource-id>
@@ -37,15 +39,16 @@
         <modeler:editor-resource-id><![CDATA[sid-7A0F0287-02BD-421E-8FE3-9B44111EC00C]]></modeler:editor-resource-id>
       </extensionElements>
     </exclusiveGateway>
-    <userTask id="providereport" name="发放测试报告" activiti:candidateGroups="市场部工作人员">
+    <userTask id="sendreport" name="TobeSend" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-E5EBD068-6887-4339-9371-7D50789342BF]]></modeler:editor-resource-id>
       </extensionElements>
     </userTask>
-    <userTask id="confirmreport" name="确认测试报告" activiti:candidateGroups="客户">
+    <userTask id="confirmreport" name="TobeConfirm" activiti:candidateGroups="客户">
       <extensionElements>
+        <activiti:formProperty id="approval" name="Do you approve this testplan?" type="enum" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-E33AD7C3-DEFA-44A7-BAAA-8ED933956D5B]]></modeler:editor-resource-id>
@@ -56,21 +59,21 @@
         <modeler:editor-resource-id><![CDATA[sid-4877C8D8-40DB-47CD-99E1-721D85697311]]></modeler:editor-resource-id>
       </extensionElements>
     </exclusiveGateway>
-    <userTask id="satisfaction" name="满意度反馈" activiti:candidateGroups="客户">
+    <userTask id="satisfaction" name="Satisfaction" activiti:candidateGroups="客户">
       <extensionElements>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-400DA8A0-0ACD-42F7-AAD3-9543DE389B6C]]></modeler:editor-resource-id>
       </extensionElements>
     </userTask>
-    <userTask id="done" name="结项" activiti:candidateGroups="质量部">
+    <userTask id="done" name="TobeDone" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-BBE6B76E-E6AD-4ACE-9DE6-8FE748B2291B]]></modeler:editor-resource-id>
       </extensionElements>
     </userTask>
-    <userTask id="file" name="归档" activiti:candidateGroups="质量部">
+    <userTask id="file" name="TobeFiling" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
@@ -82,12 +85,12 @@
         <modeler:editor-resource-id><![CDATA[sid-48522234-CC00-49B7-B55B-4CBBA2D3BAC2]]></modeler:editor-resource-id>
       </extensionElements>
     </endEvent>
-    <sequenceFlow id="f2" sourceRef="writereport" targetRef="checkreport">
+    <sequenceFlow id="f2" sourceRef="writereport" targetRef="reviewreport">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-FD92D30A-04C8-48B8-B95D-31195E2FFE3B]]></modeler:editor-resource-id>
       </extensionElements>
     </sequenceFlow>
-    <sequenceFlow id="f4" sourceRef="checkreport" targetRef="g1">
+    <sequenceFlow id="f4" sourceRef="reviewreport" targetRef="g1">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-508DEB25-F8E4-4B4A-ACB3-1F3DD59DC4C2]]></modeler:editor-resource-id>
       </extensionElements>
@@ -101,15 +104,15 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-B69F48E1-7BF6-49AA-BF00-57C3E36B37E9]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[通过]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewPass'}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="f7" name="通过" sourceRef="g2" targetRef="providereport">
+    <sequenceFlow id="f7" name="通过" sourceRef="g2" targetRef="sendreport">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-78824EF3-C975-4124-A86D-0DBC830ED15F]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[通过]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ApprovePass'}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="f8" sourceRef="providereport" targetRef="confirmreport">
+    <sequenceFlow id="f8" sourceRef="sendreport" targetRef="confirmreport">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-99AF8724-DB2A-4EE2-942C-21EE15776291]]></modeler:editor-resource-id>
       </extensionElements>
@@ -123,7 +126,7 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-3469E39D-9B78-4D62-A35D-881E4DCD2264]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[通过]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ConfirmPass'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f11" sourceRef="satisfaction" targetRef="done">
       <extensionElements>
@@ -154,25 +157,25 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-A2F3F0F3-8B5F-47F7-A118-FC4D7606FE79]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[不通过]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f15" name="不通过" sourceRef="g2" targetRef="writereport">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-E23FD817-8714-418D-B8B7-58792B3476B6]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[不通过]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ApproveReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f16" name="不通过" sourceRef="g3" targetRef="writereport">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-CC917695-8687-46AC-A1E6-7670C83386B4]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[不通过]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ConfirmReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f17" name="放弃" sourceRef="g3" targetRef="end2">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-3C5BE11B-1BDC-4C4E-A52D-09F21A2BF479]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[放弃]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ConfirmAbort'}]]></conditionExpression>
     </sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_testreport">
@@ -183,7 +186,7 @@
       <bpmndi:BPMNShape bpmnElement="writereport" id="BPMNShape_writereport">
         <omgdc:Bounds height="80.0" width="100.0" x="165.0" y="125.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="checkreport" id="BPMNShape_checkreport">
+      <bpmndi:BPMNShape bpmnElement="reviewreport" id="BPMNShape_checkreport">
         <omgdc:Bounds height="80.0" width="100.0" x="390.0" y="125.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="approvereport" id="BPMNShape_approvereport">
@@ -195,7 +198,7 @@
       <bpmndi:BPMNShape bpmnElement="g2" id="BPMNShape_g2">
         <omgdc:Bounds height="40.0" width="40.0" x="835.0" y="145.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="providereport" id="BPMNShape_providereport">
+      <bpmndi:BPMNShape bpmnElement="sendreport" id="BPMNShape_providereport">
         <omgdc:Bounds height="80.0" width="100.0" x="920.0" y="125.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="confirmreport" id="BPMNShape_confirmreport">

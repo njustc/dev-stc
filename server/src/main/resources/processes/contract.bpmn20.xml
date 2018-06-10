@@ -57,7 +57,7 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-9681CAAF-6246-4CB3-8EF9-CECA5F2C9990]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'confirmpass'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ConfirmPass'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f11" sourceRef="confirmcontract" targetRef="g5">
       <extensionElements>
@@ -68,13 +68,13 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-F46E0096-0D62-4D47-96A3-220199B55F26]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'confirmreject'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ConfirmReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f13" name="不通过" sourceRef="g2" targetRef="submitcontract">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-9907F081-2168-4C99-A2A2-BA0EFCB62E43]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'reviewreject'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f6" sourceRef="reviewcontract" targetRef="g2">
       <extensionElements>
@@ -85,7 +85,7 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-93A61CD5-2AA5-4B6E-8CF8-C077BEBFF757]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'reviewpass'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewPass'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f1" sourceRef="start" targetRef="submitcontract">
       <extensionElements>
