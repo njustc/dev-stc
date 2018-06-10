@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class TestReportServiceTest {
 
-    private User marketUser;
+    private User testUser;
     private User customer1;
     private User customer2;
 
@@ -36,7 +36,7 @@ public class TestReportServiceTest {
 
     @Before
     public void getUser() {
-        marketUser = userRepository.findByUsername("marketing");
+        testUser = userRepository.findByUsername("testing");
         customer1 = userRepository.findByUsername("customer1");
         customer2 = userRepository.findByUsername(("customer2"));
     }
@@ -44,7 +44,7 @@ public class TestReportServiceTest {
     public void Test_queryTestReports(){
         System.out.println("测试工作人员获取测试报告");
         try {
-            JSON result = testReportService.queryTestReport(marketUser);
+            JSON result = testReportService.queryTestReport(testUser);
 
             Assert.assertNotNull("工作人员 -测试报告查询失败",result);
 
@@ -67,14 +67,14 @@ public class TestReportServiceTest {
     }
     @Test
     public void test_SE(){
-        System.out.println("=====customer1 新建一个测试报告=====");
+        System.out.println("=====testUser 新建一个测试报告=====");
         JSONObject TestReport = new JSONObject();
-        TestReport.put("Report", "这是customer1测试中新建的一个测试报告");
+        TestReport.put("Report", "这是testUser测试中新建的一个测试报告");
 
         try {
 
             //test_addTestReport
-            JSONObject jsonResult = testReportService.addTestReport(TestReport, null, customer1);
+            JSONObject jsonResult = testReportService.addTestReport(TestReport, null, testUser);
             String id = jsonResult.getString("id");
             Assert.assertNotNull("测试报告新建失败",id);
             System.out.println("测试报告新建成功, 测试报告的ID为: " + id);
@@ -89,9 +89,9 @@ public class TestReportServiceTest {
             //test_editTestReport
             System.out.println("=====编辑该测试报告内容=====");
             String edit_object = "report";
-            String edit_contents = "这是customer1在测试中修改的测试报告";
+            String edit_contents = "这是testUser在测试中修改的测试报告";
             jsonTestReport.put(edit_object,edit_contents );
-            jsonTestReport = testReportService.editTestReport(jsonTestReport, null, customer1);
+            jsonTestReport = testReportService.editTestReport(jsonTestReport, null, testUser);
             Assert.assertEquals("测试报告修改失败",edit_contents,jsonTestReport.getString(edit_object));  //检验报告内容修改是否符合预期
             System.out.println(jsonTestReport);
 
