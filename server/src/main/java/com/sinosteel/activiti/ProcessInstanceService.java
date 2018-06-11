@@ -1,11 +1,12 @@
 package com.sinosteel.activiti;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sinosteel.domain.*;
+import com.sinosteel.domain.Consign;
+import com.sinosteel.domain.Contract;
+import com.sinosteel.domain.User;
 import com.sinosteel.framework.core.web.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import springfox.documentation.spring.web.json.Json;
 
 import java.util.List;
 
@@ -51,9 +52,11 @@ public class ProcessInstanceService {
     /*查询具体流程实例状态*/
     public JSONObject queryProcessState(String processInstanceID) throws Exception {
         String state = TCProcessEngine.getProcessState(processInstanceID);
+        List<String> operation = TCProcessEngine.getUserOperation(processInstanceID);
         JSONObject queryResultJson = new JSONObject();
         queryResultJson.put("processInstanceID",  processInstanceID);
         queryResultJson.put("state", state);
+        queryResultJson.put("operation", operation);
         return queryResultJson;
     }
 
