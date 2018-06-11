@@ -7,13 +7,14 @@ const initialState = {
     listFilter: () => true,//绑定按钮传入的过滤条件
     listMap: { },  //项目集合，用key-value表示，key为id，value为TestCaseData
     //TestCaseData为对象，仍然包含id字段
+    casesMap: { },
 };
 
 export const TestCaseReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_LIST:
             const list = action.payload;
-            console.log(list);
+            //console.log(list);
             return {
                 ...state,
                 listMap: list.reduce((listMap, TestCaseData) => {
@@ -30,7 +31,7 @@ export const TestCaseReducer = (state = initialState, action) => {
                 listMap: newListMap
             };
         case SET_CONTENT: {
-            const {id} = action.payload;
+            /*const {id} = action.payload;
             const TestCaseData = action.payload;
             console.log(TestCaseData);
             const newData = {
@@ -44,7 +45,16 @@ export const TestCaseReducer = (state = initialState, action) => {
                 listMap: {
                     ...state.listMap,
                     [id]: newData,
-                },
+                },*/
+            /*TODO*/
+            const cases = action.payload;
+            //console.log(cases);
+            return {
+                ...state,
+                casesMap: cases.reduce((casesMap, TestCaseData) => {
+                    casesMap[TestCaseData.id] = TestCaseData;
+                    return casesMap;
+                }, {}),
             };
         }
         case SET_FILTER:
@@ -72,10 +82,10 @@ export const removeTestCase = (id) => {
     }
 };
 
-export const setTestCaseContent = (TestCaseData) => {
+export const setTestCaseContent = (cases/*TestCaseData*/) => {
     return {
         type: SET_CONTENT,
-        payload: TestCaseData,
+        payload: cases/*TestCaseData*/,
     }
 };
 

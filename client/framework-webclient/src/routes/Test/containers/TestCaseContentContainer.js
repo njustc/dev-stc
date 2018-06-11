@@ -2,14 +2,16 @@ import React, {Component} from 'react';
 import TestCaseContentComponent from "../components/TestCaseContentComponent";
 import {message} from 'antd';
 import {connect} from "react-redux";
-import {getTestCase, putTestCaseState, updateTestCase} from "../../../services/TestCaseService";
+import {getTestCase, putTestCaseState, updateTestCase, addTestCase} from "../../../services/TestCaseService";
 import {STATUS} from "../../../services/common";
+import {updateConsign} from "../../../services/ConsignService";
 /*TODO:表单内容和按钮的可视及禁用情况*/
 const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     const testcase = state.TestCase.listMap[ownProps.id].testcase;
     return {
+        dataSource: Object.values(state.TestCase.casesMap),
         // consignData: {},/*fetch data with pro id*/
         testCaseData: state.TestCase.listMap[ownProps.id],
         values: testcase ? JSON.parse(testcase) : {},
@@ -94,8 +96,15 @@ const mapDispatchToProps = (dispatch) => {
     const isEditVisible = true||authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     const isReviewVisible = true||authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "REVIEW")!==-1;
     return {
-        buttons: buttons(dispatch,isEditVisible,isReviewVisible).filter(button => button.enable===true),
-        getValues: (id) => getTestCase(dispatch,id)
+        //buttons: buttons(dispatch,isEditVisible,isReviewVisible).filter(button => button.enable===true),
+        getValues: (id) => getTestCase(dispatch,id),
+        addTestCase: (testCaseData,testcase) => {
+            /*const valueData = {
+            id: testCaseData.id,
+            testcase: testcase
+        };*/
+            //updateConsign(dispatch,valueData,(status)=>{console.log(status);});
+            addTestCase(dispatch,testcase)},
     }
 };
 
