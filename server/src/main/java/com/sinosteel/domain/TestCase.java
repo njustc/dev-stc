@@ -16,6 +16,31 @@ import javax.persistence.*;
 @Table(name = "TBL_SYS_TESTCASES")
 public class TestCase extends BaseEntity {
 
+
+    /**
+     * 详细字段未定
+     * 暂时先用来存储
+     */
+    @Column(name = "BODY")
+    private String body;
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+
+    /**
+     * 连接Project类的外键
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JSONField(serialize = false)
+    private Project project;
+
     public Project getProject() {
         return project;
     }
@@ -24,10 +49,14 @@ public class TestCase extends BaseEntity {
         this.project = project;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+
+    /**
+     * 连接TestRecord的外键
+     */
+    @OneToOne(mappedBy = "testCase")
+    @JoinColumn(name = "TESTCASE_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
-    private Project project;
+    private TestRecord testRecord;
 
     public TestRecord getTestRecord() {
         return testRecord;
@@ -37,20 +66,6 @@ public class TestCase extends BaseEntity {
         this.testRecord = testRecord;
     }
 
-    @OneToOne(mappedBy = "testCase")
-    @JoinColumn(name = "TESTCASE_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
-    @JSONField(serialize = false)
-    private TestRecord testRecord;
 
-    public String getTestcase() {
-        return testcase;
-    }
-
-    public void setTestcase(String testcase) {
-        this.testcase = testcase;
-    }
-
-    @Column(name = "TESTCASE")
-    private String testcase;
 
 }
