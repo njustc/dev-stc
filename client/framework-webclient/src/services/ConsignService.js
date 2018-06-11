@@ -59,7 +59,7 @@ export const updateConsign = (dispatch, data, callback) => {
     });
 };
 
-export const getConsignState = (dispatch, processInstanceID, callback) => {
+export const getConsignState = (dispatch, processInstanceID, id, callback) => {
     httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
