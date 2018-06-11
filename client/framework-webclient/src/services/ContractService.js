@@ -85,7 +85,7 @@ export const updateContract = (dispatch, data, callback) => {
     });
 };
 
-export const getContractState = (dispatch, processInstanceID, callback) => {
+export const getContractState = (dispatch, processInstanceID, id, callback) => {
     httpGet(contractActivitiBase + '/' + processInstanceID, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {

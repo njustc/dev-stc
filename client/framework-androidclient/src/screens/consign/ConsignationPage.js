@@ -20,98 +20,101 @@ import {
   FooterTab,
 } from "native-base";
 import styles from "./styles";
-import {CONSIGNATIONPAGE_CONTENT} from "../../common";
+//import {CONSIGNATIONPAGE_CONTENT} from "../../common";
+import {CONSIGNATIONPAGE_CONTENT} from "./Consignation";
 
-const dataArray = [
-    {
-        title: "1.基本信息",
-        content:
-        CONSIGNATIONPAGE_CONTENT.SOFTWARE_NAME
-        +"由"+CONSIGNATIONPAGE_CONTENT.REQUESTER
-        +"（"+CONSIGNATIONPAGE_CONTENT.REQUESTER_ENGLISH
-        +"）所委托，版本号为" +CONSIGNATIONPAGE_CONTENT.VERSION
-        +"，交由隶属于"+CONSIGNATIONPAGE_CONTENT.NATURE_OF_UNIT+"的"
-        +CONSIGNATIONPAGE_CONTENT.DEVELOPMENT_UNIT+"开发。\n"
-        + "软件用户对象描述如下："+CONSIGNATIONPAGE_CONTENT.SOFTWARE_USER_OBJECT_DES+"\n"
-        + "软件主要功能及用途简介如下："+CONSIGNATIONPAGE_CONTENT.MAIN_FUNCTION
-    },
-    {
-        title: "2.测试要求",
-        content:
-        "该委托测试的类型为"+CONSIGNATIONPAGE_CONTENT.TEST_TYPE
-        +"，测试依据"+CONSIGNATIONPAGE_CONTENT.TEST_BASIS
-        +",需要测试的技术指标有"+CONSIGNATIONPAGE_CONTENT.TECH_INDICATOR
-        +"。"
-    },
-    {
-        title: "3.软件基本信息",
-        content:
-        "该软件的功能数为"+CONSIGNATIONPAGE_CONTENT.FUNCTION_QUANTITY
-        +",功能点数为"+CONSIGNATIONPAGE_CONTENT.FUNCTION_POINTS
-        +",代码行数为"+CONSIGNATIONPAGE_CONTENT.LINE_OF_CODE +"（不包括注释行、空行），"
-        +"软件类型为"+CONSIGNATIONPAGE_CONTENT.SOFTWARE_TYPE
-        +"。"
-    },
-    {
-        title: "4.运行环境",
-        content:
-        "(1)客户端:\n操作系统要求："+CONSIGNATIONPAGE_CONTENT.OPERATING_SYS
-        +"\n内存要求："+CONSIGNATIONPAGE_CONTENT.RAM
-        +"\n硬盘要求："+CONSIGNATIONPAGE_CONTENT.HARD_DISK+"\n"
-        + "(2)服务器端：\n硬件要求如下：\n"+"架构要求："+CONSIGNATIONPAGE_CONTENT.STRUCTURE+"\n"
-        +"内存要求："+CONSIGNATIONPAGE_CONTENT.RAM2+"MB\n"
-        +"硬盘要求："+CONSIGNATIONPAGE_CONTENT.HARD_DISK2+"MB\n"
-        +"其他要求："+CONSIGNATIONPAGE_CONTENT.OTHERS+"\n"
-        +"软件要求如下：\n操作系统要求："+CONSIGNATIONPAGE_CONTENT.OPERATING_SYS2+"\n"
-        +"版本要求："+CONSIGNATIONPAGE_CONTENT.VERSION2+"\n"
-        +"编程语言要求："+CONSIGNATIONPAGE_CONTENT.PROGRAMING_LANGUAGE+"\n"
-        +"构架要求："+CONSIGNATIONPAGE_CONTENT.STRUCTURE2+"\n"
-        +"数据库要求："+CONSIGNATIONPAGE_CONTENT.DATABASE+"\n"
-        +"中间件要求："+CONSIGNATIONPAGE_CONTENT.MIDDLEWARE+"\n"
-        +"其他支撑软件要求："+CONSIGNATIONPAGE_CONTENT.OTHER_SUPPORTING_SOFT+"\n"
-        +"(3)网络环境要求如下："+CONSIGNATIONPAGE_CONTENT.WEB_ENVIRONMENT+"。"
-    },
-    {
-        title: "5.样品和数量",
-        content:
-        "软件介质有："+CONSIGNATIONPAGE_CONTENT.SOFT_MEDIA+"；\n"
-        +"文档资料包括："+CONSIGNATIONPAGE_CONTENT.DOCUMENTATION+"；\n"
-        +"提交的样品（硬拷贝资料、硬件等）在五年保存期满后，将"+"。"
-    },
-    {
-        title: "6.期望完成时间",
-        content:
-        "希望测试完成的时间为"+CONSIGNATIONPAGE_CONTENT.EXPECTED_FINISH_TIME+"。"
-    },
-    {
-        title:"7.委托单位信息",
-        content:
-        "电话："+CONSIGNATIONPAGE_CONTENT.PHONE+"\n"
-        +"传真："+CONSIGNATIONPAGE_CONTENT.FAX+"\n"
-        +"地址："+CONSIGNATIONPAGE_CONTENT.ADDRESS+"\n"
-        +"邮编："+CONSIGNATIONPAGE_CONTENT.ZIP_CODE+"\n"
-        +"联系人："+CONSIGNATIONPAGE_CONTENT.CONTACTS+"\n"
-        +"手机："+CONSIGNATIONPAGE_CONTENT.CELL_PHONE+"\n"
-        +"E-mail："+CONSIGNATIONPAGE_CONTENT.E_MAIL+"\n"
-        +"网址："+CONSIGNATIONPAGE_CONTENT.URL
-    },
-    {
-        title:"8.国家重点实验室联系方式",
-        content:
-        "单位地址：南京市栖霞区仙林大道163号\n"
-        +"邮政编码：210046\n"
-        +"电话：86-25-89683467, 86-25-89683670\n"
-        +"传真：86-25-89686596\n"
-        +"网址： http://keysoftlab.nju.edu.cn \n" +
-        "Email:  keysoftlab@nju.edu.cn\n"
-    },
-    {
-        title:"9.委托审查结果",
-        content:
-        "经审查，确认意见为："+CONSIGNATIONPAGE_CONTENT.CONFIRMATION_OPINION+"\n"
-        +"受理意见为："+CONSIGNATIONPAGE_CONTENT.ACCEPT_ADVICE
-    },
-];
+const dataArray0=[{title: "1.基本信息",
+  content: CONSIGNATIONPAGE_CONTENT.consignUnitC+"("+CONSIGNATIONPAGE_CONTENT.consignUnitE+")"}];
+// const dataArray = [
+//     {
+//         title: "1.基本信息",
+//         content:
+//         CONSIGNATIONPAGE_CONTENT.SOFTWARE_NAME
+//         +"由"+CONSIGNATIONPAGE_CONTENT.consignUnitC
+//         +"（"+CONSIGNATIONPAGE_CONTENT.consignUnitE
+//         +"）所委托，版本号为" +CONSIGNATIONPAGE_CONTENT.VERSION
+//         +"，交由隶属于"+CONSIGNATIONPAGE_CONTENT.NATURE_OF_UNIT+"的"
+//         +CONSIGNATIONPAGE_CONTENT.DEVELOPMENT_UNIT+"开发。\n"
+//         + "软件用户对象描述如下："+CONSIGNATIONPAGE_CONTENT.SOFTWARE_USER_OBJECT_DES+"\n"
+//         + "软件主要功能及用途简介如下："+CONSIGNATIONPAGE_CONTENT.MAIN_FUNCTION
+//     },
+//     {
+//         title: "2.测试要求",
+//         content:
+//         "该委托测试的类型为"+CONSIGNATIONPAGE_CONTENT.TEST_TYPE
+//         +"，测试依据"+CONSIGNATIONPAGE_CONTENT.TEST_BASIS
+//         +",需要测试的技术指标有"+CONSIGNATIONPAGE_CONTENT.TECH_INDICATOR
+//         +"。"
+//     },
+//     {
+//         title: "3.软件基本信息",
+//         content:
+//         "该软件的功能数为"+CONSIGNATIONPAGE_CONTENT.FUNCTION_QUANTITY
+//         +",功能点数为"+CONSIGNATIONPAGE_CONTENT.FUNCTION_POINTS
+//         +",代码行数为"+CONSIGNATIONPAGE_CONTENT.LINE_OF_CODE +"（不包括注释行、空行），"
+//         +"软件类型为"+CONSIGNATIONPAGE_CONTENT.SOFTWARE_TYPE
+//         +"。"
+//     },
+//     {
+//         title: "4.运行环境",
+//         content:
+//         "(1)客户端:\n操作系统要求："+CONSIGNATIONPAGE_CONTENT.OPERATING_SYS
+//         +"\n内存要求："+CONSIGNATIONPAGE_CONTENT.RAM
+//         +"\n硬盘要求："+CONSIGNATIONPAGE_CONTENT.HARD_DISK+"\n"
+//         + "(2)服务器端：\n硬件要求如下：\n"+"架构要求："+CONSIGNATIONPAGE_CONTENT.STRUCTURE+"\n"
+//         +"内存要求："+CONSIGNATIONPAGE_CONTENT.RAM2+"MB\n"
+//         +"硬盘要求："+CONSIGNATIONPAGE_CONTENT.HARD_DISK2+"MB\n"
+//         +"其他要求："+CONSIGNATIONPAGE_CONTENT.OTHERS+"\n"
+//         +"软件要求如下：\n操作系统要求："+CONSIGNATIONPAGE_CONTENT.OPERATING_SYS2+"\n"
+//         +"版本要求："+CONSIGNATIONPAGE_CONTENT.VERSION2+"\n"
+//         +"编程语言要求："+CONSIGNATIONPAGE_CONTENT.PROGRAMING_LANGUAGE+"\n"
+//         +"构架要求："+CONSIGNATIONPAGE_CONTENT.STRUCTURE2+"\n"
+//         +"数据库要求："+CONSIGNATIONPAGE_CONTENT.DATABASE+"\n"
+//         +"中间件要求："+CONSIGNATIONPAGE_CONTENT.MIDDLEWARE+"\n"
+//         +"其他支撑软件要求："+CONSIGNATIONPAGE_CONTENT.OTHER_SUPPORTING_SOFT+"\n"
+//         +"(3)网络环境要求如下："+CONSIGNATIONPAGE_CONTENT.WEB_ENVIRONMENT+"。"
+//     },
+//     {
+//         title: "5.样品和数量",
+//         content:
+//         "软件介质有："+CONSIGNATIONPAGE_CONTENT.SOFT_MEDIA+"；\n"
+//         +"文档资料包括："+CONSIGNATIONPAGE_CONTENT.DOCUMENTATION+"；\n"
+//         +"提交的样品（硬拷贝资料、硬件等）在五年保存期满后，将"+"。"
+//     },
+//     {
+//         title: "6.期望完成时间",
+//         content:
+//         "希望测试完成的时间为"+CONSIGNATIONPAGE_CONTENT.EXPECTED_FINISH_TIME+"。"
+//     },
+//     {
+//         title:"7.委托单位信息",
+//         content:
+//         "电话："+CONSIGNATIONPAGE_CONTENT.PHONE+"\n"
+//         +"传真："+CONSIGNATIONPAGE_CONTENT.FAX+"\n"
+//         +"地址："+CONSIGNATIONPAGE_CONTENT.ADDRESS+"\n"
+//         +"邮编："+CONSIGNATIONPAGE_CONTENT.ZIP_CODE+"\n"
+//         +"联系人："+CONSIGNATIONPAGE_CONTENT.CONTACTS+"\n"
+//         +"手机："+CONSIGNATIONPAGE_CONTENT.CELL_PHONE+"\n"
+//         +"E-mail："+CONSIGNATIONPAGE_CONTENT.E_MAIL+"\n"
+//         +"网址："+CONSIGNATIONPAGE_CONTENT.URL
+//     },
+//     {
+//         title:"8.国家重点实验室联系方式",
+//         content:
+//         "单位地址：南京市栖霞区仙林大道163号\n"
+//         +"邮政编码：210046\n"
+//         +"电话：86-25-89683467, 86-25-89683670\n"
+//         +"传真：86-25-89686596\n"
+//         +"网址： http://keysoftlab.nju.edu.cn \n" +
+//         "Email:  keysoftlab@nju.edu.cn\n"
+//     },
+//     {
+//         title:"9.委托审查结果",
+//         content:
+//         "经审查，确认意见为："+CONSIGNATIONPAGE_CONTENT.CONFIRMATION_OPINION+"\n"
+//         +"受理意见为："+CONSIGNATIONPAGE_CONTENT.ACCEPT_ADVICE
+//     },
+// ];
 
 export  default class ConsignationPage extends Component{
     constructor(props) {
@@ -165,7 +168,7 @@ export  default class ConsignationPage extends Component{
                 </Header>
                 <Content padder style={{ backgroundColor: "white" }}>
                     <Accordion
-                        dataArray={dataArray}
+                        dataArray={dataArray0}
                         animation={true}
                         expanded={true}
                         headerStyle={{ backgroundColor: "#ddecf8" }}
