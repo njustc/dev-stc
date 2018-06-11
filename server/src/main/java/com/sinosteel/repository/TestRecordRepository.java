@@ -13,6 +13,6 @@ import java.util.List;
 @Repository
 public interface TestRecordRepository extends BaseRepository<TestRecord> {
     TestRecord findById(String id);
-    @Query("SELECT testRecord from TestRecord testRecord where 1 = 1")
+    @Query("SELECT body from TestRecord testRecord where 1 = 1")
     List<TestRecord> findByAllTestRecords();
 }

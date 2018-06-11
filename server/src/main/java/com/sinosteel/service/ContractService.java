@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author LBW
@@ -100,8 +99,11 @@ public class ContractService extends BaseService<Contract> {
         for (Contract contract: contracts) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(contract));
             jsonObject.remove("contractBody");
-            String processState = (String) processInstanceService.queryProcessState(contract.getProcessInstanceID()).get("state");
-            jsonObject.put("state", processState);
+            JSONObject processState = processInstanceService.queryProcessState(contract.getProcessInstanceID());
+            String state = processState.getString("state");
+            String operation = processState.getString("operation");
+            jsonObject.put("state", state);
+            jsonObject.put("operation", operation);
             resultArray.add(jsonObject);
         }
 
@@ -109,9 +111,12 @@ public class ContractService extends BaseService<Contract> {
     }
 
     private JSONObject processContract(Contract contract) throws Exception{
-        String processState = (String) processInstanceService.queryProcessState(contract.getProcessInstanceID()).get("state");
+        JSONObject processState = processInstanceService.queryProcessState(contract.getProcessInstanceID());
+        String state = processState.getString("state");
+        String operation = processState.getString("operation");
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(contract));
-        jsonObject.put("state", processState);
+        jsonObject.put("state", state);
+        jsonObject.put("operation", operation);
         return jsonObject;
     }
 }

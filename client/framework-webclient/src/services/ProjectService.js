@@ -3,6 +3,7 @@ import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
 import {removeProject, setProjectContent, setProjectList/*, setProjectState*/} from "../modules/ducks/Project";
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
+import {setTestRecordContent} from "../modules/ducks/TestRecord";
 
 const consignBase = baseServiceAddress + '/consign';
 const consignActivitiBase = baseServiceAddress + '/processInstance';
@@ -11,39 +12,40 @@ export const getProjectList = (dispatch, callback) => {
     httpGet(consignBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setProjectList(/*data*/
-                [
-                    {
-                        id : "110",
-                        name : "快乐星球小杨杰",
-                        createdUserId : "151220140",
-                        state: 'TobeSubmit'
-                    },{
-                        id : "120",
-                        name : "不快乐星球小杨杰",
-                        createdUserId : "151220140",
-                        state: 'TobeSubmit'
-                    },{
-                        id : "119",
-                        name : "不快乐星球老杨杰",
-                        createdUserId : "151220140",
-                        state: 'TobeSubmit'
-                    }
-                ]
-            ));
+            // dispatch(setProjectList(/*data*/
+            //     [
+            //         {
+            //             id : "110",
+            //             name : "快乐星球小杨杰",
+            //             createdUserId : "151220140",
+            //             state: 'TobeSubmit'
+            //         },{
+            //             id : "120",
+            //             name : "不快乐星球小杨杰",
+            //             createdUserId : "151220140",
+            //             state: 'TobeSubmit'
+            //         },{
+            //             id : "119",
+            //             name : "不快乐星球老杨杰",
+            //             createdUserId : "151220140",
+            //             state: 'TobeSubmit'
+            //         }
+            //     ]
+            dispatch(setProjectContent(data));
         }
         callback && callback(status);
     });
 };
 
 export const getProject = (dispatch, id, callback) => {
-    httpGet(consignBase + '/' + id, (result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            dispatch(setProjectContent(data));
-        }
-        callback && callback(status);
-    });
+    dispatch(setProjectContent({id:id,}));
+    // httpGet(consignBase + '/' + id, (result) => {
+    //     const {status, data} = result;
+    //     if (status === STATUS.SUCCESS) {
+    //         dispatch(setProjectContent(data));
+    //     }
+    //     callback && callback(status);
+    // });
 };
 
 export const deleteProject = (dispatch, id, callback) => {

@@ -20,7 +20,6 @@ export const getConsignList = (dispatch, callback) => {
 export const getConsign = (dispatch, id, callback) => {
     httpGet(consignBase + '/' + id, (result) => {
         const {status, data} = result;
-        console.log(data);
         if (status === STATUS.SUCCESS) {
             dispatch(setConsignContent(data));
         }

@@ -68,7 +68,7 @@ public class TestReportService extends BaseService<TestReport>{
         }
 
         //编辑测试报告内容
-        testReport.setReport(temTestReport.getReport());
+        testReport.setBody(temTestReport.getBody());
         this.updateEntity(testReport, user);
 
         testReport = testReportRepository.findById(temTestReport.getId());

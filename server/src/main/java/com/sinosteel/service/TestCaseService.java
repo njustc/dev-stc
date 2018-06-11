@@ -70,7 +70,7 @@ public class TestCaseService extends BaseService<TestCase> {
             throw new Exception("Not found");
         }
         //编辑测试计划时时只编辑内容
-        testCase.setTestcase(temptestCase.getTestcase());
+        testCase.setBody(temptestCase.getBody());
         this.updateEntity(testCase, user);
 
         //TODO:return the consign with STATE!
