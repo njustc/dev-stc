@@ -46,7 +46,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttonsçš„æ
         if(status=STATUS.SUCCESS){
             const putData = {
                 "object": "testcase",
-                "operation": "submit"
+                "operation": "Submit"
             };
             const {processInstanceID,id} = testCaseData;
             putTestCaseState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
@@ -62,7 +62,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttonsçš„æ
     onClick: (testCaseData,ProcessNo) =>{
         const putData = {
             "object": "testcase",
-            "operation": "reviewpass",
+            "operation": "ReviewPass",
             "number": ProcessNo
         };
         const {processInstanceID,id} = testCaseData;
@@ -77,7 +77,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttonsçš„æ
     onClick: (testCaseData,testcase) =>{
         const putData = {
             "object": "testcase",
-            "operation": "reviewreject"
+            "operation": "ReviewReject"
         };
         const {processInstanceID,id} = testCaseData;
         putTestCaseState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});

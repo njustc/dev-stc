@@ -80,7 +80,7 @@ export const updateProject = (dispatch, data, callback) => {
     });
 };
 
-export const getProjectState = (dispatch, processInstanceID, callback) => {
+export const getProjectState = (dispatch, processInstanceID, id, callback) => {
     httpGet(projectActivitiBase + '/' + processInstanceID, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
