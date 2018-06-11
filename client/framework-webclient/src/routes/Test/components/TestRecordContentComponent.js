@@ -1,8 +1,9 @@
 /*测试记录清单*/
 import React, {Component, PropTypes} from 'react';
-import {Form,Table, Card, Collapse, Badge, Dropdown, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
+import {Form,Table, Card, Collapse, Radio, Popover, Badge, Dropdown, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
 const FormItem=Form.Item;
 const Panel = Collapse.Panel;
+const RadioGroup = Radio.Group;
 const { TextArea } = Input;
 
 
@@ -131,7 +132,7 @@ constructor(props) {
         process: '第一步……，第二步……，然后……，最后……。',
         expectedResult: '在期末考试周结束前完工',
         result: '大概是完工不了的TAT',
-        consistency: false,
+        consistency: '不一致',
         bugID: 250,
         time: '2018-06-09',
         prerequisites: '选择软件工程方向',
@@ -139,18 +140,151 @@ constructor(props) {
         confirmor: 'cc'
     }];
 
+    state = {
+            visible: false,
+        };
+    hide = () => {
+            this.setState({
+                visible: false,
+            });
+        };
+    handleVisibleChange = (visible) => {
+            this.setState({ visible });
+        };
+
     render(){
         const { getFieldDecorator } = this.props.form;
         const formItemLayout =  {
             labelCol: { span: 4 },
             wrapperCol: { span: 20 },
         };
+        const content = (
+            <div style={{ background: '#ECECEC', padding: '15px', marginBottom:'10pt' }}>
+                        <Card bordered={false} style={{ width: '100%' }}>
+                            <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
+                                <FormItem {...formItemLayout} label={"测试分类"}>
+                                    {getFieldDecorator('classification', {
+                                    // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <Input/>
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"设计说明"}>
+                                    {getFieldDecorator('designNotes', {
+                                    // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <TextArea rows={4} />
+                                    )}
+                                </FormItem>
+                                <FormItem{...formItemLayout}label={"有关的规约说明"}>
+                                    {getFieldDecorator('statute', {
+                                    // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <Input/>
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"前提条件"}>
+                                    {getFieldDecorator('prerequisites', {
+                                    // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <TextArea rows={2} />
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"执行过程"}>
+                                    {getFieldDecorator('process', {
+                                    // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <TextArea rows={4} />
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"预期结果"}>
+                                    {getFieldDecorator('expectedResult', {
+                                    // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <TextArea rows={4} />
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"实际结果"}>
+                                    {getFieldDecorator('result', {
+                                    // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <TextArea rows={4} />
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"是否与预期结果一致"}>
+                                    {getFieldDecorator('consistency', {
+                                        // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <RadioGroup /*onChange={this.onChange} value={this.state.value}*/>
+                                            <Radio value={1}>是</Radio>
+                                            <Radio value={2}>否</Radio>
+                                        </RadioGroup>
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"测试依据"}>
+                                    {getFieldDecorator('accordance', {
+                                    // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <Input/>
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"相关bug编号"}>
+                                    {getFieldDecorator('bugID', {
+                                    // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <Input/>
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"执行测试时间"}>
+                                    {getFieldDecorator('time', {
+                                    // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <DatePicker/>
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"执行者"}>
+                                    {getFieldDecorator('executor', {
+                                        // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <Input/>
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"确认人"}>
+                                    {getFieldDecorator('confirmor', {
+                                        // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <Input/>
+                                    )}
+                                </FormItem>
+                                <FormItem>
+                                    {/*this.props.buttons.map((button, index) =>
+                                    <Button onClick={this.onClick(index)}
+                                            key={button.content}>
+                                        {button.content}
+                                    </Button>)*/}
+                                        <Button type='primary'><Icon type="plus-circle-o" />添加测试记录</Button>
+                                </FormItem>
+                            </Form>
+                        </Card>
+                        </div>
+        );
 
         return (
             <div>
                 <h3 style={{ marginBottom: 16 }}>测试记录</h3>
+                <Popover
+                    placement="bottom"
+                    content={<a onClick={this.hide}>{content}</a>}
+                    title="添加测试记录"
+                    trigger="click"
+                    visible={this.state.visible}
+                    onVisibleChange={this.handleVisibleChange}
+                >
+                    <Button>添加测试记录</Button>
+                </Popover>
                 <Collapse bordered={false}>
-                    <Panel header="添加测试记录" key="1">
+                    <Panel header={<Button>添加测试记录</Button>} key="1">
+                        {/*<Icon type="plus-circle-o" />*/}
                         <div style={{ background: '#ECECEC', padding: '15px', marginBottom:'10pt' }}>
                         <Card bordered={false} style={{ width: '100%' }}>
                             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
@@ -207,7 +341,10 @@ constructor(props) {
                                     {getFieldDecorator('consistency', {
                                         // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
                                     })(
-                                        <Input/>
+                                        <RadioGroup /*onChange={this.onChange} value={this.state.value}*/>
+                                            <Radio value={1}>是</Radio>
+                                            <Radio value={2}>否</Radio>
+                                        </RadioGroup>
                                     )}
                                 </FormItem>
                                 <FormItem {...formItemLayout} label={"测试依据"}>
