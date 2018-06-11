@@ -28,10 +28,11 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
             id: consignData.id,
             consignation: consignation
         };
-        updateConsign(dispatch,valueData,(status)=>{console.log(status);});
-
-        if(status===STATUS.SUCCESS) message.success('保存成功');
-        else message.error('保存失败');
+        updateConsign(dispatch,valueData,(status)=>{
+            console.log(status);
+            if(status===STATUS.SUCCESS) message.success('保存成功');
+            else message.error('保存失败');
+        });
     },
     enable: isEditVisible
 },{
@@ -50,10 +51,9 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
                 const {id, processInstanceID} = consignData;
                 putConsignState(dispatch, processInstanceID, putData, id, (status) => {
                     console.log(status);
+                    if (status === STATUS.SUCCESS) message.success('提交成功');
+                    else message.error('提交失败');
                 });
-
-                if (status === STATUS.SUCCESS) message.success('提交成功');
-                else message.error('提交失败');
             }
             else message.error('提交失败');
         });
@@ -87,10 +87,11 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
             "operation": "ReviewReject"
         };
         const {id,processInstanceID} = consignData;
-        putConsignState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
-
-        if(status=STATUS.SUCCESS) message.success('已否决');
-        else message.error('否决失败');
+        putConsignState(dispatch,processInstanceID,putData,id,(status)=>{
+            console.log(status);
+            if(status=STATUS.SUCCESS) message.success('已否决');
+            else message.error('否决失败');
+        });
     },
     enable: isReviewVisible
 }];

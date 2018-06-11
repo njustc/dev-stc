@@ -11,6 +11,7 @@ const projectActivitiBase = baseServiceAddress + '/processInstance';
 export const getProjectList = (dispatch, callback) => {
     httpGet(projectBase,(result) => {
         const {status, data} = result;
+        // console.log(data);
         if (status === STATUS.SUCCESS) {
             // dispatch(setProjectList(/*data*/
             //     [
@@ -31,7 +32,7 @@ export const getProjectList = (dispatch, callback) => {
             //             state: 'TobeSubmit'
             //         }
             //     ]
-            dispatch(setProjectContent(data));
+            dispatch(setProjectList(data));
         }
         callback && callback(status);
     });
@@ -63,7 +64,7 @@ export const newProject = (dispatch,id,callback) => {
     httpPost(projectBase, {id:id,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setConsignContent(data));
+            dispatch(setProjectContent(data));
         }
         callback && callback(status);
     });
