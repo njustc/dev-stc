@@ -4,9 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
+import com.sinosteel.domain.Project;
 import com.sinosteel.domain.TestPlan;
 import com.sinosteel.domain.User;
-import com.sinosteel.domain.Project;
 import com.sinosteel.repository.ProjectRepository;
 import com.sinosteel.repository.TestPlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author LBW & SQW
@@ -43,7 +42,6 @@ public class TestPlanService extends BaseService<TestPlan> {
             List<TestPlan> testPlans = new ArrayList<TestPlan>();
             for (Project project : projects) {
                 testPlans.add(project.getTestPlan());
-                //TODO:对测试计划进行处理，去掉具体内容,并且添加测试计划状态
             }
             return processTestPlans(testPlans);
         }
@@ -73,7 +71,6 @@ public class TestPlanService extends BaseService<TestPlan> {
         testPlan.setBody(temptestPlan.getBody());
         this.updateEntity(testPlan, user);
 
-        //TODO:return the consign with STATE!
         testPlan = testPlanRepository.findById(temptestPlan.getId());
         return processTestPlan(testPlan);
     }
@@ -90,12 +87,10 @@ public class TestPlanService extends BaseService<TestPlan> {
         project.setTestPlan(testPlan);
         /*testplan.setUser(user);*/
 
-        //TODO:start activiti process
-       // String procID = processInstanceService.createTestPlanProcess(params, user);
-        //testplan.setProcessInstanceID(procID);
+        String procID = processInstanceService.createTestPlanProcess(params, user);
+        testPlan.setProcessInstanceID(procID);
         this.saveEntity(testPlan, user);
 
-        //TODO:添加testplan状态
         testPlan = testPlanRepository.findById(uid);
         return processTestPlan(testPlan);
     }
@@ -110,23 +105,27 @@ public class TestPlanService extends BaseService<TestPlan> {
     }
 
 
-    //TODO:增加测试计划状态
     private JSONObject processTestPlan(TestPlan testPlan) throws Exception {
-        //String processState = (String) processInstanceService.queryProcessState(testPlan.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testPlan));
-        //jsonObject.put("state", processState);
+        JSONObject processState = processInstanceService.queryProcessState(testPlan.getProcessInstanceID());
+        String state = processState.getString("state");
+        String operation = processState.getString("operation");
+        jsonObject.put("state", state);
+        jsonObject.put("operation", operation);
         return jsonObject;
 
     }
 
-    //去掉测试计划内容,TODO:添加状态
     private  JSONArray processTestPlans(List<TestPlan> testplans) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (TestPlan testPlan: testplans) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testPlan));
             jsonObject.remove("testplan");
-            //String processState = (String) processInstanceService.queryProcessState(testPlan.getProcessInstanceID()).get("state");
-            //jsonObject.put("state", processState);
+            JSONObject processState = processInstanceService.queryProcessState(testPlan.getProcessInstanceID());
+            String state = processState.getString("state");
+            String operation = processState.getString("operation");
+            jsonObject.put("state", state);
+            jsonObject.put("operation", operation);
             resultArray.add(jsonObject);
         }
 
