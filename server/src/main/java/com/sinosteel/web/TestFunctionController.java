@@ -3,7 +3,7 @@ package com.sinosteel.web;
 import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
-import com.sinosteel.service.TestCaseService;
+import com.sinosteel.service.TestFunctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,20 +12,20 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-public class TestCaseController extends BaseController {
+public class TestFunctionController extends BaseController {
     @Autowired
-    private TestCaseService testCaseService;
+    private TestFunctionService testFunctionService;
 
 
 
-    @RequestMapping(value = "/v1/testCase", method = RequestMethod.GET)
-    public Response queryTestCases(Request request)
+    @RequestMapping(value = "/v1/testFunction", method = RequestMethod.GET)
+    public Response queryTestFunctions(Request request)
     {
         Response response = new Response();
 
         try
         {
-            response.data = testCaseService.queryTestCases(request.getUser());
+            response.data = testFunctionService.queryTestFunctions(request.getUser());
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -38,14 +38,14 @@ public class TestCaseController extends BaseController {
         return response;
     }
 
-    //根据ID查询测试方案具体信息
-    @RequestMapping(value = "/v1/testCase/{id}", method = RequestMethod.GET)
-    public Response queryTestCaseByID(@PathVariable String id,  Request request) {
+    //根据ID查询测试bug具体信息
+    @RequestMapping(value = "/v1/testFunction/{id}", method = RequestMethod.GET)
+    public Response queryTestFunctionByID(@PathVariable String id,  Request request) {
         Response response = new Response();
 
         try
         {
-            response.data = testCaseService.queryTestCaseByID(id);
+            response.data = testFunctionService.queryTestFunctionByID(id);
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -57,13 +57,13 @@ public class TestCaseController extends BaseController {
         return response;
     }
 
-    @RequestMapping(value = "/v1/testCase",method = RequestMethod.PUT)
-    public Response editTestCase(Request request)
+    @RequestMapping(value = "/v1/testFunction",method = RequestMethod.PUT)
+    public Response editTestFunction(Request request)
     {
         Response response = new Response();
 
         try {
-            response.data = testCaseService.editTestCase(request.getParams(), request.getFiles(), request.getUser());
+            response.data = testFunctionService.editTestFunction(request.getParams(), request.getFiles(), request.getUser());
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -75,13 +75,13 @@ public class TestCaseController extends BaseController {
         return response;
 
     }
-    @RequestMapping(value = "/v1/testCase",method=RequestMethod.POST)
-    public Response addTestCase(Request request)
+    @RequestMapping(value = "/v1/testFunction",method=RequestMethod.POST)
+    public Response addTestBug(Request request)
     {
         Response response=new Response();
 
         try{
-            response.data = testCaseService.addTestCase(request.getParams(),request.getFiles(),request.getUser());
+            response.data = testFunctionService.addTestFunction(request.getParams(),request.getFiles(),request.getUser());
             response.status=ResponseType.SUCCESS;
         }
         catch(Exception e)
@@ -93,13 +93,13 @@ public class TestCaseController extends BaseController {
         }
         return response;
     }
-    @RequestMapping(value = "/v1/testCase",method=RequestMethod.DELETE)
+    @RequestMapping(value = "/v1/testFunction",method=RequestMethod.DELETE)
     public Response deleteTestCase(Request request)
     {
         Response response=new Response();
 
         try{
-            testCaseService.deleteTestCase(request.getParams());
+            testFunctionService.deleteTestFunction(request.getParams());
             response.status=ResponseType.SUCCESS;
         }
         catch(Exception e)
