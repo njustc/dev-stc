@@ -4,18 +4,17 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
-import com.sinosteel.domain.TestRecord;
-import com.sinosteel.repository.TestRecordRepository;
-import com.sinosteel.domain.User;
 import com.sinosteel.domain.Project;
+import com.sinosteel.domain.TestRecord;
+import com.sinosteel.domain.User;
 import com.sinosteel.repository.ProjectRepository;
+import com.sinosteel.repository.TestRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
 import java.util.ArrayList;
-import java.util.UUID;
+import java.util.List;
 
 /**
  * @author LBW & SQW
@@ -110,9 +109,12 @@ public class TestRecordService extends BaseService<TestRecord> {
 
     //TODO:增加测试结果状态
     private JSONObject processTestRecord(TestRecord testRecord) throws Exception {
-        //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testRecord));
-        //jsonObject.put("state", processState);
+        JSONObject processState = processInstanceService.queryProcessState(testRecord.getProcessInstanceID());
+        String operation = processState.getString("operation");
+        String state = processState.getString("state");
+        jsonObject.put("state", state);
+        jsonObject.put("operation", operation);
         return jsonObject;
 
     }
@@ -123,8 +125,11 @@ public class TestRecordService extends BaseService<TestRecord> {
         for (TestRecord testRecord: testRecords) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testRecord));
             jsonObject.remove("testRecord");
-            //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
-            //jsonObject.put("state", processState);
+            JSONObject processState = processInstanceService.queryProcessState(testRecord.getProcessInstanceID());
+            String operation = processState.getString("operation");
+            String state = processState.getString("state");
+            jsonObject.put("state", state);
+            jsonObject.put("operation", operation);
             resultArray.add(jsonObject);
         }
 
