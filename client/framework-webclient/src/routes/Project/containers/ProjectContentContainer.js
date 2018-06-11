@@ -37,18 +37,20 @@ const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (item,id) => {
             //console.log(id);
-            /*TODO:文档的ID和流程的ID不同*/
+            console.log(item);
+            const key = item.index + id;
+            /*TODO:文档的ID是流程的ID+文档名不同*/
             switch (item.index){
-                case 1:dispatch(addTabAction(id, '委托详情', ConsignContentView, {id: id}));break;
-                case 2:dispatch(addTabAction(id, '合同详情', ContractContentView, {id: id}));break;
-                case 3:dispatch(addTabAction(id, '测试方案详情', TestPlanContentView, {id: id}));break;
-                case 4:dispatch(addTabAction(id, '测试用例详情', TestCaseContentView, {id: id}));break;
-                case 5:dispatch(addTabAction(id, '测试用例详情', TestRecordContentView, {id: id}));break;
-                case 6:dispatch(addTabAction(id, '测试用例详情', TestProblemContentView, {id: id}));break;
-                case 7:dispatch(addTabAction(id, '测试用例详情', TestReportContentView, {id: id}));break;
-                case 8:dispatch(addTabAction(id, '测试用例详情', TestReportCheckContentView, {id: id}));break;
-                case 9:dispatch(addTabAction(id, '测试用例详情', TestWorkCheckContentView, {id: id}));break;
-                case 10:dispatch(addTabAction(id, '测试用例详情', SatisfactionContentView, {id: id}));break;
+                case 1:dispatch(addTabAction(key, '委托详情', ConsignContentView, {id: id}));break;
+                case 2:dispatch(addTabAction(key, '合同详情', ContractContentView, {id: id}));break;
+                case 3:dispatch(addTabAction(key, '测试方案详情', TestPlanContentView, {id: id}));break;
+                case 4:dispatch(addTabAction(key, '测试用例详情', TestCaseContentView, {id: id}));break;
+                case 5:dispatch(addTabAction(key, '测试用例详情', TestRecordContentView, {id: id}));break;
+                case 6:dispatch(addTabAction(key, '测试用例详情', TestProblemContentView, {id: id}));break;
+                case 7:dispatch(addTabAction(key, '测试用例详情', TestReportContentView, {id: id}));break;
+                case 8:dispatch(addTabAction(key, '测试用例详情', TestReportCheckContentView, {id: id}));break;
+                case 9:dispatch(addTabAction(key, '测试用例详情', TestWorkCheckContentView, {id: id}));break;
+                case 10:dispatch(addTabAction(key, '测试用例详情', SatisfactionContentView, {id: id}));break;
                 default:break;
             }
             //dispatch(addTabAction(id, '流程详情', ProjectContentView, {id: id}));

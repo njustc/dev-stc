@@ -8,11 +8,13 @@ import {STATUS} from "../../../services/common";
 const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    const consignation = state.Consign.listMap[ownProps.id].consignation;
+    const consignation = state.Consign.listMap[ownProps.id]?state.Consign.listMap[ownProps.id].consignation:undefined;
+    const ToBeSubmit = state.Consign.listMap[ownProps.id]?state.Consign.listMap[ownProps.id].state!=="TobeSubmit":false;
+    const isEditVisible = authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     return {
-        consignData: state.Consign.listMap[ownProps.id],
+        consignData: ownProps,
         values: consignation ? JSON.parse(consignation) : {},
-        disable: authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1||state.Consign.listMap[ownProps.id].state!=="TobeSubmit",
+        disable: ToBeSubmit||(!isEditVisible)
     }
 };
 
@@ -40,7 +42,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttonsçš„æ
         if(status=STATUS.SUCCESS){
             const putData = {
                 "object": "consign",
-                "operation": "submit"
+                "operation": "Submit"
             };
             const {processInstanceID,id} = consignData;
             putConsignState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
