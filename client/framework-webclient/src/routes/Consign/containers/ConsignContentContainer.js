@@ -41,19 +41,22 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
             id: consignData.id,
             consignation: consignation
         };
-        updateConsign(dispatch,valueData,(status)=>{console.log(status);});
-        if(status===STATUS.SUCCESS){
-            const putData = {
-                "object": "consign",
-                "operation": "Submit"
-            };
-            const {id,processInstanceID} = consignData;
-            putConsignState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
+        updateConsign(dispatch,valueData,(status)=> {
+            if (status === STATUS.SUCCESS) {
+                const putData = {
+                    "object": "consign",
+                    "operation": "Submit"
+                };
+                const {id, processInstanceID} = consignData;
+                putConsignState(dispatch, processInstanceID, putData, id, (status) => {
+                    console.log(status);
+                });
 
-            if(status===STATUS.SUCCESS) message.success('提交成功');
+                if (status === STATUS.SUCCESS) message.success('提交成功');
+                else message.error('提交失败');
+            }
             else message.error('提交失败');
-        }
-        else message.error('提交失败');
+        });
     },
     enable: isEditVisible
 },{
