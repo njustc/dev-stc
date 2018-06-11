@@ -32,6 +32,19 @@ public class TestCase extends BaseEntity {
         this.body = body;
     }
 
+    /**
+     * processInstanceID
+     */
+    @Column(name = "PROCESS_INSTANCE_ID")
+    private String processInstanceID;
+
+    public String getProcessInstanceID() {
+        return processInstanceID;
+    }
+
+    public void setProcessInstanceID(String processInstanceID) {
+        this.processInstanceID = processInstanceID;
+    }
 
     /**
      * 连接Project类的外键

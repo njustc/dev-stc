@@ -27,6 +27,20 @@ public class TestWorkCheck extends BaseEntity{
     private String body;
 
     /**
+     * processInstanceID
+     */
+    @Column(name = "PROCESS_INSTANCE_ID")
+    private String processInstanceID;
+
+    public String getProcessInstanceID() {
+        return processInstanceID;
+    }
+
+    public void setProcessInstanceID(String processInstanceID) {
+        this.processInstanceID = processInstanceID;
+    }
+
+    /**
      * 软件名称
      */
     @Column(name = "SOFTWARENAME")

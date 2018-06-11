@@ -31,6 +31,20 @@ public class TestRecord extends BaseEntity {
     }
 
     /**
+     * processInstanceID
+     */
+    @Column(name = "PROCESS_INSTANCE_ID")
+    private String processInstanceID;
+
+    public String getProcessInstanceID() {
+        return processInstanceID;
+    }
+
+    public void setProcessInstanceID(String processInstanceID) {
+        this.processInstanceID = processInstanceID;
+    }
+
+    /**
      * 连接Project的外键
      */
     @ManyToOne(fetch = FetchType.LAZY)
