@@ -122,13 +122,34 @@ class TestCaseContentComponent extends Component {
             labelCol: { span: 4 },
             wrapperCol: { span: 20 },
         };
+        const menu = (
+            <div style={{ background: '#ECECEC', padding: '15px', marginBottom:'10pt' }}>
+                        <Card bordered={false} style={{ width: '100%' }}>
+                            <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
+                                <FormItem {...formItemLayout} label={"测试分类"}>
+                                    {getFieldDecorator('classification', {
+                                    // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <Input/>
+                                    )}
+                                </FormItem>
+                            </Form>
+                        </Card>
+            </div>
+        );
 
         return (
             <div>
                 <h3 style={{ marginBottom: 16 }}>测试用例</h3>
 
+                <Dropdown overlay={menu}>
+                    <Button style={{ marginLeft: 8 }}>
+                        Button <Icon type="down" />
+                    </Button>
+                </Dropdown>
+
                 <Collapse bordered={false}>
-                    <Panel header="添加测试用例" key="1">
+                    <Panel header={<h4><Icon type="plus-circle-o"/> 添加测试用例</h4>} key="1">
                         <div style={{ background: '#ECECEC', padding: '15px', marginBottom:'10pt' }}>
                         <Card bordered={false} style={{ width: '100%' }}>
                             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
