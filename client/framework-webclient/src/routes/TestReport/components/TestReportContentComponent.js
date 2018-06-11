@@ -34,7 +34,7 @@ class TestReportContentComponent extends Component {
     };
 
     componentWillMount() {
-        this.props.getValues(this.props.TestReportData.id);
+        this.props.getValues(this.props.testReportData.id);
     };
 
     onClick = (buttonIndex) => () => {

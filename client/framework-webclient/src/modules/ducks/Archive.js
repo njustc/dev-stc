@@ -1,5 +1,7 @@
 const S_SET_LIST = 'Satisfaction/SET_LIST';
+const S_SET_CONTENT = 'Satisfaction/SET_CONTENT';
 const TWC_SET_LIST = 'TestWorkCheck/SET_LIST';
+const TWC_SET_CONTENT = 'TestWorkCheck/SET_CONTENT';
 
 /*const RM_CONTENT = 'Contract/RM_CONTENT';
 const SET_CONTENT = 'Contract/SET_CONTENT';
@@ -22,32 +24,31 @@ export const SatisfactionReducer = (state = initialSatisfactionState, action) =>
                     return listMap;
                 }, {}),
             };
-        /*case RM_CONTENT:
-            const id = action.payload;
-            return {
-                ...state,
-                listMap: {
-                    ...state.listMap,
-                    [id]: undefined,
-                },
-            };
-        case SET_CONTENT: {
+        // case RM_CONTENT:
+        //     const id = action.payload;
+        //     return {
+        //         ...state,
+        //         listMap: {
+        //             ...state.listMap,
+        //             [id]: undefined,
+        //         },
+        //     };
+        case S_SET_CONTENT:
             const {id} = action.payload;
-            const ContractData = action.payload;
+            const SatisfactionData = action.payload;
             return {
                 ...state,
                 listMap: {
                     ...state.listMap,
-                    [id]: ContractData,
+                    [id]: SatisfactionData,
                 },
             };
-        }
-        case SET_FILTER:
-            const listFilter = action.payload;
-            return {
-                ...state,
-                listFilter: listFilter,
-            };*/
+        // case SET_FILTER:
+        //     const listFilter = action.payload;
+        //     return {
+        //         ...state,
+        //         listFilter: listFilter,
+        //     };
         default:
             return state;
     }
@@ -57,6 +58,13 @@ export const setSatisfactionList = (list) => {
     return {
         type: S_SET_LIST,
         payload: list,
+    }
+};
+
+export const setSatisfactionContent = (data) =>{
+    return {
+        type: S_SET_CONTENT,
+        payload: data
     }
 };
 /*
@@ -97,32 +105,32 @@ export const TestWorkCheckReducer = (state = initialTestWorkCheckState, action) 
                     return listMap;
                 }, {}),
             };
-        /*case RM_CONTENT:
-            const id = action.payload;
-            return {
-                ...state,
-                listMap: {
-                    ...state.listMap,
-                    [id]: undefined,
-                },
-            };
-        case SET_CONTENT: {
+        // case RM_CONTENT:
+        //     const id = action.payload;
+        //     return {
+        //         ...state,
+        //         listMap: {
+        //             ...state.listMap,
+        //             [id]: undefined,
+        //         },
+        //     };
+        case TWC_SET_CONTENT: {
             const {id} = action.payload;
-            const ContractData = action.payload;
+            const TWCData = action.payload;
             return {
                 ...state,
                 listMap: {
                     ...state.listMap,
-                    [id]: ContractData,
+                    [id]: TWCData,
                 },
             };
         }
-        case SET_FILTER:
-            const listFilter = action.payload;
-            return {
-                ...state,
-                listFilter: listFilter,
-            };*/
+        // case SET_FILTER:
+        //     const listFilter = action.payload;
+        //     return {
+        //         ...state,
+        //         listFilter: listFilter,
+        //     };
         default:
             return state;
     }
@@ -132,5 +140,12 @@ export const setTestWorkCheckList = (list) => {
     return {
         type: TWC_SET_LIST,
         payload: list,
+    }
+};
+
+export const setTestWorkCheckContent = (data) =>{
+    return {
+        type: TWC_SET_CONTENT,
+        payload: data
     }
 };

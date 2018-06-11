@@ -3,28 +3,53 @@ import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
 import {removeTestCase, setTestCaseContent, setTestCaseList/*, setTestCaseState*/} from "../modules/ducks/TestCase";
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
+import {setProjectList} from "../modules/ducks/Project";
 
 const testCaseBase = baseServiceAddress + '/testCase';
 const testCaseActivitiBase = baseServiceAddress + '/processInstance';
 
 export const getTestCaseList = (dispatch, callback) => {
-    httpGet(testCaseBase,(result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            dispatch(setTestCaseList(data));
+    dispatch(setTestCaseList(/*data*/
+        [
+            {
+                pid : "110",
+                id : "110",
+                name : "快乐星球小杨杰",
+                customerId : "151220140",
+                status: STATE.TO_SUBMIT
+            },{
+            pid :"120",
+            id : "120",
+            name : "不快乐星球小杨杰",
+            customerId : "151220140",
+            status: STATE.TO_CHECK
+        },{
+            pid : "119",
+            id : "119",
+            name : "不快乐星球老杨杰",
+            customerId : "151220140",
+            status: STATE.CANCELED
         }
-        callback && callback(status);
-    });
+        ]
+    ));
+    // httpGet(testCaseBase,(result) => {
+    //     const {status, data} = result;
+    //     if (status === STATUS.SUCCESS) {
+    //         dispatch(setTestCaseList(data));
+    //     }
+    //     callback && callback(status);
+    // });
 };
 
 export const getTestCase = (dispatch, id, callback) => {
-    httpGet(testCaseBase + '/' + id, (result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            dispatch(setTestCaseContent(data));
-        }
-        callback && callback(status);
-    });
+    dispatch(setTestCaseContent({id:id,}));
+    // httpGet(testCaseBase + '/' + id, (result) => {
+    //     const {status, data} = result;
+    //     if (status === STATUS.SUCCESS) {
+    //         dispatch(setTestCaseContent(data));
+    //     }
+    //     callback && callback(status);
+    // });
 };
 
 export const deleteTestCase = (dispatch, id, callback) => {
