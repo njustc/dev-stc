@@ -101,9 +101,12 @@ public class ConsignService extends BaseService<Consign> {
 
     //增加委托状态
     private JSONObject processConsign(Consign consign) throws Exception {
-        String processState = (String) processInstanceService.queryProcessState(consign.getProcessInstanceID()).get("state");
+        JSONObject processState = processInstanceService.queryProcessState(consign.getProcessInstanceID());
+        String state = processState.getString("state");
+        String operation = processState.getString("operation");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
-        jsonObject.put("state", processState);
+        jsonObject.put("state", state);
+        jsonObject.put("operation", operation);
         return jsonObject;
 
     }
@@ -114,8 +117,11 @@ public class ConsignService extends BaseService<Consign> {
         for (Consign consign: consigns) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
             jsonObject.remove("consignation");
-            String processState = (String) processInstanceService.queryProcessState(consign.getProcessInstanceID()).get("state");
-            jsonObject.put("state", processState);
+            JSONObject processState = processInstanceService.queryProcessState(consign.getProcessInstanceID());
+            String state = processState.getString("state");
+            String operation = processState.getString("operation");
+            jsonObject.put("state", state);
+            jsonObject.put("operation", operation);
             resultArray.add(jsonObject);
         }
 
