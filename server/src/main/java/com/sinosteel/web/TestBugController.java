@@ -3,7 +3,7 @@ package com.sinosteel.web;
 import com.sinosteel.framework.core.web.Request;
 import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
-import com.sinosteel.service.TestCaseService;
+import com.sinosteel.service.TestBugService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,20 +12,20 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-public class TestCaseController extends BaseController {
+public class TestBugController extends BaseController {
     @Autowired
-    private TestCaseService testCaseService;
+    private TestBugService testBugService;
 
 
 
-    @RequestMapping(value = "/v1/testCase", method = RequestMethod.GET)
-    public Response queryTestCases(Request request)
+    @RequestMapping(value = "/v1/testBug", method = RequestMethod.GET)
+    public Response queryTestBugs(Request request)
     {
         Response response = new Response();
 
         try
         {
-            response.data = testCaseService.queryTestCases(request.getUser());
+            response.data = testBugService.queryTestBugs(request.getUser());
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -38,14 +38,14 @@ public class TestCaseController extends BaseController {
         return response;
     }
 
-    //根据ID查询测试方案具体信息
-    @RequestMapping(value = "/v1/testCase/{id}", method = RequestMethod.GET)
-    public Response queryTestCaseByID(@PathVariable String id,  Request request) {
+    //根据ID查询测试bug具体信息
+    @RequestMapping(value = "/v1/testBug/{id}", method = RequestMethod.GET)
+    public Response queryTestBugByID(@PathVariable String id,  Request request) {
         Response response = new Response();
 
         try
         {
-            response.data = testCaseService.queryTestCaseByID(id);
+            response.data = testBugService.queryTestBugByID(id);
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -57,13 +57,13 @@ public class TestCaseController extends BaseController {
         return response;
     }
 
-    @RequestMapping(value = "/v1/testCase",method = RequestMethod.PUT)
+    @RequestMapping(value = "/v1/testBug",method = RequestMethod.PUT)
     public Response editTestCase(Request request)
     {
         Response response = new Response();
 
         try {
-            response.data = testCaseService.editTestCase(request.getParams(), request.getFiles(), request.getUser());
+            response.data = testBugService.editTestBug(request.getParams(), request.getFiles(), request.getUser());
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -75,13 +75,13 @@ public class TestCaseController extends BaseController {
         return response;
 
     }
-    @RequestMapping(value = "/v1/testCase",method=RequestMethod.POST)
-    public Response addTestCase(Request request)
+    @RequestMapping(value = "/v1/testBug",method=RequestMethod.POST)
+    public Response addTestBug(Request request)
     {
         Response response=new Response();
 
         try{
-            response.data = testCaseService.addTestCase(request.getParams(),request.getFiles(),request.getUser());
+            response.data = testBugService.addTestBug(request.getParams(),request.getFiles(),request.getUser());
             response.status=ResponseType.SUCCESS;
         }
         catch(Exception e)
@@ -93,13 +93,13 @@ public class TestCaseController extends BaseController {
         }
         return response;
     }
-    @RequestMapping(value = "/v1/testCase",method=RequestMethod.DELETE)
+    @RequestMapping(value = "/v1/testBug",method=RequestMethod.DELETE)
     public Response deleteTestCase(Request request)
     {
         Response response=new Response();
 
         try{
-            testCaseService.deleteTestCase(request.getParams());
+            testBugService.deleteTestBug(request.getParams());
             response.status=ResponseType.SUCCESS;
         }
         catch(Exception e)
