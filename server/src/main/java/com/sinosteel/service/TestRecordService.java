@@ -70,7 +70,7 @@ public class TestRecordService extends BaseService<TestRecord> {
             throw new Exception("Not found");
         }
         //编辑测试结果时只编辑内容
-        testRecord.setRecord(temptestRecord.getRecord());
+        testRecord.setBody(temptestRecord.getBody());
         this.updateEntity(testRecord, user);
 
         //TODO:return the testRecord with STATE!

@@ -12,6 +12,7 @@ import java.util.List;
 @Table(name = "TBL_SYS_PROJECTS")
 public class Project extends BaseEntity {
 
+
     /**
      * 该Project对应的用户
      */

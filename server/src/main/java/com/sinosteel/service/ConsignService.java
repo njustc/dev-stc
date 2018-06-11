@@ -6,11 +6,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.Consign;
 import com.sinosteel.domain.User;
+import com.sinosteel.domain.Project;
+import com.sinosteel.repository.ProjectRepository;
 import com.sinosteel.repository.ConsignRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,6 +30,9 @@ public class ConsignService extends BaseService<Consign> {
     @Autowired
     private ProcessInstanceService processInstanceService;
 
+    @Autowired
+    private ProjectRepository projectRepository;
+
 
 
     public JSON queryConsigns(User user) throws Exception {
@@ -37,6 +43,15 @@ public class ConsignService extends BaseService<Consign> {
             List<Consign> consigns = user.getConsigns();
             //对委托列表进行处理，去掉委托具体内容,并且添加委托状态
             return processConsigns(consigns);
+
+            //从工程里获取
+            //List<Project> projects = user.getProjects();
+            //List<Consign> consigns = new ArrayList<Consign>();
+            //for(Project project: projects) {
+                //Consign consign = project.getConsign();
+                //consigns.add(consign);
+            //}
+            //return processConsigns(consigns);
         }
         else
         {
@@ -101,9 +116,12 @@ public class ConsignService extends BaseService<Consign> {
 
     //增加委托状态
     private JSONObject processConsign(Consign consign) throws Exception {
-        String processState = (String) processInstanceService.queryProcessState(consign.getProcessInstanceID()).get("state");
+        JSONObject processState = processInstanceService.queryProcessState(consign.getProcessInstanceID());
+        String state = processState.getString("state");
+        String operation = processState.getString("operation");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
-        jsonObject.put("state", processState);
+        jsonObject.put("state", state);
+        jsonObject.put("operation", operation);
         return jsonObject;
 
     }
@@ -114,8 +132,11 @@ public class ConsignService extends BaseService<Consign> {
         for (Consign consign: consigns) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
             jsonObject.remove("consignation");
-            String processState = (String) processInstanceService.queryProcessState(consign.getProcessInstanceID()).get("state");
-            jsonObject.put("state", processState);
+            JSONObject processState = processInstanceService.queryProcessState(consign.getProcessInstanceID());
+            String state = processState.getString("state");
+            String operation = processState.getString("operation");
+            jsonObject.put("state", state);
+            jsonObject.put("operation", operation);
             resultArray.add(jsonObject);
         }
 

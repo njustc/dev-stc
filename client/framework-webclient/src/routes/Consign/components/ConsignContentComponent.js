@@ -31,11 +31,11 @@ class ConsignContentComponent extends Component {
     };
     next() {
         const current = this.state.current + 1;
-        this.setState({ current });
+        this.setState({ current });/*TODO 添加保存values功能*/
     }
       prev() {
         const current = this.state.current - 1;
-        this.setState({ current });
+        this.setState({ current });/*TODO 添加保存values功能*/
     }
     static defaultProps = {
         values: {},
@@ -68,17 +68,12 @@ class ConsignContentComponent extends Component {
         //     }
         // });
         const {buttons, form} = this.props;
-        console.log(buttonIndex);
-        if( buttons[buttonIndex].content==="通过" ) {
-            this.setState({
-                ...this.state,
-                visible: true,
-                curButtonIdx: buttonIndex,
-            });
-        }
-        else {
-            buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(form.getFieldsValue()));
-        }
+        const fieldsValue = JSON.stringify((form.getFieldsValue()));
+        const consignation = {
+            ...this.props.values,
+            fieldsValue
+        };
+        buttons[buttonIndex].onClick(this.props.consignData, consignation);
         /*switch (buttons[buttonIndex].content) {
             case '保存': message.success('保存成功');break;
             case '提交': message.success('提交成功');break;
@@ -89,9 +84,9 @@ class ConsignContentComponent extends Component {
     };
 
     handleOk = (e) => {
-        const processNo = this.props.form.getFieldsValue().processNo;
-        console.log(processNo);
-        this.props.buttons[this.state.curButtonIdx].onClick(this.props.consignData,processNo);
+        // const processNo = this.props.form.getFieldsValue().processNo;
+        // console.log(processNo);
+        // this.props.buttons[this.state.curButtonIdx].onClick(this.props.consignData,processNo);
         this.setState({
             ...this.state,
             visible: false,
@@ -142,10 +137,12 @@ class ConsignContentComponent extends Component {
                 </FormItem>
 
 
-                <FormItem>请用✓选择：○——单选； ◻——多选。</FormItem>
+                {/*<FormItem>请用✓选择：○——单选； ◻——多选。</FormItem>*/}
                 <Steps current={current}>
                     {steps.map(item => <Step key={item.title} title={item.title} />)}
                 </Steps>
+
+                <div></div>
                 <div className="steps-content">
                     <FormItem/>
                     {this.state.current ==0
@@ -997,21 +994,6 @@ class ConsignContentComponent extends Component {
                             key={button.content}>
                             {button.content}
                         </Button>)}
-                </FormItem>
-                <FormItem style={{textAlign:'center'}}>
-                    <Modal title="新建流程" visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
-                        <Form>
-                            <FormItem
-                                {...formItemLayout}
-                                label="流程编号"
-                            >
-                                <Input {...getFieldProps('processNo', {rules: [{ required: true, message: '请输入密码!' }]})}
-                                       prefix={<Icon type="edit" />}
-                                       type="text" autoComplete="off"
-                                />
-                            </FormItem>
-                        </Form>
-                    </Modal>
                 </FormItem>
             </Form>
 

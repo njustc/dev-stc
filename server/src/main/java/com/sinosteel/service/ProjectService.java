@@ -6,6 +6,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.Project;
 import com.sinosteel.domain.User;
+import com.sinosteel.domain.Consign;
+import com.sinosteel.repository.ConsignRepository;
 import com.sinosteel.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,9 @@ public class ProjectService extends BaseService<Project>{
 
     @Autowired
     private ProcessInstanceService processInstanceService;
+
+    @Autowired
+    private ConsignRepository consignRepository;
 
     //根据用户查询工程
     public JSON queryProjects(User user) throws Exception{
@@ -56,9 +61,11 @@ public class ProjectService extends BaseService<Project>{
         //String uid = UUID.randomUUID().toString();
         String uid = params.getString("id");
 
+        Consign consign = consignRepository.findById(uid);
         Project project = JSONObject.toJavaObject(params, Project.class);
         project.setId(uid);
         project.setUser(user);
+        project.setConsign(consign);
 
         //TODO:start process Instance
         /*String processInstanceID = processInstanceService.createProjectProcess(params, user);

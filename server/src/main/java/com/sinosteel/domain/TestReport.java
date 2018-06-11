@@ -16,17 +16,38 @@ import javax.persistence.*;
 @Table(name = "TBL_SYS_TESTREPORTS")
 public class TestReport extends BaseEntity {
 
-    public String getReport() {
-        return report;
+    /**
+     * 详细字段未定
+     * 暂时先用来存储
+     */
+    @Column(name = "BODY")
+    private String body;
+
+    public String getBody() {
+        return body;
     }
 
-    public void setReport(String report) {
-        this.report = report;
+    public void setBody(String body) {
+        this.body = body;
     }
 
-    @Column(name = "REPORT")
-    private String report;
+    /**
+     * processInstanceID
+     */
+    @Column(name = "PROCESS_INSTANCE_ID")
+    private String processInstanceID;
 
+    public String getProcessInstanceID() {
+        return processInstanceID;
+    }
+
+    public void setProcessInstanceID(String processInstanceID) {
+        this.processInstanceID = processInstanceID;
+    }
+
+    /**
+     * 连接Project的外键
+     */
     @OneToOne(mappedBy = "testReport")
     @JoinColumn(name = "TESTREPORT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
