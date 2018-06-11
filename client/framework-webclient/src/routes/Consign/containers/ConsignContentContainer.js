@@ -63,10 +63,12 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
     onClick: (consignData,consignation) =>{
         const putData = {
             "object": "consign",
-            "operation": "reviewpass",
+            "operation": "ReviewPass",
         };
         const {id} = consignData;
         const {processInstanceID} = consignation;
+        console.log(consignation);
+        console.log("LLLLL = " + processInstanceID);
         putConsignState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
         if(status=STATUS.SUCCESS) message.success('通过成功');
@@ -78,7 +80,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
     onClick: (consignData,consignation) =>{
         const putData = {
             "object": "consign",
-            "operation": "reviewreject"
+            "operation": "ReviewReject"
         };
         const {id} = consignData;
         const {processInstanceID} = consignation;
