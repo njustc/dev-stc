@@ -26,23 +26,23 @@
     },
     {
       "name": "contract",
-      "description": "合同"
+      "description": "合同(注意现在添加合同时需要给定去绑定的project的id，这个id是project绑定的consign的id)"
     },
     {
       "name": "project",
-      "description": "工程（当前完全是初始版本，传入参数以及返回数据内容孑需修改,且流程实例状态更新没有添加此类）"
+      "description": "工程（当前完全是初始版本，添加project时要设置id，是想要绑定的consign的id，且流程实例状态更新没有添加此类）"
     },
     {
       "name": "testCase",
-      "description": "测试方案（同工程，而且当前没有按照用户查询的功能，孑需改进，流程实例方面同样没有更新）"
+      "description": "测试方案（注意现在添加测试方案时需要给定去绑定的project的id，这个id是project绑定的consign的id）"
     },
     {
       "name": "testReport",
-      "description": "测试报告（同测试计划，有问题）"
+      "description": "测试报告（同测试计划，但是绑定project那里出了问题，注意现在添加测试报告时需要给定去绑定的project的id，这个id是project绑定的consign的id）"
     },
     {
       "name": "testRecord",
-      "description": "测试结果（同测试计划）"
+      "description": "测试结果（同测试计划，注意现在添加测试结果时需要给定去绑定的project的id，这个id是project绑定的consign的id）"
     }
   ],
   "schemes": [
