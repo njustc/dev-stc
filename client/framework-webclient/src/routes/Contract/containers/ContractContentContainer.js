@@ -47,7 +47,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
         if(status=STATUS.SUCCESS){
             const putData = {
                 "object": "contract",
-                "operation": "submit"
+                "operation": "Submit"
             };
             const {processInstanceID,id} = contractData;
             console.log(putData);
