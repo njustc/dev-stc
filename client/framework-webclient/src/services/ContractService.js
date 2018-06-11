@@ -3,6 +3,7 @@ import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
 import {removeContract, setContractContent, setContractList, setContractState} from "../modules/ducks/Contract";
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
+import {setTestRecordList} from "../modules/ducks/TestRecord";
 
 const contractBase = baseServiceAddress + '/contract';
 const contractActivitiBase = baseServiceAddress + '/processInstance';
@@ -11,7 +12,30 @@ export const getContractList = (dispatch, callback) => {
     httpGet(contractBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setContractList(data));
+            // dispatch(setContractList(data));
+            dispatch(setContractList(/*data*/
+                [
+                    {
+                        pid : "110",
+                        id : "110",
+                        name : "快乐星球小杨杰",
+                        customerId : "151220140",
+                        status: STATE.TO_SUBMIT
+                    },{
+                    pid :"120",
+                    id : "120",
+                    name : "不快乐星球小杨杰",
+                    customerId : "151220140",
+                    status: STATE.TO_REVIEW
+                },{
+                    pid : "119",
+                    id : "119",
+                    name : "不快乐星球老杨杰",
+                    customerId : "151220140",
+                    status: STATE.CANCELED
+                }
+                ]
+            ));
         }
         callback && callback(status);
     });
