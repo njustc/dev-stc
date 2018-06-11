@@ -8,11 +8,13 @@ import {STATUS} from "../../../services/common";
 const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    const consignation = state.Consign.listMap[ownProps.id].consignation;
+    const consignation = state.Consign.listMap[ownProps.id]?state.Consign.listMap[ownProps.id].consignation:undefined;
+    const ToBeSubmit = state.Consign.listMap[ownProps.id]?state.Consign.listMap[ownProps.id].state!=="TobeSubmit":false;
+    const isEditVisible = authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     return {
-        consignData: state.Consign.listMap[ownProps.id],
+        consignData: ownProps,
         values: consignation ? JSON.parse(consignation) : {},
-        disable: authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1||state.Consign.listMap[ownProps.id].state!=="TobeSubmit",
+        disable: ToBeSubmit||(!isEditVisible)
     }
 };
 
