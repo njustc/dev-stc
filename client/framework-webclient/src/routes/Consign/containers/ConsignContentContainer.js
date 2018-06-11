@@ -3,6 +3,7 @@ import ConsignContentComponent from "../components/ConsignContentComponent";
 import {message} from 'antd';
 import {connect} from "react-redux";
 import {getConsign, putConsignState, updateConsign} from "../../../services/ConsignService";
+import {newProject} from "../../../services/ProjectService";
 import {STATUS} from "../../../services/common";
 /*TODO:表单内容和按钮的可视及禁用情况*/
 const mapStateToProps = (state, ownProps) => {
@@ -44,24 +45,28 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
                 "object": "consign",
                 "operation": "Submit"
             };
-            const {processInstanceID,id} = consignData;
+            const {id} = consignData;
+            const {processInstanceID} = consignation;
             putConsignState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
+            newProject(dispatch,id,(ProjStatus)=>{console.log(ProjStatus)});
 
             if(status=STATUS.SUCCESS) message.success('提交成功');
             else message.error('提交失败');
+            if(ProjStatus=STATUS.SUCCESS) message.success('流程新建成功');
+            else message.error('流程新建失败');
         }
         else message.error('提交失败');
     },
     enable: isEditVisible
 },{
     content: '通过',
-    onClick: (consignData,ProcessNo) =>{
+    onClick: (consignData,consignation) =>{
         const putData = {
             "object": "consign",
             "operation": "reviewpass",
-            "number": ProcessNo
         };
-        const {processInstanceID,id} = consignData;
+        const {id} = consignData;
+        const {processInstanceID} = consignation;
         putConsignState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
         if(status=STATUS.SUCCESS) message.success('通过成功');
@@ -75,7 +80,8 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
             "object": "consign",
             "operation": "reviewreject"
         };
-        const {processInstanceID,id} = consignData;
+        const {id} = consignData;
+        const {processInstanceID} = consignation;
         putConsignState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
         if(status=STATUS.SUCCESS) message.success('已否决');
