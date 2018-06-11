@@ -16,6 +16,7 @@ export default class ProjectContentComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            /*TODO:current应该放到props里面*/
             current: 4,
         };
     }
@@ -28,9 +29,15 @@ export default class ProjectContentComponent extends Component {
         //getProjectContent: PropTypes.func,
     };
 
-    componentDidMount() {
+    /*componentDidMount() {
         //this.props.getProjectList();
-    }
+    }*/
+    componentWillMount() {
+        //     this.curID = this.props.curKey;
+        //     // console.log(this.curID);
+        this.props.getValues(this.props.projectData.id);
+        //     // console.log(this.values);
+    };
 
 
     steps = [{
@@ -56,17 +63,17 @@ export default class ProjectContentComponent extends Component {
     }];
 
     data = [
-        '委托申请表',
-        '测试合同书',
-        '合同评审表',
-        '测试方案书',
-        '测试用例表',
-        '测试记录表',
-        '测试问题清单',
-        '测试报告书',
-        '测试报告检查表',
-        '测试工作检查表',
-        '满意度调查表'
+        {index:1,name:'委托申请表'},
+        {index:2,name:'测试合同书'},
+        //'合同评审表',
+        {index:3,name:'测试方案书'},
+        {index:4,name:'测试用例表'},
+        {index:5,name:'测试记录表'},
+        {index:6,name:'测试问题清单'},
+        {index:7,name:'测试报告书'},
+        {index:8,name:'测试报告检查表'},
+        {index:9,name:'测试工作检查表'},
+        {index:10,name:'满意度调查表'}
     ];
 
     onTitle() {
@@ -75,8 +82,9 @@ export default class ProjectContentComponent extends Component {
       );
     };
     /*查看详情*/
-    viewContent = (record) => () => {
-        this.props.showContent(record);
+    viewContent = (item) => () => {
+        //console.log(this.props.id);
+        this.props.showContent(item,this.props.id);
     };
 
     render() {
@@ -166,7 +174,7 @@ export default class ProjectContentComponent extends Component {
                                     bordered
                                     //loadMore={loadMore}
                                     dataSource={this.data}
-                                    renderItem={item => (<List.Item><a>{item}</a></List.Item>)}
+                                    renderItem={item => (<List.Item><a href="javascript:void(0);" onClick={this.viewContent(item)}>{item.name}</a></List.Item>)}
                                     /*renderItem={item => (
                                             <List.Item actions={[<a>edit</a>, <a>more</a>]}>
                                                 <List.Item.Meta
@@ -181,7 +189,7 @@ export default class ProjectContentComponent extends Component {
                             </Col>
                             <Col span={6}>
                                 <Card title='流程摘要信息' hoverable >
-                                    <div>流程ID：110</div>
+                                    <div>流程ID：{this.props.id}</div>
                                     <br/>
                                     <div>项目名称：快乐星球小杨杰</div>
                                     <br/>
