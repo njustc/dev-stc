@@ -31,11 +31,11 @@ class ConsignContentComponent extends Component {
     };
     next() {
         const current = this.state.current + 1;
-        this.setState({ current });
+        this.setState({ current });/*TODO 添加保存values功能*/
     }
       prev() {
         const current = this.state.current - 1;
-        this.setState({ current });
+        this.setState({ current });/*TODO 添加保存values功能*/
     }
     static defaultProps = {
         values: {},
