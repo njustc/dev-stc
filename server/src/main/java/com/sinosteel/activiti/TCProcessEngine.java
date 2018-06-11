@@ -197,7 +197,7 @@ public class TCProcessEngine {
                     String s2=s.name()+"Reject";
                     varies.add(s2);
                     //System.out.println(task.getProcessDefinitionId());
-                    if(s.name()=="Confirm"&&task.getProcessDefinitionId().contains("testreport")) {
+                    if(s.name().equals("Confirm")&&task.getProcessDefinitionId().contains("testreport")) {
                         String s3=s.name()+"Abort";
                         varies.add(s3);
                     }
