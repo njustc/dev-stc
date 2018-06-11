@@ -3,25 +3,56 @@ import ProjectContentComponent from "../components/ProjectContentComponent";
 import {message} from 'antd';
 import {connect} from "react-redux";
 import {getProject, putProjectState, updateProject} from "../../../services/ProjectService";
-import {STATUS} from "../../../services/common";
+//import {STATUS} from "../../../services/common";
+import {ProjectContentView} from "../index";
+import {addTabAction} from "MODULES/ducks/Layout";
+
+import {ConsignContentView} from "../../Consign";
+import {ContractContentView} from "../../Contract";
+import {TestPlanContentView} from "../../Test";
+import {TestCaseContentView} from "../../Test";
+import {TestRecordContentView} from "../../Test";
+import {TestProblemContentView} from "../../Test";
+import {TestReportContentView} from "../../TestReport";
+import {TestReportCheckContentView} from "../../TestReport";
+import {TestWorkCheckContentView} from "../../Archive";
+import {SatisfactionContentView} from "../../Archive";
+
 /*TODO:表单内容和按钮的可视及禁用情况*/
 const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    const consignation = state.Project.listMap[ownProps.id].consignation;
+    //const consignation = state.Project.listMap[ownProps.id].consignation;
     return {
         // consignData: {},/*fetch data with pro id*/
-        consignData: state.Project.listMap[ownProps.id],
-        values: consignation ? JSON.parse(consignation) : {},
+        projectData: state.Project.listMap[ownProps.id],
+        //values: consignation ? JSON.parse(consignation) : {},
         disable: authData.functionGroup["Project"]===undefined||authData.functionGroup["Project"].findIndex(element => element === "EDIT")===-1||state.Project.listMap[ownProps.id].state!=="TobeSubmit",
         curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
-
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     return {
+        showContent: (item,id) => {
+            //console.log(id);
+            /*TODO:文档的ID和流程的ID不同*/
+            switch (item.index){
+                case 1:dispatch(addTabAction(id, '委托详情', ConsignContentView, {id: id}));break;
+                case 2:dispatch(addTabAction(id, '合同详情', ContractContentView, {id: id}));break;
+                case 3:dispatch(addTabAction(id, '测试方案详情', TestPlanContentView, {id: id}));break;
+                case 4:dispatch(addTabAction(id, '测试用例详情', TestCaseContentView, {id: id}));break;
+                case 5:dispatch(addTabAction(id, '测试用例详情', TestRecordContentView, {id: id}));break;
+                case 6:dispatch(addTabAction(id, '测试用例详情', TestProblemContentView, {id: id}));break;
+                case 7:dispatch(addTabAction(id, '测试用例详情', TestReportContentView, {id: id}));break;
+                case 8:dispatch(addTabAction(id, '测试用例详情', TestReportCheckContentView, {id: id}));break;
+                case 9:dispatch(addTabAction(id, '测试用例详情', TestWorkCheckContentView, {id: id}));break;
+                case 10:dispatch(addTabAction(id, '测试用例详情', SatisfactionContentView, {id: id}));break;
+                default:break;
+            }
+            //dispatch(addTabAction(id, '流程详情', ProjectContentView, {id: id}));
+        },
         getValues: (id) => getProject(dispatch,id)
     }
 };

@@ -122,6 +122,7 @@ export default class ConsignListComponent extends Component {
         //width: '12%',
         render: (record) => {
             /*TODO:操作应该由后台传过来*/
+            //console.log(record);
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
