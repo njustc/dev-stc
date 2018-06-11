@@ -1,8 +1,9 @@
 /*测试记录清单*/
 import React, {Component, PropTypes} from 'react';
-import {Form,Table, Card, Collapse, Badge, Dropdown, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
+import {Form,Table, Card, Collapse, Radio, Popover, Badge, Dropdown, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
 const FormItem=Form.Item;
 const Panel = Collapse.Panel;
+const RadioGroup = Radio.Group;
 const { TextArea } = Input;
 
 
@@ -131,7 +132,7 @@ constructor(props) {
         process: '第一步……，第二步……，然后……，最后……。',
         expectedResult: '在期末考试周结束前完工',
         result: '大概是完工不了的TAT',
-        consistency: false,
+        consistency: '不一致',
         bugID: 250,
         time: '2018-06-09',
         prerequisites: '选择软件工程方向',
@@ -150,7 +151,11 @@ constructor(props) {
             <div>
                 <h3 style={{ marginBottom: 16 }}>测试记录</h3>
                 <Collapse bordered={false}>
-                    <Panel header="添加测试记录" key="1">
+                    <Panel
+                        showArrow={false}
+                        header={<Button><Icon type="plus-circle-o"/> 添加测试记录</Button>}
+                        key="1"
+                    >
                         <div style={{ background: '#ECECEC', padding: '15px', marginBottom:'10pt' }}>
                         <Card bordered={false} style={{ width: '100%' }}>
                             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
@@ -207,7 +212,10 @@ constructor(props) {
                                     {getFieldDecorator('consistency', {
                                         // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
                                     })(
-                                        <Input/>
+                                        <RadioGroup /*onChange={this.onChange} value={this.state.value}*/>
+                                            <Radio value={1}>是</Radio>
+                                            <Radio value={2}>否</Radio>
+                                        </RadioGroup>
                                     )}
                                 </FormItem>
                                 <FormItem {...formItemLayout} label={"测试依据"}>

@@ -126,9 +126,12 @@ class TestCaseContentComponent extends Component {
         return (
             <div>
                 <h3 style={{ marginBottom: 16 }}>测试用例</h3>
-
                 <Collapse bordered={false}>
-                    <Panel header="添加测试用例" key="1">
+                    <Panel
+                        showArrow={false}
+                        header={<Button><Icon type="plus-circle-o"/> 添加测试用例</Button>}
+                        key="1"
+                    >
                         <div style={{ background: '#ECECEC', padding: '15px', marginBottom:'10pt' }}>
                         <Card bordered={false} style={{ width: '100%' }}>
                             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>

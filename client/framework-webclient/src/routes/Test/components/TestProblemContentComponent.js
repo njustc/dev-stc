@@ -136,7 +136,11 @@ class TestProblemContentComponent extends Component {
                 <h3 style={{ marginBottom: 16 }}>测试问题清单</h3>
 
                 <Collapse bordered={false}>
-                    <Panel header="添加测试问题" key="1">
+                    <Panel
+                        showArrow={false}
+                        header={<Button><Icon type="plus-circle-o"/> 添加测试问题</Button>}
+                        key="1"
+                    >
                         <div style={{ background: '#ECECEC', padding: '15px', marginBottom:'10pt' }}>
                             <Card bordered={false} style={{ width: '100%' }}>
                                 <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
