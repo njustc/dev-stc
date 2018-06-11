@@ -192,13 +192,13 @@ export default class ContractListComponent extends Component {
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    {/*this.props.enableNew*/1 ?
+                    {/*this.props.enableNew ?
                         <Col span={2}>
                             <Button
                                 //disabled={!this.props.enableNew}
                                 type="primary" onClick={this.props.newContract}><Icon type="plus-circle-o" />新建合同</Button>
                         </Col>
-                        : <Col span={2}></Col>}
+                        : <Col span={2}></Col>*/}
                 </InputGroup>
                 <br />
                 <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'}/>
