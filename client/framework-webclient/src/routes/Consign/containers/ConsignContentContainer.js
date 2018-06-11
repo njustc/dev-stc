@@ -48,11 +48,11 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
             const {id} = consignData;
             const {processInstanceID} = consignation;
             putConsignState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
-            newProject(dispatch,id,(ProjStatus)=>{console.log(ProjStatus)});
+            newProject(dispatch,id,(ProjectStatus)=>{console.log(ProjectStatus)});
 
             if(status=STATUS.SUCCESS) message.success('提交成功');
             else message.error('提交失败');
-            if(ProjStatus=STATUS.SUCCESS) message.success('流程新建成功');
+            if(ProjectStatus=STATUS.SUCCESS) message.success('流程新建成功');
             else message.error('流程新建失败');
         }
         else message.error('提交失败');
