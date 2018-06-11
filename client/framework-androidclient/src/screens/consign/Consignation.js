@@ -18,16 +18,42 @@ import {
 
 
 import styles from "./styles";
+// import {getConsignList} from "./ConsignService";
+import { ToastAndroid } from "react-native";
 
-const datas = [
+import {baseAddress,baseServiceAddress,STATUS} from "../../common";
+import {httpPost,httpGet,httpDelete,httpPut} from "../../FetchUtil";
+// import {ConsignListData} from "./Consignation"
+// import { ToastAndroid } from "react-native";
+
+const consignBase = baseServiceAddress + '/consign?username=admin&clientDigest=qqq';
+// const consignActivitiBase = baseServiceAddress + '/processInstance';
+
+let ConsignList;
+
+export let CONSIGNATIONPAGE_CONTENT;
+
+export const getConsignList = () => {
+  httpGet(consignBase,(result) => {
+    const {status, data} = result;
+    if (status === STATUS.SUCCESS) {
+      ConsignList = data;
+      // let toastMsg2 = 'emmmm';
+      // ToastAndroid.showWithGravity(toastMsg2, 1000, ToastAndroid.CENTER);
+    }
+    // callback && callback(status);
+  });
+};
+
+const ConsignListData = [
   {
     route: "ConsignPage",
-    text: "Consign001"
+    text: ""
   },
-  {
-    route:"ConsianPage",
-    text:"Consign002"
-  },
+  // {
+  //   route:"ConsianPage",
+  //   text:"Consign002"
+  // },
 ];//TODO: get datas from 后端
 
 export  default class Consignation extends Component {
@@ -65,10 +91,10 @@ export  default class Consignation extends Component {
         });
         return;
       }else{
-        for (var i = 0; i < datas.length; i++) {
-          if (datas[i].text==text) {
+        for (var i = 0; i < ConsignListData.length; i++) {
+          if (ConsignListData[i].text==text) {
             this.setState({
-              datas:[datas[i]],
+              datas:[ConsignListData[i]],
             });
             return;
           }else{
@@ -85,6 +111,22 @@ export  default class Consignation extends Component {
 
   extraUniqueKey(item,index){
     return index+item;
+  }
+
+  componentWillMount() {
+    getConsignList(ConsignListData);
+  }
+
+  gotoConsignationPage = (id) => {
+      httpGet(baseServiceAddress + '/consign/' + id + '?username=admin&clientDigest=qqq', (result) => {
+        const {status, data} = result;
+        if (status === STATUS.SUCCESS) {
+          const {consignation} = data;
+          CONSIGNATIONPAGE_CONTENT = consignation;
+        }
+
+      });
+    this.props.navigation.navigate("ConsignPage");
   }
 
   render() {
@@ -113,16 +155,17 @@ export  default class Consignation extends Component {
           </Item>
 
           <List
-            dataArray={this.state.datas}
+            //dataArray={this.state.datas}
+            dataArray={ConsignList}
             renderRow={data =>
               <ListItem
                 button
-                onPress={() => this.props.navigation.navigate(data.route)}
+                onPress={() => this.gotoConsignationPage(data.id)}
                 keyExtractor = {this.extraUniqueKey}//去除警告
               >
                 <Left>
                   <Text>
-                    {data.text}
+                    {data.id}
                   </Text>
                 </Left>
                 <Right>
@@ -134,5 +177,6 @@ export  default class Consignation extends Component {
       </Container>
     );
   }
+
 }
 
