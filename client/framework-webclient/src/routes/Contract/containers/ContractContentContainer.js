@@ -63,7 +63,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
     onClick: (contractData,contract) =>{
         const putData = {
             "object": "contract",
-            "operation": "reviewpass"
+            "operation": "ReviewPass"
         };
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
@@ -77,7 +77,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
     onClick: (contractData,contract) =>{
         const putData = {
             "object": "contract",
-            "operation": "reviewreject"
+            "operation": "ReviewReject"
         };
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
@@ -91,7 +91,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
     onClick: (contractData,contract) =>{
         const putData = {
             "object": "contract",
-            "operation": "confirmpass"
+            "operation": "ConfirmPass"
         };
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
@@ -105,7 +105,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
     onClick: (contractData,contract) =>{
         const putData = {
             "object": "contract",
-            "operation": "confirmreject"
+            "operation": "ConfirmReject"
         };
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
