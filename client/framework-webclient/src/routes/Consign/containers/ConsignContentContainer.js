@@ -40,7 +40,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttonsçš„æ
         if(status=STATUS.SUCCESS){
             const putData = {
                 "object": "consign",
-                "operation": "submit"
+                "operation": "Submit"
             };
             const {processInstanceID,id} = consignData;
             putConsignState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
