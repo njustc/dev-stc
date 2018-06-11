@@ -55,7 +55,7 @@ public class TCProcessEngine {
         variables.put("ConsignID",consignId);
         variables.put("ClientID",clientId);
         List<String> userids = userMapper.getUserIdsByRoleId("1");
-        if(userids.isEmpty()==false) {
+        if(!userids.isEmpty()) {
             for(String userid : userids){
                 variables.put("WorkerIDs",userid);
             }
@@ -78,7 +78,7 @@ public class TCProcessEngine {
         variables.put("ContractID",contractId);
         variables.put("ClientID",clientId);
         List<String> userids = userMapper.getUserIdsByRoleId("1");
-        if(userids.isEmpty()==false) {
+        if(!userids.isEmpty()) {
             for(String userid : userids){
                 variables.put("WorkerIDs",userid);
             }
@@ -92,7 +92,7 @@ public class TCProcessEngine {
     public String createTestplanProcess()throws Exception{
         Map<String,Object> variables=new HashMap<String, Object>();
         List<String> userids = userMapper.getUserIdsByRoleId("1");
-        if(userids.isEmpty()==false) {
+        if(!userids.isEmpty()) {
             for(String userid : userids){
                 variables.put("WorkerId",userid);
             }
@@ -107,7 +107,7 @@ public class TCProcessEngine {
     {
         Map<String,Object> variables=new HashMap<String, Object>();
         List<String> userids = userMapper.getUserIdsByRoleId("1");
-        if(userids.isEmpty()==false) {
+        if(!userids.isEmpty()) {
             for(String userid : userids){
                 variables.put("WorkerId",userid);
             }
@@ -155,7 +155,7 @@ public class TCProcessEngine {
                 .processInstanceId(processInstanceId).singleResult();
         List<HistoricActivityInstance> pi1=historyService.createHistoricActivityInstanceQuery()
                 .processInstanceId(processInstanceId).list();
-        if(pi==null&&pi1.isEmpty()==false) {
+        if(pi==null&&!pi1.isEmpty()) {
             return "Finished";
         }
         else if(pi!=null) {
@@ -180,7 +180,7 @@ public class TCProcessEngine {
         }
         TaskFormData taskFormData=formService.getTaskFormData(task.getId());
         List<FormProperty> formProperties=taskFormData.getFormProperties();
-        if(formProperties.isEmpty()==true) {
+        if(formProperties.isEmpty()) {
             for(TaskOperation s:TaskOperation.values()) {
                 if(task.getName().contains(s.name())) {
                     varies.add(s.name());
