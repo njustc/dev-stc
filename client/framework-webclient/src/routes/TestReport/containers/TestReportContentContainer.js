@@ -25,10 +25,12 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
             id: testReportData.id,
             testReport: testReport
         };
-        updateTestReport(dispatch,valueData,(status)=>{console.log(status);});
+        updateTestReport(dispatch,valueData,(status)=>{
+            console.log(status);
 
-        if(status=STATUS.SUCCESS) message.success('保存成功');
+        if(status===STATUS.SUCCESS) message.success('保存成功');
         else message.error('保存失败');
+        });
     },
     enable: isEditVisible
 },{
@@ -38,8 +40,9 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
             id: testReportData.id,
             testReport: testReport
         };
-        updateTestReport(dispatch,valueData,(status)=>{console.log(status);});
-        if(status=STATUS.SUCCESS){
+        updateTestReport(dispatch,valueData,(status)=>{
+            console.log(status);
+        if(status===STATUS.SUCCESS){
             const putData = {
                 "object": "testReport",
                 "operation": "Submit"
@@ -51,6 +54,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
             else message.error('提交失败');
         }
         else message.error('提交失败');
+        });
     },
     enable: isEditVisible
 },{
