@@ -142,10 +142,12 @@ class ConsignContentComponent extends Component {
                 </FormItem>
 
 
-                <FormItem>请用✓选择：○——单选； ◻——多选。</FormItem>
+                {/*<FormItem>请用✓选择：○——单选； ◻——多选。</FormItem>*/}
                 <Steps current={current}>
                     {steps.map(item => <Step key={item.title} title={item.title} />)}
                 </Steps>
+
+                <div></div>
                 <div className="steps-content">
                     <FormItem/>
                     {this.state.current ==0

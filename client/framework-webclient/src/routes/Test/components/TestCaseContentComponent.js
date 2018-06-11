@@ -1,9 +1,10 @@
 /*测试用例*/
 import React, {Component, PropTypes} from 'react';
-import {Form,Table, Card, Badge, Dropdown, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
+import {Form,Table, Card, Collapse, Badge, Dropdown, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
 const FormItem=Form.Item;
+const Panel = Collapse.Panel;
+const { TextArea } = Input;
 
-let uuid = 0;
 class TestCaseContentComponent extends Component {
     constructor(props) {
         super(props);
@@ -70,13 +71,13 @@ class TestCaseContentComponent extends Component {
         dataIndex:"statute",
     },*/
         {
-        title:"测试用例执行过程",
+        title:"执行过程",
         dataIndex:"process",
     }, {
-        title:"预期的结果",
+        title:"预期结果",
         dataIndex:"expectedResult",
     }, {
-        title:"测试用例设计者",
+        title:"设计者",
         dataIndex:"designer",
     }, {
         title:"时间",
@@ -86,8 +87,8 @@ class TestCaseContentComponent extends Component {
         dataIndex:"action",
         render: (text, record) => {
         return (
-            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key)}>
-              <a href="javascript:;">Delete</a>
+            <Popconfirm title="确认删除此测试用例吗？" onConfirm={() => this.onDelete(record.key)}>
+              <a href="javascript:;">删除</a>
             </Popconfirm>
         );
       },
@@ -125,76 +126,82 @@ class TestCaseContentComponent extends Component {
         return (
             <div>
                 <h3 style={{ marginBottom: 16 }}>测试用例</h3>
-                <div style={{ background: '#ECECEC', padding: '30px', marginBottom:'10pt' }}>
-                    <Card title="添加测试用例" bordered={false} style={{ width: '100%' }}>
-                        <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
-                            <FormItem {...formItemLayout} label={"测试分类"}>
-                                {getFieldDecorator('classification', {
+
+                <Collapse bordered={false}>
+                    <Panel header="添加测试用例" key="1">
+                        <div style={{ background: '#ECECEC', padding: '15px', marginBottom:'10pt' }}>
+                        <Card bordered={false} style={{ width: '100%' }}>
+                            <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
+                                <FormItem {...formItemLayout} label={"测试分类"}>
+                                    {getFieldDecorator('classification', {
                                     // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                })(
-                                    <Input/>
-                                )}
-                            </FormItem>
-                            <FormItem {...formItemLayout} label={"测试用例设计者"}>
-                                {getFieldDecorator('designer', {
+                                    })(
+                                        <Input/>
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"设计者"}>
+                                    {getFieldDecorator('designer', {
+                                        // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    })(
+                                        <Input/>
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"设计说明"}>
+                                    {getFieldDecorator('designNotes', {
                                     // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                })(
-                                    <Input/>
-                                )}
-                            </FormItem>
-                            <FormItem {...formItemLayout} label={"测试用例设计说明"}>
-                                {getFieldDecorator('designNotes', {
+                                    })(
+                                        <TextArea rows={4} />
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"执行过程"}>
+                                    {getFieldDecorator('process', {
                                     // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                })(
-                                    <Input/>
-                                )}
-                            </FormItem>
-                            <FormItem {...formItemLayout} label={"测试用例执行过程"}>
-                                {getFieldDecorator('process', {
+                                    })(
+                                        <TextArea rows={4} />
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"预期结果"}>
+                                    {getFieldDecorator('expectedResult', {
                                     // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                })(
-                                    <Input/>
-                                )}
-                            </FormItem>
-                            <FormItem {...formItemLayout} label={"预期的结果"}>
-                                {getFieldDecorator('expectedResult', {
+                                    })(
+                                        <TextArea rows={4} />
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"时间"}>
+                                    {getFieldDecorator('time', {
                                     // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                })(
-                                    <Input/>
-                                )}
-                            </FormItem>
-                            <FormItem {...formItemLayout} label={"时间"}>
-                                {getFieldDecorator('time', {
+                                    })(
+                                        <DatePicker/>
+                                    )}
+                                </FormItem>
+                                <FormItem{...formItemLayout}label={"有关的规约说明"}>
+                                    {getFieldDecorator('statute', {
                                     // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                })(
-                                    <Input/>
-                                )}
-                            </FormItem>
-                            <FormItem{...formItemLayout}label={"与本测试用例有关的规约说明"}>
-                                {getFieldDecorator('statute', {
+                                    })(
+                                        <Input/>
+                                    )}
+                                </FormItem>
+                                <FormItem {...formItemLayout} label={"依据"}>
+                                    {getFieldDecorator('accordance', {
                                     // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                })(
-                                    <Input/>
-                                )}
-                            </FormItem>
-                            <FormItem {...formItemLayout} label={"依据"}>
-                                {getFieldDecorator('accordance', {
-                                    // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                })(
-                                    <Input/>
-                                )}
-                            </FormItem>
-                            <FormItem {...formItemLayout}>
-                                 {/*this.props.buttons.map((button, index) =>
+                                    })(
+                                        <Input/>
+                                    )}
+                                </FormItem>
+                                <FormItem>
+                                    {/*this.props.buttons.map((button, index) =>
                                     <Button onClick={this.onClick(index)}
                                             key={button.content}>
                                         {button.content}
                                     </Button>)*/}
-                                    <Button type='primary'><Icon type="plus-circle-o" />添加测试用例</Button>
-                            </FormItem>
-                        </Form>
-                    </Card>
-                </div>
+                                        <Button type='primary'><Icon type="plus-circle-o" />添加测试用例</Button>
+                                </FormItem>
+                            </Form>
+                        </Card>
+                        </div>
+                    </Panel>
+                </Collapse>
+
                 <Table
                     className="components-table-demo-nested"
                     columns={this.columns}
