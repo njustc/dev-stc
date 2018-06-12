@@ -112,15 +112,19 @@ export const updateTestCase = (dispatch, data, callback) => {
     });
 };
 
-// export const getConsignState = (dispatch, processInstanceID, callback) => {
-//     httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
-//         const {status, data} = result;
-//         if (status === STATUS.SUCCESS) {
-//             dispatch(setConsignContent(data));
-//         }
-//         callback && callback(status);
-//     })
-// };
+export const getTestCaseState = (dispatch, processInstanceID, id, callback) => {
+    httpGet(testCaseActivitiBase + '/' + processInstanceID, (result) => {
+        const {status, data} = result;
+        if (status === STATUS.SUCCESS) {
+            const newData = {
+                ...data,
+                id: id,
+            };
+            dispatch(setTestCaseContent(newData));
+        }
+        callback && callback(status);
+    })
+};
 
 export const putTestCaseState = (dispatch, processInstanceID, data, id, callback) => {
     // console.log("ID = " + processInstanceID);

@@ -59,7 +59,7 @@ export const updateConsign = (dispatch, data, callback) => {
     });
 };
 
-export const getConsignState = (dispatch, processInstanceID, callback) => {
+export const getConsignState = (dispatch, processInstanceID, id, callback) => {
     httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
@@ -76,6 +76,7 @@ export const getConsignState = (dispatch, processInstanceID, callback) => {
 
 export const putConsignState = (dispatch, processInstanceID, data, id, callback) => {
     // console.log("ID = " + processInstanceID);
+    console.log(consignActivitiBase + '/' + processInstanceID);
     httpPut(consignActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
         if (status === STATUS.SUCCESS) {

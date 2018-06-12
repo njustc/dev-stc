@@ -86,11 +86,15 @@ export const updateTestReport = (dispatch, data, callback) => {
     });
 };
 
-export const getTestReportState = (dispatch, processInstanceID, callback) => {
+export const getTestReportState = (dispatch, processInstanceID, id, callback) => {
     httpGet(testReportActivitiBase + '/' + processInstanceID, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setTestReportContent(data));
+            const newData = {
+                ...data,
+                id: id,
+            };
+            dispatch(setTestReportContent(newData));
         }
         callback && callback(status);
     })

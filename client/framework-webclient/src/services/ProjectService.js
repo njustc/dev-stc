@@ -1,6 +1,11 @@
 import {baseServiceAddress, STATUS} from "SERVICES/common";
 import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
-import {removeProject, setProjectContent, setProjectList/*, setProjectState*/} from "../modules/ducks/Project";
+import {
+    removeProject,
+    setProjectContent,
+    setProjectList,
+    showListMap/*, setProjectState*/
+} from "../modules/ducks/Project";
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 import {setTestRecordContent} from "../modules/ducks/TestRecord";
@@ -8,33 +13,34 @@ import {setTestRecordContent} from "../modules/ducks/TestRecord";
 const projectBase = baseServiceAddress + '/v1/project';
 const projectActivitiBase = baseServiceAddress + '/processInstance';
 
-export const getProjectList = (dispatch, callback) => {
-    httpGet(projectBase,(result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            // dispatch(setProjectList(/*data*/
-            //     [
-            //         {
-            //             id : "110",
-            //             name : "快乐星球小杨杰",
-            //             createdUserId : "151220140",
-            //             state: 'TobeSubmit'
-            //         },{
-            //             id : "120",
-            //             name : "不快乐星球小杨杰",
-            //             createdUserId : "151220140",
-            //             state: 'TobeSubmit'
-            //         },{
-            //             id : "119",
-            //             name : "不快乐星球老杨杰",
-            //             createdUserId : "151220140",
-            //             state: 'TobeSubmit'
-            //         }
-            //     ]
-            dispatch(setProjectContent(data));
-        }
-        callback && callback(status);
-    });
+export const getProjectList = (dispatch, callback) => {/*TODO 后台接口实现有误*/
+    // httpGet(projectBase,(result) => {
+    //     const {status, data} = result;
+    //     if (status === STATUS.SUCCESS) {
+            dispatch(setProjectList(/*data*/
+                [
+                    {
+                        id : "110",
+                        name : "快乐星球小杨杰",
+                        createdUserId : "151220140",
+                        state: 'TobeSubmit'
+                    },{
+                        id : "120",
+                        name : "不快乐星球小杨杰",
+                        createdUserId : "151220140",
+                        state: 'TobeSubmit'
+                    },{
+                        id : "119",
+                        name : "不快乐星球老杨杰",
+                        createdUserId : "151220140",
+                        state: 'TobeSubmit'
+                    }
+                ]
+            ));
+    //         dispatch(setProjectList(data));
+    //     }
+    //     callback && callback(status);
+    // });
 };
 
 export const getProject = (dispatch, id, callback) => {
@@ -63,7 +69,8 @@ export const newProject = (dispatch,id,callback) => {
     httpPost(projectBase, {id:id,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setConsignContent(data));
+            dispatch(setProjectContent(data));
+            dispatch(showListMap());
         }
         callback && callback(status);
     });
@@ -80,7 +87,7 @@ export const updateProject = (dispatch, data, callback) => {
     });
 };
 
-export const getProjectState = (dispatch, processInstanceID, callback) => {
+export const getProjectState = (dispatch, processInstanceID, id, callback) => {
     httpGet(projectActivitiBase + '/' + processInstanceID, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
