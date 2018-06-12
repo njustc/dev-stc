@@ -82,7 +82,6 @@ public class ContractService extends BaseService<Contract> {
         contract.setId(uid);
         contract.setUser(user);
 
-        //TODO: start process Instance
         String processInstanceID = processInstanceService.createContractProcess(params, user);
         contract.setProcessInstanceID(processInstanceID);
 
