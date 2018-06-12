@@ -1,7 +1,10 @@
 package com.sinosteel.repository;
 
 import com.sinosteel.domain.TestReportCheck;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 /**
@@ -10,4 +13,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TestReportCheckRepository extends BaseRepository<TestReportCheck> {
+    TestReportCheck findById(String id);
+    @Query("SELECT body from TestRecord testRecord where 1 = 1")
+    List<TestReportCheck> findByAllTestReportChecks();
 }

@@ -38,9 +38,9 @@ public class TestCaseController extends BaseController {
         return response;
     }
 
-    //根据ID查询测试计划具体信息
+    //根据ID查询测试方案具体信息
     @RequestMapping(value = "/v1/testCase/{id}", method = RequestMethod.GET)
-    public Response queryTestPlanByID(@PathVariable String id,  Request request) {
+    public Response queryTestCaseByID(@PathVariable String id,  Request request) {
         Response response = new Response();
 
         try
@@ -58,7 +58,7 @@ public class TestCaseController extends BaseController {
     }
 
     @RequestMapping(value = "/v1/testCase",method = RequestMethod.PUT)
-    public Response editTestPlan(Request request)
+    public Response editTestCase(Request request)
     {
         Response response = new Response();
 
@@ -76,7 +76,7 @@ public class TestCaseController extends BaseController {
 
     }
     @RequestMapping(value = "/v1/testCase",method=RequestMethod.POST)
-    public Response addTestPlan(Request request)
+    public Response addTestCase(Request request)
     {
         Response response=new Response();
 
@@ -94,7 +94,7 @@ public class TestCaseController extends BaseController {
         return response;
     }
     @RequestMapping(value = "/v1/testCase",method=RequestMethod.DELETE)
-    public Response deleteTestPlan(Request request)
+    public Response deleteTestCase(Request request)
     {
         Response response=new Response();
 

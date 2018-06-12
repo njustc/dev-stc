@@ -4,6 +4,10 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
     },
     {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_launcher.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_launcher.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
     }

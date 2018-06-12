@@ -13,6 +13,7 @@ import {
 } from "native-base";
 import styles from "./style";
 import { SIDEBAR_DISABLE } from "../../common";
+// import { getConsignList } from "../consign/ConsignService";
 
 const drawerCover = require("../../../assets/drawer-cover.png");
 const drawerImage = require("../../../assets/logo-kitchen-sink.png");
@@ -23,6 +24,7 @@ const datas = [
     icon: "person",
     bg: "#C5F442",
     disable:SIDEBAR_DISABLE.CONSIGN,
+    // setfunction: setConsignList,
   },
   {
     name: "合同",
@@ -55,6 +57,11 @@ const datas = [
 
 ];
 
+// export const setConsignList = (data) => {
+//   getConsignList();
+//   this.props.navigation.navigate(data.route);
+// }
+
 class SideBar extends Component {
   constructor(props) {
     super(props);
@@ -63,6 +70,11 @@ class SideBar extends Component {
       shadowRadius: 4
     };
   }
+
+  // setConsignList = (data) => {
+  //   getConsignList();
+  //   this.props.navigation.navigate(data.route);
+  // }
 
   render() {
     return (
@@ -82,6 +94,7 @@ class SideBar extends Component {
                 button
                 noBorder
                 disabled={data.disable}
+                // onPress={()=> setConsignList(data)}
                 onPress={() => this.props.navigation.navigate(data.route)}
               >
                 <Left>
