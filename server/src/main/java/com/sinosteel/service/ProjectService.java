@@ -4,9 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
+import com.sinosteel.domain.Consign;
 import com.sinosteel.domain.Project;
 import com.sinosteel.domain.User;
-import com.sinosteel.domain.Consign;
 import com.sinosteel.repository.ConsignRepository;
 import com.sinosteel.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * *@author LBW&SQW
@@ -42,7 +41,7 @@ public class ProjectService extends BaseService<Project>{
             return processProjects(projects);
         }
         else {
-            List<Project> projects = projectRepository.findByName(user.getUsername());
+            List<Project> projects = user.getProjects();
             return processProjects(projects);
         }
     }
