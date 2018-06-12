@@ -2,6 +2,7 @@ const SET_LIST = 'Project/SET_LIST';
 const RM_CONTENT = 'Project/RM_CONTENT';
 const SET_CONTENT = 'Project/SET_CONTENT';
 const SET_FILTER = 'Project/SET_FILTER';
+const SHOW_LISTMAP = 'Project/SHOW_LISTMAP';
 
 const initialState = {
     listFilter: () => true,//绑定按钮传入的过滤条件
@@ -46,6 +47,9 @@ export const ProjectReducer = (state = initialState, action) => {
                 ...state,
                 listFilter: listFilter,
             };
+        case SHOW_LISTMAP:
+            console.log(state.listMap);
+            return state;
         default:
             return state;
     }
@@ -78,3 +82,9 @@ export const setProjectFilter = (listFilter) => {
         payload: listFilter,
     }
 };
+
+export const showListMap = () => {
+    return {
+        type: SHOW_LISTMAP,
+    }
+}

@@ -31,9 +31,11 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             id: contractData.id,
             contractBody: contract
         };
-        updateContract(dispatch,valueData,(status)=>{console.log(status);});
-        if(status=STATUS.SUCCESS) message.success('保存成功');
-        else message.error('保存失败');
+        updateContract(dispatch,valueData,(status)=>{
+            console.log(status);
+            if(status===STATUS.SUCCESS) message.success('保存成功');
+            else message.error('保存失败');
+        });
     },
     enable: isEditVisible
 },{
@@ -43,19 +45,23 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             id: contractData.id,
             contractBody: contract
         };
-        updateContract(dispatch,valueData,(status)=>{console.log(status);});
-        if(status=STATUS.SUCCESS){
-            const putData = {
-                "object": "contract",
-                "operation": "Submit"
-            };
-            const {processInstanceID,id} = contractData;
-            console.log(putData);
-            putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
-            if(status=STATUS.SUCCESS) message.success('提交成功');
-            else message.error('提交失败');
-        }
-        else message.error('提交失败');
+        updateContract(dispatch,valueData,(status)=>{
+            console.log(status);
+            if(status===STATUS.SUCCESS){
+                const putData = {
+                    "object": "contract",
+                    "operation": "Submit"
+                };
+                const {processInstanceID,id} = contractData;
+                console.log(putData);
+                putContractState(dispatch,processInstanceID,putData,id,(status)=>{
+                    console.log(status);
+                    if(status===STATUS.SUCCESS) message.success('提交成功');
+                    else message.error('提交失败');
+                });
+            }
+            else message.error('更新失败');
+        });
     },
     enable: isEditVisible
 },{
@@ -63,7 +69,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
     onClick: (contractData,contract) =>{
         const putData = {
             "object": "contract",
-            "operation": "reviewpass"
+            "operation": "ReviewPass"
         };
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
@@ -77,7 +83,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
     onClick: (contractData,contract) =>{
         const putData = {
             "object": "contract",
-            "operation": "reviewreject"
+            "operation": "ReviewReject"
         };
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
@@ -91,7 +97,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
     onClick: (contractData,contract) =>{
         const putData = {
             "object": "contract",
-            "operation": "confirmpass"
+            "operation": "ConfirmPass"
         };
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
@@ -105,7 +111,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
     onClick: (contractData,contract) =>{
         const putData = {
             "object": "contract",
-            "operation": "confirmreject"
+            "operation": "ConfirmReject"
         };
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});

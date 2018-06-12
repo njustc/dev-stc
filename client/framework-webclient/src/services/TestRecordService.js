@@ -84,15 +84,19 @@ export const updateTestRecord = (dispatch, data, callback) => {
     });
 };
 
-// export const getConsignState = (dispatch, processInstanceID, callback) => {
-//     httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
-//         const {status, data} = result;
-//         if (status === STATUS.SUCCESS) {
-//             dispatch(setConsignContent(data));
-//         }
-//         callback && callback(status);
-//     })
-// };
+export const getTestRecordState = (dispatch, processInstanceID, id, callback) => {
+    httpGet(testRecordActivitiBase + '/' + processInstanceID, (result) => {
+        const {status, data} = result;
+        if (status === STATUS.SUCCESS) {
+            const newData = {
+                ...data,
+                id: id,
+            };
+            dispatch(setTestRecordContent(newData));
+        }
+        callback && callback(status);
+    })
+};
 
 export const putTestRecordState = (dispatch, processInstanceID, data, id, callback) => {
     // console.log("ID = " + processInstanceID);

@@ -32,10 +32,12 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
             id: testRecordData.id,
             record: record
         };
-        updateTestRecord(dispatch,valueData,(status)=>{console.log(status);});
+        updateTestRecord(dispatch,valueData,(status)=>{
+            console.log(status);
 
-        if(status=STATUS.SUCCESS) message.success('保存成功');
+        if(status===STATUS.SUCCESS) message.success('保存成功');
         else message.error('保存失败');
+        });
     },
     enable: isEditVisible
 },{
@@ -45,11 +47,12 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
             id: testRecordData.id,
             record: record
         };
-        updateTestRecord(dispatch,valueData,(status)=>{console.log(status);});
-        if(status=STATUS.SUCCESS){
+        updateTestRecord(dispatch,valueData,(status)=>{
+            console.log(status);
+        if(status===STATUS.SUCCESS){
             const putData = {
                 "object": "record",
-                "operation": "submit"
+                "operation": "Submit"
             };
             const {processInstanceID,id} = testRecordData;
             putTestRecordState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
@@ -58,6 +61,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
             else message.error('提交失败');
         }
         else message.error('提交失败');
+        });
     },
     enable: isEditVisible
 },{
@@ -65,7 +69,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
     onClick: (testRecordData,ProcessNo) =>{
         const putData = {
             "object": "record",
-            "operation": "reviewpass",
+            "operation": "ReviewPass",
             "number": ProcessNo
         };
         const {processInstanceID,id} = testRecordData;
@@ -80,7 +84,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
     onClick: (testRecordData,record) =>{
         const putData = {
             "object": "record",
-            "operation": "reviewreject"
+            "operation": "ReviewReject"
         };
         const {processInstanceID,id} = testRecordeData;
         putTestRecordState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});

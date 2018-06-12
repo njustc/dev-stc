@@ -10,8 +10,26 @@ class TestCaseContentComponent extends Component {
         super(props);
     }
 
+    state={
+        data : [{
+            id: 1,
+            classification: 'yj',
+            process: 'unhappy->happy',
+            expectedResult: 'happy',
+            designer: 'yj',
+            time: '2018-06-03',
+            action: 'delete',
+            designNotes: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+            statute: 'sssssss',
+            accordance: 'tttttt'
+        }],
+    }
+
     static propTypes = {
         testCaseData: PropTypes.object.isRequired,
+        addTestCase: PropTypes.func.isRequired,
+        values: PropTypes.object.isRequired,
+        form: PropTypes.object.isRequired,
     };
 
     componentWillMount() {
@@ -44,14 +62,22 @@ class TestCaseContentComponent extends Component {
         );
     };
 
-    onClick = (buttonIndex) => () => {
+    onClick = () => () => {
         // this.props.form.validateFields((err, values) => {
         //     if (!err) {
         //         this.props.buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(values));
         //     }
         // });
-        const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));
+        //const {buttons, form} = this.props;
+        //buttons[buttonIndex].
+        //onClick(JSON.stringify(form.getFieldsValue()));
+        const {form} = this.props;
+        //const fieldsValue = JSON.parse/*stringify*/((form.getFieldsValue()));
+        const fieldsValue = (form.getFieldsValue());
+        /*TODO*/
+        //this.state.data.push(fieldsValue);
+        //console.log(this.state.data);
+        //this.props.addTestCase(this.props.testCaseData,fieldsValue);
     };
 
     /*table列设置*/
@@ -103,18 +129,6 @@ class TestCaseContentComponent extends Component {
         // this.props.deleteTestCase(key);
     }
 
-    data = [{
-        id: 1,
-        classification: 'yj',
-        process: 'unhappy->happy',
-        expectedResult: 'happy',
-        designer: 'yj',
-        time: '2018-06-03',
-        action: 'delete',
-        designNotes: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-        statute: 'sssssss',
-        accordance: 'tttttt'
-    }];
 
     render(){
         const { getFieldDecorator } = this.props.form;
@@ -129,7 +143,7 @@ class TestCaseContentComponent extends Component {
                 <Collapse bordered={false}>
                     <Panel
                         showArrow={false}
-                        header={<Button><Icon type="plus-circle-o"/> 添加测试用例</Button>}
+                        header={<Button>添加测试用例</Button>}
                         key="1"
                     >
                         <div style={{ background: '#ECECEC', padding: '15px', marginBottom:'10pt' }}>
@@ -197,7 +211,7 @@ class TestCaseContentComponent extends Component {
                                             key={button.content}>
                                         {button.content}
                                     </Button>)*/}
-                                        <Button type='primary'><Icon type="plus-circle-o" />添加测试用例</Button>
+                                        <Button type='primary' onClick={this.onClick()}><Icon type="plus-circle-o" />添加测试用例</Button>
                                 </FormItem>
                             </Form>
                         </Card>
@@ -210,7 +224,7 @@ class TestCaseContentComponent extends Component {
                     columns={this.columns}
                     expandedRowRender={this.expandedRowRender}
                     // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
-                    dataSource={this.data}
+                    dataSource={/*this.props.dataSource*/this.state.data}
                     rowKey={'id'}
                 />
             </div>

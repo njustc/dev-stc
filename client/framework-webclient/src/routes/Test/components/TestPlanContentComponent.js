@@ -46,11 +46,59 @@ class TestPlanContentComponent extends Component {
     };
     next() {
         const current = this.state.current + 1;
-        this.setState({ current });/*TODO 添加保存values功能*/
+        if(current==1) {
+            document.getElementById("page1").style.display="none";
+            document.getElementById("page2").style.display="";
+        }
+        else if(current==2){
+            document.getElementById("page2").style.display="none";
+            document.getElementById("page3").style.display="";
+        }
+        else if(current==3){
+            document.getElementById("page3").style.display="none";
+            document.getElementById("page4").style.display="";
+        }
+        else if(current==4){
+            document.getElementById("page4").style.display="none";
+            document.getElementById("page5").style.display="";
+        }
+        else if(current==5) {
+            document.getElementById("page5").style.display="none";
+            document.getElementById("page6").style.display="";
+        }
+        else{
+            document.getElementById("page6").style.display="none";
+            document.getElementById("page7").style.display="";
+        }
+        this.setState({ current });
     }
     prev() {
         const current = this.state.current - 1;
-        this.setState({ current });/*TODO 添加保存values功能*/
+        if(current==0) {
+            document.getElementById("page2").style.display="none";
+            document.getElementById("page1").style.display="";
+        }
+        else if(current==1){
+            document.getElementById("page3").style.display="none";
+            document.getElementById("page2").style.display="";
+        }
+        else if(current==2){
+            document.getElementById("page4").style.display="none";
+            document.getElementById("page3").style.display="";
+        }
+        else if(current==3){
+            document.getElementById("page5").style.display="none";
+            document.getElementById("page4").style.display="";
+        }
+        else if(current==4) {
+            document.getElementById("page6").style.display="none";
+            document.getElementById("page5").style.display="";
+        }
+        else{
+            document.getElementById("page7").style.display="none";
+            document.getElementById("page6").style.display="";
+        }
+        this.setState({ current });
     }
     static defaultProps = {
         values: {
@@ -127,11 +175,10 @@ class TestPlanContentComponent extends Component {
                 <Steps current={current}>
                     {steps.map(item => <Step key={item.title} title={item.title} />)}
                 </Steps>
-                <div className="steps-content">
-                    <FormItem/>
-                    {this.state.current == 0
-                    &&
-                    <div>
+
+                <FormItem/>
+
+                    <div id={"page1"}>
                         <FormItem style={{textAlign:'center'}} colon={false} label={"编制人"}>
                             {getFieldDecorator('establisher', {
                                 rules: [{ required: true, message: '请输入编制人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"  }],
@@ -168,10 +215,9 @@ class TestPlanContentComponent extends Component {
                             )}
                         </FormItem>
                     </div>
-                    }
-                    {this.state.current == 1
-                    &&
-                    <div>
+
+
+                    <div id={"page2"} style={{display:'none'}} >
                         <Row>
                             <Col offset={1} span={21}>
                                 <h3>1.1 标识</h3>
@@ -248,14 +294,14 @@ class TestPlanContentComponent extends Component {
                             )}
                         </FormItem>
                     </div>
-                    }
-                    {this.state.current == 2
-                    &&
-                    <div></div>
-                    }
-                    {this.state.current == 3
-                    &&
-                    <div>
+
+                    <div id={"page3"} style={{display:'none'}}>
+                        <FormItem/>
+                        <FormItem/>
+                        <FormItem/>
+                    </div>
+
+                    <div id={"page4"} style={{display:'none'}} >
                         <Row>
                             <Col offset={1} span={21}>
                                 <h3>3.1 硬件</h3>
@@ -303,7 +349,7 @@ class TestPlanContentComponent extends Component {
                             <Col offset={2} span={20}>
                                 初步定为1名测试人员，1名项目督导，1名项目负责人。各类人员具体职责如下：
 
-                                <Table dataSource={staffData}>
+                                <Table dataSource={staffData} pagination={{ hideOnSinglePage:true }}>
                                     <Column title="岗位" dataIndex="station" key="station"/>
                                     <Column title="人数" dataIndex="num" key="num"/>
                                     <Column title="职责" dataIndex="duty" key="duty"/>
@@ -314,10 +360,8 @@ class TestPlanContentComponent extends Component {
 
                         </Row>
                     </div>
-                    }
-                    {this.state.current == 4
-                    &&
-                    <div>
+
+                    <div id={"page5"} style={{display:'none'}}>
 
                         <Row>
                             <Col offset={1} span={21}>
@@ -445,10 +489,8 @@ class TestPlanContentComponent extends Component {
                         <FormItem/>
 
                     </div>
-                    }
-                    {this.state.current == 5
-                    &&
-                    <div>
+
+                    <div id={"page6"} style={{display:'none'}}>
                         <Row>
                             <Col offset={1} span={22}>
                                 <FormItem>
@@ -468,19 +510,16 @@ class TestPlanContentComponent extends Component {
 
                         /*TODO 表格*/
                     </div>
-                    }
-                    {this.state.current == 6
-                    &&
-                    <div>
+
+                    <div id={"page7"} style={{display:'none'}}>
                         <Row>
                             <Col offset={1} span={22}>
                                 设计的测试用例的ID中包含其对应的相关规约说明中对应条目的名称，每个测试用例都是可追踪的。
                             </Col>
                         </Row>
                     </div>
-                    }
-                </div>
 
+                <FormItem/>
                 <div className="steps-action">{
                     this.state.current < steps.length - 1
                     &&
