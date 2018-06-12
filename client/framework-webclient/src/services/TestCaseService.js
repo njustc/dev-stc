@@ -41,8 +41,24 @@ export const getTestCaseList = (dispatch, callback) => {
     // });
 };
 
+var mockTestCaseData=[{
+    //id: 1,
+    classification: 'yj',
+    process: 'unhappy->happy',
+    expectedResult: 'happy',
+    designer: 'yj',
+    time: '2018-06-03',
+    action: 'delete',
+    designNotes: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
+    statute: 'sssssss',
+    accordance: 'tttttt'
+}];
+
 export const getTestCase = (dispatch, id, callback) => {
-    dispatch(setTestCaseContent({id:id,}));
+    //dispatch(setTestCaseContent({id:id,}));
+    dispatch(setTestCaseContent(/*data*/
+        mockTestCaseData
+    ));
     // httpGet(testCaseBase + '/' + id, (result) => {
     //     const {status, data} = result;
     //     if (status === STATUS.SUCCESS) {
@@ -63,7 +79,7 @@ export const deleteTestCase = (dispatch, id, callback) => {
     });
 };
 
-export const newTestCase = (dispatch, callback) => {
+/*export const newTestCase = (dispatch, callback) => {
     httpPost(testCaseBase, {testcase:null,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
@@ -71,6 +87,18 @@ export const newTestCase = (dispatch, callback) => {
         }
         callback && callback(status);
     });
+};*/
+
+export const addTestCase = (dispatch, data/*, callback*/) => {
+    /*httpPost(testCaseBase, {testcase:null,}, (result) => {
+        const {data, status} = result;
+        if (status === STATUS.SUCCESS) {
+            dispatch(setTestCaseContent(data));
+        }
+        callback && callback(status);
+    });*/
+    mockTestCaseData.push(data);
+    console.log(mockTestCaseData);//
 };
 
 export const updateTestCase = (dispatch, data, callback) => {
