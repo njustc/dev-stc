@@ -5,17 +5,16 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.Project;
-import com.sinosteel.domain.User;
 import com.sinosteel.domain.TestReport;
-import com.sinosteel.repository.TestReportRepository;
+import com.sinosteel.domain.User;
 import com.sinosteel.repository.ProjectRepository;
+import com.sinosteel.repository.TestReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.UUID;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author LBW & Lumpy
@@ -79,6 +78,9 @@ public class TestReportService extends BaseService<TestReport>{
     public JSONObject addTestReport(JSONObject params, List<MultipartFile> files, User user) throws Exception{
         //String uid = UUID.randomUUID().toString();
         String uid = params.getString("id");
+        //check project
+        if (projectRepository.findById(uid) == null)
+            throw new Exception("Can't find project with ID: " + uid);
 
         TestReport testReport = JSONObject.toJavaObject(params, TestReport.class);
         testReport.setId(uid);

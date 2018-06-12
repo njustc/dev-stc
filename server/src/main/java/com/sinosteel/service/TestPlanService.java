@@ -80,6 +80,9 @@ public class TestPlanService extends BaseService<TestPlan> {
 
         //String uid=UUID.randomUUID().toString();
         String uid = params.getString("id");
+        //check project
+        if (projectRepository.findById(uid) == null)
+            throw new Exception("Can't find project with ID: " + uid);
 
         TestPlan testPlan=JSONObject.toJavaObject(params,TestPlan.class);
         testPlan.setId(uid);

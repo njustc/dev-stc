@@ -82,6 +82,9 @@ public class TestRecordService extends BaseService<TestRecord> {
 
         //String uid=UUID.randomUUID().toString();
         String uid = params.getString("id");
+        //check project
+        if (projectRepository.findById(uid) == null)
+            throw new Exception("Can't find project with ID: " + uid);
 
         TestRecord testRecord=JSONObject.toJavaObject(params,TestRecord.class);
         testRecord.setId(uid);
