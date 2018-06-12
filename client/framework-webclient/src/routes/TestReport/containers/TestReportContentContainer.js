@@ -50,7 +50,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
             const {processInstanceID,id} = testReportData;
             putTestReportState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
-            if(status=STATUS.SUCCESS) message.success('提交成功');
+            if(status===STATUS.SUCCESS) message.success('提交成功');
             else message.error('提交失败');
         }
         else message.error('提交失败');
@@ -67,7 +67,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
         const {processInstanceID,id} = testReportData;
         putTestReportState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
-        if(status=STATUS.SUCCESS) message.success('通过成功');
+        if(status===STATUS.SUCCESS) message.success('通过成功');
         else message.error('通过失败');
     },
     enable: isReviewVisible
@@ -81,7 +81,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
         const {processInstanceID,id} = testReportData;
         putTestReportState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
-        if(status=STATUS.SUCCESS) message.success('已否决');
+        if(status===STATUS.SUCCESS) message.success('已否决');
         else message.error('否决失败');
     },
     enable: isReviewVisible

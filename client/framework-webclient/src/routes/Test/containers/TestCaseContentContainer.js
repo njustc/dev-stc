@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
         testCaseData: state.TestCase.listMap[ownProps.id],
         values: testcase ? JSON.parse(testcase) : {},
         /*TODO*///disable: authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1||state.Consign.listMap[ownProps.id].state!=="TobeSubmit",
-        curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
+        //curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
         //buttonDisabled: state.Consign.listMap[ownProps.id].state==="TobeCheck"
         /*buttonDisabled: authData.functionGroup["Consign"]===undefined ||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1
             ? state.Consign.listMap[ownProps.id].state==="TobeSubmit"||state.Consign.listMap[ownProps.id].state==="Finished"
@@ -74,7 +74,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
         const {processInstanceID,id} = testCaseData;
         putTestCaseState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
-        if(status=STATUS.SUCCESS) message.success('通过成功');
+        if(status===STATUS.SUCCESS) message.success('通过成功');
         else message.error('通过失败');
     },
     enable: isReviewVisible
@@ -88,7 +88,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
         const {processInstanceID,id} = testCaseData;
         putTestCaseState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
-        if(status=STATUS.SUCCESS) message.success('已否决');
+        if(status===STATUS.SUCCESS) message.success('已否决');
         else message.error('否决失败');
     },
     enable: isReviewVisible
