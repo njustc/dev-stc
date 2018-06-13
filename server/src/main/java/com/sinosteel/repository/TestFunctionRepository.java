@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface TestFunctionRepository extends BaseRepository<TestFunction> {
     TestFunction findById(String id);
-    @Query("SELECT body from TestBug testBug where 1 = 1")
+    @Query("SELECT testFunction from TestFunction testFunction where 1 = 1")
     List<TestFunction> findByAllTestFunctions();
 }
