@@ -28,7 +28,7 @@ const mapStateToProps = (state, ownProps) => {
         projectData: state.Project.listMap[ownProps.id],
         //values: consignation ? JSON.parse(consignation) : {},
         disable: authData.functionGroup["Project"]===undefined||authData.functionGroup["Project"].findIndex(element => element === "EDIT")===-1||state.Project.listMap[ownProps.id].state!=="TobeSubmit",
-        curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
+        //curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
     }
 };
 

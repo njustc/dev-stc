@@ -1,8 +1,8 @@
 package com.sinosteel.repository;
 
 import com.sinosteel.domain.TestFunction;
-import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

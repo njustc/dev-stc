@@ -1,6 +1,5 @@
 package com.sinosteel.repository;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import com.sinosteel.domain.TestReport;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
