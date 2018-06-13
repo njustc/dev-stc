@@ -13,6 +13,6 @@ import java.util.List;
 @Repository
 public interface TestWorkCheckRepository extends BaseRepository<TestWorkCheck> {
     TestWorkCheck findById(String id);
-    @Query("SELECT body from TestRecord testRecord where 1 = 1")
+    @Query("SELECT testWorkCheck from TestWorkCheck testWorkCheck where 1 = 1")
     List<TestWorkCheck> findByAllTestWorkChecks();
 }

@@ -120,6 +120,7 @@ public class ContractService extends BaseService<Contract> {
             String operation = processState.getString("operation");
             jsonObject.put("state", state);
             jsonObject.put("operation", operation);
+
             resultArray.add(jsonObject);
         }
 
