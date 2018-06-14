@@ -35,7 +35,7 @@ export default class ProjectContentComponent extends Component {
     componentWillMount() {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
-        this.props.getValues(this.props.projectData.id);
+         this.props.getValues(this.props.projectData.id);
         //     // console.log(this.values);
     };
 

@@ -72,12 +72,22 @@ export default class ProjectListComponent extends Component {
 
     /*table列设置*/
     columns = [{
+        title:"项目编号",
+        dataIndex:"No",
+        //width: '25%',
+        //sorter:(a, b) => a.id - b.id,
+    }, {
         title:"流程ID",
+        dataIndex:"processInstanceID",
+        //width: '25%',
+        //sorter:(a, b) => a.id - b.id,
+    }, {
+        title:"项目ID",
         dataIndex:"id",
         //width: '25%',
-        sorter:(a, b) => a.id - b.id,
+        //sorter:(a, b) => a.id - b.id,
     }, {
-        title:"名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        title:"项目名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
         dataIndex:"name",
     }, {
         title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/

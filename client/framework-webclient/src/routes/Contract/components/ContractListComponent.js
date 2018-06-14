@@ -18,6 +18,7 @@ export default class ContractListComponent extends Component {
         setListFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
+        showProject: PropTypes.func,
         deleteContract: PropTypes.func,
         getContractList: PropTypes.func,
         newContract: PropTypes.func,
@@ -77,15 +78,15 @@ export default class ContractListComponent extends Component {
     }
 
     /*table列设置*/
-    columns = [/*{
-        title:"项目ID",
+    columns = [{
+        title:"流程ID",
         dataIndex:"processInstanceID",
         //width: '25%',
         //sorter:(a, b) => a.processInstanceID - b.processInstanceID,
         render:(processInstanceID,record)=>{
             return (<a href="javascript:void(0);" onClick={this.viewProject(record)}>{processInstanceID}</a>)
         }
-    },*/{
+    },{
         title:"合同ID",
         dataIndex:"id",
         //width: '25%',
@@ -148,6 +149,7 @@ export default class ContractListComponent extends Component {
 
     viewProject = (record) => () => {
         /*TODO:查看项目详情*/
+        this.props.showProject(record.processInstanceID);
     }
 
     /*取消委托提示框*/
