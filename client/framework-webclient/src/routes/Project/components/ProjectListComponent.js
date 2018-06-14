@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge} from 'antd';
+import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge, Popover} from 'antd';
 import {STATE} from "../../../services/common"
 
 const { Column } = Table;
@@ -70,6 +70,11 @@ export default class ProjectListComponent extends Component {
         }
     }
 
+    projectDetails(id){
+        /*TODO:显示流程摘要信息*/
+        return id;
+    }
+
     /*table列设置*/
     columns = [{
         title:"项目编号",
@@ -129,13 +134,16 @@ export default class ProjectListComponent extends Component {
         //width: '12%',
         render: (record) => {
             /*TODO:操作应该由后台传过来*/
+            console.log(record);//
             return (
                 <div>
+                    <Popover placement="bottom" trigger="click" content={this.projectDetails(record)}><a>查看摘要</a></Popover>
+                    <Divider type="vertical"/>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
-                       //disabled={!this.props.enableNew}
-                       //onClick={this.showDeleteConfirm(record)}
+                        //disabled={!this.props.enableNew}
+                        //onClick={this.showDeleteConfirm(record)}
                     >取消</a>
                 </div>
             )
