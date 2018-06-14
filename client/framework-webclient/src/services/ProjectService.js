@@ -17,7 +17,6 @@ export const getProjectList = (dispatch, callback) => {/*TODO 后台接口实现
     httpGet(projectBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-<<<<<<< HEAD
     //         dispatch(setProjectList(/*data*/
     //             [
     //                 {
@@ -38,28 +37,6 @@ export const getProjectList = (dispatch, callback) => {/*TODO 后台接口实现
     //                 }
     //             ]
     //         ));
-=======
-            // dispatch(setProjectList(/*data*/
-            //     [
-            //         {
-            //             id : "110",
-            //             name : "快乐星球小杨杰",
-            //             createdUserId : "151220140",
-            //             state: 'TobeSubmit'
-            //         },{
-            //             id : "120",
-            //             name : "不快乐星球小杨杰",
-            //             createdUserId : "151220140",
-            //             state: 'TobeSubmit'
-            //         },{
-            //             id : "119",
-            //             name : "不快乐星球老杨杰",
-            //             createdUserId : "151220140",
-            //             state: 'TobeSubmit'
-            //         }
-            //     ]
-            // ));
->>>>>>> 3619242bab1c741bec75998957372f90aff90cfe
             dispatch(setProjectList(data));
         }
         callback && callback(status);
