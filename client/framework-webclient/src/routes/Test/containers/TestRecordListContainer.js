@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
             // debugger;
-            dispatch(addTabAction(id, '测试记录详情', TestRecordContentView, {id: id}));
+            const key = "测试记录" + id;
+            dispatch(addTabAction(key, '测试记录详情', TestRecordContentView, {id: id}));
 //            dispatch(setConsignContent())
         },
         setListFilter: (listFilter) => dispatch(setTestRecordFilter(listFilter)),
