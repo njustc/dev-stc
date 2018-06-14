@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
             // debugger;
-            dispatch(addTabAction(id, '报告检查详情', TestReportCheckContentView, {id: id}));
+            const key = "报告检查" + id;
+            dispatch(addTabAction(key, '报告检查详情', TestReportCheckContentView, {id: id}));
 //            dispatch(setTestReportCheckContent())
         },
         setCheckListFilter: (listFilter) => dispatch(setTestReportCheckFilter(listFilter)),

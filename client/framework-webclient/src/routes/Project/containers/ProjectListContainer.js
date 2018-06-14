@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
             // debugger;
-            dispatch(addTabAction(id, '流程详情', ProjectContentView, {id: id}));
+            const key = '流程' + id;
+            dispatch(addTabAction(key, '流程详情', ProjectContentView, {id: id}));
 //            dispatch(setProjectContent())
         },
         setListFilter: (listFilter) => dispatch(setProjectFilter(listFilter)),

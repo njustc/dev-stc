@@ -12,5 +12,6 @@ public interface ProjectRepository extends BaseRepository<Project>{
 
     Project findById(String id);
     @Query("SELECT project from Project project where 1 = 1")
-    List<Project> findByName(String name);
+    List<Project> findByAllProjects();
+
 }
