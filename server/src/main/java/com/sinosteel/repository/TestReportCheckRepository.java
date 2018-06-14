@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface TestReportCheckRepository extends BaseRepository<TestReportCheck> {
     TestReportCheck findById(String id);
-    @Query("SELECT body from TestRecord testRecord where 1 = 1")
+    @Query("SELECT testReportCheck from TestReportCheck testReportCheck where 1 = 1")
     List<TestReportCheck> findByAllTestReportChecks();
 }
