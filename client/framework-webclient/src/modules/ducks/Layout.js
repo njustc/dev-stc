@@ -31,13 +31,12 @@ export const LayoutReducer = (state = initialState, action) =>{
             // debugger;
             const panes = state.panes.slice();
             const {key, name, component, props} = action.payload;
-            const KEY = key + name;
             if (!containsPane(key, panes)) {
-                panes.push({title: name, content: React.createElement(component, props), key: KEY});
+                panes.push({title: name, content: React.createElement(component, props), key: key});
             }
             return {
                 panes: panes,
-                activeKey: KEY,
+                activeKey: key,
             };
         }
         case REMOVE_TAB:
