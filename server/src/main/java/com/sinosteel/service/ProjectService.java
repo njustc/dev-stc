@@ -42,7 +42,7 @@ public class ProjectService extends BaseService<Project>{
             return processProjects(projects);
         }
         else {
-            List<Project> projects = user.getProjects();
+            List<Project> projects = projectRepository.findByAllProjects();
             return processProjects(projects);
         }
     }
