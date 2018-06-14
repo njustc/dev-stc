@@ -134,11 +134,11 @@ export default class ProjectListComponent extends Component {
         //width: '12%',
         render: (record) => {
             /*TODO:操作应该由后台传过来*/
-            console.log(record);//
+            // console.log(record);//
             return (
                 <div>
-                    <Popover placement="bottom" trigger="click" content={this.projectDetails(record)}><a>查看摘要</a></Popover>
-                    <Divider type="vertical"/>
+                    {/*<Popover placement="bottom" trigger="click" content={this.projectDetails(record)}><a>查看摘要</a></Popover>*/}
+                    {/*<Divider type="vertical"/>*/}
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
@@ -181,6 +181,14 @@ export default class ProjectListComponent extends Component {
         this.props.setListFilter((record) => record.match(reg));
     };
 
+    expandRow = (record) => {
+        return (
+            <div>
+                {record.id}
+            </div>
+        );
+    };
+
     render() {
         return (
             <div>
@@ -206,7 +214,9 @@ export default class ProjectListComponent extends Component {
                         : <Col span={2}></Col>*/}
                 </InputGroup>
                 <br />
-                <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'}/>
+                <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'}
+                       expandedRowRender={this.expandRow}
+                />
             </div>
         );
     }
