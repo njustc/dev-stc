@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
         contractData: state.Contract.listMap[ownProps.id],
         values: contract ? JSON.parse(contract) : {},
         disable: false/*authData.functionGroup["Contract"]===undefined||authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===-1||state.Contract.listMap[ownProps.id].state!=="TobeSubmit"*/,
-        curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
+        //curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
         //buttonDisabled: state.Contract.listMap[ownProps.id].state==="TobeCheck"
         /*buttonDisabled: authData.functionGroup["Contract"]===undefined ||authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===-1
             ? state.Contract.listMap[ownProps.id].state==="TobeSubmit"||state.Contract.listMap[ownProps.id].state==="Finished"
@@ -74,7 +74,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
-        if(status=STATUS.SUCCESS) message.success('通过成功');
+        if(status===STATUS.SUCCESS) message.success('通过成功');
         else message.error('通过失败');
     },
     enable: isReviewVisible
@@ -88,7 +88,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
-        if(status=STATUS.SUCCESS) message.success('已否决');
+        if(status===STATUS.SUCCESS) message.success('已否决');
         else message.error('否决失败');
     },
     enable: isReviewVisible
@@ -102,7 +102,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
-        if(status=STATUS.SUCCESS) message.success('确认成功');
+        if(status===STATUS.SUCCESS) message.success('确认成功');
         else message.error('确认失败');
     },
     enable: isConfirmVisible
@@ -116,7 +116,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
         const {processInstanceID,id} = contractData;
         putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
 
-        if(status=STATUS.SUCCESS) message.success('已拒绝');
+        if(status===STATUS.SUCCESS) message.success('已拒绝');
         else message.error('拒绝失败');
     },
     enable: isConfirmVisible

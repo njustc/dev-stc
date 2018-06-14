@@ -6,14 +6,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.Consign;
 import com.sinosteel.domain.User;
-import com.sinosteel.domain.Project;
-import com.sinosteel.repository.ProjectRepository;
 import com.sinosteel.repository.ConsignRepository;
+import com.sinosteel.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -103,7 +101,6 @@ public class ConsignService extends BaseService<Consign> {
         consign = consignRepository.findById(uid);
         return processConsign(consign);
     }
-
 
     //删除委托（不删除相关委托文件?）
 

@@ -5,17 +5,16 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.Project;
-import com.sinosteel.domain.User;
 import com.sinosteel.domain.TestReport;
-import com.sinosteel.repository.TestReportRepository;
+import com.sinosteel.domain.User;
 import com.sinosteel.repository.ProjectRepository;
+import com.sinosteel.repository.TestReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.UUID;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author LBW & Lumpy
@@ -79,12 +78,24 @@ public class TestReportService extends BaseService<TestReport>{
     public JSONObject addTestReport(JSONObject params, List<MultipartFile> files, User user) throws Exception{
         //String uid = UUID.randomUUID().toString();
         String uid = params.getString("id");
+        //check project
+        if (projectRepository.findById(uid) == null)
+            throw new Exception("Can't find project with ID: " + uid);
 
+        Project project = projectRepository.findById(uid);
         TestReport testReport = JSONObject.toJavaObject(params, TestReport.class);
         testReport.setId(uid);
-        testReport.setProject(projectRepository.findById(uid));
 
-        this.saveEntity(testReport,user);
+        String processInstanceID = processInstanceService.createTestReportProcess(params, user);
+        testReport.setProcessInstanceID(processInstanceID);
+
+        //set testReport in project
+        project.setTestReport(testReport);
+        projectRepository.save(project);
+
+        //set project in testReport
+        testReport.setProject(project);
+        this.saveEntity(testReport, user);
 
         testReport = testReportRepository.findById(uid);
         return processTestReport(testReport);
@@ -93,6 +104,11 @@ public class TestReportService extends BaseService<TestReport>{
 
     public void deleteTestReport(JSONObject params){
         String uid = params.getString("id");
+        //delete testReport from project
+        Project project = projectRepository.findById(uid);
+        project.setTestReport(null);
+
+        //delete testReport
         this.deleteEntity(uid);
     }
 
@@ -102,6 +118,12 @@ public class TestReportService extends BaseService<TestReport>{
         for (TestReport testReport: testReports){
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testReport));
             jsonObject.remove("report");
+            JSONObject processState = processInstanceService.queryProcessState(testReport.getProcessInstanceID());
+            String state = processState.getString("state");
+            String operation = processState.getString("operation");
+            jsonObject.put("state", state);
+            jsonObject.put("operation", operation);
+
             resultArray.add(jsonObject);
         }
 
@@ -111,6 +133,11 @@ public class TestReportService extends BaseService<TestReport>{
     //Todo: 增加测试报告状态
     private  JSONObject processTestReport(TestReport testReport) throws Exception{
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(testReport));
+        JSONObject processState = processInstanceService.queryProcessState(testReport.getProcessInstanceID());
+        String state = processState.getString("state");
+        String operation = processState.getString("operation");
+        jsonObject.put("state", state);
+        jsonObject.put("operation", operation);
         return  jsonObject;
     }
 }

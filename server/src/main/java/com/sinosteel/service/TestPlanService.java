@@ -80,15 +80,23 @@ public class TestPlanService extends BaseService<TestPlan> {
 
         //String uid=UUID.randomUUID().toString();
         String uid = params.getString("id");
+        //check project
+        if (projectRepository.findById(uid) == null)
+            throw new Exception("Can't find project with ID: " + uid);
 
+        Project project = projectRepository.findById(uid);
         TestPlan testPlan=JSONObject.toJavaObject(params,TestPlan.class);
         testPlan.setId(uid);
-        Project project = projectRepository.findById(uid);
-        project.setTestPlan(testPlan);
-        /*testplan.setUser(user);*/
 
         String procID = processInstanceService.createTestPlanProcess(params, user);
         testPlan.setProcessInstanceID(procID);
+
+        //set testplan in project
+        project.setTestPlan(testPlan);
+        projectRepository.save(project);
+
+        //set project in test plan
+        testPlan.setProject(project);
         this.saveEntity(testPlan, user);
 
         testPlan = testPlanRepository.findById(uid);
@@ -101,6 +109,11 @@ public class TestPlanService extends BaseService<TestPlan> {
     public void deleteTestPlan(JSONObject params)
     {
         String uid=params.getString("id");
+        //delete testplan from project
+        Project project = projectRepository.findById(uid);
+        project.setTestPlan(null);
+
+        //delete test plan
         this.deleteEntity(uid);
     }
 

@@ -4,18 +4,17 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
+import com.sinosteel.domain.Project;
 import com.sinosteel.domain.TestBug;
 import com.sinosteel.domain.User;
-import com.sinosteel.domain.Project;
-import com.sinosteel.repository.TestBugRepository;
 import com.sinosteel.repository.ProjectRepository;
+import com.sinosteel.repository.TestBugRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
 import java.util.ArrayList;
-import java.util.UUID;
+import java.util.List;
 
 /**
  * @author LBW & SQW
@@ -83,6 +82,9 @@ public class TestBugService extends BaseService<TestBug> {
 
         //String uid=UUID.randomUUID().toString();
         String uid = params.getString("id");
+        //check project
+        if (projectRepository.findById(uid) == null)
+            throw new Exception("Can't find project with ID: " + uid);
 
         TestBug testBug=JSONObject.toJavaObject(params,TestBug.class);
         testBug.setId(uid);

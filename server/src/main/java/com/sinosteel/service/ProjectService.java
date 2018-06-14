@@ -35,6 +35,7 @@ public class ProjectService extends BaseService<Project>{
     public JSON queryProjects(User user) throws Exception{
         if(user!=null)
             System.out.println("queryProjects-->query user role:"+user.getRoles().get(0).getRoleName());
+
         if(user.getRoles().get(0).getRoleName().equals("普通客户")){
             //返回该用户的工程
             List<Project> projects = user.getProjects();
@@ -59,6 +60,9 @@ public class ProjectService extends BaseService<Project>{
     public JSONObject addProject(JSONObject params, List<MultipartFile> files,User user) throws Exception{
         //String uid = UUID.randomUUID().toString();
         String uid = params.getString("id");
+        //check consign
+        if (consignRepository.findById(uid) == null)
+            throw new Exception("Can't find consign with ID: " + uid);
 
         Consign consign = consignRepository.findById(uid);
         Project project = JSONObject.toJavaObject(params, Project.class);

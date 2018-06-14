@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.Contract;
+import com.sinosteel.domain.Project;
 import com.sinosteel.domain.User;
 import com.sinosteel.repository.ContractRepository;
 import com.sinosteel.repository.ProjectRepository;
@@ -24,6 +25,7 @@ public class ContractService extends BaseService<Contract> {
     private ContractRepository contractRepository;
     @Autowired
     private ProjectRepository projectRepository;
+
 
     @Autowired
     private ProcessInstanceService processInstanceService;
@@ -69,17 +71,26 @@ public class ContractService extends BaseService<Contract> {
     }
 
     public JSONObject addContract(JSONObject params, List<MultipartFile> files, User user) throws Exception{
-        //String uid = UUID.randomUUID().toString();
+
         String uid = params.getString("id");
+        //check project
+        if (projectRepository.findById(uid) == null)
+            throw new Exception("Can't find project with ID: " + uid);
+
+        Project project = projectRepository.findById(uid);
         Contract contract = JSONObject.toJavaObject(params, Contract.class);
         contract.setId(uid);
         contract.setUser(user);
-        contract.setProject(projectRepository.findById(uid));
 
-        //TODO: start process Instance
         String processInstanceID = processInstanceService.createContractProcess(params, user);
         contract.setProcessInstanceID(processInstanceID);
 
+        //set contract in project
+        project.setContract(contract);
+        projectRepository.save(project);
+
+        //set project in contract
+        contract.setProject(project);
         this.saveEntity(contract, user);
 
         contract = contractRepository.findById(uid);
@@ -90,6 +101,11 @@ public class ContractService extends BaseService<Contract> {
 
     public void deleteContract(JSONObject params) {
         String uid = params.getString("id");
+        //delete contract from project
+        Project project = projectRepository.findById(uid);
+        project.setContract(null);
+
+        //delete contract
         this.deleteEntity(uid);
     }
 
@@ -104,6 +120,7 @@ public class ContractService extends BaseService<Contract> {
             String operation = processState.getString("operation");
             jsonObject.put("state", state);
             jsonObject.put("operation", operation);
+
             resultArray.add(jsonObject);
         }
 

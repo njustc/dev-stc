@@ -4,6 +4,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 
 import javax.persistence.*;
 
+import java.util.List;
 
 /**
  * @author SongJunju
@@ -13,19 +14,31 @@ import javax.persistence.*;
 @Table(name = "TBL_SYS_CONSIGNS")
 public class Consign extends BaseEntity{
 
-/*
-    @FW
-    以下属于委托测试申请表
- */
+
+
+
     @Column(name = "CONSIGNATION")
     private String consignation;
 
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
-
-//    @Column(name = "TESTTYPE")
-//    private List<String> testType;
 //
+//    @Column(name = "TESTTYPES")
+//    private String testTypes;
+//
+//    public List<String> getTestType(){
+//
+//    }
+//
+//    public void setTestType(List<String> testType){
+//
+//    }
+
+    /**
+     * @author FW
+     * 以下属于委托测试申请表
+     */
+
 //    @Column(name = "SOFTWARENAME")
 //    private String  sotfwareName;
 //
@@ -42,10 +55,10 @@ public class Consign extends BaseEntity{
 //    private List<String> unitProperty;
 //
 //    @Column(name = "USER_DESCRIPTION")
-//    private string  user_Description;
+//    private String  user_Description;
 //
 //    @Column(name = "FUNC_DESCRIPTION")
-//    private string  func_Description;
+//    private String  func_Description;
 //
 //    @Column(name = "TEST_BASIS")
 //    private List<String> test_Basis;
@@ -74,6 +87,7 @@ public class Consign extends BaseEntity{
 //    @Column(name = "SOFT_OTHER")
 //    private String softOther;
 //
+//    @ElementCollection
 //    @Column(name = "CLIENT_SYS")
 //    private List<String> client_Sys;
 //
@@ -153,14 +167,17 @@ public class Consign extends BaseEntity{
 //    private String otherVirus;
 //
 //    @Column(name = "OTHER_SAMPLE")
-//    private List<String> otherEncrypt;
+//    private List<String> otherEncrypt2;
 //
+//    @ElementCollection
 //    @Column(name = "OTHER_REDOC")
 //    private  List<String> otherREDOC;
 //
+//    @ElementCollection
 //    @Column(name = "OTHER_USERDOC")
 //    private  List<String> otherUSERDOC;
 //
+//    @ElementCollection
 //    @Column(name = "OTHER_OPDOC")
 //    private  List<String> otherOPDOC;
 //
@@ -175,20 +192,20 @@ public class Consign extends BaseEntity{
 //
 //    @Column(name = "OTHER_PROJECTID")
 //    private  String otherProjectId;
-///*
-//    @Column(name = "OTHER_PS")
-//    private  String otherPS;
-//
-//    @Column(name = "OTHER_SIGN")
-//    private  List<String> otherSIGN;
-// */
-//
-//
-///*
-//        以下属于委托测试功能表
-//        @FW
-// */
-//
+
+    /*
+    @Column(name = "OTHER_PS")
+    private  String otherPS;
+
+    @Column(name = "OTHER_SIGN")
+    private  List<String> otherSIGN;
+    */
+
+    /**
+     * @author FW
+     * 以下属于委托测试功能表
+     */
+
 //    @Column(name = "FUNCTEST_NAME")
 //    private  String functestName;
 //
@@ -291,11 +308,11 @@ public class Consign extends BaseEntity{
 //    @Column(name = "FUNCTEST_M16_INFO")
 //    private  String functestM16INFO;
 //
-///*
-//    以下属于软件测试报告
 //
-// */
-//
+//    /**
+//     * @author FW
+//     * 以下属于软件测试报告
+//     */
 //    @Column(name = "TESTREPO_COMPANY")
 //    private  String testrepoCompany;
 //
@@ -317,11 +334,13 @@ public class Consign extends BaseEntity{
 //    @Column(name = "TESTREPO_RELY")
 //    private  String testrepoRely;
 //
+//    @ElementCollection
 //    @Column(name = "TESTREPO_SAMPLE")
 //    private  List<String> testrepoSample;
 //
+//    @ElementCollection
 //    @Column(name = "TESTREPO_SAMPLEDOC")
-//    private  LIST<String> testrepoSampleDoc;
+//    private  List<String> testrepoSampleDoc;
 //
 //    @Column(name = "TESTREPO_CONCLUDE")
 //    private  String testrepoConclude;
@@ -379,7 +398,7 @@ public class Consign extends BaseEntity{
 //
 //    @Column(name = "TESTREPO_SERVER_Email")
 //    private  String testrepoServerEmail;
-//
+
 
 
 
