@@ -8,7 +8,7 @@ import ProjectListComponent from "../components/ProjectListComponent";
 
 const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    console.log(state.Project.listMap);
+    // console.log(state.Project.listMap);
     return {
         dataSource: Object.values(state.Project.listMap),
         //enableNew: authData.functionGroup["Project"]!==undefined&&authData.functionGroup["Project"].findIndex(element => element === "ADD")!==-1
