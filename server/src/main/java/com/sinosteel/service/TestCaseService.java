@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author LBW & SQW
@@ -27,11 +28,12 @@ public class TestCaseService extends BaseService<TestCase> {
     @Autowired
     private ProjectRepository projectRepository;
 
-    @Autowired
-    private ProcessInstanceService processInstanceService;
+    //不需要添加TestCase的状态
+    //@Autowired
+    //private ProcessInstanceService processInstanceService;
 
 
-    //以工程为来源查询testCase
+    //以用户的工程为来源查询testCase
     public JSON queryTestCases(User user) throws Exception {
         if (user != null)
             System.out.println("queryTestCases--> query user role: " + user.getRoles().get(0).getRoleName());
@@ -42,15 +44,25 @@ public class TestCaseService extends BaseService<TestCase> {
             for (Project project: projects){
                 testCases.addAll(project.getTestCase());
             }
-            //TODO:对测试计划进行处理，去掉具体内容,并且添加测试计划状态
+            System.out.println(testCases);
             return processTestCases(testCases);
         }
         else
         {
             List<TestCase> testCases = testCaseRepository.findByAllTestCases();
-            //对测试计划进行处理，去掉具体内容,并且添加测试计划状态
+            //处理TestCase为空的情况
             return processTestCases(testCases);
         }
+    }
+    public JSON queryTestCasesByProject(String projectID) throws Exception{
+        if (projectRepository.findById(projectID) == null) {
+            throw new Exception("Can't find project ID: " + projectID);
+        }
+        Project project = projectRepository.findById(projectID);
+        List<TestCase> testCases = project.getTestCase();
+
+        return  processTestCases(testCases);
+
     }
 
     public JSONObject queryTestCaseByID(String id) throws Exception{
@@ -72,37 +84,41 @@ public class TestCaseService extends BaseService<TestCase> {
         testCase.setBody(temptestCase.getBody());
         this.updateEntity(testCase, user);
 
-        //TODO:return the consign with STATE!
         testCase = testCaseRepository.findById(temptestCase.getId());
-        return processTestCase(testCase);
+        return JSON.parseObject(JSONObject.toJSONString(testCase));
     }
 
     //增加testCase
-    public JSONObject addTestCase(JSONObject params,List<MultipartFile> files,User user) throws Exception {
+    public JSONObject addTestCase(String projectID, JSONObject params,List<MultipartFile> files,User user) throws Exception {
 
-        //String uid=UUID.randomUUID().toString();
-        String uid = params.getString("id");
+        //生成TestCase的id
+        String uid=UUID.randomUUID().toString();
         //check project
-        if (projectRepository.findById(uid) == null)
-            throw new Exception("Can't find project with ID: " + uid);
+        if (projectRepository.findById(projectID) == null)
+            throw new Exception("Can't find project with ID: " + projectID);
+
+        Project project = projectRepository.findById(projectID);
+        params.remove("projectID");
 
         TestCase testCase=JSONObject.toJavaObject(params,TestCase.class);
         testCase.setId(uid);
-        testCase.setProject(projectRepository.findById(uid));
+        testCase.setProject(project);
 
-        //TODO:start activiti process
-        //String procID = processInstanceService.createTestCaseProcess(params, user);
-        //testCase.setProcessInstanceID(procID);
+        List<TestCase> testCases = project.getTestCase();
+        testCases.add(testCase);
+
         this.saveEntity(testCase, user);
 
-        //TODO:添加testCase状态
+        project.setTestCase(testCases);
+        projectRepository.save(project);
+
+
         testCase = testCaseRepository.findById(uid);
-        return processTestCase(testCase);
+        return JSON.parseObject(JSONObject.toJSONString(testCase));
     }
 
 
     //删除测试计划（不删除相关测试计划文件?）
-
     public void deleteTestCase(JSONObject params)
     {
         String uid=params.getString("id");
@@ -110,23 +126,18 @@ public class TestCaseService extends BaseService<TestCase> {
     }
 
 
-    //TODO:增加测试计划状态
+    @Deprecated
     private JSONObject processTestCase(TestCase testCase) throws Exception {
-        //String processState = (String) processInstanceService.queryProcessState(testCase.getProcessInstanceID()).get("state");
-        JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testCase));
-        //jsonObject.put("state", processState);
-        return jsonObject;
-
+        return JSON.parseObject(JSONObject.toJSONString(testCase));
     }
 
-    //去掉测试计划内容,TODO:添加状态
+    //简单处理TestCase的内容，解决查询时TestCase为空的情况
     private  JSONArray processTestCases(List<TestCase> testCases) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (TestCase testCase: testCases) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testCase));
-            jsonObject.remove("testCase");
-            //String processState = (String) processInstanceService.queryProcessState(testCase.getProcessInstanceID()).get("state");
-            //jsonObject.put("state", processState);
+            //jsonObject.remove("testCase");
+
             resultArray.add(jsonObject);
         }
 
