@@ -6,10 +6,7 @@ import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
 import com.sinosteel.service.TestWorkCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author LBW & Lumpy
@@ -22,11 +19,17 @@ public class TestWorkCheckController extends BaseController{
     private TestWorkCheckService testWorkCheckService;
 
     @RequestMapping(value = "/v1/testWorkCheck",method = RequestMethod.GET)
-    public Response queryTestWorkCheck(Request request){
+    public Response queryTestWorkCheck(Request request, @RequestParam(value = "projectID", required = false) String projectID){
+
+        //没有传projectID，从用户获取当前用户的所有testWorkCheck
+        if (projectID == null) {
+            return queryTestWorkCheck(request);
+        }
+
         Response response = new Response();
 
         try{
-            response.data = testWorkCheckService.queryTestWorkChecks(request.getUser());
+            response.data = testWorkCheckService.queryTestWorkCheckByProject(projectID);
             response.status = ResponseType.SUCCESS;
         }catch (Exception e){
             e.printStackTrace();
@@ -35,6 +38,19 @@ public class TestWorkCheckController extends BaseController{
         }
 
         return  response;
+    }
+
+    //从用户获取用户的所有testWorkCheck
+    private Response queryTestWorkCheck(Request request) {
+        Response response = new Response();
+        try {
+            response.data = testWorkCheckService.queryTestWorkChecks(request.getUser());
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.status = ResponseType.FAILURE;
+            response.message = e.getMessage();
+        }
+        return response;
     }
 
     @RequestMapping(value = "/v1/testWorkCheck/{id}", method = RequestMethod.GET)
@@ -86,7 +102,7 @@ public class TestWorkCheckController extends BaseController{
     }
 
     @RequestMapping(value = "/v1/testWorkCheck", method = RequestMethod.DELETE)
-    public Response deletetestWorkCheck(Request request) {
+    public Response deleteTestWorkCheck(Request request) {
 
         Response response = new Response();
 

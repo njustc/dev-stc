@@ -28,8 +28,9 @@ public class TestCaseService extends BaseService<TestCase> {
     @Autowired
     private ProjectRepository projectRepository;
 
-    @Autowired
-    private ProcessInstanceService processInstanceService;
+    //不需要添加TestCase的状态
+    //@Autowired
+    //private ProcessInstanceService processInstanceService;
 
 
     //以用户的工程为来源查询testCase
@@ -49,7 +50,7 @@ public class TestCaseService extends BaseService<TestCase> {
         else
         {
             List<TestCase> testCases = testCaseRepository.findByAllTestCases();
-            //对测试计划进行处理，去掉具体内容,并且添加测试计划状态
+            //处理TestCase为空的情况
             return processTestCases(testCases);
         }
     }
@@ -90,6 +91,7 @@ public class TestCaseService extends BaseService<TestCase> {
     //增加testCase
     public JSONObject addTestCase(String projectID, JSONObject params,List<MultipartFile> files,User user) throws Exception {
 
+        //生成TestCase的id
         String uid=UUID.randomUUID().toString();
         //check project
         if (projectRepository.findById(projectID) == null)
@@ -117,7 +119,6 @@ public class TestCaseService extends BaseService<TestCase> {
 
 
     //删除测试计划（不删除相关测试计划文件?）
-
     public void deleteTestCase(JSONObject params)
     {
         String uid=params.getString("id");
@@ -130,6 +131,7 @@ public class TestCaseService extends BaseService<TestCase> {
         return JSON.parseObject(JSONObject.toJSONString(testCase));
     }
 
+    //简单处理TestCase的内容，解决查询时TestCase为空的情况
     private  JSONArray processTestCases(List<TestCase> testCases) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (TestCase testCase: testCases) {

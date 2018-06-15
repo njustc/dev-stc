@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author LBW & SQW
@@ -27,11 +28,12 @@ public class TestFunctionService extends BaseService<TestFunction> {
     @Autowired
     private ProjectRepository projectRepository;
 
-    @Autowired
-    private ProcessInstanceService processInstanceService;
+    //不需要添加状态
+    //@Autowired
+    //private ProcessInstanceService processInstanceService;
 
 
-    //以工程为来源查询testCase
+    //查询
     public JSON queryTestFunctions(User user) throws Exception {
         if (user != null)
             System.out.println("queryTestCases--> query user role: " + user.getRoles().get(0).getRoleName());
@@ -42,15 +44,26 @@ public class TestFunctionService extends BaseService<TestFunction> {
             for (Project project: projects){
                 testFunctions.addAll(project.getTestFunctions());
             }
-            //TODO:对测试计划进行处理，去掉具体内容,并且添加测试计划状态
+            System.out.println(testFunctions);
             return processTestFunctions(testFunctions);
         }
         else
         {
             List<TestFunction> testFunctions = testFunctionRepository.findByAllTestFunctions();
-            //对测试计划进行处理，去掉具体内容,并且添加测试计划状态
+            //利用这个函数处理为空的情况
             return processTestFunctions(testFunctions);
         }
+    }
+
+    //前端需要用project来查询TestFunction时
+    public JSON queryTestFUnctionByProject(String projectID) throws Exception {
+        if(projectRepository.findById(projectID) == null) {
+            throw new Exception("Can't find project by id : " + projectID);
+        }
+        Project project = projectRepository.findById(projectID);
+        List<TestFunction> testFunctions = project.getTestFunctions();
+
+        return processTestFunctions(testFunctions);
     }
 
     public JSONObject queryTestFunctionByID(String id) throws Exception{
@@ -60,7 +73,7 @@ public class TestFunctionService extends BaseService<TestFunction> {
         return JSON.parseObject(JSONObject.toJSONString(testFunction));
     }
 
-    //改动测试计划
+    //改动测试功能
     public JSONObject editTestFunction(JSONObject params, List<MultipartFile> files, User user) throws Exception
     {
         TestFunction temptestFunction = JSONObject.toJavaObject(params, TestFunction.class);
@@ -77,32 +90,36 @@ public class TestFunctionService extends BaseService<TestFunction> {
         return processTestFunction(testFunction);
     }
 
-    //增加testCase
-    public JSONObject addTestFunction(JSONObject params,List<MultipartFile> files,User user) throws Exception {
+    //增加TestFunction
+    public JSONObject addTestFunction(String projectID, JSONObject params,List<MultipartFile> files,User user) throws Exception {
 
-        //String uid=UUID.randomUUID().toString();
-        String uid = params.getString("id");
-        //check project
-        if (projectRepository.findById(uid) == null)
-            throw new Exception("Can't find project with ID: " + uid);
+        //随机生成TestFunction的id
+        String uid= UUID.randomUUID().toString();
 
+        if (projectRepository.findById(projectID) == null) //找不到想要绑定的project
+            throw new Exception("Can't find project with ID: " + projectID);
+
+        Project project = projectRepository.findById(projectID);
+        params.remove("projectID"); //删除参数里的工程id以便保存实体
         TestFunction testFunction=JSONObject.toJavaObject(params,TestFunction.class);
         testFunction.setId(uid);
-        testFunction.setProject(projectRepository.findById(uid));
+        testFunction.setProject(project);
 
-        //TODO:start activiti process
-        //String procID = processInstanceService.createTestCaseProcess(params, user);
-        //testCase.setProcessInstanceID(procID);
+        List<TestFunction> testFunctions = project.getTestFunctions();
+        testFunctions.add(testFunction);
+
         this.saveEntity(testFunction, user);
 
-        //TODO:添加testCase状态
+        project.setTestFunctions(testFunctions);
+        projectRepository.save(project);
+
+        //返回刚刚添加的testFunction
         testFunction = testFunctionRepository.findById(uid);
-        return processTestFunction(testFunction);
+        return JSON.parseObject(JSONObject.toJSONString(testFunction));
     }
 
 
-    //删除测试计划（不删除相关测试计划文件?）
-
+    //删除测试功能
     public void deleteTestFunction(JSONObject params)
     {
         String uid=params.getString("id");
@@ -110,7 +127,7 @@ public class TestFunctionService extends BaseService<TestFunction> {
     }
 
 
-    //TODO:增加测试计划状态
+    @Deprecated
     private JSONObject processTestFunction(TestFunction testFunction) throws Exception {
         //String processState = (String) processInstanceService.queryProcessState(testCase.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testFunction));
@@ -119,17 +136,13 @@ public class TestFunctionService extends BaseService<TestFunction> {
 
     }
 
-    //去掉测试计划内容,TODO:添加状态
+    //解决查询为空时的问题
     private  JSONArray processTestFunctions(List<TestFunction> testFunctions) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (TestFunction testFunction: testFunctions) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testFunction));
-            jsonObject.remove("testFunction");
-            //String processState = (String) processInstanceService.queryProcessState(testCase.getProcessInstanceID()).get("state");
-            //jsonObject.put("state", processState);
             resultArray.add(jsonObject);
         }
-
         return resultArray;
     }
 }

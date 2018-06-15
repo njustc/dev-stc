@@ -32,7 +32,7 @@ public class TestPlanService extends BaseService<TestPlan> {
     private ProjectRepository projectRepository;
 
 
-    //以工程为来源查询testplan，但是工程那里并没有设置好，TODO:设置好工程
+    //以工程为来源查询testplan，但是工程那里并没有设置好
     public JSON queryTestPlans(User user) throws Exception {
         if (user != null)
             System.out.println("queryTestPlans--> query user role: " + user.getRoles().get(0).getRoleName());
