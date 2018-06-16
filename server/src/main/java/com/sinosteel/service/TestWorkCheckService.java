@@ -82,14 +82,14 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
             throw new Exception("Not found");
         }
         //编辑测试结果时只编辑内容
-        testWorkCheck = temptestWorkCheck;
-        //testWorkCheck.setVersion(temptestWorkCheck.getVersion());
-        //testWorkCheck.setAcendtime(temptestWorkCheck.getAcendtime());
-        //testWorkCheck.setClient(temptestWorkCheck.getClient());
-        //testWorkCheck.setFcendtime(temptestWorkCheck.getFcendtime());
-        //testWorkCheck.setSoftwarename(temptestWorkCheck.getSoftwarename());
-        //testWorkCheck.setTestworker(temptestWorkCheck.getTestworker());
-        //testWorkCheck.setStarttime(temptestWorkCheck.getStarttime());
+        //testWorkCheck = temptestWorkCheck;
+        testWorkCheck.setVersion(temptestWorkCheck.getVersion());
+        testWorkCheck.setAcendtime(temptestWorkCheck.getAcendtime());
+        testWorkCheck.setClient(temptestWorkCheck.getClient());
+        testWorkCheck.setFcendtime(temptestWorkCheck.getFcendtime());
+        testWorkCheck.setSoftwarename(temptestWorkCheck.getSoftwarename());
+        testWorkCheck.setTestworker(temptestWorkCheck.getTestworker());
+        testWorkCheck.setStarttime(temptestWorkCheck.getStarttime());
 
         this.updateEntity(testWorkCheck, user);
 
