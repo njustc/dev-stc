@@ -62,6 +62,8 @@ export const updateConsign = (dispatch, data, callback) => {
 export const getConsignState = (dispatch, processInstanceID, id, callback) => {
     httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
         const {status, data} = result;
+        const {operation} = data;
+        sessionStorage.setItem('operation',JSON.stringify(operation));
         if (status === STATUS.SUCCESS) {
             const newData = {
                 ...data,

@@ -40,7 +40,7 @@ class ConsignContentComponent extends Component  {
     };
 
     componentWillMount() {
-        this.props.getValues(this.props.consignData.id);
+        this.props.getValues(this.props.consignData.id,this.props.consignData.processInstanceID);
     };
 
     // componentDidMount() {
