@@ -104,18 +104,18 @@ const mapDispatchToProps = (dispatch) => {
     var isReviewVisible = operation!=undefined&&operation!=null;
     if(isReviewVisible === true){
         isReviewVisible = false;
-        for(var i of operation){
-            if(i == 'ReviewPass') {
+        operation.forEach(function(element){
+            if(element == 'ReviewPass') {
                 isReviewVisible = true;
             }
-        }
+        })
     }
     console.log(isReviewVisible);
     return {
         buttons: buttons(dispatch,isEditVisible,isReviewVisible).filter(button => button.enable===true),
         getValues: (id,processInstanceID) => {
-            getConsign(dispatch,id);
             getConsignState(dispatch,processInstanceID,id);
+            getConsign(dispatch,id);
         }
     }
 };
