@@ -36,6 +36,10 @@ public class TestReportService extends BaseService<TestReport>{
             System.out.println("queryTestReports --> query user role: " + user.getRoles().get(0).getRoleName());
         }
         if (user.getRoles().get(0).getRoleName().equals("普通客户")){
+
+            //Uesr里有get的方法
+            //List<TestReport> testReports = user.getTestReports();
+
             List<Project> projects = user.getProjects();
             List<TestReport> testReports = new ArrayList<TestReport>();
             for (Project project: projects){
@@ -86,6 +90,7 @@ public class TestReportService extends BaseService<TestReport>{
         TestReport testReport = JSONObject.toJavaObject(params, TestReport.class);
         testReport.setId(uid);
 
+
         String processInstanceID = processInstanceService.createTestReportProcess(params, user);
         testReport.setProcessInstanceID(processInstanceID);
 
@@ -117,7 +122,7 @@ public class TestReportService extends BaseService<TestReport>{
         JSONArray resultArray = new JSONArray();
         for (TestReport testReport: testReports){
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testReport));
-            jsonObject.remove("report");
+            jsonObject.remove("body");
             JSONObject processState = processInstanceService.queryProcessState(testReport.getProcessInstanceID());
             String state = processState.getString("state");
             String operation = processState.getString("operation");

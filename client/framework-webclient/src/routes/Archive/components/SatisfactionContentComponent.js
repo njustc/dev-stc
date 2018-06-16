@@ -85,7 +85,7 @@ class SatisfactionContentComponent extends Component {
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
 
                 <FormItem {...formItemLayout}>
-                    <h1>客户满意度调查表</h1>
+                    <h1 style={{textAlign:'center'}}>客户满意度调查表</h1>
                 </FormItem>
 
                 <FormItem {...formItemLayout} label={"单位名称"}>

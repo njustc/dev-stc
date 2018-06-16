@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "南大测试 REST API",
-    "version": "1.0.0",
+    "version": "2.0.1",
     "title": "南大测试 REST API 接口说明",
     "termsOfService": "http://swagger.io/terms/",
     "license": {
@@ -25,24 +25,40 @@
       "description": "流程实例状态"
     },
     {
-      "name": "contract",
-      "description": "合同(注意现在添加合同时需要给定去绑定的project的id，这个id是project绑定的consign的id)"
+      "name": "project",
+      "description": "工程（添加project时要设置id，是想要绑定的consign的id）"
     },
     {
-      "name": "project",
-      "description": "工程（当前完全是初始版本，添加project时要设置id，是想要绑定的consign的id，且流程实例状态更新没有添加此类）"
+      "name": "contract",
+      "description": "合同(与project一对一对应，添加时提供project的id作为其id)"
+    },
+    {
+      "name": "testPlan",
+      "description": "测试计划（与project一对一对应，添加时提供project的id作为其id）"
     },
     {
       "name": "testCase",
-      "description": "测试方案（注意现在添加测试方案时需要给定去绑定的project的id，这个id是project绑定的consign的id）"
+      "description": "测试方案（添加测试方案时需要给定去绑定的project的id，与project是多对一的关系，因此会有随机生成的id）"
     },
     {
       "name": "testReport",
-      "description": "测试报告（同测试计划，但是绑定project那里出了问题，注意现在添加测试报告时需要给定去绑定的project的id，这个id是project绑定的consign的id）"
+      "description": "测试报告（同测试计划，与工程一对一）"
+    },
+    {
+      "name": "testFunction",
+      "description": "测试功能（同测试方案，与工程多对一）"
+    },
+    {
+      "name": "testReportCheck",
+      "description": "测试报告检查（同测试计划，与工程一对一）"
+    },
+    {
+      "name": "testWorkCheck",
+      "description": "测试工作检查（同测试计划，与工程一对一）"
     },
     {
       "name": "testRecord",
-      "description": "测试结果（同测试计划，注意现在添加测试结果时需要给定去绑定的project的id，这个id是project绑定的consign的id）"
+      "description": "测试记录（暂时不要用，后面会改掉）"
     }
   ],
   "schemes": [
@@ -134,7 +150,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功查询委托时返回委托. data内包含JsonArray格式的委托内容\n查询失败时，返回一个失败的status\n```\n{\n  \"status\":failure;\n}\n```\n",
+            "description": "成功查询委托时返回委托. data内包含JsonArray格式的委托内容\n```\n{\n  \"data\": [\n    {\n      \"processInstanceID\": \"14\",\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-06-15 22:04:24\",\n      \"id\": \"0314e289-460c-4c53-8369-316508887a62\",\n      \"state\": \"TobeSubmit\",\n      \"operation\": \"[Submit]\"\n    },\n    {\n      \"processInstanceID\": \"23\",\n      \"createdUserId\": \"2\",\n      \"alteredTime\": \"2018-06-15 22:10:28\",\n      \"createdTime\": \"2018-06-15 22:05:34\",\n      \"alteredUserId\": \"2\",\n      \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n      \"state\": \"TobeSubmit\",\n      \"operation\": \"[Submit]\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n查询失败时，返回一个失败的status\n```\n{\n  \"status\":failure;\n}\n```\n",
             "schema": {
               "$ref": "#/definitions/Response"
             }
@@ -182,7 +198,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功添加委托时的样例response body\n```\n{\n  \"data\": {\n    \"processInstanceID\": \"24\",\n    \"createdUserId\": \"0\",\n    \"createdTime\": \"2018-05-19 20:34:22\",\n    \"id\": \"fa5078a3-07cb-458f-b30f-26f0d710b445\",\n    \"state\": \"State：提交委托 From: Consign:1:7\",\n    \"consignation\": \"content\"\n    },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "成功添加委托时的样例response body\n```\n{\n  \"data\": {\n    \"processInstanceID\": \"32\",\n    \"createdUserId\": \"2\",\n    \"createdTime\": \"2018-06-15 22:08:03\",\n    \"id\": \"6d7e45ec-154f-477b-990d-ae7daad676c7\",\n    \"state\": \"TobeSubmit\",\n    \"operation\": \"[Submit]\",\n    \"consignation\": \"I love Ariana Grande\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -322,7 +338,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功查询委托. data内包含JsonArray格式的委托内容\n",
+            "description": "成功查询委托. data内包含JsonArray格式的委托内容\n```\n{\n  \"data\": {\n    \"processInstanceID\": \"23\",\n    \"createdUserId\": \"2\",\n    \"alteredTime\": \"2018-06-15 22:10:28\",\n    \"createdTime\": \"2018-06-15 22:05:34\",\n    \"alteredUserId\": \"2\",\n    \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n    \"consignation\": \"1989\"\n    },\n  \"status\": \"SUCCESS\"\n}\n",
             "schema": {
               "$ref": "#/definitions/Response"
             }
@@ -372,7 +388,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功获取委托状态. \ntestReport的state有：TobeWrite/ TobeReview/ TobeApprove/ TobeSend/ TobeConfirm/ Satisfaction/ TobeDone/ TobeFiling/ Finished\ndata含两个属性：\nprocessInstanceID->委托进程ID\nstate->委托状态. 格式为\n```\n{\n  \"processInstanceID\": \"xxx\"\n  \"state\": \"xxx\"\n}\n```\n",
+            "description": "成功获取委托状态. \ntestReport的state有：TobeWrit，TobeReview，TobeApprove， TobeSend， TobeConfirm， Satisfaction， TobeDone， TobeFiling， Finished\ndata含两个属性：\nprocessInstanceID->委托进程ID\nstate->委托状态. 格式为\n```\n{\n  \"data\": {\n    \"processInstanceID\": \"23\",\n    \"state\": \"TobeSubmit\",\n    \"operation\": [\n    \"Submit\"\n  ]\n}, \"status\": \"SUCCESS\" }\n```",
             "schema": {
               "$ref": "#/definitions/Response"
             }
@@ -417,14 +433,14 @@
           {
             "name": "params",
             "in": "formData",
-            "description": "修改的操作内容。JSON格式。对象名为'object',属性名为'operation',  目前去操作流程实例的具体状态为：Write/ ReviewPass - ReviewReject/ ApprovePass- ApproveReject/ Send/ ConfirmPass- ConfirmReject/ SatisfactoryFeedback/ ConfirmAbort/ Done/ File eg.\n```\n{\n  \"object\": \"consign\"\n  \"operation\": \"submit\"\n}\n",
+            "description": "修改的操作内容。JSON格式。对象名为'object',属性名为'operation',  目前去操作流程实例的具体状态为：Write/ ReviewPass - ReviewReject/ ApprovePass- ApproveReject/ Send/ ConfirmPass- ConfirmReject/ SatisfactoryFeedback/ ConfirmAbort/ Done/ File eg.\n```\n{\n  \"object\": \"consign\",\n  \"operation\": \"Submit\"\n}\n",
             "type": "string",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "成功修改流程实例状态，并在data中返回修改后的进程状态。 \ndata含两个属性 ：\nprocessInstanceID->流程实例进程ID .\nstate->流程实例状态\n```\n{\n  \"processInstanceID\": \"xxx\"\n  \"state\": \"xxx\"\n}\n",
+            "description": "成功修改流程实例状态，并在data中返回修改后的进程状态。 \ndata含两个属性 ：\nprocessInstanceID->流程实例进程ID .\nstate->流程实例状态\n```\n{\n  \"data\": {\n    \"processInstanceID\": \"23\",\n    \"state\": \"TobeReview\",\n    \"operation\": [\n      \"ReviewPass\",\n      \"ReviewReject\"\n    ]\n  },\n  \"status\": \"SUCCESS\"\n}\n",
             "schema": {
               "$ref": "#/definitions/Response"
             }
@@ -509,7 +525,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功添加合同时的样例response body\n```\n{\n  \"data\": {\n    \"processInstanceID\": \"5001\",\n    \"createdUserId\": \"2\",\n    \"contractBody\": \"I Love TaylorSwift\",\n    \"createdTime\": \"2018-05-28 18:47:22\",\n    \"id\": \"1399d1ac-9aad-4ca3-9f44-e49972d147cf\",\n    \"state\": \"TobeSubmit\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "成功添加合同时的样例response body\n```\n{\n  \"data\": {\n    \"processInstanceID\": \"2515\",\n    \"createdUserId\": \"2\",\n    \"contractBody\": \"Our song\",\n    \"createdTime\": \"2018-06-16 10:14:54\",\n    \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n    \"state\": \"TobeSubmit\",\n    \"operation\": \"[Submit]\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -554,7 +570,7 @@
         ],
         "responses": {
           "200": {
-            "description": "修改成功时的样例response body\n```\n{\n  \"data\": {\n  \"processInstanceID\": \"5001\",\n    \"createdUserId\": \"2\",\n    \"contractBody\": \"I Love TaylorSwift So Much\",\n    \"alteredTime\": \"2018-05-28 19:16:02\",\n    \"createdTime\": \"2018-05-28 18:47:22\",\n    \"id\": \"1399d1ac-9aad-4ca3-9f44-e49972d147cf\",\n    \"state\": \"TobeSubmit\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "修改成功时的样例response body\n```\n{\n  \"data\": {\n  \"processInstanceID\": \"5001\",\n    \"createdUserId\": \"2\",\n    \"contractBody\": \"you belong with me\",\n    \"alteredTime\": \"2018-05-28 19:16:02\",\n    \"createdTime\": \"2018-05-28 18:47:22\",\n    \"alteredUserId\": \"2\",\n    \"id\": \"1399d1ac-9aad-4ca3-9f44-e49972d147cf\",\n    \"state\": \"TobeSubmit\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -646,7 +662,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功查询合同. data内包含JsonArray格式的合同内容\n```\n{\n  \"data\": {\n  \"processInstanceID\": \"5011\",\n  \"createdUserId\": \"2\",\n  \"contractBody\": \"I Love TaylorSwift So Much\",\n  \"alteredTime\": \"2018-05-28 19:26:22\",\n  \"createdTime\": \"2018-05-28 19:00:56\",\n  \"alteredUserId\": \"2\",\n  \"id\": \"7356e68f-c01f-4a32-8c5e-4fce3f5508d7\"\n},\n\"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "成功查询合同. data内包含JsonArray格式的合同内容\n```\n{\n  \"data\": {\n  \"processInstanceID\": \"5011\",\n  \"createdUserId\": \"2\",\n  \"contractBody\": \"I Love TaylorSwift So Much\",\n  \"alteredTime\": \"2018-05-28 19:26:22\",\n  \"createdTime\": \"2018-05-28 19:00:56\",\n  \"alteredUserId\": \"2\",\n  \"id\": \"7356e68f-c01f-4a32-8c5e-4fce3f5508d7\"\n  \"state\": \"TobeSubmit\",\n  \"operation\": \"[Submit]\"\n},\n\"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -686,7 +702,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功查询合同时返回工程.返回内容还没有确定\n查询失败时，返回一个失败的status\n```\n{\n  \n  \"data\": [\n    {\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-06-09 17:37:22\",\n      \"id\": \"aa1a57fc-3ba5-414a-89fb-a9eea5b33a3f\",\n      \"testCase\": [\n        {\n          \"createdUserId\": \"2\",\n          \"createdTime\": \"2018-06-09 17:40:30\",\n          \"id\": \"aa1a57fc-3ba5-414a-89fb-a9eea5b33a3f\",\n          \"testcase\": \"I love taylorSwift\"\n        }\n        ]\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "成功查询时返回工程.返回内容中的testCase为历史遗留问题，正式版应该不会有\n查询失败时，返回一个失败的status\n```\n{\n  \n  \"data\": [\n    {\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-06-09 17:37:22\",\n      \"id\": \"aa1a57fc-3ba5-414a-89fb-a9eea5b33a3f\",\n      \"testCase\": []\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -698,7 +714,7 @@
           "project"
         ],
         "summary": "添加工程",
-        "description": "向数据库中添加工程，添加时需要前端提供去绑定的consign的id，成功时返回合同的具体信息以及一个success状态",
+        "description": "向数据库中添加工程，添加时需要前端提供去绑定的consign的id，写在params里，成功时返回合同的具体信息以及一个success状态",
         "operationId": "addProject",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -724,14 +740,14 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "合同的具体内容. JSON格式\n```\n{\n  \"id\":\"xxx\"\n  \"xxx\": \"xxx\"\n}\n```\n",
+            "description": "工程的具体内容. JSON格式，其实只需要一个对应委托的id\n```\n{\n  \"id\":\"xxx\"\n}\n```\n",
             "type": "string",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "成功添加合同时的样例response body\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"createdTime\": \"2018-06-02 20:16:29\",\n    \"id\": \"cdd340fa-501c-42ab-9596-6c55b1a694c2\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "成功添加工程时的样例response body\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"createdTime\": \"2018-06-02 20:16:29\",\n    \"id\": \"cdd340fa-501c-42ab-9596-6c55b1a694c2\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -743,7 +759,7 @@
           "project"
         ],
         "summary": "修改工程",
-        "description": "修改已有的工程，参数中需要包含工程的id，但是还未商定具体内容所以不知道可以对哪些参数进行改动",
+        "description": "修改已有的工程，参数中需要包含工程的id，但是其实project中似乎并没有去改动的body，只有consign等其他实体类，所以有问题去问俊举或博文",
         "operationId": "editProject",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -769,7 +785,7 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "合同具体内容. JSON格式. 需要指明合同的ID\n```\n{\n  \"id\": \n  \"xxx\":\n}\n```\n",
+            "description": "工程具体内容. JSON格式. 需要指明工程的ID\n```\n{\n  \"id\": \n  \"xxx\":\n}\n```\n",
             "type": "string",
             "required": true
           }
@@ -814,7 +830,7 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "合同具体内容. JSON格式. 需要指明ID,其他内容为非必要\n```\n{\n  \"id\": \n  \"xxx\":\n}\n```\n",
+            "description": "需要指明工程的ID,其他内容为非必要\n```\n{\n  \"id\": \n  \"xxx\":\n}\n```\n",
             "type": "string",
             "required": true
           }
@@ -868,7 +884,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功查询工程. data内包含JsonArray格式的合同内容\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"createdTime\": \"2018-06-02 20:27:01\",\n    \"id\": \"0aee06e8-f44b-4594-8919-bd93e8f3a49f\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "成功查询工程. data内包含JsonArray格式的工程内容\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"createdTime\": \"2018-06-02 20:27:01\",\n    \"id\": \"0aee06e8-f44b-4594-8919-bd93e8f3a49f\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -876,14 +892,14 @@
         }
       }
     },
-    "/services/v1/testCase": {
+    "/services/v1/testPlan": {
       "get": {
         "tags": [
-          "testCase"
+          "testPlan"
         ],
-        "summary": "查询测试方案",
-        "description": "根据当前用户身份选择返回当前客户的testCase或者是全部testCase",
-        "operationId": "queryTestCases",
+        "summary": "查询测试计划",
+        "description": "用户为普通客户时，返回当前该客户的所有测试计划，如果是工作人员返回所有测试计划",
+        "operationId": "queryTestPlans",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -908,7 +924,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功查询测试方案时返回测试方案\n查询失败时，返回一个失败的status\n```\n{\n  \n  \"data\": [\n    {\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-06-02 20:16:29\",\n      \"id\": \"cdd340fa-501c-42ab-9596-6c55b1a694c2\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "成功查询测试计划时返回测试计划\n查询失败时，返回一个失败的status\n```\n{\n  \"data\": [\n    {\n      \"processInstanceID\": \"44\",\n      \"createdUserId\": \"2\",\n      \"alteredTime\": \"2018-06-15 22:42:55\",\n      \"createdTime\": \"2018-06-15 22:40:50\",\n      \"alteredUserId\": \"2\",\n      \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n      \"state\": \"TobeWrite\",\n      \"body\": \"love TaylorSwift\",\n      \"operation\": \"[Write]\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -917,11 +933,11 @@
       },
       "post": {
         "tags": [
-          "testCase"
+          "testPlan"
         ],
-        "summary": "添加测试方案",
-        "description": "向数据库中添加测试方案，除了内容testcase还要前端提供project的id，成功时返回测试方案的具体信息以及一个success状态",
-        "operationId": "addTestCase",
+        "summary": "添加测试计划",
+        "description": "添加测试计划，除了内容body还要提供绑定project的id，成功时返回测试计划的具体信息以及一个success状态",
+        "operationId": "addTestPlan",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -946,14 +962,250 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "测试方案的具体内容. JSON格式\n```\n{\n  \"id\":\"xxx\"\n  \"testcase\": \"xxx\"\n}\n```\n",
+            "description": "测试计划的具体内容. JSON格式\n```\n{\n  \"id\":\"xxx\"\n  \"body\": \"xxx\"\n}\n```\n",
             "type": "string",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "成功添加测试方案时的样例response body\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"createdTime\": \"2018-06-03 20:16:31\",\n    \"id\": \"49e9b994-064c-47f9-9a2e-f02260ed9d11\",\n    \"testcase\": \"I love taylorswift\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "成功添加测试计划时的样例response body\n```\n{\n  \"data\": {\n    \"processInstanceID\": \"44\",\n    \"createdUserId\": \"2\",\n    \"createdTime\": \"2018-06-15 22:40:50\",\n    \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n    \"state\": \"TobeWrite\",\n    \"body\": \"love taylorswift\",\n    \"operation\": \"[Write]\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "testPlan"
+        ],
+        "summary": "修改测试计划",
+        "description": "修改已有的测试计划，参数中需要包含测试计划的id",
+        "operationId": "editTestPlan",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "具体内容. JSON格式. 需要指明测试计划的ID\n```\n{\n  \"id\": \n  \"body\":\n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "修改成功时的样例response body\n```\n{\n  \"data\": {\n    \"processInstanceID\": \"44\",\n    \"createdUserId\": \"2\",\n    \"alteredTime\": \"2018-06-15 22:42:55\",\n    \"createdTime\": \"2018-06-15 22:40:50\",\n    \"alteredUserId\": \"2\",\n    \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n    \"state\": \"TobeWrite\",\n    \"body\": \"love TaylorSwift\",\n    \"operation\": \"[Write]\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "testPlan"
+        ],
+        "summary": "删除测试计划",
+        "description": "删除一个测试计划，需要提供具体id",
+        "operationId": "deleteTestPlan",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "具体内容. JSON格式. 需要指明ID,其他内容为非必要\n```\n{\n  \"id\": \n  \"xxx\":\n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功删除测试计划\n```\n{\n  \"status\":\"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/services/v1/testPlan/{id}": {
+      "get": {
+        "tags": [
+          "testPlan"
+        ],
+        "summary": "根据id查询测试计划",
+        "description": "根据请求中的id查询对应测试计划",
+        "operationId": "queryTestPlanById",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "测试计划的id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功查询测试计划. data内包含JsonArray格式的内容\n```\n{\n\"data\": [\n    {\n      \"processInstanceID\": \"44\",\n      \"createdUserId\": \"2\",\n      \"alteredTime\": \"2018-06-15 22:42:55\",\n      \"createdTime\": \"2018-06-15 22:40:50\",\n      \"alteredUserId\": \"2\",\n      \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n      \"state\": \"TobeWrite\",\n      \"body\": \"love TaylorSwift\",\n      \"operation\": \"[Write]\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/services/v1/testCase": {
+      "get": {
+        "tags": [
+          "testCase"
+        ],
+        "summary": "查询测试方案",
+        "description": "根据用户查询或者根据工程查询，从传入参数里是否有projectID区分，如果没有则返回当前用户所有测试方案或者管理员获取所有测试方案，如果给了projectID则返回该工程里的测试方案",
+        "operationId": "queryTestCases",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "projectID",
+            "in": "query",
+            "description": "工程id，需要按照工程查找时填入该参数",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功查询测试方案时返回测试方案\n查询失败时，返回一个失败的status\n```\n{\n  \n  \"data\": [\n    {\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-06-02 20:16:29\",\n      \"id\": \"cdd340fa-501c-42ab-9596-6c55b1a694c2\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "testCase"
+        ],
+        "summary": "添加测试方案",
+        "description": "向数据库中添加测试方案，除了内容body还要前端提供project的id，这个projectID和username、clientDigest一样的形式传入，成功时返回测试方案的具体信息以及一个success状态",
+        "operationId": "addTestCase",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "projectID",
+            "in": "query",
+            "description": "绑定的工程的id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "测试方案的具体内容. JSON格式\n```\n{\n  \"body\": \"xxx\"\n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功添加测试方案时的样例response body\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"createdTime\": \"2018-06-03 20:16:31\",\n    \"id\": \"49e9b994-064c-47f9-9a2e-f02260ed9d11\",\n    \"body\": \"I love taylorswift\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -991,14 +1243,14 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "具体内容. JSON格式. 需要指明测试方案的ID\n```\n{\n  \"id\": \n  \"xxx\":\n}\n```\n",
+            "description": "具体内容. JSON格式. 需要指明测试方案的ID\n```\n{\n  \"id\": \n  \"body\":\n}\n```\n",
             "type": "string",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "修改成功时的样例response body\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"alteredTime\": \"2018-06-03 20:17:52\",\n    \"createdTime\": \"2018-06-03 20:16:31\",\n    \"alteredUserId\": \"2\",\n    \"id\": \"49e9b994-064c-47f9-9a2e-f02260ed9d11\",\n    \"testcase\": \"love shawnmendes\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "修改成功时的样例response body\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"alteredTime\": \"2018-06-03 20:17:52\",\n    \"createdTime\": \"2018-06-03 20:16:31\",\n    \"alteredUserId\": \"2\",\n    \"id\": \"49e9b994-064c-47f9-9a2e-f02260ed9d11\",\n    \"body\": \"love shawnmendes\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -1058,7 +1310,7 @@
         ],
         "summary": "根据id查询测试方案",
         "description": "根据请求中的id查询对应测试方案",
-        "operationId": "queryTestPlanById",
+        "operationId": "queryTestCaseById",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -1104,7 +1356,7 @@
           "testReport"
         ],
         "summary": "查询测试报告",
-        "description": "尚未实现成功，用户为普通客户时，返回当前该客户的所有报告，如果是工作人员返回所有报告",
+        "description": "用户为普通客户时，返回当前该客户的所有报告，如果是工作人员返回所有报告（当前用户为customer1并且testReport为空时会返回failure，尚未解决）",
         "operationId": "queryTestReports",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -1168,14 +1420,14 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "测试计划的具体内容. JSON格式\n```\n{\n  \"id\":\"xxx\"\n  \"report\": \"xxx\"\n}\n```\n",
+            "description": "测试计划的具体内容. JSON格式\n```\n{\n  \"id\":\"xxx\"\n  \"body\": \"xxx\"\n}\n```\n",
             "type": "string",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "成功添加测试报告时的样例response body\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"report\": \"taylorswift\",\n    \"createdTime\": \"2018-06-07 11:50:09\",\n    \"id\": \"eb2f8116-5b82-42e3-8610-e6757d6db99d\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "成功添加测试报告时的样例response body\n```\n{\n  \"data\": {\n    \"processInstanceID\": \"2501\",\n    \"createdUserId\": \"2\",\n    \"createdTime\": \"2018-06-16 09:56:25\",\n    \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n    \"state\": \"TobeWrite\",\n    \"body\": \"perfect\",\n    \"operation\": \"[Write]\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -1213,14 +1465,14 @@
           {
             "in": "formData",
             "name": "params",
-            "description": "具体内容. JSON格式. 需要指明测试计划的ID\n```\n{\n  \"id\": \n  \"report\":\n}\n```\n",
+            "description": "具体内容. JSON格式. 需要指明测试报告的ID\n```\n{\n  \"id\": \n  \"body\":\n}\n```\n",
             "type": "string",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "修改成功时的样例response body\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"alteredTime\": \"2018-06-08 14:07:47\",\n    \"report\": \"world tour\",\n    \"createdTime\": \"2018-06-08 14:06:49\",\n    \"alteredUserId\": \"2\",\n    \"id\": \"3c2f5301-8f9c-4cde-aa42-5827b1b6df4e\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "修改成功时的样例response body\n```\n{\n  \"data\": {\n    \"processInstanceID\": \"2508\",\n    \"createdUserId\": \"2\",\n    \"alteredTime\": \"2018-06-08 14:07:47\",\n    \"createdTime\": \"2018-06-08 14:06:49\",\n    \"alteredUserId\": \"2\",\n    \"id\": \"3c2f5301-8f9c-4cde-aa42-5827b1b6df4e\"\n    \"state\": \"TobeWrite\",\n    \"body\": \"We are never ever ever ever getting back together\",\n    \"operation\": \"[Write]\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -1313,6 +1565,686 @@
         "responses": {
           "200": {
             "description": "成功查询测试报告. data内包含JsonArray格式的内容\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"alteredTime\": \"2018-06-08 14:07:47\",\n    \"report\": \"world tour\",\n    \"createdTime\": \"2018-06-08 14:06:49\",\n    \"alteredUserId\": \"2\",\n    \"id\": \"3c2f5301-8f9c-4cde-aa42-5827b1b6df4e\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/services/v1/testFunction": {
+      "get": {
+        "tags": [
+          "testFunction"
+        ],
+        "summary": "查询测试功能",
+        "description": "根据用户查询或者根据工程查询，从传入参数里是否有projectID区分，如果没有则返回当前用户所有测试功能或者管理员获取所有测试功能，如果给了projectID则返回该工程里的测试功能",
+        "operationId": "queryTestFunctions",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "projectID",
+            "in": "query",
+            "description": "工程id，需要按照工程查找时填入该参数",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功查询测试功能时返回测试功能\n查询失败时，返回一个失败的status\n```\n{\n  \n  \"data\": [\n    {\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-06-02 20:16:29\",\n      \"id\": \"cdd340fa-501c-42ab-9596-6c55b1a694c2\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "testFunction"
+        ],
+        "summary": "添加测试功能",
+        "description": "添加测试方案，除了内容body还要前端提供project的id，这个projectID和username、clientDigest一样的形式传入，成功时返回测试方案的具体信息以及一个success状态",
+        "operationId": "addTestFunction",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "projectID",
+            "in": "query",
+            "description": "绑定的工程的id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "测试功能的具体内容. JSON格式\n```\n{\n  \"body\": \"xxx\"\n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功添加测试功能时的样例response body\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"createdTime\": \"2018-06-03 20:16:31\",\n    \"id\": \"b68cd9c6-fb4b-4bff-9cbe-f1804fcc6678\",\n    \"body\": \"22\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "testFunction"
+        ],
+        "summary": "修改测试功能",
+        "description": "修改已有的测试功能，参数中需要包含测试功能的id",
+        "operationId": "editTestFunction",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "具体内容. JSON格式. 需要指明测试功能的ID\n```\n{\n  \"id\": \n  \"body\":\n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "修改成功时的样例response body\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"alteredTime\": \"2018-06-03 20:17:52\",\n    \"createdTime\": \"2018-06-03 20:16:31\",\n    \"alteredUserId\": \"2\",\n    \"id\": \"49e9b994-064c-47f9-9a2e-f02260ed9d11\",\n    \"body\": \"i don't know about you\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "testFunction"
+        ],
+        "summary": "删除测试功能",
+        "description": "删除一个测试功能，需要提供具体id",
+        "operationId": "deleteTestFunction",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "具体内容. JSON格式. 需要指明ID,其他内容为非必要\n```\n{\n  \"id\": \n  \"xxx\":\n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功删除测试功能\n```\n{\n  \"status\":\"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/services/v1/testFunction/{id}": {
+      "get": {
+        "tags": [
+          "testFunction"
+        ],
+        "summary": "根据id查询测试功能",
+        "description": "根据请求中的id查询对应测试功能",
+        "operationId": "queryTesFunctionById",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "测试功能的id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功查询测试方案. data内包含JsonArray格式的内容\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"createdTime\": \"2018-06-03 20:19:30\",\n    \"id\": \"ad402346-a514-4e0b-9fec-6ac13f0a2a98\",\n    \"testcase\": \"I love taylorswift\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/services/v1/testReportCheck": {
+      "get": {
+        "tags": [
+          "testReportCheck"
+        ],
+        "summary": "查询",
+        "description": "用户为普通客户时，返回当前该客户的所有报告检查，如果是工作人员返回所有",
+        "operationId": "queryTestReportChecks",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功查询时返回testReportCheck. data内包含JsonArray格式的内容内容\n查询失败时，返回一个失败的status\n```\n{\n  \"data\": [\n    {\n      \"createdUserId\": \"2\",\n      \"alteredTime\": \"2018-06-16 10:50:34\",\n      \"createdTime\": \"2018-06-16 10:47:31\",\n      \"alteredUserId\": \"2\",\n      \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n      \"body\": \"take my hand\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "testReportCheck"
+        ],
+        "summary": "添加",
+        "description": "添加testReportCheck，添加时要给定一个id，是所在project的id（project的id是在创建project时前端传入的对应绑定consign的一个id），成功时返回具体信息以及一个success状态",
+        "operationId": "addTestReportCheck",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "具体内容. JSON格式\n```\n{\n  \"id\":\"xxx\"\n  \"body\": \"content\"\n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功添加时的样例response body\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"createdTime\": \"2018-06-16 10:14:54\",\n    \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n    \"body\": \"fearless\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "testReportCheck"
+        ],
+        "summary": "修改",
+        "description": "参数中需要包含合testReportCheck的id",
+        "operationId": "editTestReportCheck",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "具体内容. JSON格式. 需要指明ID\n```\n{\n  \"id\": \n  \"body\":\n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "修改成功时的样例response body\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"alteredTime\": \"2018-06-16 10:50:34\",\n    \"createdTime\": \"2018-06-16 10:47:31\",\n    \"alteredUserId\": \"2\",\n    \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n    \"body\": \"take my hand\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "testReportCheck"
+        ],
+        "summary": "删除",
+        "description": "需要提供testReportCheck的具体id",
+        "operationId": "deleteTestReportCheck",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "具体内容. JSON格式. 需要指明ID\n```\n{\n  \"id\": \n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功删除\n```\n{\n  \"status\":\"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/services/v1/testReportCheck/{id}": {
+      "get": {
+        "tags": [
+          "testReportCheck"
+        ],
+        "summary": "根据id查询",
+        "description": "根据请求中的id查询",
+        "operationId": "querytestReportCheckByID",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "testReportCheck的id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "data内包含JsonArray格式的内容\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"alteredTime\": \"2018-06-16 10:50:34\",\n    \"createdTime\": \"2018-06-16 10:47:31\",\n    \"alteredUserId\": \"2\",\n    \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n    \"body\": \"take my hand\"\n},\n\"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/services/v1/testWorkCheck": {
+      "get": {
+        "tags": [
+          "testWorkCheck"
+        ],
+        "summary": "查询",
+        "description": "用户为普通客户时，返回当前该客户的所有TestWorkCheck，如果是工作人员返回所有",
+        "operationId": "queryTestWorkChecks",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功查询时返回testWorkCheck. data内包含JsonArray格式的内容\n查询失败时，返回一个失败的status\n```\n{\n  \"data\": [\n    {\n      \"createdUserId\": \"2\",\n      \"testworker\": \"taylorswift\",\n      \"alteredTime\": \"2018-06-16 11:11:07\",\n      \"createdTime\": \"2018-06-16 11:11:00\",\n      \"alteredUserId\": \"2\",\n      \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n      \"softwarename\": \"I don't wanna live forever\",\n      \"version\": \"3\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "testWorkCheck"
+        ],
+        "summary": "添加",
+        "description": "添加testWorkCheck，添加时要给定一个id，是所在project的id（project的id是在创建project时前端传入的对应绑定consign的一个id），成功时返回具体信息以及一个success状态（这里的样例body没有写上所有内容变量，具体有：version,acendtime,fcendtime,client,softwarename,starttime,testworker）",
+        "operationId": "addTestWorkCheck",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "具体内容. JSON格式\n```\n{\n  \"id\":\"xxx\"\n  \"body\": \"content\"\n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功添加时的样例response body\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"testworker\": \"taylorswift\",\n    \"createdTime\": \"2018-06-16 11:02:02\",\n    \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n    \"softwarename\": \"style\",\n    \"version\": \"3\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "testWorkCheck"
+        ],
+        "summary": "修改",
+        "description": "参数中需要包含合testWorkCheck的id，修改当前比较麻烦，若改动变量的其中一项或多项时，未改动的也要传递否则会被覆盖为空",
+        "operationId": "editTestWorkCheck",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "具体内容. JSON格式. 需要指明ID\n```\n{\n  \"id\": \n  \"body\":\n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "修改成功时的样例response body\n```\n{\n  \"data\": {\n    \"createdUserId\": \"2\",\n    \"testworker\": \"taylorswift\",\n    \"alteredTime\": \"2018-06-16 11:05:47\",\n    \"createdTime\": \"2018-06-16 11:11:00\",\n    \"alteredUserId\": \"2\",\n    \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n    \"softwarename\": \"I don't wanna live forever\",\n    \"version\": \"3\"\n  },\n  \"status\": \"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "testWorkCheck"
+        ],
+        "summary": "删除",
+        "description": "需要提供testWorkCheck的具体id",
+        "operationId": "deleteTestWorkCheck",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "params",
+            "description": "具体内容. JSON格式. 需要指明ID\n```\n{\n  \"id\": \n}\n```\n",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功删除\n```\n{\n  \"status\":\"SUCCESS\"\n}\n```\n"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/services/v1/testWorkCheck/{id}": {
+      "get": {
+        "tags": [
+          "testWorkCheck"
+        ],
+        "summary": "根据id查询",
+        "description": "根据请求中的id查询",
+        "operationId": "querytestWorkCheckByID",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "testWorkCheck的id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "description": "用户名",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientDigest",
+            "in": "query",
+            "description": "摘要。登录时由后台传入，用以身份验证",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "data内包含JsonArray格式的内容\n```\n{\n  \"data\": [\n    {\n      \"createdUserId\": \"2\",\n      \"testworker\": \"taylorswift\",\n      \"alteredTime\": \"2018-06-16 11:11:07\",\n      \"createdTime\": \"2018-06-16 11:11:00\",\n      \"alteredUserId\": \"2\",\n      \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n      \"softwarename\": \"I don't wanna live forever\",\n      \"version\": \"3\"\n    }\n],\n\"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"

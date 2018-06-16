@@ -17,15 +17,17 @@ public class TestFunctionController extends BaseController {
     private TestFunctionService testFunctionService;
 
 
-
     @RequestMapping(value = "/v1/testFunction", method = RequestMethod.GET)
-    public Response queryTestFunctions(Request request)
-    {
+    public Response queryTestFunctions(Request request, @RequestParam(value = "projectID", required = false) String projectID) {
+
+        if (projectID == null) {
+            return queryTestFunctions(request);
+        }
         Response response = new Response();
 
         try
         {
-            response.data = testFunctionService.queryTestFunctions(request.getUser());
+            response.data = testFunctionService.queryTestFUnctionByProject(projectID);
             response.status = ResponseType.SUCCESS;
         }
         catch (Exception e)
@@ -37,8 +39,21 @@ public class TestFunctionController extends BaseController {
 
         return response;
     }
+    //没有传入project的id（根据用户直接查询时）
+    private Response queryTestFunctions(Request request) {
+        Response response = new Response();
+        try {
+            response.data = testFunctionService.queryTestFunctions(request.getUser());
+            response.status = ResponseType.SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.status = ResponseType.FAILURE;
+            response.message = e.getMessage();
+        }
+        return response;
+    }
 
-    //根据ID查询测试bug具体信息
+    //根据ID查询测试功能具体信息
     @RequestMapping(value = "/v1/testFunction/{id}", method = RequestMethod.GET)
     public Response queryTestFunctionByID(@PathVariable String id,  Request request) {
         Response response = new Response();
@@ -76,12 +91,12 @@ public class TestFunctionController extends BaseController {
 
     }
     @RequestMapping(value = "/v1/testFunction",method=RequestMethod.POST)
-    public Response addTestBug(Request request)
+    public Response addTestFunction(Request request, @RequestParam(value = "projectID") String projectID)
     {
         Response response=new Response();
 
         try{
-            response.data = testFunctionService.addTestFunction(request.getParams(),request.getFiles(),request.getUser());
+            response.data = testFunctionService.addTestFunction(projectID,request.getParams(),request.getFiles(),request.getUser());
             response.status=ResponseType.SUCCESS;
         }
         catch(Exception e)
