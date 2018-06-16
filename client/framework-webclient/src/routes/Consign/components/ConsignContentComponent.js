@@ -59,7 +59,16 @@ class ConsignContentComponent extends Component  {
             ...this.props.values,
             fieldsValue
         };
-        buttons[buttonIndex].onClick(this.props.consignData, consignation);
+        if(buttons[buttonIndex].content === '通过'){
+            this.setState({
+                ...this.state,
+                visible: true,
+                curButtonIdx: buttonIndex,
+            })
+        }
+        else {
+            buttons[buttonIndex].onClick(this.props.consignData, consignation);
+        }
         /*switch (buttons[buttonIndex].content) {
             case '保存': message.success('保存成功');break;
             case '提交': message.success('提交成功');break;
