@@ -16,19 +16,19 @@ export const getContractList = (dispatch, callback) => {
             dispatch(setContractList(/*data*/
                 [
                     {
-                        pid : "110",
+                        processInstanceID : "119",
                         id : "110",
                         name : "快乐星球小杨杰",
                         customerId : "151220140",
                         status: STATE.TO_SUBMIT
                     },{
-                    pid :"120",
+                    processInstanceID :"120",
                     id : "120",
                     name : "不快乐星球小杨杰",
                     customerId : "151220140",
                     status: STATE.TO_REVIEW
                 },{
-                    pid : "119",
+                    processInstanceID : "110",
                     id : "119",
                     name : "不快乐星球老杨杰",
                     customerId : "151220140",
