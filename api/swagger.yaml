@@ -783,7 +783,9 @@ paths:
                   "createdUserId": "2",
                   "createdTime": "2018-06-09 17:37:22",
                   "id": "aa1a57fc-3ba5-414a-89fb-a9eea5b33a3f",
-                  "testCase": []
+                  "userID": "2",
+                  "testCase": [],
+                  "username": "customer1"
                 }
               ],
               "status": "SUCCESS"
