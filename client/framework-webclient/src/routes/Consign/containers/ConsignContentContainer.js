@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import ConsignContentComponent from "../components/ConsignContentComponent";
 import {message} from 'antd';
 import {connect} from "react-redux";
-import {getConsign, putConsignState, updateConsign} from "../../../services/ConsignService";
+import {getConsign, getConsignState, putConsignState, updateConsign} from "../../../services/ConsignService";
 import {newProject} from "../../../services/ProjectService";
 import {STATUS} from "../../../services/common";
 /*TODO:表单内容和按钮的可视及禁用情况*/
@@ -61,7 +61,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
     enable: isEditVisible
 },{
     content: '通过',
-    onClick: (consignData,consignation) =>{
+    onClick: (consignData,processNo) =>{
         const putData = {
             "object": "consign",
             "operation": "ReviewPass",
@@ -98,12 +98,25 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
 
 const mapDispatchToProps = (dispatch) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
+    const operation = JSON.parse(sessionStorage.getItem('operation'));
     //const isVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     const isEditVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
-    const isReviewVisible = true||authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "REVIEW")!==-1;
+    var isReviewVisible = operation!=undefined&&operation!=null;
+    if(isReviewVisible === true){
+        isReviewVisible = false;
+        for(var i of operation){
+            if(i == 'ReviewPass') {
+                isReviewVisible = true;
+            }
+        }
+    }
+    console.log(isReviewVisible);
     return {
         buttons: buttons(dispatch,isEditVisible,isReviewVisible).filter(button => button.enable===true),
-        getValues: (id) => getConsign(dispatch,id)
+        getValues: (id,processInstanceID) => {
+            getConsign(dispatch,id);
+            getConsignState(dispatch,processInstanceID,id);
+        }
     }
 };
 
