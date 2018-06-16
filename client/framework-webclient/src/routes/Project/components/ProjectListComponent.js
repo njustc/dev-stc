@@ -81,7 +81,7 @@ export default class ProjectListComponent extends Component {
         dataIndex:"No",
         //width: '25%',
         //sorter:(a, b) => a.id - b.id,
-    }, {
+    }/*, {
         title:"流程ID",
         dataIndex:"processInstanceID",
         //width: '25%',
@@ -91,7 +91,7 @@ export default class ProjectListComponent extends Component {
         dataIndex:"id",
         //width: '25%',
         //sorter:(a, b) => a.id - b.id,
-    }, {
+    }*/, {
         title:"项目名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
         dataIndex:"name",
     }, {
@@ -182,9 +182,24 @@ export default class ProjectListComponent extends Component {
     };
 
     expandRow = (record) => {
+        console.log(record);//
         return (
             <div>
-                {record.id}
+                <div>
+                   流程ID： {record.id}
+                </div>
+                <div>
+                    项目ID： {record.id}
+                </div>
+                <div>
+                    委托人（用户名）：未定义{/*TODO*//*record.createdUserId*/}
+                </div>
+                <div>
+                    流程创建时间：{record.createdTime}
+                </div>
+                <div>
+                    项目价格：¥2333
+                </div>
             </div>
         );
     };
@@ -216,6 +231,7 @@ export default class ProjectListComponent extends Component {
                 <br />
                 <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'}
                        expandedRowRender={this.expandRow}
+                       expandRowByClick={true}
                 />
             </div>
         );

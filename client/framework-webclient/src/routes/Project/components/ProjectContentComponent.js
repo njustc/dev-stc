@@ -17,7 +17,7 @@ export default class ProjectContentComponent extends Component {
         super(props);
         this.state = {
             /*TODO:current应该放到props里面*/
-            current: 4,
+            current: 5,
         };
     }
 
@@ -36,7 +36,7 @@ export default class ProjectContentComponent extends Component {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
          this.props.getValues(this.props.projectData.id);
-        //     // console.log(this.values);
+         //console.log(this.props);
     };
 
 
@@ -59,6 +59,11 @@ export default class ProjectContentComponent extends Component {
     }, {
         title: '结项',
         description: "满意度调查表待提交",
+        //content: 'Last-content',
+    },{
+        title: '等待后台',
+        description: "什么也展示不了",
+        //status: "error"
         //content: 'Last-content',
     }];
 
@@ -119,7 +124,7 @@ export default class ProjectContentComponent extends Component {
                               hoverable
                               //bordered={false}
                         >
-                            <Steps current={this.state.current}>
+                            <Steps current={this.state.current} status="error">
                                 {this.steps.map(item => <Step key={item.title} title={item.title} description={item.description} />)}
                             </Steps>
                         </Card>
@@ -189,17 +194,21 @@ export default class ProjectContentComponent extends Component {
                             </Col>
                             <Col span={6}>
                                 <Card title='流程摘要信息' hoverable >
-                                    <div>流程ID：{this.props.id}</div>
+                                    <div>项目编号：未定义</div>
                                     <br/>
-                                    <div>项目名称：快乐星球小杨杰</div>
+                                    <div>流程ID：{this.props.projectData.id}</div>
                                     <br/>
-                                    <div>委托人ID：15120140</div>
+                                    <div>项目ID：未定义</div>
                                     <br/>
-                                    <div>委托人用户名：快乐星球小杨杰</div>
+                                    <div>项目名称：未定义</div>
                                     <br/>
-                                    <div>测试人：小猪佩奇</div>
+                                    <div>委托人ID：{this.props.projectData.createdUserId}</div>
                                     <br/>
-                                    <div>项目价格：¥0.5</div>
+                                    <div>委托人用户名：未定义</div>
+                                    <br/>
+                                    <div>流程创建时间：{this.props.projectData.createdTime}</div>
+                                    <br/>
+                                    <div>项目价格：¥2333</div>
                                     <br/>
                                     <div>备注：感谢曹老板指导,给曹老板打call</div>
                                 </Card>
@@ -212,12 +221,12 @@ export default class ProjectContentComponent extends Component {
                                     <div>您现在可以：<a>提交满意度调查表</a></div>
                                     <Divider/>
                                     <Timeline>
-                                        <Timeline.Item color="green">委托通过评审 2015-09-01</Timeline.Item>
-                                        <Timeline.Item color="green">测试样品已提交 2015-09-01</Timeline.Item>
-                                        <Timeline.Item color="green">合同通过确认 2015-09-01</Timeline.Item>
-                                        <Timeline.Item color="green">测试方案通过评审 2015-09-01</Timeline.Item>
-                                        <Timeline.Item color="green">测试报告通过确认 2015-09-01</Timeline.Item>
-                                        <Timeline.Item color="blue">满意度调查表待提交 2015-09-01</Timeline.Item>
+                                        <Timeline.Item color="red">等待后台更新swagger</Timeline.Item>
+                                        {/*<Timeline.Item color="green">测试样品已提交 2015-09-01</Timeline.Item>*/}
+                                        {/*<Timeline.Item color="green">合同通过确认 2015-09-01</Timeline.Item>*/}
+                                        {/*<Timeline.Item color="green">测试方案通过评审 2015-09-01</Timeline.Item>*/}
+                                        {/*<Timeline.Item color="green">测试报告通过确认 2015-09-01</Timeline.Item>*/}
+                                        {/*<Timeline.Item color="blue">满意度调查表待提交 2015-09-01</Timeline.Item>*/}
                                     </Timeline>
                                 </Card>
                             </Col>
