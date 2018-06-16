@@ -76,7 +76,7 @@ public class ProjectService extends BaseService<Project>{
           project.setProcessInstanceID(processInstanceID);
          */
 
-        this.saveEntity(project, user);
+        this.saveEntity(project, consign.getUser());
         project = projectRepository.findById(uid);
         return processProject(project);
     }
@@ -89,7 +89,8 @@ public class ProjectService extends BaseService<Project>{
             throw new Exception("Not Found");
         }
         //TODO:更新具体的工程内容
-        this.updateEntity(project, user);
+        Consign consign = consignRepository.findById(tempProject.getId());
+        this.updateEntity(project, consign.getUser());
 
         project = projectRepository.findById(tempProject.getId());
         return processProject(project);
