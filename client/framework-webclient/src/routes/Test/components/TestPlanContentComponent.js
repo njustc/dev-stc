@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import {Row,Col,Steps,Form,Button,Input,DatePicker,InputNumber,Collapse,Table} from 'antd'
+import {Row,Col,Steps,Form,Button,Input,DatePicker,InputNumber,Collapse,Table,Tabs,Popconfirm} from 'antd'
+//import {Tabs} from "antd/lib/index";
+const TabPane = Tabs.TabPane;
 const { Column, ColumnGroup } = Table;
 const Step = Steps.Step;
 const FormItem=Form.Item;
@@ -22,84 +24,14 @@ const staffData = [{
   duty: '监督指导测试小组工作，对项目进行中遇到的问题提供支持。',
 }];
 
-const steps = [{
-  title: '0.基本信息',
-}, {
-  title: '1.引言',
-}, {
-  title: '2.引用文件',
-},{
-  title: '3.软件测试环境',
-},{
-  title: '4.计划',
-}, {
-  title: '5.测试进度表',
-},{
-  title: '6.需求的可追踪性',
-}, ];
 class TestPlanContentComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            current: 0,
+            values:this.props.value,
+            editable:false,
         };
     };
-    next() {
-        const current = this.state.current + 1;
-        if(current==1) {
-            document.getElementById("page1").style.display="none";
-            document.getElementById("page2").style.display="";
-        }
-        else if(current==2){
-            document.getElementById("page2").style.display="none";
-            document.getElementById("page3").style.display="";
-        }
-        else if(current==3){
-            document.getElementById("page3").style.display="none";
-            document.getElementById("page4").style.display="";
-        }
-        else if(current==4){
-            document.getElementById("page4").style.display="none";
-            document.getElementById("page5").style.display="";
-        }
-        else if(current==5) {
-            document.getElementById("page5").style.display="none";
-            document.getElementById("page6").style.display="";
-        }
-        else{
-            document.getElementById("page6").style.display="none";
-            document.getElementById("page7").style.display="";
-        }
-        this.setState({ current });
-    }
-    prev() {
-        const current = this.state.current - 1;
-        if(current==0) {
-            document.getElementById("page2").style.display="none";
-            document.getElementById("page1").style.display="";
-        }
-        else if(current==1){
-            document.getElementById("page3").style.display="none";
-            document.getElementById("page2").style.display="";
-        }
-        else if(current==2){
-            document.getElementById("page4").style.display="none";
-            document.getElementById("page3").style.display="";
-        }
-        else if(current==3){
-            document.getElementById("page5").style.display="none";
-            document.getElementById("page4").style.display="";
-        }
-        else if(current==4) {
-            document.getElementById("page6").style.display="none";
-            document.getElementById("page5").style.display="";
-        }
-        else{
-            document.getElementById("page7").style.display="none";
-            document.getElementById("page6").style.display="";
-        }
-        this.setState({ current });
-    }
     static defaultProps = {
         values: {
             documentID:'NST-04-JS006-2011-软件测试方案-',
@@ -137,11 +69,11 @@ class TestPlanContentComponent extends Component {
         const { getFieldDecorator } = this.props.form;
         const formItemLayout =  {
             labelCol: { span: 4 },
-            wrapperCol: { span: 19 },
+            wrapperCol: { span: 17 },
         };
         const formItemLayout2 =  {
-            labelCol: { span: 2 },
-            wrapperCol: { span: 20 },
+            labelCol: { span: 3 },
+            wrapperCol: { span: 18 },
         };
         const InputStyle={
             width:'200',
@@ -172,37 +104,62 @@ class TestPlanContentComponent extends Component {
                     <h1 style={{textAlign:'center'}}>软件测试方案</h1>
                 </FormItem>
 
-                <Steps current={current}>
-                    {steps.map(item => <Step key={item.title} title={item.title} />)}
-                </Steps>
+                <Tabs
+                    defaultActiveKey="1"
+                    tabPosition="left"
+                >
+                    <TabPane tab="0.基本信息" key="1">
+                        <FormItem {...formItemLayout} label={"软件名称"}>
+                            {getFieldDecorator('softwareName', {
+                                rules: [{ required: true, message: '请输入软件名称！' }],
+//                                initialValue: this.props.values.softwareName,
+                            })(
+                                <Input  disabled={this.props.disable}/>
+                            )}
+                        </FormItem>
 
-                <FormItem/>
+                        <FormItem {...formItemLayout} label={"项目名称"}>
+                            {getFieldDecorator('projectName', {
+                                rules: [{ required: true, message: '请输入项目名称！' }],
+//                                initialValue: this.props.values.projectName,
+                            })(
+                                <Input  disabled={this.props.disable}/>
+                            )}
+                        </FormItem>
 
-                    <div id={"page1"}>
-                        <FormItem style={{textAlign:'center'}} colon={false} label={"编制人"}>
+                        <FormItem {...formItemLayout} label={"测试方案版本号"}>
+                            {getFieldDecorator('testPlanVer', {
+                                rules: [{ required: true, message: '请输入测试方案版本号！' }],
+//                                initialValue: this.props.values.testPlanVer,
+                            })(
+                                <Input  disabled={this.props.disable}/>
+                            )}
+                        </FormItem>
+
+                        <FormItem {...formItemLayout} label={"编制人"}>
                             {getFieldDecorator('establisher', {
                                 rules: [{ required: true, message: '请输入编制人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"  }],
 //                                initialValue: this.props.values.establisher,
                             })(
-                                <Input style={InputStyle} disabled={this.props.disable}/>
+                                <Input disabled={this.props.disable}/>
                             )}
                         </FormItem>
 
-                        <FormItem style={{textAlign:'center'}}  colon={false} label={"审核人"}>
+                        <FormItem {...formItemLayout} label={"审核人"}>
                             {getFieldDecorator('reviewer', {
                                 rules: [{ required: true, message: '请输入审核人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"  }],
 //                                initialValue: this.props.values.reviewer,
                             })(
-                                <Input style={InputStyle} disabled={this.props.disable}/>
+                                <Input  disabled={this.props.disable}/>
                             )}
                         </FormItem>
 
-                        <FormItem style={{textAlign:'center'}}  colon={false} label={"批准人"}>
+                        <FormItem {...formItemLayout} label={"批准人"}>
                             {getFieldDecorator('approver', {
                                 rules: [{ required: true, message: '请输入批准人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"  }],
 //                                initialValue: this.props.values.approver,
                             })(
-                                <Input style={InputStyle} disabled={this.props.disable}/>
+                                <Input disabled={this.props.disable}/>
                             )}
                         </FormItem>
 
@@ -214,10 +171,9 @@ class TestPlanContentComponent extends Component {
                                 <Table disabled={this.props.disable}/>
                             )}
                         </FormItem>
-                    </div>
+                    </TabPane>
 
-
-                    <div id={"page2"} style={{display:'none'}} >
+                    <TabPane tab="1.引言" key="2">
                         <Row>
                             <Col offset={1} span={21}>
                                 <h3>1.1 标识</h3>
@@ -293,15 +249,13 @@ class TestPlanContentComponent extends Component {
                                 <Input  disabled={this.props.disable}/>
                             )}
                         </FormItem>
-                    </div>
+                    </TabPane>
 
-                    <div id={"page3"} style={{display:'none'}}>
-                        <FormItem/>
-                        <FormItem/>
-                        <FormItem/>
-                    </div>
+                    <TabPane tab="2.引用文件" key="3">
 
-                    <div id={"page4"} style={{display:'none'}} >
+                    </TabPane>
+
+                    <TabPane tab="3.软件测试环境" key="4">
                         <Row>
                             <Col offset={1} span={21}>
                                 <h3>3.1 硬件</h3>
@@ -355,14 +309,10 @@ class TestPlanContentComponent extends Component {
                                     <Column title="职责" dataIndex="duty" key="duty"/>
                                 </Table>
                             </Col>
-
-
-
                         </Row>
-                    </div>
+                    </TabPane>
 
-                    <div id={"page5"} style={{display:'none'}}>
-
+                    <TabPane tab="4.计划" key="5">
                         <Row>
                             <Col offset={1} span={21}>
                                 本章描述了计划测试的总范围并且描述了本测试计划适用的每个测试，包括对相关文档的审查。
@@ -487,10 +437,9 @@ class TestPlanContentComponent extends Component {
                             </Col>
                         </Row>
                         <FormItem/>
+                    </TabPane>
 
-                    </div>
-
-                    <div id={"page6"} style={{display:'none'}}>
+                    <TabPane tab="5.测试进度表 " key="6">
                         <Row>
                             <Col offset={1} span={22}>
                                 <FormItem>
@@ -509,28 +458,16 @@ class TestPlanContentComponent extends Component {
                         </Row>
 
                         /*TODO 表格*/
-                    </div>
+                    </TabPane>
 
-                    <div id={"page7"} style={{display:'none'}}>
+                    <TabPane tab="6.需求的可追踪性 " key="7">
                         <Row>
                             <Col offset={1} span={22}>
                                 设计的测试用例的ID中包含其对应的相关规约说明中对应条目的名称，每个测试用例都是可追踪的。
                             </Col>
                         </Row>
-                    </div>
-
-                <FormItem/>
-                <div className="steps-action">{
-                    this.state.current < steps.length - 1
-                    &&
-                    <Button type="primary" onClick={() => this.next()}>下一页</Button>
-                }{
-                    this.state.current > 0
-                    &&
-                    <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-                      上一页</Button>
-                }
-                </div>
+                    </TabPane>
+                </Tabs>
 
 
                 {/* footer buttons */}

@@ -209,7 +209,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入委托单位信息！'}],
                                 //initialValue: this.props.values.consignUnitTelephone,
                             })(
-                                <Input placeholder="请输入电话号码" />
+                                <Input disabled={this.props.disable} placeholder="请输入电话号码" />
                             )}
                         </FormItem>
 
@@ -221,7 +221,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入传真号！'}],
                                 //initialValue: this.props.values.consignUnitFax,
                             })(
-                                <Input placeholder="请输入传真号" />
+                                <Input disabled={this.props.disable} placeholder="请输入传真号" />
                             )}
 
                         </FormItem>
@@ -234,7 +234,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入地址！'}],
                                 //initialValue: this.props.values.consignUnitAddress,
                             })(
-                                <Input placeholder="请输入地址" />
+                                <Input disabled={this.props.disable} placeholder="请输入地址" />
                             )}
                         </FormItem>
 
@@ -246,7 +246,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入邮编！'}],
                                 //initialValue: this.props.values.consignUnitEmailNumber,
                             })(
-                                <Input placeholder="请输入邮编" />
+                                <Input disabled={this.props.disable} placeholder="请输入邮编" />
                             )}
                         </FormItem>
 
@@ -258,7 +258,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入联系人！'}],
                                 //initialValue: this.props.values.consignUnitPeople,
                             })(
-                                <Input placeholder="请输入联系人" />
+                                <Input disabled={this.props.disable} placeholder="请输入联系人" />
                             )}
                         </FormItem>
 
@@ -270,7 +270,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入手机号码！'}],
                                 //initialValue: this.props.values.cconsignUnitCellPhoneNumber,
                             })(
-                                <Input placeholder="请输入手机号" />
+                                <Input disabled={this.props.disable} placeholder="请输入手机号" />
                             )}
                         </FormItem>
 
@@ -282,7 +282,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入E-mail！'}],
                                 //initialValue: this.props.values.consignUnitEmail,
                             })(
-                                <Input placeholder="请输入邮箱地址" />
+                                <Input disabled={this.props.disable} placeholder="请输入邮箱地址" />
                             )}
                         </FormItem>
 
@@ -294,7 +294,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入网址！'}],
                                 //initialValue: this.props.values.consignUnitUrl,
                             })(
-                                <Input placeholder="请输入网址" />
+                                <Input disabled={this.props.disable} placeholder="请输入网址" />
                             )}
                         </FormItem>
 
@@ -753,7 +753,7 @@ class ConsignContentComponent extends Component  {
                                     //initialValue: this.props.values.sampleQuantity.comTimeWish,
                                 }],
                             })(
-                                <DatePicker showTime format="YYYY-MM-DD"/>
+                                <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
                             )}
                         </FormItem>
 
@@ -786,7 +786,7 @@ class ConsignContentComponent extends Component  {
                                 <RadioGroup name={"查杀病毒:"} disabled={this.props.disable}>
                                     <Radio value="a">已完成</Radio>
                                     <Radio value="b">无法完成</Radio>
-                                    <Input placeholder="所用查杀工具" />
+                                    <Input disabled={this.props.disable} placeholder="所用查杀工具" />
                                 </RadioGroup>
 
                             )}
@@ -857,7 +857,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入！'}],
                                 // initialValue: this.props.values.elseA,
                             })(
-                                <Input placeholder="请输入" />
+                                <Input disabled={this.props.disable} placeholder="请输入" />
                             )}
                         </FormItem>
 
@@ -902,7 +902,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入测试项目编号！'}],
                                 //initialValue: this.props.values.testingNumber,
                             })(
-                                <Input placeholder="请输入测试项目编号" />
+                                <Input disabled={this.props.disable} placeholder="请输入测试项目编号" />
                             )}
                         </FormItem>
 
@@ -914,7 +914,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入备注！'}],
                                 //   initialValue: this.props.values.remarksE,
                             })(
-                                <TextArea rows={4} />
+                                <TextArea disabled={this.props.disable} rows={4} />
                             )}
                         </FormItem>
 
@@ -937,7 +937,7 @@ class ConsignContentComponent extends Component  {
                             label="委托人填写"
                             {...formItemLayout}
                         >
-                            <TextArea rows={4} />
+                            <TextArea disabled={this.props.disable} rows={4} />
                         </FormItem>
 
                         <FormItem
