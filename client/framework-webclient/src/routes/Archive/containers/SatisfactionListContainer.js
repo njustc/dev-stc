@@ -8,7 +8,7 @@ import SatisfactionListComponent from "../components/SatisfactionListComponent";
 
 const mapStateToProps = (state) => {
     return {
-        dataSource: Object.values(state.Satisfaction.listMap),
+        dataSource: Object.values(state.Satisfaction.listMap).filter(state.Satisfaction.listFilter),
     }
 };
 

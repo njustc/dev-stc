@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     // console.log(state.Project.listMap);
     return {
-        dataSource: Object.values(state.Project.listMap),
+        dataSource: Object.values(state.Project.listMap).filter(state.Project.listFilter),
         //enableNew: authData.functionGroup["Project"]!==undefined&&authData.functionGroup["Project"].findIndex(element => element === "ADD")!==-1
     }
 };
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
             // debugger;
             const key = '流程' + id;
             dispatch(addTabAction(key, '流程详情', ProjectContentView, {id: id}));
-//            dispatch(setProjectContent())
+//          dispatch(setProjectContent())
         },
         setListFilter: (listFilter) => dispatch(setProjectFilter(listFilter)),
         getProjectList: () => getProjectList(dispatch),
