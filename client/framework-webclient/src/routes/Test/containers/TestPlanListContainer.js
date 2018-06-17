@@ -9,7 +9,7 @@ import {deleteContract, newContract} from "../../../services/ContractService";
 
 const mapStateToProps = (state) => {
     return {
-        dataSource: Object.values(state.TestPlan.listMap),
+        dataSource: Object.values(state.TestPlan.listMap).filter(state.TestPlan.listFilter),
     }
 };
 

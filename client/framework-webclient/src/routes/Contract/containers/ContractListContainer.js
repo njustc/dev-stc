@@ -10,7 +10,7 @@ import ContractListComponent from "../components/ContractListComponent";
 const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     return {
-        dataSource: Object.values(state.Contract.listMap),
+        dataSource: Object.values(state.Contract.listMap).filter(state.Contract.listFilter),
         enableNew: authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "ADD")!==-1
     }
 };
