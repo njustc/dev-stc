@@ -18,6 +18,8 @@ class ConsignContentComponent extends Component  {
     constructor(props) {
         super(props);
         this.state = {
+            visible: false,
+            curButtonIdx: "",
         };
     }
 
@@ -38,7 +40,7 @@ class ConsignContentComponent extends Component  {
     };
 
     componentWillMount() {
-        this.props.getValues(this.props.consignData.id);
+        this.props.getValues(this.props.consignData.id,this.props.consignData.processInstanceID);
     };
 
     // componentDidMount() {
@@ -57,7 +59,16 @@ class ConsignContentComponent extends Component  {
             ...this.props.values,
             fieldsValue
         };
-        buttons[buttonIndex].onClick(this.props.consignData, consignation);
+        if(buttons[buttonIndex].content === '通过'){
+            this.setState({
+                ...this.state,
+                visible: true,
+                curButtonIdx: buttonIndex,
+            })
+        }
+        else {
+            buttons[buttonIndex].onClick(this.props.consignData, consignation);
+        }
         /*switch (buttons[buttonIndex].content) {
             case '保存': message.success('保存成功');break;
             case '提交': message.success('提交成功');break;
@@ -68,9 +79,9 @@ class ConsignContentComponent extends Component  {
     };
 
     handleOk = (e) => {
-        // const processNo = this.props.form.getFieldsValue().processNo;
-        // console.log(processNo);
-        // this.props.buttons[this.state.curButtonIdx].onClick(this.props.consignData,processNo);
+        const processNo = this.props.form.getFieldsValue().processNo;
+        console.log(processNo);
+        this.props.buttons[this.state.curButtonIdx].onClick(this.props.consignData,processNo);
         this.setState({
             ...this.state,
             visible: false,
@@ -958,7 +969,25 @@ class ConsignContentComponent extends Component  {
                         </Button>)}
                 </FormItem>
 
-
+                <FormItem style={{textAlign:'center'}}>
+                    <Modal
+                        visible={this.state.visible}
+                        title="填写项目信息"
+                        // okText="Create"
+                        onCancel={this.handleCancel}
+                        onOk={this.handleOk}
+                    >
+                        <Form layout="vertical">
+                            <FormItem>
+                                {getFieldDecorator('processNo', {
+                                    rules: [{ required: true, message: '请输入项目编号!' }],
+                                })(
+                                    <Input prefix={<Icon type="edit" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="ProcessNo" />
+                                )}
+                            </FormItem>
+                        </Form>
+                    </Modal>
+                </FormItem>
             </Form>
 
         );

@@ -702,7 +702,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功查询时返回工程.返回内容中的testCase为历史遗留问题，正式版应该不会有\n查询失败时，返回一个失败的status\n```\n{\n  \n  \"data\": [\n    {\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-06-09 17:37:22\",\n      \"id\": \"aa1a57fc-3ba5-414a-89fb-a9eea5b33a3f\",\n      \"testCase\": []\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "成功查询时返回工程.返回内容中的testCase为历史遗留问题，正式版应该不会有\n查询失败时，返回一个失败的status\n```\n{\n  \n  \"data\": [\n    {\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-06-09 17:37:22\",\n      \"id\": \"aa1a57fc-3ba5-414a-89fb-a9eea5b33a3f\",\n      \"userID\": \"2\",\n      \"testCase\": [],\n      \"username\": \"customer1\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
