@@ -174,7 +174,15 @@ export default class ContractListComponent extends Component {
     /*TODO:搜索功能*/
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
-        this.props.setListFilter((record) => record.match(reg));
+        switch (this.state.selectOption){
+            case 'id':
+                this.props.setListFilter((item)=>item.id.match(reg));break;
+            case 'createdUserId':
+                this.props.setListFilter((item)=>item.createdUserId.match(reg));break;
+            case 'name':
+                this.props.setListFilter((item)=>item.name.match(reg));break;
+            default:break;
+        }
     };
 
     render() {
