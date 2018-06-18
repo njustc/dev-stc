@@ -89,17 +89,17 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
         };
         const {id,processInstanceID} = consignData;
         putConsignState(dispatch,processInstanceID,putData,id,(status)=>{
-            console.log(status);
+            //console.log(status);
             if(status===STATUS.SUCCESS) message.success('通过成功');
             else message.error('通过失败');
         });
-        newContract(dispatch/*,id*/,(status)=>{
+        newContract(dispatch,id,(status)=>{
             console.log(status);
             if(status===STATUS.SUCCESS) message.success('合同新建成功');
             else message.error('合同新建失败');
         });
         newProject(dispatch,id,(status)=>{
-            console.log(status);
+            //console.log(status);
             if(status===STATUS.SUCCESS) message.success('流程新建成功');
             else message.error('流程新建失败');
         });
