@@ -23,12 +23,16 @@ const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //const consignation = state.Project.listMap[ownProps.id].consignation;
+    const consignContent = state.Consign.listMap[ownProps.id];
+    console.log(consignContent.operation);//
     return {
         // consignData: {},/*fetch data with pro id*/
         projectData: state.Project.listMap[ownProps.id],
+        //consignData: state.Consign.listMap[ownProps.id],
         //values: consignation ? JSON.parse(consignation) : {},
         disable: authData.functionGroup["Project"]===undefined||authData.functionGroup["Project"].findIndex(element => element === "EDIT")===-1||state.Project.listMap[ownProps.id].state!=="TobeSubmit",
         //curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
+        //consignState: consignContent.operation[0],/*TODO 待完善*/
     }
 };
 

@@ -40,7 +40,7 @@ public class TestRecordService extends BaseService<TestRecord> {
             List<Project> projects = user.getProjects();
             List<TestRecord> testRecords = new ArrayList<TestRecord>();
             for (Project project: projects){
-                testRecords.addAll(project.gettestRecords());
+                testRecords.addAll(project.getTestRecords());
             }
             //TODO:对测试结果进行处理，去掉具体内容,并且添加测试结果状态
             return processTestRecords(testRecords);

@@ -190,7 +190,7 @@ export default class ProjectListComponent extends Component {
     };
 
     expandRow = (record) => {
-        console.log(record);//
+        //console.log(record);//
         return (
             <div>
                 <div>

@@ -17,7 +17,7 @@ export default class ProjectContentComponent extends Component {
         super(props);
         this.state = {
             /*TODO:current应该放到props里面*/
-            current: 5,
+            current: 0,
         };
     }
 
@@ -42,30 +42,30 @@ export default class ProjectContentComponent extends Component {
 
     steps = [{
         title: '委托',
-        description: "委托已通过",
+        //description: "委托已通过",
         //content: 'First-content',
     }, {
         title: '合同',
-        description: "合同已确认",
+        // description: "合同已确认",
         //content: 'Second-content',
     }, {
         title: '测试',
-        description: "测试已完成",
+        // description: "测试已完成",
         //content: 'Last-content',
     }, {
         title: '报告',
-        description: "测试报告已确认",
+        // description: "测试报告已确认",
         //content: 'Last-content',
     }, {
         title: '结项',
-        description: "满意度调查表待提交",
+        // description: "满意度调查表待提交",
         //content: 'Last-content',
-    },{
+    }/*,{
         title: '等待后台',
         description: "什么也展示不了",
         //status: "error"
         //content: 'Last-content',
-    }];
+    }*/];
 
     data = [
         {index:1,name:'委托申请表'},
@@ -83,13 +83,20 @@ export default class ProjectContentComponent extends Component {
 
     onTitle() {
       return (
-          <div>流程当前状态为：满意度调查表待提交</div>
+          /*TODO 完善各种状态*/
+          <div>流程当前状态为：委托申请表已通过</div>
       );
     };
     /*查看详情*/
     viewContent = (item) => () => {
         //console.log(this.props.id);
         this.props.showContent(item,this.props.id);
+    };
+
+    viewOption = (state) => () => {
+        switch (state){
+            case 'Finish' : this.props.showContent(date[0],this.props.id);
+        }
     };
 
     render() {
@@ -124,7 +131,7 @@ export default class ProjectContentComponent extends Component {
                               hoverable
                               //bordered={false}
                         >
-                            <Steps current={this.state.current} status="error">
+                            <Steps current={this.state.current}>
                                 {this.steps.map(item => <Step key={item.title} title={item.title} description={item.description} />)}
                             </Steps>
                         </Card>
@@ -218,10 +225,13 @@ export default class ProjectContentComponent extends Component {
                                       hoverable
                                       //bordered={false}
                                 >
-                                    <div>您现在可以：<a>提交满意度调查表</a></div>
+                                    <div>您现在可以：<a href="javascript:void(0);"
+                                                  onClick={this.viewOption(this.props.consignState)}
+                                    >查看委托申请表</a></div>
                                     <Divider/>
                                     <Timeline>
-                                        <Timeline.Item color="red">等待后台更新swagger</Timeline.Item>
+                                        {<Timeline.Item color="green">委托申请表已提交</Timeline.Item>}
+                                        {/*<Timeline.Item color="red">等待后台更新swagger</Timeline.Item>*/}
                                         {/*<Timeline.Item color="green">测试样品已提交 2015-09-01</Timeline.Item>*/}
                                         {/*<Timeline.Item color="green">合同通过确认 2015-09-01</Timeline.Item>*/}
                                         {/*<Timeline.Item color="green">测试方案通过评审 2015-09-01</Timeline.Item>*/}
