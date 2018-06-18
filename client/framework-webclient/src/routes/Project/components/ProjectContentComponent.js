@@ -82,10 +82,13 @@ export default class ProjectContentComponent extends Component {
     ];
 
     onTitle() {
-      return (
-          /*TODO 完善各种状态*/
-          <div>流程当前状态为：委托申请表已通过</div>
-      );
+        /*TODO 完善各种状态*/
+        switch (this.props.consignState)  {
+          case 'Finish': return (
+              <div>流程当前状态为：委托申请表已通过</div>
+          );
+      }
+
     };
     /*查看详情*/
     viewContent = (item) => () => {
@@ -93,11 +96,23 @@ export default class ProjectContentComponent extends Component {
         this.props.showContent(item,this.props.id);
     };
 
-    viewOption = (state) => () => {
+    consignOperation = (state) => () => {
         switch (state){
-            case 'Finish' : this.props.showContent({index:1,name:'委托申请表'},this.props.id);
+            case 'Submit' : this.props.showContent({index:1,name:'委托申请表'},this.props.id);break;
+            case 'Finish' : this.props.showContent({index:1,name:'委托申请表'},this.props.id);break;
+            case 'Undefined' : break;
             default: break;
         }
+    };
+
+    contractOperation = () => () => {
+        this.props.showContent({index:2,name:'测试合同书'},this.props.id);
+        /*switch (state){
+            case 'Submit' : this.props.showContent({index:2,name:'测试合同书'},this.props.id);break;
+            case 'Finish' : this.props.showContent({index:2,name:'测试合同书'},this.props.id);break;
+            case 'Undefined' : break;
+            default: break;
+        }*/
     };
 
     render() {
@@ -222,13 +237,20 @@ export default class ProjectContentComponent extends Component {
                                 </Card>
                             </Col>
                             <Col span={15}>
-                                <Card title={this.onTitle()}
+                                <Card
+                                    //title={this.onTitle()}
                                       hoverable
                                       //bordered={false}
                                 >
-                                    <div>您现在可以：<a href="javascript:void(0);"
-                                                  onClick={this.viewOption(this.props.consignState)}
-                                    >查看委托申请表</a></div>
+                                    <div>您现在可以：
+                                        <a href="javascript:void(0);"
+                                                  onClick={this.consignOperation(this.props.consignState)}
+                                        >查看委托申请表（待删）</a>
+                                        <div></div>
+                                        <a href="javascript:void(0);"
+                                           onClick={this.contractOperation()}
+                                        >填写测试合同书</a>
+                                    </div>
                                     <Divider/>
                                     <Timeline>
                                         {<Timeline.Item color="green">委托申请表已通过</Timeline.Item>}

@@ -23,13 +23,14 @@ const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //const consignation = state.Project.listMap[ownProps.id].consignation;
+    const projectContent = state.Project.listMap[ownProps.id];
     const consignContent = state.Consign.listMap[ownProps.id];
     //const consignation = content?state.Consign.listMap[ownProps.id].consignation:undefined;
     //console.log(consignContent);
     //console.log(consignContent.operation[0]);//
     return {
         // consignData: {},/*fetch data with pro id*/
-        projectData: state.Project.listMap[ownProps.id],
+        projectData: projectContent?state.Project.listMap[ownProps.id]:ownProps,
         //consignData: state.Consign.listMap[ownProps.id],
         //values: consignation ? JSON.parse(consignation) : {},
         disable: authData.functionGroup["Project"]===undefined||authData.functionGroup["Project"].findIndex(element => element === "EDIT")===-1||state.Project.listMap[ownProps.id].state!=="TobeSubmit",
