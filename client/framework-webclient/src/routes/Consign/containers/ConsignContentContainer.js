@@ -4,6 +4,7 @@ import {message} from 'antd';
 import {connect} from "react-redux";
 import {getConsign, getConsignState, putConsignState, updateConsign} from "../../../services/ConsignService";
 import {newProject} from "../../../services/ProjectService";
+import {newContract} from "../../../services/ContractService";
 import {globalOperation, STATUS} from "../../../services/common";
 // import "./common"
 /*TODO:表单内容和按钮的可视及禁用情况*/
@@ -91,6 +92,11 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
             console.log(status);
             if(status===STATUS.SUCCESS) message.success('通过成功');
             else message.error('通过失败');
+        });
+        newContract(dispatch/*,id*/,(status)=>{
+            console.log(status);
+            if(status===STATUS.SUCCESS) message.success('合同新建成功');
+            else message.error('合同新建失败');
         });
         newProject(dispatch,id,(status)=>{
             console.log(status);
