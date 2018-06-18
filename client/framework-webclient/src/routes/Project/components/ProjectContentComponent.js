@@ -95,7 +95,8 @@ export default class ProjectContentComponent extends Component {
 
     viewOption = (state) => () => {
         switch (state){
-            case 'Finish' : this.props.showContent(date[0],this.props.id);
+            case 'Finish' : this.props.showContent({index:1,name:'委托申请表'},this.props.id);
+            default: break;
         }
     };
 
@@ -230,7 +231,7 @@ export default class ProjectContentComponent extends Component {
                                     >查看委托申请表</a></div>
                                     <Divider/>
                                     <Timeline>
-                                        {<Timeline.Item color="green">委托申请表已提交</Timeline.Item>}
+                                        {<Timeline.Item color="green">委托申请表已通过</Timeline.Item>}
                                         {/*<Timeline.Item color="red">等待后台更新swagger</Timeline.Item>*/}
                                         {/*<Timeline.Item color="green">测试样品已提交 2015-09-01</Timeline.Item>*/}
                                         {/*<Timeline.Item color="green">合同通过确认 2015-09-01</Timeline.Item>*/}
