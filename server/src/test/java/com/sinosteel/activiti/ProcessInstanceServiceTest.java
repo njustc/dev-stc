@@ -345,27 +345,29 @@ public class ProcessInstanceServiceTest {
             Request request = new Request();
             request.setUser(marketing);
             JSONObject writeJson = new JSONObject();
+            //writeJson.put("comments",null);
             writeJson.put("operation", "Write");
             writeJson.put("object", "testplan");
             request.setParams(writeJson);
-
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(prId1, request));
             state = processInstanceService.queryProcessState(prId1);
             Assert.assertEquals("TobeReview",state.getString("state"));
+
             System.out.println("======工作人员否决测试方案======");
             //构造提交委托请求
             request = new Request();
             request.setUser(marketing);
             JSONObject rejectJson = new JSONObject();
+            //rejectJson.put("comments","rejectreject");
             rejectJson.put("operation", "ReviewReject");
             rejectJson.put("object", "testplan");
             request.setParams(rejectJson);
-
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(prId1, request));
             state = processInstanceService.queryProcessState(prId1);
             Assert.assertEquals("TobeWrite",state.getString("state"));
+
             System.out.println("======customer2再次请求======");
             //构造提交委托请求
             request = new Request();
@@ -375,32 +377,34 @@ public class ProcessInstanceServiceTest {
             System.out.println(processInstanceService.updateProcessState(prId1, request));
             state = processInstanceService.queryProcessState(prId1);
             Assert.assertEquals("TobeReview",state.getString("state"));
+
             System.out.println("======工作人员通过测试方案======");
             //构造提交委托请求
             request = new Request();
             request.setUser(marketing);
             JSONObject passJson = new JSONObject();
+            rejectJson.put("comments","passpass");
             passJson.put("operation", "ReviewPass");
             passJson.put("object", "testplan");
             request.setParams(passJson);
-
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(prId1, request));
             state = processInstanceService.queryProcessState(prId1);
             Assert.assertEquals("TobeConfirm",state.getString("state"));
-            System.out.println("=====客户通过测试方案======");
 
+            System.out.println("=====客户通过测试方案======");
             request=new Request();
             request.setUser(customer2);
             JSONObject confirmJson=new JSONObject();
+            //rejectJson.put("comments","comfirmpasspass");
             confirmJson.put("operation","ConfirmPass");
             confirmJson.put("object","testplan");
             request.setParams(confirmJson);
             System.out.println(processInstanceService.updateProcessState(prId1, request));
             state = processInstanceService.queryProcessState(prId1);
             Assert.assertEquals("TobeImplement",state.getString("state"));
-            System.out.println("=====客户实施测试方案======");
 
+            System.out.println("=====客户实施测试方案======");
             request=new Request();
             request.setUser(customer2);
             JSONObject implementJson=new JSONObject();
@@ -409,6 +413,7 @@ public class ProcessInstanceServiceTest {
             request.setParams(implementJson);
             System.out.println(processInstanceService.updateProcessState(prId1, request));
             state = processInstanceService.queryProcessState(prId1);
+           // System.out.println(processInstanceService.getTaskData(prId1));
             Assert.assertEquals("Finished",state.getString("state"));
         } catch (Exception e) {
             e.printStackTrace();

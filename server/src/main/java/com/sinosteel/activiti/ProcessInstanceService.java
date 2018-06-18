@@ -5,8 +5,10 @@ import com.sinosteel.domain.Consign;
 import com.sinosteel.domain.Contract;
 import com.sinosteel.domain.User;
 import com.sinosteel.framework.core.web.Request;
+import org.activiti.engine.form.FormProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import springfox.documentation.spring.web.json.Json;
 
 import java.util.List;
 
@@ -41,7 +43,7 @@ public class ProcessInstanceService {
     public String createTestReportProcess(JSONObject params, User user) throws Exception{
         //TestReport testReport = JSONObject.toJavaObject(params, TestReport.class);
         //return baseActiviti.contractActiviti.createContractProcess(contract.getId(), user.getId(),"W0");
-        return TCProcessEngine.createTestreportProcess();
+        return TCProcessEngine.createTestreportProcess(user.getId());
     }
     /*更新具体流程实例状态*/
     public JSONObject updateProcessState(String processInstanceID, Request request) throws Exception {
@@ -53,10 +55,12 @@ public class ProcessInstanceService {
     public JSONObject queryProcessState(String processInstanceID) throws Exception {
         String state = TCProcessEngine.getProcessState(processInstanceID);
         List<String> operation = TCProcessEngine.getUserOperation(processInstanceID);
+        String assigee=TCProcessEngine.getTaskAssignee(processInstanceID);
         JSONObject queryResultJson = new JSONObject();
         queryResultJson.put("processInstanceID",  processInstanceID);
         queryResultJson.put("state", state);
         queryResultJson.put("operation", operation);
+        queryResultJson.put("assignee",assigee);
         return queryResultJson;
     }
 
@@ -68,4 +72,31 @@ public class ProcessInstanceService {
         userOperationJson.put("operation", operation);
         return userOperationJson;
     }
+
+    /*查询具体流程实例的历史任务信息*/
+    public JSONObject getHistoricTasks(String processInstanceID) throws Exception {
+        List<String> operation = TCProcessEngine.queryHistoricTask(processInstanceID);
+        JSONObject historicTaskJson = new JSONObject();
+        historicTaskJson.put("processInstanceID",  processInstanceID);
+        historicTaskJson.put("TaskInfors", operation);
+        return historicTaskJson;
+    }
+
+    /*获取当前task的用户类型*/
+    public JSONObject getUserType(String processInstanceID) throws Exception{
+        String userType=TCProcessEngine.getTaskAssignee(processInstanceID);
+        JSONObject getUserTypeJson=new JSONObject();
+        getUserTypeJson.put("processInstanceID",processInstanceID);
+        getUserTypeJson.put("UserType",getUserTypeJson);
+        return getUserTypeJson;
+    }
+
+/*    public JSONObject getTaskData(String processInstanceID) throws Exception
+    {
+        List<String> formProperties=TCProcessEngine.getTaskData(processInstanceID);
+        JSONObject getTaskDataJson=new JSONObject();
+        getTaskDataJson.put("processInstanceID",processInstanceID);
+        getTaskDataJson.put("TaskDatas",formProperties);
+        return  getTaskDataJson;
+    }*/
 }
