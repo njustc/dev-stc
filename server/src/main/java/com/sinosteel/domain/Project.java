@@ -83,11 +83,11 @@ public class Project extends BaseEntity {
     @JSONField(serialize = false)
     private List<TestRecord> testRecords;
 
-    public List<TestRecord> gettestRecords() {
+    public List<TestRecord> getTestRecords() {
         return testRecords;
     }
 
-    public void settestRecords(List<TestRecord> testRecords) {
+    public void setTestRecords(List<TestRecord> testRecords) {
         this.testRecords = testRecords;
     }
 

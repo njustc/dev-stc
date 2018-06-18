@@ -8,6 +8,7 @@
     </startEvent>
     <userTask id="submitconsign" name="TobeSubmit" activiti:assignee="${ClientID}" >
       <extensionElements>
+        <activiti:formProperty id="user" name="client" type="string" value="client"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-AB045AD0-DCD5-45B2-ACD1-948752FB8A4E]]></modeler:editor-resource-id>
@@ -18,6 +19,8 @@
        <!-- <activiti:taskListener event="create"
                                class="com.sinosteel.activiti.TaskListenerlmpl"></activiti:taskListener>-->
         <activiti:formProperty id="approval" name="Do you approve this request?" type="enum" required="true"/>
+        <activiti:formProperty id="user" name="worker" type="string" value="worker"/>
+       <!-- <activiti:formProperty id="comments" name="reason about pass or reject the consign" type="String" required="true"/>-->
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-BF1DA17F-62CD-42D0-8FB2-7C1AF61A3050]]></modeler:editor-resource-id>
