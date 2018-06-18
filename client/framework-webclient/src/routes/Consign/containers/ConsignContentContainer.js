@@ -13,6 +13,8 @@ const mapStateToProps = (state, ownProps) => {
     const content = state.Consign.listMap[ownProps.id];
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     const consignation = content?state.Consign.listMap[ownProps.id].consignation:undefined;
+    console.log('raw', consignation);
+    console.log('consignation', consignation ? JSON.parse(consignation): {});
     const ToBeSubmit = content?state.Consign.listMap[ownProps.id].state!=="TobeSubmit":false;
     const isEditVisible = authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     console.log(content);
