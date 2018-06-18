@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import ConsignContentComponent from "../components/ConsignContentComponent";
 import {message} from 'antd';
