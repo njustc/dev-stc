@@ -385,7 +385,21 @@ INSERT INTO `tbl_sys_functions` (`id`,`code`,`name`,`created_time`,`created_user
 ('1-0',NULL,'ContractAdd',NULL,NULL,NULL,NULL,'ADD','Contract'),
 ('1-1',NULL,'ContractDelete',NULL,NULL,NULL,NULL,'DELETE','Contract'),
 ('1-2',NULL,'ContractEdit',NULL,NULL,NULL,NULL,'EDIT','Contract'),
-('1-3',NULL,'ContractView',NULL,NULL,NULL,NULL,'VIEW','Contract');
+('1-3',NULL,'ContractView',NULL,NULL,NULL,NULL,'VIEW','Contract'),
+('2-0',NULL,'ProjectAdd',NULL,NULL,NULL,NULL,'ADD','Project'),
+('2-1',NULL,'ProjectDelete',NULL,NULL,NULL,NULL,'DELETE','Project'),
+('2-2',NULL,'ProjectEdit',NULL,NULL,NULL,NULL,'DELETE','Project'),
+('2-3',NULL,'ProjectView',NULL,NULL,NULL,NULL,'VIEW','Project'),
+('3-0',NULL,'TestPlanAdd',NULL,NULL,NULL,NULL,'ADD','TestPlan'),
+('3-1',NULL,'TestPlanDelete',NULL,NULL,NULL,NULL,'DELETE','TestPlan'),
+('3-2',NULL,'TestPlanEdit',NULL,NULL,NULL,NULL,'EDIT','TestPlan'),
+('3-3',NULL,'TestPlanView',NULL,NULL,NULL,NULL,'VIEW','TestPlan'),
+('4-0',NULL,'TestCaseAdd',NULL,NULL,NULL,NULL,'ADD','TestCase'),
+('4-1',NULL,'TestCaseDelete',NULL,NULL,NULL,NULL,'DELETE','TestCase'),
+('4-2',NULL,'TestCaseEdit',NULL,NULL,NULL,NULL,'EDIT','TestCase'),
+('4-3',NULL,'TestCaseView',NULL,NULL,NULL,NULL,'VIEW','TestCase'),
+('5-0',NULL,'TestRecordAdd',NULL,NULL,NULL,NULL,'ADD','TestRecord'),
+('5-1',NULL,'TestRecordDelete',NULL,NULL,NULL,NULL,'DELETE','TestRecord');
 
 
 
