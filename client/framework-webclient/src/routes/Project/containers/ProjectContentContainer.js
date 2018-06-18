@@ -24,7 +24,9 @@ const mapStateToProps = (state, ownProps) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //const consignation = state.Project.listMap[ownProps.id].consignation;
     const consignContent = state.Consign.listMap[ownProps.id];
-    console.log(consignContent.operation);//
+    //const consignation = content?state.Consign.listMap[ownProps.id].consignation:undefined;
+    //console.log(consignContent);
+    //console.log(consignContent.operation[0]);//
     return {
         // consignData: {},/*fetch data with pro id*/
         projectData: state.Project.listMap[ownProps.id],
@@ -32,7 +34,7 @@ const mapStateToProps = (state, ownProps) => {
         //values: consignation ? JSON.parse(consignation) : {},
         disable: authData.functionGroup["Project"]===undefined||authData.functionGroup["Project"].findIndex(element => element === "EDIT")===-1||state.Project.listMap[ownProps.id].state!=="TobeSubmit",
         //curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
-        //consignState: consignContent.operation[0],/*TODO 待完善*/
+        consignState: consignContent?consignContent.operation[0]:'Undefined',/*TODO 待完善*/
     }
 };
 
