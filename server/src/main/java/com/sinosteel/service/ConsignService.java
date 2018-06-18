@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
+import com.sinosteel.activiti.TCProcessEngine;
 import com.sinosteel.domain.Consign;
 import com.sinosteel.domain.User;
 import com.sinosteel.repository.ConsignRepository;
@@ -131,7 +132,8 @@ public class ConsignService extends BaseService<Consign> {
             jsonObject.remove("consignation");
             JSONObject processState = processInstanceService.queryProcessState(consign.getProcessInstanceID());
             String state = processState.getString("state");
-            String operation = processState.getString("operation");
+//            String operation = processState.getString("operation");
+            List operation = processState.getObject("operation", List.class);
             jsonObject.put("state", state);
             jsonObject.put("operation", operation);
             resultArray.add(jsonObject);
