@@ -22,17 +22,10 @@ public class Consign extends BaseEntity{
 
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
-//
-//    @Column(name = "TESTTYPES")
-//    private String testTypes;
-//
-//    public List<String> getTestType(){
-//
-//    }
-//
-//    public void setTestType(List<String> testType){
-//
-//    }
+
+    @Column(name = "TESTTYPES")
+    private String testTypes;
+
 
     /**
      * @author FW

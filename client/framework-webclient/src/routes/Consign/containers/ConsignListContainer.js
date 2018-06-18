@@ -2,6 +2,7 @@ import React, {Component,PropTypes} from 'react';
 import {connect} from "react-redux";
 import {addTabAction} from "MODULES/ducks/Layout";
 import {ConsignContentView} from "../../Consign";
+import {getConsign} from "../../../services/ConsignService";
 import {deleteConsign, getConsignList, newConsign} from "../../../services/ConsignService";
 import {setConsignFilter} from "../../../modules/ducks/Consign";
 import ConsignListComponent from "../components/ConsignListComponent";
@@ -20,6 +21,7 @@ const mapDispatchToProps = (dispatch) => {
         showContent: (id) => {
             // debugger;
             const key = "委托" + id;
+            // getConsign(dispatch,id);
             dispatch(addTabAction(key, '委托详情', ConsignContentView, {id: id}));
 //            dispatch(setConsignContent())
         },

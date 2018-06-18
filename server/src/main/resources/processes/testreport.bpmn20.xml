@@ -8,6 +8,7 @@
     </startEvent>
     <userTask id="writereport" name="TobeWrite" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
+        <activiti:formProperty id="user" name="worker" type="string" value="worker"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-A0F87A75-775A-40B0-8F7E-6C2BCAE70468]]></modeler:editor-resource-id>
@@ -16,6 +17,8 @@
     <userTask id="reviewreport" name="TobeReview" activiti:candidateUsers="${WorkerId}">
       <extensionElements>
         <activiti:formProperty id="approval" name="Do you approve this testreport?" type="enum" required="true"/>
+        <activiti:formProperty id="user" name="worker" type="string" value="worker"/>
+        <!--<activiti:formProperty id="comments" name="reason about pass or reject the testreport" type="String" required="true"/>-->
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-9102BEBF-1604-435A-8988-BACA3D835F2A]]></modeler:editor-resource-id>
@@ -24,6 +27,8 @@
     <userTask id="approvereport" name="TobeApprove" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
         <activiti:formProperty id="approval" name="Do you approve this testplan?" type="enum" required="true"/>
+        <activiti:formProperty id="user" name="worker" type="string" value="worker"/>
+        <!--<activiti:formProperty id="comments" name="reason about pass or reject the report" type="String" required="true"/>-->
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-1B1252BB-E43A-4E86-AEA4-455AD28CF94D]]></modeler:editor-resource-id>
@@ -41,14 +46,17 @@
     </exclusiveGateway>
     <userTask id="sendreport" name="TobeSend" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
+        <activiti:formProperty id="user" name="worker" type="string" value="worker"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-E5EBD068-6887-4339-9371-7D50789342BF]]></modeler:editor-resource-id>
       </extensionElements>
     </userTask>
-    <userTask id="confirmreport" name="TobeConfirm" activiti:candidateGroups="客户">
+    <userTask id="confirmreport" name="TobeConfirm" activiti:candidateGroups="${ClientID}">
       <extensionElements>
         <activiti:formProperty id="approval" name="Do you approve this testplan?" type="enum" required="true"/>
+        <activiti:formProperty id="user" name="client" type="string" value="client"/>
+        <!--<activiti:formProperty id="comments" name="reason about pass or reject the testplan" type="String" required="true"/>-->
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-E33AD7C3-DEFA-44A7-BAAA-8ED933956D5B]]></modeler:editor-resource-id>
@@ -59,8 +67,9 @@
         <modeler:editor-resource-id><![CDATA[sid-4877C8D8-40DB-47CD-99E1-721D85697311]]></modeler:editor-resource-id>
       </extensionElements>
     </exclusiveGateway>
-    <userTask id="satisfaction" name="Satisfaction" activiti:candidateGroups="客户">
+    <userTask id="satisfaction" name="Satisfaction" activiti:candidateGroups="${ClientID}">
       <extensionElements>
+        <activiti:formProperty id="user" name="client" type="string" value="client"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-400DA8A0-0ACD-42F7-AAD3-9543DE389B6C]]></modeler:editor-resource-id>
@@ -68,6 +77,7 @@
     </userTask>
     <userTask id="done" name="TobeDone" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
+        <activiti:formProperty id="user" name="worker" type="string" value="worker"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-BBE6B76E-E6AD-4ACE-9DE6-8FE748B2291B]]></modeler:editor-resource-id>
@@ -75,6 +85,7 @@
     </userTask>
     <userTask id="file" name="TobeFiling" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
+        <activiti:formProperty id="user" name="worker" type="string" value="worker"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-A8C78231-A6B8-47D6-ABF9-A4DEF426CBD1]]></modeler:editor-resource-id>
