@@ -1,61 +1,18 @@
 import React, {Component, PropTypes} from 'react';
-import {Row,Col,Steps, Form,Button,Input,DatePicker,InputNumber,Collapse,message} from 'antd'
+import {Row,Col,Steps, Form,Button,Input,DatePicker,InputNumber,Collapse,Tabs,message} from 'antd'
 //import TextArea from "../../../../../framework-androidclient/src/screens/form/textArea";
 //import {message} from "antd/lib/index";
 const Step = Steps.Step;
-
+const TabPane = Tabs.TabPane;
 const FormItem=Form.Item;
 const InputGroup = Input.Group;
 const Panel=Collapse.Panel;
 const { TextArea } = Input;
-const steps = [{
-  title: '合同基本信息',
-}, {
-  title: '合同内容（一）',
-}, {
-  title: '合同内容（二）',
-},{
-  title: '合同内容（三）',
-}, ];
-
 class ContractContentComponent extends Component {
     constructor(props) {
         super(props);
          this.state = {
-            current: 0,
          };
-    }
-    next() {
-        const current = this.state.current + 1;
-        if(current==1) {
-            document.getElementById("page1").style.display="none";
-            document.getElementById("page2").style.display="";
-        }
-        else if(current==2){
-            document.getElementById("page2").style.display="none";
-            document.getElementById("page3").style.display="";
-        }
-        else{
-            document.getElementById("page3").style.display="none";
-            document.getElementById("page4").style.display="";
-        }
-        this.setState({ current });
-    }
-      prev() {
-        const current = this.state.current - 1;
-        if(current==0) {
-            document.getElementById("page2").style.display="none";
-            document.getElementById("page1").style.display="";
-        }
-        else if(current==1){
-            document.getElementById("page3").style.display="none";
-            document.getElementById("page2").style.display="";
-        }
-        else{
-            document.getElementById("page4").style.display="none";
-            document.getElementById("page3").style.display="";
-        }
-        this.setState({ current });
     }
     static defaultProps = {
         values: {
@@ -129,13 +86,12 @@ class ContractContentComponent extends Component {
                     <h1 style={{textAlign:'center'}}>软件委托测试合同</h1>
                 </FormItem>
 
-                <Steps current={current}>
-                    {steps.map(item => <Step key={item.title} title={item.title} />)}
-                </Steps>
+                <Tabs
+                    defaultActiveKey="1"
+                    tabPosition="left"
+                >
 
-                <FormItem/>
-
-                <div id={"page1"}>
+                    <TabPane tab="合同基本信息 " key="1">
                     <FormItem {...formItemLayout} label="项目名称">
                         {getFieldDecorator('projectName', {
                             rules: [{ required: true, message: '请输入项目名称！' }],
@@ -181,9 +137,9 @@ class ContractContentComponent extends Component {
                         )}
                     </FormItem>
 
-                </div>
+                    </TabPane>
 
-                <div offset="2" style={{display:'none'}} id={"page2" } >
+                    <TabPane tab="合同内容（一）" key="2">
 
                     <Row>
                         <Col offset={1} span={21}>
@@ -283,9 +239,9 @@ class ContractContentComponent extends Component {
                         </Col>
                     </Row>
 
-                        </div>
+                    </TabPane>
 
-                <div id={"page3"} style={{display:'none'}}>
+                    <TabPane tab="合同内容（二）" key="3">
                     <Row>
                         <Col offset={1} span={21}>
                             <h4>五、测试费用支付方式</h4>
@@ -361,9 +317,9 @@ class ContractContentComponent extends Component {
                             本合同的正本一式肆份，双方各执两份，具有同等法律效力。
                         </Col>
                     </Row>
-                </div>
+                    </TabPane>
 
-                <div id={"page4"} style={{display:'none'}}>
+                    <TabPane tab="合同内容（三）" key="4">
                     <Row>
                         <Col offset={1} span={21}>
                             <h4>十二、签章</h4>
@@ -556,20 +512,9 @@ class ContractContentComponent extends Component {
                         )}
                     </FormItem>
 
-                </div>
+                    </TabPane>
+                </Tabs>
 
-                <FormItem/>
-                <div className="steps-action">{
-                    this.state.current < steps.length - 1
-                    &&
-                    <Button type="primary" onClick={() => this.next()}>下一页</Button>
-                }{
-                    this.state.current > 0
-                    &&
-                    <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-                      上一页</Button>
-                }
-            </div>
                 {/* footer buttons */}
                 <FormItem style={{textAlign:'center'}}>
                     {this.props.buttons.map((button, index) =>

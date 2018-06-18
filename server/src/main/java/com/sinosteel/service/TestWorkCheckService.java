@@ -27,11 +27,12 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
     @Autowired
     private ProjectRepository projectRepository;
 
-    @Autowired
-    private ProcessInstanceService processInstanceService;
+    //testWorkCheck不需要添加状态
+    //@Autowired
+    //private ProcessInstanceService processInstanceService;
 
 
-    //以工程为来源查询testRecord
+    //以用户的工程为来源查询testWorkCheck
     public JSON queryTestWorkChecks(User user) throws Exception {
         if (user != null)
             System.out.println("queryTestRecords--> query user role: " + user.getRoles().get(0).getRoleName());
@@ -42,15 +43,27 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
             for (Project project: projects){
                 testWorkChecks.add(project.getTestWorkCheck());
             }
-            //TODO:对测试结果进行处理，去掉具体内容,并且添加测试结果状态
+
+            //System.out.println(testWorkChecks);
             return processTestWorkChecks(testWorkChecks);
         }
         else
         {
             List<TestWorkCheck> testWorkChecks = testWorkCheckRepository.findByAllTestWorkChecks();
-            //对测试结果进行处理，去掉具体内容,并且添加测试结果状态
+            //有效处理testWorkCheck为空
             return processTestWorkChecks(testWorkChecks);
         }
+    }
+
+    //前端从工程中获取testWorkCheck
+    public JSON queryTestWorkCheckByProject(String projectID) throws Exception{
+        if (projectRepository.findById(projectID) == null) {
+            throw new Exception("can't find project by id :" + projectID);
+        }
+        Project project = projectRepository.findById(projectID);
+        TestWorkCheck testWorkCheck = project.getTestWorkCheck();
+
+        return processTestWorkCheck(testWorkCheck);
     }
 
     public JSONObject queryTestWorkCheckByID(String id) throws Exception{
@@ -60,7 +73,7 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
         return JSON.parseObject(JSONObject.toJSONString(testWorkCheck));
     }
 
-    //改动测试结果
+    //改动testWorkCheck
     public JSONObject editTestWorkCheck(JSONObject params, List<MultipartFile> files, User user) throws Exception
     {
         TestWorkCheck temptestWorkCheck = JSONObject.toJavaObject(params, TestWorkCheck.class);
@@ -69,49 +82,59 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
             throw new Exception("Not found");
         }
         //编辑测试结果时只编辑内容
-        //TODO:加入更多body内容
+        //testWorkCheck = temptestWorkCheck;
         testWorkCheck.setVersion(temptestWorkCheck.getVersion());
+        testWorkCheck.setAcendtime(temptestWorkCheck.getAcendtime());
+        testWorkCheck.setClient(temptestWorkCheck.getClient());
+        testWorkCheck.setFcendtime(temptestWorkCheck.getFcendtime());
+        testWorkCheck.setSoftwarename(temptestWorkCheck.getSoftwarename());
+        testWorkCheck.setTestworker(temptestWorkCheck.getTestworker());
+        testWorkCheck.setStarttime(temptestWorkCheck.getStarttime());
+
         this.updateEntity(testWorkCheck, user);
 
-        //TODO:return the testRecord with STATE!
         testWorkCheck = testWorkCheckRepository.findById(temptestWorkCheck.getId());
         return processTestWorkCheck(testWorkCheck);
     }
 
-    //增加测试结果
+    //增加testWorkCheck
     public JSONObject addTestWorkCheck(JSONObject params,List<MultipartFile> files,User user) throws Exception {
 
-        //String uid=UUID.randomUUID().toString();
+        //使用工程id作为id
         String uid = params.getString("id");
         //check project
         if (projectRepository.findById(uid) == null)
             throw new Exception("Can't find project with ID: " + uid);
 
+        Project project = projectRepository.findById(uid);
+
         TestWorkCheck testWorkCheck=JSONObject.toJavaObject(params,TestWorkCheck.class);
         testWorkCheck.setId(uid);
-        testWorkCheck.setProject(projectRepository.findById(uid));
 
-        //TODO:start activiti process
-        //String procID = processInstanceService.createTestRecordProcess(params, user);
-        //testRecord.setProcessInstanceID(procID);
+        project.setTestWorkCheck(testWorkCheck);
+        projectRepository.save(project);
+
+        testWorkCheck.setProject(project);
         this.saveEntity(testWorkCheck, user);
 
-        //TODO:添加testRecord状态
+
         testWorkCheck = testWorkCheckRepository.findById(uid);
         return processTestWorkCheck(testWorkCheck);
     }
 
 
-    //删除测试结果（不删除相关测试结果文件?）
-
+    //删除testWorkCheck
     public void deleteTestWorkCheck(JSONObject params)
     {
         String uid=params.getString("id");
+
+        Project project = projectRepository.findById(uid);
+        project.setTestWorkCheck(null);
+
         this.deleteEntity(uid);
     }
 
 
-    //TODO:增加测试结果状态
     private JSONObject processTestWorkCheck(TestWorkCheck testWorkCheck) throws Exception {
         //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testWorkCheck));
@@ -120,12 +143,12 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
 
     }
 
-    //去掉测试结果内容,TODO:添加状态
+
     private  JSONArray processTestWorkChecks(List<TestWorkCheck> testWorkChecks) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (TestWorkCheck testWorkCheck: testWorkChecks) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testWorkCheck));
-            jsonObject.remove("testWorkCheck");
+            //jsonObject.remove("testWorkCheck");
             //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
             //jsonObject.put("state", processState);
             resultArray.add(jsonObject);

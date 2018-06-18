@@ -15,4 +15,5 @@ public interface UserMapper {
             + "AND role_user.role_id = #{RoleId})"
     )
     List<String> getUserIdsByRoleId(@Param("RoleId")String RoleId);
+
 }

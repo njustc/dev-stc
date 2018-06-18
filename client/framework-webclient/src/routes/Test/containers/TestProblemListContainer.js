@@ -8,14 +8,15 @@ import TestProblemListComponent from "../components/TestProblemListComponent";
 
 const mapStateToProps = (state) => {
     return {
-        dataSource: Object.values(state.TestProblem.listMap),
+        dataSource: Object.values(state.TestProblem.listMap).filter(state.TestProblem.listFilter),
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
-            dispatch(addTabAction(id, '测试问题清单详情', TestProblemContentView,{id:id}));
+            const key = "测试问题" + id;
+            dispatch(addTabAction(key, '测试问题清单详情', TestProblemContentView,{id:id}));
 //            dispatch(setConsignContent())
         },
         //setListFilter: (listFilter) => dispatch(setConsignFilter(listFilter)),

@@ -52,7 +52,7 @@ public class ContractService extends BaseService<Contract> {
         if (contract == null) {
             throw new Exception("Not found");
         }
-        return JSON.parseObject(JSON.toJSONString(contract));
+        return processContract(contract);
     }
 
 

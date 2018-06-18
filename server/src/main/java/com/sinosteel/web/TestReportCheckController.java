@@ -6,10 +6,7 @@ import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
 import com.sinosteel.service.TestReportCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author LBW & Lumpy
@@ -22,19 +19,37 @@ public class TestReportCheckController extends BaseController{
     private TestReportCheckService testReportCheckService;
 
     @RequestMapping(value = "/v1/testReportCheck",method = RequestMethod.GET)
-    public Response queryTestReportCheck(Request request){
+    public Response queryTestReportCheck(Request request, @RequestParam(value = "projectID", required = false) String projectID){
+
+        //没有传projectID，即从用户直接获取
+        if (projectID == null) {
+            return queryTestReportCheck(request);
+        }
+
         Response response = new Response();
 
         try{
-            response.data = testReportCheckService.queryTestReportChecks(request.getUser());
+            response.data = testReportCheckService.queryTestReportCheckByProject(projectID);
             response.status = ResponseType.SUCCESS;
         }catch (Exception e){
             e.printStackTrace();
             response.status = ResponseType.FAILURE;
             response.message = e.getMessage();
         }
-
         return  response;
+    }
+    //从用户直接获取
+    private Response queryTestReportCheck(Request request) {
+        Response response = new Response();
+        try {
+            response.data = testReportCheckService.queryTestReportChecks(request.getUser());
+            response.status = ResponseType.SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.status = ResponseType.FAILURE;
+            response.message = e.getMessage();
+        }
+        return response;
     }
 
     @RequestMapping(value = "/v1/testReportCheck/{id}", method = RequestMethod.GET)
@@ -54,11 +69,14 @@ public class TestReportCheckController extends BaseController{
         return response;
     }
 
+    //添加
     @RequestMapping(value = "/v1/testReportCheck",method = RequestMethod.POST)
     public Response addTestReportCheck(Request request) {
+
+        //System.out.println(projectID);
         Response response = new Response();
         try{
-            response.data = testReportCheckService.addTestReportCheck(request.getParams(),request.getFiles(),request.getUser());
+            response.data = testReportCheckService.addTestReportCheck( request.getParams(),request.getFiles(),request.getUser());
             response.status = ResponseType.SUCCESS;
         }catch (Exception e){
             e.printStackTrace();
@@ -67,7 +85,7 @@ public class TestReportCheckController extends BaseController{
         }
         return response;
     }
-
+    //修改
     @RequestMapping(value = "/v1/testReportCheck", method = RequestMethod.PUT)
     public  Response editTestReportCheck(Request request) {
 
@@ -86,7 +104,7 @@ public class TestReportCheckController extends BaseController{
     }
 
     @RequestMapping(value = "/v1/testReportCheck", method = RequestMethod.DELETE)
-    public Response deletetestReportCheck(Request request) {
+    public Response deleteTestReportCheck(Request request) {
 
         Response response = new Response();
 

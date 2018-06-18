@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //console.log(state.TestReportCheck.listMap);
     return {
-        dataSource: Object.values(state.TestReportCheck.listMap),
+        dataSource: Object.values(state.TestReportCheck.listMap).filter(state.TestReportCheck.listFilter),
         enableNew: authData.functionGroup["TestReportCheck"]!==undefined&&authData.functionGroup["TestReportCheck"].findIndex(element => element === "ADD")!==-1
     }
 };
@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
             // debugger;
-            dispatch(addTabAction(id, '报告检查详情', TestReportCheckContentView, {id: id}));
+            const key = "报告检查" + id;
+            dispatch(addTabAction(key, '报告检查详情', TestReportCheckContentView, {id: id}));
 //            dispatch(setTestReportCheckContent())
         },
         setCheckListFilter: (listFilter) => dispatch(setTestReportCheckFilter(listFilter)),

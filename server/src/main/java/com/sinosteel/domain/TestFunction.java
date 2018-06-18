@@ -15,6 +15,7 @@ import javax.persistence.*;
 public class TestFunction extends BaseEntity {
 
 
+
     /**
      * 详细字段未定
      * 暂时先用来存储

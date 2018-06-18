@@ -14,44 +14,44 @@ const projectBase = baseServiceAddress + '/v1/project';
 const projectActivitiBase = baseServiceAddress + '/processInstance';
 
 export const getProjectList = (dispatch, callback) => {/*TODO 后台接口实现有误*/
-    // httpGet(projectBase,(result) => {
-    //     const {status, data} = result;
-    //     if (status === STATUS.SUCCESS) {
-            dispatch(setProjectList(/*data*/
-                [
-                    {
-                        id : "110",
-                        name : "快乐星球小杨杰",
-                        createdUserId : "151220140",
-                        state: 'TobeSubmit'
-                    },{
-                        id : "120",
-                        name : "不快乐星球小杨杰",
-                        createdUserId : "151220140",
-                        state: 'TobeSubmit'
-                    },{
-                        id : "119",
-                        name : "不快乐星球老杨杰",
-                        createdUserId : "151220140",
-                        state: 'TobeSubmit'
-                    }
-                ]
-            ));
-    //         dispatch(setProjectList(data));
-    //     }
-    //     callback && callback(status);
-    // });
+    httpGet(projectBase,(result) => {
+        const {status, data} = result;
+        if (status === STATUS.SUCCESS) {
+    //         dispatch(setProjectList(/*data*/
+    //             [
+    //                 {
+    //                     id : "110",
+    //                     name : "快乐星球小杨杰",
+    //                     createdUserId : "151220140",
+    //                     state: 'TobeSubmit'
+    //                 },{
+    //                     id : "120",
+    //                     name : "不快乐星球小杨杰",
+    //                     createdUserId : "151220140",
+    //                     state: 'TobeSubmit'
+    //                 },{
+    //                     id : "119",
+    //                     name : "不快乐星球老杨杰",
+    //                     createdUserId : "151220140",
+    //                     state: 'TobeSubmit'
+    //                 }
+    //             ]
+    //         ));
+            dispatch(setProjectList(data));
+        }
+        callback && callback(status);
+    });
 };
 
 export const getProject = (dispatch, id, callback) => {
-    dispatch(setProjectContent({id:id,}));
-    // httpGet(consignBase + '/' + id, (result) => {
-    //     const {status, data} = result;
-    //     if (status === STATUS.SUCCESS) {
-    //         dispatch(setProjectContent(data));
-    //     }
-    //     callback && callback(status);
-    // });
+    // dispatch(setProjectContent({id:id,}));
+    httpGet(projectBase + '/' + id, (result) => {
+        const {status, data} = result;
+        if (status === STATUS.SUCCESS) {
+            dispatch(setProjectContent(data));
+        }
+        callback && callback(status);
+    });
 };
 
 export const deleteProject = (dispatch, id, callback) => {

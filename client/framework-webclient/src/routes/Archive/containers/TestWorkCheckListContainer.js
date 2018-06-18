@@ -8,14 +8,15 @@ import TestWorkCheckListComponent from "../components/TestWorkCheckListComponent
 
 const mapStateToProps = (state) => {
     return {
-        dataSource: Object.values(state.TestWorkCheck.listMap),
+        dataSource: Object.values(state.TestWorkCheck.listMap).filter(state.TestWorkCheck.listFilter),
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
-            dispatch(addTabAction(id, '测试工作报告表详情', TestWorkCheckContentView,{id:id}));
+            const key = "检查表" + id;
+            dispatch(addTabAction(key, '测试工作报告表详情', TestWorkCheckContentView,{id:id}));
 //            dispatch(setConsignContent())
         },
         //setListFilter: (listFilter) => dispatch(setConsignFilter(listFilter)),
