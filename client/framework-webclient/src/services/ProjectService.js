@@ -1,5 +1,6 @@
 import {baseServiceAddress, STATUS} from "SERVICES/common";
 import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
+import {getConsign} from "./ConsignService";
 import {
     removeProject,
     setProjectContent,
@@ -9,6 +10,7 @@ import {
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 import {setTestRecordContent} from "../modules/ducks/TestRecord";
+import {getConsignState} from "./ConsignService";
 
 const projectBase = baseServiceAddress + '/v1/project';
 const projectActivitiBase = baseServiceAddress + '/processInstance';
@@ -52,6 +54,7 @@ export const getProject = (dispatch, id, callback) => {
         }
         callback && callback(status);
     });
+    getConsign(dispatch,id);
 };
 
 export const deleteProject = (dispatch, id, callback) => {
@@ -88,17 +91,8 @@ export const updateProject = (dispatch, data, callback) => {
 };
 
 export const getProjectState = (dispatch, processInstanceID, id, callback) => {
-    httpGet(projectActivitiBase + '/' + processInstanceID, (result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            const newData = {
-                ...data,
-                id: id,
-            };
-            dispatch(setProjectContent(newData));
-        }
-        callback && callback(status);
-    })
+    getConsignState(dispatch,processInstanceID,id);
+    debugger
 };
 
 export const putProjectState = (dispatch, processInstanceID, data, id, callback) => {

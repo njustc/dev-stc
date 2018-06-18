@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
         showContent: (id) => {
             // debugger;
             const key = "委托" + id;
-            getConsign(dispatch,id);
+            // getConsign(dispatch,id);
             dispatch(addTabAction(key, '委托详情', ConsignContentView, {id: id}));
 //            dispatch(setConsignContent())
         },

@@ -960,13 +960,21 @@ class ConsignContentComponent extends Component  {
 
                 {/* footer buttons */}        {/*console.log(buttonsDisabled)*/}
                 <FormItem style={{textAlign:'center'}}>
-                    {this.props.buttons.map((button, index) =>
-                        <Button
-                            //disabled={this.props.buttonDisabled}
-                            onClick={this.onClick(index)}
-                            key={button.content}>
-                            {button.content}
-                        </Button>)}
+                    {this.props.buttons.map((button, index) => {
+                        let buttonCanShow = false;
+                        this.props.buttonsEnable.forEach(function(element){
+                            if(element.content === button.content){
+                                buttonCanShow = true;
+                            }});
+                        if(buttonCanShow){
+                            return <Button
+                                //disabled={this.props.buttonDisabled}
+                                onClick={this.onClick(index)}
+                                key={button.content}>
+                                {button.content}
+                            </Button>
+                        }
+                    })}
                 </FormItem>
 
                 <FormItem style={{textAlign:'center'}}>
