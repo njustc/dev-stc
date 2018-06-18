@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //console.log(state.Consign.listMap);
     return {
-        dataSource: Object.values(state.TestCase.listMap),
+        dataSource: Object.values(state.TestCase.listMap).filter(state.TestCase.listFilter),
         //enableNew: authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "ADD")!==-1
     }
 };
@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
             // debugger;
-            dispatch(addTabAction(id, '测试用例详情', TestCaseContentView, {id: id}));
+            const key = "测试用例" + id;
+            dispatch(addTabAction(key, '测试用例详情', TestCaseContentView, {id: id}));
 //            dispatch(setConsignContent())
         },
         setListFilter: (listFilter) => dispatch(setTestCaseFilter(listFilter)),

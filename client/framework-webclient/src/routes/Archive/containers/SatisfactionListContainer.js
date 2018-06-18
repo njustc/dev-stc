@@ -8,14 +8,15 @@ import SatisfactionListComponent from "../components/SatisfactionListComponent";
 
 const mapStateToProps = (state) => {
     return {
-        dataSource: Object.values(state.Satisfaction.listMap),
+        dataSource: Object.values(state.Satisfaction.listMap).filter(state.Satisfaction.listFilter),
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
-            dispatch(addTabAction(id, '满意度调查表详情', SatisfactionContentView,{id:id}));
+            const key = "满意度" + id;
+            dispatch(addTabAction(key, '满意度调查表详情', SatisfactionContentView,{id:id}));
 //            dispatch(setConsignContent())
         },
         //setListFilter: (listFilter) => dispatch(setConsignFilter(listFilter)),

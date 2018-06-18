@@ -3,9 +3,10 @@ import React, {Component} from 'react';
 import ConsignContentComponent from "../components/ConsignContentComponent";
 import {message} from 'antd';
 import {connect} from "react-redux";
-import {getConsign, putConsignState, updateConsign} from "../../../services/ConsignService";
+import {getConsign, getConsignState, putConsignState, updateConsign} from "../../../services/ConsignService";
 import {newProject} from "../../../services/ProjectService";
-import {STATUS} from "../../../services/common";
+import {globalOperation, STATUS} from "../../../services/common";
+// import "./common"
 /*TODO:表单内容和按钮的可视及禁用情况*/
 const mapStateToProps = (state, ownProps) => {
     // debugger;
@@ -61,7 +62,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
     enable: isEditVisible
 },{
     content: '通过',
-    onClick: (consignData,consignation) =>{
+    onClick: (consignData,processNo) =>{
         const putData = {
             "object": "consign",
             "operation": "ReviewPass",
@@ -96,14 +97,32 @@ const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的�
     enable: isReviewVisible
 }];
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch,ownProps) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
+    const operationData = JSON.parse(sessionStorage.getItem('operation'+ownProps.id));
     //const isVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     const isEditVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
-    const isReviewVisible = true||authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "REVIEW")!==-1;
+    console.log(operationData);
+    const {operation} = operationData;
+    // console.log(operation);
+    var isReviewVisible = operation!=undefined&&operation!=null;
+    if(isReviewVisible === true){
+        isReviewVisible = false;
+        operation.forEach(function(element){
+            console.log(element);
+            if(element == 'ReviewPass') {
+                isReviewVisible = true;
+            }
+        })
+    }
+    console.log(isReviewVisible);
     return {
         buttons: buttons(dispatch,isEditVisible,isReviewVisible).filter(button => button.enable===true),
-        getValues: (id) => getConsign(dispatch,id)
+        getValues: (id,processInstanceID) => {
+            // getConsignState(dispatch,processInstanceID,id);
+            console.log("hahaha");
+            // getConsign(dispatch,id);
+        }
     }
 };
 
