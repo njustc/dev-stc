@@ -54,11 +54,12 @@ class ConsignContentComponent extends Component  {
         //     }
         // });
         const {buttons, form} = this.props;
-        const fieldsValue = JSON.stringify((form.getFieldsValue()));
-        const consignation = {
+        // const fieldsValue = JSON.stringify((form.getFieldsValue()));
+        const consignation = JSON.stringify({
             ...this.props.values,
-            fieldsValue
-        };
+            ...form.getFieldsValue(),
+        });
+        debugger;
         if(buttons[buttonIndex].content === '通过'){
             this.setState({
                 ...this.state,
@@ -148,7 +149,7 @@ class ConsignContentComponent extends Component  {
                         <FormItem {...formItemLayout} label={"委托单位(中文)"}>
                             {getFieldDecorator('consignUnitC', {
                                 rules: [{ required: true, message: '请正确输入委托单位(中文)！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                //initialValue: this.props.values.consignUnitC,
+                                initialValue: this.props.values.consignUnitC,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -157,7 +158,7 @@ class ConsignContentComponent extends Component  {
                         <FormItem {...formItemLayout} label={"委托单位(英文)"}>
                             {getFieldDecorator('consignUnitE', {
                                 rules: [{ required: true, message: '请正确输入委托单位(英文)！' ,pattern:"^[A-Za-z]+$"}],
-                                //initialValue: this.props.values.consignUnitE,
+                                initialValue: this.props.values.consignUnitE,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
