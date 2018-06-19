@@ -6,10 +6,7 @@ import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
 import com.sinosteel.service.TestReportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author LBW & Lumpy
@@ -22,11 +19,15 @@ public class TestReportController extends BaseController{
     private TestReportService testReportService;
 
     @RequestMapping(value = "/v1/testReport",method = RequestMethod.GET)
-    public Response queryTestReport(Request request){
+    public Response queryTestReport(Request request, @RequestParam(value = "projectID", required = false) String projectID){
+        if(projectID == null) {
+            return queryTestReport(request);
+        }
+
         Response response = new Response();
 
         try{
-            response.data = testReportService.queryTestReport(request.getUser());
+            response.data = testReportService.queryTestReportByProject(projectID);
             response.status = ResponseType.SUCCESS;
         }catch (Exception e){
             e.printStackTrace();
@@ -35,6 +36,19 @@ public class TestReportController extends BaseController{
         }
 
         return  response;
+    }
+
+    private Response queryTestReport(Request request) {
+        Response response = new Response();
+        try {
+            response.data = testReportService.queryTestReport(request.getUser());
+            response.status = ResponseType.SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.status = ResponseType.FAILURE;
+            response.message = e.getMessage();
+        }
+        return response;
     }
 
     @RequestMapping(value = "/v1/testReport/{id}", method = RequestMethod.GET)
@@ -55,10 +69,10 @@ public class TestReportController extends BaseController{
     }
 
     @RequestMapping(value = "/v1/testReport",method = RequestMethod.POST)
-    public Response addTestReport(Request request) {
+    public Response addTestReport(Request request, @RequestParam(value = "projectID") String projectID) {
         Response response = new Response();
         try{
-            response.data = testReportService.addTestReport(request.getParams(),request.getFiles(),request.getUser());
+            response.data = testReportService.addTestReport(projectID, request.getParams(),request.getFiles(),request.getUser());
             response.status = ResponseType.SUCCESS;
         }catch (Exception e){
             e.printStackTrace();

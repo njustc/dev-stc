@@ -5,10 +5,7 @@ import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
 import com.sinosteel.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author LBW&SQW
@@ -58,10 +55,10 @@ public class ProjectController extends BaseController{
 
     //添加
     @RequestMapping(value = "/v1/project", method = RequestMethod.POST)
-    public Response addProject(Request request) {
+    public Response addProject(Request request, @RequestParam(value = "consignID") String consignID) {
         Response response = new Response();
         try {
-            response.data = projectService.addProject(request.getParams(), request.getFiles(), request.getUser());
+            response.data = projectService.addProject(consignID, request.getParams(), request.getFiles(), request.getUser());
             response.status = ResponseType.SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
