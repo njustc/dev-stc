@@ -71,10 +71,10 @@ public class TestWorkCheckController extends BaseController{
     }
 
     @RequestMapping(value = "/v1/testWorkCheck",method = RequestMethod.POST)
-    public Response addTestWorkCheck(Request request) {
+    public Response addTestWorkCheck(Request request, @RequestParam(value = "projectID") String projectID) {
         Response response = new Response();
         try{
-            response.data = testWorkCheckService.addTestWorkCheck(request.getParams(),request.getFiles(),request.getUser());
+            response.data = testWorkCheckService.addTestWorkCheck(projectID,request.getParams(),request.getFiles(),request.getUser());
             response.status = ResponseType.SUCCESS;
         }catch (Exception e){
             e.printStackTrace();

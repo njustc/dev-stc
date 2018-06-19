@@ -48,7 +48,12 @@ public class ContractService extends BaseService<Contract> {
     }
 
     public JSON queryContractsByProject(String projectID) throws Exception {
-
+        Project project = projectRepository.findById(projectID);
+        if(project == null) {
+            throw new Exception("can't find project by id :" + projectID);
+        }
+        Contract contract = project.getContract();
+        return processContract(contract);
     }
 
 
@@ -98,7 +103,7 @@ public class ContractService extends BaseService<Contract> {
 
         //set project in contract
         contract.setProject(project);
-        this.saveEntity(contract, user);
+        this.saveEntity(contract, project.getUser());
 
         contract = contractRepository.findById(uid);
         return processContract(contract);
@@ -121,7 +126,7 @@ public class ContractService extends BaseService<Contract> {
         //去掉合同内容,添加状态
         for (Contract contract: contracts) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(contract));
-            jsonObject.remove("contractBody");
+            //jsonObject.remove("contractBody");
             JSONObject processState = processInstanceService.queryProcessState(contract.getProcessInstanceID());
             String state = processState.getString("state");
             String operation = processState.getString("operation");

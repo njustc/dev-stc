@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author LBW & SQW
@@ -98,18 +99,20 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
     }
 
     //增加testWorkCheck
-    public JSONObject addTestWorkCheck(JSONObject params,List<MultipartFile> files,User user) throws Exception {
+    public JSONObject addTestWorkCheck(String projectID, JSONObject params,List<MultipartFile> files,User user) throws Exception {
 
-        //使用工程id作为id
-        String uid = params.getString("id");
+        //随机生成id
+        String uid = UUID.randomUUID().toString();
+        //String uid = params.getString("id");
         //check project
-        if (projectRepository.findById(uid) == null)
-            throw new Exception("Can't find project with ID: " + uid);
+        if (projectRepository.findById(projectID) == null)
+            throw new Exception("Can't find project with ID: " + projectID);
 
-        Project project = projectRepository.findById(uid);
+        Project project = projectRepository.findById(projectID);
 
         TestWorkCheck testWorkCheck=JSONObject.toJavaObject(params,TestWorkCheck.class);
         testWorkCheck.setId(uid);
+
 
         project.setTestWorkCheck(testWorkCheck);
         projectRepository.save(project);

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * *@author LBW&SQW
@@ -58,18 +59,20 @@ public class ProjectService extends BaseService<Project>{
     }
 
     //添加工程
-    public JSONObject addProject(JSONObject params, List<MultipartFile> files,User user) throws Exception{
-        //String uid = UUID.randomUUID().toString();
-        String uid = params.getString("id");
-        //check consign
-        if (consignRepository.findById(uid) == null)
-            throw new Exception("Can't find consign with ID: " + uid);
+    public JSONObject addProject(String consignID, JSONObject params, List<MultipartFile> files,User user) throws Exception{
 
-        Consign consign = consignRepository.findById(uid);
+        String uid = UUID.randomUUID().toString();
+        //String uid = params.getString("id");
+        //check consign
+        if (consignRepository.findById(consignID) == null)
+            throw new Exception("Can't find consign with ID: " + consignID);
+
+        Consign consign = consignRepository.findById(consignID);
         Project project = JSONObject.toJavaObject(params, Project.class);
         project.setId(uid);
         project.setUser(consign.getUser());//将工程的user设置为consign的user而不是当前用户
         project.setConsign(consign);
+
 
         //TODO:start process Instance
         /*String processInstanceID = processInstanceService.createProjectProcess(params, user);

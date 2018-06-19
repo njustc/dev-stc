@@ -19,7 +19,7 @@ public class ContractController extends BaseController{
     @RequestMapping(value = "/contract", method = RequestMethod.GET)
     public Response queryContracts(Request request, @RequestParam(value = "projectID", required = false) String projectID) {
 
-        //查询用户所有
+        //查询用户所有，没有传projectID
         if(projectID == null) {
             return queryContracts(request);
         }
@@ -38,9 +38,22 @@ public class ContractController extends BaseController{
 
         return response;
     }
-
+    //当前端给的query里没有projectID时
     private Response queryContracts(Request request) {
+        Response response = new Response();
+        try
+        {
+            response.data = contractService.queryContracts(request.getUser());
+            response.status = ResponseType.SUCCESS;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            response.status = ResponseType.FAILURE;
+            response.message = e.getMessage();
+        }
 
+        return response;
     }
 
     @RequestMapping(value = "/contract/{id}", method = RequestMethod.GET)
@@ -83,7 +96,7 @@ public class ContractController extends BaseController{
         Response response = new Response();
 
         try {
-            response.data = contractService.addContract(request.getParams(), request.getFiles(), request.getUser());
+            response.data = contractService.addContract(projectID,request.getParams(), request.getFiles(), request.getUser());
             response.status = ResponseType.SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
