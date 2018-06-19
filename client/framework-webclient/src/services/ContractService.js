@@ -4,6 +4,7 @@ import {removeContract, setContractContent, setContractList, setContractState} f
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 import {setTestRecordList} from "../modules/ducks/TestRecord";
+import {showListMap} from "../modules/ducks/Project";
 
 const contractBase = baseServiceAddress + '/contract';
 const contractActivitiBase = baseServiceAddress + '/processInstance';
@@ -12,30 +13,30 @@ export const getContractList = (dispatch, callback) => {
     httpGet(contractBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            // dispatch(setContractList(data));
-            dispatch(setContractList(/*data*/
-                [
-                    {
-                        pid : "110",
-                        id : "110",
-                        name : "快乐星球小杨杰",
-                        customerId : "151220140",
-                        status: STATE.TO_SUBMIT
-                    },{
-                    pid :"120",
-                    id : "120",
-                    name : "不快乐星球小杨杰",
-                    customerId : "151220140",
-                    status: STATE.TO_REVIEW
-                },{
-                    pid : "119",
-                    id : "119",
-                    name : "不快乐星球老杨杰",
-                    customerId : "151220140",
-                    status: STATE.CANCELED
-                }
-                ]
-            ));
+            dispatch(setContractList(data));
+            // dispatch(setContractList(/*data*/
+            //     [
+            //         {
+            //             processInstanceID : "119",
+            //             id : "110",
+            //             name : "快乐星球小杨杰",
+            //             customerId : "151220140",
+            //             status: STATE.TO_SUBMIT
+            //         },{
+            //         processInstanceID :"120",
+            //         id : "120",
+            //         name : "不快乐星球小杨杰",
+            //         customerId : "151220140",
+            //         status: STATE.TO_REVIEW
+            //     },{
+            //         processInstanceID : "110",
+            //         id : "119",
+            //         name : "不快乐星球老杨杰",
+            //         customerId : "151220140",
+            //         status: STATE.CANCELED
+            //     }
+            //     ]
+            // ));
         }
         callback && callback(status);
     });
@@ -65,8 +66,12 @@ export const deleteContract = (dispatch, id, callback) => {
     });
 };
 
-export const newContract = (dispatch, callback) => {
-    httpPost(contractBase, {contractBody:null,}, (result) => {
+export const newContract = (dispatch, id,callback) => {
+    const contractData = {
+        id: id,
+        contractBody: "null"
+    };
+    httpPost(contractBase, contractData, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setContractContent(data));

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge} from 'antd';
+import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge, Popover} from 'antd';
 import {STATE} from "../../../services/common"
 
 const { Column } = Table;
@@ -70,14 +70,29 @@ export default class ProjectListComponent extends Component {
         }
     }
 
+    projectDetails(id){
+        /*TODO:显示流程摘要信息*/
+        return id;
+    }
+
     /*table列设置*/
     columns = [{
+        title:"项目编号",
+        dataIndex:"No",
+        //width: '25%',
+        //sorter:(a, b) => a.id - b.id,
+    }/*, {
         title:"流程ID",
+        dataIndex:"processInstanceID",
+        //width: '25%',
+        //sorter:(a, b) => a.id - b.id,
+    }, {
+        title:"项目ID",
         dataIndex:"id",
         //width: '25%',
-        sorter:(a, b) => a.id - b.id,
-    }, {
-        title:"名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        //sorter:(a, b) => a.id - b.id,
+    }*/, {
+        title:"项目名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
         dataIndex:"name",
     }, {
         title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
@@ -119,13 +134,16 @@ export default class ProjectListComponent extends Component {
         //width: '12%',
         render: (record) => {
             /*TODO:操作应该由后台传过来*/
+            // console.log(record);//
             return (
                 <div>
+                    {/*<Popover placement="bottom" trigger="click" content={this.projectDetails(record)}><a>查看摘要</a></Popover>*/}
+                    {/*<Divider type="vertical"/>*/}
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
-                       //disabled={!this.props.enableNew}
-                       //onClick={this.showDeleteConfirm(record)}
+                        //disabled={!this.props.enableNew}
+                        //onClick={this.showDeleteConfirm(record)}
                     >取消</a>
                 </div>
             )
@@ -160,7 +178,38 @@ export default class ProjectListComponent extends Component {
     /*TODO:搜索功能*/
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
-        this.props.setListFilter((record) => record.match(reg));
+        switch (this.state.selectOption){
+            case 'id':
+                this.props.setListFilter((item)=>item.id.match(reg));break;
+            case 'createdUserId':
+                this.props.setListFilter((item)=>item.createdUserId.match(reg));break;
+            case 'name':
+                this.props.setListFilter((item)=>item.name.match(reg));break;
+            default:break;
+        }
+    };
+
+    expandRow = (record) => {
+        //console.log(record);//
+        return (
+            <div>
+                <div>
+                   流程ID： {record.id}
+                </div>
+                <div>
+                    项目ID： {record.id}
+                </div>
+                <div>
+                    委托人（用户名）：未定义{/*TODO*//*record.createdUserId*/}
+                </div>
+                <div>
+                    流程创建时间：{record.createdTime}
+                </div>
+                <div>
+                    项目价格：¥2333
+                </div>
+            </div>
+        );
     };
 
     render() {
@@ -188,7 +237,10 @@ export default class ProjectListComponent extends Component {
                         : <Col span={2}></Col>*/}
                 </InputGroup>
                 <br />
-                <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'}/>
+                <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'}
+                       expandedRowRender={this.expandRow}
+                       expandRowByClick={true}
+                />
             </div>
         );
     }

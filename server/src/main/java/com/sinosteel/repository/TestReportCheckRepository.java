@@ -16,4 +16,5 @@ public interface TestReportCheckRepository extends BaseRepository<TestReportChec
     TestReportCheck findById(String id);
     @Query("SELECT testReportCheck from TestReportCheck testReportCheck where 1 = 1")
     List<TestReportCheck> findByAllTestReportChecks();
+
 }

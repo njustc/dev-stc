@@ -53,7 +53,8 @@ public class ProjectService extends BaseService<Project>{
         if(project == null) {
             throw new Exception("Not found");
         }
-        return JSON.parseObject(JSON.toJSONString(project));
+        //return JSON.parseObject(JSON.toJSONString(project));
+        return processProject(project);
     }
 
     //添加工程
@@ -67,7 +68,7 @@ public class ProjectService extends BaseService<Project>{
         Consign consign = consignRepository.findById(uid);
         Project project = JSONObject.toJavaObject(params, Project.class);
         project.setId(uid);
-        project.setUser(user);
+        project.setUser(consign.getUser());//将工程的user设置为consign的user而不是当前用户
         project.setConsign(consign);
 
         //TODO:start process Instance
@@ -75,7 +76,7 @@ public class ProjectService extends BaseService<Project>{
           project.setProcessInstanceID(processInstanceID);
          */
 
-        this.saveEntity(project, user);
+        this.saveEntity(project, consign.getUser());
         project = projectRepository.findById(uid);
         return processProject(project);
     }
@@ -88,7 +89,8 @@ public class ProjectService extends BaseService<Project>{
             throw new Exception("Not Found");
         }
         //TODO:更新具体的工程内容
-        this.updateEntity(project, user);
+        Consign consign = consignRepository.findById(tempProject.getId());
+        this.updateEntity(project, consign.getUser());
 
         project = projectRepository.findById(tempProject.getId());
         return processProject(project);
@@ -106,6 +108,8 @@ public class ProjectService extends BaseService<Project>{
         //去掉工程内容，添加工程状态
         for (Project project: projects) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(project));
+            jsonObject.put("userID", project.getUser().getId());
+            jsonObject.put("username", project.getUser().getUsername());
             //jsonObject.remove("");
             //String processState = (String) processInstanceService.queryProcessState(project.getProcessInstanceID()).get("state");
             //jsonObject.put("state", processState);
@@ -118,6 +122,8 @@ public class ProjectService extends BaseService<Project>{
     private JSONObject processProject(Project project) throws Exception {
         //String processState = (String) processInstanceService.queryProcessState(project.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(project));
+        jsonObject.put("username", project.getUser().getUsername());
+        jsonObject.put("userID", project.getUser().getId());
         //jsonObject.put("state",processState);
         return jsonObject;
     }

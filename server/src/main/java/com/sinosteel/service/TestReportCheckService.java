@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author LBW & SQW
@@ -27,11 +28,11 @@ public class TestReportCheckService extends BaseService<TestReportCheck> {
     @Autowired
     private ProjectRepository projectRepository;
 
-    @Autowired
-    private ProcessInstanceService processInstanceService;
+    //testReportCheck也不需要添加状态
+    //@Autowired
+    //private ProcessInstanceService processInstanceService;
 
-
-    //以工程为来源查询testRecord
+    //以用户的工程为来源查询testReportCheck
     public JSON queryTestReportChecks(User user) throws Exception {
         if (user != null)
             System.out.println("queryTestRecords--> query user role: " + user.getRoles().get(0).getRoleName());
@@ -42,17 +43,29 @@ public class TestReportCheckService extends BaseService<TestReportCheck> {
             for (Project project: projects){
                 testReportChecks.add(project.getTestReportCheck());
             }
-            //TODO:对测试结果进行处理，去掉具体内容,并且添加测试结果状态
+            //System.out.println(testReportChecks);
             return processTestReportChecks(testReportChecks);
         }
         else
         {
             List<TestReportCheck> testReportChecks = testReportCheckRepository.findByAllTestReportChecks();
-            //对测试结果进行处理，去掉具体内容,并且添加测试结果状态
+            //处理testReportCheck为空的情况
             return processTestReportChecks(testReportChecks);
         }
     }
 
+    //前端要在工程中获取testReportCheck
+    public JSON queryTestReportCheckByProject(String projectID) throws Exception {
+        if (projectRepository.findById(projectID) == null) {
+            throw new Exception("can't find project by id : " + projectID);
+        }
+        Project project = projectRepository.findById(projectID);
+        TestReportCheck  testReportCheck = project.getTestReportCheck();
+
+        return processTestReportCheck(testReportCheck);
+    }
+
+    //根据id查询testReportCheck
     public JSONObject queryTestReportCheckByID(String id) throws Exception{
         TestReportCheck testReportCheck = testReportCheckRepository.findById(id);
         if (testReportCheck == null)
@@ -60,7 +73,7 @@ public class TestReportCheckService extends BaseService<TestReportCheck> {
         return JSON.parseObject(JSONObject.toJSONString(testReportCheck));
     }
 
-    //改动测试结果
+    //改动testReportCheck
     public JSONObject editTestReportCheck(JSONObject params, List<MultipartFile> files, User user) throws Exception
     {
         TestReportCheck temptestReportCheck = JSONObject.toJavaObject(params, TestReportCheck.class);
@@ -72,45 +85,51 @@ public class TestReportCheckService extends BaseService<TestReportCheck> {
         testReportCheck.setBody(temptestReportCheck.getBody());
         this.updateEntity(testReportCheck, user);
 
-        //TODO:return the testRecord with STATE!
         testReportCheck = testReportCheckRepository.findById(temptestReportCheck.getId());
         return processTestReportCheck(testReportCheck);
     }
 
-    //增加测试结果
+    //增加testReportCheck
     public JSONObject addTestReportCheck(JSONObject params,List<MultipartFile> files,User user) throws Exception {
 
-        //String uid=UUID.randomUUID().toString();
-        String uid = params.getString("id");
+
+        String uid= params.getString("id");
+
         //check project
         if (projectRepository.findById(uid) == null)
             throw new Exception("Can't find project with ID: " + uid);
 
+        Project project = projectRepository.findById(uid);
+        //params.remove("projectID"); //不知是否为必要，感觉没必要
+
         TestReportCheck testReportCheck=JSONObject.toJavaObject(params,TestReportCheck.class);
         testReportCheck.setId(uid);
-        testReportCheck.setProject(projectRepository.findById(uid));
 
-        //TODO:start activiti process
-        //String procID = processInstanceService.createTestRecordProcess(params, user);
-        //testRecord.setProcessInstanceID(procID);
+        project.setTestReportCheck(testReportCheck);
+        projectRepository.save(project);
+
+        testReportCheck.setProject(project);
         this.saveEntity(testReportCheck, user);
 
-        //TODO:添加testRecord状态
+
         testReportCheck = testReportCheckRepository.findById(uid);
         return processTestReportCheck(testReportCheck);
     }
 
 
-    //删除测试结果（不删除相关测试结果文件?）
-
+    //删除testReportCheck
     public void deleteTestReportCheck(JSONObject params)
     {
         String uid=params.getString("id");
+
+        Project project = projectRepository.findById(uid);
+        project.setTestReportCheck(null);
+
         this.deleteEntity(uid);
     }
 
 
-    //TODO:增加测试结果状态
+    //这两个函数留下用来处理testReportCheck为空的情况
     private JSONObject processTestReportCheck(TestReportCheck testRecord) throws Exception {
         //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testRecord));
@@ -119,12 +138,11 @@ public class TestReportCheckService extends BaseService<TestReportCheck> {
 
     }
 
-    //去掉测试结果内容,TODO:添加状态
     private  JSONArray processTestReportChecks(List<TestReportCheck> testReportChecks) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (TestReportCheck testReportCheck: testReportChecks) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testReportCheck));
-            jsonObject.remove("testReportCheck");
+            //jsonObject.remove("testReportCheck");
             //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
             //jsonObject.put("state", processState);
             resultArray.add(jsonObject);

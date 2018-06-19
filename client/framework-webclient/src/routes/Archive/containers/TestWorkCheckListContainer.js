@@ -8,7 +8,7 @@ import TestWorkCheckListComponent from "../components/TestWorkCheckListComponent
 
 const mapStateToProps = (state) => {
     return {
-        dataSource: Object.values(state.TestWorkCheck.listMap),
+        dataSource: Object.values(state.TestWorkCheck.listMap).filter(state.TestWorkCheck.listFilter),
     }
 };
 

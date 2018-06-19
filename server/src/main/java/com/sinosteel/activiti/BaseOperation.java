@@ -55,7 +55,7 @@ public class BaseOperation {
      * @param workerId 分配给用户组中的成员ID
      * @throws Exception
      */
-    public void containGate(String operation,String processInstanceId,String workerId ) throws Exception
+    public void containGate(String operation,String processInstanceId,String workerId) throws Exception
     {
         List<String> userids = userMapper.getUserIdsByRoleId("1");
         Task task=taskService.createTaskQuery()
@@ -65,7 +65,6 @@ public class BaseOperation {
         List<String> varies=new ArrayList<String>() ;
         for(FormProperty formProperty:formProperties) {
             if("enum".equals(formProperty.getType().getName())) {
-                //System.out.print(formProperty.getId()+"  +"+formProperty.getName()+" +"+formProperty.getValue());
                 varies.add(formProperty.getId());
             }
         }
@@ -77,9 +76,25 @@ public class BaseOperation {
             for(String tmp:varies) {
                 variables.put(tmp,operation);
             }
+            //this.addComments(task,formProperties,comments,variables);
             taskService.complete(task.getId(),variables);}
         else {
             throw new Exception(task.getProcessDefinitionId()+ "error");
+        }
+    }
+    public void addComments(Task task,List<FormProperty> formProperties,String comments,Map<String,Object> variables) throws Exception {
+        List<String> varies = new ArrayList<String>();
+        for (FormProperty formProperty : formProperties) {
+            if ("reason".equals(formProperty.getId().toString())) {
+                //System.out.print(formProperty.getId()+"  +"+formProperty.getName()+" +"+formProperty.getValue());
+                varies.add(formProperty.getId());
+            }
+        }
+        if (task.getName().equals(state.TobeReview.name()) || task.getName().equals(state.TobeConfirm.name())
+                || task.getName().equals(state.TobeApprove.name())) {
+            for (String tmp : varies) {
+                variables.put(tmp, comments);
+            }
         }
     }
 }

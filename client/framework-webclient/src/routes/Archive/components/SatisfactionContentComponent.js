@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Table, Checkbox,Icon,DatePicker,Collapse, InputNumber} from 'antd';
+import {Row, Col, Card, Tabs, Select, Button, Layout, Rate, Form, Input,Radio,Table, Checkbox,Icon,DatePicker,Collapse, InputNumber} from 'antd';
 
 const FormItem=Form.Item;
 const RadioGroup = Radio.Group;
@@ -50,43 +50,20 @@ class SatisfactionContentComponent extends Component {
         const formItemLayout =  {
             labelCol: { span: 4 },
             wrapperCol: { span: 20 },
+            marginBottom: 0,
         };
 
         const rowStyle = {
-            height: '40px',
-            lineHeight: '40px',
-            marginTop: 0,
-            marginBottom: 5,
+            marginBottom: '10pt',
         };
 
         const tipStyle = {
             color: 'red',
         };
 
-        const gridHeadStyle = {
-            background: '#cccccc',
-            height: '100%',
-            textAlign: 'center',
-        };
-
-        const gridFootStyle = {
-            background: '#cccccc',
-            height: '95px',
-            textAlign: 'center',
-        };
-
-        const gridContentStyle = {
-            background: '#f9f9f9',
-            height: '100%',
-            textAlign: 'center',
-        };
-
         return(
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
-
-                <FormItem {...formItemLayout}>
-                    <h1>客户满意度调查表</h1>
-                </FormItem>
+                <h1 style={{textAlign:'center'}}>客户满意度调查表</h1>
 
                 <FormItem {...formItemLayout} label={"单位名称"}>
                     {getFieldDecorator('consignUnit', {
@@ -156,6 +133,62 @@ class SatisfactionContentComponent extends Component {
                     </Row>
                 </FormItem>
 
+                <Form>
+                    <FormItem {...formItemLayout} label={"测试服务响应时间"}>
+                        {getFieldDecorator('reflectTime', {
+                            initialValue: 3.5,
+                        })(
+                            <Rate  allowHalf/>
+                        )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label={"测试服务收费合理性"}>
+                        {getFieldDecorator('charge', {
+                            initialValue: 3.5,
+                        })(
+                            <Rate  allowHalf/>
+                        )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label={"测试服务规范性"}>
+                        {getFieldDecorator('standard', {
+                            initialValue: 3.5,
+                        })(
+                            <Rate  allowHalf/>
+                        )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label={"测试服务技术能力"}>
+                        {getFieldDecorator('capability', {
+                            initialValue: 3.5,
+                        })(
+                            <Rate  allowHalf/>
+                        )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label={"客户需求的了解"}>
+                        {getFieldDecorator('understanding', {
+                            initialValue: 3.5,
+                        })(
+                            <Rate  allowHalf/>
+                        )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label={"服务时的沟通能力"}>
+                        {getFieldDecorator('communication', {
+                            initialValue: 3.5,
+                        })(
+                            <Rate  allowHalf/>
+                        )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label={"其他意见和建议"}>
+                        {getFieldDecorator('advice', {
+                            rules: [{
+                                required: false
+                            }],
+                        })(
+                            <TextArea rows={4} />
+                        )}
+                    </FormItem>
+                </Form>
+
+
+                {/*
                 <FormItem>
                     <Row style = {rowStyle} type="flex" justify="center">
                         <p span={10}>满意度分值为0～100分：90-100很满意，80-89满意，70-79较满意，50-69不满意，49以下很不满意</p>
@@ -267,8 +300,10 @@ class SatisfactionContentComponent extends Component {
                         </Col>
                     </Row>
                 </FormItem>
+                */}
 
                 <FormItem/>
+                {/*
                 <FormItem>
                     <Row style = {rowStyle} type="flex" justify="center" gutter={32}>
                         <Col span={10}>
@@ -283,10 +318,13 @@ class SatisfactionContentComponent extends Component {
                         </Col>
                     </Row>
                 </FormItem>
+                */}
 
                 <FormItem {...formItemLayout}>
                     <h3 style={tipStyle}>以下内容由测试中心填写</h3>
                 </FormItem>
+
+                {/* TODO 如何直接显示数据库中存放的数据并进行计算 */}
 
                 <FormItem {...formItemLayout} label={"满意度计算总值"}>
                     {getFieldDecorator('satisfactionDegree', {
@@ -310,7 +348,7 @@ class SatisfactionContentComponent extends Component {
                     )}
                 </FormItem>
 
-                <FormItem {...formItemLayout}>
+                <FormItem>
                     <h3>满意度调查说明</h3>
                     <p>1. 顾客满意度调查表须有客户签名才算有效；</p>
                     <p>2. 分值表示满意程度：90-100很满意，80-89满意，70-79较满意，50-69不满意，49以下很不满意，≥80分计入满意范畴；</p>

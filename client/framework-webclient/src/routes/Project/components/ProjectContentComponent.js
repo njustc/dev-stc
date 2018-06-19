@@ -17,7 +17,7 @@ export default class ProjectContentComponent extends Component {
         super(props);
         this.state = {
             /*TODO:current应该放到props里面*/
-            current: 4,
+            current: 0,
         };
     }
 
@@ -35,32 +35,37 @@ export default class ProjectContentComponent extends Component {
     componentWillMount() {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
-        this.props.getValues(this.props.projectData.id);
-        //     // console.log(this.values);
+         this.props.getValues(this.props.projectData.id);
+         //console.log(this.props);
     };
 
 
     steps = [{
         title: '委托',
-        description: "委托已通过",
+        //description: "委托已通过",
         //content: 'First-content',
     }, {
         title: '合同',
-        description: "合同已确认",
+        // description: "合同已确认",
         //content: 'Second-content',
     }, {
         title: '测试',
-        description: "测试已完成",
+        // description: "测试已完成",
         //content: 'Last-content',
     }, {
         title: '报告',
-        description: "测试报告已确认",
+        // description: "测试报告已确认",
         //content: 'Last-content',
     }, {
         title: '结项',
-        description: "满意度调查表待提交",
+        // description: "满意度调查表待提交",
         //content: 'Last-content',
-    }];
+    }/*,{
+        title: '等待后台',
+        description: "什么也展示不了",
+        //status: "error"
+        //content: 'Last-content',
+    }*/];
 
     data = [
         {index:1,name:'委托申请表'},
@@ -77,14 +82,37 @@ export default class ProjectContentComponent extends Component {
     ];
 
     onTitle() {
-      return (
-          <div>流程当前状态为：满意度调查表待提交</div>
-      );
+        /*TODO 完善各种状态*/
+        switch (this.props.consignState)  {
+          case 'Finish': return (
+              <div>流程当前状态为：委托申请表已通过</div>
+          );
+      }
+
     };
     /*查看详情*/
     viewContent = (item) => () => {
         //console.log(this.props.id);
         this.props.showContent(item,this.props.id);
+    };
+
+    consignOperation = (state) => () => {
+        switch (state){
+            case 'Submit' : this.props.showContent({index:1,name:'委托申请表'},this.props.id);break;
+            case 'Finish' : this.props.showContent({index:1,name:'委托申请表'},this.props.id);break;
+            case 'Undefined' : break;
+            default: break;
+        }
+    };
+
+    contractOperation = () => () => {
+        this.props.showContent({index:2,name:'测试合同书'},this.props.id);
+        /*switch (state){
+            case 'Submit' : this.props.showContent({index:2,name:'测试合同书'},this.props.id);break;
+            case 'Finish' : this.props.showContent({index:2,name:'测试合同书'},this.props.id);break;
+            case 'Undefined' : break;
+            default: break;
+        }*/
     };
 
     render() {
@@ -189,35 +217,49 @@ export default class ProjectContentComponent extends Component {
                             </Col>
                             <Col span={6}>
                                 <Card title='流程摘要信息' hoverable >
-                                    <div>流程ID：{this.props.id}</div>
+                                    <div>项目编号：未定义</div>
                                     <br/>
-                                    <div>项目名称：快乐星球小杨杰</div>
+                                    <div>流程ID：{this.props.projectData.id}</div>
                                     <br/>
-                                    <div>委托人ID：15120140</div>
+                                    <div>项目ID：未定义</div>
                                     <br/>
-                                    <div>委托人用户名：快乐星球小杨杰</div>
+                                    <div>项目名称：未定义</div>
                                     <br/>
-                                    <div>测试人：小猪佩奇</div>
+                                    <div>委托人ID：{this.props.projectData.createdUserId}</div>
                                     <br/>
-                                    <div>项目价格：¥0.5</div>
+                                    <div>委托人用户名：未定义</div>
+                                    <br/>
+                                    <div>流程创建时间：{this.props.projectData.createdTime}</div>
+                                    <br/>
+                                    <div>项目价格：¥2333</div>
                                     <br/>
                                     <div>备注：感谢曹老板指导,给曹老板打call</div>
                                 </Card>
                             </Col>
                             <Col span={15}>
-                                <Card title={this.onTitle()}
+                                <Card
+                                    //title={this.onTitle()}
                                       hoverable
                                       //bordered={false}
                                 >
-                                    <div>您现在可以：<a>提交满意度调查表</a></div>
+                                    <div>您现在可以：
+                                        <a href="javascript:void(0);"
+                                                  onClick={this.consignOperation(this.props.consignState)}
+                                        >查看委托申请表（待删）</a>
+                                        <div></div>
+                                        <a href="javascript:void(0);"
+                                           onClick={this.contractOperation()}
+                                        >填写测试合同书</a>
+                                    </div>
                                     <Divider/>
                                     <Timeline>
-                                        <Timeline.Item color="green">委托通过评审 2015-09-01</Timeline.Item>
-                                        <Timeline.Item color="green">测试样品已提交 2015-09-01</Timeline.Item>
-                                        <Timeline.Item color="green">合同通过确认 2015-09-01</Timeline.Item>
-                                        <Timeline.Item color="green">测试方案通过评审 2015-09-01</Timeline.Item>
-                                        <Timeline.Item color="green">测试报告通过确认 2015-09-01</Timeline.Item>
-                                        <Timeline.Item color="blue">满意度调查表待提交 2015-09-01</Timeline.Item>
+                                        {<Timeline.Item color="green">委托申请表已通过</Timeline.Item>}
+                                        {/*<Timeline.Item color="red">等待后台更新swagger</Timeline.Item>*/}
+                                        {/*<Timeline.Item color="green">测试样品已提交 2015-09-01</Timeline.Item>*/}
+                                        {/*<Timeline.Item color="green">合同通过确认 2015-09-01</Timeline.Item>*/}
+                                        {/*<Timeline.Item color="green">测试方案通过评审 2015-09-01</Timeline.Item>*/}
+                                        {/*<Timeline.Item color="green">测试报告通过确认 2015-09-01</Timeline.Item>*/}
+                                        {/*<Timeline.Item color="blue">满意度调查表待提交 2015-09-01</Timeline.Item>*/}
                                     </Timeline>
                                 </Card>
                             </Col>

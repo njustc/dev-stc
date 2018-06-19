@@ -337,7 +337,28 @@ CREATE TABLE `tbl_sys_testcases`(
   `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `PROCESS_INSTANCE_ID` varchar(255) COLLATE  utf8_bin DEFAULT NULL,
   `PROJECT_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `BODY` text COLLATE utf8_bin DEFAULT NULL
+  `BODY` text COLLATE utf8_bin DEFAULT NULL,
+  `TESTTYPE` text COLLATE utf8_bin DEFAULT NULL,
+  `TESTORDER` text COLLATE utf8_bin DEFAULT NULL,
+  `DESIGNNOTE` text COLLATE utf8_bin DEFAULT NULL,
+  `AGREEMENTNOTE` text COLLATE utf8_bin DEFAULT NULl,
+  `IMPLEMENTATION` text COLLATE utf8_bin DEFAULT NULL,
+  `PRERESULT` text COLLATE utf8_bin DEFAULT NULL,
+  `DESIGNERNAME` text COLLATE  utf8_bin DEFAULT NULL,
+  `TIME1` text COLLATE utf8_bin DEFAULT NULL,
+  `BASIS` text COLLATE utf8_bin DEFAULT NULL,
+  `CONDITION` text COLLATE utf8_bin DEFAULT NULL,
+  `ACRESULT` text COLLATE utf8_bin DEFAULT NULL,
+  `SAMERESULT` text COLLATE utf8_bin DEFAULT NULL,
+  `CASEEXECUTOR` text COLLATE utf8_bin DEFAULT NULL,
+  `TIME2` text COLLATE utf8_bin DEFAULT NULL,
+  `COMFIRMER` text COLLATE utf8_bin DEFAULT NULL,
+  `BUGDESC` text COLLATE utf8_bin DEFAULT NULL,
+  `DEMAND` text COLLATE utf8_bin DEFAULT NULL,
+  `BUGCONDITION` text COLLATE utf8_bin DEFAULT NULL,
+  `BUGPATH` text COLLATE utf8_bin DEFAULT NULL,
+  `TIME3` text COLLATE utf8_bin DEFAULT NULL,
+  `REVSUG` text COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -460,7 +481,35 @@ INSERT INTO `tbl_sys_functions` (`id`,`code`,`name`,`created_time`,`created_user
 ('1-0',NULL,'ContractAdd',NULL,NULL,NULL,NULL,'ADD','Contract'),
 ('1-1',NULL,'ContractDelete',NULL,NULL,NULL,NULL,'DELETE','Contract'),
 ('1-2',NULL,'ContractEdit',NULL,NULL,NULL,NULL,'EDIT','Contract'),
-('1-3',NULL,'ContractView',NULL,NULL,NULL,NULL,'VIEW','Contract');
+('1-3',NULL,'ContractView',NULL,NULL,NULL,NULL,'VIEW','Contract'),
+('2-0',NULL,'ProjectAdd',NULL,NULL,NULL,NULL,'ADD','Project'),
+('2-1',NULL,'ProjectDelete',NULL,NULL,NULL,NULL,'DELETE','Project'),
+('2-2',NULL,'ProjectEdit',NULL,NULL,NULL,NULL,'DELETE','Project'),
+('2-3',NULL,'ProjectView',NULL,NULL,NULL,NULL,'VIEW','Project'),
+('3-0',NULL,'TestPlanAdd',NULL,NULL,NULL,NULL,'ADD','TestPlan'),
+('3-1',NULL,'TestPlanDelete',NULL,NULL,NULL,NULL,'DELETE','TestPlan'),
+('3-2',NULL,'TestPlanEdit',NULL,NULL,NULL,NULL,'EDIT','TestPlan'),
+('3-3',NULL,'TestPlanView',NULL,NULL,NULL,NULL,'VIEW','TestPlan'),
+('4-0',NULL,'TestCaseAdd',NULL,NULL,NULL,NULL,'ADD','TestCase'),
+('4-1',NULL,'TestCaseDelete',NULL,NULL,NULL,NULL,'DELETE','TestCase'),
+('4-2',NULL,'TestCaseEdit',NULL,NULL,NULL,NULL,'EDIT','TestCase'),
+('4-3',NULL,'TestCaseView',NULL,NULL,NULL,NULL,'VIEW','TestCase'),
+('5-0',NULL,'TestFunctionAdd',NULL,NULL,NULL,NULL,'ADD','TestFunction'),
+('5-1',NULL,'TestFunctionDelete',NULL,NULL,NULL,NULL,'DELETE','TestFunction'),
+('5-2',NULL,'TestFunctionEdit',NULL,NULL,NULL,NULL,'EDIT','TestFunction'),
+('5-3',NULL,'TestFunctionView',NULL,NULL,NULL,NULL,'VIEW','TestFunction'),
+('6-0',NULL,'TestReportAdd',NULL,NULL,NULL,NULL,'ADD','TestReport'),
+('6-1',NULL,'TestReportDelete',NULL,NULL,NULL,NULL,'DELETE','TestReport'),
+('6-2',NULL,'TestReportEdit',NULL,NULL,NULL,NULL,'EDIT','TestReport'),
+('6-3',NULL,'TestReportView',NULL,NULL,NULL,NULL,'VIEW','TestReport'),
+('7-0',NULL,'TestReportCheckAdd',NULL,NULL,NULL,NULL,'ADD','TestReportCheck'),
+('7-1',NULL,'TestReportCheckDelete',NULL,NULL,NULL,NULL,'DELETE','TestReportCheck'),
+('7-2',NULL,'TestReportCheckEdit',NULL,NULL,NULL,NULL,'EDIT','TestReportCheck'),
+('7-3',NULL,'TestReportCheckView',NULL,NULL,NULL,NULL,'VIEW','TestReportCheck'),
+('8-0',NULL,'TestWorkCheckAdd',NULL,NULL,NULL,NULL,'ADD','TestWorkCheck'),
+('8-1',NULL,'TestWorkCheckDelete',NULL,NULL,NULL,NULL,'DELETE','TestWorkCheck'),
+('8-2',NULL,'TestWorkCheckEdit',NULL,NULL,NULL,NULL,'EDIT','TestWorkCheck'),
+('8-3',NULL,'TestWorkCheckView',NULL,NULL,NULL,NULL,'VIEW','TestWorkCheck');
 
 
 
@@ -497,8 +546,10 @@ INSERT INTO `tbl_sys_roles` (`id`, `altered_time`, `altered_user_id`, `code`, `c
 -- ('1fb22ed9-2261-4cac-9884-d5dc2a895648', NULL, NULL, NULL, '2017-05-18 09:21:30', '0', '普通用户', NULL, NULL, 'normal_user');
 ('1',NULL,'1','1',NULL,'1','市场部工作人员',NULL,NULL,'marketing_user'),
 ('2',NULL,'2','2',NULL,'2','普通客户',NULL,NULL,'normal_customer'),
-('3',NULL,NULL,NULL,NULL,NULL,'测试部工作人员',NULL,NULL,'testing_user');
-
+('3',NULL,'3','3',NULL,'3','测试部工作人员',NULL,NULL,'testing_user'),
+('4',NULL,'4','4',NULL,'4','市场部主任',NULL,NULL,'marketing_manager'),
+('5',NULL,'5','5',NULL,'5','测试部主任',NULL,NULL,'testing_manager'),
+('6',NULL,'6','6',NULL,'6','质量部人员',NULL,NULL,'quality_user');
 -- --------------------------------------------------------
 
 --
@@ -522,7 +573,19 @@ INSERT INTO `tbl_sys_role_functions` (`function_id`, `role_id`) VALUES
 ('1-0','1'),
 ('1-1','1'),
 ('1-2','1'),
-('1-3','1');
+('1-3','1'),
+('3-0','3'),
+('3-1','3'),
+('3-2','3'),
+('3-3','3'),
+('4-0','3'),
+('4-1','3'),
+('4-2','3'),
+('4-3','3'),
+('6-0','3'),
+('6-1','3'),
+('6-2','3'),
+('6-3','3');
 
 -- --------------------------------------------------------
 
@@ -628,8 +691,6 @@ ALTER TABLE `tbl_sys_users`
 ALTER TABLE `tbl_sys_projects`
   ADD PRIMARY KEY (`ID`);
 --
-
-
 
 
 --

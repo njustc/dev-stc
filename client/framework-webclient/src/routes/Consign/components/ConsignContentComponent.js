@@ -108,6 +108,7 @@ class ConsignContentComponent extends Component  {
         }];
 
         this.state = {
+<<<<<<< HEAD
             dataSource: [{
                 key: '1',
                 number: 'M1',
@@ -131,6 +132,10 @@ class ConsignContentComponent extends Component  {
                 target[dataIndex] = value;
                 this.setState({ dataSource });
             }
+=======
+            visible: false,
+            curButtonIdx: "",
+>>>>>>> 3a1f5898da9980b6535389788cd340bda6a03cbd
         };
     }
     onDelete = (key) => {
@@ -167,7 +172,7 @@ class ConsignContentComponent extends Component  {
     };
 
     componentWillMount() {
-        this.props.getValues(this.props.consignData.id);
+        this.props.getValues(this.props.consignData.id,this.props.consignData.processInstanceID);
     };
 
     // componentDidMount() {
@@ -181,12 +186,22 @@ class ConsignContentComponent extends Component  {
         //     }
         // });
         const {buttons, form} = this.props;
-        const fieldsValue = JSON.stringify((form.getFieldsValue()));
-        const consignation = {
+        // const fieldsValue = JSON.stringify((form.getFieldsValue()));
+        const consignation = JSON.stringify({
             ...this.props.values,
-            fieldsValue
-        };
-        buttons[buttonIndex].onClick(this.props.consignData, consignation);
+            ...form.getFieldsValue(),
+        });
+        debugger;
+        if(buttons[buttonIndex].content === '通过'){
+            this.setState({
+                ...this.state,
+                visible: true,
+                curButtonIdx: buttonIndex,
+            })
+        }
+        else {
+            buttons[buttonIndex].onClick(this.props.consignData, consignation);
+        }
         /*switch (buttons[buttonIndex].content) {
             case '保存': message.success('保存成功');break;
             case '提交': message.success('提交成功');break;
@@ -197,9 +212,9 @@ class ConsignContentComponent extends Component  {
     };
 
     handleOk = (e) => {
-        // const processNo = this.props.form.getFieldsValue().processNo;
-        // console.log(processNo);
-        // this.props.buttons[this.state.curButtonIdx].onClick(this.props.consignData,processNo);
+        const processNo = this.props.form.getFieldsValue().processNo;
+        console.log(processNo);
+        this.props.buttons[this.state.curButtonIdx].onClick(this.props.consignData,processNo);
         this.setState({
             ...this.state,
             visible: false,
@@ -332,7 +347,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入委托单位信息！'}],
                                 initialValue: this.props.values.consignUnitTelephone,
                             })(
-                                <Input placeholder="请输入电话号码" />
+                                <Input disabled={this.props.disable} placeholder="请输入电话号码" />
                             )}
                         </FormItem>
 
@@ -344,7 +359,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入传真号！'}],
                                 initialValue: this.props.values.consignUnitFax,
                             })(
-                                <Input placeholder="请输入传真号" />
+                                <Input disabled={this.props.disable} placeholder="请输入传真号" />
                             )}
 
                         </FormItem>
@@ -357,7 +372,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入地址！'}],
                                 initialValue: this.props.values.consignUnitAddress,
                             })(
-                                <Input placeholder="请输入地址" />
+                                <Input disabled={this.props.disable} placeholder="请输入地址" />
                             )}
                         </FormItem>
 
@@ -369,7 +384,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入邮编！'}],
                                 initialValue: this.props.values.consignUnitEmailNumber,
                             })(
-                                <Input placeholder="请输入邮编" />
+                                <Input disabled={this.props.disable} placeholder="请输入邮编" />
                             )}
                         </FormItem>
 
@@ -381,7 +396,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入联系人！'}],
                                 initialValue: this.props.values.consignUnitPeople,
                             })(
-                                <Input placeholder="请输入联系人" />
+                                <Input disabled={this.props.disable} placeholder="请输入联系人" />
                             )}
                         </FormItem>
 
@@ -393,7 +408,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入手机号码！'}],
                                 initialValue: this.props.values.cconsignUnitCellPhoneNumber,
                             })(
-                                <Input placeholder="请输入手机号" />
+                                <Input disabled={this.props.disable} placeholder="请输入手机号" />
                             )}
                         </FormItem>
 
@@ -405,7 +420,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入E-mail！'}],
                                 initialValue: this.props.values.consignUnitEmail,
                             })(
-                                <Input placeholder="请输入邮箱地址" />
+                                <Input disabled={this.props.disable} placeholder="请输入邮箱地址" />
                             )}
                         </FormItem>
 
@@ -417,7 +432,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入网址！'}],
                                 initialValue: this.props.values.consignUnitUrl,
                             })(
-                                <Input placeholder="请输入网址" />
+                                <Input disabled={this.props.disable} placeholder="请输入网址" />
                             )}
                         </FormItem>
 
@@ -876,7 +891,7 @@ class ConsignContentComponent extends Component  {
                                     initialValue: this.props.values.sampleQuantityComTimeWish,
                                 }],
                             })(
-                                <DatePicker showTime format="YYYY-MM-DD"/>
+                                <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
                             )}
                         </FormItem>
 
@@ -909,7 +924,7 @@ class ConsignContentComponent extends Component  {
                                 <RadioGroup name={"查杀病毒:"} disabled={this.props.disable}>
                                     <Radio value="a">已完成</Radio>
                                     <Radio value="b">无法完成</Radio>
-                                    <Input placeholder="所用查杀工具" />
+                                    <Input disabled={this.props.disable} placeholder="所用查杀工具" />
                                 </RadioGroup>
 
                             )}
@@ -980,7 +995,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入！'}],
                                 initialValue: this.props.values.elseA,
                             })(
-                                <Input placeholder="请输入" />
+                                <Input disabled={this.props.disable} placeholder="请输入" />
                             )}
                         </FormItem>
 
@@ -1025,7 +1040,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入测试项目编号！'}],
                                 initialValue: this.props.values.testingNumber,
                             })(
-                                <Input placeholder="请输入测试项目编号" />
+                                <Input disabled={this.props.disable} placeholder="请输入测试项目编号" />
                             )}
                         </FormItem>
 
@@ -1037,7 +1052,7 @@ class ConsignContentComponent extends Component  {
                                 rules: [{ required: true, message: '请输入备注！'}],
                                    initialValue: this.props.values.remarksE,
                             })(
-                                <TextArea rows={4} />
+                                <TextArea disabled={this.props.disable} rows={4} />
                             )}
                         </FormItem>
 
@@ -1060,7 +1075,7 @@ class ConsignContentComponent extends Component  {
                             label="委托人填写"
                             {...formItemLayout}
                         >
-                            <TextArea rows={4} />
+                            <TextArea disabled={this.props.disable} rows={4} />
                         </FormItem>
 
                         <FormItem
@@ -1095,16 +1110,42 @@ class ConsignContentComponent extends Component  {
 
                 {/* footer buttons */}        {/*console.log(buttonsDisabled)*/}
                 <FormItem style={{textAlign:'center'}}>
-                    {this.props.buttons.map((button, index) =>
-                        <Button
-                            //disabled={this.props.buttonDisabled}
-                            onClick={this.onClick(index)}
-                            key={button.content}>
-                            {button.content}
-                        </Button>)}
+                    {this.props.buttons.map((button, index) => {
+                        let buttonCanShow = false;
+                        this.props.buttonsEnable.forEach(function(element){
+                            if(element.content === button.content){
+                                buttonCanShow = true;
+                            }});
+                        if(buttonCanShow){
+                            return <Button
+                                //disabled={this.props.buttonDisabled}
+                                onClick={this.onClick(index)}
+                                key={button.content}>
+                                {button.content}
+                            </Button>
+                        }
+                    })}
                 </FormItem>
 
-
+                <FormItem style={{textAlign:'center'}}>
+                    <Modal
+                        visible={this.state.visible}
+                        title="填写项目信息"
+                        // okText="Create"
+                        onCancel={this.handleCancel}
+                        onOk={this.handleOk}
+                    >
+                        <Form layout="vertical">
+                            <FormItem>
+                                {getFieldDecorator('processNo', {
+                                    rules: [{ required: true, message: '请输入项目编号!' }],
+                                })(
+                                    <Input prefix={<Icon type="edit" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="ProcessNo" />
+                                )}
+                            </FormItem>
+                        </Form>
+                    </Modal>
+                </FormItem>
             </Form>
 
         );

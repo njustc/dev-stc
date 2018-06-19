@@ -8,7 +8,7 @@ import TestProblemListComponent from "../components/TestProblemListComponent";
 
 const mapStateToProps = (state) => {
     return {
-        dataSource: Object.values(state.TestProblem.listMap),
+        dataSource: Object.values(state.TestProblem.listMap).filter(state.TestProblem.listFilter),
     }
 };
 

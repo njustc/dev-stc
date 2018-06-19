@@ -69,7 +69,7 @@ public class TestReportServiceTest {
     public void test_SE(){
         System.out.println("=====testUser 新建一个测试报告=====");
         JSONObject TestReport = new JSONObject();
-        TestReport.put("Report", "这是testUser测试中新建的一个测试报告");
+        TestReport.put("body", "这是testUser测试中新建的一个测试报告");
 
         try {
 
@@ -88,7 +88,7 @@ public class TestReportServiceTest {
 
             //test_editTestReport
             System.out.println("=====编辑该测试报告内容=====");
-            String edit_object = "report";
+            String edit_object = "body";
             String edit_contents = "这是testUser在测试中修改的测试报告";
             jsonTestReport.put(edit_object,edit_contents );
             jsonTestReport = testReportService.editTestReport(jsonTestReport, null, testUser);
