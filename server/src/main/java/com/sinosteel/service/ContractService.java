@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author LBW
@@ -46,6 +47,10 @@ public class ContractService extends BaseService<Contract> {
         }
     }
 
+    public JSON queryContractsByProject(String projectID) throws Exception {
+
+    }
+
 
     public JSONObject queryContractByID(String id) throws Exception{
         Contract contract = contractRepository.findById(id);
@@ -70,18 +75,20 @@ public class ContractService extends BaseService<Contract> {
         return processContract(contract);
     }
 
-    public JSONObject addContract(JSONObject params, List<MultipartFile> files, User user) throws Exception{
+    public JSONObject addContract(String projectID,JSONObject params, List<MultipartFile> files, User user) throws Exception{
 
-        String uid = params.getString("id");
+        String uid = UUID.randomUUID().toString(); //随机生成contract的id
         //check project
-        if (projectRepository.findById(uid) == null)
-            throw new Exception("Can't find project with ID: " + uid);
+        if (projectRepository.findById(projectID) == null)
+            throw new Exception("Can't find project with ID: " + projectID);
 
-        Project project = projectRepository.findById(uid);
+        Project project = projectRepository.findById(projectID);
         Contract contract = JSONObject.toJavaObject(params, Contract.class);
         contract.setId(uid);
-        contract.setUser(user);
+        contract.setUser(project.getUser());
 
+
+        //TODO:问一下是否是当前user还是要获取project的user
         String processInstanceID = processInstanceService.createContractProcess(params, user);
         contract.setProcessInstanceID(processInstanceID);
 
