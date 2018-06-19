@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View,DeviceEventEmitter } from "react-native";
 import {
   Container,
   Header,
@@ -16,105 +16,17 @@ import {
   List,
   ListItem,
   Accordion,
+  Card,
+  CardItem,
   Footer,
   FooterTab,
+  Tabs,
+  Tab,
+  ScrollableTab
 } from "native-base";
-import styles from "./styles";
-//import {CONSIGNATIONPAGE_CONTENT} from "../../common";
-import {CONSIGNATIONPAGE_CONTENT} from "./Consignation";
 
-const dataArray0=[{title: "1.基本信息",
-  content: CONSIGNATIONPAGE_CONTENT.consignUnitC+"("+CONSIGNATIONPAGE_CONTENT.consignUnitE+")"}];
-// const dataArray = [
-//     {
-//         title: "1.基本信息",
-//         content:
-//         CONSIGNATIONPAGE_CONTENT.SOFTWARE_NAME
-//         +"由"+CONSIGNATIONPAGE_CONTENT.consignUnitC
-//         +"（"+CONSIGNATIONPAGE_CONTENT.consignUnitE
-//         +"）所委托，版本号为" +CONSIGNATIONPAGE_CONTENT.VERSION
-//         +"，交由隶属于"+CONSIGNATIONPAGE_CONTENT.NATURE_OF_UNIT+"的"
-//         +CONSIGNATIONPAGE_CONTENT.DEVELOPMENT_UNIT+"开发。\n"
-//         + "软件用户对象描述如下："+CONSIGNATIONPAGE_CONTENT.SOFTWARE_USER_OBJECT_DES+"\n"
-//         + "软件主要功能及用途简介如下："+CONSIGNATIONPAGE_CONTENT.MAIN_FUNCTION
-//     },
-//     {
-//         title: "2.测试要求",
-//         content:
-//         "该委托测试的类型为"+CONSIGNATIONPAGE_CONTENT.TEST_TYPE
-//         +"，测试依据"+CONSIGNATIONPAGE_CONTENT.TEST_BASIS
-//         +",需要测试的技术指标有"+CONSIGNATIONPAGE_CONTENT.TECH_INDICATOR
-//         +"。"
-//     },
-//     {
-//         title: "3.软件基本信息",
-//         content:
-//         "该软件的功能数为"+CONSIGNATIONPAGE_CONTENT.FUNCTION_QUANTITY
-//         +",功能点数为"+CONSIGNATIONPAGE_CONTENT.FUNCTION_POINTS
-//         +",代码行数为"+CONSIGNATIONPAGE_CONTENT.LINE_OF_CODE +"（不包括注释行、空行），"
-//         +"软件类型为"+CONSIGNATIONPAGE_CONTENT.SOFTWARE_TYPE
-//         +"。"
-//     },
-//     {
-//         title: "4.运行环境",
-//         content:
-//         "(1)客户端:\n操作系统要求："+CONSIGNATIONPAGE_CONTENT.OPERATING_SYS
-//         +"\n内存要求："+CONSIGNATIONPAGE_CONTENT.RAM
-//         +"\n硬盘要求："+CONSIGNATIONPAGE_CONTENT.HARD_DISK+"\n"
-//         + "(2)服务器端：\n硬件要求如下：\n"+"架构要求："+CONSIGNATIONPAGE_CONTENT.STRUCTURE+"\n"
-//         +"内存要求："+CONSIGNATIONPAGE_CONTENT.RAM2+"MB\n"
-//         +"硬盘要求："+CONSIGNATIONPAGE_CONTENT.HARD_DISK2+"MB\n"
-//         +"其他要求："+CONSIGNATIONPAGE_CONTENT.OTHERS+"\n"
-//         +"软件要求如下：\n操作系统要求："+CONSIGNATIONPAGE_CONTENT.OPERATING_SYS2+"\n"
-//         +"版本要求："+CONSIGNATIONPAGE_CONTENT.VERSION2+"\n"
-//         +"编程语言要求："+CONSIGNATIONPAGE_CONTENT.PROGRAMING_LANGUAGE+"\n"
-//         +"构架要求："+CONSIGNATIONPAGE_CONTENT.STRUCTURE2+"\n"
-//         +"数据库要求："+CONSIGNATIONPAGE_CONTENT.DATABASE+"\n"
-//         +"中间件要求："+CONSIGNATIONPAGE_CONTENT.MIDDLEWARE+"\n"
-//         +"其他支撑软件要求："+CONSIGNATIONPAGE_CONTENT.OTHER_SUPPORTING_SOFT+"\n"
-//         +"(3)网络环境要求如下："+CONSIGNATIONPAGE_CONTENT.WEB_ENVIRONMENT+"。"
-//     },
-//     {
-//         title: "5.样品和数量",
-//         content:
-//         "软件介质有："+CONSIGNATIONPAGE_CONTENT.SOFT_MEDIA+"；\n"
-//         +"文档资料包括："+CONSIGNATIONPAGE_CONTENT.DOCUMENTATION+"；\n"
-//         +"提交的样品（硬拷贝资料、硬件等）在五年保存期满后，将"+"。"
-//     },
-//     {
-//         title: "6.期望完成时间",
-//         content:
-//         "希望测试完成的时间为"+CONSIGNATIONPAGE_CONTENT.EXPECTED_FINISH_TIME+"。"
-//     },
-//     {
-//         title:"7.委托单位信息",
-//         content:
-//         "电话："+CONSIGNATIONPAGE_CONTENT.PHONE+"\n"
-//         +"传真："+CONSIGNATIONPAGE_CONTENT.FAX+"\n"
-//         +"地址："+CONSIGNATIONPAGE_CONTENT.ADDRESS+"\n"
-//         +"邮编："+CONSIGNATIONPAGE_CONTENT.ZIP_CODE+"\n"
-//         +"联系人："+CONSIGNATIONPAGE_CONTENT.CONTACTS+"\n"
-//         +"手机："+CONSIGNATIONPAGE_CONTENT.CELL_PHONE+"\n"
-//         +"E-mail："+CONSIGNATIONPAGE_CONTENT.E_MAIL+"\n"
-//         +"网址："+CONSIGNATIONPAGE_CONTENT.URL
-//     },
-//     {
-//         title:"8.国家重点实验室联系方式",
-//         content:
-//         "单位地址：南京市栖霞区仙林大道163号\n"
-//         +"邮政编码：210046\n"
-//         +"电话：86-25-89683467, 86-25-89683670\n"
-//         +"传真：86-25-89686596\n"
-//         +"网址： http://keysoftlab.nju.edu.cn \n" +
-//         "Email:  keysoftlab@nju.edu.cn\n"
-//     },
-//     {
-//         title:"9.委托审查结果",
-//         content:
-//         "经审查，确认意见为："+CONSIGNATIONPAGE_CONTENT.CONFIRMATION_OPINION+"\n"
-//         +"受理意见为："+CONSIGNATIONPAGE_CONTENT.ACCEPT_ADVICE
-//     },
-// ];
+import styles from "./styles";
+
 
 export  default class ConsignationPage extends Component{
     constructor(props) {
@@ -127,7 +39,73 @@ export  default class ConsignationPage extends Component{
             state2: false,
 
             disable1: false,
-            disable2: false
+            disable2: false,
+
+          //tabone
+          consignUnitC:"",
+          consignUnitE:"",
+          developUnit:"",
+          unitProp:"",
+          consignUnitTelephone:"",
+          consignUnitFax:"",
+          consignUnitAddress:"",
+          consignUnitEmailNumber:"",
+          consignUnitPeople:"",
+          consignUnitCellPhoneNumber:"",
+          consignUnitEmail:"",
+          consignUnitUrl:"",
+
+          //tabtwo
+          softwareName:"",
+          version:"",
+          softwareType:"",
+          funcNum:"",
+          funcPoint:"",
+          codeLine:"",
+          objDesc:"",
+          funcDesc:"",
+
+          //tabthree
+          client_os:"",
+          client_memoryReq:"",
+          client_hardDiskReq:"",
+          hardware_arch:"",
+          hardware_memoryReq:"",
+          hardware_hardDiskReq:"",
+          hardware_otherReq:"",
+          software_os:"",
+          software_version:"",
+          software_language:"",
+          software_arch:"",
+          software_dateBase:"",
+          software_midWare:"",
+          software_otherSupp:"",
+          netEnvironment:"",
+
+
+          //tabfour
+          testType:"",
+          testBasis:"",
+          testIndicator:"",
+          cd:"",
+          U:"",
+          other:"",
+          Documentation:"",
+          toHandle:"",
+          comTimeWish:"",
+          securityLevel:"",
+          killingVirus:"",
+          requirementsDocument:"",
+          userDocument:"",
+          oprationDocument:"",
+          elseA:"",
+          confirmationE:"",
+          admissiBility:"",
+          testingNumber:"",
+          remarksE:"",
+
+
+            PageID:""
         };
     }
     toggleTab1() {
@@ -152,10 +130,305 @@ export  default class ConsignationPage extends Component{
 
       //TODO：在这里写否决后向后台传输状态改变
     }
+
+    // componentWillMount(){
+    //   this.listener=DeviceEventEmitter.addListener('id',(events)=>{
+    //     this.setState({ PageID: events.ID});
+    //   });
+    // }
+  componentDidMount() {
+      //tabone
+    this.listener_consignUnitC=DeviceEventEmitter.addListener('consignUnitC',(events)=>{
+      this.setState({consignUnitC: events.CONSIGN_UNITC});
+
+    });
+
+    this.listener_consignUnitE=DeviceEventEmitter.addListener('consignUnitE',(events)=>{
+
+      this.setState({consignUnitE: events.CONSIGN_UNITE});
+    });
+
+    this.listener_developUnit=DeviceEventEmitter.addListener('developUnit',(events)=>{
+
+      this.setState({developUnit: events.DEVELOP_UNIT});
+    });
+
+    this.listener_unitProp = DeviceEventEmitter.addListener('unitProp',(events)=>
+    {
+
+      this.setState({unitProp : events.UNIT_PROP });
+    });
+
+    this.listener_consignUnitTelephone = DeviceEventEmitter.addListener('consignUnitTelephone',(events)=>
+    {
+
+      this.setState({consignUnitTelephone : events.CONSIGN_UNIT_TELEPHONE });
+    });
+
+    this.listener_consignUnitFax = DeviceEventEmitter.addListener('consignUnitFax',(events)=>
+    {
+
+      this.setState({consignUnitFax : events.CONSIGN_UNIT_FAX });
+    });
+
+    this.listener_consignUnitAddress = DeviceEventEmitter.addListener('consignUnitAddress',(events)=>
+    {
+
+      this.setState({consignUnitAddress : events.CONSIGN_UNIT_ADDRESS });
+    });
+
+    this.listener_consignUnitEmailNumber = DeviceEventEmitter.addListener('consignUnitEmailNumber',(events)=>
+    {
+
+      this.setState({consignUnitEmailNumber : events.CONSIGN_UNIT_EMAILNUMBER });
+    });
+
+    this.listener_consignUnitPeople = DeviceEventEmitter.addListener('consignUnitPeople',(events)=>
+    {
+
+      this.setState({consignUnitPeople : events.CONSIGN_UNIT_PEOPLE });
+    });
+
+    this.listener_consignUnitCellPhoneNumber = DeviceEventEmitter.addListener('consignUnitCellPhoneNumber',(events)=>
+    {
+
+      this.setState({consignUnitCellPhoneNumber : events.CONSIGN_UNIT_CELLPHONE_NUMBER });
+    });
+
+    this.listener_consignUnitEmail = DeviceEventEmitter.addListener('consignUnitEmail',(events)=>
+    {
+
+      this.setState({consignUnitEmail : events.CONSIGN_UNIT_EMAIL });
+    });
+
+    this.listener_consignUnitUrl = DeviceEventEmitter.addListener('consignUnitUrl',(events)=>
+    {
+      this.setState({consignUnitUrl : events.CONSIGN_UNIT_URL });
+    });
+
+    //tabtwo
+    this.listener = DeviceEventEmitter.addListener('id',(events)=>{
+      this.setState({ PageID: events.ID});
+    });
+
+    this.listener_softwareName = DeviceEventEmitter.addListener('softwareName',(events)=>{
+      this.setState({softwareName: events.SOFTWARE_NAME});
+      //console.warn("md");
+    });
+
+    this.listener_version = DeviceEventEmitter.addListener('version',(events)=>{
+      this.setState({version:events.VERSION});
+    });
+
+    this.listener_softwareType = DeviceEventEmitter.addListener('softwareType',(events)=>{
+      this.setState({softwareType:events.SOFTWARE_TYPE });
+    });
+
+    this.listener_funcNum = DeviceEventEmitter.addListener('funcNum',(events)=>{
+      this.setState({funcNum : events.FUNC_NUM });
+    });
+
+    this.listener_funcPoint = DeviceEventEmitter.addListener('funcPoint',(events)=>{
+      this.setState({funcPoint : events.FUNC_POINT });
+    });
+
+    this.listener_codeLine = DeviceEventEmitter.addListener('codeLine',(events)=>{
+      this.setState({codeLine : events.CODE_LINE });
+    });
+
+    this.listener_objDesc = DeviceEventEmitter.addListener('objDesc',(events)=>{
+      this.setState({objDesc : events.OBJ_DESC });
+    });
+
+    this.listener_funcDesc = DeviceEventEmitter.addListener('funcDesc',(events)=>{
+      this.setState({funcDesc : events.FUNC_DESC });
+    });
+
+    //tabthree
+    this.listener_client_os = DeviceEventEmitter.addListener('client_os',(events)=>{
+      this.setState({client_os : events.CLIENT_OS });
+    });
+
+    this.listener_client_memoryReq = DeviceEventEmitter.addListener('client_memoryReq',(events)=>{
+      this.setState({client_memoryReq : events.CLIENT_MEMORYREQ });
+    });
+    this.listener_client_hardDiskReq = DeviceEventEmitter.addListener('client_hardDiskReq',(events)=>{
+      this.setState({client_hardDiskReq : events.CLIENT_HARDDISKREQ });
+    });
+    this.listener_hardware_arch = DeviceEventEmitter.addListener('hardware_arch',(events)=>{
+      this.setState({hardware_arch : events.HARDWARE_ARCH });
+    });
+    this.listener_hardware_memoryReq = DeviceEventEmitter.addListener('hardware_memoryReq',(events)=>{
+      this.setState({hardware_memoryReq : events.HARDWARE_MEMORYREQ });
+    });
+    this.listener_hardware_hardDiskReq = DeviceEventEmitter.addListener('hardware_hardDiskReq',(events)=>{
+      this.setState({hardware_hardDiskReq : events.HARDWARE_HARDDISKREQ });
+    });
+    this.listener_hardware_otherReq = DeviceEventEmitter.addListener('hardware_otherReq',(events)=>{
+      this.setState({hardware_otherReq : events.HARDWARE_OTHERREQ });
+    });
+    this.listener_software_os = DeviceEventEmitter.addListener('software_os',(events)=>{
+      this.setState({software_os : events.SOFTWARE_OS });
+    });
+    this.listener_software_version = DeviceEventEmitter.addListener('software_version',(events)=>{
+      this.setState({software_version : events.SOFTWARE_VERSION });
+    });
+    this.listener_software_language = DeviceEventEmitter.addListener('software_language',(events)=>{
+      this.setState({software_language : events.SOFTWARE_LANGUAGE });
+    });
+    this.listener_software_arch = DeviceEventEmitter.addListener('software_arch',(events)=>{
+      this.setState({software_arch : events.SOFTWARE_ARCH });
+    });
+    this.listener_software_dateBase = DeviceEventEmitter.addListener('software_dateBase',(events)=>{
+      this.setState({software_dateBase : events.SOFTWARE_DATEBASE });
+    });
+    this.listener_software_midWare = DeviceEventEmitter.addListener('software_midWare',(events)=>{
+      this.setState({software_midWare : events.SOFTWARE_MIDWARE });
+    });
+    this.listener_software_otherSupp = DeviceEventEmitter.addListener('software_otherSupp',(events)=>{
+      this.setState({software_otherSupp : events.SOFTWARE_OTHERSUPP });
+    });
+    this.listener_netEnvironment = DeviceEventEmitter.addListener('netEnvironment',(events)=>{
+      this.setState({netEnvironment : events.NETENVIRONMENT });
+    });
+
+    //tabfour
+    this.listener_testType=DeviceEventEmitter.addListener('testType',(events)=> {
+      this.setState({testType: events.TEST_TYPE});
+    });
+    this.listener_testBasis=DeviceEventEmitter.addListener('testBasis',(events)=>{
+      this.setState({testBasis : events.TEST_BASIS });
+    });
+    this.listener_testIndicator=DeviceEventEmitter.addListener('testIndicator',(events)=>{
+      this.setState({testIndicator : events.TEST_INDICATOR });
+    });
+    this.listener_cd=DeviceEventEmitter.addListener('cd',(events)=>{
+      this.setState({cd : events.CD });
+    });
+    this.listener_U=DeviceEventEmitter.addListener('U',(events)=>{
+      this.setState({U : events.U });
+    });
+    this.listener_other=DeviceEventEmitter.addListener('other',(events)=>{
+      this.setState({other : events.OTHER });
+    });
+    this.listener_Documentation=DeviceEventEmitter.addListener('Documentation',(events)=>{
+      this.setState({Documentation : events.DOCUMENTATION });
+    });
+    this.listener_toHandle=DeviceEventEmitter.addListener('toHandle',(events)=>{
+      this.setState({toHandle : events.TOHANDLE });
+    });
+    this.listener_comTimeWish=DeviceEventEmitter.addListener('comTimeWish',(events)=>{
+      this.setState({comTimeWish : events.COM_TIME_WISH });
+    });
+    this.listener_securityLevel=DeviceEventEmitter.addListener('securityLevel',(events)=>{
+      this.setState({securityLevel : events.SECURITY_LEVEL });
+    });
+    this.listener_killingVirus=DeviceEventEmitter.addListener('killingVirus',(events)=>{
+      this.setState({killingVirus : events.KILLING_VIRUS });
+    });
+    this.listener_requirementsDocument=DeviceEventEmitter.addListener('requirementsDocument',(events)=>{
+      this.setState({requirementsDocument : events.REQUIREMENTS_DOCUMENT });
+    });
+    this.listener_userDocument=DeviceEventEmitter.addListener('userDocument',(events)=>{
+      this.setState({userDocument : events.USER_DOCUMENT });
+    });
+    this.listener_operationDocument=DeviceEventEmitter.addListener('operationDocument',(events)=>{
+      this.setState({operationDocument : events.OPERATION_DOCUMENT });
+    });
+    this.listener_elseA=DeviceEventEmitter.addListener('elseA',(events)=>{
+      this.setState({elseA : events.ELSEA });
+    });
+    this.listener_confirmationE=DeviceEventEmitter.addListener('confirmationE',(events)=>{
+      this.setState({confirmationE : events.CONFIRMATIONE });
+    });
+    this.listener_admissiBility=DeviceEventEmitter.addListener('admissiBility',(events)=>{
+      this.setState({admissiBility : events.ADMISSIBILITY });
+    });
+    this.listener_testingNumber=DeviceEventEmitter.addListener('testingNumber',(events)=>{
+      this.setState({testingNumber : events.TESTING_NUMBER });
+    });
+    this.listener_remarksE=DeviceEventEmitter.addListener('remarksE',(events)=>{
+      this.setState({remarksE : events.REMARKSE });
+    });
+
+
+
+  }
+//在组件销毁的时候要将其移除
+  componentWillUnmount(){
+    //this.listener.remove();
+
+    //tabone
+    this.listener_consignUnitC.remove();
+    this.listener_consignUnitE.remove();
+    this.listener_developUnit.remove();
+    this.listener_unitProp.remove();
+    this.listener_consignUnitTelephone.remove();
+    this.listener_consignUnitFax.remove();
+    this.listener_consignUnitAddress.remove();
+    this.listener_consignUnitEmailNumber.remove();
+    this.listener_consignUnitPeople.remove();
+    this.listener_consignUnitPeople.remove();
+    this.listener_consignUnitCellPhoneNumber.remove();
+    this.listener_consignUnitEmail.remove();
+    this.listener_consignUnitUrl.remove();
+
+    //tabtwo
+    this.listener.remove();
+    this.listener_softwareName.remove();
+    this.listener_version.remove();
+    this.listener_softwareType.remove();
+    this.listener_funcNum.remove();
+    this.listener_funcPoint.remove();
+    this.listener_codeLine.remove();
+    this.listener_objDesc.remove();
+    this.listener_funcDesc.remove();
+
+    //tabthree
+    this.listener_client_os.remove();
+    this.listener_client_memoryReq.remove();
+    this.listener_client_hardDiskReq.remove();
+    this.listener_hardware_arch.remove();
+    this.listener_hardware_memoryReq.remove();
+    this.listener_hardware_hardDiskReq.remove();
+    this.listener_hardware_otherReq.remove();
+    this.listener_software_os.remove();
+    this.listener_software_version.remove();
+    this.listener_software_language.remove();
+    this.listener_software_arch.remove();
+    this.listener_software_dateBase.remove();
+    this.listener_software_midWare.remove();
+    this.listener_software_otherSupp.remove();
+    this.listener_netEnvironment.remove();
+
+
+    //tabfour
+    this.listener_testType.remove();
+    this.listener_testBasis.remove();
+    this.listener_testIndicator.remove();
+    this.listener_cd.remove();
+    this.listener_U.remove();
+    this.listener_other.remove();
+    this.listener_Documentation.remove();
+    this.listener_toHandle.remove();
+    this.listener_comTimeWish.remove();
+    this.listener_securityLevel.remove();
+    this.listener_killingVirus.remove();
+    this.listener_requirementsDocument.remove();
+    this.listener_userDocument.remove();
+    this.listener_operationDocument.remove();
+    this.listener_elseA.remove();
+    this.listener_confirmationE.remove();
+    this.listener_admissiBility.remove();
+    this.listener_testingNumber.remove();
+    this.listener_remarksE.remove();
+
+  }
+
     render() {
         return (
             <Container>
-                <Header>
+                <Header hasTabs>
                     <Left>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
                             <Icon name="arrow-back" />
@@ -166,16 +439,551 @@ export  default class ConsignationPage extends Component{
                     </Body>
                     <Right />
                 </Header>
-                <Content padder style={{ backgroundColor: "white" }}>
-                    <Accordion
-                        dataArray={dataArray0}
-                        animation={true}
-                        expanded={true}
-                        headerStyle={{ backgroundColor: "#ddecf8" }}
-                        contentStyle={{ backgroundColor: "#b7daf8" }}
-                    />
 
-                </Content>
+                <Tabs renderTabBar={() => <ScrollableTab />}>
+                    <Tab heading="单位信息">
+                        {/*<TabOne />*/}
+                      <Content padder style={{ marginTop: 0 }}>
+                        {/*<Text>{this.state.PageID}</Text>*/}
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              委托单位（中文）：{this.state.consignUnitC}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              委托单位（英文）：{this.state.consignUnitE}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              开发单位：{this.state.developUnit}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              单位性质：{this.state.unitProp}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={styles.mb}>
+                          <CardItem header bordered>
+                            <Text>委托单位信息</Text>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              电话：{this.state.consignUnitTelephone}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              传真：{this.state.consignUnitFax}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              地址：{this.state.consignUnitAddress}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              邮编：{this.state.consignUnitEmailNumber}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              联系人：{this.state.consignUnitPeople}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              手机：{this.state.consignUnitCellPhoneNumber}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              E-mail：{this.state.consignUnitEmail}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              网址：{this.state.consignUnitUrl}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={styles.mb}>
+                          <CardItem header bordered>
+                            <Text>国家重点实验室联系方式</Text>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              单位地址：南京市栖霞区仙林大道163号
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              邮政编码 ：210046
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              电话 ：86-25-89683467, 86-25-89683670
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              传真 ：86-25-89686596
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              网址 ：http://keysoftlab.nju.edu.cn
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              Email ：keysoftlab@nju.edu.cn
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                      </Content>
+                    </Tab>
+                    <Tab heading="软件基本信息">
+                      {/*<TabTwo />*/}
+
+                      <Content padder style={{ marginTop: 0 }}>
+                        {/*<Text>{this.state.PageID}</Text>*/}
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              软件名称：{this.state.softwareName}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              版本号：{this.state.version}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              软件类型：{this.state.softwareType}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={styles.mb}>
+                          <CardItem header bordered>
+                            <Text>软件规模</Text>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              功能数：{this.state.funcNum}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              功能点数：{this.state.funcPoint}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              代码行数：{this.state.codeLine}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={styles.mb}>
+                          <CardItem header bordered>
+                            <Text>软件用户对象描述</Text>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              {this.state.objDesc}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={styles.mb}>
+                          <CardItem header bordered>
+                            <Text>主要功能及用途简介</Text>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              {this.state.funcDesc}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                      </Content>
+
+
+
+
+                    </Tab>
+                    <Tab heading="软件运行环境">
+                        {/*<TabThree />*/}
+                      <Content padder style={{ marginTop: 0 }}>
+                        {/*<Text>{this.state.PageID}</Text>*/}
+                        <Card style={styles.mb}>
+                          <CardItem header bordered>
+                            <Text>客户端</Text>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              操作系统：{this.state.client_os}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              内存要求：{this.state.client_memoryReq}MB
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              硬盘要求：{this.state.client_hardDiskReq}MB
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={styles.mb}>
+                          <CardItem header bordered>
+                            <Text>服务器端——硬件</Text>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              构架：{this.state.hardware_arch}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              内存要求：{this.state.hardware_memoryReq}MB
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              硬盘要求：{this.state.hardware_hardDiskReq}MB
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              其他要求：{this.state.hardware_otherReq}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={styles.mb}>
+                          <CardItem header bordered>
+                            <Text>服务器端——软件</Text>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              操作系统：{this.state.software_os}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              版本：{this.state.software_version}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              编程语言：{this.state.software_language}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              构架：{this.state.software_arch}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              数据库：{this.state.software_dateBase}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              中间件：{this.state.software_midWare}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              其他支撑软件：{this.state.software_otherSupp}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={styles.mb}>
+                          <CardItem header bordered>
+                            <Text>网络环境</Text>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              {this.state.netEnvironment}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                      </Content>
+                    </Tab>
+                    <Tab heading="委托测试信息">
+                        {/*<TabFour />*/}
+                      <Content padder style={{ marginTop: 0 }}>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              测试类型：{this.state.testType}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              测试依据：{this.state.testBasis}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              需要测试的技术指标：{this.state.testIndicator}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={styles.mb}>
+                          <CardItem header bordered>
+                            <Text>软件介质</Text>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              光盘数量：{this.state.cd}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              U盘数量：{this.state.U}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              其他数量：{this.state.other}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              文档资料：{this.state.Documentation}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              样品处理：提交的样品（硬拷贝资料、硬件）五年保存期满{this.state.toHandle}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              希望测试完成的时间：{this.state.comTimeWish}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              密级：{this.state.securityLevel}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              查杀病毒：{this.state.killingVirus}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={styles.mb}>
+                          <CardItem header bordered>
+                            <Text>材料检查</Text>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              需求文档：{this.state.requirementsDocument}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              用户文档：{this.state.userDocument}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              操作文档：{this.state.oprationDocument}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                          <CardItem bordered>
+                            <Body>
+                            <Text>
+                              其他：{this.state.elseA}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              确认意见：{this.state.confirmationE}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              受理意见：{this.state.admissiBility}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              测试项目编号：{this.state.testingNumber}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                        <Card style={{ flex: 0 }}>
+                          <CardItem>
+                            <Body>
+                            <Text>
+                              备注：{this.state.remarksE}
+                            </Text>
+                            </Body>
+                          </CardItem>
+                        </Card>
+                      </Content>
+                    </Tab>
+                </Tabs>
+
                 <Footer>
                     <FooterTab>
                         <Button disabled={this.state.disable1} active={this.state.tab1} onPress={() => this.toggleTab1()}>
@@ -183,7 +991,7 @@ export  default class ConsignationPage extends Component{
                             <Text>通过</Text>
                         </Button>
                         <Button  disabled={this.state.disable2} active={this.state.tab2} onPress={() => this.toggleTab2()}>
-                            <Icon active={this.state.tab2} name="trash" style={{ color: "white" }}/>
+                            <Icon active={this.state.tab2} name="trash" />
                             <Text>否决</Text>
                         </Button>
                     </FooterTab>

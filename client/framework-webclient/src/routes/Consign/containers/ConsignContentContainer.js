@@ -13,6 +13,8 @@ const mapStateToProps = (state, ownProps) => {
     const content = state.Consign.listMap[ownProps.id];
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     const consignation = content?state.Consign.listMap[ownProps.id].consignation:undefined;
+    console.log('raw', consignation);
+    console.log('consignation', consignation ? JSON.parse(consignation): {});
     const ToBeSubmit = content?state.Consign.listMap[ownProps.id].state!=="TobeSubmit":false;
     const isEditVisible = authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     console.log(content);
@@ -93,14 +95,16 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
             if(status===STATUS.SUCCESS) message.success('通过成功');
             else message.error('通过失败');
         });
-        newContract(dispatch,id,(status)=>{
-            console.log(status);
-            if(status===STATUS.SUCCESS) message.success('合同新建成功');
-            else message.error('合同新建失败');
-        });
         newProject(dispatch,id,(status)=>{
-            //console.log(status);
-            if(status===STATUS.SUCCESS) message.success('流程新建成功');
+            console.log(status);
+            if(status===STATUS.SUCCESS){
+                message.success('流程新建成功');
+                newContract(dispatch,id,(status)=>{
+                    console.log(status);
+                    if(status===STATUS.SUCCESS) message.success('合同新建成功');
+                    else message.error('合同新建失败');
+                });
+            }
             else message.error('流程新建失败');
         });
     },

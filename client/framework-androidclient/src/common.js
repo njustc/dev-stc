@@ -1,4 +1,4 @@
-export const baseAddress = 'http://192.168.1.104:8000';
+export const baseAddress = 'http://192.168.1.105:8000';
 export const baseServiceAddress = baseAddress + '/services';
 
 export const STATUS = {
@@ -17,8 +17,8 @@ export const STATE = {
 export const SIDEBAR_DISABLE = {
     CONSIGN: false,
     CONTRACT: false,
-    TESTING: true,
-    REPORT: true,
+    TESTING: false,
+    REPORT: false,
     PROJECTCLOSING: false,
 };
 
