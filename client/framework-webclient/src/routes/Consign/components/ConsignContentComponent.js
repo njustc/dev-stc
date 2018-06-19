@@ -102,13 +102,13 @@ class ConsignContentComponent extends Component  {
                             <Popconfirm title="确认要删除？?" onConfirm={() => this.onDelete(record.key)}>
                                 <a href="javascript:;">Delete</a>
                             </Popconfirm>
+
                         ) : null
                 );
             },
         }];
 
         this.state = {
-<<<<<<< HEAD
             dataSource: [{
                 key: '1',
                 number: 'M1',
@@ -121,6 +121,8 @@ class ConsignContentComponent extends Component  {
                 description: '',
             }],
             count: 2,
+            visible: false,
+            curButtonIdx: "",
         };
 
     }
@@ -132,10 +134,6 @@ class ConsignContentComponent extends Component  {
                 target[dataIndex] = value;
                 this.setState({ dataSource });
             }
-=======
-            visible: false,
-            curButtonIdx: "",
->>>>>>> 3a1f5898da9980b6535389788cd340bda6a03cbd
         };
     }
     onDelete = (key) => {
