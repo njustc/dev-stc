@@ -4,6 +4,7 @@ import {removeContract, setContractContent, setContractList, setContractState} f
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 import {setTestRecordList} from "../modules/ducks/TestRecord";
+import {showListMap} from "../modules/ducks/Project";
 
 const contractBase = baseServiceAddress + '/contract';
 const contractActivitiBase = baseServiceAddress + '/processInstance';
