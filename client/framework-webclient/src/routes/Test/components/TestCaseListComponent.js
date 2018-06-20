@@ -74,19 +74,19 @@ export default class TestCaseListComponent extends Component {
 
     /*table列设置*/
     columns = [{
-        title:"项目ID",
-        dataIndex:"pid",
-        sorter:(a, b) => a.pid - b.pid,
-    }, {
-        title:"测试用例ID",
-        dataIndex:"id",
-        sorter:(a, b) => a.id - b.id,
+        title:"项目编号",
+        // dataIndex:"pid",
+        // sorter:(a, b) => a.pid - b.pid,
     }, {
         title:"项目名称",
         dataIndex:"name",
     }, {
-        title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"customerId",
+        title:"测试用例数",
+        // dataIndex:"id",
+        // sorter:(a, b) => a.id - b.id,
+    }, {
+        title:"测试用例设计者",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        // dataIndex:"customerId",
     }, {
         title:"状态",
         dataIndex:"status",

@@ -75,16 +75,20 @@ export default class TestReportListComponent extends Component {
 
     /*table列设置*/
     columns = [{
+        title:"项目编号",
+        // dataIndex:"pid",
+        // sorter:(a, b) => a.pid - b.pid,
+    }, {
         title:"测试报告ID",
         dataIndex:"id",
         //width: '25%',
         sorter:(a, b) => a.id - b.id,
     }, {
-        title:"测试报告名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        title:"项目名称",
         dataIndex:"name",
     }, {
-        title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"createdUserId",
+        title:"报告人名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        // dataIndex:"createdUserId",
     }, {
         title:"状态",
         dataIndex:"state",
