@@ -1137,29 +1137,73 @@ public class Consign extends BaseEntity{
 
     @Column(name = "TESTREPO_SERVER_CODE")
     private  String testrepoServerCODE;
+    public void setTestrepoServerCODE(String testrepoServerCODE) {
+        this.testrepoServerCODE = testrepoServerCODE;
+    }
+    public String getTestrepoServerCODE() {
+        return testrepoServerCODE;
+    }
 
     @Column(name = "TESTREPO_SERVER_NAME")
     private  String testrepoServerName;
+    public String getTestrepoServerName() {
+        return testrepoServerName;
+    }
+    public void setTestrepoServerName(String testrepoServerName) {
+        this.testrepoServerName = testrepoServerName;
+    }
 
     @Column(name = "TESTREPO_SERVER_Email")
     private  String testrepoServerEmail;
+    public String getTestrepoServerEmail() {
+        return testrepoServerEmail;
+    }
+    public void setTestrepoServerEmail(String testrepoServerEmail) {
+        this.testrepoServerEmail = testrepoServerEmail;
+    }
 
     /**
      * 以下属于测试环境中硬件环境要求 H代表Hardware 意会一下
      */
     @Column(name = "TESTREPO_HTYPE")
     private  String testrepoHTYPE;
+    public String getTestrepoHTYPE() {
+        return testrepoHTYPE;
+    }
+    public void setTestrepoHTYPE(String testrepoHTYPE) {
+        this.testrepoHTYPE = testrepoHTYPE;
+    }
 
     @Column(name = "TESTREPO_HNAME")
     private  String testrepoHNAME;
 
     @Column(name = "TESTREPO_HCONF")
     private  String testrepoHCONF;
+
+    public String getTestrepoHNAME() {
+        return testrepoHNAME;
+    }
+    public String getTestrepoHCONF() {
+        return testrepoHCONF;
+    }
+    public void setTestrepoHNAME(String testrepoHNAME) {
+        this.testrepoHNAME = testrepoHNAME;
+    }
+    public void setTestrepoHCONF(String testrepoHCONF) {
+        this.testrepoHCONF = testrepoHCONF;
+    }
+
     /**
      * 硬件配置
      */
     @Column(name = "TESTREPO_HNUM")
     private  String testrepoHNUM;
+    public String getTestrepoHNUM() {
+        return testrepoHNUM;
+    }
+    public void setTestrepoHNUM(String testrepoHNUM) {
+        this.testrepoHNUM = testrepoHNUM;
+    }
 
     /**
      * 以下属于测试环境中软件环境要求 S代表Software 意会一下
@@ -1177,17 +1221,65 @@ public class Consign extends BaseEntity{
 
     @Column(name = "TESTREPO_WEBENV")
     private  String testrepoWebEnv;
+
+    public String getTestrepoSTYPE() {
+        return testrepoSTYPE;
+    }
+
+    public String getTestrepoSNAME() {
+        return testrepoSNAME;
+    }
+
+    public String getTestrepoSVERSION() {
+        return testrepoSVERSION;
+    }
+
+    public String getTestrepoWebEnv() {
+        return testrepoWebEnv;
+    }
+
+    public void setTestrepoSTYPE(String testrepoSTYPE) {
+        this.testrepoSTYPE = testrepoSTYPE;
+    }
+
+    public void setTestrepoSNAME(String testrepoSNAME) {
+        this.testrepoSNAME = testrepoSNAME;
+    }
+
+    public void setTestrepoSVERSION(String testrepoSVERSION) {
+        this.testrepoSVERSION = testrepoSVERSION;
+    }
+
+    public void setTestrepoWebEnv(String testrepoWebEnv) {
+        this.testrepoWebEnv = testrepoWebEnv;
+    }
+
     /**
      * 网络环境
      */
 
     @Column(name = "TESTREPO_TESTRELY")
     private  String testrepoTestRely;
+
+    public void setTestrepoTestRely(String testrepoTestRely) {
+        this.testrepoTestRely = testrepoTestRely;
+    }
+    public String getTestrepoTestRely() {
+        return testrepoTestRely;
+    }
+
     /**
      * 测试依据
      */
     @Column(name = "TESTREPO_TESTREFER")
     private  String testrepoTestRefer;
+
+    public String getTestrepoTestRefer() {
+        return testrepoTestRefer;
+    }
+    public void setTestrepoTestRefer(String testrepoTestRefer) {
+        this.testrepoTestRefer = testrepoTestRefer;
+    }
     /**
      * 参考资料
      */
@@ -1209,6 +1301,25 @@ public class Consign extends BaseEntity{
     @Column(name = "TESTREPO_FUNCRESULT")
     private  String testrepoFuncResult;
 
+    public String getTestrepoFuncMode() {
+        return testrepoFuncMode;
+    }
+    public String getTestrepoFuncRequire() {
+        return testrepoFuncRequire;
+    }
+    public String getTestrepoFuncResult() {
+        return testrepoFuncResult;
+    }
+    public void setTestrepoFuncMode(String testrepoFuncMode) {
+        this.testrepoFuncMode = testrepoFuncMode;
+    }
+    public void setTestrepoFuncRequire(String testrepoFuncRequire) {
+        this.testrepoFuncRequire = testrepoFuncRequire;
+    }
+    public void setTestrepoFuncResult(String testrepoFuncResult) {
+        this.testrepoFuncResult = testrepoFuncResult;
+    }
+
     /**
      * 效率测试  EFF代表efficiency了
      * 对应; 测试特性 测试说明 测试结果
@@ -1222,6 +1333,24 @@ public class Consign extends BaseEntity{
 
     @Column(name = "TESTREPO_EFFRESULT")
     private  String testrepoEFFRESULT;
+    public String getTestrepoEFFTYPE() {
+        return testrepoEFFTYPE;
+    }
+    public String getTestrepoEFFINFO() {
+        return testrepoEFFINFO;
+    }
+    public String getTestrepoEFFRESULT() {
+        return testrepoEFFRESULT;
+    }
+    public void setTestrepoEFFTYPE(String testrepoEFFTYPE) {
+        this.testrepoEFFTYPE = testrepoEFFTYPE;
+    }
+    public void setTestrepoEFFINFO(String testrepoEFFINFO) {
+        this.testrepoEFFINFO = testrepoEFFINFO;
+    }
+    public void setTestrepoEFFRESULT(String testrepoEFFRESULT) {
+        this.testrepoEFFRESULT = testrepoEFFRESULT;
+    }
 
     /**
      * 可移植性测试  TRANS代表transportability
@@ -1235,6 +1364,25 @@ public class Consign extends BaseEntity{
 
     @Column(name = "TESTREPO_TRANSRESULT")
     private  String testrepoTRANSRESULT;
+
+    public String getTestrepoTRANSTYPE() {
+        return testrepoTRANSTYPE;
+    }
+    public String getTestrepoTRANSINFO() {
+        return testrepoTRANSINFO;
+    }
+    public String getTestrepoTRANSRESULT() {
+        return testrepoTRANSRESULT;
+    }
+    public void setTestrepoTRANSTYPE(String testrepoTRANSTYPE) {
+        this.testrepoTRANSTYPE = testrepoTRANSTYPE;
+    }
+    public void setTestrepoTRANSINFO(String testrepoTRANSINFO) {
+        this.testrepoTRANSINFO = testrepoTRANSINFO;
+    }
+    public void setTestrepoTRANSRESULT(String testrepoTRANSRESULT) {
+        this.testrepoTRANSRESULT = testrepoTRANSRESULT;
+    }
 
     /**
      * 可移植性测试  USE代表usability
@@ -1250,6 +1398,30 @@ public class Consign extends BaseEntity{
     @Column(name = "TESTREPO_USERRESULT")
     private  String testrepoUSERESULT;
 
+    public String getTestrepoUSESTYPE() {
+        return testrepoUSESTYPE;
+    }
+
+    public String getTestrepoUSEINFO() {
+        return testrepoUSEINFO;
+    }
+
+    public String getTestrepoUSERESULT() {
+        return testrepoUSERESULT;
+    }
+
+    public void setTestrepoUSESTYPE(String testrepoUSESTYPE) {
+        this.testrepoUSESTYPE = testrepoUSESTYPE;
+    }
+
+    public void setTestrepoUSEINFO(String testrepoUSEINFO) {
+        this.testrepoUSEINFO = testrepoUSEINFO;
+    }
+
+    public void setTestrepoUSERESULT(String testrepoUSERESULT) {
+        this.testrepoUSERESULT = testrepoUSERESULT;
+    }
+
     /**
      * 可靠性测试
      * 对应; 测试特性 测试说明 测试结果
@@ -1264,7 +1436,29 @@ public class Consign extends BaseEntity{
     @Column(name = "TESTREPO_RELYRESULT")
     private  String testrepoRELYRESULT;
 
+    public String getTestrepoRELYTYPE() {
+        return testrepoRELYTYPE;
+    }
 
+    public String getTestrepoRELYINFO() {
+        return testrepoRELYINFO;
+    }
+
+    public String getTestrepoRELYRESULT() {
+        return testrepoRELYRESULT;
+    }
+
+    public void setTestrepoRELYTYPE(String testrepoRELYTYPE) {
+        this.testrepoRELYTYPE = testrepoRELYTYPE;
+    }
+
+    public void setTestrepoRELYINFO(String testrepoRELYINFO) {
+        this.testrepoRELYINFO = testrepoRELYINFO;
+    }
+
+    public void setTestrepoRELYRESULT(String testrepoRELYRESULT) {
+        this.testrepoRELYRESULT = testrepoRELYRESULT;
+    }
     /**
      以下属于软件测试方案文档
 
@@ -1300,6 +1494,22 @@ public class Consign extends BaseEntity{
 
     @Column(name = "TRC_CLIENTNAME")
     private  String TRCSClientName;
+
+    public String getTRCSoftName() {
+        return TRCSoftName;
+    }
+
+    public String getTRCSClientName() {
+        return TRCSClientName;
+    }
+
+    public void setTRCSoftName(String TRCSoftName) {
+        this.TRCSoftName = TRCSoftName;
+    }
+
+    public void setTRCSClientName(String TRCSClientName) {
+        this.TRCSClientName = TRCSClientName;
+    }
     /**
      * 委托单位名称
      */
@@ -1349,6 +1559,118 @@ public class Consign extends BaseEntity{
     @Column(name = "TRC_RESULT12")
     private  String TRCResult12;
 
+    public void setTRCResult1(String TRCResult1) {
+        this.TRCResult1 = TRCResult1;
+    }
+
+    public void setTRCResult2(String TRCResult2) {
+        this.TRCResult2 = TRCResult2;
+    }
+
+    public void setTRCResult3(String TRCResult3) {
+        this.TRCResult3 = TRCResult3;
+    }
+
+    public void setTRCResult4(String TRCResult4) {
+        this.TRCResult4 = TRCResult4;
+    }
+
+    public void setTRCResult5(String TRCResult5) {
+        this.TRCResult5 = TRCResult5;
+    }
+
+    public void setTRCResult6(String TRCResult6) {
+        this.TRCResult6 = TRCResult6;
+    }
+
+    public void setTRCResult7(String TRCResult7) {
+        this.TRCResult7 = TRCResult7;
+    }
+
+    public void setTRCResult8(String TRCResult8) {
+        this.TRCResult8 = TRCResult8;
+    }
+
+    public void setTRCResult9(String TRCResult9) {
+        this.TRCResult9 = TRCResult9;
+    }
+
+    public void setTRCResult10(String TRCResult10) {
+        this.TRCResult10 = TRCResult10;
+    }
+
+    public void setTRCResult11_1(String TRCResult11_1) {
+        this.TRCResult11_1 = TRCResult11_1;
+    }
+
+    public void setTRCResult11_2(String TRCResult11_2) {
+        this.TRCResult11_2 = TRCResult11_2;
+    }
+
+    public void setTRCResult11_3(String TRCResult11_3) {
+        this.TRCResult11_3 = TRCResult11_3;
+    }
+
+    public void setTRCResult12(String TRCResult12) {
+        this.TRCResult12 = TRCResult12;
+    }
+
+    public String getTRCResult1() {
+        return TRCResult1;
+    }
+
+    public String getTRCResult2() {
+        return TRCResult2;
+    }
+
+    public String getTRCResult3() {
+        return TRCResult3;
+    }
+
+    public String getTRCResult4() {
+        return TRCResult4;
+    }
+
+    public String getTRCResult5() {
+        return TRCResult5;
+    }
+
+    public String getTRCResult6() {
+        return TRCResult6;
+    }
+
+    public String getTRCResult7() {
+        return TRCResult7;
+    }
+
+    public String getTRCResult8() {
+        return TRCResult8;
+    }
+
+    public String getTRCResult9() {
+        return TRCResult9;
+    }
+
+    public String getTRCResult10() {
+        return TRCResult10;
+    }
+
+    public String getTRCResult11_1() {
+        return TRCResult11_1;
+    }
+
+    public String getTRCResult11_2() {
+        return TRCResult11_2;
+    }
+
+    public String getTRCResult11_3() {
+        return TRCResult11_3;
+    }
+
+    public String getTRCResult12() {
+        return TRCResult12;
+    }
+
     /**
      * 检查人和日期
      */
@@ -1357,6 +1679,22 @@ public class Consign extends BaseEntity{
 
     @Column(name = "TRC_TIME")
     private  String TRCTime;
+
+    public String getTRCAuditor() {
+        return TRCAuditor;
+    }
+
+    public String getTRCTime() {
+        return TRCTime;
+    }
+
+    public void setTRCAuditor(String TRCAuditor) {
+        this.TRCAuditor = TRCAuditor;
+    }
+
+    public void setTRCTime(String TRCTime) {
+        this.TRCTime = TRCTime;
+    }
 
     /**
      * 以下属于委托测试测试总项 详见TEST CASE
