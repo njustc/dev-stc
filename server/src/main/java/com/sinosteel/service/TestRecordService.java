@@ -127,7 +127,7 @@ public class TestRecordService extends BaseService<TestRecord> {
         JSONArray resultArray = new JSONArray();
         for (TestRecord testRecord: testRecords) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testRecord));
-            jsonObject.remove("testRecord");
+            //jsonObject.remove("testRecord");
             JSONObject processState = processInstanceService.queryProcessState(testRecord.getProcessInstanceID());
             String operation = processState.getString("operation");
             String state = processState.getString("state");

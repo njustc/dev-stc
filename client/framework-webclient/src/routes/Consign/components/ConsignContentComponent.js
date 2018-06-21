@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Steps, Modal, Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message} from 'antd';
+import {Steps, Modal, Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message,Table, Popconfirm } from 'antd';
 const TabPane = Tabs.TabPane;
 
 const Panel = Collapse.Panel;
@@ -13,14 +13,144 @@ const { TextArea } = Input;
 function handleChange(value) {
     console.log(`selected ${value}`);
 }
-
+class EditableCell extends Component {
+    state = {
+        value: this.props.value,
+        editable: false,
+    }
+    handleChange = (e) => {
+        const value = e.target.value;
+        this.setState({ value });
+    }
+    check = () => {
+        this.setState({ editable: false });
+        if (this.props.onChange) {
+            this.props.onChange(this.state.value);
+        }
+    }
+    edit = () => {
+        this.setState({ editable: true });
+    }
+    render() {
+        const { value, editable } = this.state;
+        return (
+            <div className="editable-cell">
+                {
+                    editable ? (
+                        <Input
+                            value={value}
+                            onChange={this.handleChange}
+                            onPressEnter={this.check}
+                            suffix={
+                                <Icon
+                                    type="check"
+                                    className="editable-cell-icon-check"
+                                    onClick={this.check}
+                                />
+                            }
+                        />
+                    ) : (
+                        <div style={{ paddingRight: 24 }}>
+                            {value || ' '}
+                            <Icon
+                                type="edit"
+                                className="editable-cell-icon"
+                                onClick={this.edit}
+                            />
+                        </div>
+                    )
+                }
+            </div>
+        );
+    }
+}
 class ConsignContentComponent extends Component  {
     constructor(props) {
         super(props);
+        this.columns = [{
+            title: '模块编号',
+            dataIndex: 'number',
+            width: '10%',
+        }, {
+            title: '模块名称',
+            dataIndex: 'name',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'name')}
+                />
+            ),
+        }, {
+            title: '功能简述',
+            dataIndex: 'description',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'description')}
+                />
+            ),
+        }, {
+            title: '删除操作',
+            dataIndex: 'operation',
+            width: '10%',
+            render: (text, record) => {
+                return (
+                    this.state.dataSource.length > 1 ?
+                        (
+                            <Popconfirm title="确认要删除？?" onConfirm={() => this.onDelete(record.key)}>
+                                <a href="javascript:;">Delete</a>
+                            </Popconfirm>
+
+                        ) : null
+                );
+            },
+        }];
+
         this.state = {
+            dataSource: [{
+                key: '1',
+                number: 'M1',
+                name: '',
+                description: '',
+            }, {
+                key: '2',
+                number: 'M2',
+                name: '',
+                description: '',
+            }],
+            count: 2,
             visible: false,
             curButtonIdx: "",
         };
+
+    }
+    onCellChange = (key, dataIndex) => {
+        return (value) => {
+            const dataSource = [...this.state.dataSource];
+            const target = dataSource.find(item => item.key === key);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource });
+            }
+        };
+    }
+    onDelete = (key) => {
+        const dataSource = [...this.state.dataSource];
+        this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
+    }
+    handleAdd = () => {
+        const { count, dataSource } = this.state;
+        const newData = {
+            key: count,
+            number: `M${count}`,
+            description: ``,
+        };
+        this.setState({
+            dataSource: [...dataSource, newData],
+            count: count + 1,
+        });
     }
 
     static defaultProps = {
@@ -98,6 +228,9 @@ class ConsignContentComponent extends Component  {
     };
 
     render() {
+
+        const { dataSource } = this.state;
+        const columns = this.columns;
         const { mode } = this.state;
 
         const { current } = this.state;
@@ -132,6 +265,8 @@ class ConsignContentComponent extends Component  {
 
 
         return (
+
+
 
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
 
@@ -196,7 +331,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('consignUnitMessage', {
                                 rules: [{ required: true, message: '请输入委托单位信息！'}],
-                                //initialValue: this.props.values.consignUnitMessage,
+                                initialValue: this.props.values.consignUnitMessage,
                             })(
                                 <span className="ant-form-text"></span>
                             )}
@@ -208,7 +343,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('consignUnitTelephone', {
                                 rules: [{ required: true, message: '请输入委托单位信息！'}],
-                                //initialValue: this.props.values.consignUnitTelephone,
+                                initialValue: this.props.values.consignUnitTelephone,
                             })(
                                 <Input disabled={this.props.disable} placeholder="请输入电话号码" />
                             )}
@@ -220,7 +355,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('consignUnitFax', {
                                 rules: [{ required: true, message: '请输入传真号！'}],
-                                //initialValue: this.props.values.consignUnitFax,
+                                initialValue: this.props.values.consignUnitFax,
                             })(
                                 <Input disabled={this.props.disable} placeholder="请输入传真号" />
                             )}
@@ -233,7 +368,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('consignUnitAddress', {
                                 rules: [{ required: true, message: '请输入地址！'}],
-                                //initialValue: this.props.values.consignUnitAddress,
+                                initialValue: this.props.values.consignUnitAddress,
                             })(
                                 <Input disabled={this.props.disable} placeholder="请输入地址" />
                             )}
@@ -245,7 +380,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('consignUnitEmailNumber', {
                                 rules: [{ required: true, message: '请输入邮编！'}],
-                                //initialValue: this.props.values.consignUnitEmailNumber,
+                                initialValue: this.props.values.consignUnitEmailNumber,
                             })(
                                 <Input disabled={this.props.disable} placeholder="请输入邮编" />
                             )}
@@ -257,7 +392,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('consignUnitPeople', {
                                 rules: [{ required: true, message: '请输入联系人！'}],
-                                //initialValue: this.props.values.consignUnitPeople,
+                                initialValue: this.props.values.consignUnitPeople,
                             })(
                                 <Input disabled={this.props.disable} placeholder="请输入联系人" />
                             )}
@@ -269,7 +404,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('consignUnitCellPhoneNumber', {
                                 rules: [{ required: true, message: '请输入手机号码！'}],
-                                //initialValue: this.props.values.cconsignUnitCellPhoneNumber,
+                                initialValue: this.props.values.cconsignUnitCellPhoneNumber,
                             })(
                                 <Input disabled={this.props.disable} placeholder="请输入手机号" />
                             )}
@@ -281,7 +416,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('consignUnitEmail', {
                                 rules: [{ required: true, message: '请输入E-mail！'}],
-                                //initialValue: this.props.values.consignUnitEmail,
+                                initialValue: this.props.values.consignUnitEmail,
                             })(
                                 <Input disabled={this.props.disable} placeholder="请输入邮箱地址" />
                             )}
@@ -293,7 +428,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('consignUnitUrl', {
                                 rules: [{ required: true, message: '请输入网址！'}],
-                                //initialValue: this.props.values.consignUnitUrl,
+                                initialValue: this.props.values.consignUnitUrl,
                             })(
                                 <Input disabled={this.props.disable} placeholder="请输入网址" />
                             )}
@@ -374,7 +509,7 @@ class ConsignContentComponent extends Component  {
                         <FormItem {...formItemLayout} label="软件类型">
                             {getFieldDecorator('softwareType', {
                                 rules: [{ required: true, message: '请选择！' }],
-                                //initialValue: this.props.values.softwareType,
+                                initialValue: this.props.values.softwareType,
                             })(
                                 <Select style={{ width: 200 }}
                                         onChange={handleChange} disabled={this.props.disable}>
@@ -418,9 +553,9 @@ class ConsignContentComponent extends Component  {
 
                         <FormItem{...formItemLayout} label={"软件规模(至少一种)"}>
                             <FormItem offset={1}>
-                                {getFieldDecorator('softwareScale.funcNum',
+                                {getFieldDecorator('softwareScaleFuncNum',
                                     {rules: [{ required: false, message: '请输入功能数！',pattern:"^[0-9]+$"}],
-                                        //initialValue: this.props.values.softwareScale.funcNum,
+                                        initialValue: this.props.values.softwareScaleFuncNum,
                                     })(
                                     <Input disabled={this.props.disable}
                                            addonBefore={"功能数"}  placeholder={"到最后一级菜单"}/>
@@ -428,9 +563,9 @@ class ConsignContentComponent extends Component  {
                             </FormItem>
 
                             <FormItem offset={1}>
-                                {getFieldDecorator('softwareScale.funcPoint',
+                                {getFieldDecorator('softwareScaleFuncPoint',
                                     {rules: [{ required: false, message: '请输入功能点数!',pattern:"^[0-9]+$"}],
-                                        //initialValue: this.props.values.softwareScale.funcPoint,
+                                        initialValue: this.props.values.softwareScaleFuncPoint,
                                     })(
                                     <Input disabled={this.props.disable}
                                            addonBefore={"功能点数"} />
@@ -438,9 +573,9 @@ class ConsignContentComponent extends Component  {
                             </FormItem>
 
                             <FormItem offset={1}>
-                                {getFieldDecorator('softwareScale.codeLine',
+                                {getFieldDecorator('softwareScaleCodeLine',
                                     {rules: [{ required: false, message: '请输入代码行数！',pattern:"^[0-9]+$"}],
-                                        //initialValue: this.props.values.softwareScale.codeLine,
+                                        initialValue: this.props.values.softwareScaleCodeLine,
                                     })(
                                     <Input disabled={this.props.disable}
                                            addonBefore={"代码行数"}  placeholder={"不包括注释行和空行"}/>
@@ -461,7 +596,7 @@ class ConsignContentComponent extends Component  {
                         <FormItem {...formItemLayout} label={"主要功能及用途简介"}>
                             {getFieldDecorator('funcDesc', {
                                 rules: [{ required: true, message: '请输入主要功能及用途简介（限200字）！' ,max:200 }],
-                                //initialValue: this.props.values.funcDesc,
+                                initialValue: this.props.values.funcDesc,
                             })(
                                 <TextArea disabled={this.props.disable}
                                           rows={"4"} placeholder="限200字"/>
@@ -473,9 +608,9 @@ class ConsignContentComponent extends Component  {
                         <FormItem {...formItemLayout}label={"客户端"}/>
 
                         <FormItem{...formItemLayout2} label={"操作系统"}>
-                            {getFieldDecorator('operateEnvironment.client.os', {
+                            {getFieldDecorator('operateEnvironmentClientOs', {
                                 rules: [{ required: true, message: '请填写操作系统及其版本！' }],
-                                // initialValue: this.props.values.operateEnvironment.client.os,
+                                 initialValue: this.props.values.operateEnvironmentClientOs,
                             })(
                                 <Checkbox.Group disabled={this.props.disable}>
                                     <Checkbox value={"Windows"}/>Windows
@@ -488,17 +623,17 @@ class ConsignContentComponent extends Component  {
 
 
                         <FormItem {...formItemLayout2} label={"内存要求"}>
-                            {getFieldDecorator('operateEnvironment.client.memoryReq',
+                            {getFieldDecorator('operateEnvironmentClientMemoryReq',
                                 {rules: [{ required: true, message: '请输入内存要求！',pattern:"^[0-9/.]+$"}],
-                                    //initialValue: this.props.values.operateEnvironment.client.memoryReq,
+                                    initialValue: this.props.values.operateEnvironmentClientMemoryReq,
                                 })(<Input disabled={this.props.disable} addonAfter={"MB"} />
                             )}
                         </FormItem>
 
                         <FormItem {...formItemLayout2} label={"硬盘要求"}>
-                            {getFieldDecorator('operateEnvironment.client.hardDiskReq',
+                            {getFieldDecorator('operateEnvironmentCientHardDiskReq',
                                 {rules: [{ required: true, message: '请输入硬盘要求！',pattern:"^[0-9/.]+$"}],
-                                    //initialValue: this.props.values.operateEnvironment.client.hardDiskReq,
+                                    initialValue: this.props.values.operateEnvironmentClientHardDiskReq,
                                 })
                             (<Input disabled={this.props.disable} addonAfter={"MB"} />
                             )}
@@ -507,9 +642,9 @@ class ConsignContentComponent extends Component  {
                         <FormItem{...formItemLayout} label={"服务器端——硬件"}/>
 
                         <FormItem{...formItemLayout2} label={"构架"}>
-                            {getFieldDecorator('operateEnvironment.service.hardware.arch', {
+                            {getFieldDecorator('operateEnvironmentServiceHardwareArch', {
                                 rules: [{ required: true, message: '请选择！' }],
-                                //   initialValue: this.props.values.operateEnvironment.service.hardware.arch,
+                                  initialValue: this.props.values.operateEnvironmentServiceHardwareArch,
                             })(
                                 <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
                                         placeholder="请选择" onChange={handleChange}>
@@ -521,27 +656,27 @@ class ConsignContentComponent extends Component  {
                         </FormItem>
 
                         <FormItem {...formItemLayout2} label={"内存要求"}>
-                            {getFieldDecorator('operateEnvironment.service.hardware.memoryReq',
+                            {getFieldDecorator('operateEnvironmentServiceHardwareMemoryReq',
                                 {rules: [{ required: true, message: '请输入内存要求！',pattern:"^[0-9/.]+$"}],
-                                    //initialValue: this.props.values.operateEnvironment.service.hardware.memoryReq,
+                                    initialValue: this.props.values.operateEnvironmentServiceHardwareMemoryReq,
                                 })(
                                 <Input disabled={this.props.disable} addonAfter={"MB"} />
                             )}
                         </FormItem>
 
                         <FormItem {...formItemLayout2} label={"硬盘要求"}>
-                            {getFieldDecorator('operateEnvironment.service.hardware.hardDiskReq',
+                            {getFieldDecorator('operateEnvironmentServiceHardwareHardDiskReq',
                                 {rules: [{ required: true, message: '请输入硬盘要求！', pattern:"^[0-9/.]+$"}],
-                                    //initialValue: this.props.values.operateEnvironment.service.hardware.hardDiskReq,
+                                    initialValue: this.props.values.operateEnvironmentServiceHardwareHardDiskReq,
                                 })(
                                 <Input disabled={this.props.disable} addonAfter={"MB"}/>
                             )}
                         </FormItem>
 
                         <FormItem {...formItemLayout2} label={"其他要求"}>
-                            {getFieldDecorator('operateEnvironment.service.hardware.otherReq',
+                            {getFieldDecorator('operateEnvironmentServiceHardwareOtherReq',
                                 {rules: [{ required: true, message: '请输入其他要求！'}],
-                                    //initialValue: this.props.values.operateEnvironment.service.hardware.otherReq,
+                                    initialValue: this.props.values.operateEnvironmentServiceHardwareOtherReq,
                                 })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -550,36 +685,36 @@ class ConsignContentComponent extends Component  {
                         <FormItem {...formItemLayout} label={"服务器端——软件"}/>
 
                         <FormItem {...formItemLayout2} label={"操作系统"}>
-                            {getFieldDecorator('operateEnvironment.service.software.os',
+                            {getFieldDecorator('operateEnvironmentServiceSoftwareOs',
                                 {rules: [{ required: true, message: '请输入操作系统！'}],
-                                    //   initialValue: this.props.values.operateEnvironment.service.software.os,
+                                      initialValue: this.props.values.operateEnvironmentServiceSoftwareOs,
                                 })(
                                 <Input disabled={this.props.disable}/>
                             )}
                         </FormItem>
 
                         <FormItem {...formItemLayout2} label={"版本"}>
-                            {getFieldDecorator('operateEnvironment.service.soft.version', {
+                            {getFieldDecorator('operateEnvironmentServiceSoftVersion', {
                                 rules: [{ required: true, message: '请输入版本！',pattern:"^[a-zA-Z0-9/.]+$"}],
-                                //initialValue: this.props.values.operateEnvironment.service.soft.version,
+                                initialValue: this.props.values.operateEnvironmentServiceSoftVersion,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
                         </FormItem>
 
                         <FormItem {...formItemLayout2} label={"编程语言"}>
-                            {getFieldDecorator('operateEnvironment.service.soft.language', {
+                            {getFieldDecorator('operateEnvironmentServiceSoftLanguage', {
                                 rules: [{ required: true, message: '请输入编程语言！'}],
-                                //initialValue: this.props.values.operateEnvironment.service.soft.language,
+                                initialValue: this.props.values.operateEnvironmentServiceSoftLanguage,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
                         </FormItem>
 
                         <FormItem{...formItemLayout2} label={"构架"}>
-                            {getFieldDecorator('operateEnvironment.service.soft.arch', {
+                            {getFieldDecorator('operateEnvironmentServiceSoftArch', {
                                 rules: [{ required: true, message: '请选择构架！' }],
-                                //initialValue: this.props.values.operateEnvironment.service.soft.arch,
+                                initialValue: this.props.values.operateEnvironmentServiceSoftArch,
                             })(
                                 <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
                                         placeholder="请选择" onChange={handleChange}>
@@ -591,36 +726,36 @@ class ConsignContentComponent extends Component  {
                         </FormItem>
 
                         <FormItem {...formItemLayout2} label={"数据库"}>
-                            {getFieldDecorator('operateEnvironment.service.soft.dateBase', {
+                            {getFieldDecorator('operateEnvironmentServiceSoftDateBase', {
                                 rules: [{ required: true, message: '请输入数据库！'}],
-                                //initialValue: this.props.values.operateEnvironment.service.soft.dateBase,
+                                initialValue: this.props.values.operateEnvironmentServiceSoftDateBase,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
                         </FormItem>
 
                         <FormItem {...formItemLayout2} label={"中间件"}>
-                            {getFieldDecorator('operateEnvironment.service.soft.midWare', {
+                            {getFieldDecorator('operateEnvironmentServiceSoftMidWare', {
                                 rules: [{ required: true, message: '请输入中间件！'}],
-                                //initialValue: this.props.values.operateEnvironment.service.soft.midWare,
+                                initialValue: this.props.values.operateEnvironmentServiceSoftMidWare,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
                         </FormItem>
 
                         <FormItem {...formItemLayout2} label={"其他支撑软件"}>
-                            {getFieldDecorator('operateEnvironment.service.soft.otherSupp', {
+                            {getFieldDecorator('operateEnvironmentServiceSoftOtherSupp', {
                                 rules: [{ required: true, message: '请输入其他支撑软件！'}],
-                                //initialValue: this.props.values.operateEnvironment.service.soft.otherSupp,
+                                initialValue: this.props.values.operateEnvironmentServiceSoftOtherSupp,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
                         </FormItem>
 
                         <FormItem {...formItemLayout} label={"网络环境"}>
-                            {getFieldDecorator('operateEnvironment.netEnvironment', {
+                            {getFieldDecorator('operateEnvironmentNetEnvironment', {
                                 rules: [{ required: true, message: '请输入网络环境！'}],
-                                //initialValue: this.props.values.operateEnvironment.netEnvironment,
+                                initialValue: this.props.values.operateEnvironmentNetEnvironment,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -646,7 +781,7 @@ class ConsignContentComponent extends Component  {
                         <FormItem {...formItemLayout} label={"测试依据"}>
                             {getFieldDecorator('testBasis', {
                                 rules: [{ required: true, message: '请选择至少一项测试依据！' }],
-                                //initialValue: this.props.values.testBasis,
+                                initialValue: this.props.values.testBasis,
                             })(
                                 <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
                                         placeholder="请选择" onChange={handleChange}>
@@ -665,7 +800,7 @@ class ConsignContentComponent extends Component  {
                         <FormItem {...formItemLayout} label={"需要测试的技术指标"}>
                             {getFieldDecorator('testIndicator', {
                                 rules: [{ required: true, message: '请选择至少一项技术指标！' }],
-                                //initialValue: this.props.values.testIndicator,
+                                initialValue: this.props.values.testIndicator,
                             })(
                                 <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
                                         placeholder="请选择" onChange={handleChange}>
@@ -688,27 +823,27 @@ class ConsignContentComponent extends Component  {
 
                         <FormItem {...formItemLayout} label={"软件介质"}>
                             <FormItem>
-                                {getFieldDecorator('sampleQuantity.softwareMedia.cd', {
+                                {getFieldDecorator('sampleQuantitySoftwareMediaCd', {
                                     rules: [{pattern:"^[0-9/]+$", message: '请输入光盘数！'}],
-                                    //initialValue: this.props.values.sampleQuantity.softwareMedia.cd,
+                                    initialValue: this.props.values.sampleQuantitySoftwareMediaCd,
                                 })(
                                     <Input addonBefore={"光盘数量"} disabled={this.props.disable}/>
                                 )}
                             </FormItem>
 
                             <FormItem>
-                                {getFieldDecorator('sampleQuantity.softwareMedia.U', {
+                                {getFieldDecorator('sampleQuantitySoftwareMediaU', {
                                     rules: [{pattern:"^[0-9/]+$", message: '请输入U盘数！'}],
-                                    //initialValue: this.props.values.sampleQuantity.softwareMedia.U,
+                                    initialValue: this.props.values.sampleQuantitySoftwareMediaU,
                                 })(
                                     <Input addonBefore={"U盘数量"} disabled={this.props.disable}/>
                                 )}
                             </FormItem>
 
                             <FormItem>
-                                {getFieldDecorator('sampleQuantity.softwareMedia.other', {
+                                {getFieldDecorator('sampleQuantitySoftwareMediaOther', {
                                     rules: [{pattern:"^[0-9/]+$", message: '请输入其他数量！'}],
-                                    //initialValue: this.props.values.sampleQuantity.softwareMedia.other,
+                                    initialValue: this.props.values.sampleQuantitySoftwareMediaOther,
                                 })(
                                     <Input addonBefore={"其他数量"} disabled={this.props.disable}/>
                                 )}
@@ -717,9 +852,9 @@ class ConsignContentComponent extends Component  {
                         </FormItem>
 
                         <FormItem {...formItemLayout} label={"文档资料"}>
-                            {getFieldDecorator('sampleQuantity.Documentation', {
+                            {getFieldDecorator('sampleQuantityDocumentation', {
                                 rules: [{ required: true, message: '请输入文档资料！'}],
-                                //initialValue: this.props.values.sampleQuantity.Documentation,
+                                initialValue: this.props.values.sampleQuantityDocumentation,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -736,9 +871,9 @@ class ConsignContentComponent extends Component  {
                         </FormItem>
 
                         <FormItem  {...formItemLayout} label={"样品处理"}>提交的样品（硬拷贝资料、硬件）五年保存期满
-                            {getFieldDecorator('sampleQuantity.toHandle', {
+                            {getFieldDecorator('sampleQuantityToHandle', {
                                 rules: [{ required: true, message: '请选择！'}],
-                                //initialValue: this.props.values.sampleQuantity.toHandle,
+                                initialValue: this.props.values.sampleQuantityToHandle,
                             })(
                                 <Select style={{ width: 200 }} disabled={this.props.disable}
                                         placeholder="请选择" onChange={handleChange}>
@@ -749,9 +884,9 @@ class ConsignContentComponent extends Component  {
                         </FormItem>
 
                         <FormItem {...formItemLayout} label={"希望测试完成的时间"}>
-                            {getFieldDecorator('sampleQuantity.comTimeWish', {
+                            {getFieldDecorator('sampleQuantityComTimeWish', {
                                 rules: [{ required: true, message: '请正确输入时间！',
-                                    //initialValue: this.props.values.sampleQuantity.comTimeWish,
+                                    initialValue: this.props.values.sampleQuantityComTimeWish,
                                 }],
                             })(
                                 <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
@@ -765,7 +900,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('securityLevel', {
                                 rules: [{ required: true, message: '请选择！'}],
-                                //initialValue: this.props.values.securityLevel,
+                                initialValue: this.props.values.securityLevel,
                             })(
                                 <RadioGroup name={"密级:"} disabled={this.props.disable}>
                                     <Radio value="a">无密级</Radio>
@@ -782,7 +917,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('killingVirus', {
                                 rules: [{ required: true, message: '请选择！'}],
-                                //initialValue: this.props.values.killingVirus,
+                                initialValue: this.props.values.killingVirus,
                             })(
                                 <RadioGroup name={"查杀病毒:"} disabled={this.props.disable}>
                                     <Radio value="a">已完成</Radio>
@@ -806,7 +941,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('requirementsDocument', {
                                 rules: [{ required: true, message: '请选择至少一项需求文档！'}],
-                                // initialValue: this.props.values.requirementsDocument,
+                                 initialValue: this.props.values.requirementsDocument,
                             })(
                                 <Checkbox.Group disabled={this.props.disable}>
                                     <Checkbox value={"项目计划任务书"}/>项目计划任务书
@@ -822,7 +957,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('userDocument', {
                                 rules: [{ required: true, message: '请选择至少一项用户文档！'}],
-                                // initialValue: this.props.values.userDocument,
+                                 initialValue: this.props.values.userDocument,
                             })(
                                 <Checkbox.Group disabled={this.props.disable}>
                                     <Checkbox value={"用户手册"}/>用户手册
@@ -838,7 +973,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('oprationDocument', {
                                 rules: [{ required: true, message: '请选择至少一项操作文档！'}],
-                                // initialValue: this.props.values.oprationDocument,
+                                 initialValue: this.props.values.oprationDocument,
                             })(
                                 <Checkbox.Group disabled={this.props.disable}>
                                     <Checkbox value={"操作员手册"}/>操作员手册
@@ -856,7 +991,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('elseA', {
                                 rules: [{ required: true, message: '请输入！'}],
-                                // initialValue: this.props.values.elseA,
+                                initialValue: this.props.values.elseA,
                             })(
                                 <Input disabled={this.props.disable} placeholder="请输入" />
                             )}
@@ -868,7 +1003,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('confirmationE', {
                                 rules: [{ required: true, message: '请选择确认意见！'}],
-                                //initialValue: this.props.values.confirmationE,
+                                initialValue: this.props.values.confirmationE,
                             })(
                                 <RadioGroup name={"确认意见:"} disabled={this.props.disable}>
                                     <Radio value="a">测试所需材料不全，未达到受理条件。</Radio>
@@ -885,7 +1020,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('admissiBility', {
                                 rules: [{ required: true, message: '请选择受理意见！'}],
-                                // initialValue: this.props.values.admissiBility,
+                                 initialValue: this.props.values.admissiBility,
                             })(
                                 <RadioGroup name={"受理意见:"} disabled={this.props.disable}>
                                     <Radio value="a">受理-进入项目立项和合同评审流程。</Radio>
@@ -901,7 +1036,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('testingNumber', {
                                 rules: [{ required: true, message: '请输入测试项目编号！'}],
-                                //initialValue: this.props.values.testingNumber,
+                                initialValue: this.props.values.testingNumber,
                             })(
                                 <Input disabled={this.props.disable} placeholder="请输入测试项目编号" />
                             )}
@@ -913,7 +1048,7 @@ class ConsignContentComponent extends Component  {
                         >
                             {getFieldDecorator('remarksE', {
                                 rules: [{ required: true, message: '请输入备注！'}],
-                                //   initialValue: this.props.values.remarksE,
+                                   initialValue: this.props.values.remarksE,
                             })(
                                 <TextArea disabled={this.props.disable} rows={4} />
                             )}
@@ -956,7 +1091,19 @@ class ConsignContentComponent extends Component  {
                         </FormItem>
                     </TabPane>
 
+                    <TabPane tab="委托测试软件功能列表" key="5">
+                        <div>
+                            <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
+                                添加测试功能
+                            </Button>
+                            <Table bordered dataSource={dataSource} columns={columns} />
+                        </div>
+
+                    </TabPane>
+
+
                 </Tabs>
+
                </div>
 
                 {/* footer buttons */}        {/*console.log(buttonsDisabled)*/}

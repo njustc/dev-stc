@@ -129,7 +129,7 @@ public class ConsignService extends BaseService<Consign> {
         JSONArray resultArray = new JSONArray();
         for (Consign consign: consigns) {
             JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
-            jsonObject.remove("consignation");
+            //jsonObject.remove("consignation");
             JSONObject processState = processInstanceService.queryProcessState(consign.getProcessInstanceID());
             String state = processState.getString("state");
 //            String operation = processState.getString("operation");
