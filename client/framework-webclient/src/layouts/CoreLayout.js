@@ -3,7 +3,7 @@ import 'STYLES/antd.min.css'
 import 'STYLES/core.scss'
 import './CoreLayout.scss'
 
-import { Layout, Menu, Icon, Row, Tabs, message, Form, Affix, Button, Dropdown } from 'antd';
+import { Layout, Menu, Modal, Input, Icon, Row, Tabs, message, Form, Affix, Button, Dropdown } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 const TabPane = Tabs.TabPane;
@@ -13,8 +13,12 @@ import {ProjectView} from "ROUTES/Project";
 
 import tabsMap from "../routes/tabsMap";
 
-export default class CoreLayout extends Component
+class CoreLayout extends Component
 {
+    state = {
+        visible:false,
+    };
+
     constructor(props) {
         super(props);
     };
@@ -36,6 +40,28 @@ export default class CoreLayout extends Component
             message.info('退出成功，正在跳转');
             this.props.router.replace('/login');
         }
+        else if(e.key==="resetPassword"){
+            this.setState({
+                ...this.state,
+                visible: true,
+            });
+        }
+    };
+
+    onCancel = () => {
+        this.setState({
+            ...this.state,
+            visible:false,
+        });
+    };
+
+    onOk = () => {
+        this.props.form.validateFields((err, values) => {
+            this.setState({
+                ...this.state,
+                visible:false,
+            });
+        });
     };
 
     onClick = (e) => {
@@ -56,6 +82,7 @@ export default class CoreLayout extends Component
     logMenu = (
         <Menu onClick={this.handleMenuClick}>
             <Menu.Item key="logout">退出登录</Menu.Item>
+            <Menu.Item key="resetPassword">修改密码</Menu.Item>
         </Menu>
     );
 
@@ -66,6 +93,11 @@ export default class CoreLayout extends Component
     );
 
     render(){
+        const formItemLayout = {
+                labelCol: { span: 3 },
+                wrapperCol: { span: 20 },
+            };
+        const { getFieldDecorator } = this.props.form;
         return (
             <Layout style = {{ minHeight: '100vh' }}>
                 <Sider width={200} style={{ background: '#000' }}>
@@ -127,6 +159,16 @@ export default class CoreLayout extends Component
                                     </Button>
                                 </Dropdown>
                             </div>
+                            <Modal visible={this.state.visible} title="修改密码" onCancel={this.onCancel} onOk={this.onOk}>
+                                <Form layout="vertical">
+                                    <FormItem {...formItemLayout} label="原密码">
+                                        {getFieldDecorator('password', {})(<Input />)}
+                                    </FormItem>
+                                    <FormItem {...formItemLayout} label="新密码">
+                                        {getFieldDecorator('newPassword', {})(<Input />)}
+                                    </FormItem>
+                                </Form>
+                            </Modal>
                         </Header>
                     </Affix>
                     <Content style={{ margin: '0px 16px', padding: 24, background: '#fff', minHeight: 800 }}>
@@ -148,3 +190,5 @@ export default class CoreLayout extends Component
         );
     }
 }
+
+export default Form.create()(CoreLayout);
