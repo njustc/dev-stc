@@ -67,8 +67,8 @@ export const deleteContract = (dispatch, id, callback) => {
 };
 
 export const newContract = (dispatch, id,callback) => {
+    let urlParams = 'projectID=' + id;
     const contractData = {
-        id: id,
         contractBody: "null"
     };
     httpPost(contractBase, contractData, (result) => {
@@ -77,7 +77,7 @@ export const newContract = (dispatch, id,callback) => {
             dispatch(setContractContent(data));
         }
         callback && callback(status);
-    });
+    },urlParams);
 };
 
 export const updateContract = (dispatch, data, callback) => {
