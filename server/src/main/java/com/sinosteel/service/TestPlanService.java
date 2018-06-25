@@ -132,10 +132,7 @@ public class TestPlanService extends BaseService<TestPlan> {
     private JSONObject processTestPlan(TestPlan testPlan) throws Exception {
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testPlan));
         JSONObject processState = processInstanceService.queryProcessState(testPlan.getProcessInstanceID());
-        String state = processState.getString("state");
-        String operation = processState.getString("operation");
-        jsonObject.put("state", state);
-        jsonObject.put("operation", operation);
+        jsonObject.putAll(processState);
         return jsonObject;
 
     }
@@ -144,13 +141,9 @@ public class TestPlanService extends BaseService<TestPlan> {
         JSONArray resultArray = new JSONArray();
         for (TestPlan testPlan: testplans) {
             if (testPlan != null) {
-                JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testPlan));
+                JSONObject jsonObject = processTestPlan(testPlan);
                 //jsonObject.remove("testplan");
-                JSONObject processState = processInstanceService.queryProcessState(testPlan.getProcessInstanceID());
-                String state = processState.getString("state");
-                String operation = processState.getString("operation");
-                jsonObject.put("state", state);
-                jsonObject.put("operation", operation);
+
                 resultArray.add(jsonObject);
             }
         }

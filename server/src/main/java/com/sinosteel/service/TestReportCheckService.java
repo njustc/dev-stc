@@ -141,7 +141,7 @@ public class TestReportCheckService extends BaseService<TestReportCheck> {
     private  JSONArray processTestReportChecks(List<TestReportCheck> testReportChecks) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (TestReportCheck testReportCheck: testReportChecks) {
-            JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testReportCheck));
+            JSONObject jsonObject = processTestReportCheck(testReportCheck);
             //jsonObject.remove("testReportCheck");
             //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
             //jsonObject.put("state", processState);

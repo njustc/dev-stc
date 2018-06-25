@@ -125,14 +125,8 @@ public class ContractService extends BaseService<Contract> {
         JSONArray resultArray = new JSONArray();
         //去掉合同内容,添加状态
         for (Contract contract: contracts) {
-            JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(contract));
+            JSONObject jsonObject = processContract(contract);
             //jsonObject.remove("contractBody");
-            JSONObject processState = processInstanceService.queryProcessState(contract.getProcessInstanceID());
-            String state = processState.getString("state");
-            String operation = processState.getString("operation");
-            jsonObject.put("state", state);
-            jsonObject.put("operation", operation);
-
             resultArray.add(jsonObject);
         }
 
@@ -141,11 +135,9 @@ public class ContractService extends BaseService<Contract> {
 
     private JSONObject processContract(Contract contract) throws Exception{
         JSONObject processState = processInstanceService.queryProcessState(contract.getProcessInstanceID());
-        String state = processState.getString("state");
-        String operation = processState.getString("operation");
+
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(contract));
-        jsonObject.put("state", state);
-        jsonObject.put("operation", operation);
+        jsonObject.putAll(processState);
         return jsonObject;
     }
 }

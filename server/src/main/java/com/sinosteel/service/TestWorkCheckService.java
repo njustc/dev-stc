@@ -150,7 +150,7 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
     private  JSONArray processTestWorkChecks(List<TestWorkCheck> testWorkChecks) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (TestWorkCheck testWorkCheck: testWorkChecks) {
-            JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testWorkCheck));
+            JSONObject jsonObject = processTestWorkCheck(testWorkCheck);
             //jsonObject.remove("testWorkCheck");
             //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
             //jsonObject.put("state", processState);

@@ -140,7 +140,7 @@ public class TestFunctionService extends BaseService<TestFunction> {
     private  JSONArray processTestFunctions(List<TestFunction> testFunctions) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (TestFunction testFunction: testFunctions) {
-            JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testFunction));
+            JSONObject jsonObject = processTestFunction(testFunction);
             resultArray.add(jsonObject);
         }
         return resultArray;
