@@ -1,7 +1,7 @@
 //export default Form.create()(TestReportContentComponent);
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse} from 'antd';
-
+import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message,Table,Popconfirm} from 'antd';
+const TabPane = Tabs.TabPane;
 const Option=Select.Option;
 const OptGroup=Select.OptGroup;
 const FormItem=Form.Item;
@@ -12,13 +12,501 @@ const { TextArea } = Input;
 function handleChange(value) {
     console.log(`selected ${value}`);
 }
+class EditableCell extends Component {
+    state = {
+        value: this.props.value,
+        editable: false,
+    }
+    handleChange = (e) => {
+        const value = e.target.value;
+        this.setState({ value });
+    }
+    check = () => {
+        this.setState({ editable: false });
+        if (this.props.onChange) {
+            this.props.onChange(this.state.value);
+        }
+    }
+    edit = () => {
+        this.setState({ editable: true });
+    }
+    render() {
+        const { value, editable } = this.state;
+        return (
+            <div className="editable-cell">
+                {
+                    editable ? (
+                        <Input
+                            value={value}
+                            onChange={this.handleChange}
+                            onPressEnter={this.check}
+                            suffix={
+                                <Icon
+                                    type="check"
+                                    className="editable-cell-icon-check"
+                                    onClick={this.check}
+                                />
+                            }
+                        />
+                    ) : (
+                        <div style={{ paddingRight: 24 }}>
+                            {value || ' '}
+                            <Icon
+                                type="edit"
+                                className="editable-cell-icon"
+                                onClick={this.edit}
+                            />
+                        </div>
+                    )
+                }
+            </div>
+        );
+    }
+}
+class EditableTable extends Component {
+    constructor(props) {
+        super(props);
+        this.columns = [{
+            title: '序号',
+            dataIndex: 'softwarenumber',
+            width: '10%',
+        }, {
+            title: '软件名称',
+            dataIndex: 'softwarename',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'name')}
+                />
+            ),
+        }, {
+            title: '软件类别',
+            dataIndex: 'softwarekind',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'description')}
+                />
+            ),
+        }, {
+            title: '软件版本',
+            dataIndex: 'softwareversion',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'description')}
+                />
+            ),
+        }, {
+            title: '删除操作',
+            dataIndex: 'operation',
+            width: '10%',
+            render: (text, record) => {
+                return (
+                    this.state.dataSource.length > 1 ?
+                        (
+                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key)}>
+                                <a href="javascript:;">Delete</a>
+                            </Popconfirm>
+                        ) : null
+                );
+            },
+        }];
+
+        this.state = {
+            dataSource: [{
+                key: '1',
+                softwarenumber: '1',
+                softwarename: '',
+                softwareversion: '',
+                softwarekind:'',
+                description: '',
+            }, {
+                key: '2',
+                softwarenumber: '2',
+                softwarename: '',
+                softwareversion: '',
+                softwarekind:'',
+                description: '',
+            }],
+            count: 2,
+        };
+    }
+    onCellChange = (key, dataIndex) => {
+        return (value) => {
+            const dataSource = [...this.state.dataSource];
+            const target = dataSource.find(item => item.key === key);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource });
+            }
+        };
+    }
+    onDelete = (key) => {
+        const dataSource = [...this.state.dataSource];
+        this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
+    }
+    handleAdd = () => {
+        const { count, dataSource } = this.state;
+        const newData = {
+            key: count,
+            softwarenumber: `${count}`,
+            description: ``,
+        };
+        this.setState({
+            dataSource: [...dataSource, newData],
+            count: count + 1,
+        });
+    }
+    render() {
+        const { dataSource } = this.state;
+        const columns = this.columns;
+        return (
+            <div>
+                <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
+                    添加软件环境
+                </Button>
+                <Table bordered dataSource={dataSource} columns={columns} />
+            </div>
+        );
+    }
+}
+
+class FunctionEditableTable extends React.Component {
+    constructor(props) {
+        super(props);
+        this.columns = [{
+            title: '序号',
+            dataIndex: 'number',
+            width: '10%',
+        }, {
+            title: '功能模块',
+            dataIndex: 'iterm',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'name')}
+                />
+            ),
+        }, {
+            title: '功能要求',
+            dataIndex: 'command',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'description')}
+                />
+            ),
+        }, {
+            title: '测试结果',
+            dataIndex: 'result',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'description')}
+                />
+            ),
+        }, {
+            title: '删除操作',
+            dataIndex: 'operation',
+            width: '10%',
+            render: (text, record) => {
+                return (
+                    this.state.dataSource.length > 1 ?
+                        (
+                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key)}>
+                                <a href="javascript:;">Delete</a>
+                            </Popconfirm>
+                        ) : null
+                );
+            },
+        }];
+
+        this.state = {
+            dataSource: [{
+
+                number: '1',
+                iterm: '',
+                command: '',
+                result:'',
+
+            }, {
+
+                number: '2',
+                iterm: '',
+                command: '',
+                result:'',
+
+            }],
+            count: 2,
+        };
+    }
+    onCellChange = (key, dataIndex) => {
+        return (value) => {
+            const dataSource = [...this.state.dataSource];
+            const target = dataSource.find(item => item.key === key);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource });
+            }
+        };
+    }
+    onDelete = (key) => {
+        const dataSource = [...this.state.dataSource];
+        this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
+    }
+    handleAdd = () => {
+        const { count, dataSource } = this.state;
+        const newData = {
+            key: count,
+            number: `${count}`,
+            description: ``,
+        };
+        this.setState({
+            dataSource: [...dataSource, newData],
+            count: count + 1,
+        });
+    }
+    render() {
+        const { dataSource } = this.state;
+        const columns = this.columns;
+        return (
+            <div>
+                <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
+                    添加功能性测试
+                </Button>
+                <Table bordered dataSource={dataSource} columns={columns} />
+            </div>
+        );
+    }
+}
+class EfficiencyEditableTable extends React.Component {
+    constructor(props) {
+        super(props);
+        this.columns = [{
+            title: '序号',
+            dataIndex: 'number',
+            width: '10%',
+        }, {
+            title: '测试特性',
+            dataIndex: 'iterm',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'name')}
+                />
+            ),
+        }, {
+            title: '测试说明',
+            dataIndex: 'command',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'description')}
+                />
+            ),
+        }, {
+            title: '测试结果',
+            dataIndex: 'result',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'description')}
+                />
+            ),
+        }, {
+            title: '删除操作',
+            dataIndex: 'operation',
+            width: '10%',
+            render: (text, record) => {
+                return (
+                    this.state.dataSource.length > 1 ?
+                        (
+                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key)}>
+                                <a href="javascript:;">Delete</a>
+                            </Popconfirm>
+                        ) : null
+                );
+            },
+        }];
+
+        this.state = {
+            dataSource: [{
+
+                number: '1',
+                iterm: '',
+                command: '',
+                result:'',
+
+            }, {
+
+                number: '2',
+                iterm: '',
+                command: '',
+                result:'',
+
+            }],
+            count: 2,
+        };
+    }
+    onCellChange = (key, dataIndex) => {
+        return (value) => {
+            const dataSource = [...this.state.dataSource];
+            const target = dataSource.find(item => item.key === key);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource });
+            }
+        };
+    }
+    onDelete = (key) => {
+        const dataSource = [...this.state.dataSource];
+        this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
+    }
+    handleAdd = () => {
+        const { count, dataSource } = this.state;
+        const newData = {
+            key: count,
+            number: `${count}`,
+            description: ``,
+        };
+        this.setState({
+            dataSource: [...dataSource, newData],
+            count: count + 1,
+        });
+    }
+    render() {
+        const { dataSource } = this.state;
+        const columns = this.columns;
+        return (
+            <div>
+                <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
+                    添加功能性测试
+                </Button>
+                <Table bordered dataSource={dataSource} columns={columns} />
+            </div>
+        );
+    }
+}
 
 class TestReportContentComponent extends Component {
     constructor(props) {
         super(props);
+        this.columns = [{
+            title: '序号',
+            dataIndex: 'number',
+            width: '10%',
+        }, {
+            title: '硬件名称',
+            dataIndex: 'name',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'name')}
+                />
+            ),
+        },  {
+            title: '硬件类别',
+            dataIndex: 'kind',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'name')}
+                />
+            ),
+        },  {
+            title: '数量',
+            dataIndex: 'amount',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'name')}
+                />
+            ),
+        }, {
+            title: '配置',
+            dataIndex: 'description',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange(record.key, 'description')}
+                />
+            ),
+        }, {
+            title: '删除操作',
+            dataIndex: 'operation',
+            width: '10%',
+            render: (text, record) => {
+                return (
+                    this.state.dataSource.length > 1 ?
+                        (
+                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key)}>
+                                <a href="javascript:;">Delete</a>
+                            </Popconfirm>
+                        ) : null
+                );
+            },
+        }];
+
+        this.state = {
+            dataSource: [{
+                key: '1',
+                number: '1',
+                name: '',
+                kind: '',
+                amount: '',
+                description: '',
+            }, {
+                key: '2',
+                number: '2',
+                name: '',
+                kind: '',
+                amount: '',
+                description: '',
+            }],
+            count: 2,
+        };
       
     };
-
+    onCellChange = (key, dataIndex) => {
+        return (value) => {
+            const dataSource = [...this.state.dataSource];
+            const target = dataSource.find(item => item.key === key);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource });
+            }
+        };
+    }
+    onDelete = (key) => {
+        const dataSource = [...this.state.dataSource];
+        this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
+    }
+    handleAdd = () => {
+        const { count, dataSource } = this.state;
+        const newData = {
+            key: count,
+            number: `${count}`,
+            description: ``,
+        };
+        this.setState({
+            dataSource: [...dataSource, newData],
+            count: count + 1,
+        });
+    }
     static defaultProps = { 
 	curID : '',
         values : {},
@@ -49,6 +537,8 @@ class TestReportContentComponent extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
+        const { dataSource } = this.state;
+        const columns = this.columns;
         const formItemLayout =  {
             labelCol: { span: 4 },
             wrapperCol: { span: 19 },
@@ -59,9 +549,16 @@ class TestReportContentComponent extends Component {
             <Form onSubmit={this.handleSubmit} >
 
                 <FormItem {...formItemLayout}>
-                    <h1>测试报告</h1>
+                    <h1 style={{textAlign:'center'}}>测试报告</h1>
                 </FormItem>
 
+                <div>
+                    <Tabs
+                        defaultActiveKey="1"
+                        tabPosition="left"
+
+                    >
+                        <TabPane tab="基本信息" key="1">
 		 <FormItem {...formItemLayout} label={"委托单位"}>
                             {getFieldDecorator('consignUnitC', {
                                 rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
@@ -266,15 +763,123 @@ class TestReportContentComponent extends Component {
                             )}
                         </FormItem>
 
-		    <FormItem {...formItemLayout}>
+                        </TabPane>
+                        <TabPane tab="测试环境" key="2">
+
+                            <FormItem
+                                label="硬件环境"
+                                {...formItemLayout}
+                            >
+                                <span className="ant-form-text"></span>
+                            </FormItem>
+
+                            <div>
+                                <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
+                                    添加硬件环境
+                                </Button>
+                                <Table bordered dataSource={dataSource} columns={columns} />
+                            </div>
+
+                            <FormItem
+                                label="软件环境"
+                                {...formItemLayout}
+                            >
+                                <span className="ant-form-text"></span>
+                            </FormItem>
+
+                              <EditableTable
+                              />
+
+                        </TabPane>
+
+
+                       <TabPane tab="测试依据和参考资料" key="3">
+                           <FormItem {...formItemLayout} label={"测试依据"}>
+                               {getFieldDecorator('testBasic', {
+                                   rules: [{ required: true, message: '请正确输入测试依据！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                               })(
+                                   <Input disabled={this.props.disable}/>
+                               )}
+                           </FormItem>
+
+                           <FormItem {...formItemLayout} label={"参考资料"}>
+                               {getFieldDecorator('referenceContent', {
+                                   rules: [{ required: true, message: '请正确输入参考资料！' ,pattern:"^[A-Za-z]+$"}],
+                               })(
+                                   <Input disabled={this.props.disable}/>
+                               )}
+                           </FormItem>
+
+                       </TabPane>
+                        <TabPane tab="测试内容" key="4">
+
+                            <FormItem
+                                label="功能性测试"
+                                {...formItemLayout}
+                            >
+                                <span className="ant-form-text"></span>
+                            </FormItem>
+                            <FunctionEditableTable
+                            />
+
+                            <FormItem
+                                label="效率测试"
+                                {...formItemLayout}
+                            >
+                                <span className="ant-form-text"></span>
+                            </FormItem>
+                            <EfficiencyEditableTable
+                            />
+
+                            <FormItem
+                                label="可移植性测试"
+                                {...formItemLayout}
+                            >
+                                <span className="ant-form-text"></span>
+                            </FormItem>
+                            <EfficiencyEditableTable
+                            />
+
+                            <FormItem
+                                label="易用性测试"
+                                {...formItemLayout}
+                            >
+                                <span className="ant-form-text"></span>
+                            </FormItem>
+                            <EfficiencyEditableTable
+                            />
+
+                            <FormItem
+                                label="可靠性测试"
+                                {...formItemLayout}
+                            >
+                                <span className="ant-form-text"></span>
+                            </FormItem>
+                            <EfficiencyEditableTable
+                            />
+
+                            <FormItem
+                                label="可维护测试"
+                                {...formItemLayout}
+                            >
+                                <span className="ant-form-text"></span>
+                            </FormItem>
+                            <EfficiencyEditableTable
+                            />
+                        </TabPane>
+
+
+                <FormItem {...formItemLayout}>
                     {this.props.buttons.map((button, index) =>
                         <Button onClick={this.onClick(index)}
                                 key={button.content}>
                             {button.content}
                         </Button>)}
                 </FormItem>
-            
 
+             </Tabs>
+
+            </div>
 
         </Form>
 
