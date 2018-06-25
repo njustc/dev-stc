@@ -95,7 +95,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
             if(status===STATUS.SUCCESS) message.success('通过成功');
             else message.error('通过失败');
         });
-        newProject(dispatch,id,(status)=>{
+        newProject(dispatch,id,processNo,(status)=>{
             console.log(status);
             if(status===STATUS.SUCCESS){
                 message.success('流程新建成功');
