@@ -114,10 +114,7 @@ public class TestRecordService extends BaseService<TestRecord> {
     private JSONObject processTestRecord(TestRecord testRecord) throws Exception {
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testRecord));
         JSONObject processState = processInstanceService.queryProcessState(testRecord.getProcessInstanceID());
-        String operation = processState.getString("operation");
-        String state = processState.getString("state");
-        jsonObject.put("state", state);
-        jsonObject.put("operation", operation);
+        jsonObject.putAll(processState);
         return jsonObject;
 
     }
@@ -126,13 +123,9 @@ public class TestRecordService extends BaseService<TestRecord> {
     private  JSONArray processTestRecords(List<TestRecord> testRecords) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (TestRecord testRecord: testRecords) {
-            JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testRecord));
+            JSONObject jsonObject = processTestRecord(testRecord);
             //jsonObject.remove("testRecord");
-            JSONObject processState = processInstanceService.queryProcessState(testRecord.getProcessInstanceID());
-            String operation = processState.getString("operation");
-            String state = processState.getString("state");
-            jsonObject.put("state", state);
-            jsonObject.put("operation", operation);
+
             resultArray.add(jsonObject);
         }
 

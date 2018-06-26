@@ -133,13 +133,8 @@ public class TestReportService extends BaseService<TestReport>{
         JSONArray resultArray = new JSONArray();
         for (TestReport testReport: testReports) {
             if (testReport != null) {
-                JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testReport));
+                JSONObject jsonObject = processTestReport(testReport);
                 //jsonObject.remove("body");
-                JSONObject processState = processInstanceService.queryProcessState(testReport.getProcessInstanceID());
-                String state = processState.getString("state");
-                String operation = processState.getString("operation");
-                jsonObject.put("state", state);
-                jsonObject.put("operation", operation);
 
                 resultArray.add(jsonObject);
             }
@@ -152,10 +147,7 @@ public class TestReportService extends BaseService<TestReport>{
     private  JSONObject processTestReport(TestReport testReport) throws Exception{
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(testReport));
         JSONObject processState = processInstanceService.queryProcessState(testReport.getProcessInstanceID());
-        String state = processState.getString("state");
-        String operation = processState.getString("operation");
-        jsonObject.put("state", state);
-        jsonObject.put("operation", operation);
-        return  jsonObject;
+        jsonObject.putAll(processState);
+        return jsonObject;
     }
 }

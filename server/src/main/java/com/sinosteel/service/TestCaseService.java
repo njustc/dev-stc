@@ -135,7 +135,7 @@ public class TestCaseService extends BaseService<TestCase> {
     private  JSONArray processTestCases(List<TestCase> testCases) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (TestCase testCase: testCases) {
-            JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testCase));
+            JSONObject jsonObject = processTestCase(testCase);
             //jsonObject.remove("testCase");
 
             resultArray.add(jsonObject);

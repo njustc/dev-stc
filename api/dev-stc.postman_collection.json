@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "57e725f6-b252-40b7-8504-3ab426d3f810",
+		"_postman_id": "842f71ff-baa6-4abd-9444-4ce7ce3e1816",
 		"name": "dev-stc",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "consign",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "createConsign",
@@ -25,7 +25,6 @@
 								{
 									"key": "params",
 									"value": "{\"consignation\": \"{}\"}",
-									"description": "",
 									"type": "text"
 								}
 							]
@@ -61,24 +60,23 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "localhost:8000/services/consign/?username=customer2&clientDigest=admin",
+							"raw": "localhost:8000/services/consign?username=customer1&clientDigest=dfcbbdfef1f8561cc04cf219736922c07af9be789ca53aa24af6594e89e81ccb",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"services",
-								"consign",
-								""
+								"consign"
 							],
 							"query": [
 								{
 									"key": "username",
-									"value": "customer2"
+									"value": "customer1"
 								},
 								{
 									"key": "clientDigest",
-									"value": "admin"
+									"value": "dfcbbdfef1f8561cc04cf219736922c07af9be789ca53aa24af6594e89e81ccb"
 								}
 							]
 						}
@@ -101,7 +99,6 @@
 								{
 									"key": "params",
 									"value": "{\"id\": \"7ead5783-06ee-485e-a116-8c799c3868c3\",\n        \"consignation\": \"这是customer2修改的又一个委托\"}",
-									"description": "",
 									"type": "text"
 								}
 							]
@@ -145,8 +142,7 @@
 							"urlencoded": [
 								{
 									"key": "params",
-									"value": "{\n            \"processInstanceID\": \"45001\",\n            \"createdUserId\": \"2\",\n            \"createdTime\": \"2018-05-19 23:31:17\",\n            \"id\": \"dbbcb832-14c6-41d2-ae3a-18f1f9ba225d\",\n            \"state\": \"State：提交委托 From: Consign:13:27506\"\n        }",
-									"description": "",
+									"value": "{\"id\": \"bfef37e5-db10-4d86-9246-057af326f1a4\" }",
 									"type": "text"
 								}
 							]
@@ -191,7 +187,6 @@
 								{
 									"key": "params",
 									"value": "{\"object\": \"consign\", \"operation\": \"pass\"}",
-									"description": "",
 									"type": "text"
 								}
 							]
@@ -226,9 +221,12 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "localhost:8000/services/consign/a11b8fa8-679a-4fa1-a0ad-4b78e09ce028?username=admin&clientDigest=admin",
+							"raw": "localhost:8000/services/consign/15e238a1-5643-4881-b7c2-5f78382d23be?username=customer1&clientDigest=dfcbbdfef1f8561cc04cf219736922c07af9be789ca53aa24af6594e89e81ccb",
 							"host": [
 								"localhost"
 							],
@@ -236,16 +234,16 @@
 							"path": [
 								"services",
 								"consign",
-								"a11b8fa8-679a-4fa1-a0ad-4b78e09ce028"
+								"15e238a1-5643-4881-b7c2-5f78382d23be"
 							],
 							"query": [
 								{
 									"key": "username",
-									"value": "admin"
+									"value": "customer1"
 								},
 								{
 									"key": "clientDigest",
-									"value": "admin"
+									"value": "dfcbbdfef1f8561cc04cf219736922c07af9be789ca53aa24af6594e89e81ccb"
 								}
 							]
 						}
@@ -256,7 +254,7 @@
 		},
 		{
 			"name": "login",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "login_admin",
@@ -269,7 +267,6 @@
 								{
 									"key": "params",
 									"value": "{\"username\": \"admin\", \"password\":\"admin\"}",
-									"description": "",
 									"type": "text"
 								}
 							]
@@ -308,6 +305,44 @@
 								{
 									"key": "params",
 									"value": "{\"username\": \"customer1\", \"password\":\"admin\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/login?username=undefined&clientDigest=undefined",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "undefined"
+								},
+								{
+									"key": "clientDigest",
+									"value": "undefined"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login_marketing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"username\": \"marketing\", \"password\": \"admin\"}",
 									"description": "",
 									"type": "text"
 								}
@@ -340,7 +375,7 @@
 		},
 		{
 			"name": "processInstance",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "updateProcessState",
@@ -352,14 +387,13 @@
 							"formdata": [
 								{
 									"key": "params",
-									"value": "{\"object\": \"consign\", \"operation\": \"submit\"}",
-									"description": "",
+									"value": "{\"object\": \"consign\", \"operation\": \"ReviewPass\"}",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/services/processInstance/2501?username=customer2&clientDigest=admin",
+							"raw": "localhost:8000/services/processInstance/14?username=customer1&clientDigest=dfcbbdfef1f8561cc04cf219736922c07af9be789ca53aa24af6594e89e81ccb",
 							"host": [
 								"localhost"
 							],
@@ -367,16 +401,16 @@
 							"path": [
 								"services",
 								"processInstance",
-								"2501"
+								"14"
 							],
 							"query": [
 								{
 									"key": "username",
-									"value": "customer2"
+									"value": "customer1"
 								},
 								{
 									"key": "clientDigest",
-									"value": "admin"
+									"value": "dfcbbdfef1f8561cc04cf219736922c07af9be789ca53aa24af6594e89e81ccb"
 								}
 							]
 						}
@@ -399,13 +433,12 @@
 								{
 									"key": "params",
 									"value": "{\"consignation\": \"这是customer2新建的一个委托\"}",
-									"description": "",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/services/processInstance/2501?username=admin&clientDigest=admin",
+							"raw": "localhost:8000/services/processInstance/14?username=admin&clientDigest=admin",
 							"host": [
 								"localhost"
 							],
@@ -413,7 +446,7 @@
 							"path": [
 								"services",
 								"processInstance",
-								"2501"
+								"14"
 							],
 							"query": [
 								{
@@ -433,26 +466,30 @@
 		},
 		{
 			"name": "contract",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "addContract",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
 								{
 									"key": "params",
-									"value": "{\"contractBody\": \"admin新建的合同\"}",
-									"description": "",
+									"value": "{\"id\": \"bfef37e5-db10-4d86-9246-057af326f1a4\",\"contractBody\": \"admin新建的合同\"}",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/services/contract/?username=admin&clientDigest=admin",
+							"raw": "localhost:8000/services/contract/?username=admin&clientDigest=49ee06c1cb07db147e380260a6fad5436b020d61aa4976172fb4459dddff6cb5&projectID=b2745e31-8e69-4bf7-8f9e-6d0b58927b62",
 							"host": [
 								"localhost"
 							],
@@ -469,7 +506,11 @@
 								},
 								{
 									"key": "clientDigest",
-									"value": "admin"
+									"value": "49ee06c1cb07db147e380260a6fad5436b020d61aa4976172fb4459dddff6cb5"
+								},
+								{
+									"key": "projectID",
+									"value": "b2745e31-8e69-4bf7-8f9e-6d0b58927b62"
 								}
 							]
 						}
@@ -481,9 +522,12 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "localhost:8000/services/contract/?username=admin&clientDigest=admin",
+							"raw": "localhost:8000/services/contract/?username=admin&clientDigest=49ee06c1cb07db147e380260a6fad5436b020d61aa4976172fb4459dddff6cb5",
 							"host": [
 								"localhost"
 							],
@@ -500,7 +544,7 @@
 								},
 								{
 									"key": "clientDigest",
-									"value": "admin"
+									"value": "49ee06c1cb07db147e380260a6fad5436b020d61aa4976172fb4459dddff6cb5"
 								}
 							]
 						}
@@ -518,7 +562,6 @@
 								{
 									"key": "params",
 									"value": "{\n            \"id\": \"c835a832-209d-4d0b-8338-a1c75480240c\",\n            \"contractBody\": \"这是admin修改的合同\"\n}",
-									"description": "",
 									"type": "text"
 								}
 							]
@@ -558,8 +601,7 @@
 							"formdata": [
 								{
 									"key": "params",
-									"value": "{\n            \"id\": \"c835a832-209d-4d0b-8338-a1c75480240c\",\n            \"contractBody\": \"这是admin修改的合同\"\n}",
-									"description": "",
+									"value": "{\"id\": \"bfef37e5-db10-4d86-9246-057af326f1a4\"}",
 									"type": "text"
 								}
 							]
@@ -574,6 +616,632 @@
 								"services",
 								"contract",
 								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "testPlan",
+			"description": "",
+			"item": [
+				{
+					"name": "queryTestPlans",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8000/services/v1/testPlan/?username=admin&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"testPlan",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addTestPlan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"id\": \"320a5e7a-2535-4a98-a5e0-5d6d3e4f3a18\", \"plan\": \"plan\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/v1/testPlan/?username=customer2&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"testPlan",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "customer2"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTestPlan",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"id\": \"320a5e7a-2535-4a98-a5e0-5d6d3e4f3a18\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/v1/testPlan/?username=customer2&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"testPlan",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "customer2"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editTestPlan",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"id\": \"320a5e7a-2535-4a98-a5e0-5d6d3e4f3a18\", \"body\": \"asd\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/v1/testPlan/?username=customer2&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"testPlan",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "customer2"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "project",
+			"description": "",
+			"item": [
+				{
+					"name": "addProject",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"id\": \"320a5e7a-2535-4a98-a5e0-5d6d3e4f3a18\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/v1/project?username=marketing&clientDigest=2a39f102df5310377e94522dd5ed5ad40567b98408e3f558f332892d97d741da&consignID=15e238a1-5643-4881-b7c2-5f78382d23be",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"project"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "marketing"
+								},
+								{
+									"key": "clientDigest",
+									"value": "2a39f102df5310377e94522dd5ed5ad40567b98408e3f558f332892d97d741da"
+								},
+								{
+									"key": "consignID",
+									"value": "15e238a1-5643-4881-b7c2-5f78382d23be"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "queryProjects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8000/services/v1/project?username=marketing&clientDigest=2a39f102df5310377e94522dd5ed5ad40567b98408e3f558f332892d97d741da",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"project"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "marketing"
+								},
+								{
+									"key": "clientDigest",
+									"value": "2a39f102df5310377e94522dd5ed5ad40567b98408e3f558f332892d97d741da"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProject",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"id\": \"bfef37e5-db10-4d86-9246-057af326f1a4\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/v1/project?username=admin&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"project"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "testReport",
+			"description": "",
+			"item": [
+				{
+					"name": "addTestReport",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"id\": \"320a5e7a-2535-4a98-a5e0-5d6d3e4f3a18\", \"body\": \"sd\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/v1/testReport/?username=customer2&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"testReport",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "customer2"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "queryTestReports",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8000/services/v1/testReport/?username=admin&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"testReport",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editTestReport",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"id\":\"320a5e7a-2535-4a98-a5e0-5d6d3e4f3a18\", \"body\":\"修改\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/v1/testReport/?username=customer2&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"testReport",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "customer2"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTestReport",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"id\": \"320a5e7a-2535-4a98-a5e0-5d6d3e4f3a18\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/v1/testReport/?username=customer2&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"testReport",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "customer2"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "testCase",
+			"description": "",
+			"item": [
+				{
+					"name": "addTestCase",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"body\": \"new\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/v1/testCase/?username=customer2&clientDigest=admin&projectID=320a5e7a-2535-4a98-a5e0-5d6d3e4f3a18",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"testCase",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "customer2"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								},
+								{
+									"key": "projectID",
+									"value": "320a5e7a-2535-4a98-a5e0-5d6d3e4f3a18"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "queryTestCases",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8000/services/v1/testCase/?username=marketing&clientDigest=admin&projectID=320a5e7a-2535-4a98-a5e0-5d6d3e4f3a18",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"testCase",
+								""
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "marketing"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								},
+								{
+									"key": "projectID",
+									"value": "320a5e7a-2535-4a98-a5e0-5d6d3e4f3a18"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTestCase",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"id\":\"21308559-3109-46a3-8c82-0082faa7712b\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/v1/testCase?username=admin&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"testCase"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "clientDigest",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editTestCase",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "params",
+									"value": "{\"id\":\"45e4df26-09cd-4106-956d-37136107bd23\", \"body\":\"change\"}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/services/v1/testCase?username=admin&clientDigest=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"services",
+								"v1",
+								"testCase"
 							],
 							"query": [
 								{

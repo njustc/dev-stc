@@ -15,7 +15,7 @@ public class StatelessAccessControlFilter extends AccessControlFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
         //TODO: return false when Open AccessController.
-        return true;
+        return false;
     }
 
     @Override

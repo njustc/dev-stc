@@ -123,8 +123,8 @@ public class TestBugService extends BaseService<TestBug> {
     private  JSONArray processTestBugs(List<TestBug> testBugs) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (TestBug testBug: testBugs) {
-            JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testBug));
-            jsonObject.remove("testBug");
+            JSONObject jsonObject = processTestBug(testBug);
+            //jsonObject.remove("testBug");
             //String processState = (String) processInstanceService.queryProcessState(testCase.getProcessInstanceID()).get("state");
             //jsonObject.put("state", processState);
             resultArray.add(jsonObject);

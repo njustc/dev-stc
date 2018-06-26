@@ -105,15 +105,11 @@ public class ProjectService extends BaseService<Project>{
         this.deleteEntity(uid);
     }
 
-    //TODO:处理工程内容、状态信息
     private JSONArray processProjects(List<Project> projects) throws Exception{
         JSONArray resultArray = new JSONArray();
         //去掉工程内容，添加工程状态
         for (Project project: projects) {
-            JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(project));
-            jsonObject.put("userID", project.getUser().getId());
-            jsonObject.put("username", project.getUser().getUsername());
-            //jsonObject.remove("");
+            JSONObject jsonObject = processProject(project);
             //String processState = (String) processInstanceService.queryProcessState(project.getProcessInstanceID()).get("state");
             //jsonObject.put("state", processState);
             resultArray.add(jsonObject);
@@ -121,7 +117,7 @@ public class ProjectService extends BaseService<Project>{
         return resultArray;
     }
 
-    //TODO:增加状态
+    // 增加客户姓名，客户ID. Maybe TODO:增加状态
     private JSONObject processProject(Project project) throws Exception {
         //String processState = (String) processInstanceService.queryProcessState(project.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(project));
