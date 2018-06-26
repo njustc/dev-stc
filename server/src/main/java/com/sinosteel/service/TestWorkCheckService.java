@@ -3,7 +3,6 @@ package com.sinosteel.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.Project;
 import com.sinosteel.domain.TestWorkCheck;
 import com.sinosteel.domain.User;
@@ -62,8 +61,11 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
             throw new Exception("can't find project by id :" + projectID);
         }
         Project project = projectRepository.findById(projectID);
-        TestWorkCheck testWorkCheck = project.getTestWorkCheck();
 
+        TestWorkCheck testWorkCheck = project.getTestWorkCheck();
+        if (testWorkCheck == null) {
+            throw new  Exception("can't find testWorkCheck with projectID: " + projectID);
+        }
         return processTestWorkCheck(testWorkCheck);
     }
 
@@ -130,8 +132,9 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
     public void deleteTestWorkCheck(JSONObject params)
     {
         String uid=params.getString("id");
+        TestWorkCheck testWorkCheck = testWorkCheckRepository.findById(uid);
 
-        Project project = projectRepository.findById(uid);
+        Project project = testWorkCheck.getProject();
         project.setTestWorkCheck(null);
 
         this.deleteEntity(uid);

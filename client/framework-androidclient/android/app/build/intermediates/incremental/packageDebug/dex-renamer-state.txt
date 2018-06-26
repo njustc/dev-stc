@@ -1,4 +1,4 @@
-#Sun Jun 17 14:14:53 CST 2018
-base.0=/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+#Tue Jun 26 22:17:01 CST 2018
+base.0=/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
 renamed.0=classes.dex
-file.0=/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex
+file.0=/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

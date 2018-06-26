@@ -68,10 +68,7 @@ export const deleteContract = (dispatch, id, callback) => {
 
 export const newContract = (dispatch, id,callback) => {
     let urlParams = 'projectID=' + id;
-    const contractData = {
-        contractBody: "null"
-    };
-    httpPost(contractBase, contractData, (result) => {
+    httpPost(contractBase, {contractBody:null}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setContractContent(data));

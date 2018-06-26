@@ -56,11 +56,13 @@ public class TestReportService extends BaseService<TestReport>{
 
     public JSON queryTestReportByProject(String projectID) throws Exception {
         Project project = projectRepository.findById(projectID);
-        if(project == null) {
+        if (project == null) {
             throw new Exception("can't find project by id :" + projectID);
         }
         TestReport  testReport = project.getTestReport();
-
+        if (testReport == null) {
+            throw new Exception("can't find testReport with projectID: " + projectID);
+        }
         return processTestReport(testReport);
     }
 
@@ -120,8 +122,9 @@ public class TestReportService extends BaseService<TestReport>{
 
     public void deleteTestReport(JSONObject params){
         String uid = params.getString("id");
+        TestReport testReport = testReportRepository.findById(uid);
         //delete testReport from project
-        Project project = projectRepository.findById(uid);
+        Project project = testReport.getProject();
         project.setTestReport(null);
 
         //delete testReport

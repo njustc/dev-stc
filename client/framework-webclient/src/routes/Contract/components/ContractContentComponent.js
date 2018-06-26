@@ -97,7 +97,7 @@ class ContractContentComponent extends Component {
                             rules: [{ required: true, message: '请输入项目名称！' }],
                             initialValue: this.props.values.projectName,
                         })(
-                            <Input size="larger" disabled={this.props.disable} placeholder={"（软件测试）"}/>
+                            <Input size="large" disabled={this.props.disable} placeholder={"（软件测试）"}/>
                         )}
                     </FormItem>
 
@@ -106,7 +106,7 @@ class ContractContentComponent extends Component {
                             rules: [{ required: true, message: '请输入委托方（甲方）！',pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$" }],
                             initialValue: this.props.values.consignA,
                         })(
-                            <Input size="larger" disabled={this.props.disable}/>
+                            <Input size="large" disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
@@ -115,7 +115,7 @@ class ContractContentComponent extends Component {
                             rules: [{ required: true, message: '请输入受托方（乙方）！',pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$" }],
                             initialValue: this.props.values.consignB,
                         })(
-                            <Input size="larger" disabled={this.props.disable}/>
+                            <Input size="large" disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
@@ -124,7 +124,7 @@ class ContractContentComponent extends Component {
                             rules: [{ required: true, message: '请输入签订地点！' }],
                             initialValue: this.props.values.consignPlace,
                         })(
-                            <Input size="larger" disabled={this.props.disable} placeholder={"南京"}/>
+                            <Input size="large" disabled={this.props.disable} placeholder={"南京"}/>
                         )}
                     </FormItem>
 

@@ -49,10 +49,12 @@ public class ContractService extends BaseService<Contract> {
 
     public JSON queryContractsByProject(String projectID) throws Exception {
         Project project = projectRepository.findById(projectID);
-        if(project == null) {
+        if (project == null) {
             throw new Exception("can't find project by id :" + projectID);
         }
         Contract contract = project.getContract();
+        if (contract == null)
+            throw new Exception("can't find contract with project: " + projectID);
         return processContract(contract);
     }
 
@@ -114,7 +116,8 @@ public class ContractService extends BaseService<Contract> {
     public void deleteContract(JSONObject params) {
         String uid = params.getString("id");
         //delete contract from project
-        Project project = projectRepository.findById(uid);
+        Contract contract = contractRepository.findById(uid);
+        Project project = contract.getProject();
         project.setContract(null);
 
         //delete contract

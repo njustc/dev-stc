@@ -9,11 +9,12 @@ const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //console.log(authData);
-    const contract = state.Contract.listMap[ownProps.id].contractBody;
+    const content = state.Contract.listMap[ownProps.id];
+    const contractBody = content?content.contractBody:undefined;
     return {
         // contractData: {},/*fetch data with pro id*/
-        contractData: state.Contract.listMap[ownProps.id],
-        values: contract ? JSON.parse(contract) : {},
+        contractData: content?state.Contract.listMap[ownProps.id]:ownProps,
+        values:  contractBody ? JSON.parse(contractBody) : {},
         disable: false/*authData.functionGroup["Contract"]===undefined||authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===-1||state.Contract.listMap[ownProps.id].state!=="TobeSubmit"*/,
         //curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
         //buttonDisabled: state.Contract.listMap[ownProps.id].state==="TobeCheck"
@@ -122,12 +123,13 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
     enable: isConfirmVisible
 }];
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch,ownProps) => {
+    console.log(ownProps);
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //const isVisible = true;//authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "EDIT")!==-1;
-    const isEditVisible = authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===1;
-    const isReviewVisible = authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "REVIEW")===1;
-    const isConfirmVisible = authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "CONFIRM")===1;
+    const isEditVisible = true||authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===1;
+    const isReviewVisible = true||authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "REVIEW")===1;
+    const isConfirmVisible = true||authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "CONFIRM")===1;
     return {
         buttons: buttons(dispatch,isEditVisible,isReviewVisible,isConfirmVisible).filter(button => button.enable===true),
         getValues: (id) => getContract(dispatch,id)

@@ -14,8 +14,12 @@ import ContractPage from './screens/contract/ContractPage'
 import Testing from './screens/testing/Testing'
 
 import Report from './screens/report/Report'
+import TestingReportCheckTablePage from './screens/report/TestingReportCheckTablePage'
+import TestingReportPage from './screens/report/TestingReportPage'
+
 
 import ProjectClosing from './screens/projectclosing/ProjectClosing'
+import TestingWorkCheckTablePage from './screens/projectclosing/TestingWorkCheckTablePage'
 
 import Header from "./screens/Header/";
 import Header1 from "./screens/Header/1";
@@ -194,6 +198,13 @@ const AppNavigator = StackNavigator(
 
     ConsignPage:{screen: ConsignPage},
     ContractPage:{screen:ContractPage},
+
+
+    TestingReportCheckTablePage:{screen: TestingReportCheckTablePage},
+    TestingReportPage:{screen: TestingReportPage},
+
+
+    TestingWorkCheckTablePage:{screen: TestingWorkCheckTablePage},
 
     Header1: { screen: Header1 },
     Header2: { screen: Header2 },
