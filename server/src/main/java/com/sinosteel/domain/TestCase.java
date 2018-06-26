@@ -120,7 +120,7 @@ public class TestCase extends BaseEntity {
     }
 
     /**
-     * 7.测试用例设计者
+     * 7.测试用例设计者 - 测试用例
      */
     @Column(name = "DESIGNERNAME")
     private String designerName;

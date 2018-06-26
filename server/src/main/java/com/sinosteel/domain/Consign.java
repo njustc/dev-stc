@@ -15,8 +15,6 @@ import java.util.List;
 public class Consign extends BaseEntity{
 
 
-
-
     @Column(name = "CONSIGNATION")
     private String consignation;
 
