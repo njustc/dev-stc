@@ -23,12 +23,11 @@ export const ProjectReducer = (state = initialState, action) => {
             };
         case RM_CONTENT:
             const id = action.payload;
+            const newListMap = state.listMap;
+            delete newListMap[id];
             return {
                 ...state,
-                listMap: {
-                    ...state.listMap,
-                    [id]: undefined,
-                },
+                listMap: newListMap
             };
         case SET_CONTENT: {
             const {id} = action.payload;

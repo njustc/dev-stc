@@ -13,16 +13,13 @@ const mapStateToProps = (state, ownProps) => {
     const content = state.Consign.listMap[ownProps.id];
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     const consignation = content?state.Consign.listMap[ownProps.id].consignation:undefined;
-    console.log('raw', consignation);
-    console.log('consignation', consignation ? JSON.parse(consignation): {});
     const ToBeSubmit = content?state.Consign.listMap[ownProps.id].state!=="TobeSubmit":false;
-    const isEditVisible = authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
-    console.log(content);
-    console.log(content.operation[0]);
-    const isSubmitVisible = true||content&&content.operation
-        &&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Submit')!==-1:
+    const isEditVisible = authData.functionGroup["Consign"]!==undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
+    const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Submit')!==-1:
         content.operation.findIndex(element => element === 'Submit')!==-1);
-    const isReviewVisible = true||content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
+    // console.log(isSubmitVisible);
+    const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
+    // console.log(isReviewVisible);
     return {
         consignData: content?state.Consign.listMap[ownProps.id]:ownProps,
         values: consignation ? JSON.parse(consignation) : {},

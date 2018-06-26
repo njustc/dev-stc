@@ -143,7 +143,7 @@ export default class ProjectListComponent extends Component {
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
                         //disabled={!this.props.enableNew}
-                        //onClick={this.showDeleteConfirm(record)}
+                        onClick={this.showDeleteConfirm(record)}
                     >取消</a>
                 </div>
             )
@@ -167,8 +167,9 @@ export default class ProjectListComponent extends Component {
             onOk: () => {
                 //console.log(id);
                 //debugger;
-                //this.deleteProject(id);
+                //this.props.deleteProject(id);
                 /*TODO 取消委托的函数的参数需要优化*/
+                console.log(record);
                 this.props.deleteProject(record);
             },
             onCancel() {},

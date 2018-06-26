@@ -58,9 +58,8 @@ export const getProject = (dispatch, id, callback) => {
 };
 
 export const deleteProject = (dispatch, id, callback) => {
+    console.log(id);
     httpDelete(projectBase, {id:id}, (result) => {
-        // console.log("before remove");
-        // dispatch(removeProject(id));
         const {status} = result;
         if(status === STATUS.SUCCESS)
             dispatch(removeProject(id));
