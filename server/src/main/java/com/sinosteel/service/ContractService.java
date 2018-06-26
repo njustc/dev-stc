@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author LBW
@@ -46,6 +47,15 @@ public class ContractService extends BaseService<Contract> {
         }
     }
 
+    public JSON queryContractsByProject(String projectID) throws Exception {
+        Project project = projectRepository.findById(projectID);
+        if(project == null) {
+            throw new Exception("can't find project by id :" + projectID);
+        }
+        Contract contract = project.getContract();
+        return processContract(contract);
+    }
+
 
     public JSONObject queryContractByID(String id) throws Exception{
         Contract contract = contractRepository.findById(id);
@@ -70,18 +80,20 @@ public class ContractService extends BaseService<Contract> {
         return processContract(contract);
     }
 
-    public JSONObject addContract(JSONObject params, List<MultipartFile> files, User user) throws Exception{
+    public JSONObject addContract(String projectID,JSONObject params, List<MultipartFile> files, User user) throws Exception{
 
-        String uid = params.getString("id");
+        String uid = UUID.randomUUID().toString(); //随机生成contract的id
         //check project
-        if (projectRepository.findById(uid) == null)
-            throw new Exception("Can't find project with ID: " + uid);
+        if (projectRepository.findById(projectID) == null)
+            throw new Exception("Can't find project with ID: " + projectID);
 
-        Project project = projectRepository.findById(uid);
+        Project project = projectRepository.findById(projectID);
         Contract contract = JSONObject.toJavaObject(params, Contract.class);
         contract.setId(uid);
-        contract.setUser(user);
+        contract.setUser(project.getUser());
 
+
+        //TODO:问一下是否是当前user还是要获取project的user
         String processInstanceID = processInstanceService.createContractProcess(params, user);
         contract.setProcessInstanceID(processInstanceID);
 
@@ -91,7 +103,7 @@ public class ContractService extends BaseService<Contract> {
 
         //set project in contract
         contract.setProject(project);
-        this.saveEntity(contract, user);
+        this.saveEntity(contract, project.getUser());
 
         contract = contractRepository.findById(uid);
         return processContract(contract);
@@ -113,14 +125,8 @@ public class ContractService extends BaseService<Contract> {
         JSONArray resultArray = new JSONArray();
         //去掉合同内容,添加状态
         for (Contract contract: contracts) {
-            JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(contract));
-            jsonObject.remove("contractBody");
-            JSONObject processState = processInstanceService.queryProcessState(contract.getProcessInstanceID());
-            String state = processState.getString("state");
-            String operation = processState.getString("operation");
-            jsonObject.put("state", state);
-            jsonObject.put("operation", operation);
-
+            JSONObject jsonObject = processContract(contract);
+            //jsonObject.remove("contractBody");
             resultArray.add(jsonObject);
         }
 
@@ -129,11 +135,9 @@ public class ContractService extends BaseService<Contract> {
 
     private JSONObject processContract(Contract contract) throws Exception{
         JSONObject processState = processInstanceService.queryProcessState(contract.getProcessInstanceID());
-        String state = processState.getString("state");
-        String operation = processState.getString("operation");
+
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(contract));
-        jsonObject.put("state", state);
-        jsonObject.put("operation", operation);
+        jsonObject.putAll(processState);
         return jsonObject;
     }
 }

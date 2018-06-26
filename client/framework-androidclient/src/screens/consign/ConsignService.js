@@ -4,7 +4,7 @@ import {ConsignListData} from "./Consignation"
 import { ToastAndroid } from "react-native";
 
 const consignBase = baseServiceAddress + '/consign?username=admin&clientDigest=qqq';
-// const consignActivitiBase = baseServiceAddress + '/processInstance';
+const consignActivitiBase = baseServiceAddress + '/processInstance';
 
 // export const getConsignList = () => {
 //   httpGet(consignBase,(result) => {
@@ -23,12 +23,12 @@ const consignBase = baseServiceAddress + '/consign?username=admin&clientDigest=q
 //     // callback && callback(status);
 //   });
 // };
-
+//
 // export const getConsign = (dispatch, id, callback) => {
 //   httpGet(consignBase + '/' + id, (result) => {
 //     const {status, data} = result;
 //     if (status === STATUS.SUCCESS) {
-//       dispatch(setConsignContent(data));
+//
 //     }
 //     callback && callback(status);
 //   });

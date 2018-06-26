@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author LBW & Lumpy
@@ -53,6 +54,16 @@ public class TestReportService extends BaseService<TestReport>{
         }
     }
 
+    public JSON queryTestReportByProject(String projectID) throws Exception {
+        Project project = projectRepository.findById(projectID);
+        if(project == null) {
+            throw new Exception("can't find project by id :" + projectID);
+        }
+        TestReport  testReport = project.getTestReport();
+
+        return processTestReport(testReport);
+    }
+
 
     public  JSONObject queryTestReportByID(String id) throws Exception{
         TestReport testReport = testReportRepository.findById(id);
@@ -79,14 +90,14 @@ public class TestReportService extends BaseService<TestReport>{
     }
 
 
-    public JSONObject addTestReport(JSONObject params, List<MultipartFile> files, User user) throws Exception{
-        //String uid = UUID.randomUUID().toString();
-        String uid = params.getString("id");
+    public JSONObject addTestReport(String projectID, JSONObject params, List<MultipartFile> files, User user) throws Exception{
+        String uid = UUID.randomUUID().toString();
+        //String uid = params.getString("id");
         //check project
-        if (projectRepository.findById(uid) == null)
-            throw new Exception("Can't find project with ID: " + uid);
+        if (projectRepository.findById(projectID) == null)
+            throw new Exception("Can't find project with ID: " + projectID);
 
-        Project project = projectRepository.findById(uid);
+        Project project = projectRepository.findById(projectID);
         TestReport testReport = JSONObject.toJavaObject(params, TestReport.class);
         testReport.setId(uid);
 
@@ -117,19 +128,16 @@ public class TestReportService extends BaseService<TestReport>{
         this.deleteEntity(uid);
     }
 
-    //删除测试报告内容 Todo：添加状态
+    //删除测试报告内容
     private JSONArray processTestReports(List<TestReport> testReports) throws Exception{
         JSONArray resultArray = new JSONArray();
-        for (TestReport testReport: testReports){
-            JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testReport));
-            jsonObject.remove("body");
-            JSONObject processState = processInstanceService.queryProcessState(testReport.getProcessInstanceID());
-            String state = processState.getString("state");
-            String operation = processState.getString("operation");
-            jsonObject.put("state", state);
-            jsonObject.put("operation", operation);
+        for (TestReport testReport: testReports) {
+            if (testReport != null) {
+                JSONObject jsonObject = processTestReport(testReport);
+                //jsonObject.remove("body");
 
-            resultArray.add(jsonObject);
+                resultArray.add(jsonObject);
+            }
         }
 
         return  resultArray;
@@ -139,10 +147,7 @@ public class TestReportService extends BaseService<TestReport>{
     private  JSONObject processTestReport(TestReport testReport) throws Exception{
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(testReport));
         JSONObject processState = processInstanceService.queryProcessState(testReport.getProcessInstanceID());
-        String state = processState.getString("state");
-        String operation = processState.getString("operation");
-        jsonObject.put("state", state);
-        jsonObject.put("operation", operation);
-        return  jsonObject;
+        jsonObject.putAll(processState);
+        return jsonObject;
     }
 }

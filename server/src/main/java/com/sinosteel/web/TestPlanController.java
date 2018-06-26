@@ -5,10 +5,7 @@ import com.sinosteel.framework.core.web.Response;
 import com.sinosteel.framework.core.web.ResponseType;
 import com.sinosteel.service.TestPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -23,8 +20,30 @@ public class TestPlanController extends BaseController {
 
 
     @RequestMapping(value = "/v1/testPlan", method = RequestMethod.GET)
-    public Response queryTestPlans(Request request)
+    public Response queryTestPlans(Request request, @RequestParam(value = "projectID", required = false) String projectID)
     {
+        if(projectID == null) {
+            return queryTestPlans(request);
+        }
+
+        Response response = new Response();
+
+        try
+        {
+            response.data = testPlanService.queryTestPlansByProject(projectID);
+            response.status = ResponseType.SUCCESS;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            response.status = ResponseType.FAILURE;
+            response.message = e.getMessage();
+        }
+
+        return response;
+    }
+
+    private Response queryTestPlans(Request request) {
         Response response = new Response();
 
         try
@@ -40,6 +59,7 @@ public class TestPlanController extends BaseController {
         }
 
         return response;
+
     }
 
     //根据ID查询测试计划具体信息
@@ -80,12 +100,12 @@ public class TestPlanController extends BaseController {
 
     }
     @RequestMapping(value = "/v1/testPlan",method=RequestMethod.POST)
-    public Response addTestPlan(Request request)
+    public Response addTestPlan(Request request, @RequestParam(value = "projectID") String projectID)
     {
         Response response=new Response();
 
         try{
-            response.data = testPlanService.addTestPlan(request.getParams(),request.getFiles(),request.getUser());
+            response.data = testPlanService.addTestPlan(projectID, request.getParams(),request.getFiles(),request.getUser());
             response.status=ResponseType.SUCCESS;
         }
         catch(Exception e)

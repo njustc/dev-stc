@@ -1,22 +1,22 @@
 import {STATUS} from "SERVICES/common";
 
-export const httpGet = (url, callback) => {
-    return sysFetch('GET', url, null, callback);
+export const httpGet = (url, callback, urlParams) => {
+    return sysFetch('GET', url, null, callback, urlParams);
 };
 
-export const httpPost = (url, params, callback) => {
-    return sysFetch('POST', url, params, callback);
+export const httpPost = (url, params, callback, urlParams) => {
+    return sysFetch('POST', url, params, callback, urlParams);
 };
 
-export const httpPut = (url, params, callback) => {
-    return sysFetch('PUT', url, params, callback);
+export const httpPut = (url, params, callback, urlParams) => {
+    return sysFetch('PUT', url, params, callback, urlParams);
 };
 
-export const httpDelete = (url, params, callback) => {
-    return sysFetch('DELETE', url, params, callback);
+export const httpDelete = (url, params, callback, urlParams) => {
+    return sysFetch('DELETE', url, params, callback, urlParams);
 };
 
-const sysFetch = (Method, url, params, callback) => {
+const sysFetch = (Method, url, params, callback, urlParams) => {
 
     let result = { 
         status: STATUS.FAILURE,
@@ -32,6 +32,10 @@ const sysFetch = (Method, url, params, callback) => {
     }
 
     let fullUrl = url + '?username=' + username + '&clientDigest=' + clientDigest;
+    if(urlParams){
+        fullUrl = fullUrl + '&' + urlParams;
+    }
+
 
     let formData = new FormData();
     formData.append('params', params ? JSON.stringify(params): '');

@@ -71,12 +71,12 @@ public class TestReportCheckController extends BaseController{
 
     //添加
     @RequestMapping(value = "/v1/testReportCheck",method = RequestMethod.POST)
-    public Response addTestReportCheck(Request request) {
+    public Response addTestReportCheck(Request request, @RequestParam(value = "projectID") String projectID) {
 
         //System.out.println(projectID);
         Response response = new Response();
         try{
-            response.data = testReportCheckService.addTestReportCheck( request.getParams(),request.getFiles(),request.getUser());
+            response.data = testReportCheckService.addTestReportCheck(projectID, request.getParams(),request.getFiles(),request.getUser());
             response.status = ResponseType.SUCCESS;
         }catch (Exception e){
             e.printStackTrace();

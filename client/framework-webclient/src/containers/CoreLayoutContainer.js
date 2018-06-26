@@ -3,16 +3,6 @@ import CoreLayout from 'layouts/CoreLayout'
 import {setActiveKey, addTabAction, removeTabAction} from "MODULES/ducks/Layout";
 import React from "react";
 
-function containsPane(key, panes)
-{
-    for(let i=0; i<panes.length; i++) {
-        if(key === panes[i].key) {
-            return true;
-        }
-    }
-    return false;
-};
-
 const mapStateToProps = (state) => {
     // console.log(state.Layout.panes);
     return {

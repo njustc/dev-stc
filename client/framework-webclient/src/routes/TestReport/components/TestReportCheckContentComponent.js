@@ -16,7 +16,7 @@ function handleChange(value) {
 class TestReportCheckContentComponent extends Component {
     constructor(props) {
         super(props);
-       
+
     }
 
     static defaultProps = {
@@ -73,6 +73,7 @@ class TestReportCheckContentComponent extends Component {
                 <FormItem {...formItemLayout} label={"委托单位"}>
                     {getFieldDecorator('consignUnit', {
                         rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                      //  initialValue: this.props.values.consignUnit
                     })(
                         <Input disabled={this.props.disable}/>
                     )}
@@ -81,6 +82,7 @@ class TestReportCheckContentComponent extends Component {
                 <FormItem {...formItemLayout} label={"检查人"}>
                     {getFieldDecorator('checker', {
                         rules: [{ required: true, message: '请正确输入检查人！' ,pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
+                        //initialValue: this.props.values.consignUnit
                     })(
                         <Input disabled={this.props.disable}/>
                     )}
@@ -89,6 +91,7 @@ class TestReportCheckContentComponent extends Component {
                 <FormItem {...formItemLayout} label={"日期"}>
                     {getFieldDecorator('date', {
                         rules: [{ required: true, message: '请正确输入时间！',
+                            //initialValue: this.props.values.date
                         }],
                     })(
                         <DatePicker showTime format="YYYY-MM-DD"/>
@@ -100,6 +103,8 @@ class TestReportCheckContentComponent extends Component {
                     <FormItem>
                         {getFieldDecorator('item1', {
                             rules: [{ required: false }],
+                            //To do: initialValue
+                            //initialValue: this.props.values.consignUnit
                         })(
                             <Row gutter={16}>
                                 <Col span={18}>
@@ -244,8 +249,8 @@ class TestReportCheckContentComponent extends Component {
                             {button.content}
                         </Button>)}
                 </FormItem>
-           
-            
+
+
 			</Form>
 
 

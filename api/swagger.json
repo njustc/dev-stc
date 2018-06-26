@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "南大测试 REST API",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "title": "南大测试 REST API 接口说明",
     "termsOfService": "http://swagger.io/terms/",
     "license": {
@@ -26,7 +26,7 @@
     },
     {
       "name": "project",
-      "description": "工程（添加project时要设置id，是想要绑定的consign的id）"
+      "description": "工程（添加project时要给id，是想要绑定的consign的id，project的id会重新生成啦）"
     },
     {
       "name": "contract",
@@ -150,7 +150,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功查询委托时返回委托. data内包含JsonArray格式的委托内容\n```\n{\n  \"data\": [\n    {\n      \"processInstanceID\": \"14\",\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-06-15 22:04:24\",\n      \"id\": \"0314e289-460c-4c53-8369-316508887a62\",\n      \"state\": \"TobeSubmit\",\n      \"operation\": \"[Submit]\"\n    },\n    {\n      \"processInstanceID\": \"23\",\n      \"createdUserId\": \"2\",\n      \"alteredTime\": \"2018-06-15 22:10:28\",\n      \"createdTime\": \"2018-06-15 22:05:34\",\n      \"alteredUserId\": \"2\",\n      \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n      \"state\": \"TobeSubmit\",\n      \"operation\": \"[Submit]\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n查询失败时，返回一个失败的status\n```\n{\n  \"status\":failure;\n}\n```\n",
+            "description": "成功查询委托时返回委托. data内包含JsonArray格式的委托内容\n```\n{\n  \"data\": [\n    {\n      \"processInstanceID\": \"14\",\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-06-15 22:04:24\",\n      \"id\": \"0314e289-460c-4c53-8369-316508887a62\",\n      \"state\": \"TobeSubmit\",\n      \"operation\": \"[\n        Submit\n      ]\",\n      \"consignation\": \"REPUTATION\"\n    },\n    {\n      \"processInstanceID\": \"23\",\n      \"createdUserId\": \"2\",\n      \"alteredTime\": \"2018-06-15 22:10:28\",\n      \"createdTime\": \"2018-06-15 22:05:34\",\n      \"alteredUserId\": \"2\",\n      \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n      \"state\": \"TobeSubmit\",\n      \"operation\": \"[\n        Submit\n      ]\",\n      \"consignation\": \"END GAME\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n查询失败时，返回一个失败的status\n```\n{\n  \"status\":failure;\n}\n```\n",
             "schema": {
               "$ref": "#/definitions/Response"
             }
@@ -454,7 +454,7 @@
           "contract"
         ],
         "summary": "查询合同",
-        "description": "用户为普通客户时，返回当前该客户的所有合同，如果是工作人员返回所有合同",
+        "description": "用户为普通客户时，返回当前该客户的所有合同，如果是工作人员返回所有合同，更新：提供根据project查询",
         "operationId": "queryContracts",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -476,11 +476,18 @@
             "description": "摘要。登录时由后台传入，用以身份验证",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "projectID",
+            "in": "query",
+            "description": "工程id",
+            "type": "string",
+            "required": false
           }
         ],
         "responses": {
           "200": {
-            "description": "成功查询合同时返回合同. data内包含JsonArray格式的内容内容\n目前没有返回合同的contractBody？\n查询失败时，返回一个失败的status\n```\n{\n  \"data\": [\n    {\n      \"processInstanceID\": \"5001\",\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-05-28 18:47:22\",\n      \"id\": \"1399d1ac-9aad-4ca3-9f44-e49972d147cf\"\n    },\n    {\n      \"processInstanceID\": \"5011\",\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-05-28 19:00:56\",\n      \"id\": \"7356e68f-c01f-4a32-8c5e-4fce3f5508d7\"\n    },\n    {\n      \"processInstanceID\": \"5021\",\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-05-28 19:02:09\",\n      \"id\": \"f0c26114-403c-484b-982b-2aea3c58d1a9\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "成功查询合同时返回合同. data内包含JsonArray格式的内容内容\n目前没有返回合同的contractBody？\n查询失败时，返回一个失败的status\n```\n{\n  \"data\": [\n    {\n      \"processInstanceID\": \"23\",\n      \"createdUserId\": \"2\",\n      \"contractBody\": \"...ready for it?\",\n      \"createdTime\": \"2018-06-19 19:21:12\",\n      \"id\": \"a7ab288c-55eb-4e26-81f2-ed0e16fca1f0\",\n      \"state\": \"TobeSubmit\",\n      \"operation\": \"[Submit]\"\n    },\n    {\n      \"processInstanceID\": \"41\",\n      \"createdUserId\": \"2\",\n      \"contractBody\": \"I did something bad\",\n      \"createdTime\": \"2018-06-19 19:27:13\",\n      \"id\": \"9dcaaf2c-6594-4324-af1a-11d7ca399f06\",\n      \"state\": \"TobeSubmit\",\n      \"operation\": \"[Submit]\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -492,7 +499,7 @@
           "contract"
         ],
         "summary": "添加合同",
-        "description": "向数据库中添加合同，添加时要给定一个id，是所在project的id（project的id是在创建project时前端传入的对应绑定consign的一个id），成功时返回合同的具体信息以及一个success状态",
+        "description": "向数据库中添加合同，添加时要给定一个id，是所在project的id（project的id是在创建project时前端传入的对应绑定consign的一个id），这个id改到了query里，成功时返回合同的具体信息以及一个success状态",
         "operationId": "addContract",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -516,9 +523,16 @@
             "required": true
           },
           {
+            "name": "projectID",
+            "in": "query",
+            "description": "工程id",
+            "type": "string",
+            "required": true
+          },
+          {
             "in": "formData",
             "name": "params",
-            "description": "合同的具体内容. JSON格式\n```\n{\n  \"id\":\"xxx\"\n  \"contractBody\": \"content\"\n}\n```\n",
+            "description": "合同的具体内容. JSON格式\n```\n{\n  \"contractBody\": \"content\"\n}\n```\n",
             "type": "string",
             "required": true
           }
@@ -702,7 +716,7 @@
         ],
         "responses": {
           "200": {
-            "description": "成功查询时返回工程.返回内容中的testCase为历史遗留问题，正式版应该不会有\n查询失败时，返回一个失败的status\n```\n{\n  \n  \"data\": [\n    {\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-06-09 17:37:22\",\n      \"id\": \"aa1a57fc-3ba5-414a-89fb-a9eea5b33a3f\",\n      \"userID\": \"2\",\n      \"testCase\": [],\n      \"username\": \"customer1\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "成功查询时返回工程.返回内容中的testCase为历史遗留问题，正式版应该不会有\n查询失败时，返回一个失败的status\n```\n{\n  \n  \"data\": [\n    {\n      \"code\": \"why?Oh,cuz she is dead\",\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-06-09 17:37:22\",\n      \"id\": \"aa1a57fc-3ba5-414a-89fb-a9eea5b33a3f\",\n      \"userID\": \"2\",\n      \"testCase\": [],\n      \"username\": \"customer1\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -714,7 +728,7 @@
           "project"
         ],
         "summary": "添加工程",
-        "description": "向数据库中添加工程，添加时需要前端提供去绑定的consign的id，写在params里，成功时返回合同的具体信息以及一个success状态",
+        "description": "向数据库中添加工程，添加时需要前端提供去绑定的consign的id，写在query里，成功时返回合同的具体信息以及一个success状态",
         "operationId": "addProject",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -738,9 +752,16 @@
             "required": true
           },
           {
+            "name": "consignID",
+            "in": "query",
+            "description": "绑定委托的id",
+            "type": "string",
+            "required": true
+          },
+          {
             "in": "formData",
             "name": "params",
-            "description": "工程的具体内容. JSON格式，其实只需要一个对应委托的id\n```\n{\n  \"id\":\"xxx\"\n}\n```\n",
+            "description": "工程的具体内容. JSON格式，当前尝试一个code(工程的编码)\n```\n{\n  \"code\":\"xxx\"\n}\n```\n",
             "type": "string",
             "required": true
           }
@@ -898,7 +919,7 @@
           "testPlan"
         ],
         "summary": "查询测试计划",
-        "description": "用户为普通客户时，返回当前该客户的所有测试计划，如果是工作人员返回所有测试计划",
+        "description": "用户为普通客户时，返回当前该客户的所有测试计划，如果是工作人员返回所有测试计划,新增根据project的id查询",
         "operationId": "queryTestPlans",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -920,6 +941,13 @@
             "description": "摘要。登录时由后台传入，用以身份验证",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "projectID",
+            "in": "query",
+            "description": "工程id",
+            "type": "string",
+            "required": false
           }
         ],
         "responses": {
@@ -936,7 +964,7 @@
           "testPlan"
         ],
         "summary": "添加测试计划",
-        "description": "添加测试计划，除了内容body还要提供绑定project的id，成功时返回测试计划的具体信息以及一个success状态",
+        "description": "添加测试计划，除了内容body还要提供绑定project的id，成功时返回测试计划的具体信息以及一个success状态,projectID换到了query里",
         "operationId": "addTestPlan",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -960,9 +988,16 @@
             "required": true
           },
           {
+            "name": "projectID",
+            "description": "功程id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
             "in": "formData",
             "name": "params",
-            "description": "测试计划的具体内容. JSON格式\n```\n{\n  \"id\":\"xxx\"\n  \"body\": \"xxx\"\n}\n```\n",
+            "description": "测试计划的具体内容. JSON格式\n```\n{\n  \"body\": \"xxx\"\n}\n```\n",
             "type": "string",
             "required": true
           }
@@ -1378,11 +1413,18 @@
             "description": "摘要。登录时由后台传入，用以身份验证",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "projectID",
+            "in": "query",
+            "description": "工程id",
+            "type": "string",
+            "required": false
           }
         ],
         "responses": {
           "200": {
-            "description": "成功查询测试计划时返回测试计划.返回内容还没有确定\n查询失败时，返回一个失败的status\n```\n{\n  \n  \"data\": [\n    {\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-06-02 20:16:29\",\n      \"id\": \"cdd340fa-501c-42ab-9596-6c55b1a694c2\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "成功查询测试计划时返回测试计划.返回内容还没有确定\n查询失败时，返回一个失败的status\n```\n{\n  \n  \"data\": [\n    {\n      \"processInstanceID\": \"7501\",\n      \"createdUserId\": \"2\",\n      \"createdTime\": \"2018-06-19 22:28:27\",\n      \"id\": \"7e8e4f78-ac36-4c9d-af11-7da9c440a15d\",\n      \"state\": \"TobeWrite\",\n      \"body\": \"no one has to know\",\n      \"operation\": \"[Write]\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -1418,9 +1460,16 @@
             "required": true
           },
           {
+            "name": "projectID",
+            "in": "query",
+            "description": "工程id",
+            "type": "string",
+            "required": true
+          },
+          {
             "in": "formData",
             "name": "params",
-            "description": "测试计划的具体内容. JSON格式\n```\n{\n  \"id\":\"xxx\"\n  \"body\": \"xxx\"\n}\n```\n",
+            "description": "测试计划的具体内容. JSON格式\n```\n{\n  \"body\": \"xxx\"\n}\n```\n",
             "type": "string",
             "required": true
           }
@@ -1814,7 +1863,7 @@
           "testReportCheck"
         ],
         "summary": "查询",
-        "description": "用户为普通客户时，返回当前该客户的所有报告检查，如果是工作人员返回所有",
+        "description": "用户为普通客户时，返回当前该客户的所有报告检查，如果是工作人员返回所有，新增通过project的id获取接口'问题是如果user的某一个project里没有对应contract会返回一个null'",
         "operationId": "queryTestReportChecks",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -1836,11 +1885,18 @@
             "description": "摘要。登录时由后台传入，用以身份验证",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "projectID",
+            "in": "query",
+            "description": "工程id",
+            "type": "string",
+            "required": false
           }
         ],
         "responses": {
           "200": {
-            "description": "成功查询时返回testReportCheck. data内包含JsonArray格式的内容内容\n查询失败时，返回一个失败的status\n```\n{\n  \"data\": [\n    {\n      \"createdUserId\": \"2\",\n      \"alteredTime\": \"2018-06-16 10:50:34\",\n      \"createdTime\": \"2018-06-16 10:47:31\",\n      \"alteredUserId\": \"2\",\n      \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n      \"body\": \"take my hand\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
+            "description": "成功查询时返回testReportCheck. data内包含JsonArray格式的内容内容\n查询失败时，返回一个失败的status\n```\n{\n  \"data\": [\n    null,\n    null,\n    {\n      \"createdUserId\": \"2\",\n      \"alteredTime\": \"2018-06-16 10:50:34\",\n      \"createdTime\": \"2018-06-16 10:47:31\",\n      \"alteredUserId\": \"2\",\n      \"id\": \"c493a848-fb91-44ca-a9a0-86f283b78f30\",\n      \"body\": \"take my hand\"\n    }\n  ],\n  \"status\": \"SUCCESS\"\n}\n```\n"
           },
           "405": {
             "description": "Invalid input"
@@ -1852,7 +1908,7 @@
           "testReportCheck"
         ],
         "summary": "添加",
-        "description": "添加testReportCheck，添加时要给定一个id，是所在project的id（project的id是在创建project时前端传入的对应绑定consign的一个id），成功时返回具体信息以及一个success状态",
+        "description": "添加testReportCheck，添加时要给定一个id，是所在project的id（project的id是在创建project时前端传入的对应绑定consign的一个id），成功时返回具体信息以及一个success状态，这个id所在位置改成了query",
         "operationId": "addTestReportCheck",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -1876,9 +1932,16 @@
             "required": true
           },
           {
+            "name": "projectID",
+            "in": "query",
+            "description": "工程id",
+            "type": "string",
+            "required": true
+          },
+          {
             "in": "formData",
             "name": "params",
-            "description": "具体内容. JSON格式\n```\n{\n  \"id\":\"xxx\"\n  \"body\": \"content\"\n}\n```\n",
+            "description": "具体内容. JSON格式\n```\n{\n  \"body\": \"content\"\n}\n```\n",
             "type": "string",
             "required": true
           }
@@ -2036,7 +2099,7 @@
           "testWorkCheck"
         ],
         "summary": "查询",
-        "description": "用户为普通客户时，返回当前该客户的所有TestWorkCheck，如果是工作人员返回所有",
+        "description": "用户为普通客户时，返回当前该客户的所有TestWorkCheck，如果是工作人员返回所有，新增根据工程查询",
         "operationId": "queryTestWorkChecks",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -2058,6 +2121,13 @@
             "description": "摘要。登录时由后台传入，用以身份验证",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "projectID",
+            "description": "工程id，根据project查询时传递",
+            "type": "string",
+            "in": "query",
+            "required": false
           }
         ],
         "responses": {
@@ -2074,7 +2144,7 @@
           "testWorkCheck"
         ],
         "summary": "添加",
-        "description": "添加testWorkCheck，添加时要给定一个id，是所在project的id（project的id是在创建project时前端传入的对应绑定consign的一个id），成功时返回具体信息以及一个success状态（这里的样例body没有写上所有内容变量，具体有：version,acendtime,fcendtime,client,softwarename,starttime,testworker）",
+        "description": "添加testWorkCheck，添加时要给定一个id，是所在project的id（project的id是在创建project时前端传入的对应绑定consign的一个id，移动到了query里，成功时返回具体信息以及一个success状态（这里的样例body没有写上所有内容变量，具体有：version,acendtime,fcendtime,client,softwarename,starttime,testworker）",
         "operationId": "addTestWorkCheck",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -2098,9 +2168,16 @@
             "required": true
           },
           {
+            "name": "projectID",
+            "description": "工程id",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
             "in": "formData",
             "name": "params",
-            "description": "具体内容. JSON格式\n```\n{\n  \"id\":\"xxx\"\n  \"body\": \"content\"\n}\n```\n",
+            "description": "具体内容. JSON格式\n```\n{\n  \"softwarename\": \"content\"\n  \"...\":\"...\"\n}\n```\n",
             "type": "string",
             "required": true
           }

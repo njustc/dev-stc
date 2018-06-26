@@ -90,16 +90,16 @@ public class TestReportCheckService extends BaseService<TestReportCheck> {
     }
 
     //增加testReportCheck
-    public JSONObject addTestReportCheck(JSONObject params,List<MultipartFile> files,User user) throws Exception {
+    public JSONObject addTestReportCheck(String projectID, JSONObject params,List<MultipartFile> files,User user) throws Exception {
 
-
-        String uid= params.getString("id");
+        String uid =  UUID.randomUUID().toString();//随机生成testReportCheck的id
+        //String uid= params.getString("id");
 
         //check project
-        if (projectRepository.findById(uid) == null)
-            throw new Exception("Can't find project with ID: " + uid);
+        if (projectRepository.findById(projectID) == null)
+            throw new Exception("Can't find project with ID: " + projectID);
 
-        Project project = projectRepository.findById(uid);
+        Project project = projectRepository.findById(projectID);
         //params.remove("projectID"); //不知是否为必要，感觉没必要
 
         TestReportCheck testReportCheck=JSONObject.toJavaObject(params,TestReportCheck.class);
@@ -141,7 +141,7 @@ public class TestReportCheckService extends BaseService<TestReportCheck> {
     private  JSONArray processTestReportChecks(List<TestReportCheck> testReportChecks) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (TestReportCheck testReportCheck: testReportChecks) {
-            JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testReportCheck));
+            JSONObject jsonObject = processTestReportCheck(testReportCheck);
             //jsonObject.remove("testReportCheck");
             //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
             //jsonObject.put("state", processState);

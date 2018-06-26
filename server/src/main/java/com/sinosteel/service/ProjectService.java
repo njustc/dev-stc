@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * *@author LBW&SQW
@@ -58,18 +59,20 @@ public class ProjectService extends BaseService<Project>{
     }
 
     //添加工程
-    public JSONObject addProject(JSONObject params, List<MultipartFile> files,User user) throws Exception{
-        //String uid = UUID.randomUUID().toString();
-        String uid = params.getString("id");
-        //check consign
-        if (consignRepository.findById(uid) == null)
-            throw new Exception("Can't find consign with ID: " + uid);
+    public JSONObject addProject(String consignID, JSONObject params, List<MultipartFile> files,User user) throws Exception{
 
-        Consign consign = consignRepository.findById(uid);
+        String uid = UUID.randomUUID().toString();
+        //String uid = params.getString("id");
+        //check consign
+        if (consignRepository.findById(consignID) == null)
+            throw new Exception("Can't find consign with ID: " + consignID);
+
+        Consign consign = consignRepository.findById(consignID);
         Project project = JSONObject.toJavaObject(params, Project.class);
         project.setId(uid);
         project.setUser(consign.getUser());//将工程的user设置为consign的user而不是当前用户
         project.setConsign(consign);
+
 
         //TODO:start process Instance
         /*String processInstanceID = processInstanceService.createProjectProcess(params, user);
@@ -102,15 +105,11 @@ public class ProjectService extends BaseService<Project>{
         this.deleteEntity(uid);
     }
 
-    //TODO:处理工程内容、状态信息
     private JSONArray processProjects(List<Project> projects) throws Exception{
         JSONArray resultArray = new JSONArray();
         //去掉工程内容，添加工程状态
         for (Project project: projects) {
-            JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(project));
-            jsonObject.put("userID", project.getUser().getId());
-            jsonObject.put("username", project.getUser().getUsername());
-            //jsonObject.remove("");
+            JSONObject jsonObject = processProject(project);
             //String processState = (String) processInstanceService.queryProcessState(project.getProcessInstanceID()).get("state");
             //jsonObject.put("state", processState);
             resultArray.add(jsonObject);
@@ -118,7 +117,7 @@ public class ProjectService extends BaseService<Project>{
         return resultArray;
     }
 
-    //TODO:增加状态
+    // 增加客户姓名，客户ID. Maybe TODO:增加状态
     private JSONObject processProject(Project project) throws Exception {
         //String processState = (String) processInstanceService.queryProcessState(project.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(project));

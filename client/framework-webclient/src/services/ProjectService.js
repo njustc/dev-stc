@@ -68,15 +68,16 @@ export const deleteProject = (dispatch, id, callback) => {
     });
 };
 
-export const newProject = (dispatch,id,callback) => {
-    httpPost(projectBase, {id:id,}, (result) => {
+export const newProject = (dispatch, id, projectNo, callback) => {
+    let urlParams = 'consignID=' + id;
+    httpPost(projectBase, {code:projectNo}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setProjectContent(data));
             dispatch(showListMap());
         }
-        callback && callback(status);
-    });
+        callback && callback(result);
+    },urlParams);
 };
 
 export const updateProject = (dispatch, data, callback) => {

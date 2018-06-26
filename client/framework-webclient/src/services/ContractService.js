@@ -4,6 +4,7 @@ import {removeContract, setContractContent, setContractList, setContractState} f
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 import {setTestRecordList} from "../modules/ducks/TestRecord";
+import {showListMap} from "../modules/ducks/Project";
 
 const contractBase = baseServiceAddress + '/contract';
 const contractActivitiBase = baseServiceAddress + '/processInstance';
@@ -65,14 +66,18 @@ export const deleteContract = (dispatch, id, callback) => {
     });
 };
 
-export const newContract = (dispatch, callback) => {
-    httpPost(contractBase, {contractBody:null,}, (result) => {
+export const newContract = (dispatch, id,callback) => {
+    let urlParams = 'projectID=' + id;
+    const contractData = {
+        contractBody: "null"
+    };
+    httpPost(contractBase, contractData, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setContractContent(data));
         }
         callback && callback(status);
-    });
+    },urlParams);
 };
 
 export const updateContract = (dispatch, data, callback) => {
