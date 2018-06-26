@@ -24,10 +24,10 @@ const datas = [
     route: "ContractPage",
     text: "测试合同书"
   },
-  {
-    route:"ContractPage",
-    text:"合同评审表"
-  },
+  // {
+  //   route:"ContractPage",
+  //   text:"合同评审表"
+  // },
 ];//TODO: 修改界面跳转 route
 
 export  default class Contract extends Component {
@@ -59,6 +59,7 @@ export  default class Contract extends Component {
         </Header>
 
         <Content>
+          <Text>TODO: change to jump to a list first</Text>
           <List
             dataArray={datas}
             renderRow={data =>

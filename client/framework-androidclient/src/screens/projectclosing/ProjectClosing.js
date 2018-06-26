@@ -21,7 +21,7 @@ import styles from "./styles";
 
 const datas = [
   {
-    route: "ContractPage",
+    route: "TestingWorkCheckTablePage",
     text: "测试工作检查表"
   },
   {
@@ -59,6 +59,7 @@ export  default class ProjectClosing extends Component {
         </Header>
 
         <Content>
+          <Text>TODO: change to jump to a list first</Text>
           <List
             dataArray={datas}
             renderRow={data =>
