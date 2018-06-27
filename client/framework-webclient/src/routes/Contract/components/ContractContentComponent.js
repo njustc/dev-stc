@@ -517,11 +517,21 @@ class ContractContentComponent extends Component {
 
                 {/* footer buttons */}
                 <FormItem style={{textAlign:'center'}}>
-                    {this.props.buttons.map((button, index) =>
-                        <Button onClick={this.onClick(index)}
+                    {this.props.buttons.map((button, index) => {
+                        let buttonCanShow = false;
+                        this.props.buttonsEnable.forEach(function(element){
+                            if(element.content === button.content && element.enable){
+                                buttonCanShow = true;
+                            }});
+                        if(buttonCanShow){
+                            return <Button
+                                //disabled={this.props.buttonDisabled}
+                                onClick={this.onClick(index)}
                                 key={button.content}>
-                            {button.content}
-                        </Button>)}
+                                {button.content}
+                            </Button>
+                        }
+                    })}
                 </FormItem>
                 {true?<FormItem label='评审内容'><TextArea row={4}/></FormItem>:<div></div>}
                 {/*<FormItem label='评审结论'><TextArea row={4}/></FormItem>*/}
