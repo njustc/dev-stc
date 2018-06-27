@@ -161,7 +161,7 @@ const mapDispatchToProps = (dispatch,ownProps) => {
         //     })
         // }),
         getValues: (id,processInstanceID) => {
-            getConsignState(dispatch,processInstanceID,id);
+            // getConsignState(dispatch,processInstanceID,id);
             // console.log("hahaha");
             getConsign(dispatch,id);
         }

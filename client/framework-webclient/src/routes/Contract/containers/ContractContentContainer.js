@@ -73,10 +73,12 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             "operation": "ReviewPass"
         };
         const {processInstanceID,id} = contractData;
-        putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
+        putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
 
+        console.log(status===STATUS.SUCCESS);
         if(status===STATUS.SUCCESS) message.success('通过成功');
         else message.error('通过失败');
+        });
     },
     enable: isReviewVisible
 },{
@@ -87,10 +89,11 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             "operation": "ReviewReject"
         };
         const {processInstanceID,id} = contractData;
-        putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
+        putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
 
         if(status===STATUS.SUCCESS) message.success('已否决');
         else message.error('否决失败');
+        });
     },
     enable: isReviewVisible
 },{
@@ -101,10 +104,11 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             "operation": "ConfirmPass"
         };
         const {processInstanceID,id} = contractData;
-        putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
+        putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
 
         if(status===STATUS.SUCCESS) message.success('确认成功');
         else message.error('确认失败');
+        });
     },
     enable: isConfirmVisible
 },{
@@ -115,10 +119,11 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             "operation": "ConfirmReject"
         };
         const {processInstanceID,id} = contractData;
-        putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
+        putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
 
         if(status===STATUS.SUCCESS) message.success('已拒绝');
         else message.error('拒绝失败');
+        });
     },
     enable: isConfirmVisible
 }];
