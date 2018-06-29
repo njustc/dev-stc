@@ -89,10 +89,10 @@ public class ProcessInstanceServiceTest {
         assertNotNull(state.getString("state"));
     }
 
-    //TODO: It turns out that we can't update processState too quickly, so now I use Thread.sleep() to make it slow.
+    //It turns out that we can't update processState too quickly, so now I use Thread.sleep() to make it slow.
     @Test
     public void  updateProcessConsignState() {
-        JSONObject state = new JSONObject();
+        JSONObject state ;
         try {
             System.out.println("======查询委托状态========");
             System.out.println(processInstanceService.queryProcessState(prId2));
@@ -156,7 +156,7 @@ public class ProcessInstanceServiceTest {
     @Test
     public void  updateProcessContractState() {
         try {
-            JSONObject state = new JSONObject();
+            JSONObject state ;
             System.out.println("======查询合同状态========");
             //System.out.println(processInstanceService.queryProcessState(contractJson.getString("processInstanceID")));
             System.out.println(processInstanceService.queryProcessState(processInstanceId));
@@ -235,7 +235,7 @@ public class ProcessInstanceServiceTest {
     @Test
     public void  updateProcessContractState2() {
         try {
-            JSONObject state = new JSONObject();
+            JSONObject state ;
             System.out.println("======查询合同状态========");
             //System.out.println(processInstanceService.queryProcessState(contractJson.getString("processInstanceID")));
             System.out.println(processInstanceService.queryProcessState(processInstanceId));
@@ -355,7 +355,7 @@ public class ProcessInstanceServiceTest {
     @Test
     public void updateProcessTestPlanState() {
         try {
-            JSONObject state = new JSONObject();
+            JSONObject state ;
             System.out.println("======查询测试方案状态========");
             System.out.println(processInstanceService.queryProcessState(prId1));
             System.out.println("======customer1提交测试方案=======");
