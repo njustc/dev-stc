@@ -33,14 +33,15 @@ public class TCProcessEngine {
     @Autowired
     private BaseOperation baseOperation;
 
-    enum TaskOperation {
+  /*  enum TaskOperation {
         Submit, Review, Confirm, Write, Implement, Approve, Send, Done, Fil, Satisfact
+    }*/
+    enum TaskOperationnoGate {
+        Submit, Write, Implement, Send, Done, Fil, Satisfact
     }
-
-    /*
-     * enum TaskNoGate{submit,write,implement,send,done,file,satisfact} enum
-     * TaskContainGate{review,confirm,approve}
-     */
+    enum TaskOperationwithGate{
+        Review, Confirm, Approve
+    }
     @Autowired
     private UserMapper userMapper;
 
@@ -134,18 +135,37 @@ public class TCProcessEngine {
         String object = params.getString("object");
         String operation = params.getString("operation");
         // String comments=params.getString("comments");
+        boolean test=true;
         if (object == null) {
             throw new Exception("object is null");
         }
-        if (operation.contains(TaskOperation.Submit.name()) || operation.contains(TaskOperation.Write.name())
+        for(TaskOperationwithGate operationwithGate:TaskOperationwithGate.values()) {
+            if(operation.contains(operationwithGate.name())) {
+                String comments=params.getString("comments");
+                baseOperation.containGate(operation, processInstanceId, request.getUser().getId(),comments);
+                test=false;
+                break;
+            }
+        }
+        if(test==true) {
+            for(TaskOperationnoGate operationnoGate:TaskOperationnoGate.values()) {
+                if(operation.contains(operationnoGate.name())) {
+                    baseOperation.noGate(processInstanceId, request.getUser().getId());
+                    test=false;
+                    break;
+                }
+            }
+        }
+       /* if (operation.contains(TaskOperation.Submit.name()) || operation.contains(TaskOperation.Write.name())
                 || operation.contains(TaskOperation.Implement.name()) || operation.contains(TaskOperation.Send.name())
                 || operation.contains(TaskOperation.Done.name()) || operation.contains(TaskOperation.Fil.name())
                 || operation.contains(TaskOperation.Satisfact.name())) {
             baseOperation.noGate(processInstanceId, request.getUser().getId());
-        } else if (operation.contains(TaskOperation.Review.name()) || operation.contains(TaskOperation.Confirm.name())
-                || operation.contains(TaskOperation.Approve.name())) {
-            baseOperation.containGate(operation, processInstanceId, request.getUser().getId());
-        } else {
+        } else if(operation.contains(TaskOperation.Review.name()) || operation.contains(TaskOperation.Confirm.name())
+                || operation.contains(TaskOperation.Approve.name())){
+            String comments=params.getString("comments");
+            baseOperation.containGate(operation, processInstanceId, request.getUser().getId(),comments);*/
+         if(test==true){
             throw new Exception("Operation match failed");
         }
     }
@@ -177,7 +197,33 @@ public class TCProcessEngine {
         }
         TaskFormData taskFormData = formService.getTaskFormData(task.getId());
         List<FormProperty> formProperties = taskFormData.getFormProperties();
-        if (formProperties.size() == 1) {
+        boolean test=true;
+        for(TaskOperationnoGate operationnoGate:TaskOperationnoGate.values()){
+            if(task.getName().contains(operationnoGate.name())){
+                varies.add(operationnoGate.name());
+                test=false;
+                break;
+            }
+        }
+        if(test==true){
+            for (TaskOperationwithGate s : TaskOperationwithGate.values()) {
+                if (task.getName().contains(s.name())) {
+                    String s1 = s.name() + "Pass";
+                    varies.add(s1);
+                    String s2 = s.name() + "Reject";
+                    varies.add(s2);
+                    // System.out.println(task.getProcessDefinitionId());
+                    if (s.name().equals("Confirm") && task.getProcessDefinitionId().contains("testreport")) {
+                        String s3 = s.name() + "Abort";
+                        varies.add(s3);
+                    }
+                    break;
+                }
+            }
+            return varies;
+        }
+        return varies;
+        /*if (formProperties.size() == 1) {
             for (TaskOperation s : TaskOperation.values()) {
                 if (task.getName().contains(s.name())) {
                     varies.add(s.name());
@@ -202,7 +248,7 @@ public class TCProcessEngine {
             }
             return varies;
         }
-        return varies;
+        return varies;*/
     }
 
     /* 获取当前task的用户类型，若流程结束，返回nouser */
@@ -241,16 +287,34 @@ public class TCProcessEngine {
             throw new Exception("historicList is null");
     }
 
-    public List<String> getTaskData(String processInstanceId) throws Exception {
-        List<HistoricVariableInstance> hti = historyService.createHistoricVariableInstanceQuery()
-                .processInstanceId(processInstanceId).list();
-        List<String> htiList = new ArrayList<String>();
-        if (hti.isEmpty() == false) {
-            for (HistoricVariableInstance temp : hti) {
-                htiList.add(temp.getVariableName() + "   " + temp.getValue());
-                // System.out.println(temp.getVariableName()+" "+temp.getValue());
-            }
+    public List<String> getComments(String processInstanceId) throws Exception {
+        List<String> list=new ArrayList<String>();
+        List<HistoricVariableInstance> hviList=historyService.createHistoricVariableInstanceQuery()
+                .processInstanceId(processInstanceId).orderByVariableName().desc().list();
+        for(HistoricVariableInstance hti:hviList)
+        {
+            if(hti.getVariableName().contains("comments"))
+                list.add(hti.getVariableName()+"   "+hti.getValue());
         }
-        return htiList;
+       /* List<HistoricTaskInstance> htiList=historyService.createHistoricTaskInstanceQuery().processInstanceId(
+            processInstanceId).orderByHistoricTaskInstanceStartTime().asc().list();
+        for(HistoricTaskInstance task:htiList)
+        {
+            System.out.println(task.getId()+task.getName());
+            TaskFormData taskFormData = formService.getTaskFormData(task.getId());
+            List<FormProperty> formProperties = taskFormData.getFormProperties();
+            if (formProperties.isEmpty() == false) {
+                for (FormProperty formProperty : formProperties) {
+                    list.add(formProperty.getName()+"      "+formProperty.getValue());
+                }
+            }
+        }*/
+    return list;
+    }
+
+    public String getLastTask(String processInstanceId) throws Exception{
+        List<HistoricTaskInstance> htiList=historyService.createHistoricTaskInstanceQuery().processInstanceId(processInstanceId)
+                .orderByHistoricTaskInstanceStartTime().desc().list();
+        return htiList.get(0).getName().toString();
     }
 }

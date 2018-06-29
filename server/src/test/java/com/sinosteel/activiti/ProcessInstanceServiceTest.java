@@ -116,9 +116,11 @@ public class ProcessInstanceServiceTest {
             JSONObject rejectJson = new JSONObject();
             rejectJson.put("operation", "ReviewReject");
             rejectJson.put("object", "consign");
+            rejectJson.put("comments","notok");
             request.setParams(rejectJson);
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(prId2, request));
+            System.out.println(processInstanceService.getComments(processInstanceId));
             state = processInstanceService.queryProcessState(prId2);
             Assert.assertEquals("TobeSubmit",state.getString("state"));
 
@@ -139,9 +141,11 @@ public class ProcessInstanceServiceTest {
             JSONObject passJson = new JSONObject();
             passJson.put("operation", "ReviewPass");
             passJson.put("object", "consign");
+            passJson.put("comments","itsok");
             request.setParams(passJson);
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(prId2, request));
+            System.out.println(processInstanceService.getComments(processInstanceId));
             state = processInstanceService.queryProcessState(prId2);
             Assert.assertEquals("Finished",state.getString("state"));
         } catch (Exception e) {
@@ -175,6 +179,7 @@ public class ProcessInstanceServiceTest {
             JSONObject rejectJson = new JSONObject();
             rejectJson.put("operation", "ReviewReject");
             rejectJson.put("object", "contract");
+            rejectJson.put("comments","notoknotok");
             request.setParams(rejectJson);
 
             Thread.sleep(2000);
@@ -199,12 +204,14 @@ public class ProcessInstanceServiceTest {
             JSONObject passJson = new JSONObject();
             passJson.put("operation", "ReviewPass");
             passJson.put("object", "contract");
+            passJson.put("comments","okokok");
             request.setParams(passJson);
 
             Thread.sleep(2000);
            // System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
             System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
             state = processInstanceService.queryProcessState(processInstanceId);
+            System.out.println(processInstanceService.getComments(processInstanceId));
             Assert.assertEquals("TobeConfirm",state.getString("state"));
             System.out.println("=====客户通过合同======");
 
@@ -213,11 +220,13 @@ public class ProcessInstanceServiceTest {
             JSONObject confirmJson=new JSONObject();
             confirmJson.put("operation","ConfirmPass");
             confirmJson.put("object","contract");
+            confirmJson.put("comments","okokokoko!!!");
             request.setParams(confirmJson);
           //  System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
             System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
             state = processInstanceService.queryProcessState(processInstanceId);
             Assert.assertEquals("Finished",state.getString("state"));
+            System.out.println(processInstanceService.getComments(processInstanceId));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -250,10 +259,12 @@ public class ProcessInstanceServiceTest {
             JSONObject rejectJson = new JSONObject();
             rejectJson.put("operation", "ReviewReject");
             rejectJson.put("object", "contract");
+            rejectJson.put("comments","to be more");
             request.setParams(rejectJson);
             Thread.sleep(2000);
             // System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
             System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            System.out.println(processInstanceService.getComments(processInstanceId));
             state = processInstanceService.queryProcessState(processInstanceId);
             Assert.assertEquals("TobeSubmit",state.getString("state"));
 
@@ -275,6 +286,7 @@ public class ProcessInstanceServiceTest {
             JSONObject passJson = new JSONObject();
             passJson.put("operation", "ReviewPass");
             passJson.put("object", "contract");
+            passJson.put("comments","can be pass");
             request.setParams(passJson);
             Thread.sleep(2000);
             // System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
@@ -288,6 +300,7 @@ public class ProcessInstanceServiceTest {
             JSONObject confirmJson=new JSONObject();
             confirmJson.put("operation","ConfirmReject");
             confirmJson.put("object","contract");
+            confirmJson.put("comments","can not be confirmed");
             request.setParams(confirmJson);
             //  System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
             System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
@@ -312,10 +325,12 @@ public class ProcessInstanceServiceTest {
             JSONObject passJson2 = new JSONObject();
             passJson2.put("operation", "ReviewPass");
             passJson2.put("object", "contract");
+            passJson2.put("comments","pass pass");
             request.setParams(passJson2);
             Thread.sleep(2000);
             // System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
             System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            System.out.println(processInstanceService.getComments(processInstanceId));
             state = processInstanceService.queryProcessState(processInstanceId);
             Assert.assertEquals("TobeConfirm",state.getString("state"));
 
@@ -325,9 +340,11 @@ public class ProcessInstanceServiceTest {
             JSONObject confirmJson2=new JSONObject();
             confirmJson2.put("operation","ConfirmPass");
             confirmJson2.put("object","contract");
+            confirmJson2.put("comments","pass pass pass");
             request.setParams(confirmJson2);
             //  System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
             System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            System.out.println(processInstanceService.getComments(processInstanceId));
             state = processInstanceService.queryProcessState(processInstanceId);
             Assert.assertEquals("Finished",state.getString("state"));
         } catch (Exception e) {
@@ -362,6 +379,7 @@ public class ProcessInstanceServiceTest {
             //rejectJson.put("comments","rejectreject");
             rejectJson.put("operation", "ReviewReject");
             rejectJson.put("object", "testplan");
+            rejectJson.put("comments","no no no");
             request.setParams(rejectJson);
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(prId1, request));
@@ -383,7 +401,7 @@ public class ProcessInstanceServiceTest {
             request = new Request();
             request.setUser(marketing);
             JSONObject passJson = new JSONObject();
-            rejectJson.put("comments","passpass");
+            rejectJson.put("comments","pass pass");
             passJson.put("operation", "ReviewPass");
             passJson.put("object", "testplan");
             request.setParams(passJson);
@@ -396,11 +414,12 @@ public class ProcessInstanceServiceTest {
             request=new Request();
             request.setUser(customer2);
             JSONObject confirmJson=new JSONObject();
-            //rejectJson.put("comments","comfirmpasspass");
+            confirmJson.put("comments","comfirmpasspass");
             confirmJson.put("operation","ConfirmPass");
             confirmJson.put("object","testplan");
             request.setParams(confirmJson);
             System.out.println(processInstanceService.updateProcessState(prId1, request));
+            System.out.println(processInstanceService.getComments(processInstanceId));
             state = processInstanceService.queryProcessState(prId1);
             Assert.assertEquals("TobeImplement",state.getString("state"));
 
@@ -447,10 +466,12 @@ public class ProcessInstanceServiceTest {
             JSONObject rejectJson = new JSONObject();
             rejectJson.put("operation", "ReviewReject");
             rejectJson.put("object", "testreport");
+            rejectJson.put("comments","non np n p ");
             request.setParams(rejectJson);
 
             Thread.sleep(2000);
             System.out.println(processInstanceService.updateProcessState(prId3, request));
+            System.out.println(processInstanceService.getComments(processInstanceId));
             System.out.println(processInstanceService.getUserOperation(prId3));
             state = processInstanceService.queryProcessState(prId3);
             Assert.assertEquals("TobeWrite",state.getString("state"));
@@ -471,6 +492,7 @@ public class ProcessInstanceServiceTest {
             JSONObject passJson = new JSONObject();
             passJson.put("operation", "ReviewPass");
             passJson.put("object", "testreport");
+            passJson.put("comments","pass pass ");
             request.setParams(passJson);
 
             Thread.sleep(2000);
@@ -485,8 +507,10 @@ public class ProcessInstanceServiceTest {
             JSONObject confirmJson=new JSONObject();
             confirmJson.put("operation","ApproveReject");
             confirmJson.put("object","testreport");
+            confirmJson.put("comments","approve reject");
             request.setParams(confirmJson);
             System.out.println(processInstanceService.updateProcessState(prId3, request));
+            System.out.println(processInstanceService.getComments(prId3));
             System.out.println(processInstanceService.getUserOperation(prId3));
             state = processInstanceService.queryProcessState(prId3);
             Assert.assertEquals("TobeWrite",state.getString("state"));
@@ -509,6 +533,7 @@ public class ProcessInstanceServiceTest {
             implementJson=new JSONObject();
             implementJson.put("operation","ReviewPass");
             implementJson.put("object","testreport");
+            implementJson.put("comments","pass");
             request.setParams(implementJson);
             System.out.println(processInstanceService.updateProcessState(prId3, request));
             System.out.println(processInstanceService.getUserOperation(prId3));
@@ -521,8 +546,10 @@ public class ProcessInstanceServiceTest {
             implementJson=new JSONObject();
             implementJson.put("operation","ApprovePass");
             implementJson.put("object","testreport");
+            implementJson.put("comments","pass");
             request.setParams(implementJson);
             System.out.println(processInstanceService.updateProcessState(prId3, request));
+            System.out.println(processInstanceService.getComments(prId3));
             System.out.println(processInstanceService.getUserOperation(prId3));
             state = processInstanceService.queryProcessState(prId3);
             Assert.assertEquals("TobeSend",state.getString("state"));
@@ -545,6 +572,7 @@ public class ProcessInstanceServiceTest {
             implementJson=new JSONObject();
             implementJson.put("operation","ConfirmPass");
             implementJson.put("object","testreport");
+            implementJson.put("comments","pass");
             request.setParams(implementJson);
             System.out.println(processInstanceService.updateProcessState(prId3, request));
             System.out.println(processInstanceService.getUserOperation(prId3));

@@ -16,9 +16,9 @@
     </userTask>
     <userTask id="reviewreport" name="TobeReview" activiti:candidateUsers="${WorkerId}">
       <extensionElements>
-        <activiti:formProperty id="approval" name="Do you approve this testreport?" type="enum" required="true"/>
+        <activiti:formProperty id="reviewreportapproval" name="Do you approve this testreport?" type="enum" required="true"/>
         <activiti:formProperty id="user" name="worker" type="string" value="worker"/>
-        <!--<activiti:formProperty id="comments" name="reason about pass or reject the testreport" type="String" required="true"/>-->
+        <activiti:formProperty id="reviewreportcomments" name="reason about pass or reject the testreport" type="string" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-9102BEBF-1604-435A-8988-BACA3D835F2A]]></modeler:editor-resource-id>
@@ -26,9 +26,9 @@
     </userTask>
     <userTask id="approvereport" name="TobeApprove" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
-        <activiti:formProperty id="approval" name="Do you approve this testplan?" type="enum" required="true"/>
+        <activiti:formProperty id="approvereportapproval" name="Do you approve this testplan?" type="enum" required="true"/>
         <activiti:formProperty id="user" name="worker" type="string" value="worker"/>
-        <!--<activiti:formProperty id="comments" name="reason about pass or reject the report" type="String" required="true"/>-->
+        <activiti:formProperty id="approvereportcomments" name="reason about pass or reject the report" type="string" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-1B1252BB-E43A-4E86-AEA4-455AD28CF94D]]></modeler:editor-resource-id>
@@ -54,9 +54,9 @@
     </userTask>
     <userTask id="confirmreport" name="TobeConfirm" activiti:candidateGroups="${ClientID}">
       <extensionElements>
-        <activiti:formProperty id="approval" name="Do you approve this testplan?" type="enum" required="true"/>
+        <activiti:formProperty id="confirmreportapproval" name="Do you approve this testplan?" type="enum" required="true"/>
         <activiti:formProperty id="user" name="client" type="string" value="client"/>
-        <!--<activiti:formProperty id="comments" name="reason about pass or reject the testplan" type="String" required="true"/>-->
+        <activiti:formProperty id="confirmreportcomments" name="reason about pass or reject the testplan" type="string" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-E33AD7C3-DEFA-44A7-BAAA-8ED933956D5B]]></modeler:editor-resource-id>
@@ -115,13 +115,13 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-B69F48E1-7BF6-49AA-BF00-57C3E36B37E9]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewPass'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${reviewreportapproval == 'ReviewPass'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f7" name="通过" sourceRef="g2" targetRef="sendreport">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-78824EF3-C975-4124-A86D-0DBC830ED15F]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ApprovePass'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approvereportapproval == 'ApprovePass'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f8" sourceRef="sendreport" targetRef="confirmreport">
       <extensionElements>
@@ -137,7 +137,7 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-3469E39D-9B78-4D62-A35D-881E4DCD2264]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ConfirmPass'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${confirmreportapproval == 'ConfirmPass'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f11" sourceRef="satisfaction" targetRef="done">
       <extensionElements>
@@ -168,25 +168,25 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-A2F3F0F3-8B5F-47F7-A118-FC4D7606FE79]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewReject'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${reviewreportapproval == 'ReviewReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f15" name="不通过" sourceRef="g2" targetRef="writereport">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-E23FD817-8714-418D-B8B7-58792B3476B6]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ApproveReject'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approvereportapproval == 'ApproveReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f16" name="不通过" sourceRef="g3" targetRef="writereport">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-CC917695-8687-46AC-A1E6-7670C83386B4]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ConfirmReject'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${confirmreportapproval == 'ConfirmReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f17" name="放弃" sourceRef="g3" targetRef="end2">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-3C5BE11B-1BDC-4C4E-A52D-09F21A2BF479]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ConfirmAbort'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${confirmreportapproval == 'ConfirmAbort'}]]></conditionExpression>
     </sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_testreport">
