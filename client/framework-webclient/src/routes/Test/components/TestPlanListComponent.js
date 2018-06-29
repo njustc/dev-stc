@@ -141,7 +141,7 @@ export default class TestPlanListComponent extends Component {
     /*取消委托提示框*/
     showDeleteConfirm = (record) => () => {
         confirm({
-            title: 'Are you sure to delete this consign?',
+            title: 'Are you sure to delete this testCase?',
             //content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
@@ -151,7 +151,7 @@ export default class TestPlanListComponent extends Component {
                 //debugger;
                 //this.deleteConsign(id);
                 /*TODO 取消委托的函数的参数需要优化*/
-                this.props.deleteConsign(record);
+                this.props.deleteTestPlan(record);
             },
             onCancel() {},
         });

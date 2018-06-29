@@ -5,7 +5,7 @@ import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 import {setTestReportCheckContent, setTestReportCheckList} from "../modules/ducks/TestReportCheck";
 
-const testReportBase = baseServiceAddress + '/testReport';
+const testReportBase = baseServiceAddress + '/v1/testReport';
 const testReportActivitiBase = baseServiceAddress + '/processInstance';
 
 export const getTestReportList = (dispatch, callback) => {
@@ -65,8 +65,8 @@ export const deleteTestReport = (dispatch, id, callback) => {
     });
 };
 
-export const newTestReport = (dispatch, callback) => {
-    httpPost(testReportBase, {consignation:null,}, (result) => {
+export const newTestReport = (dispatch,id, callback) => {
+    httpPost(testReportBase, {body:null,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setTestReportContent(data));
