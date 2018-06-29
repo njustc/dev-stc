@@ -20,6 +20,7 @@ public class Project extends BaseEntity {
     @JSONField(serialize = false)
     private User user;
 
+
     public User getUser() {
         return user;
     }
@@ -27,6 +28,17 @@ public class Project extends BaseEntity {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @JSONField(name = "username")
+    public String getUserNAME(){
+        return user.getUsername();
+    }
+
+    @JSONField(name = "userID")
+    public String getUserId(){
+        return user.getId();
+    }
+
 
     /**
      * 委托
@@ -43,6 +55,7 @@ public class Project extends BaseEntity {
     public void setConsign(Consign consign) {
         this.consign = consign;
     }
+
 
     /**
      * 合同
