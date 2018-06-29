@@ -313,6 +313,43 @@ CREATE TABLE `tbl_sys_testworkchecks`(
   `ACENDTIME` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+CREATE TABLE `tbl_sys_organization` (
+  `id` varchar(255) COLLATE utf8_bin NOT NULL,
+  `altered_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `altered_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `code` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `created_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `created_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `organization_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `parent_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+ALTER TABLE `tbl_sys_organization`
+  ADD PRIMARY KEY (`id`);
+
+CREATE TABLE `tbl_sys_organization_user` (
+  `organization_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `is_principal` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `tbl_sys_delete_authorization` (
+  `organization_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `role_id` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `tbl_sys_edit_authorization` (
+  `organization_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `role_id` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `tbl_sys_query_authorization` (
+  `organization_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `role_id` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 --
 -- 表的结构 `tbl_sys_file`
 --
@@ -565,6 +602,10 @@ ALTER TABLE `tbl_sys_projects`
 ALTER TABLE `tbl_sys_role_users`
   ADD CONSTRAINT `FK_44m1qqntwycmydgmmdcmagdn3` FOREIGN KEY (`user_id`) REFERENCES `tbl_sys_users` (`ID`),
   ADD CONSTRAINT `FK_4rbt5lhjoqj0r268ur0gcurf2` FOREIGN KEY (`role_id`) REFERENCES `tbl_sys_roles` (`id`);
+
+ALTER TABLE `tbl_sys_organization_user`
+  ADD KEY `FK_1xf5y20elkka13pumi8r2f8r4` (`organization_id`),
+  ADD KEY `FK_syj426syoggn9kae85kspa0se` (`user_id`);
 
 CREATE VIEW `view_sys_testcases` as SELECT
 ID,CODE,NAME,CREATED_TIME,CREATED_USER_ID,ALTERED_TIME,ALTERED_USER_ID,PROCESS_INSTANCE_ID,PROJECT_ID,TESTTYPE,TESTORDER,DESIGNNOTE,AGREEMENTNOTE,IMPLEMENTATION,PRERESULT,DESIGNERNAME,TIME1,BASIS FROM tbl_sys_testcases;
