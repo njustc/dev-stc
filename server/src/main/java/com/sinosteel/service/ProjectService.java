@@ -121,8 +121,8 @@ public class ProjectService extends BaseService<Project>{
     private JSONObject processProject(Project project) throws Exception {
         //String processState = (String) processInstanceService.queryProcessState(project.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(project));
-        jsonObject.put("username", project.getUser().getUsername());
-        jsonObject.put("userID", project.getUser().getId());
+        //jsonObject.put("username", project.getUser().getUsername());
+        //jsonObject.put("userID", project.getUser().getId());
         //jsonObject.put("state",processState);
         return jsonObject;
     }
