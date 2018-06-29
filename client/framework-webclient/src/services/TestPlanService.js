@@ -9,29 +9,6 @@ const testPlanBase = baseServiceAddress + '/v1/testPlan';
 const testPlanActivitiBase = baseServiceAddress + '/processInstance';
 
 export const getTestPlanList = (dispatch, callback) => {
-    // dispatch(setTestPlanList(/*data*/
-    //     [
-    //         {
-    //             pid : "110",
-    //             id : "110",
-    //             name : "快乐星球小杨杰",
-    //             customerId : "151220140",
-    //             status: STATE.TO_SUBMIT
-    //         },{
-    //         pid :"120",
-    //         id : "120",
-    //         name : "不快乐星球小杨杰",
-    //         customerId : "151220140",
-    //         status: STATE.TO_CHECK
-    //     },{
-    //         pid : "119",
-    //         id : "119",
-    //         name : "不快乐星球老杨杰",
-    //         customerId : "151220140",
-    //         status: STATE.CANCELED
-    //     }
-    //     ]
-    // ));
     httpGet(testPlanBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
@@ -61,7 +38,7 @@ export const deleteTestPlan = (dispatch, id, callback) => {
     });
 };
 
-export const newTestPlan = (dispatch, id, callback) => {
+export const newTestPlan = (dispatch, id,callback) => {
     let urlParams = 'projectID=' + id;
     httpPost(testPlanBase, {body:null}, (result) => {
         const {data, status} = result;
