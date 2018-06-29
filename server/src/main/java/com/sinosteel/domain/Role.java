@@ -4,6 +4,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 
 import javax.persistence.*;
 import java.util.List;
+
 @Entity
 @Table(name = "TBL_SYS_ROLES")
 public class Role extends BaseEntity
