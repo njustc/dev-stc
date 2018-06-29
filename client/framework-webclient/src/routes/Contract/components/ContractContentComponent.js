@@ -97,7 +97,7 @@ class ContractContentComponent extends Component {
                             rules: [{ required: true, message: '请输入项目名称！' }],
                             initialValue: this.props.values.projectName,
                         })(
-                            <Input size="larger" disabled={this.props.disable} placeholder={"（软件测试）"}/>
+                            <Input size="large" disabled={this.props.disable} placeholder={"（软件测试）"}/>
                         )}
                     </FormItem>
 
@@ -106,7 +106,7 @@ class ContractContentComponent extends Component {
                             rules: [{ required: true, message: '请输入委托方（甲方）！',pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$" }],
                             initialValue: this.props.values.consignA,
                         })(
-                            <Input size="larger" disabled={this.props.disable}/>
+                            <Input size="large" disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
@@ -115,7 +115,7 @@ class ContractContentComponent extends Component {
                             rules: [{ required: true, message: '请输入受托方（乙方）！',pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$" }],
                             initialValue: this.props.values.consignB,
                         })(
-                            <Input size="larger" disabled={this.props.disable}/>
+                            <Input size="large" disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
@@ -124,7 +124,7 @@ class ContractContentComponent extends Component {
                             rules: [{ required: true, message: '请输入签订地点！' }],
                             initialValue: this.props.values.consignPlace,
                         })(
-                            <Input size="larger" disabled={this.props.disable} placeholder={"南京"}/>
+                            <Input size="large" disabled={this.props.disable} placeholder={"南京"}/>
                         )}
                     </FormItem>
 
@@ -517,11 +517,21 @@ class ContractContentComponent extends Component {
 
                 {/* footer buttons */}
                 <FormItem style={{textAlign:'center'}}>
-                    {this.props.buttons.map((button, index) =>
-                        <Button onClick={this.onClick(index)}
+                    {this.props.buttons.map((button, index) => {
+                        let buttonCanShow = false;
+                        this.props.buttonsEnable.forEach(function(element){
+                            if(element.content === button.content && element.enable){
+                                buttonCanShow = true;
+                            }});
+                        if(buttonCanShow){
+                            return <Button
+                                //disabled={this.props.buttonDisabled}
+                                onClick={this.onClick(index)}
                                 key={button.content}>
-                            {button.content}
-                        </Button>)}
+                                {button.content}
+                            </Button>
+                        }
+                    })}
                 </FormItem>
                 {true?<FormItem label='评审内容'><TextArea row={4}/></FormItem>:<div></div>}
                 {/*<FormItem label='评审结论'><TextArea row={4}/></FormItem>*/}

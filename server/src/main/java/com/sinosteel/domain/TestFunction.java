@@ -3,6 +3,7 @@ package com.sinosteel.domain;
 import com.alibaba.fastjson.annotation.JSONField;
 
 import javax.persistence.*;
+
 /**
  * @author SongJunju
  */
@@ -14,11 +15,8 @@ import javax.persistence.*;
 @Table(name = "TBL_SYS_TESTFUNCTIONS")
 public class TestFunction extends BaseEntity {
 
-
-
     /**
-     * 详细字段未定
-     * 暂时先用来存储
+     * 详细字段未定 暂时先用来存储
      */
     @Column(name = "BODY")
     private String body;
@@ -49,7 +47,7 @@ public class TestFunction extends BaseEntity {
      * 连接Project的外键
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "PROJECT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private Project project;
 

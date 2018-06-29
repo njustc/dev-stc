@@ -12,19 +12,19 @@ import java.util.List;
 @Table(name = "TBL_SYS_PROJECTS")
 public class Project extends BaseEntity {
 
-
     /**
      * 该Project对应的用户
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID",foreignKey = @ForeignKey(name = "none", value =ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "USER_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private User user;
 
-    public User getUser(){
+    public User getUser() {
         return user;
     }
-    public void setUser(User user){
+
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -32,14 +32,15 @@ public class Project extends BaseEntity {
      * 委托
      */
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CONSIGN_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "CONSIGN_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private Consign consign;
 
-    public Consign getConsign(){
+    public Consign getConsign() {
         return consign;
     }
-    public void setConsign(Consign consign){
+
+    public void setConsign(Consign consign) {
         this.consign = consign;
     }
 
@@ -47,14 +48,15 @@ public class Project extends BaseEntity {
      * 合同
      */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "CONTRACT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "CONTRACT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private Contract contract;
 
-    public Contract getContract(){
+    public Contract getContract() {
         return contract;
     }
-    public void setContract(Contract contract){
+
+    public void setContract(Contract contract) {
         this.contract = contract;
     }
 
@@ -62,24 +64,23 @@ public class Project extends BaseEntity {
      * 测试报告
      */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "TESTREPORT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "TESTREPORT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private TestReport testReport;
 
-    public TestReport getTestReport(){
+    public TestReport getTestReport() {
         return testReport;
     }
 
-    public void setTestReport(TestReport testReport){
+    public void setTestReport(TestReport testReport) {
         this.testReport = testReport;
     }
-
 
     /**
      * 测试记录表
      */
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "PROJECT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private List<TestRecord> testRecords;
 
@@ -95,7 +96,7 @@ public class Project extends BaseEntity {
      * 测试用例表
      */
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name ="PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "PROJECT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private List<TestCase> testCases;
 
@@ -111,7 +112,7 @@ public class Project extends BaseEntity {
      * 测试问题(bug)表
      */
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name ="PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "PROJECT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private List<TestBug> testBugs;
 
@@ -127,7 +128,7 @@ public class Project extends BaseEntity {
      * 软件功能列表
      */
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name ="PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "PROJECT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private List<TestFunction> testFunctions;
 
@@ -143,7 +144,7 @@ public class Project extends BaseEntity {
      * 测试报告检查表
      */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "TESTREPORTCHECK_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "TESTREPORTCHECK_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private TestReportCheck testReportCheck;
 
@@ -155,13 +156,11 @@ public class Project extends BaseEntity {
         this.testReportCheck = testReportCheck;
     }
 
-
-
     /**
      * 测试工作检查表
      */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "TESTWORKCHECK_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "TESTWORKCHECK_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private TestWorkCheck testWorkCheck;
 
@@ -173,13 +172,11 @@ public class Project extends BaseEntity {
         this.testWorkCheck = testWorkCheck;
     }
 
-
-
     /**
      * 测试方案
      */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "TESTPLAN_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "TESTPLAN_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private TestPlan testPlan;
 

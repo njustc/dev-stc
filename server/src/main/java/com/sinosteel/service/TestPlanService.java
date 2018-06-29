@@ -59,6 +59,8 @@ public class TestPlanService extends BaseService<TestPlan> {
             throw new Exception("can't find project by id: " + projectID);
         }
         TestPlan testPlan = project.getTestPlan();
+        if (testPlan == null)
+            throw new Exception("can't find consign with project: " + projectID);
         return processTestPlan(testPlan);
     }
 
@@ -120,8 +122,9 @@ public class TestPlanService extends BaseService<TestPlan> {
     public void deleteTestPlan(JSONObject params)
     {
         String uid=params.getString("id");
+        TestPlan testPlan = testPlanRepository.findById(uid);
         //delete testplan from project
-        Project project = projectRepository.findById(uid);
+        Project project = testPlan.getProject();
         project.setTestPlan(null);
 
         //delete test plan

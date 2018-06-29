@@ -24,9 +24,16 @@ public class BaseOperation {
     @Autowired
     private UserMapper userMapper;
 
-    enum state{TobeSubmit,TobeReview,TobeConfirm,TobeWrite,TobeImplement,
-                TobeApprove,TobeSend,TobeDone,TobeFiling,Satisfaction}
-
+    enum state {
+        TobeSubmit, TobeReview, TobeConfirm, TobeWrite, TobeImplement,
+        TobeApprove, TobeSend, TobeDone, TobeFiling, Satisfaction
+    }
+    enum noGateState {
+        TobeSubmit, TobeWrite, TobeImplement, TobeSend, TobeDone, TobeFiling, Satisfaction
+    }
+    enum GateState {
+        TobeReview, TobeConfirm, TobeApprove
+    }
     /**
      * 没有gate的task,对应于所有流程图中的提交,编写，实施等
      * @param processInstanceId
@@ -37,7 +44,19 @@ public class BaseOperation {
         List<String> userids = userMapper.getUserIdsByRoleId("1");
         Task task=taskService.createTaskQuery()
                 .processInstanceId(processInstanceId).singleResult();
-        if(task.getName().equals(state.TobeSubmit.name())||task.getName().equals(state.TobeWrite.name())
+        boolean test=true;
+        for(noGateState state:noGateState.values()){
+            if(task.getName().equals(state.name())){
+                if(userids.contains(workerId))
+                    taskService.claim(task.getId(),workerId);
+                taskService.complete(task.getId());
+                test=false;
+                break;
+            }
+        }
+        if(test==true)
+            throw new Exception( task.getName()+"error");
+       /* if(task.getName().equals(state.TobeSubmit.name())||task.getName().equals(state.TobeWrite.name())
                 ||task.getName().equals(state.TobeImplement.name())||task.getName().equals(state.TobeDone.name())
                 ||task.getName().equals(state.Satisfaction.name())||task.getName().equals(state.TobeFiling.name())
                 ||task.getName().equals(state.TobeSend.name())){
@@ -45,7 +64,7 @@ public class BaseOperation {
                 taskService.claim(task.getId(),workerId);
             taskService.complete(task.getId());
         }
-        else throw new Exception( task.getName()+"error");
+        else throw new Exception( task.getName()+"error");*/
     }
 
     /**
@@ -55,8 +74,9 @@ public class BaseOperation {
      * @param workerId 分配给用户组中的成员ID
      * @throws Exception
      */
-    public void containGate(String operation,String processInstanceId,String workerId) throws Exception
+    public void containGate(String operation,String processInstanceId,String workerId,String comments) throws Exception
     {
+        boolean test=true;
         List<String> userids = userMapper.getUserIdsByRoleId("1");
         Task task=taskService.createTaskQuery()
                 .processInstanceId(processInstanceId).singleResult();
@@ -68,7 +88,24 @@ public class BaseOperation {
                 varies.add(formProperty.getId());
             }
         }
-        if(task.getName().equals(state.TobeReview.name())||task.getName().equals(state.TobeConfirm.name())
+        for(GateState state:GateState.values()){
+            if(task.getName().equals(state.name())){
+                if(userids.contains(workerId))
+                    taskService.claim(task.getId(),workerId);
+                Map<String,Object> variables=new HashMap<String, Object>();
+                for(String tmp:varies) {
+                    variables.put(tmp,operation);
+                }
+                this.addComments(task,formProperties,comments,variables);
+                taskService.complete(task.getId(),variables);
+                test=false;
+                break;
+            }
+        }
+        if(test==true){
+            throw new Exception(task.getProcessDefinitionId()+ "error");
+        }
+        /*if(task.getName().equals(state.TobeReview.name())||task.getName().equals(state.TobeConfirm.name())
                 ||task.getName().equals(state.TobeApprove.name())){
             if(userids.contains(workerId))
                 taskService.claim(task.getId(),workerId);
@@ -76,24 +113,25 @@ public class BaseOperation {
             for(String tmp:varies) {
                 variables.put(tmp,operation);
             }
-            //this.addComments(task,formProperties,comments,variables);
+            this.addComments(task,formProperties,comments,variables);
             taskService.complete(task.getId(),variables);}
         else {
             throw new Exception(task.getProcessDefinitionId()+ "error");
-        }
+        }*/
     }
     public void addComments(Task task,List<FormProperty> formProperties,String comments,Map<String,Object> variables) throws Exception {
         List<String> varies = new ArrayList<String>();
         for (FormProperty formProperty : formProperties) {
-            if ("reason".equals(formProperty.getId().toString())) {
-                //System.out.print(formProperty.getId()+"  +"+formProperty.getName()+" +"+formProperty.getValue());
+            if(formProperty.getId().toString().contains("comments")){
                 varies.add(formProperty.getId());
             }
         }
-        if (task.getName().equals(state.TobeReview.name()) || task.getName().equals(state.TobeConfirm.name())
-                || task.getName().equals(state.TobeApprove.name())) {
-            for (String tmp : varies) {
-                variables.put(tmp, comments);
+        for(GateState state:GateState.values()){
+            if(task.getName().equals(state.name())){
+                for (String tmp : varies) {
+                    variables.put(tmp, comments);
+                }
+                break;
             }
         }
     }

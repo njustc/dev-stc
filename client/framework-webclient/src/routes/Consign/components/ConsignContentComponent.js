@@ -1111,7 +1111,7 @@ class ConsignContentComponent extends Component  {
                     {this.props.buttons.map((button, index) => {
                         let buttonCanShow = false;
                         this.props.buttonsEnable.forEach(function(element){
-                            if(element.content === button.content){
+                            if(element.content === button.content && element.enable){
                                 buttonCanShow = true;
                             }});
                         if(buttonCanShow){

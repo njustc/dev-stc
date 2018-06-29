@@ -14,34 +14,9 @@ export const getContractList = (dispatch, callback) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setContractList(data));
-            // dispatch(setContractList(/*data*/
-            //     [
-            //         {
-            //             processInstanceID : "119",
-            //             id : "110",
-            //             name : "快乐星球小杨杰",
-            //             customerId : "151220140",
-            //             status: STATE.TO_SUBMIT
-            //         },{
-            //         processInstanceID :"120",
-            //         id : "120",
-            //         name : "不快乐星球小杨杰",
-            //         customerId : "151220140",
-            //         status: STATE.TO_REVIEW
-            //     },{
-            //         processInstanceID : "110",
-            //         id : "119",
-            //         name : "不快乐星球老杨杰",
-            //         customerId : "151220140",
-            //         status: STATE.CANCELED
-            //     }
-            //     ]
-            // ));
         }
         callback && callback(status);
     });
-    // const status = STATUS.SUCCESS;
-    // callback && callback(status);
 };
 
 export const getContract = (dispatch, id, callback) => {
@@ -56,10 +31,13 @@ export const getContract = (dispatch, id, callback) => {
 };
 
 export const deleteContract = (dispatch, id, callback) => {
+    console.log(id);
     httpDelete(contractBase, {id:id}, (result) => {
-        // console.log("before remove");
+        console.log(contractBase);
+        console.log("before remove");
         // dispatch(removeContract(id));
         const {status} = result;
+        console.log(result);
         if(status === STATUS.SUCCESS)
             dispatch(removeContract(id));
         callback && callback(status);
@@ -68,10 +46,7 @@ export const deleteContract = (dispatch, id, callback) => {
 
 export const newContract = (dispatch, id,callback) => {
     let urlParams = 'projectID=' + id;
-    const contractData = {
-        contractBody: "null"
-    };
-    httpPost(contractBase, contractData, (result) => {
+    httpPost(contractBase, {contractBody:null}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setContractContent(data));

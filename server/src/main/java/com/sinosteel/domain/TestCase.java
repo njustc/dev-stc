@@ -8,7 +8,6 @@ import javax.persistence.*;
  * @author SongJunju
  */
 
-
 /**
  * 测试用例
  */
@@ -16,10 +15,8 @@ import javax.persistence.*;
 @Table(name = "TBL_SYS_TESTCASES")
 public class TestCase extends BaseEntity {
 
-
     /**
-     * 详细字段未定
-     * 暂时先用来存储
+     * 详细字段未定 暂时先用来存储
      */
     @Column(name = "BODY")
     private String body;
@@ -66,22 +63,19 @@ public class TestCase extends BaseEntity {
     @Column(name = "DESIGNNOTE")
     private String designNote;
 
-    public String getDesignNote()
-    {
+    public String getDesignNote() {
         return designNote;
     }
 
-    public void setDesignNote(String designNote){
+    public void setDesignNote(String designNote) {
         this.designNote = designNote;
     }
-
 
     /**
      * 4.与本测试用例有关的规约说明 - 测试用例，测试记录
      */
     @Column(name = "AGREEMENTNOTE")
     private String agreementNote;
-
 
     public String getAgreementNote() {
         return agreementNote;
@@ -287,7 +281,6 @@ public class TestCase extends BaseEntity {
         this.bugCondition = bugCondition;
     }
 
-
     /**
      * 19.发现缺陷用例及具体操作路径 - 测试问题
      */
@@ -301,7 +294,6 @@ public class TestCase extends BaseEntity {
     public void setBugPath(String bugPath) {
         this.bugPath = bugPath;
     }
-
 
     /**
      * 20.发现时间 - 测试问题
@@ -331,7 +323,6 @@ public class TestCase extends BaseEntity {
         this.revSug = revSug;
     }
 
-
     /**
      * processInstanceID
      */
@@ -350,7 +341,7 @@ public class TestCase extends BaseEntity {
      * 连接Project类的外键
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "PROJECT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private Project project;
 
@@ -362,12 +353,11 @@ public class TestCase extends BaseEntity {
         this.project = project;
     }
 
-
     /**
      * 连接TestRecord的外键
      */
     @OneToOne(mappedBy = "testCase")
-    @JoinColumn(name = "TESTCASE_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "TESTCASE_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private TestRecord testRecord;
 
@@ -378,6 +368,5 @@ public class TestCase extends BaseEntity {
     public void setTestResult(TestRecord testRecord) {
         this.testRecord = testRecord;
     }
-
 
 }
