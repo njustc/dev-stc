@@ -21,7 +21,7 @@ export const getContractList = (dispatch, callback) => {
 
 export const getContract = (dispatch, id, callback) => {
     httpGet(contractBase + '/' + id, (result) => {
-//        console.log(result);
+       console.log(result);
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setContractContent(data));
@@ -31,13 +31,8 @@ export const getContract = (dispatch, id, callback) => {
 };
 
 export const deleteContract = (dispatch, id, callback) => {
-    console.log(id);
     httpDelete(contractBase, {id:id}, (result) => {
-        console.log(contractBase);
-        console.log("before remove");
-        // dispatch(removeContract(id));
         const {status} = result;
-        console.log(result);
         if(status === STATUS.SUCCESS)
             dispatch(removeContract(id));
         callback && callback(status);
@@ -65,19 +60,19 @@ export const updateContract = (dispatch, data, callback) => {
     });
 };
 
-export const getContractState = (dispatch, processInstanceID, id, callback) => {
-    httpGet(contractActivitiBase + '/' + processInstanceID, (result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            const newData = {
-                ...data,
-                id: id,
-            };
-            dispatch(setContractContent(newData));
-        }
-        callback && callback(status);
-    })
-};
+// export const getContractState = (dispatch, processInstanceID, id, callback) => {
+//     httpGet(contractActivitiBase + '/' + processInstanceID, (result) => {
+//         const {status, data} = result;
+//         if (status === STATUS.SUCCESS) {
+//             const newData = {
+//                 ...data,
+//                 id: id,
+//             };
+//             dispatch(setContractContent(newData));
+//         }
+//         callback && callback(status);
+//     })
+// };
 
 export const putContractState = (dispatch, processInstanceID, data, id, callback) => {
     httpPut(contractActivitiBase + '/' + processInstanceID, data, (result) => {

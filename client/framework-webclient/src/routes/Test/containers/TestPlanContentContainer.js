@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import TestPlanContentComponent from "../components/TestPlanContentComponent";
 import {connect} from "react-redux";
-import {getTestPlan} from "../../../services/TestService";
+import {getTestPlan} from "../../../services/TestPlanService";
 
 const mapStateToProps = (state,ownProps) => {
     return {

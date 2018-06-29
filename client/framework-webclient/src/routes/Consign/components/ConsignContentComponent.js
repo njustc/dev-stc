@@ -189,7 +189,7 @@ class ConsignContentComponent extends Component  {
             ...this.props.values,
             ...form.getFieldsValue(),
         });
-        debugger;
+        // debugger;
         if(buttons[buttonIndex].content === '通过'){
             this.setState({
                 ...this.state,

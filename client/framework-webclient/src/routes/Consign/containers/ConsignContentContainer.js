@@ -5,7 +5,9 @@ import {connect} from "react-redux";
 import {getConsign, getConsignState, putConsignState, updateConsign} from "../../../services/ConsignService";
 import {newProject} from "../../../services/ProjectService";
 import {newContract} from "../../../services/ContractService";
+import {newTestPlan} from "../../../services/TestPlanService";
 import {globalOperation, STATUS} from "../../../services/common";
+import {newTestRecord} from "../../../services/TestRecordService";
 // import "./common"
 /*TODO:表单内容和按钮的可视及禁用情况*/
 const mapStateToProps = (state, ownProps) => {
@@ -30,7 +32,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible) => [{
     content: '保存',
-    enable: isEditVisible,
+    enable: isEditVisible&&isSubmitVisible,
 },{
     content: '提交',
     enable: isSubmitVisible,
@@ -99,10 +101,18 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
                 message.success('流程新建成功');
                 console.log(data);
                 const {id} = data;
+
                 newContract(dispatch,id,(status)=>{
-                    console.log(status);
                     if(status===STATUS.SUCCESS) message.success('合同新建成功');
                     else message.error('合同新建失败');
+                });
+                newTestPlan(dispatch,id,(status)=>{
+                    if(status===STATUS.SUCCESS) message.success('测试方案新建成功');
+                    else message.error('测试方案新建失败');
+                });
+                newTestRecord(dispatch,id,(status)=>{
+                    if(status===STATUS.SUCCESS) message.success('测试记录新建成功');
+                    else message.error('测试记录新建失败');
                 });
             }
             else message.error('流程新建失败');
