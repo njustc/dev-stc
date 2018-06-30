@@ -66,13 +66,14 @@ export const deleteTestReport = (dispatch, id, callback) => {
 };
 
 export const newTestReport = (dispatch,id, callback) => {
+    const urlParams = 'projectID=' + id;
     httpPost(testReportBase, {body:null,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setTestReportContent(data));
         }
         callback && callback(status);
-    });
+    },urlParams);
 };
 
 export const updateTestReport = (dispatch, data, callback) => {

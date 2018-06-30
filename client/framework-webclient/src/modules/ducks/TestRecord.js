@@ -32,13 +32,13 @@ export const TestRecordReducer = (state = initialState, action) => {
         case SET_CONTENT: {
             const {id} = action.payload;
             const TestRecordData = action.payload;
-            console.log(TestRecordData);
+            // console.log(TestRecordData);
             const newData = {
                 ...state.listMap[id],
                 ...TestRecordData,
             };
-            console.log(newData);
-            console.log(state.listMap[id]);
+            // console.log(newData);
+            // console.log(state.listMap[id]);
             return {
                 ...state,
                 listMap: {

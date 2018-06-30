@@ -40,7 +40,7 @@ export const deleteContract = (dispatch, id, callback) => {
 };
 
 export const newContract = (dispatch, id,callback) => {
-    let urlParams = 'projectID=' + id;
+    const urlParams = 'projectID=' + id;
     httpPost(contractBase, {contractBody:null}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {

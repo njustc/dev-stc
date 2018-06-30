@@ -80,13 +80,15 @@ export const deleteTestCase = (dispatch, id, callback) => {
 };
 
 export const newTestCase = (dispatch,id, callback) => {
+    const urlParams = 'projectID=' + id;
+    console.log(id);
     httpPost(testCaseBase, {body:null,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setTestCaseContent(data));
         }
         callback && callback(status);
-    });
+    },urlParams);
 };
 
 export const addTestCase = (dispatch, data/*, callback*/) => {
