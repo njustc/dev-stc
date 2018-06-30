@@ -65,13 +65,14 @@ export const deleteTestWorkCheck = (dispatch, id, callback) => {
 };
 
 export const newTestWorkCheck = (dispatch,id, callback) => {
+    const urlParams = 'projectID=' + id;
     httpPost(testWorkCheckBase, {body:null,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setTestWorkCheckContent(data));
         }
         callback && callback(status);
-    });
+    },urlParams);
 };
 
 export const updateTestWorkCheck = (dispatch, data, callback) => {

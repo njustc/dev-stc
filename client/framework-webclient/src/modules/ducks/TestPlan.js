@@ -32,7 +32,7 @@ export const TestPlanReducer = (state = initialState, action) => {
         case SET_CONTENT: {
             const {id} = action.payload;
             const TestPlanData = action.payload;
-            console.log(TestPlanData);
+            // console.log(TestPlanData);
             const newData = {
                 ...state.listMap[id],
                 ...TestPlanData,

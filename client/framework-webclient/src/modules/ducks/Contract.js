@@ -13,7 +13,7 @@ export const ContractReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_LIST:
             const list = action.payload;
-            console.log(list);
+            // console.log(list);
             return {
                 ...state,
                 listMap: list.reduce((listMap, ContractData) => {
@@ -32,13 +32,13 @@ export const ContractReducer = (state = initialState, action) => {
         case SET_CONTENT: {
             const {id} = action.payload;
             const ContractData = action.payload;
-            console.log(ContractData);
+            // console.log(ContractData);
             const newData = {
                 ...state.listMap[id],
                 ...ContractData,
             };
-            console.log(newData);
-            console.log(state.listMap[id]);
+            // console.log(newData);
+            // console.log(state.listMap[id]);
             return {
                 ...state,
                 listMap: {
