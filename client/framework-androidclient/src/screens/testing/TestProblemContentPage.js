@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View,DeviceEventEmitter} from "react-native";
+import { View,DeviceEventEmitter } from "react-native";
 import {
   Container,
   Header,
@@ -28,11 +28,11 @@ import {
 import styles from "./styles";
 
 
-export default class TestRecordContentPage extends Component{
+export default class TestProblemContentPage extends Component{
   constructor(props){
     super(props);
     this.state={
-      data : [{
+      datas : [{
         id: 1,
         description: 'a bug in 小猪佩奇',
         process: 'unhappy->happy',
@@ -44,10 +44,23 @@ export default class TestRecordContentPage extends Component{
         executor: 'yj',
         confirmor: 'qqyx',
         advice: '给曹老板打call'
-      }],
+      },
+        {
+          id: 2,
+          description: 'a bug in 小猪佩奇',
+          process: 'unhappy->happy',
+          requirementIndex: 25,
+          initialConditions: '佩奇是一只猪',
+          operationPath: '佩奇->乔治',
+          relatedTestCase: 'yj',
+          discoveryTime: '2018-06-06',
+          executor: 'yj',
+          confirmor: 'qqyx',
+          advice: '给曹老板打call'
+        }
+      ],
     }
   }
-
   render(){
     return(
       <Container>
@@ -63,81 +76,28 @@ export default class TestRecordContentPage extends Component{
           <Right />
         </Header>
         <Content padder style={{ marginTop: 0 }}>
-          <Card style={styles.mb}>
-            <CardItem header bordered>
-              <Text>测试问题序号：{this.state.data[0].id}</Text>
-            </CardItem>
-            <CardItem bordered>
-              <Body>
-              <Text>
-                问题（缺陷）简要描述：{this.state.data[0].description}
-              </Text>
-              </Body>
-            </CardItem>
-            <CardItem bordered>
-              <Body>
-              <Text>
-                对应需求条目：{this.state.data[0].requirementIndex}
-              </Text>
-              </Body>
-            </CardItem>
-            <CardItem bordered>
-              <Body>
-              <Text>
-                关联用例：{this.state.data[0].relatedTestCase}
-              </Text>
-              </Body>
-            </CardItem>
-            <CardItem bordered>
-              <Body>
-              <Text>
-                发现时间：{this.state.data[0].discoveryTime}
-              </Text>
-              </Body>
-            </CardItem>
-            <CardItem bordered>
-              <Body>
-              <Text>
-                测试执行人：{this.state.data[0].executor}
-              </Text>
-              </Body>
-            </CardItem>
-            <CardItem bordered>
-              <Body>
-              <Text>
-                确认人：{this.state.data[0].confirmor}
-              </Text>
-              </Body>
-            </CardItem>
-            <CardItem bordered>
-              <Body>
-              <Text>
-                问题（缺陷）简要描述：{this.state.data[0].description}
-              </Text>
-              </Body>
-            </CardItem>
-            <CardItem bordered>
-              <Body>
-              <Text>
-                发现缺陷的初始条件：{this.state.data[0].initialConditions}
-              </Text>
-              </Body>
-            </CardItem>
-            <CardItem bordered>
-              <Body>
-              <Text>
-                发现缺陷用例及具体操作路径：{this.state.data[0].operationPath}
-              </Text>
-              </Body>
-            </CardItem>
-            <CardItem bordered>
-              <Body>
-              <Text>
-                修改建议：{this.state.data[0].advice}
-              </Text>
-              </Body>
-            </CardItem>
-          </Card>
+          {/*<Text>TODO: change to a list</Text>*/}
+          <Card style={styles.md}
+                dataArray={this.state.datas}
+                renderRow={data=>
+                  <CardItem bordered>
+                    <Body>
+                    <Text style={{color:'#4169e1'}}>测试问题序号：{data.id}</Text>
+                    <Text>问题（缺陷）简要描述：{data.description}</Text>
+                    <Text>对应需求条目：{data.requirementIndex}</Text>
+                    <Text>关联用例：{data.relatedTestCase}</Text>
+                    <Text>发现时间：{data.discoveryTime}</Text>
+                    <Text>测试执行人：{data.executor}</Text>
+                    <Text>确认人：{data.confirmor}</Text>
+                    <Text>问题（缺陷）简要描述：{data.description}</Text>
+                    <Text>发现缺陷的初始条件：{data.initialConditions}</Text>
+                    <Text>发现缺陷用例及具体操作路径：{data.operationPath}</Text>
+                    <Text>修改建议：{data.advice}</Text>
+                    </Body>
+                  </CardItem>
+
+                }
+          />
         </Content>
       </Container>
     )
