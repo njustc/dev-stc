@@ -18,19 +18,36 @@ const loginBase = baseAddress + '/login';
 
 let {width, height} = Dimensions.get('window');
 
+let LocaluserName = '';
+let LocalclientDigest = '';
+
+
+export const getLocaluserName= () =>
+{
+    return LocaluserName;
+};
+
+export const getLocalclientDigest = () =>
+{
+    return LocalclientDigest;
+};
+
 export default class LoginView extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            clientDigest: ''
         }
     }
+
 
     renderClick(){
 
         let userName = this.state.username;
         let password = this.state.password;
+        LocaluserName = this.state.username;
         let toastMsg = '登录成功';
 
         if(userName===null||userName===""){
@@ -57,6 +74,10 @@ export default class LoginView extends React.Component{
             const {status, data} = result;
             if (status === STATUS.SUCCESS) {
                 toastMsg = '登录成功';
+                const {clientDigest} = data;
+                this.state.clientDigest = clientDigest;
+                LocalclientDigest = this.state.clientDigest;
+                //console.warn(this.state.clientDigest);
                 ToastAndroid.showWithGravity(toastMsg, 1000, ToastAndroid.CENTER);
                 //this.props.navigation.replace('SideMenu');
                 this.props.navigation.replace('Drawer');

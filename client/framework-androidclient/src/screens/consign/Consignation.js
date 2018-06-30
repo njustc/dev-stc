@@ -23,19 +23,25 @@ import { ToastAndroid,DeviceEventEmitter } from "react-native";
 
 import ConsignationPage from './ConsignationPage'
 
+import {getLocaluserName,getLocalclientDigest } from '../../login/Login'
+
 import {baseAddress,baseServiceAddress,STATUS} from "../../common";
 import {httpPost,httpGet,httpDelete,httpPut} from "../../FetchUtil";
 // import {ConsignListData} from "./Consignation"
 // import { ToastAndroid } from "react-native";
 
-const consignBase = baseServiceAddress + '/consign?username=admin&clientDigest=qqq';
+//const consignBase = baseServiceAddress + '/consign?username=admin&clientDigest=qqq';
+//const consignBase;
 // const consignActivitiBase = baseServiceAddress + '/processInstance';
 
-let ConsignList;//get data from 后端
+let ConsignList = [];//get data from 后端
+
+let userName ;
+let clientDigest;
 //let CurrentConsignList;
 let if_get=false;
 
-export let consignationpage_content1;
+//export let consignationpage_content1;
 //let consignationpage_content2;
 // export let CONSIGNATIONPAGE_CONTENT = {
 //   consignUnitC:"",
@@ -43,13 +49,15 @@ export let consignationpage_content1;
 // };
 
 export const getConsignList = () => {
+  //let toastMsg2 = 'emmmm';
+  //ToastAndroid.showWithGravity(toastMsg2, 1000, ToastAndroid.CENTER);
+  const consignBase = baseServiceAddress+'/consign?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
   httpGet(consignBase,(result) => {
     const {status, data} = result;
     if (status === STATUS.SUCCESS) {
       ConsignList = data;
       //CurrentConsignList=data;
-      // let toastMsg2 = 'emmmm';
-      // ToastAndroid.showWithGravity(toastMsg2, 1000, ToastAndroid.CENTER);
+
     }
     // callback && callback(status);
   });
@@ -129,22 +137,29 @@ export  default class Consignation extends Component {
   }
 
   componentWillMount() {
+    userName=getLocaluserName();
+    clientDigest=getLocalclientDigest();
+    // console.warn(msg);
+    // console.warn(msg2);
     getConsignList();
 
     //this.state.datas=ConsignList;
   }
 
   gotoConsignationPage = (id) => {
-      httpGet(baseServiceAddress + '/consign/' + id + '?username=admin&clientDigest=qqq', (result) => {
+      //httpGet(baseServiceAddress + '/consign/' + id + '?username=admin&clientDigest=qqq', (result) => {
+      httpGet(baseServiceAddress+'/consign/' + id + '?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest(),(result)=>{
         const {status, data} = result;
         //console.warn(status);
         if (status === STATUS.SUCCESS) {
           //const {consignation} = data;
+          //console.warn(data);
 
-          let consignationpage_content0 = JSON.parse(data.consignation);
-          consignationpage_content1 = JSON.parse(consignationpage_content0.fieldsValue);
+          let consignationpage_content1 = JSON.parse(data.consignation);
+          // console.warn(consignationpage_content0);
+          // consignationpage_content1 = JSON.parse(consignationpage_content0.fieldsValue);
           //console.warn(consignationpage_content0);
-          //console.warn(consignationpage_content1.softwareScale);
+          //console.warn(consignationpage_content1.consignUnitC);
           //consignationpage_content2 = JSON.parse(consignationpage_content1.softwareScale);
           //console.warn(consignationpage_content2);
           DeviceEventEmitter.emit('id',{ID: id});
@@ -165,47 +180,70 @@ export  default class Consignation extends Component {
           DeviceEventEmitter.emit('softwareName' ,{SOFTWARE_NAME :consignationpage_content1.softwareName});
           DeviceEventEmitter.emit('version' ,{VERSION :consignationpage_content1.version});
           DeviceEventEmitter.emit('softwareType' ,{SOFTWARE_TYPE :consignationpage_content1.softwareType});
-          DeviceEventEmitter.emit('funcNum' ,{FUNC_NUM :consignationpage_content1.softwareScale.funcNum});
-          DeviceEventEmitter.emit('funcPoint' ,{FUNC_POINT :consignationpage_content1.softwareScale.funcPoint});
-          DeviceEventEmitter.emit('codeLine' ,{CODE_LINE :consignationpage_content1.softwareScale.codeLine});
+          DeviceEventEmitter.emit('funcNum' ,{FUNC_NUM :consignationpage_content1.softwareScaleFuncNum});
+          DeviceEventEmitter.emit('funcPoint' ,{FUNC_POINT :consignationpage_content1.softwareScaleFuncPoint});
+          DeviceEventEmitter.emit('codeLine' ,{CODE_LINE :consignationpage_content1.softwareScaleCodeLine});
           DeviceEventEmitter.emit('objDesc' ,{OBJ_DESC :consignationpage_content1.objDesc});
           DeviceEventEmitter.emit('funcDesc' ,{FUNC_DESC :consignationpage_content1.funcDesc});
           //tabTwo
 
-          DeviceEventEmitter.emit('client_os',{CLIENT_OS : consignationpage_content1.operateEnvironment.client.os });
-          DeviceEventEmitter.emit('client_memoryReq',{CLIENT_MEMORYREQ : consignationpage_content1.operateEnvironment.client.memoryReq });
-          DeviceEventEmitter.emit('client_hardDiskReq',{CLIENT_HARDDISKREQ : consignationpage_content1.operateEnvironment.client.hardDiskReq });
-          DeviceEventEmitter.emit('hardware_arch',{HARDWARE_ARCH : consignationpage_content1.operateEnvironment.service.hardware.arch });
-          DeviceEventEmitter.emit('hardware_memoryReq',{HARDWARE_MEMORYREQ : consignationpage_content1.operateEnvironment.service.hardware.memoryReq });
-          DeviceEventEmitter.emit('hardware_hardDiskReq',{HARDWARE_HARDDISKREQ : consignationpage_content1.operateEnvironment.service.hardware.hardDiskReq });
-          DeviceEventEmitter.emit('hardware_otherReq',{HARDWARE_OTHERREQ : consignationpage_content1.operateEnvironment.service.hardware.otherReq });
-          DeviceEventEmitter.emit('software_os',{SOFTWARE_OS : consignationpage_content1.operateEnvironment.service.software.os });
-          DeviceEventEmitter.emit('software_version',{SOFTWARE_VERSION : consignationpage_content1.operateEnvironment.service.soft.version });
-          DeviceEventEmitter.emit('software_language',{SOFTWARE_LANGUAGE : consignationpage_content1.operateEnvironment.service.soft.language });
-          DeviceEventEmitter.emit('software_arch',{SOFTWARE_ARCH : consignationpage_content1.operateEnvironment.service.soft.arch });
-          DeviceEventEmitter.emit('software_dateBase',{SOFTWARE_DATEBASE : consignationpage_content1.operateEnvironment.service.soft.dateBase });
-          DeviceEventEmitter.emit('software_midWare',{SOFTWARE_MIDWARE : consignationpage_content1.operateEnvironment.service.soft.midWare });
-          DeviceEventEmitter.emit('software_otherSupp',{SOFTWARE_OTHERSUPP : consignationpage_content1.operateEnvironment.service.soft.otherSupp });
-          DeviceEventEmitter.emit('netEnvironment',{NETENVIRONMENT : consignationpage_content1.operateEnvironment.netEnvironment });
+          DeviceEventEmitter.emit('client_os',{CLIENT_OS : consignationpage_content1.operateEnvironmentClientOs });
+          DeviceEventEmitter.emit('client_memoryReq',{CLIENT_MEMORYREQ : consignationpage_content1.operateEnvironmentClientMemoryReq });
+          DeviceEventEmitter.emit('client_hardDiskReq',{CLIENT_HARDDISKREQ : consignationpage_content1.operateEnvironmentCientHardDiskReq });
+          DeviceEventEmitter.emit('hardware_arch',{HARDWARE_ARCH : consignationpage_content1.operateEnvironmentServiceHardwareArch });
+          DeviceEventEmitter.emit('hardware_memoryReq',{HARDWARE_MEMORYREQ : consignationpage_content1.operateEnvironmentServiceHardwareMemoryReq });
+          DeviceEventEmitter.emit('hardware_hardDiskReq',{HARDWARE_HARDDISKREQ : consignationpage_content1.operateEnvironmentServiceHardwareHardDiskReq });
+          DeviceEventEmitter.emit('hardware_otherReq',{HARDWARE_OTHERREQ : consignationpage_content1.operateEnvironmentServiceHardwareOtherReq });
+          DeviceEventEmitter.emit('software_os',{SOFTWARE_OS : consignationpage_content1.operateEnvironmentServiceSoftwareOs });
+          DeviceEventEmitter.emit('software_version',{SOFTWARE_VERSION : consignationpage_content1.operateEnvironmentServiceSoftVersion });
+          DeviceEventEmitter.emit('software_language',{SOFTWARE_LANGUAGE : consignationpage_content1.operateEnvironmentServiceSoftLanguage });
+          DeviceEventEmitter.emit('software_arch',{SOFTWARE_ARCH : consignationpage_content1.operateEnvironmentServiceSoftArch });
+          DeviceEventEmitter.emit('software_dateBase',{SOFTWARE_DATEBASE : consignationpage_content1.operateEnvironmentServiceSoftDateBase });
+          DeviceEventEmitter.emit('software_midWare',{SOFTWARE_MIDWARE : consignationpage_content1.operateEnvironmentServiceSoftMidWare });
+          DeviceEventEmitter.emit('software_otherSupp',{SOFTWARE_OTHERSUPP : consignationpage_content1.operateEnvironmentServiceSoftOtherSupp });
+          DeviceEventEmitter.emit('netEnvironment',{NETENVIRONMENT : consignationpage_content1.operateEnvironmentNetEnvironment });
           //tabThree
 
           DeviceEventEmitter.emit('testType',{TEST_TYPE:consignationpage_content1.testType});
           DeviceEventEmitter.emit('testBasis',{TEST_BASIS:consignationpage_content1.testBasis});
           DeviceEventEmitter.emit('testIndicator',{TEST_INDICATOR:consignationpage_content1.testIndicator});
-          DeviceEventEmitter.emit('cd',{CD:consignationpage_content1.sampleQuantity.softwareMedia.cd});
-          DeviceEventEmitter.emit('U',{U:consignationpage_content1.sampleQuantity.softwareMedia.U});
-          DeviceEventEmitter.emit('other',{OTHER:consignationpage_content1.sampleQuantity.softwareMedia.other});
-          DeviceEventEmitter.emit('Documentation',{DOCUMENTATION:consignationpage_content1.sampleQuantity.Documentation});
-          DeviceEventEmitter.emit('toHandle',{TOHANDLE:consignationpage_content1.sampleQuantity.toHandle});
-          DeviceEventEmitter.emit('comTimeWish',{COM_TIME_WISH:consignationpage_content1.sampleQuantity.comTimeWish});
-          DeviceEventEmitter.emit('securityLevel',{SECURITY_LEVEL:consignationpage_content1.securityLevel});
-          DeviceEventEmitter.emit('killingVirus',{KILLING_VIRUS:consignationpage_content1.killingVirus});
+          DeviceEventEmitter.emit('cd',{CD:consignationpage_content1.sampleQuantitySoftwareMediaCd});
+          DeviceEventEmitter.emit('U',{U:consignationpage_content1.sampleQuantitySoftwareMediaU});
+          DeviceEventEmitter.emit('other',{OTHER:consignationpage_content1.sampleQuantitySoftwareMediaOther});
+          DeviceEventEmitter.emit('Documentation',{DOCUMENTATION:consignationpage_content1.sampleQuantityDocumentation});
+          DeviceEventEmitter.emit('toHandle',{TOHANDLE:consignationpage_content1.sampleQuantityToHandle});
+          DeviceEventEmitter.emit('comTimeWish',{COM_TIME_WISH:consignationpage_content1.sampleQuantityComTimeWish});
+          //DeviceEventEmitter.emit('securityLevel',{SECURITY_LEVEL:consignationpage_content1.securityLevel});
+          switch(consignationpage_content1.securityLevel){
+            case 'a' :DeviceEventEmitter.emit('securityLevel',{SECURITY_LEVEL:"无密级"});break;
+            case 'b' :DeviceEventEmitter.emit('securityLevel',{SECURITY_LEVEL:"秘密"});break;
+            case 'c' :DeviceEventEmitter.emit('securityLevel',{SECURITY_LEVEL:"机密"});break;
+          }
+          // DeviceEventEmitter.emit('killingVirus',{KILLING_VIRUS:consignationpage_content1.killingVirus});
+          switch (consignationpage_content1.killingVirus) {
+            case 'a':DeviceEventEmitter.emit('killingVirus',{KILLING_VIRUS:"已完成"});;break;
+            case 'b':DeviceEventEmitter.emit('killingVirus',{KILLING_VIRUS:"无法完成"});;break;
+          }
+          //TODO：所用查杀工具
           DeviceEventEmitter.emit('requirementsDocument',{REQUIREMENTS_DOCUMENT:consignationpage_content1.requirementsDocument});
           DeviceEventEmitter.emit('userDocument',{USER_DOCUMENT:consignationpage_content1.userDocument});
-          DeviceEventEmitter.emit('operationDocument',{OPERATION_DOCUMENT:consignationpage_content1.operationDocument});
+          DeviceEventEmitter.emit('operationDocument',{OPERATION_DOCUMENT:consignationpage_content1.oprationDocument});
+          // console.warn(consignationpage_content1.oprationDocument);
           DeviceEventEmitter.emit('elseA',{ELSEA:consignationpage_content1.elseA});
-          DeviceEventEmitter.emit('confirmationE',{CONFIRMATIONE:consignationpage_content1.confirmationE});
-          DeviceEventEmitter.emit('admissiBility',{ADMISSIBILITY:consignationpage_content1.admissiBility});
+          // DeviceEventEmitter.emit('confirmationE',{CONFIRMATIONE:consignationpage_content1.confirmationE});
+          switch (consignationpage_content1.confirmationE){
+            case 'a':DeviceEventEmitter.emit('confirmationE',{CONFIRMATIONE:"测试所需材料不全，未达到受理条件。"});break;
+            case 'b':DeviceEventEmitter.emit('confirmationE',{CONFIRMATIONE:"属依据国家标准或自编非标规范进行的常规检测，有资质、能力和资源满足委托方要求。"});break;
+            case 'c':DeviceEventEmitter.emit('confirmationE',{CONFIRMATIONE: "无国家标准和规范依据，或实验室缺乏检测设备和工具，无法完成检测。"});break;
+            case 'd':DeviceEventEmitter.emit('confirmationE',{CONFIRMATIONE:"超出实验室能力和资质范围，无法完成检测。"});break;
+          }
+
+          //DeviceEventEmitter.emit('admissiBility',{ADMISSIBILITY:consignationpage_content1.admissiBility});
+          switch (consignationpage_content1.admissiBility) {
+            case 'a': DeviceEventEmitter.emit('admissiBility',{ADMISSIBILITY:"受理-进入项目立项和合同评审流程。"});;break;
+            case 'b': DeviceEventEmitter.emit('admissiBility',{ADMISSIBILITY:"不受理"});;break;
+            case 'c': DeviceEventEmitter.emit('admissiBility',{ADMISSIBILITY:"进一步联系"});;break;
+          }
           DeviceEventEmitter.emit('testingNumber',{TESTING_NUMBER:consignationpage_content1.testingNumber});
           DeviceEventEmitter.emit('remarksE',{REMARKSE:consignationpage_content1.remarksE});
           //tabFour
@@ -238,7 +276,7 @@ export  default class Consignation extends Component {
         <Content>
           <Item>
             <Icon active name="search" />
-            <Input placeholder="输入委托名查询"
+            <Input placeholder="输入委托ID查询"
                    onChangeText={this.onChanegeTextKeyword.bind(this)} />
           </Item>
 
