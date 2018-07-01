@@ -14,4 +14,5 @@ export const STATE = {
     TO_CONFIRM: 'TobeConfirm',
     CANCELED: 'Canceled',
     FINISHED: 'Finished',
+    TO_IMPLEMENT: 'TobeImplement',
 };

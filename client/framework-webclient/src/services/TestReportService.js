@@ -9,49 +9,24 @@ const testReportBase = baseServiceAddress + '/v1/testReport';
 const testReportActivitiBase = baseServiceAddress + '/processInstance';
 
 export const getTestReportList = (dispatch, callback) => {
-    dispatch(setTestReportList(/*data*/
-        [
-            {
-                pid : "110",
-                id : "110",
-                name : "快乐星球小杨杰",
-                customerId : "151220140",
-                status: STATE.TO_SUBMIT
-            },{
-            pid :"120",
-            id : "120",
-            name : "不快乐星球小杨杰",
-            customerId : "151220140",
-            status: STATE.TO_CHECK
-        },{
-            pid : "119",
-            id : "119",
-            name : "不快乐星球老杨杰",
-            customerId : "151220140",
-            status: STATE.CANCELED
+    httpGet(testReportBase,(result) => {
+        const {status, data} = result;
+        if (status === STATUS.SUCCESS) {
+            dispatch(setTestReportList(data));
         }
-        ]
-    ));
-    // httpGet(testReportBase,(result) => {
-    //     const {status, data} = result;
-    //     if (status === STATUS.SUCCESS) {
-    //         dispatch(setTestReportList(data));
-    //     }
-    //     callback && callback(status);
-    // });
-    // const status = STATUS.SUCCESS;
-    // callback && callback(status);
+        callback && callback(status);
+    });
 };
 
 export const getTestReport = (dispatch, id, callback) => {
-    dispatch(setTestReportContent({id:id,}));
-    // httpGet(testReportBase + '/' + id, (result) => {
-    //     const {status, data} = result;
-    //     if (status === STATUS.SUCCESS) {
-    //         dispatch(setTestReportContent(data));
-    //     }
-    //     callback && callback(status);
-    // });
+    // dispatch(setTestReportContent({id:id,}));
+    httpGet(testReportBase + '/' + id, (result) => {
+        const {status, data} = result;
+        if (status === STATUS.SUCCESS) {
+            dispatch(setTestReportContent(data));
+        }
+        callback && callback(status);
+    });
 };
 
 export const deleteTestReport = (dispatch, id, callback) => {

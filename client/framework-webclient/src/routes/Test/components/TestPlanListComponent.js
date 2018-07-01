@@ -59,6 +59,7 @@ export default class TestPlanListComponent extends Component {
         switch (state){
             case STATE.TO_WRITE: return "processing";
             case STATE.TO_REVIEW: return "processing";
+            case STATE.TO_CONFIRM: return "processing";
             case STATE.CANCELED: return "default";
             default: return "error";
         }
@@ -68,7 +69,9 @@ export default class TestPlanListComponent extends Component {
         switch (state){/*TODO*/
             case STATE.TO_WRITE: return "待编写"/*(<a>待提交</a>)*/;
             case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
+            case STATE.TO_CONFIRM: return "待确认";
             case STATE.CANCELED: return "已取消";
+            case STATE.TO_IMPLEMENT: return "待实施";
             default: return "未定义状态";
         }
     }
