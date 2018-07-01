@@ -11,6 +11,7 @@ const testPlanActivitiBase = baseServiceAddress + '/processInstance';
 export const getTestPlanList = (dispatch, callback) => {
     httpGet(testPlanBase,(result) => {
         const {status, data} = result;
+        console.log(result);
         if (status === STATUS.SUCCESS) {
             dispatch(setTestPlanList(data));
         }

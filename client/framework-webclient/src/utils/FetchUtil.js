@@ -45,6 +45,15 @@ const sysFetch = (Method, url, params, callback, urlParams) => {
         request.body = formData;
     }
 
+    console.log(clientDigest);
+
+    //
+    if(Method == 'DELETE'){
+        console.log(fullUrl);
+        console.log(request);
+    }
+    //
+
     return fetch(fullUrl, request)
         .then((res) =>
     {

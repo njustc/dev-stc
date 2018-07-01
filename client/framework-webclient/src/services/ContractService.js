@@ -31,7 +31,9 @@ export const getContract = (dispatch, id, callback) => {
 };
 
 export const deleteContract = (dispatch, id, callback) => {
+    console.log(id);
     httpDelete(contractBase, {id:id}, (result) => {
+        console.log(result);
         const {status} = result;
         if(status === STATUS.SUCCESS)
             dispatch(removeContract(id));

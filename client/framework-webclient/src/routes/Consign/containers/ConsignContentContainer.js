@@ -21,8 +21,7 @@ const mapStateToProps = (state, ownProps) => {
     const consignation = content?state.Consign.listMap[ownProps.id].consignation:undefined;
     const ToBeSubmit = content?state.Consign.listMap[ownProps.id].state!=="TobeSubmit":false;
     const isEditVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
-    const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Submit')!==-1:
-        content.operation.findIndex(element => element === 'Submit')!==-1);
+    const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Submit')!==-1;
     // console.log(isSubmitVisible);
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     // console.log(isReviewVisible);
@@ -114,22 +113,22 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
                     if(status===STATUS.SUCCESS) message.success('测试方案新建成功');
                     else message.error('测试方案新建失败');
                 });
-                newTestCase(dispatch,id,(status)=>{
-                    if(status===STATUS.SUCCESS) message.success('测试用例新建成功');
-                    else message.error('测试用例新建失败');
-                });
-                newTestReport(dispatch,id,(status)=>{
-                    if(status===STATUS.SUCCESS) message.success('测试报告书新建成功');
-                    else message.error('测试报告书新建失败');
-                });
-                newTestReportCheck(dispatch,id,(status)=>{
-                    if(status===STATUS.SUCCESS) message.success('测试报告检查表新建成功');
-                    else message.error('测试报告检查表新建失败');
-                });
-                newTestWorkCheck(dispatch,id,(status)=>{
-                    if(status===STATUS.SUCCESS) message.success('测试报告检查表新建成功');
-                    else message.error('测试报告检查表新建失败');
-                });
+                // newTestCase(dispatch,id,(status)=>{
+                //     if(status===STATUS.SUCCESS) message.success('测试用例新建成功');
+                //     else message.error('测试用例新建失败');
+                // });
+                // newTestReport(dispatch,id,(status)=>{
+                //     if(status===STATUS.SUCCESS) message.success('测试报告书新建成功');
+                //     else message.error('测试报告书新建失败');
+                // });
+                // newTestReportCheck(dispatch,id,(status)=>{
+                //     if(status===STATUS.SUCCESS) message.success('测试报告检查表新建成功');
+                //     else message.error('测试报告检查表新建失败');
+                // });
+                // newTestWorkCheck(dispatch,id,(status)=>{
+                //     if(status===STATUS.SUCCESS) message.success('测试报告检查表新建成功');
+                //     else message.error('测试报告检查表新建失败');
+                // });
             }
             else message.error('流程新建失败');
         });

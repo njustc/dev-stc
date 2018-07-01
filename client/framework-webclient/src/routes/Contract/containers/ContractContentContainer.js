@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
     const content = state.Contract.listMap[ownProps.id];
     const contractBody = content?content.contractBody:undefined;
 
-    const isEditVisible = authData.functionGroup["Consign"]!==undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
+    const isEditVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Submit')!==-1:
         content.operation.findIndex(element => element === 'Submit')!==-1);
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
@@ -34,7 +34,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
     content: '保存',
-    enable: isEditVisible,
+    enable: isEditVisible&&isSubmitVisible,
 },{
     content: '提交',
     enable: isSubmitVisible,
