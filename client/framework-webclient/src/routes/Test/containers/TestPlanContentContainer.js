@@ -72,6 +72,8 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
 },{
     content: '提交',
     onClick: (testPlanData,testPlan) =>{
+        console.log(testPlanData);
+        console.log(testPlan);
         const valueData = {
             id: testPlanData.id,
             body: testPlan

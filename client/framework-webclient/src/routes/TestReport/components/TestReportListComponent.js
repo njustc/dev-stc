@@ -55,8 +55,10 @@ export default class TestReportListComponent extends Component {
     /*状态列颜色渲染*/
     state2SColor(state) {
         switch (state){
-            case STATE.TO_SUBMIT: return "processing";
+            case STATE.TO_WRITE: return "processing";
             case STATE.TO_REVIEW: return "processing";
+            case STATE.TO_APPROVE: return "processing";
+            case STATE.TO_SEND: return "processing";
             case STATE.CANCELED: return "default";
             default: return "error";
         }
@@ -65,10 +67,12 @@ export default class TestReportListComponent extends Component {
     state2C(state) {
         // debugger;
         switch (state){
-            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_WRITE: return "待提交"/*(<a>待提交</a>)*/;
             case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.CANCELED: return "已取消";
-            case STATE.FINISHED: return "已通过";
+            case STATE.TO_APPROVE: return "待批准";
+            case STATE.TO_SEND: return "待发放";
+            case STATE.SATISFACTION: return "已完成";
             default: return "未定义状态";
         }
     }

@@ -52,8 +52,9 @@ export const newTestReport = (dispatch,id, callback) => {
 };
 
 export const updateTestReport = (dispatch, data, callback) => {
-    //console.log(data);
+    console.log(data);
     httpPut(testReportBase, data, (result) => {
+        console.log(result);
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setTestReportContent(data));
@@ -62,24 +63,25 @@ export const updateTestReport = (dispatch, data, callback) => {
     });
 };
 
-export const getTestReportState = (dispatch, processInstanceID, id, callback) => {
-    httpGet(testReportActivitiBase + '/' + processInstanceID, (result) => {
-        const {status, data} = result;
-        if (status === STATUS.SUCCESS) {
-            const newData = {
-                ...data,
-                id: id,
-            };
-            dispatch(setTestReportContent(newData));
-        }
-        callback && callback(status);
-    })
-};
+// export const getTestReportState = (dispatch, processInstanceID, id, callback) => {
+//     httpGet(testReportActivitiBase + '/' + processInstanceID, (result) => {
+//         const {status, data} = result;
+//         if (status === STATUS.SUCCESS) {
+//             const newData = {
+//                 ...data,
+//                 id: id,
+//             };
+//             dispatch(setTestReportContent(newData));
+//         }
+//         callback && callback(status);
+//     })
+// };
 
 export const putTestReportState = (dispatch, processInstanceID, data, id, callback) => {
-    // console.log("ID = " + processInstanceID);
+    console.log("ID = " + processInstanceID);
     httpPut(testReportActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
+        console.log(result);
         if (status === STATUS.SUCCESS) {
             const newData = {
                 ...data,
