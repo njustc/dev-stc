@@ -120,9 +120,12 @@ public class TestFunctionService extends BaseService<TestFunction> {
 
 
     //删除测试功能
-    public void deleteTestFunction(JSONObject params)
+    public void deleteTestFunction(JSONObject params) throws Exception
     {
         String uid=params.getString("id");
+        TestFunction testFunction = testFunctionRepository.findById(uid);
+        if (testFunction == null)
+            throw new Exception("Can't find testFunction with id: " + uid);
         this.deleteEntity(uid);
     }
 

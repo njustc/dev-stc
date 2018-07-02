@@ -119,10 +119,12 @@ public class TestPlanService extends BaseService<TestPlan> {
 
     //删除测试计划（不删除相关测试计划文件?）
 
-    public void deleteTestPlan(JSONObject params)
+    public void deleteTestPlan(JSONObject params) throws Exception
     {
         String uid=params.getString("id");
         TestPlan testPlan = testPlanRepository.findById(uid);
+        if (testPlan == null)
+            throw new Exception("Can't find testPlan with id: " + uid);
         //delete testplan from project
         Project project = testPlan.getProject();
         project.setTestPlan(null);
