@@ -3,7 +3,6 @@ package com.sinosteel.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.Project;
 import com.sinosteel.domain.TestFunction;
 import com.sinosteel.domain.User;
@@ -130,11 +129,13 @@ public class TestFunctionService extends BaseService<TestFunction> {
     }
 
 
-    @Deprecated
+
     private JSONObject processTestFunction(TestFunction testFunction) throws Exception {
         //String processState = (String) processInstanceService.queryProcessState(testCase.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testFunction));
         //jsonObject.put("state", processState);
+        if (testFunction.getProject() != null)
+            jsonObject.put("projectID", testFunction.getProject().getId());
         return jsonObject;
 
     }

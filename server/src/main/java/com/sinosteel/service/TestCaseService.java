@@ -3,7 +3,6 @@ package com.sinosteel.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.Project;
 import com.sinosteel.domain.TestCase;
 import com.sinosteel.domain.User;
@@ -129,8 +128,11 @@ public class TestCaseService extends BaseService<TestCase> {
     }
 
 
-    @Deprecated
+
     private JSONObject processTestCase(TestCase testCase) throws Exception {
+        JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testCase));
+        if (testCase.getProject() != null)
+            jsonObject.put("projectID", testCase.getProject().getId());
         return JSON.parseObject(JSONObject.toJSONString(testCase));
     }
 

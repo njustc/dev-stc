@@ -143,6 +143,8 @@ public class ContractService extends BaseService<Contract> {
 
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(contract));
         jsonObject.putAll(processState);
+        if (contract.getProject() != null)
+            jsonObject.put("projectID", contract.getProject().getId());
         return jsonObject;
     }
 }
