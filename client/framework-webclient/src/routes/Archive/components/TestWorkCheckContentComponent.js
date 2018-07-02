@@ -36,13 +36,11 @@ class TestWorkCheckContentComponent extends Component {
 
     
     onClick = (buttonIndex) => () => {
-        // this.props.form.validateFields((err, values) => {
-        //     if (!err) {
-        //         this.props.buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(values));
-        //     }
-        // });
-        const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(this.props/*.testWorkCheckData*/, JSON.stringify(form.getFieldsValue()));
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                this.props.buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(values));
+            }
+        });
     };
 
     render() {
@@ -457,11 +455,21 @@ class TestWorkCheckContentComponent extends Component {
                 <FormItem/>
                 {/* footer buttons */}
                 <FormItem {...formItemLayout}>
-                    {this.props.buttons.map((button, index) =>
-                        <Button onClick={this.onClick(index)}
+                    {this.props.buttons.map((button, index) => {
+                        let buttonCanShow = false;
+                        this.props.buttonsEnable.forEach(function(element){
+                            if(element.content === button.content && element.enable){
+                                buttonCanShow = true;
+                            }});
+                        if(buttonCanShow){
+                            return <Button
+                                //disabled={this.props.buttonDisabled}
+                                onClick={this.onClick(index)}
                                 key={button.content}>
-                            {button.content}
-                        </Button>)}
+                                {button.content}
+                            </Button>
+                        }
+                    })}
                 </FormItem>
             </Form>
 

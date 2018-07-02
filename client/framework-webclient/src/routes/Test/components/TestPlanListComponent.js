@@ -57,8 +57,9 @@ export default class TestPlanListComponent extends Component {
     /*状态列颜色渲染*/
     state2SColor(state) {
         switch (state){
-            case STATE.TO_SUBMIT: return "processing";
+            case STATE.TO_WRITE: return "processing";
             case STATE.TO_REVIEW: return "processing";
+            case STATE.TO_CONFIRM: return "processing";
             case STATE.CANCELED: return "default";
             default: return "error";
         }
@@ -66,31 +67,33 @@ export default class TestPlanListComponent extends Component {
 
     state2C(state) {
         switch (state){/*TODO*/
-            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_WRITE: return "待编写"/*(<a>待提交</a>)*/;
             case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
+            case STATE.TO_CONFIRM: return "待确认";
             case STATE.CANCELED: return "已取消";
+            case STATE.TO_IMPLEMENT: return "待实施";
             default: return "未定义状态";
         }
     }
 
     /*table列设置*/
     columns = [{
-        title:"项目ID",
-        dataIndex:"pid",
-        sorter:(a, b) => a.pid - b.pid,
-    }, {
+        title:"项目编号",
+        // dataIndex:"pid",
+        // sorter:(a, b) => a.pid - b.pid,
+    }/*, {
         title:"测试方案ID",
         dataIndex:"id",
         sorter:(a, b) => a.id - b.id,
-    }, {
+    }*/, {
         title:"项目名称",
         dataIndex:"name",
     }, {
-        title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"customerId",
+        title:"编制人",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        //dataIndex:"customerId",
     }, {
         title:"状态",
-        dataIndex:"status",
+        dataIndex:"state",
         render: (status) =>{
             return (
                 <span>

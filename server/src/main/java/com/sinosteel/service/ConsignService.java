@@ -105,9 +105,13 @@ public class ConsignService extends BaseService<Consign> {
 
     //删除委托（不删除相关委托文件?）
 
-    public void deleteConsign(JSONObject params)
+    public void deleteConsign(JSONObject params) throws Exception
     {
         String uid=params.getString("id");
+        Consign consign = consignRepository.findById(uid);
+        if (consign == null)
+            throw new Exception("Can't find consign with id: " + uid);
+
         this.deleteEntity(uid);
     }
 

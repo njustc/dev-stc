@@ -19,7 +19,7 @@ import java.util.UUID;
 /**
  * *@author LBW&SQW
  */
-
+//TODO: 并发修改同一project的时候，可能会出问题.
 @Service
 public class ProjectService extends BaseService<Project>{
 
@@ -100,8 +100,12 @@ public class ProjectService extends BaseService<Project>{
     }
 
     //删除工程
-    public void deleteProject(JSONObject params) {
+    public void deleteProject(JSONObject params) throws Exception{
         String uid = params.getString("id");
+        Project project = projectRepository.findById(uid);
+        if(project == null) {
+            throw new Exception("can't find project by id : " + uid);
+        }
         this.deleteEntity(uid);
     }
 

@@ -113,10 +113,12 @@ public class ContractService extends BaseService<Contract> {
 
 
 
-    public void deleteContract(JSONObject params) {
+    public void deleteContract(JSONObject params) throws Exception{
         String uid = params.getString("id");
         //delete contract from project
         Contract contract = contractRepository.findById(uid);
+        if (contract == null)
+            throw new Exception("Can't find contract with id: " + uid);
         Project project = contract.getProject();
         project.setContract(null);
 

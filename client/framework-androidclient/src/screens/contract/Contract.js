@@ -18,10 +18,13 @@ import {
 
 
 import styles from "./styles";
+import { httpGet } from "../../FetchUtil";
+import { STATUS } from "../../common";
+
 
 const datas = [
   {
-    route: "ContractPage",
+    route: "ContractList",
     text: "测试合同书"
   },
   // {
@@ -29,6 +32,7 @@ const datas = [
   //   text:"合同评审表"
   // },
 ];//TODO: 修改界面跳转 route
+
 
 export  default class Contract extends Component {
   constructor(props){
@@ -59,7 +63,7 @@ export  default class Contract extends Component {
         </Header>
 
         <Content>
-          <Text>TODO: change to jump to a list first</Text>
+          {/*<Text>TODO: change to jump to a list first</Text>*/}
           <List
             dataArray={datas}
             renderRow={data =>

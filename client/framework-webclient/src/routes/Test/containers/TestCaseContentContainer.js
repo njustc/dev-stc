@@ -4,111 +4,116 @@ import {message} from 'antd';
 import {connect} from "react-redux";
 import {getTestCase, putTestCaseState, updateTestCase, addTestCase} from "../../../services/TestCaseService";
 import {STATUS} from "../../../services/common";
-import {updateConsign} from "../../../services/ConsignService";
+import {newTestReport} from "../../../services/TestReportService";
+import {newContract} from "../../../services/ContractService";
+import {newTestPlan} from "../../../services/TestPlanService";
 /*TODO:表单内容和按钮的可视及禁用情况*/
 const mapStateToProps = (state, ownProps) => {
     // debugger;
+    const content = state.TestCase.listMap[ownProps.id];
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    const testcase = state.TestCase.listMap[ownProps.id].testcase;
+    const body = content?state.TestCase.listMap[ownProps.id].body:undefined;
+    const ToBeSubmit = content?state.TestCase.listMap[ownProps.id].state!=="TobeSubmit":false;
+    const isEditVisible = authData.functionGroup["TestCase"]!==undefined&&authData.functionGroup["TestCase"].findIndex(element => element === "EDIT")!==-1;
+    const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Submit')!==-1;
+    const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     return {
-        dataSource: Object.values(state.TestCase.casesMap),
-        // consignData: {},/*fetch data with pro id*/
-        testCaseData: state.TestCase.listMap[ownProps.id],
-        values: testcase ? JSON.parse(testcase) : {},
-        /*TODO*///disable: authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1||state.Consign.listMap[ownProps.id].state!=="TobeSubmit",
-        //curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
-        //buttonDisabled: state.Consign.listMap[ownProps.id].state==="TobeCheck"
-        /*buttonDisabled: authData.functionGroup["Consign"]===undefined ||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")===-1
-            ? state.Consign.listMap[ownProps.id].state==="TobeSubmit"||state.Consign.listMap[ownProps.id].state==="Finished"
-            : state.Consign.listMap[ownProps.id].state==="TobeCheck"||state.Consign.listMap[ownProps.id].state==="Finished"*/
+        dataSource: undefined,
+        testCaseData: content?state.TestCase.listMap[ownProps.id]:ownProps,
+        values: body ? JSON.parse(body) : {},
+        disable:ToBeSubmit||(!isEditVisible),
+        buttonsEnable: buttonsEnable(isEditVisible,isSubmitVisible,isReviewVisible),
     }
 };
 
-const buttons = (dispatch,isEditVisible,isReviewVisible) => [{/*TODO:buttons的显示和禁用还存在问题*/
+const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible) => [{
     content: '保存',
-    onClick: (testCaseData,testcase) =>{
-        const valueData = {
-            id: testCaseData.id,
-            testcase: testcase
-        };
-        updateTestCase(dispatch,valueData,(status)=>{
-            console.log(status);
-
-        if(status===STATUS.SUCCESS) message.success('保存成功');
-        else message.error('保存失败');
-        });
-    },
-    enable: isEditVisible
+    enable: isEditVisible&&isSubmitVisible,
 },{
     content: '提交',
-    onClick: (testCaseData,testcase) =>{
+    enable: isSubmitVisible,
+},{
+    content: '通过',
+    enable: isReviewVisible,
+},{
+    content: '否决',
+    enable: isReviewVisible,
+}];
+
+const buttons = (dispatch) => [{
+    content: '保存',
+    onClick: (testCaseData,testCaseBody) =>{
         const valueData = {
             id: testCaseData.id,
-            testcase: testcase
+            body: testCaseBody
         };
         updateTestCase(dispatch,valueData,(status)=>{
             console.log(status);
-        if(status===STATUS.SUCCESS){
-            const putData = {
-                "object": "testcase",
-                "operation": "Submit"
-            };
-            const {processInstanceID,id} = testCaseData;
-            putTestCaseState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
-
-            if(status=STATUS.SUCCESS) message.success('提交成功');
-            else message.error('提交失败');
-        }
-        else message.error('提交失败');
+            if(status===STATUS.SUCCESS) message.success('保存成功');
+            else message.error('保存失败');
         });
     },
-    enable: isEditVisible
+},{
+    content: '提交',
+    onClick: (testCaseData,testCaseBody) =>{
+        const valueData = {
+            id: testCaseData.id,
+            body: testCaseBody
+        };
+        updateTestCase(dispatch,valueData,(status)=> {
+            if (status === STATUS.SUCCESS) {
+                const putData = {
+                    "object": "testCase",
+                    "operation": "Submit"
+                };
+                const {id, processInstanceID} = testCaseData;
+                putTestCaseState(dispatch, processInstanceID, putData, id, (status) => {
+                    console.log(status);
+                    if (status === STATUS.SUCCESS) message.success('提交成功');
+                    else message.error('提交失败');
+                });
+            }
+            else message.error('提交失败');
+        });
+    },
+    // enable: isEditVisible
 },{
     content: '通过',
-    onClick: (testCaseData,ProcessNo) =>{
+    onClick: (testCaseData,processNo) =>{
         const putData = {
-            "object": "testcase",
+            "object": "testCase",
             "operation": "ReviewPass",
-            "number": ProcessNo
         };
-        const {processInstanceID,id} = testCaseData;
-        putTestCaseState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
-
-        if(status===STATUS.SUCCESS) message.success('通过成功');
-        else message.error('通过失败');
+        const {id,processInstanceID} = testCaseData;
+        putTestCaseState(dispatch,processInstanceID,putData,id,(status)=>{
+            //console.log(status);
+            if(status===STATUS.SUCCESS) message.success('通过成功');
+            else message.error('通过失败');
+        });
     },
-    enable: isReviewVisible
+    // enable: isReviewVisible
 },{
     content: '否决',
-    onClick: (testCaseData,testcase) =>{
+    onClick: (testCaseData,testCaseBody) =>{
         const putData = {
-            "object": "testcase",
+            "object": "testCase",
             "operation": "ReviewReject"
         };
-        const {processInstanceID,id} = testCaseData;
-        putTestCaseState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);});
-
-        if(status===STATUS.SUCCESS) message.success('已否决');
-        else message.error('否决失败');
+        const {id,processInstanceID} = testCaseData;
+        putTestCaseState(dispatch,processInstanceID,putData,id,(status)=>{
+            if(status=STATUS.SUCCESS) message.success('已否决');
+            else message.error('否决失败');
+        });
     },
-    enable: isReviewVisible
+    // enable: isReviewVisible
 }];
 
 const mapDispatchToProps = (dispatch) => {
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
-    //const isVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
-    const isEditVisible = true||authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
-    const isReviewVisible = true||authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "REVIEW")!==-1;
     return {
-        //buttons: buttons(dispatch,isEditVisible,isReviewVisible).filter(button => button.enable===true),
-        getValues: (id) => getTestCase(dispatch,id),
-        addTestCase: (testCaseData,testcase) => {
-            /*const valueData = {
-            id: testCaseData.id,
-            testcase: testcase
-        };*/
-            //updateConsign(dispatch,valueData,(status)=>{console.log(status);});
-            addTestCase(dispatch,testcase)},
+        buttons: buttons(dispatch),
+        getValues: (id, processInstanceID) => {
+            getTestCase(dispatch, id);
+        }
     }
 };
 

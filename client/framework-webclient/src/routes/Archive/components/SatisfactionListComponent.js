@@ -75,9 +75,9 @@ export default class SatisfactionListComponent extends Component {
 
     /*table列设置*/
     columns = [{
-        title:"项目ID",
-        dataIndex:"pid",
-        sorter:(a, b) => a.pid - b.pid,
+        title:"项目编号",
+        // dataIndex:"pid",
+        // sorter:(a, b) => a.pid - b.pid,
     }, {
         title:"满意度调查表ID",
         dataIndex:"id",
@@ -86,8 +86,8 @@ export default class SatisfactionListComponent extends Component {
         title:"项目名称",
         dataIndex:"name",
     }, {
-        title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"customerId",
+        title:"填写人名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        // dataIndex:"customerId",
     }, {
         title:"状态",
         dataIndex:"status",

@@ -55,8 +55,11 @@ export default class TestReportListComponent extends Component {
     /*状态列颜色渲染*/
     state2SColor(state) {
         switch (state){
-            case STATE.TO_SUBMIT: return "processing";
+            case STATE.TO_WRITE: return "processing";
             case STATE.TO_REVIEW: return "processing";
+            case STATE.TO_APPROVE: return "processing";
+            case STATE.TO_SEND: return "processing";
+            case STATE.TO_CONFIRM: return "processing";
             case STATE.CANCELED: return "default";
             default: return "error";
         }
@@ -65,26 +68,33 @@ export default class TestReportListComponent extends Component {
     state2C(state) {
         // debugger;
         switch (state){
-            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_WRITE: return "待提交"/*(<a>待提交</a>)*/;
             case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.CANCELED: return "已取消";
-            case STATE.FINISHED: return "已通过";
+            case STATE.TO_APPROVE: return "待批准";
+            case STATE.TO_SEND: return "待发放";
+            case STATE.TO_CONFIRM: return "待确认";
+            case STATE.SATISFACTION: return "已完成";
             default: return "未定义状态";
         }
     }
 
     /*table列设置*/
     columns = [{
+        title:"项目编号",
+        // dataIndex:"pid",
+        // sorter:(a, b) => a.pid - b.pid,
+    }, {
         title:"测试报告ID",
         dataIndex:"id",
         //width: '25%',
         sorter:(a, b) => a.id - b.id,
     }, {
-        title:"测试报告名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        title:"项目名称",
         dataIndex:"name",
     }, {
-        title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"createdUserId",
+        title:"报告人名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        // dataIndex:"createdUserId",
     }, {
         title:"状态",
         dataIndex:"state",
@@ -126,7 +136,9 @@ export default class TestReportListComponent extends Component {
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
                     <Divider type="vertical"/>
-                    <a href="javascript:void(0);" disabled={!this.props.enableNew} onClick={this.showDeleteConfirm(record)}>取消测试报告</a>
+                    <a href="javascript:void(0);"
+                       //disabled={!this.props.enableNew}
+                       onClick={this.showDeleteConfirm(record)}>取消测试报告</a>
                 </div>
             )
         }
@@ -151,7 +163,7 @@ export default class TestReportListComponent extends Component {
                 //debugger;
                 //this.deleteTestReportn(id);
                 /*TODO 取消委托的函数的参数需要优化*/
-                this.props.deleteTestReportn(record);
+                this.props.deleteTestReport(record);
             },
             onCancel() {},
         });
