@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.activiti.TCProcessEngine;
 import com.sinosteel.domain.Consign;
+import com.sinosteel.domain.Project;
 import com.sinosteel.domain.User;
 import com.sinosteel.repository.ConsignRepository;
 import com.sinosteel.repository.ProjectRepository;
@@ -58,6 +59,17 @@ public class ConsignService extends BaseService<Consign> {
             //对委托列表进行处理，去掉委托具体内容,并且添加委托状态
             return processConsigns(consigns);
         }
+    }
+
+    public JSON queryConsignsByProject(String projectID) throws Exception {
+        Project project = projectRepository.findById(projectID);
+        if (project == null) {
+            throw new Exception("can't find project by id :" + projectID);
+        }
+        Consign consign = project.getConsign();
+        if (consign == null)
+            throw new Exception("can't find consign with project: " + projectID);
+        return processConsign(consign);
     }
 
     public JSONObject queryConsignByID(String id) throws Exception{

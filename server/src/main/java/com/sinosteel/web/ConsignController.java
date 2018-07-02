@@ -20,10 +20,32 @@ public class ConsignController extends BaseController
 
     //对于客户，查询该客户的委托；对于工作人员，查询所有委托
     @RequestMapping(value = "/consign", method = RequestMethod.GET)
-    public Response queryConsigns(Request request)
+    public Response queryConsigns(Request request, @RequestParam(value = "projectID", required = false) String projectID)
     {
+
+        if(projectID == null)
+            return queryConsigns(request);
+
         Response response = new Response();
 
+        try
+        {
+            response.data = consignService.queryConsignsByProject(projectID);
+            response.status = ResponseType.SUCCESS;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            response.status = ResponseType.FAILURE;
+            response.message = e.getMessage();
+        }
+
+        return response;
+    }
+
+    //当前端给的query里没有projectID时
+    private Response queryConsigns(Request request) {
+        Response response = new Response();
         try
         {
             response.data = consignService.queryConsigns(request.getUser());
