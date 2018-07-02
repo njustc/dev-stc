@@ -80,14 +80,14 @@ export default class ConsignListComponent extends Component {
         //width: '25%',
         sorter:(a, b) => a.id - b.id,
     }, */{
-        title:"委托名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"name",
+        title:"委托名称",
+        dataIndex:"id",
     }, {
-        title:"委托单位",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        //dataIndex:"createdUserId",
+        title:"委托单位",
+        dataIndex:"createdUserId",
     },{
-        title:"委托日期",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        //dataIndex:"createdTime",
+        title:"委托创建日期",
+        dataIndex:"createdTime",
     }, {
         title:"状态",
         dataIndex:"state",
