@@ -31,8 +31,6 @@ export const getTestReport = (dispatch, id, callback) => {
 
 export const deleteTestReport = (dispatch, id, callback) => {
     httpDelete(testReportBase, {id:id}, (result) => {
-        // console.log("before remove");
-        // dispatch(removeTestReport(id));
         const {status} = result;
         if(status === STATUS.SUCCESS)
             dispatch(removeTestReport(id));

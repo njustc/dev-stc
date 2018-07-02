@@ -106,21 +106,28 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
                 const {id} = data;
 
                 newContract(dispatch,id,(status)=>{
-                    if(status===STATUS.SUCCESS) message.success('合同新建成功');
+                    if(status===STATUS.SUCCESS){
+                        message.success('合同新建成功');
+
+                        newTestPlan(dispatch,id,(status)=>{
+                            if(status===STATUS.SUCCESS){
+                                message.success('测试方案新建成功');
+
+                                newTestReport(dispatch,id,(status)=>{
+                                    if(status===STATUS.SUCCESS) message.success('测试报告书新建成功');
+                                    else message.error('测试报告书新建失败');
+                                });
+                            }
+                            else message.error('测试方案新建失败');
+                        });
+                    }
                     else message.error('合同新建失败');
                 });
-                newTestPlan(dispatch,id,(status)=>{
-                    if(status===STATUS.SUCCESS) message.success('测试方案新建成功');
-                    else message.error('测试方案新建失败');
-                });
+
                 // newTestCase(dispatch,id,(status)=>{
                 //     if(status===STATUS.SUCCESS) message.success('测试用例新建成功');
                 //     else message.error('测试用例新建失败');
                 // });
-                newTestReport(dispatch,id,(status)=>{
-                    if(status===STATUS.SUCCESS) message.success('测试报告书新建成功');
-                    else message.error('测试报告书新建失败');
-                });
                 // newTestReportCheck(dispatch,id,(status)=>{
                 //     if(status===STATUS.SUCCESS) message.success('测试报告检查表新建成功');
                 //     else message.error('测试报告检查表新建失败');
