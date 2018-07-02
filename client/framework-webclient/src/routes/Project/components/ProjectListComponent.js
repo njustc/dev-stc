@@ -39,17 +39,18 @@ export default class ProjectListComponent extends Component {
 
     setPlaceholder = () => {
         switch (this.state.selectOption){
-            case 'id':
-                return '请输入项目ID';
-            case 'createdUserId':
-                return '请输入委托人ID';
-            case 'name':
-                return '请输入名称';
+            case 'code':
+                return '请输入项目编号';
+            case 'username':
+                return '请输入委托单位名称';
+            // case 'name':
+            //     return '请输入名称';
             default:break;
         }
     };
 
     /*状态列颜色渲染*/
+    /*TODO*/
     state2SColor(state) {
         switch (state){
             case STATE.TO_SUBMIT: return "processing";
@@ -185,10 +186,10 @@ export default class ProjectListComponent extends Component {
         switch (this.state.selectOption){
             case 'id':
                 this.props.setListFilter((item)=>item.id.match(reg));break;
-            case 'createdUserId':
-                this.props.setListFilter((item)=>item.createdUserId.match(reg));break;
-            case 'name':
-                this.props.setListFilter((item)=>item.name.match(reg));break;
+            case 'username':
+                this.props.setListFilter((item)=>item.username.match(reg));break;
+            // case 'name':
+            //     this.props.setListFilter((item)=>item.name.match(reg));break;
             default:break;
         }
     };
@@ -197,17 +198,20 @@ export default class ProjectListComponent extends Component {
         //console.log(record);//
         return (
             <div>
+                <div>
+                   ID： {record.id}
+                </div>
                 {/*<div>*/}
-                   {/*流程ID： {record.id}*/}
+                    {/*项目编号： {record.id}*/}
                 {/*</div>*/}
                 <div>
-                    项目ID： {record.id}
+                    项目创建人ID：{record.createdUserId}
                 </div>
                 <div>
-                    委托人（用户名）：未定义{/*TODO*//*record.createdUserId*/}
+                    项目创建时间：{record.createdTime}
                 </div>
                 <div>
-                    流程创建时间：{record.createdTime}
+                    测试用例个数：{record.testCase}
                 </div>
                 <div>
                     项目价格：¥2333
@@ -224,8 +228,8 @@ export default class ProjectListComponent extends Component {
                     <Col span={3}>
                         <Select defaultValue="搜索项目ID" onSelect={this.onSelect}>
                             <Option value="id">搜索项目ID</Option>
-                            <Option value="createdUserId">搜索委托人ID</Option>
-                            <Option value="name">搜索名称 </Option>
+                            <Option value="username">搜索委托单位</Option>
+                            {/*<Option value="name">搜索名称 </Option>*/}
                         </Select>
                     </Col>
                     <Col span={8}>
