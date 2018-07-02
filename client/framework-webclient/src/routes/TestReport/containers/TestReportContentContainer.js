@@ -17,7 +17,8 @@ const mapStateToProps = (state, ownProps) => {
         content.operation.findIndex(element => element === 'Write')!==-1);
     console.log(content.operation);
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
-    const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ApprovePass')!==-1;
+    const isApproveVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ApprovePass')!==-1;
+    const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ConfirmPass')!==-1;
     const isSendVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Send')!==-1;
 
     return {
@@ -30,22 +31,28 @@ const mapStateToProps = (state, ownProps) => {
         /*buttonDisabled: authData.functionGroup["TestReport"]===undefined ||authData.functionGroup["TestReport"].findIndex(element => element === "EDIT")===-1
             ? state.TestReport.listMap[ownProps.id].state==="TobeSubmit"||state.TestReport.listMap[ownProps.id].state==="Finished"
             : state.TestReport.listMap[ownProps.id].state==="TobeReview"||state.TestReport.listMap[ownProps.id].state==="Finished"*/
-        buttonsEnable: buttonsEnable(isEditVisible,isSubmitVisible,isReviewVisible,isSendVisible,isConfirmVisible),
+        buttonsEnable: buttonsEnable(isEditVisible,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible),
     }
 };
 
-const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible,isSendVisible,isConfirmVisible) => [{
+const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible) => [{
     content: '保存',
     enable: isEditVisible&&isSubmitVisible,
 },{
     content: '提交',
     enable: isSubmitVisible,
 },{
-    content: '批准',
+    content: '评审',
     enable: isReviewVisible,
 },{
     content: '否决',
     enable: isReviewVisible,
+},{
+    content: '批准',
+    enable: isApproveVisible,
+},{
+    content: '不批准',
+    enable: isApproveVisible,
 },{
     content: '发放',
     enable: isSendVisible,
@@ -100,7 +107,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
         });
     }
 },{
-    content: '批准',
+    content: '评审',
     onClick: (testReportData,testReport) =>{
         const putData = {
             "object": "testReport",
@@ -147,7 +154,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
     onClick: (testReportData,testReport) =>{
         const putData = {
             "object": "testReport",
-            "operation": "ApprovePass"
+            "operation": "ConfirmPass"
         };
         const {processInstanceID,id} = testReportData;
         putTestReportState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
@@ -159,6 +166,34 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
 },{
     content: '拒绝',
     onClick: (testReportData,testReport) =>{
+        const putData = {
+            "object": "testReport",
+            "operation": "ConfirmReject"
+        };
+        const {processInstanceID,id} = testReportData;
+        putTestReportState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
+
+            if(status===STATUS.SUCCESS) message.success('已拒绝');
+            else message.error('拒绝失败');
+        });
+    }
+},{
+    content: '批准',
+        onClick: (testReportData,testReport) =>{
+        const putData = {
+            "object": "testReport",
+            "operation": "ApprovePass"
+        };
+        const {processInstanceID,id} = testReportData;
+        putTestReportState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
+
+            if(status===STATUS.SUCCESS) message.success('确认成功');
+            else message.error('确认失败');
+        });
+    }
+},{
+    content: '不批准',
+        onClick: (testReportData,testReport) =>{
         const putData = {
             "object": "testReport",
             "operation": "ApproveReject"

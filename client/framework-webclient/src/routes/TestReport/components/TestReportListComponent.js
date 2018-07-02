@@ -59,6 +59,7 @@ export default class TestReportListComponent extends Component {
             case STATE.TO_REVIEW: return "processing";
             case STATE.TO_APPROVE: return "processing";
             case STATE.TO_SEND: return "processing";
+            case STATE.TO_CONFIRM: return "processing";
             case STATE.CANCELED: return "default";
             default: return "error";
         }
@@ -72,6 +73,7 @@ export default class TestReportListComponent extends Component {
             case STATE.CANCELED: return "已取消";
             case STATE.TO_APPROVE: return "待批准";
             case STATE.TO_SEND: return "待发放";
+            case STATE.TO_CONFIRM: return "待确认";
             case STATE.SATISFACTION: return "已完成";
             default: return "未定义状态";
         }
