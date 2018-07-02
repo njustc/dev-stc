@@ -91,12 +91,15 @@ public class ProcessInstanceService {
         return getUserTypeJson;
     }
 
-/*    public JSONObject getTaskData(String processInstanceID) throws Exception
+    /*获取用户评论*/
+   public JSONObject getComments(String processInstanceID) throws Exception
     {
-        List<String> formProperties=TCProcessEngine.getTaskData(processInstanceID);
+        List<String> formProperties=TCProcessEngine.getComments(processInstanceID);
+        String task=TCProcessEngine.getLastTask(processInstanceID);
         JSONObject getTaskDataJson=new JSONObject();
         getTaskDataJson.put("processInstanceID",processInstanceID);
-        getTaskDataJson.put("TaskDatas",formProperties);
+        getTaskDataJson.put("taskName",task);
+        getTaskDataJson.put("comments",formProperties);
         return  getTaskDataJson;
-    }*/
+    }
 }

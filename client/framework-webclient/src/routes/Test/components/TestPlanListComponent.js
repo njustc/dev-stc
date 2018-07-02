@@ -57,8 +57,9 @@ export default class TestPlanListComponent extends Component {
     /*状态列颜色渲染*/
     state2SColor(state) {
         switch (state){
-            case STATE.TO_SUBMIT: return "processing";
+            case STATE.TO_WRITE: return "processing";
             case STATE.TO_REVIEW: return "processing";
+            case STATE.TO_CONFIRM: return "processing";
             case STATE.CANCELED: return "default";
             default: return "error";
         }
@@ -66,9 +67,11 @@ export default class TestPlanListComponent extends Component {
 
     state2C(state) {
         switch (state){/*TODO*/
-            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_WRITE: return "待编写"/*(<a>待提交</a>)*/;
             case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
+            case STATE.TO_CONFIRM: return "待确认";
             case STATE.CANCELED: return "已取消";
+            case STATE.TO_IMPLEMENT: return "待实施";
             default: return "未定义状态";
         }
     }
@@ -90,7 +93,7 @@ export default class TestPlanListComponent extends Component {
         //dataIndex:"customerId",
     }, {
         title:"状态",
-        dataIndex:"status",
+        dataIndex:"state",
         render: (status) =>{
             return (
                 <span>
@@ -141,7 +144,7 @@ export default class TestPlanListComponent extends Component {
     /*取消委托提示框*/
     showDeleteConfirm = (record) => () => {
         confirm({
-            title: 'Are you sure to delete this consign?',
+            title: 'Are you sure to delete this testCase?',
             //content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
@@ -151,7 +154,7 @@ export default class TestPlanListComponent extends Component {
                 //debugger;
                 //this.deleteConsign(id);
                 /*TODO 取消委托的函数的参数需要优化*/
-                this.props.deleteConsign(record);
+                this.props.deleteTestPlan(record);
             },
             onCancel() {},
         });

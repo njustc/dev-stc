@@ -119,9 +119,12 @@ public class TestCaseService extends BaseService<TestCase> {
 
 
     //删除测试计划（不删除相关测试计划文件?）
-    public void deleteTestCase(JSONObject params)
+    public void deleteTestCase(JSONObject params) throws Exception
     {
         String uid=params.getString("id");
+        TestCase testCase = testCaseRepository.findById(uid);
+        if (testCase == null)
+            throw new Exception("Can't find testCase with id: " + uid);
         this.deleteEntity(uid);
     }
 

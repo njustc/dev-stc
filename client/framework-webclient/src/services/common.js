@@ -8,9 +8,14 @@ export const STATUS = {
 };
 
 export const STATE = {
+    TO_WRITE: 'TobeWrite',
     TO_SUBMIT: 'TobeSubmit',
     TO_REVIEW: 'TobeReview',
     TO_CONFIRM: 'TobeConfirm',
     CANCELED: 'Canceled',
     FINISHED: 'Finished',
+    TO_IMPLEMENT: 'TobeImplement',
+    TO_APPROVE: 'TobeApprove',
+    TO_SEND: 'TobeSend',
+    SATISFACTION: 'Satisfaction',
 };

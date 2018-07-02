@@ -53,6 +53,7 @@ export const getConsign = (dispatch, id, callback) => {
 };
 
 export const deleteConsign = (dispatch, id, callback) => {
+    console.log(id);
     httpDelete(consignBase, {id:id}, (result) => {
         // console.log("before remove");
         // dispatch(removeConsign(id));

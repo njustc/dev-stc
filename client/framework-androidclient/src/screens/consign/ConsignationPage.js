@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View,DeviceEventEmitter } from "react-native";
+import { View,DeviceEventEmitter,StyleSheet } from "react-native";
 import {
   Container,
   Header,
@@ -24,8 +24,9 @@ import {
   Tab,
   ScrollableTab
 } from "native-base";
+import { Table, TableWrapper, Row,Rows } from 'react-native-table-component';
 
-import styles from "./styles";
+//import styles from "./styles";
 
 
 export  default class ConsignationPage extends Component{
@@ -104,7 +105,13 @@ export  default class ConsignationPage extends Component{
           testingNumber:"",
           remarksE:"",
 
-
+          tableHead: ['模块编号', '模块名称', '功能简述'],
+          tableData: [
+            ['M1', '', ''],
+            ['M2', '', ''],
+            ['M3', '', ''],
+          ],
+          //以数组形式从后台读入
             PageID:""
         };
     }
@@ -674,11 +681,8 @@ export  default class ConsignationPage extends Component{
                           </CardItem>
                         </Card>
                       </Content>
-
-
-
-
                     </Tab>
+
                     <Tab heading="软件运行环境">
                         {/*<TabThree />*/}
                       <Content padder style={{ marginTop: 0 }}>
@@ -982,6 +986,18 @@ export  default class ConsignationPage extends Component{
                         </Card>
                       </Content>
                     </Tab>
+
+                    <Tab heading="委托测试软件功能列表">
+                      <Content padder style={{ marginTop: 0 }}>
+                        <View style={styles.container}>
+                          <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+                            <Row data={this.state.tableHead} style={styles.head} textStyle={styles.text}/>
+                            <Rows data={this.state.tableData} textStyle={styles.text}/>
+                          </Table>
+                        </View>
+                      </Content>
+                    </Tab>
+
                 </Tabs>
 
                 <Footer>
@@ -1002,3 +1018,9 @@ export  default class ConsignationPage extends Component{
     }
 
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
+  head: { height: 40, backgroundColor: '#f1f8ff' },
+  text: { margin: 6 }
+});

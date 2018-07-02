@@ -4,7 +4,6 @@ import com.alibaba.fastjson.annotation.JSONField;
 
 import javax.persistence.*;
 
-
 /**
  * @author SongJunju
  */
@@ -16,10 +15,8 @@ import javax.persistence.*;
 @Table(name = "TBL_SYS_TESTBUGS")
 public class TestBug extends BaseEntity {
 
-
     /**
-     * 详细字段未定
-     * 暂时先用来存储
+     * 详细字段未定 暂时先用来存储
      */
     @Column(name = "BODY")
     private String body;
@@ -31,7 +28,6 @@ public class TestBug extends BaseEntity {
     public void setBody(String body) {
         this.body = body;
     }
-
 
     /**
      * processInstanceID
@@ -47,13 +43,11 @@ public class TestBug extends BaseEntity {
         this.processInstanceID = processInstanceID;
     }
 
-
-
     /**
      * 连接Project类的外键
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PROJECT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "PROJECT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JSONField(serialize = false)
     private Project project;
 
@@ -64,7 +58,5 @@ public class TestBug extends BaseEntity {
     public void setProject(Project project) {
         this.project = project;
     }
-
-
 
 }

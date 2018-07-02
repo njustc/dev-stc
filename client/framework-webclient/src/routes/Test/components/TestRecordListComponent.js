@@ -90,7 +90,7 @@ export default class TestRecordListComponent extends Component {
         dataIndex:"customerId",
     }, {
         title:"状态",
-        dataIndex:"status",
+        dataIndex:"state",
         render: (status) =>{
             return (
                 <span>

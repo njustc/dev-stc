@@ -100,8 +100,12 @@ public class ProjectService extends BaseService<Project>{
     }
 
     //删除工程
-    public void deleteProject(JSONObject params) {
+    public void deleteProject(JSONObject params) throws Exception{
         String uid = params.getString("id");
+        Project project = projectRepository.findById(uid);
+        if(project == null) {
+            throw new Exception("can't find project by id : " + uid);
+        }
         this.deleteEntity(uid);
     }
 
@@ -121,8 +125,8 @@ public class ProjectService extends BaseService<Project>{
     private JSONObject processProject(Project project) throws Exception {
         //String processState = (String) processInstanceService.queryProcessState(project.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(project));
-        jsonObject.put("username", project.getUser().getUsername());
-        jsonObject.put("userID", project.getUser().getId());
+        //jsonObject.put("username", project.getUser().getUsername());
+        //jsonObject.put("userID", project.getUser().getId());
         //jsonObject.put("state",processState);
         return jsonObject;
     }

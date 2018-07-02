@@ -5,7 +5,13 @@ import {connect} from "react-redux";
 import {getConsign, getConsignState, putConsignState, updateConsign} from "../../../services/ConsignService";
 import {newProject} from "../../../services/ProjectService";
 import {newContract} from "../../../services/ContractService";
+import {newTestPlan} from "../../../services/TestPlanService";
+import {newTestReport} from "../../../services/TestReportService";
+import {newTestReportCheck} from "../../../services/TestReportCheckService";
+import {newTestWorkCheck} from "../../../services/TestWorkCheckService";
 import {globalOperation, STATUS} from "../../../services/common";
+import {newTestRecord} from "../../../services/TestRecordService";
+import {newTestCase} from "../../../services/TestCaseService";
 // import "./common"
 /*TODO:表单内容和按钮的可视及禁用情况*/
 const mapStateToProps = (state, ownProps) => {
@@ -14,9 +20,8 @@ const mapStateToProps = (state, ownProps) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     const consignation = content?state.Consign.listMap[ownProps.id].consignation:undefined;
     const ToBeSubmit = content?state.Consign.listMap[ownProps.id].state!=="TobeSubmit":false;
-    const isEditVisible = authData.functionGroup["Consign"]!==undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
-    const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Submit')!==-1:
-        content.operation.findIndex(element => element === 'Submit')!==-1);
+    const isEditVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
+    const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Submit')!==-1;
     // console.log(isSubmitVisible);
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     // console.log(isReviewVisible);
@@ -30,7 +35,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible) => [{
     content: '保存',
-    enable: isEditVisible,
+    enable: isEditVisible&&isSubmitVisible,
 },{
     content: '提交',
     enable: isSubmitVisible,
@@ -93,17 +98,37 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
             else message.error('通过失败');
         });
         newProject(dispatch,id,processNo,(result)=>{
-            console.log(result);
+            // console.log(result);
             const {status,data} = result;
             if(status===STATUS.SUCCESS){
                 message.success('流程新建成功');
-                console.log(data);
+                // console.log(data);
                 const {id} = data;
+
                 newContract(dispatch,id,(status)=>{
-                    console.log(status);
                     if(status===STATUS.SUCCESS) message.success('合同新建成功');
                     else message.error('合同新建失败');
                 });
+                newTestPlan(dispatch,id,(status)=>{
+                    if(status===STATUS.SUCCESS) message.success('测试方案新建成功');
+                    else message.error('测试方案新建失败');
+                });
+                // newTestCase(dispatch,id,(status)=>{
+                //     if(status===STATUS.SUCCESS) message.success('测试用例新建成功');
+                //     else message.error('测试用例新建失败');
+                // });
+                newTestReport(dispatch,id,(status)=>{
+                    if(status===STATUS.SUCCESS) message.success('测试报告书新建成功');
+                    else message.error('测试报告书新建失败');
+                });
+                // newTestReportCheck(dispatch,id,(status)=>{
+                //     if(status===STATUS.SUCCESS) message.success('测试报告检查表新建成功');
+                //     else message.error('测试报告检查表新建失败');
+                // });
+                // newTestWorkCheck(dispatch,id,(status)=>{
+                //     if(status===STATUS.SUCCESS) message.success('测试报告检查表新建成功');
+                //     else message.error('测试报告检查表新建失败');
+                // });
             }
             else message.error('流程新建失败');
         });
@@ -127,42 +152,9 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
 }];
 
 const mapDispatchToProps = (dispatch,ownProps) => {
-    // const content = state.Consign.listMap[ownProps.id];
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
-    let operationData = {};
-    console.log(ownProps.processInstanceID);
-    console.log(ownProps.id);
-    // getConsignState(dispatch,(data)=>{operationData = data.operation;})
-    // const operationData = JSON.parse(sessionStorage.getItem('operation'+ownProps.id));
-    const isEditVisible = authData.functionGroup["Consign"]===undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
-    // const isSubmitVisible = content&&content.Operation&&content.Operation.findIndex('Submit')!==-1;
-    // const isReviewVisible = content&&content.Operation&&content.Operation.findIndex('ReviewPass')!==-1;
-    // console.log(operationData);
-    // const {operation} = operationData;
-    // // console.log(operation);
-    // var isReviewVisible = operation!=undefined&&operation!=null;
-    // if(isReviewVisible === true){
-    //     isReviewVisible = false;
-    //     operation.forEach(function(element){
-    //         console.log(element);
-    //         if(element == 'ReviewPass') {
-    //             isReviewVisible = true;
-    //         }
-    //     })
-    // }
-    // console.log(isReviewVisible);
     return {
-        buttons: buttons(dispatch),//,isEditVisible).filter((button) => {
-        //     console.log(ownProps.buttonsEnable);
-        //     ownProps.buttonsEnable.forEach(function(element){
-        //         if(element.content === button.content){
-        //             return element.enable;
-        //         }
-        //     })
-        // }),
+        buttons: buttons(dispatch),
         getValues: (id,processInstanceID) => {
-            getConsignState(dispatch,processInstanceID,id);
-            // console.log("hahaha");
             getConsign(dispatch,id);
         }
     }

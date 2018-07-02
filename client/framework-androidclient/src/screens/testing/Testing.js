@@ -21,19 +21,19 @@ import styles from "./styles";
 
 const datas = [
   {
-    route: "ContractPage",
+    route: "TestPlanContentPage",
     text: "测试方案书"
   },
   {
-    route:"ContractPage",
+    route:"TestCaseContentPage",
     text:"测试用例表"
   },
   {
-    route: "ContractPage",
+    route: "TestRecordContentPage",
     text: "测试记录表"
   },
   {
-    route:"ContractPage",
+    route:"TestProblemContentPage",
     text:"测试问题清单"
   },
 ];//TODO: 修改界面跳转 route
@@ -67,6 +67,7 @@ export  default class Testing extends Component {
         </Header>
 
         <Content>
+          <Text>TODO: change to jump to a list first</Text>
           <List
             dataArray={datas}
             renderRow={data =>

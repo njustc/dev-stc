@@ -66,6 +66,190 @@ export  default class ContractPage extends Component{
             },
     }
     }
+
+    componentDidMount(){
+    //    this.listener_consignUnitC=DeviceEventEmitter.addListener('consignUnitC',(events)=>{
+      //       this.setState({consignUnitC: events.CONSIGN_UNITC});
+      //     });
+      this.listener_projectName=DeviceEventEmitter.addListener('projectName',(events)=>{
+          this.setState({projectName: events.PROJECTNAME});
+      });
+
+      this.listener_consignA = DeviceEventEmitter.addListener('consignA',(events)=>{
+          this.setState({consignA : events.CONSIGNA});
+      });
+
+      this.listener_consignB = DeviceEventEmitter.addListener('consignB',(events)=>{
+        this.setState({consignB : events.CONSIGNB});
+      });
+      this.listener_consignPlace = DeviceEventEmitter.addListener('consignPlace',(events)=>{
+        this.setState({consignPlace : events.CONSIGNPLACE});
+      });
+      this.listener_consignDate = DeviceEventEmitter.addListener('consignDate',(events)=>{
+        this.setState({consignDate : events.CONSIGNDATE});
+      });
+      this.listener_ProjectName = DeviceEventEmitter.addListener('ProjectName',(events)=>{
+        this.setState({ProjectName : events.PROJECTNAME_2});
+      });
+      this.listener_qualityChar = DeviceEventEmitter.addListener('qualityChar',(events)=>{
+        this.setState({qualityChar : events.QUALITYCHAR});
+      });
+      this.listener_testFee = DeviceEventEmitter.addListener('testFee',(events)=>{
+        this.setState({testFee : events.TESTFEE});
+      });
+
+      // this.listener_ConsignA=DeviceEventEmitter.addListener('ConsignA',(events)=>{
+      //   this.setState({ConsignA:events.ConsignA});
+      // });
+      this.listener_consignA_unitName = DeviceEventEmitter.addListener('consignA_unitName',(events)=>{
+        let state = this.state;
+        state.ConsignA.unitName = events.CONSIGNA_UNITNAME;
+        this.setState(state);
+      });
+      this.listener_consignA_authRepresent = DeviceEventEmitter.addListener('consignA_authRepresent',(events)=>{
+        let state = this.state;
+        state.ConsignA.authRepresent=events.CONSIGNA_AUTHREPRESENT;
+        this.setState(state);
+      });
+      this.listener_consignA_signData = DeviceEventEmitter.addListener('consignA_signData',(events)=>{
+          let state = this.state;
+          state.ConsignA.signData = events.CONSIGNA_SIGNDATA;
+          this.setState(state);
+      });
+      this.listener_consignA_contact = DeviceEventEmitter.addListener('consignA_contact',(events)=>{
+        let state = this.state;
+        state.ConsignA.contact = events.CONSIGNA_CONTACT;
+        this.setState(state);
+      });
+      this.listener_consignA_poAddress = DeviceEventEmitter.addListener('consignA_poAddress',(events)=>{
+        let state = this.state;
+        state.ConsignA.poAddress = events.CONSIGNA_POADDRESS;
+        this.setState(state);
+      });
+      this.listener_consignA_phone = DeviceEventEmitter.addListener('consignA_phone',(events)=>{
+        let state = this.state;
+        state.ConsignA.phone = events.CONSIGNA_PHONE;
+        this.setState(state);
+      });
+      this.listener_consignA_fax = DeviceEventEmitter.addListener('consignA_fax',(events)=>{
+        let state = this.state;
+        state.ConsignA.fax = events.CONSIGNA_FAX;
+        this.setState(state);
+      });
+      this.listener_consignA_accountBank = DeviceEventEmitter.addListener('consignA_accountBank',(events)=>{
+        let state = this.state;
+        state.ConsignA.accountBank = events.CONSIGNA_ACCOUNTBANK;
+        this.setState(state);
+      });
+      this.listener_consignA_accountNum = DeviceEventEmitter.addListener('consignA_accountNum',(events)=>{
+        let state = this.state;
+        state.ConsignA.accountNum = events.CONSIGNA_ACCOUNTNUM;
+        this.setState(state);
+      });
+      this.listener_consignA_postCode = DeviceEventEmitter.addListener('consignA_postCode',(events)=>{
+        let state = this.state;
+        state.ConsignA.postCode = events.CONSIGNA_POSTCODE;
+        this.setState(state);
+      });
+
+
+      this.listener_consignB_unitName = DeviceEventEmitter.addListener('consignB_unitName',(events)=>{
+        let state = this.state;
+        state.ConsignB.unitName = events.CONSIGNB_UNITNAME;
+        this.setState(state);
+      });
+      this.listener_consignB_authRepresent = DeviceEventEmitter.addListener('consignB_authRepresent',(events)=>{
+        let state = this.state;
+        state.ConsignB.authRepresent=events.CONSIGNB_AUTHREPRESENT;
+        this.setState(state);
+      });
+      this.listener_consignB_signData = DeviceEventEmitter.addListener('consignB_signData',(events)=>{
+        let state = this.state;
+        state.ConsignB.signData = events.CONSIGNB_SIGNDATA;
+        this.setState(state);
+      });
+      this.listener_consignB_contact = DeviceEventEmitter.addListener('consignB_contact',(events)=>{
+        let state = this.state;
+        state.ConsignB.contact = events.CONSIGNB_CONTACT;
+        this.setState(state);
+      });
+      this.listener_consignB_poAddress = DeviceEventEmitter.addListener('consignB_poAddress',(events)=>{
+        let state = this.state;
+        state.ConsignB.poAddress = events.CONSIGNB_POADDRESS;
+        this.setState(state);
+      });
+      this.listener_consignB_phone = DeviceEventEmitter.addListener('consignB_phone',(events)=>{
+        let state = this.state;
+        state.ConsignB.phone = events.CONSIGNB_PHONE;
+        this.setState(state);
+      });
+      this.listener_consignB_fax = DeviceEventEmitter.addListener('consignB_fax',(events)=>{
+        let state = this.state;
+        state.ConsignB.fax = events.CONSIGNB_FAX;
+        this.setState(state);
+      });
+      this.listener_consignB_accountBank = DeviceEventEmitter.addListener('consignB_accountBank',(events)=>{
+        let state = this.state;
+        state.ConsignB.accountBank = events.CONSIGNB_ACCOUNTBANK;
+        this.setState(state);
+      });
+      this.listener_consignB_accountNum = DeviceEventEmitter.addListener('consignB_accountNum',(events)=>{
+        let state = this.state;
+        state.ConsignB.accountNum = events.CONSIGNB_ACCOUNTNUM;
+        this.setState(state);
+      });
+      this.listener_consignB_postCode = DeviceEventEmitter.addListener('consignB_postCode',(events)=>{
+        let state = this.state;
+        state.ConsignB.postCode = events.CONSIGNB_POSTCODE;
+        this.setState(state);
+      });
+
+
+
+
+    }
+
+    componentWillUnmount(){
+      // this.listener_consignUnitC.remove();
+      this.listener_projectName.remove();
+      this.listener_consignA.remove();
+      this.listener_consignB.remove();
+      this.listener_consignPlace.remove();
+      this.listener_consignDate.remove();
+      this.listener_ProjectName.remove();
+      this.listener_qualityChar.remove();
+      this.listener_testFee.remove();
+
+      this.listener_consignA_unitName.remove();
+      this.listener_consignA_authRepresent.remove();
+      this.listener_consignA_signData.remove();
+      this.listener_consignA_contact.remove();
+      this.listener_consignA_poAddress.remove();
+      this.listener_consignA_phone.remove();
+      this.listener_consignA_fax.remove();
+      this.listener_consignA_accountBank.remove();
+      this.listener_consignA_accountNum.remove();
+      this.listener_consignA_postCode.remove();
+
+      this.listener_consignB_unitName.remove();
+      this.listener_consignB_authRepresent.remove();
+      this.listener_consignB_signData.remove();
+      this.listener_consignB_contact.remove();
+      this.listener_consignB_poAddress.remove();
+      this.listener_consignB_phone.remove();
+      this.listener_consignB_fax.remove();
+      this.listener_consignB_accountBank.remove();
+      this.listener_consignB_accountNum.remove();
+      this.listener_consignB_postCode.remove();
+
+
+      // this.listener_.remove();
+
+
+
+    }
+
+
   render(){
     return(
         <Container>
