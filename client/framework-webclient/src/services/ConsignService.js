@@ -21,7 +21,7 @@ export const getConsignList = (dispatch, callback) => {
 
 export const getConsign = (dispatch, id, callback) => {
     httpGet(consignBase + '/' + id, (result) => {
-       console.log(result);
+       //console.log(result);
         const {status, data} = result;
         const consignStatus = status;
         const consignData = data;
@@ -53,7 +53,7 @@ export const getConsign = (dispatch, id, callback) => {
 };
 
 export const deleteConsign = (dispatch, id, callback) => {
-    console.log(id);
+    //console.log(id);
     httpDelete(consignBase, {id:id}, (result) => {
         // console.log("before remove");
         // dispatch(removeConsign(id));
@@ -86,13 +86,13 @@ export const updateConsign = (dispatch, data, callback) => {
 };
 
 export const getConsignState = (dispatch, processInstanceID, id, callback) => {
-    console.log('qwerttttt');
+    //console.log('qwerttttt');
     httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
-        console.log(consignActivitiBase + '/' + processInstanceID);
+        //console.log(consignActivitiBase + '/' + processInstanceID);
         const {status, data} = result;
-        console.log(data);
+        //console.log(data);
         const {operation} = data;
-        console.log(operation[0]);
+        //console.log(operation[0]);
         const operationData = {
             "operation": operation,
             "processsInstanceID": processInstanceID,
@@ -114,7 +114,7 @@ export const getConsignState = (dispatch, processInstanceID, id, callback) => {
 
 export const putConsignState = (dispatch, processInstanceID, data, id, callback) => {
     // console.log("ID = " + processInstanceID);
-    console.log(consignActivitiBase + '/' + processInstanceID);
+    //console.log(consignActivitiBase + '/' + processInstanceID);
     httpPut(consignActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
         if (status === STATUS.SUCCESS) {

@@ -92,7 +92,7 @@ export const updateProject = (dispatch, data, callback) => {
 
 export const getProjectState = (dispatch, processInstanceID, id, callback) => {
     getConsignState(dispatch,processInstanceID,id);
-    debugger
+    //debugger
 };
 
 export const putProjectState = (dispatch, processInstanceID, data, id, callback) => {
