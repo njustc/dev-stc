@@ -143,7 +143,7 @@ export default class ProjectContentComponent extends Component {
                     <Content style={{ padding: '0 24px', minHeight: 280 }}>*/}
                     <Layout style={{ background: '#fff' }}>
                 <h3>流程详情</h3>
-                        <Card title="流程进度"
+                        <Card title="项目进度"
                               hoverable
                               //bordered={false}
                         >
@@ -216,11 +216,11 @@ export default class ProjectContentComponent extends Component {
                                 />
                             </Col>
                             <Col span={6}>
-                                <Card title='流程摘要信息' hoverable >
+                                <Card title='项目摘要信息' hoverable >
                                     <div>项目编号：未定义</div>
                                     <br/>
-                                    <div>流程ID：{this.props.projectData.id}</div>
-                                    <br/>
+                                    {/*<div>流程ID：{this.props.projectData.id}</div>*/}
+                                    {/*<br/>*/}
                                     <div>项目ID：未定义</div>
                                     <br/>
                                     <div>项目名称：未定义</div>
