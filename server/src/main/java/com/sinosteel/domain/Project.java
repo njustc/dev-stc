@@ -17,7 +17,7 @@ public class Project extends BaseEntity {
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JSONField(serialize = false)
+    //@JSONField(serialize = false)
     private User user;
 
 
@@ -45,7 +45,7 @@ public class Project extends BaseEntity {
      */
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CONSIGN_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JSONField(serialize = false)
+    //@JSONField(serialize = false)
     private Consign consign;
 
     public Consign getConsign() {
@@ -62,7 +62,7 @@ public class Project extends BaseEntity {
      */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CONTRACT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JSONField(serialize = false)
+    //@JSONField(serialize = false)
     private Contract contract;
 
     public Contract getContract() {
@@ -78,7 +78,7 @@ public class Project extends BaseEntity {
      */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "TESTREPORT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JSONField(serialize = false)
+    //@JSONField(serialize = false)
     private TestReport testReport;
 
     public TestReport getTestReport() {
@@ -94,7 +94,7 @@ public class Project extends BaseEntity {
      */
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JSONField(serialize = false)
+    //@JSONField(serialize = false)
     private List<TestRecord> testRecords;
 
     public List<TestRecord> getTestRecords() {
@@ -110,7 +110,7 @@ public class Project extends BaseEntity {
      */
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JSONField(serialize = false)
+    //@JSONField(serialize = false)
     private List<TestCase> testCases;
 
     public List<TestCase> getTestCase() {
@@ -126,7 +126,7 @@ public class Project extends BaseEntity {
      */
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JSONField(serialize = false)
+    //@JSONField(serialize = false)
     private List<TestBug> testBugs;
 
     public List<TestBug> getTestBugs() {
@@ -142,7 +142,7 @@ public class Project extends BaseEntity {
      */
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JSONField(serialize = false)
+    //@JSONField(serialize = false)
     private List<TestFunction> testFunctions;
 
     public List<TestFunction> getTestFunctions() {
@@ -158,7 +158,7 @@ public class Project extends BaseEntity {
      */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "TESTREPORTCHECK_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JSONField(serialize = false)
+    //@JSONField(serialize = false)
     private TestReportCheck testReportCheck;
 
     public TestReportCheck getTestReportCheck() {
@@ -174,7 +174,7 @@ public class Project extends BaseEntity {
      */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "TESTWORKCHECK_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JSONField(serialize = false)
+    //@JSONField(serialize = false)
     private TestWorkCheck testWorkCheck;
 
     public TestWorkCheck getTestWorkCheck() {
@@ -190,7 +190,7 @@ public class Project extends BaseEntity {
      */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "TESTPLAN_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JSONField(serialize = false)
+    //@JSONField(serialize = false)
     private TestPlan testPlan;
 
     public TestPlan getTestPlan() {
