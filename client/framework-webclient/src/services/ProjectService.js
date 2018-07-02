@@ -86,7 +86,7 @@ export const getProjectState = (dispatch, processInstanceID,callback) => {
         if(contractState&&contractState!==STATE.FINISHED){
             projectState = {
                 Process: 'Contract',
-                STATE: contractState
+                State: contractState
             };
             callback&&callback(projectState);
         }
@@ -96,7 +96,7 @@ export const getProjectState = (dispatch, processInstanceID,callback) => {
                 if(testPlanState&&testPlanState!==STATE.TO_IMPLEMENT){
                     projectState = {
                         Process: 'TestPlan',
-                        STATE: testPlanState
+                        State: testPlanState
                     };
                     callback&&callback(projectState);
                 }
@@ -106,14 +106,14 @@ export const getProjectState = (dispatch, processInstanceID,callback) => {
                         if(testReportState&&testReportState!==STATE.SATISFACTION){
                             projectState = {
                                 Process: 'TestReport',
-                                STATE: testReportState
+                                State: testReportState
                             };
                             callback&&callback(projectState);
                         }
                         else if(testReportState===STATE.SATISFACTION){
                             projectState = {
                                 Process: 'TestReport',
-                                STATE: testReportState
+                                State: testReportState
                             };
                             callback&&callback(projectState);
                         }
