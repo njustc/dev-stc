@@ -61,19 +61,18 @@ export const updateTestReport = (dispatch, data, callback) => {
     });
 };
 
-// export const getTestReportState = (dispatch, processInstanceID, id, callback) => {
-//     httpGet(testReportActivitiBase + '/' + processInstanceID, (result) => {
-//         const {status, data} = result;
-//         if (status === STATUS.SUCCESS) {
-//             const newData = {
-//                 ...data,
-//                 id: id,
-//             };
-//             dispatch(setTestReportContent(newData));
-//         }
-//         callback && callback(status);
-//     })
-// };
+export const getTestReportState = (dispatch, ProjectID, callback) => {
+    const PID = 'projectID=' + ProjectID;
+    httpGet(testReportBase, (result) => {
+        const {status, data} = result;
+        if (status === STATUS.SUCCESS) {
+            // console.log(data);
+            const {state} = data;
+            console.log(state);
+            callback && callback(state);
+        }
+    },PID)
+};
 
 export const putTestReportState = (dispatch, processInstanceID, data, id, callback) => {
     console.log("ID = " + processInstanceID);

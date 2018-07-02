@@ -11,7 +11,7 @@ const testPlanActivitiBase = baseServiceAddress + '/processInstance';
 export const getTestPlanList = (dispatch, callback) => {
     httpGet(testPlanBase,(result) => {
         const {status, data} = result;
-        console.log(result);
+        console.log(data);
         if (status === STATUS.SUCCESS) {
             dispatch(setTestPlanList(data));
         }
@@ -20,11 +20,13 @@ export const getTestPlanList = (dispatch, callback) => {
 };
 
 export const getTestPlan = (dispatch, id, callback) => {
+    console.log(id);
     httpGet(testPlanBase + '/' + id, (result) => {
        console.log(result);
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setTestPlanContent(data));
+            // getTestPlanState(dispatch,'2f67e8db-e7aa-417b-85db-d5ccd4bff059');
         }
         callback && callback(status);
     });
@@ -61,22 +63,22 @@ export const updateTestPlan = (dispatch, data, callback) => {
     });
 };
 
-// export const getTestPlanState = (dispatch, processInstanceID, id, callback) => {
-//     httpGet(testPlanActivitiBase + '/' + processInstanceID, (result) => {
-//         const {status, data} = result;
-//         if (status === STATUS.SUCCESS) {
-//             const newData = {
-//                 ...data,
-//                 id: id,
-//             };
-//             dispatch(setTestPlanContent(newData));
-//         }
-//         callback && callback(status);
-//     })
-// };
+export const getTestPlanState = (dispatch, ProjectID, callback) => {
+    const PID = 'projectID=' + ProjectID;
+    httpGet(testPlanBase, (result) => {
+        const {status, data} = result;
+        if (status === STATUS.SUCCESS) {
+            // console.log(data);
+            const {state} = data;
+            console.log(state);
+            callback && callback(state);
+        }
+    },PID)
+};
 
 export const putTestPlanState = (dispatch, processInstanceID, data, id, callback) => {
-    // console.log("ID = " + processInstanceID);
+    console.log("processInstanceID = " + processInstanceID);
+    console.log("ID = " + id);
     httpPut(testPlanActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
         if (status === STATUS.SUCCESS) {

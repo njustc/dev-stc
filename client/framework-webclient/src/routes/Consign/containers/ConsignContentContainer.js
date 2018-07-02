@@ -112,6 +112,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
                         newTestPlan(dispatch,id,(status)=>{
                             if(status===STATUS.SUCCESS){
                                 message.success('测试方案新建成功');
+                                console.log(id);
 
                                 newTestReport(dispatch,id,(status)=>{
                                     if(status===STATUS.SUCCESS) message.success('测试报告书新建成功');

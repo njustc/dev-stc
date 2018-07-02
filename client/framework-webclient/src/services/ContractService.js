@@ -62,19 +62,18 @@ export const updateContract = (dispatch, data, callback) => {
     });
 };
 
-// export const getContractState = (dispatch, processInstanceID, id, callback) => {
-//     httpGet(contractActivitiBase + '/' + processInstanceID, (result) => {
-//         const {status, data} = result;
-//         if (status === STATUS.SUCCESS) {
-//             const newData = {
-//                 ...data,
-//                 id: id,
-//             };
-//             dispatch(setContractContent(newData));
-//         }
-//         callback && callback(status);
-//     })
-// };
+export const getContractState = (dispatch, ProjectID, callback) => {
+    const PID = 'projectID=' + ProjectID;
+    httpGet(contractBase, (result) => {
+        const {status, data} = result;
+        if (status === STATUS.SUCCESS) {
+            // console.log(data);
+            const {state} = data;
+            console.log(state);
+            callback && callback(state);
+        }
+    },PID)
+};
 
 export const putContractState = (dispatch, processInstanceID, data, id, callback) => {
     httpPut(contractActivitiBase + '/' + processInstanceID, data, (result) => {
