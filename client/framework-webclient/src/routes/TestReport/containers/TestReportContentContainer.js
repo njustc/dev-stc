@@ -58,7 +58,7 @@ const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible,isSendVisib
 }
 ];
 
-const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/*TODO:buttons的显示和禁用还存在问题*/
+const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
     onClick: (testReportData,testReport) =>{
         console.log(testReport);
@@ -71,8 +71,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             if(status===STATUS.SUCCESS) message.success('保存成功');
             else message.error('保存失败');
         });
-    },
-    enable: isEditVisible
+    }
 },{
     content: '提交',
     onClick: (testReportData,testReport) =>{
@@ -99,8 +98,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             }
             else message.error('更新失败');
         });
-    },
-    enable: isEditVisible
+    }
 },{
     content: '批准',
     onClick: (testReportData,testReport) =>{
@@ -115,8 +113,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             if(status===STATUS.SUCCESS) message.success('批准成功');
             else message.error('批准失败');
         });
-    },
-    enable: isReviewVisible
+    }
 },{
     content: '否决',
     onClick: (testReportData,testReport) =>{
@@ -130,8 +127,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             if(status===STATUS.SUCCESS) message.success('已否决');
             else message.error('否决失败');
         });
-    },
-    enable: isReviewVisible
+    }
 },{
     content: '发放',
     onClick: (testReportData,testReport) =>{
@@ -145,8 +141,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             if(status===STATUS.SUCCESS) message.success('已发放');
             else message.error('发放失败');
         });
-    },
-    enable: isReviewVisible
+    }
 },{
     content: '确认',
     onClick: (testReportData,testReport) =>{
@@ -160,8 +155,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             if(status===STATUS.SUCCESS) message.success('确认成功');
             else message.error('确认失败');
         });
-    },
-    enable: isConfirmVisible
+    }
 },{
     content: '拒绝',
     onClick: (testReportData,testReport) =>{
@@ -175,19 +169,12 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             if(status===STATUS.SUCCESS) message.success('已拒绝');
             else message.error('拒绝失败');
         });
-    },
-    enable: isConfirmVisible
+    }
 }];
 
 const mapDispatchToProps = (dispatch,ownProps) => {
-    console.log(ownProps);
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
-    //const isVisible = true;//authData.functionGroup["TestReport"]!==undefined&&authData.functionGroup["TestReport"].findIndex(element => element === "EDIT")!==-1;
-    const isEditVisible = true||authData.functionGroup["TestReport"]!==undefined&&authData.functionGroup["TestReport"].findIndex(element => element === "EDIT")===1;
-    const isReviewVisible = true||authData.functionGroup["TestReport"]!==undefined&&authData.functionGroup["TestReport"].findIndex(element => element === "REVIEW")===1;
-    const isConfirmVisible = true||authData.functionGroup["TestReport"]!==undefined&&authData.functionGroup["TestReport"].findIndex(element => element === "CONFIRM")===1;
     return {
-        buttons: buttons(dispatch,isEditVisible,isReviewVisible,isConfirmVisible).filter(button => button.enable===true),
+        buttons: buttons(dispatch),
         getValues: (id) => getTestReport(dispatch,id)
     }
 };
