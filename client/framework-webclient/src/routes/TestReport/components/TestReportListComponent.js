@@ -59,6 +59,7 @@ export default class TestReportListComponent extends Component {
             case STATE.TO_REVIEW: return "processing";
             case STATE.TO_APPROVE: return "processing";
             case STATE.TO_SEND: return "processing";
+            case STATE.TO_CONFIRM: return "processing";
             case STATE.CANCELED: return "default";
             default: return "error";
         }
@@ -72,6 +73,7 @@ export default class TestReportListComponent extends Component {
             case STATE.CANCELED: return "已取消";
             case STATE.TO_APPROVE: return "待批准";
             case STATE.TO_SEND: return "待发放";
+            case STATE.TO_CONFIRM: return "待确认";
             case STATE.SATISFACTION: return "已完成";
             default: return "未定义状态";
         }
@@ -134,7 +136,9 @@ export default class TestReportListComponent extends Component {
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
                     <Divider type="vertical"/>
-                    <a href="javascript:void(0);" disabled={!this.props.enableNew} onClick={this.showDeleteConfirm(record)}>取消测试报告</a>
+                    <a href="javascript:void(0);"
+                       //disabled={!this.props.enableNew}
+                       onClick={this.showDeleteConfirm(record)}>取消测试报告</a>
                 </div>
             )
         }
@@ -159,7 +163,7 @@ export default class TestReportListComponent extends Component {
                 //debugger;
                 //this.deleteTestReportn(id);
                 /*TODO 取消委托的函数的参数需要优化*/
-                this.props.deleteTestReportn(record);
+                this.props.deleteTestReport(record);
             },
             onCancel() {},
         });
