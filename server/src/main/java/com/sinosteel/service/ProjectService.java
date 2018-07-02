@@ -19,7 +19,7 @@ import java.util.UUID;
 /**
  * *@author LBW&SQW
  */
-
+//TODO: 并发修改同一project的时候，可能会出问题.
 @Service
 public class ProjectService extends BaseService<Project>{
 
