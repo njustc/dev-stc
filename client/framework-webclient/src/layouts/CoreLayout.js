@@ -105,7 +105,7 @@ class CoreLayout extends Component
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" onClick={this.onClick}>
                         <Menu.Item key="1" disabled={this.props.sider["1"].disable}>
                             <Icon type="pie-chart" />
-                            <span>流程</span>
+                            <span>项目</span>
                         </Menu.Item>
                         <SubMenu
                             key="sub1"
