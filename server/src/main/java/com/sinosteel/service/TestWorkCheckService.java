@@ -129,10 +129,12 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
 
 
     //删除testWorkCheck
-    public void deleteTestWorkCheck(JSONObject params)
+    public void deleteTestWorkCheck(JSONObject params) throws Exception
     {
         String uid=params.getString("id");
         TestWorkCheck testWorkCheck = testWorkCheckRepository.findById(uid);
+        if (testWorkCheck == null)
+            throw new Exception("Can't find testWorkCheck with id: " + uid);
 
         Project project = testWorkCheck.getProject();
         project.setTestWorkCheck(null);

@@ -103,9 +103,12 @@ public class TestRecordService extends BaseService<TestRecord> {
 
     //删除测试结果（不删除相关测试结果文件?）
 
-    public void deleteTestRecord(JSONObject params)
+    public void deleteTestRecord(JSONObject params) throws Exception
     {
         String uid=params.getString("id");
+        TestRecord testRecord = testRecordRepository.findById(uid);
+        if (testRecord == null)
+            throw new Exception("Can't find testRecord with id: " + uid);
         this.deleteEntity(uid);
     }
 

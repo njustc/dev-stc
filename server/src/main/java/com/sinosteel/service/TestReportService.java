@@ -120,9 +120,11 @@ public class TestReportService extends BaseService<TestReport>{
     }
 
 
-    public void deleteTestReport(JSONObject params){
+    public void deleteTestReport(JSONObject params) throws Exception{
         String uid = params.getString("id");
         TestReport testReport = testReportRepository.findById(uid);
+        if (testReport == null)
+            throw new Exception("Can't find testReport with id: " + uid);
         //delete testReport from project
         Project project = testReport.getProject();
         project.setTestReport(null);
