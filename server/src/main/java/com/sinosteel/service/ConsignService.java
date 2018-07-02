@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
-import com.sinosteel.activiti.TCProcessEngine;
 import com.sinosteel.domain.Consign;
 import com.sinosteel.domain.Project;
 import com.sinosteel.domain.User;
@@ -129,7 +128,7 @@ public class ConsignService extends BaseService<Consign> {
 
 
     //增加委托状态
-    private JSONObject processConsign(Consign consign) throws Exception {
+    JSONObject processConsign(Consign consign) throws Exception {
         JSONObject processState = processInstanceService.queryProcessState(consign.getProcessInstanceID());
 
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
@@ -138,7 +137,7 @@ public class ConsignService extends BaseService<Consign> {
 
     }
 
-    private  JSONArray processConsigns(List<Consign> consigns) throws Exception {
+    JSONArray processConsigns(List<Consign> consigns) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (Consign consign: consigns) {
             JSONObject jsonObject = processConsign(consign);

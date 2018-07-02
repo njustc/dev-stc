@@ -138,7 +138,7 @@ public class ContractService extends BaseService<Contract> {
         return resultArray;
     }
 
-    private JSONObject processContract(Contract contract) throws Exception{
+    JSONObject processContract(Contract contract) throws Exception{
         JSONObject processState = processInstanceService.queryProcessState(contract.getProcessInstanceID());
 
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(contract));

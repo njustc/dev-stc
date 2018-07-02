@@ -134,7 +134,7 @@ public class TestPlanService extends BaseService<TestPlan> {
     }
 
 
-    private JSONObject processTestPlan(TestPlan testPlan) throws Exception {
+    JSONObject processTestPlan(TestPlan testPlan) throws Exception {
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testPlan));
         JSONObject processState = processInstanceService.queryProcessState(testPlan.getProcessInstanceID());
         jsonObject.putAll(processState);
