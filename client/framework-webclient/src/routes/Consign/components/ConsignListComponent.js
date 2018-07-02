@@ -81,10 +81,20 @@ export default class ConsignListComponent extends Component {
         sorter:(a, b) => a.id - b.id,
     }, */{
         title:"委托名称",
-        dataIndex:"id",
+        dataIndex:"consignation",
+        key:"name",
+        render:(consignation) => {
+            let consignBody = consignation?JSON.parse(consignation):{};
+            return consignBody.softwareName?consignBody.softwareName:"未填写";
+        },
     }, {
         title:"委托单位",
-        dataIndex:"createdUserId",
+        dataIndex:"consignation",
+        key:"unit",
+        render:(consignation) => {
+            let consignBody = consignation?JSON.parse(consignation):{};
+            return consignBody.consignUnitC?consignBody.consignUnitC:"未填写";
+        }
     },{
         title:"委托创建日期",
         dataIndex:"createdTime",
