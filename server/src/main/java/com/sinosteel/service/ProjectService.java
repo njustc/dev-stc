@@ -4,9 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
-import com.sinosteel.domain.Consign;
-import com.sinosteel.domain.Project;
-import com.sinosteel.domain.User;
+import com.sinosteel.domain.*;
 import com.sinosteel.repository.ConsignRepository;
 import com.sinosteel.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +29,21 @@ public class ProjectService extends BaseService<Project>{
 
     @Autowired
     private ConsignRepository consignRepository;
+
+    @Autowired
+    private ContractService contractService;
+    @Autowired
+    private TestCaseService testCaseService;
+    @Autowired
+    private TestFunctionService testFunctionService;
+    @Autowired
+    private TestPlanService testPlanService;
+    @Autowired
+    private TestReportService testReportService;
+    @Autowired
+    private TestReportCheckService testReportCheckService;
+    @Autowired
+    private TestWorkCheckService testWorkCheckService;
 
     //根据用户查询工程
     public JSON queryProjects(User user) throws Exception{
@@ -106,6 +119,38 @@ public class ProjectService extends BaseService<Project>{
         if(project == null) {
             throw new Exception("can't find project by id : " + uid);
         }
+        //delete all entities in the project.
+        Contract contract = project.getContract();
+        if (contract != null) {
+            contractService.deleteEntity(contract.getId());
+        }
+        List<TestCase> testCases = project.getTestCase();
+        if (testCases != null) {
+            for (TestCase testCase: testCases)
+                testCaseService.deleteEntity(testCase.getId());
+        }
+        List<TestFunction> testFunctions = project.getTestFunctions();
+        if (testFunctions != null) {
+            for (TestFunction testFunction: testFunctions)
+                testCaseService.deleteEntity(testFunction.getId());
+        }
+        TestPlan testPlan = project.getTestPlan();
+        if (testPlan != null) {
+            testPlanService.deleteEntity(testPlan.getId());
+        }
+        TestReportCheck testReportCheck = project.getTestReportCheck();
+        if (testReportCheck != null) {
+            testReportCheckService.deleteEntity(testReportCheck.getId());
+        }
+        TestReport testReport = project.getTestReport();
+        if (testReport != null) {
+            testReportService.deleteEntity(testReport.getId());
+        }
+        TestWorkCheck testWorkCheck = project.getTestWorkCheck();
+        if (testWorkCheck != null) {
+            testWorkCheckService.deleteEntity(testWorkCheck.getId());
+        }
+
         this.deleteEntity(uid);
     }
 
