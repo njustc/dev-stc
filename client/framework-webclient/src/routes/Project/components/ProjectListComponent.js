@@ -78,7 +78,7 @@ export default class ProjectListComponent extends Component {
     /*table列设置*/
     columns = [{
         title:"项目编号",
-        dataIndex:"processInstanceID",
+        dataIndex:"code",
         //width: '25%',
         //sorter:(a, b) => a.id - b.id,
     }/*, {

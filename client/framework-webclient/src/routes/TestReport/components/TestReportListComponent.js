@@ -136,7 +136,9 @@ export default class TestReportListComponent extends Component {
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
                     <Divider type="vertical"/>
-                    <a href="javascript:void(0);" disabled={!this.props.enableNew} onClick={this.showDeleteConfirm(record)}>取消测试报告</a>
+                    <a href="javascript:void(0);"
+                       //disabled={!this.props.enableNew}
+                       onClick={this.showDeleteConfirm(record)}>取消测试报告</a>
                 </div>
             )
         }
@@ -161,7 +163,7 @@ export default class TestReportListComponent extends Component {
                 //debugger;
                 //this.deleteTestReportn(id);
                 /*TODO 取消委托的函数的参数需要优化*/
-                this.props.deleteTestReportn(record);
+                this.props.deleteTestReport(record);
             },
             onCancel() {},
         });
