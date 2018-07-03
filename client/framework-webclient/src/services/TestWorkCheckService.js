@@ -1,10 +1,8 @@
 import {baseServiceAddress, STATUS} from "SERVICES/common";
 import {httpDelete, httpGet, httpPost, httpPut} from "UTILS/FetchUtil";
-import {removeTestWorkCheck, setTestWorkCheckContent, setTestWorkCheckList/*, setTestWorkCheckState*/} from "../modules/ducks/TestWorkCheck";
+import {removeTestWorkCheck, setTestWorkCheckContent, setTestWorkCheckList, setTestWorkCheckState} from "../modules/ducks/TestWorkCheck";
 import {mockProjectData, valueData} from "./mockData";
-import {globalOperation, STATE} from "./common";
-import {setContractContent} from "../modules/ducks/Contract";
-// import "./common";
+import {STATE} from "./common";
 
 const testWorkCheckBase = baseServiceAddress + '/v1/testWorkCheck';
 const testWorkCheckActivitiBase = baseServiceAddress + '/processInstance';
@@ -20,43 +18,18 @@ export const getTestWorkCheckList = (dispatch, callback) => {
 };
 
 export const getTestWorkCheck = (dispatch, id, callback) => {
+    // dispatch(setTestWorkCheckContent({id:id,}));
     httpGet(testWorkCheckBase + '/' + id, (result) => {
-        console.log(result);
         const {status, data} = result;
-        const consignStatus = status;
-        const consignData = data;
         if (status === STATUS.SUCCESS) {
-            const {processInstanceID} = consignData;
-            httpGet(testWorkCheckActivitiBase + '/' + processInstanceID, (result) => {
-                const {status, data} = result;
-                const {operation} = data;
-                const operationData = {
-                    "operation": operation,
-                    "processsInstanceID": processInstanceID,
-                    "id": id
-                }
-                sessionStorage.setItem('operation',JSON.stringify(operationData));
-                if (status === STATUS.SUCCESS && consignStatus === STATUS.SUCCESS) {
-                    const newData = {
-                        ...consignData,
-                        ...data,
-                    };
-                    dispatch(setTestWorkCheckContent(newData));
-                }
-            })
-
-
-            // dispatch(setTestWorkCheckContent(data));
+            dispatch(setTestWorkCheckContent(data));
         }
         callback && callback(status);
     });
 };
 
 export const deleteTestWorkCheck = (dispatch, id, callback) => {
-    console.log(id);
     httpDelete(testWorkCheckBase, {id:id}, (result) => {
-        // console.log("before remove");
-        // dispatch(removeTestWorkCheck(id));
         const {status} = result;
         if(status === STATUS.SUCCESS)
             dispatch(removeTestWorkCheck(id));
@@ -76,8 +49,9 @@ export const newTestWorkCheck = (dispatch,id, callback) => {
 };
 
 export const updateTestWorkCheck = (dispatch, data, callback) => {
-    //console.log(data);
+    console.log(data);
     httpPut(testWorkCheckBase, data, (result) => {
+        console.log(result);
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setTestWorkCheckContent(data));
@@ -86,38 +60,24 @@ export const updateTestWorkCheck = (dispatch, data, callback) => {
     });
 };
 
-export const getTestWorkCheckState = (dispatch, processInstanceID, id, callback) => {
-    console.log('qwerttttt');
-    httpGet(testWorkCheckActivitiBase + '/' + processInstanceID, (result) => {
-        console.log(testWorkCheckActivitiBase + '/' + processInstanceID);
+export const getTestWorkCheckState = (dispatch, ProjectID, callback) => {
+    const PID = 'projectID=' + ProjectID;
+    httpGet(testWorkCheckBase, (result) => {
         const {status, data} = result;
-        console.log(data);
-        const {operation} = data;
-        console.log(operation[0]);
-        const operationData = {
-            "operation": operation,
-            "processsInstanceID": processInstanceID,
-            "id": id
-        }
-        sessionStorage.setItem('operation',JSON.stringify(operationData));
         if (status === STATUS.SUCCESS) {
-            const newData = {
-                ...data,
-                id: id,
-            };
-            console.log(newData);
-            dispatch(setTestWorkCheckContent(newData));
+            // console.log(data);
+            const {state} = data;
+            console.log(state);
+            callback && callback(state);
         }
-
-        callback && callback(status);
-    })
+    },PID)
 };
 
 export const putTestWorkCheckState = (dispatch, processInstanceID, data, id, callback) => {
-    // console.log("ID = " + processInstanceID);
-    console.log(testWorkCheckActivitiBase + '/' + processInstanceID);
+    console.log("ID = " + processInstanceID);
     httpPut(testWorkCheckActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
+        console.log(result);
         if (status === STATUS.SUCCESS) {
             const newData = {
                 ...data,

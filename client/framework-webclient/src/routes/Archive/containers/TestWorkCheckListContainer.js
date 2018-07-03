@@ -1,25 +1,32 @@
 import React, {Component,PropTypes} from 'react';
 import {connect} from "react-redux";
 import {addTabAction} from "MODULES/ducks/Layout";
-import {TestWorkCheckContentView} from "../../Archive";
-import {getTestWorkCheckList} from "../../../services/TestWorkCheckService";
+import {TestWorkCheckContentView} from "../index";
+import {deleteTestWorkCheck, getTestWorkCheckList, newTestWorkCheck} from "../../../services/TestWorkCheckService";
+import {setTestWorkCheckFilter} from "../../../modules/ducks/TestWorkCheck";
 import TestWorkCheckListComponent from "../components/TestWorkCheckListComponent";
 
 const mapStateToProps = (state) => {
+    const authData = JSON.parse(sessionStorage.getItem('authData'));
+    //console.log(state.TestWorkCheck.listMap);
     return {
-        dataSource: Object.values(state.TestWorkCheck.listMap).filter(state.TestWorkCheck.listFilter),
+        dataSource: Object.values(state.Project.listMap).filter((project) => project.testWorkCheck).filter(state.TestWorkCheck.listFilter),
+        enableNew: authData.functionGroup["TestWorkCheck"]!==undefined&&authData.functionGroup["TestWorkCheck"].findIndex(element => element === "ADD")!==-1
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
-            const key = "检查表" + id;
-            dispatch(addTabAction(key, '测试工作报告表详情', TestWorkCheckContentView,{id:id}));
-//            dispatch(setConsignContent())
+            // debugger;
+            const key = "报告检查" + id;
+            dispatch(addTabAction(key, '报告检查详情', TestWorkCheckContentView, {id: id}));
+//            dispatch(setTestWorkCheckContent())
         },
-        //setListFilter: (listFilter) => dispatch(setConsignFilter(listFilter)),
-        getTestWorkCheckList: () => getTestWorkCheckList(dispatch)
+        setListFilter: (listFilter) => dispatch(setTestWorkCheckFilter(listFilter)),
+        getTestWorkCheckList: () => getTestWorkCheckList(dispatch),
+        deleteTestWorkCheck: (id) => deleteTestWorkCheck(dispatch,id),
+        newTestWorkCheck: () => newTestWorkCheck(dispatch)
     }
 };
 

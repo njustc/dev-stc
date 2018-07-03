@@ -60,18 +60,4 @@ public class TestRecord extends BaseEntity {
     }
 
 
-    /**
-     * 连接TestCase的外键
-     */
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TESTCASE_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
-    @JSONField(serialize = false)
-    private TestCase testCase;
-    public TestCase getTestCase() {
-        return testCase;
-    }
-
-    public void setTestCase(TestCase testCase) {
-        this.testCase = testCase;
-    }
 }

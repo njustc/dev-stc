@@ -82,26 +82,37 @@ export default class TestReportListComponent extends Component {
     /*table列设置*/
     columns = [{
         title:"项目编号",
-        // dataIndex:"pid",
+        dataIndex:"code",
         // sorter:(a, b) => a.pid - b.pid,
     }, {
         title:"测试报告ID",
-        dataIndex:"id",
+        dataIndex:"testReport",
+        key:"id",
         //width: '25%',
-        sorter:(a, b) => a.id - b.id,
+        render:(testReport) => {
+            return testReport.id?testReport.id:"未填写";
+        }
     }, {
         title:"项目名称",
-        dataIndex:"name",
+        dataIndex:"consign",
+        key:"name",
+        render:(consign) => {
+            let consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+            return consignBody.softwareName?consignBody.softwareName:"未填写";
+        }
     }, {
-        title:"报告人名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        // dataIndex:"createdUserId",
+        title: "报告人", /*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex: "testReport.createdUserName",
+        key: "createdUserName",
+        render: (name) => name ? name : "无"
     }, {
         title:"状态",
-        dataIndex:"state",
-        render: (/*status*/state) =>{
+        dataIndex:"testReport",
+        key:"state",
+        render: (testReport) =>{
             return (
                 <span>
-                    <Badge status={this.state2SColor(state)} text={this.state2C(state)} />
+                    <Badge status={this.state2SColor(testReport.state)} text={this.state2C(testReport.state)} />
                 </span>
             )
             /*return (
@@ -127,7 +138,7 @@ export default class TestReportListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"id",
+        dataIndex:"testReport.id",
         key:"operation",
         //width: '12%',
         render: (record) => {

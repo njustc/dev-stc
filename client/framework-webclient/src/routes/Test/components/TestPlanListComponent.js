@@ -79,7 +79,7 @@ export default class TestPlanListComponent extends Component {
     /*table列设置*/
     columns = [{
         title:"项目编号",
-        // dataIndex:"pid",
+        dataIndex:"code",
         // sorter:(a, b) => a.pid - b.pid,
     }/*, {
         title:"测试方案ID",
@@ -87,13 +87,21 @@ export default class TestPlanListComponent extends Component {
         sorter:(a, b) => a.id - b.id,
     }*/, {
         title:"项目名称",
-        dataIndex:"name",
+        dataIndex:"consign.consignation",
+        key:"name",
+        render:(consignation) => {
+            let consignBody = consignation?JSON.parse(consignation):{};
+            return consignBody.softwareName?consignBody.softwareName+"测试项目合同":"未填写";
+        },
     }, {
-        title:"编制人",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        //dataIndex:"customerId",
+        title: "编制人", /*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex: "testPlan.createdUserName",
+        key: "writer",
+        render: (name) => name ? name : "无"
     }, {
         title:"状态",
-        dataIndex:"state",
+        dataIndex:"testPlan.state",
+        key: "state",
         render: (status) =>{
             return (
                 <span>
@@ -119,16 +127,16 @@ export default class TestPlanListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"id",
+        dataIndex:"testPlan.id",
         key:"operation",
-        render: (record) => {
+        render: (id) => {
             /*TODO*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewContent(id)}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
-                       onClick={this.showDeleteConfirm(record)}>删除测试方案</a>
+                       onClick={this.showDeleteConfirm(id)}>删除测试方案</a>
                 </div>
             )
         }

@@ -8,7 +8,7 @@ const REMOVE_TAB = 'Layout/REMOVE_TAB';
 
 const initialState = {
     panes: [],
-    activeKey: mainKey,
+    activeKey: "",
 };
 
 const  containsPane = (key, panes) => {
@@ -56,7 +56,7 @@ export const LayoutReducer = (state = initialState, action) =>{
                 activeKey = panes[0].key;
             }
             else {
-                activeKey = mainKey;
+                activeKey = "";
             }
             return {
                 panes: panes,

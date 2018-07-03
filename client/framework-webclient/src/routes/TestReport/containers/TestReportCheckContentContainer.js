@@ -13,12 +13,12 @@ const mapStateToProps = (state, ownProps) => {
     const body = content?content.body:undefined;
 
     const isEditVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
-    const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Write')!==-1:
-        content.operation.findIndex(element => element === 'Write')!==-1);
-    console.log(content.operation);
-    const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
-    const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ApprovePass')!==-1;
-    const isSendVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Send')!==-1;
+    // const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Write')!==-1:
+    //     content.operation.findIndex(element => element === 'Write')!==-1);
+    // console.log(content.operation);
+    // const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
+    // const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ApprovePass')!==-1;
+    // const isSendVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Send')!==-1;
 
     return {
         // testReportCheckCheckData: {},/*fetch data with pro id*/
@@ -34,10 +34,10 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
-const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible,isSendVisible,isConfirmVisible) => [{
+const buttonsEnable = (isEditVisible/*,isSubmitVisible,isReviewVisible,isSendVisible,isConfirmVisible*/) => [{
     content: '保存',
-    enable: isEditVisible&&isSubmitVisible,
-},{
+    enable: isEditVisible,/*&&isSubmitVisible,*/
+}/*,{
     content: '提交',
     enable: isSubmitVisible,
 },{
@@ -55,7 +55,7 @@ const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible,isSendVisib
 },{
     content: "拒绝",
     enable: isConfirmVisible,
-}
+}*/
 ];
 
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
@@ -72,7 +72,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
             else message.error('保存失败');
         });
     }
-},{
+}/*,{
     content: '提交',
     onClick: (testReportCheckData,testReportCheck) =>{
         console.log(testReportCheckData);
@@ -170,7 +170,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
             else message.error('拒绝失败');
         });
     }
-}];
+}*/];
 
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {

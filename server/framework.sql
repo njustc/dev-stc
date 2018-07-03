@@ -43,6 +43,8 @@ CREATE TABLE `tbl_sys_consigns`(
   `ALTERED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
 
 
   `TESTTYPE` text COLLATE utf8_bin DEFAULT NULL,
@@ -127,7 +129,9 @@ CREATE TABLE `tbl_sys_contracts`(
   `CREATED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `ALTERED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
+  `USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -148,7 +152,9 @@ CREATE TABLE `tbl_sys_projects` (
   `TESTREPORT_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `TESTREPORTCHECK_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `TESTWORKCHECK_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `TESTPLAN_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
+  `TESTPLAN_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -164,7 +170,9 @@ CREATE TABLE `tbl_sys_testreports`(
   `ALTERED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `PROCESS_INSTANCE_ID` varchar(255) COLLATE  utf8_bin DEFAULT NULL,
-  `BODY` text COLLATE utf8_bin DEFAULT NULL
+  `BODY` text COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -182,7 +190,10 @@ CREATE TABLE `tbl_sys_testrecords`(
   `BODY` text COLLATE utf8_bin DEFAULT NULL,
   `PROJECT_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `PROCESS_INSTANCE_ID` varchar(255) COLLATE  utf8_bin DEFAULT NULL,
-  `TESTCASE_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
+  `TESTCASE_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL
+>>>>>>> 2abce1ac1360bc6aeb55175d63ce0a3dfc322173
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -210,7 +221,7 @@ CREATE TABLE `tbl_sys_testcases`(
   `DESIGNERNAME` text COLLATE  utf8_bin DEFAULT NULL,
   `TIME1` text COLLATE utf8_bin DEFAULT NULL,
   `BASIS` text COLLATE utf8_bin DEFAULT NULL,
-  `CONDITION` text COLLATE utf8_bin DEFAULT NULL,
+  `TESTCONDITION` text COLLATE utf8_bin DEFAULT NULL,
   `ACRESULT` text COLLATE utf8_bin DEFAULT NULL,
   `SAMERESULT` text COLLATE utf8_bin DEFAULT NULL,
   `CASEEXECUTOR` text COLLATE utf8_bin DEFAULT NULL,
@@ -221,7 +232,9 @@ CREATE TABLE `tbl_sys_testcases`(
   `BUGCONDITION` text COLLATE utf8_bin DEFAULT NULL,
   `BUGPATH` text COLLATE utf8_bin DEFAULT NULL,
   `TIME3` text COLLATE utf8_bin DEFAULT NULL,
-  `REVSUG` text COLLATE utf8_bin DEFAULT NULL
+  `REVSUG` text COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -238,7 +251,9 @@ CREATE TABLE `tbl_sys_testbugs`(
   `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `PROCESS_INSTANCE_ID` varchar(255) COLLATE  utf8_bin DEFAULT NULL,
   `PROJECT_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `BODY` text COLLATE utf8_bin DEFAULT NULL
+  `BODY` text COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -255,7 +270,9 @@ CREATE TABLE `tbl_sys_testfunctions`(
   `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `PROCESS_INSTANCE_ID` varchar(255) COLLATE  utf8_bin DEFAULT NULL,
   `PROJECT_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `BODY` text COLLATE utf8_bin DEFAULT NULL
+  `BODY` text COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -271,7 +288,9 @@ CREATE TABLE `tbl_sys_testplans`(
   `ALTERED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `PROCESS_INSTANCE_ID` varchar(255) COLLATE  utf8_bin DEFAULT NULL,
   `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `BODY` text COLLATE utf8_bin DEFAULT NULL
+  `BODY` text COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -287,7 +306,9 @@ CREATE TABLE `tbl_sys_testreportchecks`(
   `ALTERED_TIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `ALTERED_USER_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `PROCESS_INSTANCE_ID` varchar(255) COLLATE  utf8_bin DEFAULT NULL,
-  `BODY` text COLLATE utf8_bin DEFAULT NULL
+  `BODY` text COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -310,7 +331,9 @@ CREATE TABLE `tbl_sys_testworkchecks`(
   `FCENDTIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `TESTWORKER` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `PROCESS_INSTANCE_ID` varchar(255) COLLATE  utf8_bin DEFAULT NULL,
-  `ACENDTIME` varchar(255) COLLATE utf8_bin DEFAULT NULL
+  `ACENDTIME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `tbl_sys_organization` (
@@ -323,7 +346,9 @@ CREATE TABLE `tbl_sys_organization` (
   `organization_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `parent_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8_bin DEFAULT NULL
+  `description` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `created_user_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `altered_user_name` varchar(255) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 ALTER TABLE `tbl_sys_organization`
@@ -365,6 +390,8 @@ CREATE TABLE `tbl_sys_functions` (
   `created_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `altered_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `altered_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `FUNCTION_TYPE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `FUNCTION_OBJECT` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -431,6 +458,8 @@ CREATE TABLE `tbl_sys_roles` (
   `code` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `created_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `created_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ALTERED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `role_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -524,6 +553,8 @@ CREATE TABLE `tbl_sys_users` (
   `altered_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `created_time` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `created_user_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `created_user_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `altered_user_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `salt` varchar(255) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

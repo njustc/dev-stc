@@ -27,6 +27,7 @@ export default class ContractListComponent extends Component {
 
     componentDidMount() {
         this.props.getContractList();
+        this.props.getProjectList();
     }
 
     /*搜索框选项相关*/
@@ -80,11 +81,11 @@ export default class ContractListComponent extends Component {
     /*table列设置*/
     columns = [{
         title:"项目编号",
-        dataIndex:"processInstanceID",
+        dataIndex:"code",
         //width: '25%',
         //sorter:(a, b) => a.processInstanceID - b.processInstanceID,
-        render:(processInstanceID,record)=>{
-            return (<a href="javascript:void(0);" onClick={this.viewProject(record)}>{processInstanceID}</a>)
+        render:(code,record)=>{
+            return (<a href="javascript:void(0);" onClick={this.viewProject(record.id)}>{code}</a>)
         }
     },/*{
         title:"合同ID",
@@ -93,16 +94,31 @@ export default class ContractListComponent extends Component {
         sorter:(a, b) => a.id - b.id,
     },*/ {
         title:"合同名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"name",
+        dataIndex:"consign.consignation",
+        key:"name",
+        render:(consignation) => {
+            let consignBody = consignation?JSON.parse(consignation):{};
+            return consignBody.softwareName?consignBody.softwareName+"测试项目合同":"未填写";
+        },
     }, {
-        title:"委托人单位",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        //dataIndex:"createdUserId",
+        title:"委托单位",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex:"consign.consignation",
+        key:"unit",
+        render:(consignation) => {
+            let consignBody = consignation?JSON.parse(consignation):{};
+            return consignBody.consignUnitC?consignBody.consignUnitC:"未填写";
+        }
     },{
         title:"合同金额",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        //dataIndex:"createdUserId",
+        dataIndex:"contract.contractBody",
+        key:"fee",
+        render:(contractBodyString) => {
+            let contractBody = contractBodyString?JSON.parse(contractBodyString):{};
+            return contractBody.testFee?contractBody.testFee:"未填写";
+        }
     }, {
         title:"状态",
-        dataIndex:"state",
+        dataIndex:"contract.state",
         render: (state) =>{
             return (
                 <span>
@@ -127,18 +143,18 @@ export default class ContractListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"id",
+        dataIndex:"contract.id",
         key:"operation",
         //width: '12%',
-        render: (record) => {
+        render: (id) => {
             /*TODO:操作应该由后台传过来*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewContent(id)}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
                        //disabled={!this.props.enableNew}
-                       onClick={this.showDeleteConfirm(record)}>取消合同</a>
+                       onClick={this.showDeleteConfirm(id)}>取消合同</a>
                 </div>
             )
         }
@@ -146,17 +162,17 @@ export default class ContractListComponent extends Component {
     ];
 
     /*查看详情*/
-    viewContent = (record) => () => {
-        this.props.showContent(record);
+    viewContent = (id) => () => {
+        this.props.showContent(id);
     };
 
-    viewProject = (record) => () => {
+    viewProject = (id) => () => {
         /*TODO:查看项目详情*/
-        this.props.showProject(record.processInstanceID);
+        this.props.showProject(id);
     }
 
     /*取消委托提示框*/
-    showDeleteConfirm = (record) => () => {
+    showDeleteConfirm = (id) => () => {
         confirm({
             title: '您确定要取消当前合同吗?',
             //content: 'Some descriptions',
@@ -168,7 +184,7 @@ export default class ContractListComponent extends Component {
                 //debugger;
                 //this.deleteContract(id);
                 /*TODO 取消合同的函数的参数需要优化*/
-                this.props.deleteContract(record);
+                this.props.deleteContract(id);
             },
             onCancel() {},
         });

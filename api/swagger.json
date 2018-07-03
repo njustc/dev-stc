@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "南大测试 REST API",
-    "version": "2.0.2",
+    "version": "2.1.1",
     "title": "南大测试 REST API 接口说明",
     "termsOfService": "http://swagger.io/terms/",
     "license": {
@@ -124,7 +124,7 @@
           "consign"
         ],
         "summary": "查询委托",
-        "description": "用户为工作人员时，返回所有委托；用户为客户时，返回该客户的委托",
+        "description": "用户为工作人员时，返回所有委托；用户为客户时，返回该客户的委托；分为根据用户查询和根据projectID查询，在参数中加入projectID时查询该project里的consign，没有时查询用户所有的consign",
         "operationId": "queryConsigns",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -146,6 +146,13 @@
             "description": "摘要。登录时由后台传入，用以身份验证",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "projectID",
+            "in": "query",
+            "description": "project的ID",
+            "type": "string",
+            "required": false
           }
         ],
         "responses": {
