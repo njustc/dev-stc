@@ -108,7 +108,7 @@ public class TestPlanService extends BaseService<TestPlan> {
         project.setTestPlan(testPlan);
         projectRepository.save(project);
 
-        //set project in test plan,TODO:考虑user是否为project.getUser()
+        //set project in test plan,
         testPlan.setProject(project);
         this.saveEntity(testPlan, user);
 

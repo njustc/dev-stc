@@ -94,7 +94,7 @@ public class ProjectService extends BaseService<Project>{
           project.setProcessInstanceID(processInstanceID);
          */
 
-        this.saveEntity(project, consign.getUser());
+        this.saveEntity(project, user);
         project = projectRepository.findById(uid);
         return processProject(project);
     }
