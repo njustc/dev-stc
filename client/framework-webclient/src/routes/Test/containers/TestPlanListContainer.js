@@ -9,7 +9,8 @@ import TestPlanListComponent from "../components/TestPlanListComponent";
 
 const mapStateToProps = (state) => {
     return {
-        dataSource: Object.values(state.TestPlan.listMap).filter(state.TestPlan.listFilter),
+        // dataSource: Object.values(state.TestPlan.listMap).filter(state.TestPlan.listFilter),
+        dataSource: Object.values(state.Project.listMap).filter(project => project.testPlan).filter(state.TestPlan.listFilter),
     }
 };
 
