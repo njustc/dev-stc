@@ -123,8 +123,8 @@ export default class ProjectListComponent extends Component {
                 Process:"Contract",
                 State: STATE.CANCELED
             }
-            this.props.getProjectState(record.id,state);
-            //console.log(state);
+            this.props.getProjectState(record.id,this.getState(record.id));
+            console.log(record.id);
             return (
                 <span>
                     <Badge status={this.state2SColor(state.State)} text={this.state2C(state)} />
@@ -154,6 +154,10 @@ export default class ProjectListComponent extends Component {
         }
     }
     ];
+
+    getState(id){
+
+    }
 
     /*查看详情*/
     viewContent = (record) => () => {

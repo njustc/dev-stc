@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
         setListFilter: (listFilter) => dispatch(setProjectFilter(listFilter)),
         getProjectList: () => getProjectList(dispatch),
         deleteProject: (id) => deleteProject(dispatch,id),
-        getProjectState: (id,state) => getProjectState(dispatch,id,(state) => {console.log(state);}),
+        getProjectState: (id,callback) => getProjectState(dispatch,id,/*(state) => {console.log(state);}*/callback),
     }
 };
 
