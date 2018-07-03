@@ -75,6 +75,7 @@ export const getTestWorkCheckState = (dispatch, ProjectID, callback) => {
 
 export const putTestWorkCheckState = (dispatch, processInstanceID, data, id, callback) => {
     console.log("ID = " + processInstanceID);
+    console.log(data);
     httpPut(testWorkCheckActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
         console.log(result);

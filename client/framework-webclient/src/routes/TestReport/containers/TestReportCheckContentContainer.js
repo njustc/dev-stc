@@ -30,7 +30,7 @@ const mapStateToProps = (state, ownProps) => {
         /*buttonDisabled: authData.functionGroup["TestReportCheck"]===undefined ||authData.functionGroup["TestReportCheck"].findIndex(element => element === "EDIT")===-1
             ? state.TestReportCheck.listMap[ownProps.id].state==="TobeSubmit"||state.TestReportCheck.listMap[ownProps.id].state==="Finished"
             : state.TestReportCheck.listMap[ownProps.id].state==="TobeReview"||state.TestReportCheck.listMap[ownProps.id].state==="Finished"*/
-        buttonsEnable: buttonsEnable(isEditVisible,isSubmitVisible,isReviewVisible,isSendVisible,isConfirmVisible),
+        buttonsEnable: buttonsEnable(isEditVisible/*,isSubmitVisible,isReviewVisible,isSendVisible,isConfirmVisible*/),
     }
 };
 
@@ -62,6 +62,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
     content: '保存',
     onClick: (testReportCheckData,testReportCheck) =>{
         console.log(testReportCheck);
+        console.log(testReportCheckData);
         const valueData = {
             id: testReportCheckData.id,
             body: testReportCheck
