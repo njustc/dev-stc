@@ -1,6 +1,7 @@
 package com.sinosteel.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "TBL_SYS_PROJECTS")
 public class Project extends BaseEntity {
+
 
     /**
      * 该Project对应的用户
@@ -31,12 +33,18 @@ public class Project extends BaseEntity {
 
     @JSONField(name = "username")
     public String getUserNAME(){
-        return user.getUsername();
+        if(user!=null)
+            return user.getUsername();
+        else
+            return "";
     }
 
     @JSONField(name = "userID")
     public String getUserId(){
-        return user.getId();
+        if(user!=null)
+            return user.getId();
+        else
+            return "";
     }
 
 
