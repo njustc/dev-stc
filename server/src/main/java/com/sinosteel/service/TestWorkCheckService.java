@@ -147,6 +147,8 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
         //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testWorkCheck));
         //jsonObject.put("state", processState);
+        if (testWorkCheck.getProject() != null)
+            jsonObject.put("projectID", testWorkCheck.getProject().getId());
         return jsonObject;
 
     }

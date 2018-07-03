@@ -94,10 +94,20 @@ export default class ProjectListComponent extends Component {
         //sorter:(a, b) => a.id - b.id,
     }*/, {
         title:"项目名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"name",
+        dataIndex:"consign",
+        key:"name",
+        render: (consign) => {
+            let consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+            return consignBody.softwareName?consignBody.softwareName+"测试项目":"未填写";
+        }
     }, {
         title:"委托单位",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"username",
+        dataIndex:"consign",
+        key:"unit",
+        render: (consign) => {
+            let consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+            return consignBody.consignUnitC?consignBody.consignUnitC:"未填写";
+        },
     }, {
         title:"创建日期",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
         dataIndex:"createdTime",

@@ -149,10 +149,12 @@ public class TestReportService extends BaseService<TestReport>{
     }
 
     //Todo: 增加测试报告状态
-    private  JSONObject processTestReport(TestReport testReport) throws Exception{
+    JSONObject processTestReport(TestReport testReport) throws Exception{
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(testReport));
         JSONObject processState = processInstanceService.queryProcessState(testReport.getProcessInstanceID());
         jsonObject.putAll(processState);
+        if (testReport.getProject() != null)
+            jsonObject.put("projectID", testReport.getProject().getId());
         return jsonObject;
     }
 }

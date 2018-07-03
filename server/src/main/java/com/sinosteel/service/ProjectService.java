@@ -4,9 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
-import com.sinosteel.domain.Consign;
-import com.sinosteel.domain.Project;
-import com.sinosteel.domain.User;
+import com.sinosteel.domain.*;
 import com.sinosteel.repository.ConsignRepository;
 import com.sinosteel.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,7 @@ import java.util.UUID;
 /**
  * *@author LBW&SQW
  */
-
+//TODO: 并发修改同一project的时候，可能会出问题.
 @Service
 public class ProjectService extends BaseService<Project>{
 
@@ -30,7 +28,24 @@ public class ProjectService extends BaseService<Project>{
     private ProcessInstanceService processInstanceService;
 
     @Autowired
+    private ConsignService consignService;
+    @Autowired
     private ConsignRepository consignRepository;
+
+    @Autowired
+    private ContractService contractService;
+    @Autowired
+    private TestCaseService testCaseService;
+    @Autowired
+    private TestFunctionService testFunctionService;
+    @Autowired
+    private TestPlanService testPlanService;
+    @Autowired
+    private TestReportService testReportService;
+    @Autowired
+    private TestReportCheckService testReportCheckService;
+    @Autowired
+    private TestWorkCheckService testWorkCheckService;
 
     //根据用户查询工程
     public JSON queryProjects(User user) throws Exception{
@@ -106,6 +121,38 @@ public class ProjectService extends BaseService<Project>{
         if(project == null) {
             throw new Exception("can't find project by id : " + uid);
         }
+        //delete all entities in the project.
+        Contract contract = project.getContract();
+        if (contract != null) {
+            contractService.deleteEntity(contract.getId());
+        }
+        List<TestCase> testCases = project.getTestCase();
+        if (testCases != null) {
+            for (TestCase testCase: testCases)
+                testCaseService.deleteEntity(testCase.getId());
+        }
+        List<TestFunction> testFunctions = project.getTestFunctions();
+        if (testFunctions != null) {
+            for (TestFunction testFunction: testFunctions)
+                testFunctionService.deleteEntity(testFunction.getId());
+        }
+        TestPlan testPlan = project.getTestPlan();
+        if (testPlan != null) {
+            testPlanService.deleteEntity(testPlan.getId());
+        }
+        TestReportCheck testReportCheck = project.getTestReportCheck();
+        if (testReportCheck != null) {
+            testReportCheckService.deleteEntity(testReportCheck.getId());
+        }
+        TestReport testReport = project.getTestReport();
+        if (testReport != null) {
+            testReportService.deleteEntity(testReport.getId());
+        }
+        TestWorkCheck testWorkCheck = project.getTestWorkCheck();
+        if (testWorkCheck != null) {
+            testWorkCheckService.deleteEntity(testWorkCheck.getId());
+        }
+
         this.deleteEntity(uid);
     }
 
@@ -114,20 +161,35 @@ public class ProjectService extends BaseService<Project>{
         //去掉工程内容，添加工程状态
         for (Project project: projects) {
             JSONObject jsonObject = processProject(project);
-            //String processState = (String) processInstanceService.queryProcessState(project.getProcessInstanceID()).get("state");
-            //jsonObject.put("state", processState);
             resultArray.add(jsonObject);
         }
         return resultArray;
     }
 
-    // 增加客户姓名，客户ID. Maybe TODO:增加状态
+    // 增加客户姓名，客户ID. MaybeTODO:增加状态
     private JSONObject processProject(Project project) throws Exception {
-        //String processState = (String) processInstanceService.queryProcessState(project.getProcessInstanceID()).get("state");
+        Consign consign = project.getConsign();
+        Contract contract = project.getContract();
+        TestPlan testPlan = project.getTestPlan();
+        TestReport testReport = project.getTestReport();
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(project));
         //jsonObject.put("username", project.getUser().getUsername());
         //jsonObject.put("userID", project.getUser().getId());
         //jsonObject.put("state",processState);
+
+        //process all entities.
+        if (consign != null) {
+            jsonObject.put("consign", consignService.processConsign(consign));
+        }
+        if (contract != null) {
+            jsonObject.put("contract", contractService.processContract(contract));
+        }
+        if (testPlan != null) {
+            jsonObject.put("testPlan", testPlanService.processTestPlan(testPlan));
+        }
+        if (testReport != null) {
+            jsonObject.put("testReport", testReportService.processTestReport(testReport));
+        }
         return jsonObject;
     }
 }
