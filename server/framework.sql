@@ -193,7 +193,6 @@ CREATE TABLE `tbl_sys_testrecords`(
   `TESTCASE_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `CREATED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `ALTERED_USER_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL
->>>>>>> 2abce1ac1360bc6aeb55175d63ce0a3dfc322173
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 

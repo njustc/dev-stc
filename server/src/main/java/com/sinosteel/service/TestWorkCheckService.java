@@ -86,6 +86,7 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
         }
         //编辑测试结果时只编辑内容
         //testWorkCheck = temptestWorkCheck;
+        testWorkCheck.setBody(temptestWorkCheck.getBody());
         testWorkCheck.setVersion(temptestWorkCheck.getVersion());
         testWorkCheck.setAcendtime(temptestWorkCheck.getAcendtime());
         testWorkCheck.setClient(temptestWorkCheck.getClient());
