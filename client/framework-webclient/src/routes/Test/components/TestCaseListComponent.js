@@ -75,45 +75,22 @@ export default class TestCaseListComponent extends Component {
     /*table列设置*/
     columns = [{
         title:"项目编号",
-        // dataIndex:"pid",
+        dataIndex:"code",
         // sorter:(a, b) => a.pid - b.pid,
     }, {
         title:"项目名称",
-        dataIndex:"name",
+        dataIndex:"consign",
+        key:"name",
+        render:(consign) => {
+            let consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+            return consignBody.softwareName?consignBody.softwareName:"未填写";
+        }
     }, {
         title:"测试用例数",
-        // dataIndex:"id",
+        dataIndex:"testCase",
+        render:(testCase) => testCase.length
         // sorter:(a, b) => a.id - b.id,
-    }, {
-        title:"测试用例设计者",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        // dataIndex:"customerId",
-    }, {
-        title:"状态",
-        dataIndex:"state",
-        render: (status) =>{
-            return (
-                <span>
-                    <Badge status={this.state2SColor(status)} text={this.state2C(status)} />
-                </span>
-            )
-        },
-        /*TODO 给状态列加个过滤*/
-        /*
-        filters: [{
-            text: '待提交',
-            value: 'TobeSubmit',
-        }, {
-            text: '待审核',
-            value: 'TobeCheck',
-        }, {
-            text: '已通过',
-            value: 'Finished',
-        }],
-        filterMultiple: false,*/
-        // specify the condition of filtering result
-        // here is that finding the name started with `value`
-        //onFilter: (value, record) => record.state.indexOf(value) === 0,
-    }, {
+    },{
         title:"操作",
         dataIndex:"id",
         key:"operation",

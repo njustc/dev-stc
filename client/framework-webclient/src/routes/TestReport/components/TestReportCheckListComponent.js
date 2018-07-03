@@ -76,25 +76,34 @@ export default class TestReportCheckListComponent extends Component {
     /*table列设置*/
     columns = [{
         title:"项目编号",
-        // dataIndex:"pid",
+        dataIndex:"code",
         // sorter:(a, b) => a.pid - b.pid,
     }, {
         title:"报告检查ID",
-        // dataIndex:"id",
+        dataIndex:"testReportCheck",
+        key:"id",
+        render:(testReportCheck) => testReportCheck.id?testReportCheck.id:"未填写"
         // sorter:(a, b) => a.id - b.id,
     }, {
         title:"项目名称",
-        dataIndex:"name",
+        dataIndex:"consign",
+        key:"name",
+        render:(consign) => {
+            let consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+            return consignBody.softwareName?consignBody.softwareName:"未填写";
+        }
     }, {
-        title:"检查人名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        // dataIndex:"customerId",
+        title:"检查人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex:"testReportCheck",
+        key:"createdUserId",
+        render:(testReportCheck) => testReportCheck.createdUserId?testReportCheck.createdUserId:"未填写"
     }, {
         title:"状态",
-        dataIndex:"status",
-        render: (status) =>{
+        dataIndex:"state",
+        render: (state) =>{
             return (
                 <span>
-                    <Badge status={this.state2SColor(status)} text={this.state2C(status)} />
+                    <Badge status={this.state2SColor(state)} text={this.state2C(state)} />
                 </span>
             )
         },

@@ -9,13 +9,13 @@ export const STATUS = {
 
 export const STATE = {
     TO_WRITE: 'TobeWrite',
-    TO_SUBMIT: 'TobeSubmit',
-    TO_REVIEW: 'TobeReview',
-    TO_CONFIRM: 'TobeConfirm',
-    CANCELED: 'Canceled',
-    FINISHED: 'Finished',
-    TO_IMPLEMENT: 'TobeImplement',
-    TO_APPROVE: 'TobeApprove',
-    TO_SEND: 'TobeSend',
-    SATISFACTION: 'Satisfaction',
+    TO_SUBMIT: 'TobeSubmit',    //待提交
+    TO_REVIEW: 'TobeReview',    //待评审
+    TO_CONFIRM: 'TobeConfirm',  //待确认
+    CANCELED: 'Canceled',   //已取消
+    FINISHED: 'Finished',   //已完成
+    TO_IMPLEMENT: 'TobeImplement',  //待实施
+    TO_APPROVE: 'TobeApprove',  //待批准
+    TO_SEND: 'TobeSend',    //待发放
+    SATISFACTION: 'Satisfaction',   //已完成
 };
