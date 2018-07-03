@@ -2,7 +2,7 @@ import React, {Component,PropTypes} from 'react';
 import {connect} from "react-redux";
 import {addTabAction} from "MODULES/ducks/Layout";
 import {ProjectContentView} from "../../Project";
-import {deleteProject, getProjectList} from "../../../services/ProjectService";
+import {deleteProject, getProjectList, getProjectState} from "../../../services/ProjectService";
 import {setProjectFilter} from "../../../modules/ducks/Project";
 import ProjectListComponent from "../components/ProjectListComponent";
 
@@ -26,6 +26,7 @@ const mapDispatchToProps = (dispatch) => {
         setListFilter: (listFilter) => dispatch(setProjectFilter(listFilter)),
         getProjectList: () => getProjectList(dispatch),
         deleteProject: (id) => deleteProject(dispatch,id),
+        getProjectState: (id,callback) => getProjectState(dispatch,id,/*(state) => {console.log(state);}*/callback),
     }
 };
 
