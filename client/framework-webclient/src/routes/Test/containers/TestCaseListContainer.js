@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //console.log(state.Consign.listMap);
     return {
-        dataSource: Object.values(state.TestCase.listMap).filter(state.TestCase.listFilter),
+        dataSource: Object.values(state.Project.listMap).filter((project) => project.testCase).filter(state.TestCase.listFilter),
         //enableNew: authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "ADD")!==-1
     }
 };
