@@ -90,9 +90,6 @@ export default class TestCaseListComponent extends Component {
         dataIndex:"testCase",
         render:(testCase) => testCase.length
         // sorter:(a, b) => a.id - b.id,
-    }, {
-        title:"测试用例设计者",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        // dataIndex:"customerId",
     },{
         title:"操作",
         dataIndex:"id",
