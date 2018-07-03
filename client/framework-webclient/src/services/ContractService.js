@@ -13,6 +13,7 @@ export const getContractList = (dispatch, callback) => {
     httpGet(contractBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
+            console.log(data);
             dispatch(setContractList(data));
         }
         callback && callback(status);
@@ -24,6 +25,7 @@ export const getContract = (dispatch, id, callback) => {
        console.log(result);
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
+            console.log(data);
             dispatch(setContractContent(data));
         }
         callback && callback(status);

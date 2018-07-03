@@ -120,13 +120,13 @@ export default class TestWorkCheckListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"id",
+        dataIndex:"testWorkCheck.id",
         key:"operation",
-        render: (record) => {
+        render: (id) => {
             /*TODO*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewContent(id)}>查看详情</a>
                     {/*<Divider type="vertical"/>
                     <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>*/}
                 </div>

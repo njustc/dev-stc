@@ -138,7 +138,7 @@ export default class TestReportListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"id",
+        dataIndex:"testReport.id",
         key:"operation",
         //width: '12%',
         render: (record) => {

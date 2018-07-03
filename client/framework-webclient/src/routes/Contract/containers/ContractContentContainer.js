@@ -11,6 +11,7 @@ const mapStateToProps = (state, ownProps) => {
     //console.log(authData);
     const content = state.Contract.listMap[ownProps.id];
     const contractBody = content?content.contractBody:undefined;
+    console.log(content);
 
     const isEditVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Submit')!==-1:
@@ -152,6 +153,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
 }];
 
 const mapDispatchToProps = (dispatch,ownProps) => {
+    console.log("here");
     return {
         buttons: buttons(dispatch),
         getValues: (id) => getContract(dispatch,id)
