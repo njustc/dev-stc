@@ -77,12 +77,13 @@ export default class TestReportCheckListComponent extends Component {
     columns = [{
         title:"项目编号",
         dataIndex:"code",
+        key:"number"
         // sorter:(a, b) => a.pid - b.pid,
     }, {
         title:"报告检查ID",
-        dataIndex:"testReportCheck",
+        dataIndex:"testReportCheck.id",
         key:"id",
-        render:(testReportCheck) => testReportCheck.id?testReportCheck.id:"未填写"
+        render:(id) => id?id:"未填写"
         // sorter:(a, b) => a.id - b.id,
     }, {
         title:"项目名称",
@@ -93,13 +94,14 @@ export default class TestReportCheckListComponent extends Component {
             return consignBody.softwareName?consignBody.softwareName:"未填写";
         }
     }, {
-        title:"检查人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"testReportCheck",
-        key:"createdUserId",
-        render:(testReportCheck) => testReportCheck.createdUserId?testReportCheck.createdUserId:"未填写"
+        title:"检查人",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex:"testReportCheck.createdUserName",
+        key:"createdUserName",
+        render:(name) => name?name:"无"
     }, {
         title:"状态",
-        dataIndex:"state",
+        dataIndex:"testReportCheck.state",
+        key: "state",
         render: (state) =>{
             return (
                 <span>

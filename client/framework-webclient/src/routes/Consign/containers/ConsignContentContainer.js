@@ -119,10 +119,17 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
 
                                         newTestReportCheck(dispatch,id,(status)=>{
                                             if(status===STATUS.SUCCESS) {
-                                                message.success('报告检查书新建成功');
+                                                message.success('测试报告检查表新建成功');
 
+                                                newTestWorkCheck(dispatch,id,(status)=>{
+                                                    if(status===STATUS.SUCCESS) {
+                                                        message.success('测试工作检查表新建成功');
+                                                    }
+                                                    else
+                                                        message.error('测试工作检查表新建失败')
+                                                });
                                             }
-                                            else message.error('报告检查书');
+                                            else message.error('测试报告检查表新建失败');
                                         });
                                     }
                                     else message.error('测试报告书新建失败');

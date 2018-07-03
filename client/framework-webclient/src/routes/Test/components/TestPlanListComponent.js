@@ -94,11 +94,14 @@ export default class TestPlanListComponent extends Component {
             return consignBody.softwareName?consignBody.softwareName+"测试项目合同":"未填写";
         },
     }, {
-        title:"编制人",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        key:"writer",
+        title: "编制人", /*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex: "testPlan.createdUserName",
+        key: "writer",
+        render: (name) => name ? name : "无"
     }, {
         title:"状态",
         dataIndex:"testPlan.state",
+        key: "state",
         render: (status) =>{
             return (
                 <span>

@@ -101,12 +101,10 @@ export default class TestReportListComponent extends Component {
             return consignBody.softwareName?consignBody.softwareName:"未填写";
         }
     }, {
-        title:"报告人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"testReport",
-        key:"createdUserId",
-        render:(testReport) => {
-            return testReport.createdUserId?testReport.createdUserId:"未填写";
-        }
+        title: "报告人", /*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex: "testReport.createdUserName",
+        key: "createdUserName",
+        render: (name) => name ? name : "无"
     }, {
         title:"状态",
         dataIndex:"testReport",

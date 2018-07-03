@@ -91,6 +91,10 @@ export default class TestCaseListComponent extends Component {
         render:(testCase) => testCase.length
         // sorter:(a, b) => a.id - b.id,
     },{
+        title:"测试人",
+        dataIndex:"testCase.createdUserName",
+        render:(name) => name?name:"无"
+    },{
         title:"操作",
         dataIndex:"id",
         key:"operation",
