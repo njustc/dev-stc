@@ -208,4 +208,21 @@ public class Project extends BaseEntity {
     public void setTestPlan(TestPlan testPlan) {
         this.testPlan = testPlan;
     }
+
+
+    /**
+     * 满意度调查表
+     */
+
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "SATISFACTIONSURVEY_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
+    private SatisfactionSurvey satisfactionSurvey;
+
+    public SatisfactionSurvey getSatisfactionSurvey() {
+        return satisfactionSurvey;
+    }
+
+    public void setSatisfactionSurvey(SatisfactionSurvey satisfactionSurvey) {
+        this.satisfactionSurvey = satisfactionSurvey;
+    }
 }

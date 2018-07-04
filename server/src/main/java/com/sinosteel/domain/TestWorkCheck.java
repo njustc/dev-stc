@@ -19,6 +19,7 @@ import javax.persistence.Table;
 @Table(name = "TBL_SYS_TESTWORKCHECKS")
 public class TestWorkCheck extends BaseEntity{
 
+
     /**
      * 详细字段未定
      * 暂时先用来存储
