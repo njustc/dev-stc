@@ -68,7 +68,7 @@ export default class TestReportListComponent extends Component {
     state2C(state) {
         // debugger;
         switch (state){
-            case STATE.TO_WRITE: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_WRITE: return "待编写"/*(<a>待提交</a>)*/;
             case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.CANCELED: return "已取消";
             case STATE.TO_APPROVE: return "待批准";

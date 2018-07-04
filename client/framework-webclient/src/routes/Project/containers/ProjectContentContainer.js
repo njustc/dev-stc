@@ -20,7 +20,6 @@ import {SatisfactionContentView} from "../../Archive";
 
 /*TODO:表单内容和按钮的可视及禁用情况*/
 const mapStateToProps = (state, ownProps) => {
-    // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //const consignation = state.Project.listMap[ownProps.id].consignation;
     const projectContent = state.Project.listMap[ownProps.id];
