@@ -3,7 +3,6 @@ package com.sinosteel.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.sinosteel.activiti.ProcessInstanceService;
 import com.sinosteel.domain.Project;
 import com.sinosteel.domain.TestCase;
 import com.sinosteel.domain.User;
@@ -119,15 +118,21 @@ public class TestCaseService extends BaseService<TestCase> {
 
 
     //删除测试计划（不删除相关测试计划文件?）
-    public void deleteTestCase(JSONObject params)
+    public void deleteTestCase(JSONObject params) throws Exception
     {
         String uid=params.getString("id");
+        TestCase testCase = testCaseRepository.findById(uid);
+        if (testCase == null)
+            throw new Exception("Can't find testCase with id: " + uid);
         this.deleteEntity(uid);
     }
 
 
-    @Deprecated
+
     private JSONObject processTestCase(TestCase testCase) throws Exception {
+        JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testCase));
+        if (testCase.getProject() != null)
+            jsonObject.put("projectID", testCase.getProject().getId());
         return JSON.parseObject(JSONObject.toJSONString(testCase));
     }
 

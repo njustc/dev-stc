@@ -57,8 +57,9 @@ export default class TestPlanListComponent extends Component {
     /*状态列颜色渲染*/
     state2SColor(state) {
         switch (state){
-            case STATE.TO_SUBMIT: return "processing";
+            case STATE.TO_WRITE: return "processing";
             case STATE.TO_REVIEW: return "processing";
+            case STATE.TO_CONFIRM: return "processing";
             case STATE.CANCELED: return "default";
             default: return "error";
         }
@@ -66,31 +67,41 @@ export default class TestPlanListComponent extends Component {
 
     state2C(state) {
         switch (state){/*TODO*/
-            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_WRITE: return "待编写"/*(<a>待提交</a>)*/;
             case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
+            case STATE.TO_CONFIRM: return "待确认";
             case STATE.CANCELED: return "已取消";
+            case STATE.TO_IMPLEMENT: return "待实施";
             default: return "未定义状态";
         }
     }
 
     /*table列设置*/
     columns = [{
-        title:"项目ID",
-        dataIndex:"pid",
-        sorter:(a, b) => a.pid - b.pid,
-    }, {
+        title:"项目编号",
+        dataIndex:"code",
+        // sorter:(a, b) => a.pid - b.pid,
+    }/*, {
         title:"测试方案ID",
         dataIndex:"id",
         sorter:(a, b) => a.id - b.id,
-    }, {
+    }*/, {
         title:"项目名称",
-        dataIndex:"name",
+        dataIndex:"consign.consignation",
+        key:"name",
+        render:(consignation) => {
+            let consignBody = consignation?JSON.parse(consignation):{};
+            return consignBody.softwareName?consignBody.softwareName+"测试项目合同":"未填写";
+        },
     }, {
-        title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"customerId",
+        title: "编制人", /*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex: "testPlan.createdUserName",
+        key: "writer",
+        render: (name) => name ? name : "无"
     }, {
         title:"状态",
-        dataIndex:"status",
+        dataIndex:"testPlan.state",
+        key: "state",
         render: (status) =>{
             return (
                 <span>
@@ -116,16 +127,16 @@ export default class TestPlanListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"id",
+        dataIndex:"testPlan.id",
         key:"operation",
-        render: (record) => {
+        render: (id) => {
             /*TODO*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewContent(id)}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
-                       onClick={this.showDeleteConfirm(record)}>删除测试方案</a>
+                       onClick={this.showDeleteConfirm(id)}>删除测试方案</a>
                 </div>
             )
         }
@@ -141,7 +152,7 @@ export default class TestPlanListComponent extends Component {
     /*取消委托提示框*/
     showDeleteConfirm = (record) => () => {
         confirm({
-            title: 'Are you sure to delete this consign?',
+            title: 'Are you sure to delete this testCase?',
             //content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
@@ -151,7 +162,7 @@ export default class TestPlanListComponent extends Component {
                 //debugger;
                 //this.deleteConsign(id);
                 /*TODO 取消委托的函数的参数需要优化*/
-                this.props.deleteConsign(record);
+                this.props.deleteTestPlan(record);
             },
             onCancel() {},
         });

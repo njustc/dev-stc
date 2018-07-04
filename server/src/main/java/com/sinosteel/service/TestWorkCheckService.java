@@ -86,6 +86,7 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
         }
         //编辑测试结果时只编辑内容
         //testWorkCheck = temptestWorkCheck;
+        testWorkCheck.setBody(temptestWorkCheck.getBody());
         testWorkCheck.setVersion(temptestWorkCheck.getVersion());
         testWorkCheck.setAcendtime(temptestWorkCheck.getAcendtime());
         testWorkCheck.setClient(temptestWorkCheck.getClient());
@@ -129,10 +130,12 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
 
 
     //删除testWorkCheck
-    public void deleteTestWorkCheck(JSONObject params)
+    public void deleteTestWorkCheck(JSONObject params) throws Exception
     {
         String uid=params.getString("id");
         TestWorkCheck testWorkCheck = testWorkCheckRepository.findById(uid);
+        if (testWorkCheck == null)
+            throw new Exception("Can't find testWorkCheck with id: " + uid);
 
         Project project = testWorkCheck.getProject();
         project.setTestWorkCheck(null);
@@ -145,6 +148,8 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
         //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testWorkCheck));
         //jsonObject.put("state", processState);
+        if (testWorkCheck.getProject() != null)
+            jsonObject.put("projectID", testWorkCheck.getProject().getId());
         return jsonObject;
 
     }

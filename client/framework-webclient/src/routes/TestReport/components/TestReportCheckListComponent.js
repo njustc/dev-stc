@@ -56,45 +56,58 @@ export default class TestReportCheckListComponent extends Component {
 
     /*状态列颜色渲染*/
     state2SColor(state) {
-        switch (state){
-            case STATE.TO_SUBMIT: return "processing";
-            case STATE.TO_CHECK: return "processing";
-            case STATE.CANCELED: return "default";
-            default: return "error";
-        }
+        // switch (state){
+        //     case STATE.TO_SUBMIT: return "processing";
+        //     case STATE.TO_CHECK: return "processing";
+        //     case STATE.CANCELED: return "default";
+        //     default: return "error";
+        // }
+        return "processing";
     }
 
     state2C(state) {
-        switch (state){/*TODO*/
-            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
-            case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
-            case STATE.CANCELED: return "已取消";
-            default: return "未定义状态";
-        }
+        // switch (state){/*TODO*/
+        //     case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+        //     case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
+        //     case STATE.CANCELED: return "已取消";
+        //     default: return "未定义状态";
+        // }
+        return "可编写";
     }
 
     /*table列设置*/
     columns = [{
-        title:"项目ID",
-        dataIndex:"pid",
-        sorter:(a, b) => a.pid - b.pid,
+        title:"项目编号",
+        dataIndex:"code",
+        key:"number"
+        // sorter:(a, b) => a.pid - b.pid,
     }, {
         title:"报告检查ID",
-        dataIndex:"id",
-        sorter:(a, b) => a.id - b.id,
+        dataIndex:"testReportCheck.id",
+        key:"id",
+        render:(id) => id?id:"未填写"
+        // sorter:(a, b) => a.id - b.id,
     }, {
         title:"项目名称",
-        dataIndex:"name",
+        dataIndex:"consign",
+        key:"name",
+        render:(consign) => {
+            let consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+            return consignBody.softwareName?consignBody.softwareName:"未填写";
+        }
     }, {
-        title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"customerId",
+        title:"检查人",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex:"testReportCheck.createdUserName",
+        key:"createdUserName",
+        render:(name) => name?name:"无"
     }, {
         title:"状态",
-        dataIndex:"status",
-        render: (status) =>{
+        dataIndex:"testReportCheck.state",
+        key: "state",
+        render: (state) =>{
             return (
                 <span>
-                    <Badge status={this.state2SColor(status)} text={this.state2C(status)} />
+                    <Badge status={this.state2SColor(state)} text={this.state2C(state)} />
                 </span>
             )
         },
@@ -116,7 +129,7 @@ export default class TestReportCheckListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"id",
+        dataIndex:"testReportCheck.id",
         key:"operation",
         render: (record) => {
             /*TODO*/

@@ -5,7 +5,7 @@ import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 import {setProjectList} from "../modules/ducks/Project";
 
-const testCaseBase = baseServiceAddress + '/testCase';
+const testCaseBase = baseServiceAddress + '/v1/testCase';
 const testCaseActivitiBase = baseServiceAddress + '/processInstance';
 
 export const getTestCaseList = (dispatch, callback) => {
@@ -79,15 +79,17 @@ export const deleteTestCase = (dispatch, id, callback) => {
     });
 };
 
-/*export const newTestCase = (dispatch, callback) => {
-    httpPost(testCaseBase, {testcase:null,}, (result) => {
+export const newTestCase = (dispatch,id, callback) => {
+    const urlParams = 'projectID=' + id;
+    console.log(id);
+    httpPost(testCaseBase, {body:null,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setTestCaseContent(data));
         }
         callback && callback(status);
-    });
-};*/
+    },urlParams);
+};
 
 export const addTestCase = (dispatch, data/*, callback*/) => {
     /*httpPost(testCaseBase, {testcase:null,}, (result) => {

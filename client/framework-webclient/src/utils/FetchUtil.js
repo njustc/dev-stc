@@ -34,6 +34,7 @@ const sysFetch = (Method, url, params, callback, urlParams) => {
     let fullUrl = url + '?username=' + username + '&clientDigest=' + clientDigest;
     if(urlParams){
         fullUrl = fullUrl + '&' + urlParams;
+        console.log(fullUrl);
     }
 
 
@@ -44,6 +45,15 @@ const sysFetch = (Method, url, params, callback, urlParams) => {
     if (Method != 'GET') {
         request.body = formData;
     }
+
+    console.log(clientDigest);
+
+    //
+    if(Method == 'DELETE'){
+        console.log(fullUrl);
+        console.log(request);
+    }
+    //
 
     return fetch(fullUrl, request)
         .then((res) =>

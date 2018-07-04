@@ -16,9 +16,9 @@
     </userTask>
     <userTask id="reviewplan" name="TobeReview" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
-        <activiti:formProperty id="approval" name="Do you approve this testplan?" type="enum" required="true"/>
+        <activiti:formProperty id="reviewplanapproval" name="Do you approve this testplan?" type="enum" required="true"/>
         <activiti:formProperty id="user" name="worker" type="string" value="worker"/>
-        <!--<activiti:formProperty id="comments" name="reason about pass or reject the testplan" type="string" required="true"/>-->
+        <activiti:formProperty id="reviewplancomments" name="reason about pass or reject the testplan" type="string" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-B9400497-AA0B-4CCD-A759-562038488B21]]></modeler:editor-resource-id>
@@ -31,9 +31,9 @@
     </exclusiveGateway>
     <userTask id="confirmplan" name="TobeConfirm" activiti:candidateGroups="${WorkerId}">
       <extensionElements>
-        <activiti:formProperty id="approval" name="Do you approve this testplan?" type="enum" required="true"/>
+        <activiti:formProperty id="confirmplanapproval" name="Do you approve this testplan?" type="enum" required="true"/>
         <activiti:formProperty id="user" name="worker" type="string" value="worker"/>
-        <!--<activiti:formProperty id="comments" name="reason about pass or reject the testplan" type="String" required="true"/>-->
+        <activiti:formProperty id="confirmplancomments" name="reason about pass or reject the testplan" type="string" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-F837BA86-CC11-4FF7-B48D-96D022E57D43]]></modeler:editor-resource-id>
@@ -86,25 +86,25 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-673C7A41-BBC6-4F9C-B2AC-9A19F51EE182]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewReject'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${reviewplanapproval == 'ReviewReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f5" name="通过" sourceRef="g1" targetRef="confirmplan">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-D6128948-5F7F-4A09-AE66-4427E0B63D16]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewPass'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${reviewplanapproval == 'ReviewPass'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f10" name="不通过" sourceRef="g2" targetRef="writeplan">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-B8670296-BB27-4124-B683-26CC2A6C6AA7]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ConfirmReject'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${confirmplanapproval == 'ConfirmReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f7" name="通过" sourceRef="g2" targetRef="implementplan">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-75D85D5D-E95F-404D-A53B-C2C2C47D17B2]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ConfirmPass'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${confirmplanapproval == 'ConfirmPass'}]]></conditionExpression>
     </sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_testplan">

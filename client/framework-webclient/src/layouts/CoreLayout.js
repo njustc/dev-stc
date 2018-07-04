@@ -105,7 +105,7 @@ class CoreLayout extends Component
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" onClick={this.onClick}>
                         <Menu.Item key="1" disabled={this.props.sider["1"].disable}>
                             <Icon type="pie-chart" />
-                            <span>流程</span>
+                            <span>项目</span>
                         </Menu.Item>
                         <SubMenu
                             key="sub1"
@@ -125,8 +125,8 @@ class CoreLayout extends Component
                         >
                             <Menu.Item key="4" disabled={this.props.sider["4"].disable}>测试方案书</Menu.Item>
                             <Menu.Item key="5" disabled={this.props.sider["5"].disable}>测试用例表</Menu.Item>
-                            <Menu.Item key="6" disabled={this.props.sider["6"].disable}>测试记录表</Menu.Item>
-                            <Menu.Item key="7" disabled={this.props.sider["7"].disable}>测试问题清单</Menu.Item>
+                            <Menu.Item key="6" disabled={/*this.props.sider["6"].disable*/true}>测试记录表</Menu.Item>
+                            <Menu.Item key="7" disabled={/*this.props.sider["7"].disable*/true}>测试问题清单</Menu.Item>
                         </SubMenu>
                         <SubMenu
                             key="sub4"
@@ -140,7 +140,7 @@ class CoreLayout extends Component
                             title={<span><Icon type="smile-o" /><span>结项</span></span>}
                         >
                             <Menu.Item key="10" disabled={this.props.sider["10"].disable}>测试工作检查表</Menu.Item>
-                            <Menu.Item key="11" disabled={this.props.sider["11"].disable}>满意度调查表</Menu.Item>
+                            <Menu.Item key="11" disabled={/*this.props.sider["11"].disable*/true}>满意度调查表</Menu.Item>
                         </SubMenu>
                     </Menu>
                 </Sider>

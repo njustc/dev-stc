@@ -35,10 +35,10 @@ class BlankComponent extends Component {
 	}
 
 	render() {
-		const curUser = sessionStorage.getItem('sysUser');
-		const curAuthData = sessionStorage.getItem('authData');
-		console.log(curUser);
-		console.log(curAuthData);
+		// const curUser = sessionStorage.getItem('sysUser');
+		// const curAuthData = sessionStorage.getItem('authData');
+		// console.log(curUser);
+		// console.log(curAuthData);
 		return(
 			<div className="blank">
 				{ this.props.children }

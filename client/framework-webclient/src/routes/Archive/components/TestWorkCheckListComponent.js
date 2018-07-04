@@ -56,41 +56,47 @@ export default class TestWorkCheckListComponent extends Component {
 
     /*状态列颜色渲染*/
     state2SColor(state) {
-        switch (state){
-            case STATE.TO_SUBMIT: return "processing";
-            case STATE.TO_CHECK: return "processing";
-            case STATE.CANCELED: return "default";
-            default: return "error";
-        }
+        // switch (state){
+        //     case STATE.TO_SUBMIT: return "processing";
+        //     case STATE.TO_CHECK: return "processing";
+        //     case STATE.CANCELED: return "default";
+        //     default: return "error";
+        // }
+        return "processing";
     }
 
     state2C(state) {
-        switch (state){/*TODO*/
-            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
-            case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
-            case STATE.CANCELED: return "已取消";
-            default: return "未定义状态";
-        }
+        // switch (state){/*TODO*/
+        //     case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+        //     case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
+        //     case STATE.CANCELED: return "已取消";
+        //     default: return "未定义状态";
+        // }
+        return "可编写";
     }
 
     /*table列设置*/
     columns = [{
-        title:"项目ID",
-        dataIndex:"pid",
-        sorter:(a, b) => a.pid - b.pid,
-    }, {
-        title:"测试工作检查表ID",
-        dataIndex:"id",
-        sorter:(a, b) => a.id - b.id,
-    }, {
+        title:"项目编号",
+        dataIndex:"code",
+        // sorter:(a, b) => a.pid - b.pid,
+    },{
         title:"项目名称",
-        dataIndex:"name",
+        dataIndex:"consign",
+        key:"name",
+        render:(consign) => {
+            let consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+            return consignBody.softwareName?consignBody.softwareName:"未填写";
+        }
     }, {
-        title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"customerId",
+        title:"检查人名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex:"testWorkCheck.createdUserName",
+        key:"createdUserName",
+        render:(name) => name?name:"无"
+        // dataIndex:"customerId",
     }, {
         title:"状态",
-        dataIndex:"status",
+        dataIndex:"testWorkCheck.state",
         render: (status) =>{
             return (
                 <span>
@@ -116,13 +122,13 @@ export default class TestWorkCheckListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"id",
+        dataIndex:"testWorkCheck.id",
         key:"operation",
-        render: (record) => {
+        render: (id) => {
             /*TODO*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewContent(id)}>查看详情</a>
                     {/*<Divider type="vertical"/>
                     <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>*/}
                 </div>

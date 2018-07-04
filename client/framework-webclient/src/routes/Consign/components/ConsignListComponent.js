@@ -31,7 +31,7 @@ export default class ConsignListComponent extends Component {
 
     /*搜索框选项相关*/
     state={
-        selectOption:'id',
+        selectOption:'name',
     };
 
     onSelect = (value, option) => {
@@ -42,10 +42,10 @@ export default class ConsignListComponent extends Component {
 
     setPlaceholder = () => {
         switch (this.state.selectOption){
-            case 'id':
-                return '请输入委托ID';
-            case 'createdUserId':
-                return '请输入委托人ID';
+            // case 'id':
+            //     return '请输入委托ID';
+            // case 'createdUserId':
+            //     return '请输入委托人ID';
             case 'name':
                 return '请输入委托名称';
             default:break;
@@ -74,17 +74,30 @@ export default class ConsignListComponent extends Component {
     }
 
     /*table列设置*/
-    columns = [{
+    columns = [/*{
         title:"委托ID",
         dataIndex:"id",
         //width: '25%',
         sorter:(a, b) => a.id - b.id,
+    }, */{
+        title:"委托名称",
+        dataIndex:"consignation",
+        key:"name",
+        render:(consignation) => {
+            let consignBody = consignation?JSON.parse(consignation):{};
+            return consignBody.softwareName?consignBody.softwareName:"未填写";
+        },
     }, {
-        title:"委托名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"name",
-    }, {
-        title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"createdUserId",
+        title:"委托单位",
+        dataIndex:"consignation",
+        key:"unit",
+        render:(consignation) => {
+            let consignBody = consignation?JSON.parse(consignation):{};
+            return consignBody.consignUnitC?consignBody.consignUnitC:"未填写";
+        }
+    },{
+        title:"委托创建日期",
+        dataIndex:"createdTime",
     }, {
         title:"状态",
         dataIndex:"state",
@@ -162,10 +175,10 @@ export default class ConsignListComponent extends Component {
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
-            case 'id':
-                this.props.setListFilter((item)=>item.id.match(reg));break;
-            case 'createdUserId':
-                this.props.setListFilter((item)=>item.createdUserId.match(reg));break;
+            // case 'id':
+            //     this.props.setListFilter((item)=>item.id.match(reg));break;
+            // case 'createdUserId':
+            //     this.props.setListFilter((item)=>item.createdUserId.match(reg));break;
             case 'name':
                 this.props.setListFilter((item)=>item.name.match(reg));break;
             default:break;
@@ -178,9 +191,9 @@ export default class ConsignListComponent extends Component {
                 <h3 style={{ marginBottom: 16 }}>委托列表</h3>
                 <InputGroup>
                     <Col span={3}>
-                        <Select defaultValue="搜索委托ID" onSelect={this.onSelect}>
-                            <Option value="id">搜索委托ID</Option>
-                            <Option value="createdUserId">搜索委托人ID</Option>
+                        <Select defaultValue="搜索委托名称" onSelect={this.onSelect}>
+                            {/*<Option value="id">搜索委托ID</Option>*/}
+                            {/*<Option value="createdUserId">搜索委托人ID</Option>*/}
                             <Option value="name">搜索委托名称 </Option>
                         </Select>
                     </Col>

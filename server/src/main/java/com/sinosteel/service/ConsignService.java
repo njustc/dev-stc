@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.activiti.ProcessInstanceService;
-import com.sinosteel.activiti.TCProcessEngine;
 import com.sinosteel.domain.Consign;
+import com.sinosteel.domain.Project;
 import com.sinosteel.domain.User;
 import com.sinosteel.repository.ConsignRepository;
 import com.sinosteel.repository.ProjectRepository;
@@ -60,6 +60,17 @@ public class ConsignService extends BaseService<Consign> {
         }
     }
 
+    public JSON queryConsignsByProject(String projectID) throws Exception {
+        Project project = projectRepository.findById(projectID);
+        if (project == null) {
+            throw new Exception("can't find project by id :" + projectID);
+        }
+        Consign consign = project.getConsign();
+        if (consign == null)
+            throw new Exception("can't find consign with project: " + projectID);
+        return processConsign(consign);
+    }
+
     public JSONObject queryConsignByID(String id) throws Exception{
         Consign consign = consignRepository.findById(id);
         if (consign == null)
@@ -105,15 +116,19 @@ public class ConsignService extends BaseService<Consign> {
 
     //删除委托（不删除相关委托文件?）
 
-    public void deleteConsign(JSONObject params)
+    public void deleteConsign(JSONObject params) throws Exception
     {
         String uid=params.getString("id");
+        Consign consign = consignRepository.findById(uid);
+        if (consign == null)
+            throw new Exception("Can't find consign with id: " + uid);
+
         this.deleteEntity(uid);
     }
 
 
     //增加委托状态
-    private JSONObject processConsign(Consign consign) throws Exception {
+    JSONObject processConsign(Consign consign) throws Exception {
         JSONObject processState = processInstanceService.queryProcessState(consign.getProcessInstanceID());
 
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(consign));
@@ -122,7 +137,7 @@ public class ConsignService extends BaseService<Consign> {
 
     }
 
-    private  JSONArray processConsigns(List<Consign> consigns) throws Exception {
+    JSONArray processConsigns(List<Consign> consigns) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (Consign consign: consigns) {
             JSONObject jsonObject = processConsign(consign);

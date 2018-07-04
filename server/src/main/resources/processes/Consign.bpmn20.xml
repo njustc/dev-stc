@@ -18,9 +18,9 @@
       <extensionElements>
        <!-- <activiti:taskListener event="create"
                                class="com.sinosteel.activiti.TaskListenerlmpl"></activiti:taskListener>-->
-        <activiti:formProperty id="approval" name="Do you approve this request?" type="enum" required="true"/>
+        <activiti:formProperty id="reviewconsignapproval" name="Do you approve this request?" type="enum" required="true"/>
         <activiti:formProperty id="user" name="worker" type="string" value="worker"/>
-       <!-- <activiti:formProperty id="comments" name="reason about pass or reject the consign" type="String" required="true"/>-->
+        <activiti:formProperty id="reviewconsigncomments" name="reason about pass or reject the consign" type="string" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-BF1DA17F-62CD-42D0-8FB2-7C1AF61A3050]]></modeler:editor-resource-id>
@@ -50,13 +50,13 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-D43AE9A4-86AA-4C13-B9CF-8FAF5660FEC5]]></modeler:editor-resource-id>
       </extensionElements>
-     <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewPass'}]]></conditionExpression>
+     <conditionExpression xsi:type="tFormalExpression"><![CDATA[${reviewconsignapproval == 'ReviewPass'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f5" name="不通过" sourceRef="gate1" targetRef="submitconsign">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-4791BF60-AD89-40AA-820E-EECED7315C5F]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewReject'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${reviewconsignapproval == 'ReviewReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f3" sourceRef="reviewconsign" targetRef="gate1">
       <extensionElements>

@@ -2,7 +2,7 @@ import React, {Component,PropTypes} from 'react';
 import {connect} from "react-redux";
 import {addTabAction} from "MODULES/ducks/Layout";
 import {ProjectContentView} from "../../Project";
-import {deleteProject, getProjectList} from "../../../services/ProjectService";
+import {deleteProject, getProjectList, getProjectState} from "../../../services/ProjectService";
 import {setProjectFilter} from "../../../modules/ducks/Project";
 import ProjectListComponent from "../components/ProjectListComponent";
 
@@ -19,13 +19,14 @@ const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
             // debugger;
-            const key = '流程' + id;
-            dispatch(addTabAction(key, '流程详情', ProjectContentView, {id: id}));
+            const key = '项目' + id;
+            dispatch(addTabAction(key, '项目详情', ProjectContentView, {id: id}));
 //          dispatch(setProjectContent())
         },
         setListFilter: (listFilter) => dispatch(setProjectFilter(listFilter)),
         getProjectList: () => getProjectList(dispatch),
         deleteProject: (id) => deleteProject(dispatch,id),
+        getProjectState: (id,callback) => getProjectState(dispatch,id,/*(state) => {console.log(state);}*/callback),
     }
 };
 

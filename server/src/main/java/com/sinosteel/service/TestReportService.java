@@ -120,9 +120,11 @@ public class TestReportService extends BaseService<TestReport>{
     }
 
 
-    public void deleteTestReport(JSONObject params){
+    public void deleteTestReport(JSONObject params) throws Exception{
         String uid = params.getString("id");
         TestReport testReport = testReportRepository.findById(uid);
+        if (testReport == null)
+            throw new Exception("Can't find testReport with id: " + uid);
         //delete testReport from project
         Project project = testReport.getProject();
         project.setTestReport(null);
@@ -147,10 +149,12 @@ public class TestReportService extends BaseService<TestReport>{
     }
 
     //Todo: 增加测试报告状态
-    private  JSONObject processTestReport(TestReport testReport) throws Exception{
+    JSONObject processTestReport(TestReport testReport) throws Exception{
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(testReport));
         JSONObject processState = processInstanceService.queryProcessState(testReport.getProcessInstanceID());
         jsonObject.putAll(processState);
+        if (testReport.getProject() != null)
+            jsonObject.put("projectID", testReport.getProject().getId());
         return jsonObject;
     }
 }

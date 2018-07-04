@@ -95,7 +95,6 @@ public class ContractService extends BaseService<Contract> {
         contract.setUser(project.getUser());
 
 
-        //TODO:问一下是否是当前user还是要获取project的user
         String processInstanceID = processInstanceService.createContractProcess(params, user);
         contract.setProcessInstanceID(processInstanceID);
 
@@ -105,7 +104,7 @@ public class ContractService extends BaseService<Contract> {
 
         //set project in contract
         contract.setProject(project);
-        this.saveEntity(contract, project.getUser());
+        this.saveEntity(contract,user);
 
         contract = contractRepository.findById(uid);
         return processContract(contract);
@@ -113,10 +112,12 @@ public class ContractService extends BaseService<Contract> {
 
 
 
-    public void deleteContract(JSONObject params) {
+    public void deleteContract(JSONObject params) throws Exception{
         String uid = params.getString("id");
         //delete contract from project
         Contract contract = contractRepository.findById(uid);
+        if (contract == null)
+            throw new Exception("Can't find contract with id: " + uid);
         Project project = contract.getProject();
         project.setContract(null);
 
@@ -136,11 +137,13 @@ public class ContractService extends BaseService<Contract> {
         return resultArray;
     }
 
-    private JSONObject processContract(Contract contract) throws Exception{
+    JSONObject processContract(Contract contract) throws Exception{
         JSONObject processState = processInstanceService.queryProcessState(contract.getProcessInstanceID());
 
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(contract));
         jsonObject.putAll(processState);
+        if (contract.getProject() != null)
+            jsonObject.put("projectID", contract.getProject().getId());
         return jsonObject;
     }
 }

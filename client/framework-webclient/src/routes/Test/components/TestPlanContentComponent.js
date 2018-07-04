@@ -472,12 +472,21 @@ class TestPlanContentComponent extends Component {
 
                 {/* footer buttons */}
                 <FormItem style={{textAlign:'center'}}>
-                    {this.props.buttons.map((button, index) =>
-                        <Button onClick={this.onClick(index)}
-                                key={button.content}
-                        >
-                            {button.content}
-                        </Button>)}
+                    {this.props.buttons.map((button, index) => {
+                        let buttonCanShow = false;
+                        this.props.buttonsEnable.forEach(function(element){
+                            if(element.content === button.content && element.enable){
+                                buttonCanShow = true;
+                            }});
+                        if(buttonCanShow){
+                            return <Button
+                                //disabled={this.props.buttonDisabled}
+                                onClick={this.onClick(index)}
+                                key={button.content}>
+                                {button.content}
+                            </Button>
+                        }
+                    })}
                 </FormItem>
             </Form>
         );

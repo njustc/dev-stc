@@ -20,6 +20,7 @@ export default class ProjectListComponent extends Component {
         showContent: PropTypes.func,
         deleteProject: PropTypes.func,
         getProjectList: PropTypes.func,
+        getProjectState: PropTypes.func,
     };
 
     componentDidMount() {
@@ -39,46 +40,60 @@ export default class ProjectListComponent extends Component {
 
     setPlaceholder = () => {
         switch (this.state.selectOption){
-            case 'id':
-                return '请输入流程ID';
-            case 'createdUserId':
-                return '请输入委托人ID';
-            case 'name':
-                return '请输入名称';
+            case 'code':
+                return '请输入项目编号';
+            case 'username':
+                return '请输入委托单位名称';
+            // case 'name':
+            //     return '请输入名称';
             default:break;
         }
     };
 
     /*状态列颜色渲染*/
+    /*TODO*/
     state2SColor(state) {
         switch (state){
+            case STATE.TO_WRITE: return "processing";
             case STATE.TO_SUBMIT: return "processing";
             case STATE.TO_REVIEW: return "processing";
+            case STATE.TO_CONFIRM: return "processing";
             case STATE.CANCELED: return "default";
+            case STATE.FINISHED: return "success";
+            case STATE.TO_IMPLEMENT: return "processing";
+            case STATE.TO_APPROVE: return "processing";
+            case STATE.TO_SEND: return "processing";
+            case STATE.SATISFACTION: return "success";
             default: return "error";
         }
     }
 
     state2C(state) {
         // debugger;
-        switch (state){
-            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
-            case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
-            case STATE.CANCELED: return "已取消";
-            case STATE.FINISHED: return "已通过";
+        switch (state.State){
+            case STATE.TO_WRITE: return state.Process+"待编写";
+            case STATE.TO_SUBMIT: return state.Process+"待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_REVIEW: return state.Process+"待评审"/*(<a>待提交</a>)*/;
+            case STATE.TO_CONFIRM: return state.Process+"待确认";
+            case STATE.CANCELED: return state.Process+"已取消";
+            case STATE.FINISHED: return state.Process+"已完成";
+            case STATE.TO_IMPLEMENT: return state.Process+"待实施";
+            case STATE.TO_APPROVE: return state.Process+"待批准";
+            case STATE.TO_SEND: return state.Process+"待发放";
+            case STATE.SATISFACTION: return state.Process+"已完成";
             default: return "未定义状态";
         }
     }
 
     projectDetails(id){
-        /*TODO:显示流程摘要信息*/
+        /*TODO:显示项目摘要信息*/
         return id;
     }
 
     /*table列设置*/
     columns = [{
         title:"项目编号",
-        dataIndex:"No",
+        dataIndex:"code",
         //width: '25%',
         //sorter:(a, b) => a.id - b.id,
     }/*, {
@@ -93,40 +108,39 @@ export default class ProjectListComponent extends Component {
         //sorter:(a, b) => a.id - b.id,
     }*/, {
         title:"项目名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"name",
+        dataIndex:"consign",
+        key:"name",
+        render: (consign) => {
+            let consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+            return consignBody.softwareName?consignBody.softwareName+"测试项目":"未填写";
+        }
     }, {
-        title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"createdUserId",
+        title:"委托单位",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex:"consign",
+        key:"unit",
+        render: (consign) => {
+            let consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+            return consignBody.consignUnitC?consignBody.consignUnitC:"未填写";
+        },
+    }, {
+        title:"创建日期",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex:"createdTime",
     }, {
         title:"状态",
-        dataIndex:"state",
-        render: (/*status*/state) =>{
+        //dataIndex:"id",
+        render: (record) =>{
+            const state={
+                Process:"Contract",
+                State: STATE.CANCELED
+            }
+            this.props.getProjectState(record.id,this.getState(record.id));
+            console.log(record.id);
             return (
                 <span>
-                    <Badge status={this.state2SColor(state)} text={this.state2C(state)} />
+                    <Badge status={this.state2SColor(state.State)} text={this.state2C(state)} />
                 </span>
             )
-            /*return (
-                <span>
-                    <Badge status={this.state2SColor(status)} text={this.state2C(status)} />
-                </span>
-            )*/
         },
-        /*TODO 给状态列加个过滤*/
-        /*filters: [{
-            text: '待提交',
-            value: 'TobeSubmit',
-        }, {
-            text: '待审核',
-            value: 'TobeCheck',
-        }, {
-            text: '已通过',
-            value: 'Finished',
-        }],
-        filterMultiple: false,*/
-        // specify the condition of filtering result
-        // here is that finding the name started with `value`
-        //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
         dataIndex:"id",
@@ -151,6 +165,10 @@ export default class ProjectListComponent extends Component {
     }
     ];
 
+    getState(id){
+
+    }
+
     /*查看详情*/
     viewContent = (record) => () => {
         this.props.showContent(record);
@@ -159,7 +177,7 @@ export default class ProjectListComponent extends Component {
     /*取消委托提示框*/
     showDeleteConfirm = (record) => () => {
         confirm({
-            title: '您确定要取消当前流程吗?',
+            title: '您确定要取消当前项目吗?',
             //content: 'Some descriptions',
             okText: 'Yes',
             okType: 'danger',
@@ -182,10 +200,10 @@ export default class ProjectListComponent extends Component {
         switch (this.state.selectOption){
             case 'id':
                 this.props.setListFilter((item)=>item.id.match(reg));break;
-            case 'createdUserId':
-                this.props.setListFilter((item)=>item.createdUserId.match(reg));break;
-            case 'name':
-                this.props.setListFilter((item)=>item.name.match(reg));break;
+            case 'username':
+                this.props.setListFilter((item)=>item.username.match(reg));break;
+            // case 'name':
+            //     this.props.setListFilter((item)=>item.name.match(reg));break;
             default:break;
         }
     };
@@ -195,16 +213,19 @@ export default class ProjectListComponent extends Component {
         return (
             <div>
                 <div>
-                   流程ID： {record.id}
+                   ID： {record.id}
+                </div>
+                {/*<div>*/}
+                    {/*项目编号： {record.id}*/}
+                {/*</div>*/}
+                <div>
+                    项目创建人ID：{record.createdUserId}
                 </div>
                 <div>
-                    项目ID： {record.id}
+                    项目创建时间：{record.createdTime}
                 </div>
                 <div>
-                    委托人（用户名）：未定义{/*TODO*//*record.createdUserId*/}
-                </div>
-                <div>
-                    流程创建时间：{record.createdTime}
+                    测试用例个数：{record.testCase}
                 </div>
                 <div>
                     项目价格：¥2333
@@ -216,13 +237,13 @@ export default class ProjectListComponent extends Component {
     render() {
         return (
             <div>
-                <h3 style={{ marginBottom: 16 }}>流程列表</h3>
+                <h3 style={{ marginBottom: 16 }}>项目列表</h3>
                 <InputGroup>
                     <Col span={3}>
-                        <Select defaultValue="搜索流程ID" onSelect={this.onSelect}>
-                            <Option value="id">搜索流程ID</Option>
-                            <Option value="createdUserId">搜索委托人ID</Option>
-                            <Option value="name">搜索名称 </Option>
+                        <Select defaultValue="搜索项目ID" onSelect={this.onSelect}>
+                            <Option value="id">搜索项目ID</Option>
+                            <Option value="username">搜索委托单位</Option>
+                            {/*<Option value="name">搜索名称 </Option>*/}
                         </Select>
                     </Col>
                     <Col span={8}>

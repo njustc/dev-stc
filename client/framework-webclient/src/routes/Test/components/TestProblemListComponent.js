@@ -90,7 +90,7 @@ export default class TestProblemListComponent extends Component {
         dataIndex:"customerId",
     }, {
         title:"状态",
-        dataIndex:"status",
+        dataIndex:"state",
         render: (status) =>{
             return (
                 <span>
@@ -116,7 +116,7 @@ export default class TestProblemListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"id",
+        dataIndex:"testProblem.id",
         key:"operation",
         render: (record) => {
             /*TODO*/

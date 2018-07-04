@@ -108,7 +108,7 @@ public class TestPlanService extends BaseService<TestPlan> {
         project.setTestPlan(testPlan);
         projectRepository.save(project);
 
-        //set project in test plan,TODO:考虑user是否为project.getUser()
+        //set project in test plan,
         testPlan.setProject(project);
         this.saveEntity(testPlan, user);
 
@@ -119,10 +119,12 @@ public class TestPlanService extends BaseService<TestPlan> {
 
     //删除测试计划（不删除相关测试计划文件?）
 
-    public void deleteTestPlan(JSONObject params)
+    public void deleteTestPlan(JSONObject params) throws Exception
     {
         String uid=params.getString("id");
         TestPlan testPlan = testPlanRepository.findById(uid);
+        if (testPlan == null)
+            throw new Exception("Can't find testPlan with id: " + uid);
         //delete testplan from project
         Project project = testPlan.getProject();
         project.setTestPlan(null);
@@ -132,10 +134,12 @@ public class TestPlanService extends BaseService<TestPlan> {
     }
 
 
-    private JSONObject processTestPlan(TestPlan testPlan) throws Exception {
+    JSONObject processTestPlan(TestPlan testPlan) throws Exception {
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testPlan));
         JSONObject processState = processInstanceService.queryProcessState(testPlan.getProcessInstanceID());
         jsonObject.putAll(processState);
+        if (testPlan.getProject() != null)
+            jsonObject.put("projectID", testPlan.getProject().getId());
         return jsonObject;
 
     }

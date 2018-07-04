@@ -119,10 +119,12 @@ public class TestReportCheckService extends BaseService<TestReportCheck> {
 
 
     //删除testReportCheck
-    public void deleteTestReportCheck(JSONObject params)
+    public void deleteTestReportCheck(JSONObject params) throws Exception
     {
         String uid=params.getString("id");
         TestReportCheck testReportCheck = testReportCheckRepository.findById(uid);
+        if (testReportCheck == null)
+            throw new Exception("Can't find testReportCheck with id: " + uid);
 
         Project project = testReportCheck.getProject();
         project.setTestReportCheck(null);
@@ -132,9 +134,11 @@ public class TestReportCheckService extends BaseService<TestReportCheck> {
 
 
     //这两个函数留下用来处理testReportCheck为空的情况
-    private JSONObject processTestReportCheck(TestReportCheck testRecord) throws Exception {
+    private JSONObject processTestReportCheck(TestReportCheck testReportCheck) throws Exception {
         //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
-        JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testRecord));
+        JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testReportCheck));
+        if (testReportCheck.getProject() != null)
+            jsonObject.put("projectID", testReportCheck.getProject().getId());
         //jsonObject.put("state", processState);
         return jsonObject;
 

@@ -21,9 +21,9 @@
    <!-- <userTask id="checkcontract" name="TobeCheck" activiti:candidateGroups="${marketEmployerId},${qualityEmployerId}">-->
     <userTask id="reviewcontract" name="TobeReview" activiti:candidateGroups="${WorkerIDs}">
       <extensionElements>
-        <activiti:formProperty id="approval" name="Do you approve this Contract?" type="enum" required="true"/>
+        <activiti:formProperty id="reviewcontractapproval" name="Do you approve this Contract?" type="enum" required="true"/>
         <activiti:formProperty id="user" name="worker" type="string" value="worker"/>
-        <!--<activiti:formProperty id="comments" name="reason about pass or reject the contract" type="String" required="true"/>-->
+        <activiti:formProperty id="reviewcontractcomments" name="reason about pass or reject the contract" type="string" required="true"/>
         <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-1D47E8F1-A0ED-4383-B3FA-393923F11D77]]></modeler:editor-resource-id>
@@ -36,10 +36,9 @@
     </exclusiveGateway>
     <userTask id="confirmcontract" name="TobeConfirm" activiti:assignee="${ClientID}">
       <extensionElements>
-        <activiti:formProperty id="approval" name="Do you confirm this Contract?" type="enum" required="true"/>
+        <activiti:formProperty id="confirmcontractapproval" name="Do you confirm this Contract?" type="enum" required="true"/>
         <activiti:formProperty id="user" name="client" type="string" value="client"/>
-        <!--<activiti:formProperty id="comments" name="reason about pass or reject the contract" type="String" required="true"/>-->
-        <modeler:allow-send-email><![CDATA[true]]></modeler:allow-send-email>
+        <activiti:formProperty id="confirmcontractcomments" name="reason about pass or reject the contract" type="string" required="true"/>
         <modeler:initiator-can-complete><![CDATA[false]]></modeler:initiator-can-complete>
         <modeler:editor-resource-id><![CDATA[sid-1E977F25-65D9-4412-91E9-1029A9476267]]></modeler:editor-resource-id>
       </extensionElements>
@@ -63,7 +62,7 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-9681CAAF-6246-4CB3-8EF9-CECA5F2C9990]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ConfirmPass'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${confirmcontractapproval == 'ConfirmPass'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f11" sourceRef="confirmcontract" targetRef="g5">
       <extensionElements>
@@ -74,13 +73,13 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-F46E0096-0D62-4D47-96A3-220199B55F26]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ConfirmReject'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${confirmcontractapproval == 'ConfirmReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f13" name="不通过" sourceRef="g2" targetRef="submitcontract">
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-9907F081-2168-4C99-A2A2-BA0EFCB62E43]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewReject'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${reviewcontractapproval == 'ReviewReject'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f6" sourceRef="reviewcontract" targetRef="g2">
       <extensionElements>
@@ -91,7 +90,7 @@
       <extensionElements>
         <modeler:editor-resource-id><![CDATA[sid-93A61CD5-2AA5-4B6E-8CF8-C077BEBFF757]]></modeler:editor-resource-id>
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approval == 'ReviewPass'}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${reviewcontractapproval == 'ReviewPass'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="f1" sourceRef="start" targetRef="submitcontract">
       <extensionElements>

@@ -11,8 +11,9 @@ const mapStateToProps = (state, ownProps) => {
     //console.log(authData);
     const content = state.Contract.listMap[ownProps.id];
     const contractBody = content?content.contractBody:undefined;
+    console.log(content);
 
-    const isEditVisible = authData.functionGroup["Consign"]!==undefined||authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
+    const isEditVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Submit')!==-1:
         content.operation.findIndex(element => element === 'Submit')!==-1);
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
@@ -34,7 +35,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
     content: '保存',
-    enable: isEditVisible,
+    enable: isEditVisible&&isSubmitVisible,
 },{
     content: '提交',
     enable: isSubmitVisible,
@@ -53,7 +54,7 @@ const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible,isConfirmVi
 }
 ];
 
-const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/*TODO:buttons的显示和禁用还存在问题*/
+const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
     onClick: (contractData,contract) =>{
         console.log(contract);
@@ -66,8 +67,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             if(status===STATUS.SUCCESS) message.success('保存成功');
             else message.error('保存失败');
         });
-    },
-    enable: isEditVisible
+    }
 },{
     content: '提交',
     onClick: (contractData,contract) =>{
@@ -92,8 +92,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
             }
             else message.error('更新失败');
         });
-    },
-    enable: isEditVisible
+    }
 },{
     content: '通过',
     onClick: (contractData,contract) =>{
@@ -108,8 +107,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
         if(status===STATUS.SUCCESS) message.success('通过成功');
         else message.error('通过失败');
         });
-    },
-    enable: isReviewVisible
+    }
 },{
     content: '否决',
     onClick: (contractData,contract) =>{
@@ -123,8 +121,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
         if(status===STATUS.SUCCESS) message.success('已否决');
         else message.error('否决失败');
         });
-    },
-    enable: isReviewVisible
+    }
 },{
     content: '确认',
     onClick: (contractData,contract) =>{
@@ -138,8 +135,7 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
         if(status===STATUS.SUCCESS) message.success('确认成功');
         else message.error('确认失败');
         });
-    },
-    enable: isConfirmVisible
+    }
 },{
     content: '拒绝',
     onClick: (contractData,contract) =>{
@@ -153,19 +149,13 @@ const buttons = (dispatch,isEditVisible,isReviewVisible,isConfirmVisible) => [{/
         if(status===STATUS.SUCCESS) message.success('已拒绝');
         else message.error('拒绝失败');
         });
-    },
-    enable: isConfirmVisible
+    }
 }];
 
 const mapDispatchToProps = (dispatch,ownProps) => {
-    console.log(ownProps);
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
-    //const isVisible = true;//authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "EDIT")!==-1;
-    const isEditVisible = true||authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===1;
-    const isReviewVisible = true||authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "REVIEW")===1;
-    const isConfirmVisible = true||authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "CONFIRM")===1;
+    console.log("here");
     return {
-        buttons: buttons(dispatch,isEditVisible,isReviewVisible,isConfirmVisible).filter(button => button.enable===true),
+        buttons: buttons(dispatch),
         getValues: (id) => getContract(dispatch,id)
     }
 };

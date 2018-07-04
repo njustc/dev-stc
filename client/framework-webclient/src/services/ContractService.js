@@ -13,6 +13,7 @@ export const getContractList = (dispatch, callback) => {
     httpGet(contractBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
+            console.log(data);
             dispatch(setContractList(data));
         }
         callback && callback(status);
@@ -21,9 +22,10 @@ export const getContractList = (dispatch, callback) => {
 
 export const getContract = (dispatch, id, callback) => {
     httpGet(contractBase + '/' + id, (result) => {
-//        console.log(result);
+       console.log(result);
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
+            console.log(data);
             dispatch(setContractContent(data));
         }
         callback && callback(status);
@@ -33,11 +35,8 @@ export const getContract = (dispatch, id, callback) => {
 export const deleteContract = (dispatch, id, callback) => {
     console.log(id);
     httpDelete(contractBase, {id:id}, (result) => {
-        console.log(contractBase);
-        console.log("before remove");
-        // dispatch(removeContract(id));
-        const {status} = result;
         console.log(result);
+        const {status} = result;
         if(status === STATUS.SUCCESS)
             dispatch(removeContract(id));
         callback && callback(status);
@@ -45,7 +44,7 @@ export const deleteContract = (dispatch, id, callback) => {
 };
 
 export const newContract = (dispatch, id,callback) => {
-    let urlParams = 'projectID=' + id;
+    const urlParams = 'projectID=' + id;
     httpPost(contractBase, {contractBody:null}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
@@ -65,18 +64,17 @@ export const updateContract = (dispatch, data, callback) => {
     });
 };
 
-export const getContractState = (dispatch, processInstanceID, id, callback) => {
-    httpGet(contractActivitiBase + '/' + processInstanceID, (result) => {
+export const getContractState = (dispatch, ProjectID, callback) => {
+    const PID = 'projectID=' + ProjectID;
+    httpGet(contractBase, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            const newData = {
-                ...data,
-                id: id,
-            };
-            dispatch(setContractContent(newData));
+            // console.log(data);
+            const {state} = data;
+            console.log(state);
+            callback && callback(state);
         }
-        callback && callback(status);
-    })
+    },PID)
 };
 
 export const putContractState = (dispatch, processInstanceID, data, id, callback) => {

@@ -55,8 +55,11 @@ export default class TestReportListComponent extends Component {
     /*状态列颜色渲染*/
     state2SColor(state) {
         switch (state){
-            case STATE.TO_SUBMIT: return "processing";
+            case STATE.TO_WRITE: return "processing";
             case STATE.TO_REVIEW: return "processing";
+            case STATE.TO_APPROVE: return "processing";
+            case STATE.TO_SEND: return "processing";
+            case STATE.TO_CONFIRM: return "processing";
             case STATE.CANCELED: return "default";
             default: return "error";
         }
@@ -65,33 +68,51 @@ export default class TestReportListComponent extends Component {
     state2C(state) {
         // debugger;
         switch (state){
-            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_WRITE: return "待提交"/*(<a>待提交</a>)*/;
             case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.CANCELED: return "已取消";
-            case STATE.FINISHED: return "已通过";
+            case STATE.TO_APPROVE: return "待批准";
+            case STATE.TO_SEND: return "待发放";
+            case STATE.TO_CONFIRM: return "待确认";
+            case STATE.SATISFACTION: return "已完成";
             default: return "未定义状态";
         }
     }
 
     /*table列设置*/
     columns = [{
+        title:"项目编号",
+        dataIndex:"code",
+        // sorter:(a, b) => a.pid - b.pid,
+    }, {
         title:"测试报告ID",
-        dataIndex:"id",
+        dataIndex:"testReport",
+        key:"id",
         //width: '25%',
-        sorter:(a, b) => a.id - b.id,
+        render:(testReport) => {
+            return testReport.id?testReport.id:"未填写";
+        }
     }, {
-        title:"测试报告名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"name",
+        title:"项目名称",
+        dataIndex:"consign",
+        key:"name",
+        render:(consign) => {
+            let consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+            return consignBody.softwareName?consignBody.softwareName:"未填写";
+        }
     }, {
-        title:"委托人ID",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        dataIndex:"createdUserId",
+        title: "报告人", /*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        dataIndex: "testReport.createdUserName",
+        key: "createdUserName",
+        render: (name) => name ? name : "无"
     }, {
         title:"状态",
-        dataIndex:"state",
-        render: (/*status*/state) =>{
+        dataIndex:"testReport",
+        key:"state",
+        render: (testReport) =>{
             return (
                 <span>
-                    <Badge status={this.state2SColor(state)} text={this.state2C(state)} />
+                    <Badge status={this.state2SColor(testReport.state)} text={this.state2C(testReport.state)} />
                 </span>
             )
             /*return (
@@ -117,7 +138,7 @@ export default class TestReportListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"id",
+        dataIndex:"testReport.id",
         key:"operation",
         //width: '12%',
         render: (record) => {
@@ -126,7 +147,9 @@ export default class TestReportListComponent extends Component {
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
                     <Divider type="vertical"/>
-                    <a href="javascript:void(0);" disabled={!this.props.enableNew} onClick={this.showDeleteConfirm(record)}>取消测试报告</a>
+                    <a href="javascript:void(0);"
+                       //disabled={!this.props.enableNew}
+                       onClick={this.showDeleteConfirm(record)}>取消测试报告</a>
                 </div>
             )
         }
@@ -151,7 +174,7 @@ export default class TestReportListComponent extends Component {
                 //debugger;
                 //this.deleteTestReportn(id);
                 /*TODO 取消委托的函数的参数需要优化*/
-                this.props.deleteTestReportn(record);
+                this.props.deleteTestReport(record);
             },
             onCancel() {},
         });
