@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Row, Col, Card, Tabs, Select, Button, Layout, Divider, Switch, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse} from 'antd';
+import moment from "moment";
 
 const Panel = Collapse.Panel;
 const Option=Select.Option;
@@ -40,6 +41,7 @@ class TestReportCheckContentComponent extends Component {
     onClick = (buttonIndex) => () => {
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                values.date = values.date.format("YYYY-MM-DD");
                 this.props.buttons[buttonIndex].onClick(this.props.testReportCheckData, JSON.stringify(values));
             }
         });
@@ -51,6 +53,9 @@ class TestReportCheckContentComponent extends Component {
             labelCol: { span: 4 },
             wrapperCol: { span: 20 },
         };
+
+        console.log(moment());
+        console.log(moment('2015-01-02'));
 
         return(
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
@@ -71,7 +76,7 @@ class TestReportCheckContentComponent extends Component {
                 <FormItem {...formItemLayout} label={"委托单位"}>
                     {getFieldDecorator('consignUnit', {
                         rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                      //  initialValue: this.props.values.consignUnit
+                       initialValue: this.props.values.consignUnit
                     })(
                         <Input disabled={this.props.disable}/>
                     )}
@@ -80,7 +85,7 @@ class TestReportCheckContentComponent extends Component {
                 <FormItem {...formItemLayout} label={"检查人"}>
                     {getFieldDecorator('checker', {
                         rules: [{ required: true, message: '请正确输入检查人！' ,pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
-                        //initialValue: this.props.values.consignUnit
+                        initialValue: this.props.values.checker,
                     })(
                         <Input disabled={this.props.disable}/>
                     )}
@@ -88,11 +93,14 @@ class TestReportCheckContentComponent extends Component {
 
                 <FormItem {...formItemLayout} label={"日期"}>
                     {getFieldDecorator('date', {
-                        rules: [{ required: true, message: '请正确输入时间！',
-                            //initialValue: this.props.values.date
+                        rules: [{ required: false, message: '请正确输入时间！',
+                            type: 'object',
+                            // initialValue: this.props.values.date?moment(this.props.values.date):moment(),
+                            initialValue: moment(),
                         }],
+                        initialValue: this.props.values.date?moment(this.props.values.date):undefined,
                     })(
-                        <DatePicker showTime format="YYYY-MM-DD"/>
+                        <DatePicker format="YYYY-MM-DD"/>
                     )}
                 </FormItem>
 
@@ -102,17 +110,24 @@ class TestReportCheckContentComponent extends Component {
                         {getFieldDecorator('item1', {
                             rules: [{ required: false }],
                             //To do: initialValue
-                            //initialValue: this.props.values.consignUnit
+                            initialValue: this.props.values.item1
                         })(
                             <Row gutter={16}>
                                 <Col span={18}>
                                     <b>1. 报告编号：</b>检查报告编号的正确性（是否符合编码规则）与前后的一致性（报告首页与每页页眉）。
                                 </Col>
                                 <Col span={6}>
-                                    <Switch
-                                        checkedChildren={'是'}
-                                        unCheckedChildren={'否'}
-                                    />
+                                    <FormItem>
+                                        {getFieldDecorator('item11', {
+                                            valuePropName: 'checked',
+                                            initialValue: this.props.values.item11,
+                                        })(
+                                            < Switch
+                                                checkedChildren={'是'}
+                                                unCheckedChildren={'否'}
+                                            />)
+                                        }
+                                    </FormItem>
                                 </Col>
                                 <Col span={18}>
                                     <b>2. 页码：</b>检查页码与总页数是否正确（报告首页与每页页眉）。
