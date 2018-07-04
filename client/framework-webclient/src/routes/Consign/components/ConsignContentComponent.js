@@ -762,6 +762,16 @@ class ConsignContentComponent extends Component  {
                         </FormItem>
                     </TabPane>
 
+                    <FormItem {...formItemLayout} label={"委托时间"}>
+                        {getFieldDecorator('consignTime', {
+                            rules: [{ required: true, message: '请正确输入时间！',
+                                initialValue: this.props.values.consignTime,
+                            }],
+                        })(
+                            <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
+                        )}
+                    </FormItem>
+
                     <TabPane tab="委托测试信息" key="4">
                         <FormItem {...formItemLayout} label="测试类型">
                             {getFieldDecorator('testType', {

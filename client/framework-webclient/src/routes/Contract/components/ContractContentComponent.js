@@ -8,6 +8,29 @@ const FormItem=Form.Item;
 const InputGroup = Input.Group;
 const Panel=Collapse.Panel;
 const { TextArea } = Input;
+const unit=[
+    "分",
+    "角",
+    "元",
+    "拾",
+    "佰",
+    "仟",
+    "万",
+    "亿"
+
+]
+const num=[
+    "零",
+    "壹",
+    "贰",
+    "叁",
+    "肆",
+    "伍",
+    "陆",
+    "柒",
+    "捌",
+    "玖"
+]
 class ContractContentComponent extends Component {
     constructor(props) {
         super(props);

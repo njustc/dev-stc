@@ -228,7 +228,7 @@ class TestReportCheckContentComponent extends Component {
                                     />
                                 </Col>
                                 <Col span={18}>
-                                    <b>12 用户文档测试报告：</b>语句是否通顺，是否准确描述用户的文档。
+                                    <b>12.用户文档测试报告：</b>语句是否通顺，是否准确描述用户的文档。
                                 </Col>
                                 <Col span={6}>
                                     <Switch
