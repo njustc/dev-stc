@@ -45,6 +45,7 @@ public class TestWorkCheckController extends BaseController{
         Response response = new Response();
         try {
             response.data = testWorkCheckService.queryTestWorkChecks(request.getUser());
+            response.status = ResponseType.SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
             response.status = ResponseType.FAILURE;

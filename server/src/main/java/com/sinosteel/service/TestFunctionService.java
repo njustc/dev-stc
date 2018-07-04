@@ -134,7 +134,7 @@ public class TestFunctionService extends BaseService<TestFunction> {
         //String processState = (String) processInstanceService.queryProcessState(testCase.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testFunction));
         //jsonObject.put("state", processState);
-        if (testFunction.getProject() != null)
+        if (testFunction != null && testFunction.getProject() != null)
             jsonObject.put("projectID", testFunction.getProject().getId());
         return jsonObject;
 
