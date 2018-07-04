@@ -14,7 +14,11 @@ import ContractPage from './screens/contract/ContractPage'
 
 import Testing from './screens/testing/Testing'
 import TestCaseContentPage from './screens/testing/TestCaseContentPage'
+
+import TestPlanContentList from './screens/testing/TestPlanContentList'
 import TestPlanContentPage from './screens/testing/TestPlanContentPage'
+
+
 import TestProblemContentPage from './screens/testing/TestProblemContentPage'
 import TestRecordContentPage from './screens/testing/TestRecordContentPage'
 
@@ -208,7 +212,10 @@ const AppNavigator = StackNavigator(
     ContractList:{screen: ContractList},
 
     TestCaseContentPage:{screen: TestCaseContentPage},
+
     TestPlanContentPage:{screen: TestPlanContentPage},
+    TestPlanContentList:{screen: TestPlanContentList},
+
     TestProblemContentPage:{screen: TestProblemContentPage},
     TestRecordContentPage:{screen: TestRecordContentPage},
 

@@ -26,5 +26,9 @@
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
     }
 ]
