@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Row,Col,Steps, Form,Button,Input,DatePicker,InputNumber,Collapse,Tabs,message} from 'antd'
+import moment from "moment";
 //import TextArea from "../../../../../framework-androidclient/src/screens/form/textArea";
 //import {message} from "antd/lib/index";
 const Step = Steps.Step;
