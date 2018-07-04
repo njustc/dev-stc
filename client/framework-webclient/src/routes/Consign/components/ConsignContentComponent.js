@@ -760,7 +760,7 @@ class ConsignContentComponent extends Component  {
                                 <Input disabled={this.props.disable}/>
                             )}
                         </FormItem>
-                    </TabPane>
+
 
                     <FormItem {...formItemLayout} label={"委托时间"}>
                         {getFieldDecorator('consignTime', {
@@ -771,6 +771,7 @@ class ConsignContentComponent extends Component  {
                             <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
                         )}
                     </FormItem>
+                </TabPane>
 
                     <TabPane tab="委托测试信息" key="4">
                         <FormItem {...formItemLayout} label="测试类型">
@@ -1068,7 +1069,6 @@ class ConsignContentComponent extends Component  {
                             label="受理人（签字）"
                             {...formItemLayout}
                         >
-
                             <span className="ant-form-text"></span>
                         </FormItem>
 

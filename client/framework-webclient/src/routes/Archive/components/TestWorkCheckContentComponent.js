@@ -10,6 +10,10 @@ function handleChange(value) {
 class TestWorkCheckContentComponent extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            values:this.props.value,
+            //editable:false,
+        };
     }
 
     static defaultProps = {
@@ -87,6 +91,7 @@ class TestWorkCheckContentComponent extends Component {
                 <FormItem {...formItemLayout} label={"委托单位"}>
                     {getFieldDecorator('consignUnit', {
                         rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                        initialValue: this.props.values.consignUnit,
                     })(
                         <Input disabled={this.props.disable}/>
                     )}
@@ -95,6 +100,7 @@ class TestWorkCheckContentComponent extends Component {
                 <FormItem {...formItemLayout} label={"主测人"}>
                     {getFieldDecorator('masterTestPerson', {
                         rules: [{ required: true, message: '请正确输入主测人！' ,pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
+                        initialValue: this.props.values.masterTestPerson,
                     })(
                         <Input disabled={this.props.disable}/>
                     )}
@@ -103,6 +109,7 @@ class TestWorkCheckContentComponent extends Component {
                 <FormItem {...formItemLayout} label={"检查人"}>
                     {getFieldDecorator('checker', {
                         rules: [{ required: true, message: '请正确输入检查人！' ,pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
+                        initialValue: this.props.values.checker,
                     })(
                         <Input disabled={this.props.disable}/>
                     )}
@@ -110,8 +117,8 @@ class TestWorkCheckContentComponent extends Component {
 
                 <FormItem {...formItemLayout} label={"起始时间"}>
                     {getFieldDecorator('startingDate', {
-                        rules: [{ required: true, message: '请正确输入时间！',
-                        }],
+                        rules: [{ required: true, message: '请正确输入时间！'}],
+                        initialValue: this.props.values.startingDate,
                     })(
                         <DatePicker showTime format="YYYY-MM-DD"/>
                     )}
@@ -119,8 +126,8 @@ class TestWorkCheckContentComponent extends Component {
 
                 <FormItem {...formItemLayout} label={"预计完成时间"}>
                     {getFieldDecorator('estimatedFinishTime', {
-                        rules: [{ required: true, message: '请正确输入时间！',
-                        }],
+                        rules: [{ required: true, message: '请正确输入时间！'}],
+                        initialValue: this.props.values.estimatedFinishTime,
                     })(
                         <DatePicker showTime format="YYYY-MM-DD"/>
                     )}
@@ -128,15 +135,14 @@ class TestWorkCheckContentComponent extends Component {
 
                 <FormItem {...formItemLayout} label={"实际完成时间"}>
                     {getFieldDecorator('actualFinishTime', {
-                        rules: [{ required: true, message: '请正确输入时间！',
-                        }],
+                        rules: [{ required: true, message: '请正确输入时间！'}],
+                        initialValue: this.props.values.actualFinishTime,
                     })(
                         <DatePicker showTime format="YYYY-MM-DD"/>
                     )}
                 </FormItem>
 
-
-                <Form>
+                <div>
                     <h2>可预见问题及注意事项</h2>
                     <p style ={tipStyle}>注：请在已确认的条目后打勾。</p>
                     <Divider orientation="left">一、前期指导工作</Divider>
@@ -450,7 +456,7 @@ class TestWorkCheckContentComponent extends Component {
                             </Row>
                         )}
                     </FormItem>
-                </Form>
+                </div>
 
                 <FormItem/>
                 {/* footer buttons */}
