@@ -153,4 +153,12 @@ public class TestWorkCheck extends BaseEntity{
     public void setProject(Project project){
         this.project = project;
     }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
 }

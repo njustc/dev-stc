@@ -131,7 +131,7 @@ public class TestCaseService extends BaseService<TestCase> {
 
     private JSONObject processTestCase(TestCase testCase) throws Exception {
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testCase));
-        if (testCase.getProject() != null)
+        if (testCase != null && testCase.getProject() != null)
             jsonObject.put("projectID", testCase.getProject().getId());
         return JSON.parseObject(JSONObject.toJSONString(testCase));
     }

@@ -56,21 +56,23 @@ export default class TestWorkCheckListComponent extends Component {
 
     /*状态列颜色渲染*/
     state2SColor(state) {
-        switch (state){
-            case STATE.TO_SUBMIT: return "processing";
-            case STATE.TO_CHECK: return "processing";
-            case STATE.CANCELED: return "default";
-            default: return "error";
-        }
+        // switch (state){
+        //     case STATE.TO_SUBMIT: return "processing";
+        //     case STATE.TO_CHECK: return "processing";
+        //     case STATE.CANCELED: return "default";
+        //     default: return "error";
+        // }
+        return "processing";
     }
 
     state2C(state) {
-        switch (state){/*TODO*/
-            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
-            case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
-            case STATE.CANCELED: return "已取消";
-            default: return "未定义状态";
-        }
+        // switch (state){/*TODO*/
+        //     case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+        //     case STATE.TO_CHECK: return "待评审"/*(<a>待提交</a>)*/;
+        //     case STATE.CANCELED: return "已取消";
+        //     default: return "未定义状态";
+        // }
+        return "可编写";
     }
 
     /*table列设置*/
@@ -120,13 +122,13 @@ export default class TestWorkCheckListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"id",
+        dataIndex:"testWorkCheck.id",
         key:"operation",
-        render: (record) => {
+        render: (id) => {
             /*TODO*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewContent(id)}>查看详情</a>
                     {/*<Divider type="vertical"/>
                     <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>*/}
                 </div>

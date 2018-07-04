@@ -11,11 +11,11 @@ const mapStateToProps = (state, ownProps) => {
     //console.log(authData);
     const content = state.TestReport.listMap[ownProps.id];
     const body = content?content.body:undefined;
+    console.log(ownProps.id);
 
     const isEditVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
     const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Write')!==-1:
         content.operation.findIndex(element => element === 'Write')!==-1);
-    console.log(content.operation);
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     const isApproveVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ApprovePass')!==-1;
     const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ConfirmPass')!==-1;
@@ -208,6 +208,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
 }];
 
 const mapDispatchToProps = (dispatch,ownProps) => {
+    console.log("here");
     return {
         buttons: buttons(dispatch),
         getValues: (id) => getTestReport(dispatch,id)

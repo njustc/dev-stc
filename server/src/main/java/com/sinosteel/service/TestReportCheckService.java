@@ -137,7 +137,7 @@ public class TestReportCheckService extends BaseService<TestReportCheck> {
     private JSONObject processTestReportCheck(TestReportCheck testReportCheck) throws Exception {
         //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testReportCheck));
-        if (testReportCheck.getProject() != null)
+        if (testReportCheck != null && testReportCheck.getProject() != null)
             jsonObject.put("projectID", testReportCheck.getProject().getId());
         //jsonObject.put("state", processState);
         return jsonObject;

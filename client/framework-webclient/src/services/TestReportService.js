@@ -12,6 +12,7 @@ export const getTestReportList = (dispatch, callback) => {
     httpGet(testReportBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
+            // console.log(data);
             dispatch(setTestReportList(data));
         }
         callback && callback(status);
@@ -23,6 +24,7 @@ export const getTestReport = (dispatch, id, callback) => {
     httpGet(testReportBase + '/' + id, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
+            console.log(data);
             dispatch(setTestReportContent(data));
         }
         callback && callback(status);

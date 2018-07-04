@@ -86,6 +86,7 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
         }
         //编辑测试结果时只编辑内容
         //testWorkCheck = temptestWorkCheck;
+        testWorkCheck.setBody(temptestWorkCheck.getBody());
         testWorkCheck.setVersion(temptestWorkCheck.getVersion());
         testWorkCheck.setAcendtime(temptestWorkCheck.getAcendtime());
         testWorkCheck.setClient(temptestWorkCheck.getClient());
@@ -147,7 +148,7 @@ public class TestWorkCheckService extends BaseService<TestWorkCheck> {
         //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testWorkCheck));
         //jsonObject.put("state", processState);
-        if (testWorkCheck.getProject() != null)
+        if (testWorkCheck != null && testWorkCheck.getProject() != null)
             jsonObject.put("projectID", testWorkCheck.getProject().getId());
         return jsonObject;
 

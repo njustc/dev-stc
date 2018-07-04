@@ -153,7 +153,7 @@ public class TestReportService extends BaseService<TestReport>{
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(testReport));
         JSONObject processState = processInstanceService.queryProcessState(testReport.getProcessInstanceID());
         jsonObject.putAll(processState);
-        if (testReport.getProject() != null)
+        if (testReport != null && testReport.getProject() != null)
             jsonObject.put("projectID", testReport.getProject().getId());
         return jsonObject;
     }
