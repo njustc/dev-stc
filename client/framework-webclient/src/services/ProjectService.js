@@ -11,6 +11,9 @@ import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 import {setTestRecordContent} from "../modules/ducks/TestRecord";
 import {getConsignState} from "./ConsignService";
+import {getContractState} from "./ContractService";
+import {getTestPlanState} from "./TestPlanService";
+import {getTestReportState} from "./TestReportService";
 
 const projectBase = baseServiceAddress + '/v1/project';
 const projectActivitiBase = baseServiceAddress + '/processInstance';
@@ -19,26 +22,6 @@ export const getProjectList = (dispatch, callback) => {/*TODO 后台接口实现
     httpGet(projectBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-    //         dispatch(setProjectList(/*data*/
-    //             [
-    //                 {
-    //                     id : "110",
-    //                     name : "快乐星球小杨杰",
-    //                     createdUserId : "151220140",
-    //                     state: 'TobeSubmit'
-    //                 },{
-    //                     id : "120",
-    //                     name : "不快乐星球小杨杰",
-    //                     createdUserId : "151220140",
-    //                     state: 'TobeSubmit'
-    //                 },{
-    //                     id : "119",
-    //                     name : "不快乐星球老杨杰",
-    //                     createdUserId : "151220140",
-    //                     state: 'TobeSubmit'
-    //                 }
-    //             ]
-    //         ));
             dispatch(setProjectList(data));
         }
         callback && callback(status);
@@ -51,6 +34,9 @@ export const getProject = (dispatch, id, callback) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setProjectContent(data));
+            // getProjectState(dispatch,id,(state) => {
+            //     console.log(state);
+            // });
         }
         callback && callback(status);
     });
@@ -90,9 +76,53 @@ export const updateProject = (dispatch, data, callback) => {
     });
 };
 
-export const getProjectState = (dispatch, processInstanceID, id, callback) => {
-    getConsignState(dispatch,processInstanceID,id);
-    //debugger
+export const getProjectState = (dispatch, processInstanceID,callback) => {
+    // getConsignState(dispatch,processInstanceID,id);
+    getContractState(dispatch,processInstanceID,(contractState) => {
+        let projectState = {
+            Process: null,
+            State: null
+        };
+        if(contractState&&contractState!==STATE.FINISHED){
+            projectState = {
+                Process: 'Contract',
+                State: contractState
+            };
+            callback&&callback(projectState);
+        }
+        else if(contractState===STATE.FINISHED){
+
+            getTestPlanState(dispatch,processInstanceID,(testPlanState) => {
+                if(testPlanState&&testPlanState!==STATE.TO_IMPLEMENT){
+                    projectState = {
+                        Process: 'TestPlan',
+                        State: testPlanState
+                    };
+                    callback&&callback(projectState);
+                }
+                else if(testPlanState===STATE.TO_IMPLEMENT){
+
+                    getTestReportState(dispatch,processInstanceID,(testReportState) => {
+                        if(testReportState&&testReportState!==STATE.SATISFACTION){
+                            projectState = {
+                                Process: 'TestReport',
+                                State: testReportState
+                            };
+                            callback&&callback(projectState);
+                        }
+                        else if(testReportState===STATE.SATISFACTION){
+                            projectState = {
+                                Process: 'TestReport',
+                                State: testReportState
+                            };
+                            callback&&callback(projectState);
+                        }
+                    })
+                }
+            })
+        }
+
+    })
 };
 
 export const putProjectState = (dispatch, processInstanceID, data, id, callback) => {

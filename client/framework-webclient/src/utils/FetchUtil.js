@@ -34,6 +34,7 @@ const sysFetch = (Method, url, params, callback, urlParams) => {
     let fullUrl = url + '?username=' + username + '&clientDigest=' + clientDigest;
     if(urlParams){
         fullUrl = fullUrl + '&' + urlParams;
+        console.log(fullUrl);
     }
 
 

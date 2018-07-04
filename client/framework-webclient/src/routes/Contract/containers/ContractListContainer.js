@@ -6,11 +6,13 @@ import {ProjectContentView} from "../../Project";
 import {deleteContract, getContractList, newContract} from "../../../services/ContractService";
 import {setContractFilter} from "../../../modules/ducks/Contract";
 import ContractListComponent from "../components/ContractListComponent";
+import {getProjectList} from "SERVICES/ProjectService";
 
 const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     return {
-        dataSource: Object.values(state.Contract.listMap).filter(state.Contract.listFilter),
+        // dataSource: Object.values(state.Contract.listMap).filter(state.Contract.listFilter),
+        dataSource: Object.values(state.Project.listMap).filter((project) => project.contract).filter(state.Contract.listFilter),
         enableNew: authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "ADD")!==-1
     }
 };
@@ -32,7 +34,8 @@ const mapDispatchToProps = (dispatch) => {
         setListFilter: (listFilter) => dispatch(setContractFilter(listFilter)),
         getContractList: () => getContractList(dispatch),
         deleteContract: (id) => deleteContract(dispatch,id),
-        newContract: () => newContract(dispatch)
+        newContract: () => newContract(dispatch),
+        getProjectList: () => getProjectList(dispatch),
     }
 };
 

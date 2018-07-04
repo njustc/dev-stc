@@ -2,7 +2,6 @@ package com.sinosteel.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-
 import com.sinosteel.domain.BaseEntity;
 import com.sinosteel.domain.User;
 import com.sinosteel.framework.utils.date.DateUtil;
@@ -44,6 +43,7 @@ public class BaseService<T extends BaseEntity>
 		if(user != null)
 		{
 			entity.setCreatedUserId(user.getId());
+			entity.setCreatedUserName(user.getUsername());
 		}
 		
 		entity.setCreatedTime(DateUtil.formatDateTime(new Date()));
@@ -73,6 +73,7 @@ public class BaseService<T extends BaseEntity>
 		if(user != null)
 		{
 			entity.setAlteredUserId(user.getId());
+			entity.setAlteredUserName(user.getUsername());
 		}
 		
 		entity.setAlteredTime(DateUtil.formatDateTime(new Date()));

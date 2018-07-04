@@ -158,7 +158,7 @@ public class TestCase extends BaseEntity {
     /**
      * 10.前提条件 - 测试记录
      */
-    @Column(name = "CONDITION")
+    @Column(name = "TESTCONDITION")
     private String condition;
 
     public String getCondition() {
@@ -353,20 +353,5 @@ public class TestCase extends BaseEntity {
         this.project = project;
     }
 
-    /**
-     * 连接TestRecord的外键
-     */
-    @OneToOne(mappedBy = "testCase")
-    @JoinColumn(name = "TESTCASE_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JSONField(serialize = false)
-    private TestRecord testRecord;
-
-    public TestRecord getTestRecord() {
-        return testRecord;
-    }
-
-    public void setTestResult(TestRecord testRecord) {
-        this.testRecord = testRecord;
-    }
 
 }
