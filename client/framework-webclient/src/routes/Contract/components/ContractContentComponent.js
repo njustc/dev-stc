@@ -31,6 +31,8 @@ const num=[
     "捌",
     "玖"
 ]
+
+
 class ContractContentComponent extends Component {
     constructor(props) {
         super(props);
@@ -154,7 +156,7 @@ class ContractContentComponent extends Component {
                     <FormItem {...formItemLayout} label="签订日期">
                         {getFieldDecorator('consignDate', {
                             rules: [{ required: true, type: 'object',message: '请选择签订日期！' }],
-                            initialValue: this.props.values.consignDate,
+                            initialValue: moment(this.props.values.consignDate),
                         })(
                             <DatePicker showTime format="YYYY-MM-DD"/>
                         )}

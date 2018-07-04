@@ -138,7 +138,7 @@ public class TestPlanService extends BaseService<TestPlan> {
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(testPlan));
         JSONObject processState = processInstanceService.queryProcessState(testPlan.getProcessInstanceID());
         jsonObject.putAll(processState);
-        if (testPlan.getProject() != null)
+        if (testPlan != null && testPlan.getProject() != null)
             jsonObject.put("projectID", testPlan.getProject().getId());
         return jsonObject;
 

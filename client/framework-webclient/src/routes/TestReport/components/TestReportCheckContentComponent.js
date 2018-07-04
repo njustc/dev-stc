@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Row, Col, Card, Tabs, Select, Button, Layout, Divider, Switch, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse} from 'antd';
+import moment from "moment";
 
 const FormItem=Form.Item;
 
@@ -37,6 +38,7 @@ class TestReportCheckContentComponent extends Component {
     onClick = (buttonIndex) => () => {
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                values.date = values.date.format("YYYY-MM-DD");
                 this.props.buttons[buttonIndex].onClick(this.props.testReportCheckData, JSON.stringify(values));
             }
         });
@@ -54,6 +56,7 @@ class TestReportCheckContentComponent extends Component {
             marginBottom: 0,
             lineHeight: '39px'
         };
+
 
         return(
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
@@ -83,7 +86,7 @@ class TestReportCheckContentComponent extends Component {
                 <FormItem {...formItemLayout} label={"检查人"}>
                     {getFieldDecorator('checker', {
                         rules: [{ required: true, message: '请正确输入检查人！' ,pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
-                        initialValue: this.props.values.consignUnit
+                        initialValue: this.props.values.checker,
                     })(
                         <Input disabled={this.props.disable}/>
                     )}
@@ -91,10 +94,12 @@ class TestReportCheckContentComponent extends Component {
 
                 <FormItem {...formItemLayout} label={"日期"}>
                     {getFieldDecorator('date', {
-                        rules: [{ required: false, message: '请正确输入时间！'}],
-                        initialValue: this.props.values.date
+                        rules: [{ required: false, message: '请正确输入时间！',
+                            type: 'object',
+                        }],
+                        initialValue: this.props.values.date?moment(this.props.values.date):undefined,
                     })(
-                        <DatePicker showTime format="YYYY-MM-DD"/>
+                        <DatePicker format="YYYY-MM-DD"/>
                     )}
                 </FormItem>
 
