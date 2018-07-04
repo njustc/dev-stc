@@ -38,7 +38,7 @@ class TestWorkCheckContentComponent extends Component {
     onClick = (buttonIndex) => () => {
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                this.props.buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(values));
+                this.props.buttons[buttonIndex].onClick(this.props.testWorkCheckData, JSON.stringify(values));
             }
         });
     };
