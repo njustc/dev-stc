@@ -21,11 +21,11 @@ import styles from "./styles";
 
 const datas = [
   {
-    route: "TestingReportPage",
+    route: "TestingReportList",
     text: "测试报告书"
   },
   {
-    route:"TestingReportCheckTablePage",
+    route:"TestingReportCheckTableList",
     text:"测试报告检查表"
   },
 ];//TODO: 修改界面跳转 route
@@ -59,7 +59,7 @@ export  default class Testing extends Component {
         </Header>
 
         <Content>
-          <Text>TODO: change to jump to a list first</Text>
+          {/*<Text>TODO: change to jump to a list first</Text>*/}
           <List
             dataArray={datas}
             renderRow={data =>
