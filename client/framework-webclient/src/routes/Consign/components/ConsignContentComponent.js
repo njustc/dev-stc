@@ -244,25 +244,6 @@ class ConsignContentComponent extends Component  {
             wrapperCol: { span: 16 },
         };
 
-        const customPanelStyle = {
-            background: '#f9f9f9',
-            borderRadius: 6,
-            marginTop: 5,
-            marginBottom: 5,
-            border: 0,
-            overflow: 'hidden',
-        };
-        const customPanelStyle2 = {
-            background: '#ffffff',
-            borderRadius: 6,
-            marginTop: 5,
-            marginBottom: 5,
-            border: 0,
-            overflow: 'hidden',
-        };
-
-
-
 
         return (
 
@@ -325,24 +306,27 @@ class ConsignContentComponent extends Component  {
                             )}
                         </FormItem>
 
-                        <FormItem
-                            label="委托单位信息"
-                            {...formItemLayout}
-                        >
-                            {getFieldDecorator('consignUnitMessage', {
-                                rules: [{ required: true, message: '请输入委托单位信息！'}],
-                                initialValue: this.props.values.consignUnitMessage,
-                            })(
-                                <span className="ant-form-text"></span>
-                            )}
-                        </FormItem>
+                        <FormItem {...formItemLayout} label={"委托单位信息"}></FormItem>
+                        {/*
+                            <FormItem
+                                label="委托单位信息"
+                                {...formItemLayout}
+                            >
+                                {getFieldDecorator('consignUnitMessage', {
+                                    rules: [{required: true, message: '请输入委托单位信息！'}],
+                                    initialValue: this.props.values.consignUnitMessage,
+                                })(
+                                    <span className="ant-form-text"></span>
+                                )}
+                            </FormItem>
+                        */}
 
                         <FormItem
                             label="电话"
                             {...formItemLayout}
                         >
                             {getFieldDecorator('consignUnitTelephone', {
-                                rules: [{ required: true, message: '请输入委托单位信息！'}],
+                                rules: [{ required: true, message: '请输入电话号码！'}],
                                 initialValue: this.props.values.consignUnitTelephone,
                             })(
                                 <Input disabled={this.props.disable} placeholder="请输入电话号码" />
@@ -438,7 +422,7 @@ class ConsignContentComponent extends Component  {
                             label="国家重点实验室联系方式"
                             {...formItemLayout}
                         >
-                            <span className="ant-form-text"></span>
+                            {/*<span className="ant-form-text"></span>*/}c
                         </FormItem>
 
                         <FormItem

@@ -85,27 +85,14 @@ class ContractContentComponent extends Component {
         };
         const spanLayout =  {
             labelCol: { offset:2},
+            //marginTop: 0,
+            //marginBottom: 0,
+            //lineHeight: '32px'
         };
         const InputStyle={
             width:'200',
             borderRadius:'6',
         }
-        const customPanelStyle = {
-            background: '#f9f9f9',
-            borderRadius: 6,
-            marginTop: 5,
-            marginBottom: 5,
-            border: 0,
-            overflow: 'hidden',
-        };
-        const customPanelStyle2 = {
-            background: '#ffffff',
-            borderRadius: 6,
-            marginTop: 5,
-            marginBottom: 5,
-            border: 0,
-            overflow: 'hidden',
-        };
         return(
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
                 <FormItem>
@@ -159,7 +146,7 @@ class ContractContentComponent extends Component {
                             rules: [{ required: true, type: 'object',message: '请选择签订日期！' }],
                             initialValue: moment(this.props.values.consignDate),
                         })(
-                            <DatePicker showTime format="YYYY-MM-DD"/>
+                            <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
                         )}
                     </FormItem>
 
@@ -173,19 +160,42 @@ class ContractContentComponent extends Component {
                                 <InputGroup compact>
                                     本合同由作为委托方的
                                     {getFieldDecorator('aUnitName', {
-                                        rules: [{ required: true, message: '请输入单位全称！' }],
+                                        rules: [{required: true, message: '请输入单位全称！'}],
                                         initialValue: this.props.values.aUnitName,
                                     })(
                                         <Input style={InputStyle} disabled={this.props.disable}/>
                                     )}（以下简称“甲方”）与作为受托方的
                                     {getFieldDecorator('bUnitName', {
-                                        rules: [{ required: true, message: '请输入单位全称！' }],
+                                        rules: [{required: true, message: '请输入单位全称！'}],
                                         initialValue: this.props.values.bUnitName,
                                     })(
                                         <Input style={InputStyle} disabled={this.props.disable}/>
                                     )}（以下简称“乙方”）在平等自愿的基础上，依据《中华人民共和国合同法》有关规定就项目的执行，经友好协商后订立。
                                 </InputGroup>
                             </FormItem>
+                            {/*
+                            <FormItem {...spanLayout}>
+                                    本合同由作为委托方的
+                                    {getFieldDecorator('aUnitName', {
+                                        rules: [{ required: true, message: '请输入单位全称！' }],
+                                        initialValue: this.props.values.aUnitName,
+                                    })(
+                                        <Input style={InputStyle} disabled={this.props.disable}/>
+                                    )}（以下简称“甲方”）
+                            </FormItem>
+                            <FormItem {...spanLayout}>
+                                与作为受托方的
+                                    {getFieldDecorator('bUnitName', {
+                                        rules: [{ required: true, message: '请输入单位全称！' }],
+                                        initialValue: this.props.values.bUnitName,
+                                    })(
+                                        <Input style={InputStyle} disabled={this.props.disable}/>
+                                    )}（以下简称“乙方”）
+                            </FormItem>
+                            <FormItem {...spanLayout}>
+                                在平等自愿的基础上，依据《中华人民共和国合同法》有关规定就项目的执行，经友好协商后订立。
+                            </FormItem>
+                            */}
                         </Col>
                     </Row>
                     <FormItem/>
@@ -373,11 +383,11 @@ class ContractContentComponent extends Component {
                         </FormItem>
 
                     <FormItem {...formItemLayout2} label={"签章日期"}>
-                        {getFieldDecorator('aSignData', {
-                            rules: [{ required: true, message: '请输入签章日期！' }],
-                            initialValue: this.props.values.aSignData,
+                        {getFieldDecorator('aSignDate', {
+                            rules: [{ required: true, type: 'object', message: '请输入签章日期！' }],
+                            initialValue: moment(this.props.values.aSignDate),
                         })(
-                            <DatePicker showTime format="YYYY-MM-DD"/>
+                            <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
                         )}
                     </FormItem>
 
@@ -467,11 +477,11 @@ class ContractContentComponent extends Component {
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"签章日期"}>
-                        {getFieldDecorator('bSignData', {
-                            rules: [{ required: true, message: '请输入签章日期！' }],
-                            initialValue: this.props.values.bSignData,
+                        {getFieldDecorator('bSignDate', {
+                            rules: [{ required: true, type:'object', message: '请输入签章日期！' }],
+                            initialValue: moment(this.props.values.bSignDate),
                         })(
-                            <DatePicker showTime format="YYYY-MM-DD"/>
+                            <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
                         )}
                     </FormItem>
 
