@@ -21,7 +21,7 @@ import styles from "./styles";
 
 const datas = [
   {
-    route: "TestingWorkCheckTablePage",
+    route: "TestingWorkCheckTableList",
     text: "测试工作检查表"
   },
   {
