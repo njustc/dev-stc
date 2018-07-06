@@ -38,6 +38,9 @@ tags:
   - name: testWorkCheck
     description: >-
       测试工作检查（同测试计划，与工程一对一）
+  - name: satisfactionSurvey
+    description: >-
+      用户满意度调查（与工程一对一）
   - name: testRecord
     description: >-
       测试记录（暂时不要用，后面会改掉）
@@ -2502,6 +2505,255 @@ paths:
                   "version": "3"
                 }
             ],
+            "status": "SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+  /services/v1/satisfactionSurvey:
+    get:
+      tags:
+        - satisfactionSurvey
+      summary: 查询
+      description: 用户为普通客户时，返回当前该客户的所有用户满意度调查，如果是工作人员返回所有，通过project的id获取接口
+      operationId: querySatisfactionSurveys
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+        - name: projectID
+          in: query
+          description: 工程id
+          type: string
+          required: false
+      responses:
+        '200':
+          description: |
+            成功查询时返回satisfactionSurvey. data内包含JsonArray格式的内容内容
+            查询失败时，返回一个失败的status
+            ```
+            {
+              "data": {
+                "createdUserId": "2",
+                "createdUserName": "customer1",
+                "createdTime": "2018-07-06 17:02:45",
+                "id": "082b3bed-0787-4409-a58a-1112205fa658",
+                "body": "born to die",
+                "projectID": "bd0342ef-fc9e-44b1-9261-46a74064887b"
+              },
+              "status": "SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+    post:
+      tags:
+        - satisfactionSurvey
+      summary: 添加
+      description: >-
+        添加satisfactionSurvey，添加时要给定一个id，是所在project的id（project的id是在创建project时前端传入的对应绑定consign的一个id），成功时返回具体信息以及一个success状态，这个id所在位置改成了query
+      operationId: addSatisfactionSurvey
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+        - name: projectID
+          in: query
+          description: 工程id
+          type: string
+          required: true
+        - in: formData
+          name: params
+          description: |
+            具体内容. JSON格式
+            ```
+            {
+              "body": "content"
+            }
+            ```
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            成功添加时的样例response body
+            ```
+            {
+              "data": {
+                "createdUserId": "2",
+                "createdUserName": "customer1",
+                "createdTime": "2018-07-06 17:02:45",
+                "id": "082b3bed-0787-4409-a58a-1112205fa658",
+                "body": "born to die"
+              },
+              "status": "SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - satisfactionSurvey
+      summary: 修改
+      description: 参数中需要包含合satisfactionSurvey的id
+      operationId: editSatisfactionSurvey
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+        - in: formData
+          name: params
+          description: |
+            具体内容. JSON格式. 需要指明ID
+            ```
+            {
+              "id": 
+              "body":
+            }
+            ```
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            修改成功时的样例response body
+            ```
+            {
+              "data": {
+                "alteredUserName": "customer1",
+                "createdUserId": "2",
+                "createdUserName": "customer1",
+                "alteredTime": "2018-07-06 17:04:15",
+                "createdTime": "2018-07-06 17:02:45",
+                "alteredUserId": "2",
+                "id": "082b3bed-0787-4409-a58a-1112205fa658",
+                "body": "born to die",
+                "projectID": "bd0342ef-fc9e-44b1-9261-46a74064887b"
+              },
+              "status": "SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - satisfactionSurvey
+      summary: 删除
+      description: 需要提供satisfactionSurvey的具体id
+      operationId: deleteSatisfactionSurvey
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+        - in: formData
+          name: params
+          description: |
+            具体内容. JSON格式. 需要指明ID
+            ```
+            {
+              "id": 
+            }
+            ```
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            成功删除
+            ```
+            {
+              "status":"SUCCESS"
+            }
+            ```
+        '405':
+          description: Invalid input
+  '/services/v1/satisfactionSurvey/{id}':
+    get:
+      tags:
+        - satisfactionSurvey
+      summary: 根据id查询
+      description: 根据请求中的id查询
+      operationId: querySatisfactionSurveyByID
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: satisfactionSurvey的id
+          type: string
+          required: true
+        - name: username
+          in: query
+          description: 用户名
+          type: string
+          required: true
+        - name: clientDigest
+          in: query
+          description: 摘要。登录时由后台传入，用以身份验证
+          type: string
+          required: true
+      responses:
+        '200':
+          description: |
+            data内包含JsonArray格式的内容
+            ```
+            {
+              "data": {
+                "alteredUserName": "customer1",
+                "createdUserId": "2",
+                "createdUserName": "customer1",
+                "alteredTime": "2018-07-06 17:04:15",
+                "createdTime": "2018-07-06 17:02:45",
+                "alteredUserId": "2",
+                "id": "082b3bed-0787-4409-a58a-1112205fa658",
+                "body": "born to die"
+            },
             "status": "SUCCESS"
             }
             ```
