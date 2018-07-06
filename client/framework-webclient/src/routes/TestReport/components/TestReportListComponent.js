@@ -85,14 +85,14 @@ export default class TestReportListComponent extends Component {
         dataIndex:"code",
         // sorter:(a, b) => a.pid - b.pid,
     }, {
-        title:"测试报告ID",
-        dataIndex:"testReport",
-        key:"id",
-        //width: '25%',
-        render:(testReport) => {
-            return testReport.id?testReport.id:"未填写";
-        }
-    }, {
+    //     title:"测试报告ID",
+    //     dataIndex:"testReport",
+    //     key:"id",
+    //     //width: '25%',
+    //     render:(testReport) => {
+    //         return testReport.id?testReport.id:"未填写";
+    //     }
+    // }, {
         title:"项目名称",
         dataIndex:"consign",
         key:"name",

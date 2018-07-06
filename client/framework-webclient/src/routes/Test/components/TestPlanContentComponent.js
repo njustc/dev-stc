@@ -108,11 +108,11 @@ class TestPlanContentComponent extends Component {
                     defaultActiveKey="1"
                     tabPosition="left"
                 >
-                    <TabPane tab="0.基本信息" key="1">
+                    <TabPane tab="基本信息" key="1">
                         <FormItem {...formItemLayout} label={"软件名称"}>
                             {getFieldDecorator('softwareName', {
                                 rules: [{ required: true, message: '请输入软件名称！' }],
-//                                initialValue: this.props.values.softwareName,
+                                initialValue: this.props.values.softwareName,
                             })(
                                 <Input  disabled={this.props.disable}/>
                             )}
@@ -121,7 +121,7 @@ class TestPlanContentComponent extends Component {
                         <FormItem {...formItemLayout} label={"项目名称"}>
                             {getFieldDecorator('projectName', {
                                 rules: [{ required: true, message: '请输入项目名称！' }],
-//                                initialValue: this.props.values.projectName,
+                                initialValue: this.props.values.projectName,
                             })(
                                 <Input  disabled={this.props.disable}/>
                             )}
@@ -130,16 +130,25 @@ class TestPlanContentComponent extends Component {
                         <FormItem {...formItemLayout} label={"测试方案版本号"}>
                             {getFieldDecorator('testPlanVer', {
                                 rules: [{ required: true, message: '请输入测试方案版本号！' }],
-//                                initialValue: this.props.values.testPlanVer,
+                                initialValue: this.props.values.testPlanVer,
                             })(
                                 <Input  disabled={this.props.disable}/>
+                            )}
+                        </FormItem>
+
+                        <FormItem {...formItemLayout} label="文档标识">
+                            {getFieldDecorator('documentID', {
+                                rules: [{ required: true,message: '请输入文档标识！' }],
+                                initialValue: this.props.values.documentID,
+                            })(
+                                <Input  disabled={this.props.disable} placeholder={"NST-04-JS006-2011-软件测试方案-"}/>
                             )}
                         </FormItem>
 
                         <FormItem {...formItemLayout} label={"编制人"}>
                             {getFieldDecorator('establisher', {
                                 rules: [{ required: true, message: '请输入编制人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"  }],
-//                                initialValue: this.props.values.establisher,
+                                initialValue: this.props.values.establisher,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -148,7 +157,7 @@ class TestPlanContentComponent extends Component {
                         <FormItem {...formItemLayout} label={"审核人"}>
                             {getFieldDecorator('reviewer', {
                                 rules: [{ required: true, message: '请输入审核人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"  }],
-//                                initialValue: this.props.values.reviewer,
+                                initialValue: this.props.values.reviewer,
                             })(
                                 <Input  disabled={this.props.disable}/>
                             )}
@@ -157,22 +166,25 @@ class TestPlanContentComponent extends Component {
                         <FormItem {...formItemLayout} label={"批准人"}>
                             {getFieldDecorator('approver', {
                                 rules: [{ required: true, message: '请输入批准人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"  }],
-//                                initialValue: this.props.values.approver,
+                                initialValue: this.props.values.approver,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
                         </FormItem>
 
-                        <FormItem {...formItemLayout} label={"文档修改记录"}>
-                            {getFieldDecorator('doRecord', {
-                                rules: [{ required: true, message: '请输入！'}],
- //                               initialValue: this.props.values.doRecord,
-                            })(
-                                <Table disabled={this.props.disable}/>
-                            )}
-                        </FormItem>
+                        {/*
+                            <FormItem {...formItemLayout} label={"文档修改记录"}>
+                                {getFieldDecorator('doRecord', {
+                                    rules: [{required: true, message: '请输入！'}],
+                                    initialValue: this.props.values.doRecord,
+                                })(
+                                    <Table disabled={this.props.disable}/>
+                                )}
+                            </FormItem>
+                        */}
                     </TabPane>
 
+                    {/*
                     <TabPane tab="1.引言" key="2">
                         <Row>
                             <Col offset={1} span={21}>
@@ -195,9 +207,8 @@ class TestPlanContentComponent extends Component {
                                 <Input  disabled={this.props.disable}/>
                             )}
                         </FormItem>
+
                         <FormItem/>
-
-
                         <Row>
                             <Col offset={1} span={21}>
                                 <h3>1.2 系统概述</h3>
@@ -236,6 +247,7 @@ class TestPlanContentComponent extends Component {
                         </Row>
                         <FormItem/>
 
+
                         <Row>
                             <Col offset={1} span={21}>
                                 <h3>1.4 基线</h3>
@@ -249,13 +261,14 @@ class TestPlanContentComponent extends Component {
                                 <Input  disabled={this.props.disable}/>
                             )}
                         </FormItem>
-                    </TabPane>
-
-                    <TabPane tab="2.引用文件" key="3">
 
                     </TabPane>
+                        <TabPane tab="2.引用文件" key="3">
 
-                    <TabPane tab="3.软件测试环境" key="4">
+                        </TabPane>
+                    */}
+
+                    <TabPane tab="软件测试环境" key="2">
                         <Row>
                             <Col offset={1} span={21}>
                                 <h3>3.1 硬件</h3>
@@ -280,8 +293,10 @@ class TestPlanContentComponent extends Component {
                             </Col>
                         </Row>
                         /*TODO 表格*/
-                        <FormItem/>
 
+
+                        <FormItem/>
+                        {/*
                         <Row>
                             <Col offset={1} span={21}>
                                 <h3>3.3 参与组织</h3>
@@ -292,6 +307,7 @@ class TestPlanContentComponent extends Component {
 
                             </Col>
                         </Row>
+                        */}
                         <FormItem/>
 
                         <Row>
@@ -312,7 +328,7 @@ class TestPlanContentComponent extends Component {
                         </Row>
                     </TabPane>
 
-                    <TabPane tab="4.计划" key="5">
+                    <TabPane tab="测试计划" key="3">
                         <Row>
                             <Col offset={1} span={21}>
                                 本章描述了计划测试的总范围并且描述了本测试计划适用的每个测试，包括对相关文档的审查。
@@ -322,7 +338,7 @@ class TestPlanContentComponent extends Component {
                                 <FormItem {...formItemLayout2} label="测试方法">
                                     {getFieldDecorator('testMethods', {
                                         rules: [{ required: true,message: '请输入测试方法！' }],
-                                        //initialValue: this.props.values.testMethods,
+                                        initialValue: this.props.values.testMethods,
                                     })(
                                         <Input  disabled={this.props.disable}/>
                                     )}
@@ -345,7 +361,7 @@ class TestPlanContentComponent extends Component {
                                         本测试的测试级别为
                                         {getFieldDecorator('testLevel', {
                                             rules: [{ required: true, message: '请输入测试级别！' }],
-  //                                        initialValue: this.props.values.testLevel,
+                                            initialValue: this.props.values.testLevel,
                                         })(
                                             <Input style={InputStyle} disabled={this.props.disable} placeholder={"系统级"}/>
                                         )}
@@ -361,7 +377,7 @@ class TestPlanContentComponent extends Component {
                                         本测试的测试类别为
                                         {getFieldDecorator('testCategory', {
                                             rules: [{ required: true, message: '请输入测试类别！' }],
-  //                                        initialValue: this.props.values.testCategory,
+                                            initialValue: this.props.values.testCategory,
                                         })(
                                             <Input style={InputStyle} disabled={this.props.disable} />
                                         )}
@@ -385,7 +401,7 @@ class TestPlanContentComponent extends Component {
                                 <FormItem {...formItemLayout2} label={"测试对象"}>
                                     {getFieldDecorator('testObject', {
                                         rules: [{ required: true, message: '请输入测试对象！' }],
-                                //        initialValue: this.props.values.testObject,
+                                        initialValue: this.props.values.testObject,
                                     })(
                                         <Input disabled={this.props.disable}/>
                                     )}
@@ -409,7 +425,7 @@ class TestPlanContentComponent extends Component {
                                 <FormItem {...formItemLayout2} label={"测试方法"}>
                                     {getFieldDecorator('testMethods', {
                                         rules: [{ required: true, message: '请输入测试方法！'}],
-                                    //    initialValue: this.props.values.testMethods,
+                                        initialValue: this.props.values.testMethods,
                                     })(
                                         <Input disabled={this.props.disable} placeholder={"人工设计测试用例，人工执行测试，人工分析测试结果"}/>
                                     )}
@@ -417,42 +433,46 @@ class TestPlanContentComponent extends Component {
                             </Col>
                         </Row>
                         <FormItem/>
-
-                        <Row>
-                            <Col offset={1} span={21}>
-                                <h3>4.3 测试用例</h3>
-                            </Col>
-                            <Col offset={2} span={20}>
-                                <FormItem {...formItemLayout}>
-                                    <InputGroup compact>
-                                        本次测试共设计了
-                                        {getFieldDecorator('caseNum', {
-                                            rules: [{ required: true, message: '请输入测试用例数目！' }],
-                                            //initialValue: this.props.values.caseNum,
-                                        })(
-                                            <Input style={InputStyle} disabled={this.props.disable} pattern="^[0-9]+$"/>
-                                        )}个测试用例，覆盖了测试类别中指明的各个方面。具体用例见《测试用例》。
-                                    </InputGroup>
-                                </FormItem>
-                            </Col>
-                        </Row>
+                        {/*
+                            <Row>
+                                <Col offset={1} span={21}>
+                                    <h3>4.3 测试用例</h3>
+                                </Col>
+                                <Col offset={2} span={20}>
+                                    <FormItem {...formItemLayout}>
+                                        <InputGroup compact>
+                                            本次测试共设计了
+                                            {getFieldDecorator('caseNum', {
+                                                rules: [{required: true, message: '请输入测试用例数目！'}],
+                                                //initialValue: this.props.values.caseNum,
+                                            })(
+                                                <Input style={InputStyle} disabled={this.props.disable}
+                                                       pattern="^[0-9]+$"/>
+                                            )}个测试用例，覆盖了测试类别中指明的各个方面。具体用例见《测试用例》。
+                                        </InputGroup>
+                                    </FormItem>
+                                </Col>
+                            </Row>
+                        */}
                         <FormItem/>
                     </TabPane>
 
-                    <TabPane tab="5.测试进度表 " key="6">
+                    <TabPane tab="测试进度表 " key="4">
                         <Row>
                             <Col offset={1} span={22}>
                                 <FormItem>
-                                    <InputGroup compact>
-                                        此项目主要分为：业务测试和文档审查两部分的工作。两部分的工作可以并行完成。测试方为完成本方案所述的测试所需时间大约为
-                                        {getFieldDecorator('costDay', {
-                                            rules: [{ required: true, message: '请输入所需时间！' }],
-  //                                        initialValue: this.props.values.costDay,
-                                        })(
-                                            <Input style={InputStyle} disabled={this.props.disable} pattern="^[0-9]+$"/>
-                                        )}个工作日，如测试需求产生变更会导致测试时间的变化。<br/>
-                                        下表大致估计了本次测试各个阶段所需工作量及起止时间。
-                                    </InputGroup>
+                                    {/*<InputGroup compact>*/}
+                                    此项目主要分为：业务测试和文档审查两部分的工作。两部分的工作可以并行完成。<br/>
+                                    测试方为完成本方案所述的测试所需时间大约为
+                                    {getFieldDecorator('costDay', {
+                                        rules: [{ required: true, message: '请输入所需时间！' }],
+                                        initialValue: this.props.values.costDay,
+                                    })(
+                                        //<Input style={InputStyle} disabled={this.props.disable} pattern="^[0-9]+$"/>
+                                        <InputNumber style={InputStyle} disabled={this.props.disable} />
+                                    )}个工作日，如测试需求产生变更会导致测试时间的变化。<br/>
+                                    下表大致估计了本次测试各个阶段所需工作量及起止时间。
+                                    {/*</InputGroup>*/}
                                 </FormItem>
                             </Col>
                         </Row>
@@ -460,13 +480,15 @@ class TestPlanContentComponent extends Component {
                         /*TODO 表格*/
                     </TabPane>
 
-                    <TabPane tab="6.需求的可追踪性 " key="7">
-                        <Row>
-                            <Col offset={1} span={22}>
-                                设计的测试用例的ID中包含其对应的相关规约说明中对应条目的名称，每个测试用例都是可追踪的。
-                            </Col>
-                        </Row>
-                    </TabPane>
+                    {/*
+                        <TabPane tab="6.需求的可追踪性 " key="7">
+                            <Row>
+                                <Col offset={1} span={22}>
+                                    设计的测试用例的ID中包含其对应的相关规约说明中对应条目的名称，每个测试用例都是可追踪的。
+                                </Col>
+                            </Row>
+                        </TabPane>
+                    */}
                 </Tabs>
 
 

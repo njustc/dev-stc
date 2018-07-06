@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Row,Col,Steps, Form,Button,Input,DatePicker,InputNumber,Collapse,Tabs,message} from 'antd'
+import moment from "moment";
 //import TextArea from "../../../../../framework-androidclient/src/screens/form/textArea";
 //import {message} from "antd/lib/index";
 const Step = Steps.Step;
@@ -8,6 +9,31 @@ const FormItem=Form.Item;
 const InputGroup = Input.Group;
 const Panel=Collapse.Panel;
 const { TextArea } = Input;
+const unit=[
+    "分",
+    "角",
+    "元",
+    "拾",
+    "佰",
+    "仟",
+    "万",
+    "亿"
+
+]
+const num=[
+    "零",
+    "壹",
+    "贰",
+    "叁",
+    "肆",
+    "伍",
+    "陆",
+    "柒",
+    "捌",
+    "玖"
+]
+
+
 class ContractContentComponent extends Component {
     constructor(props) {
         super(props);
@@ -59,27 +85,14 @@ class ContractContentComponent extends Component {
         };
         const spanLayout =  {
             labelCol: { offset:2},
+            //marginTop: 0,
+            //marginBottom: 0,
+            //lineHeight: '32px'
         };
         const InputStyle={
             width:'200',
             borderRadius:'6',
         }
-        const customPanelStyle = {
-            background: '#f9f9f9',
-            borderRadius: 6,
-            marginTop: 5,
-            marginBottom: 5,
-            border: 0,
-            overflow: 'hidden',
-        };
-        const customPanelStyle2 = {
-            background: '#ffffff',
-            borderRadius: 6,
-            marginTop: 5,
-            marginBottom: 5,
-            border: 0,
-            overflow: 'hidden',
-        };
         return(
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
                 <FormItem>
@@ -131,9 +144,9 @@ class ContractContentComponent extends Component {
                     <FormItem {...formItemLayout} label="签订日期">
                         {getFieldDecorator('consignDate', {
                             rules: [{ required: true, type: 'object',message: '请选择签订日期！' }],
-                            initialValue: this.props.values.consignDate,
+                            initialValue: moment(this.props.values.consignDate),
                         })(
-                            <DatePicker showTime format="YYYY-MM-DD"/>
+                            <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
                         )}
                     </FormItem>
 
@@ -146,20 +159,43 @@ class ContractContentComponent extends Component {
                             <FormItem {...spanLayout}>
                                 <InputGroup compact>
                                     本合同由作为委托方的
-                                    {getFieldDecorator('ConsignA.unitName', {
-                                        rules: [{ required: true, message: '请输入单位全称！' }],
-                                        //initialValue: this.props.values.ConsignA.unitName,
+                                    {getFieldDecorator('aUnitName', {
+                                        rules: [{required: true, message: '请输入单位全称！'}],
+                                        initialValue: this.props.values.aUnitName,
                                     })(
                                         <Input style={InputStyle} disabled={this.props.disable}/>
                                     )}（以下简称“甲方”）与作为受托方的
-                                    {getFieldDecorator('ConsignB.unitName', {
-                                        rules: [{ required: true, message: '请输入单位全称！' }],
-                                        //initialValue: this.props.values.ConsignB.unitName,
+                                    {getFieldDecorator('bUnitName', {
+                                        rules: [{required: true, message: '请输入单位全称！'}],
+                                        initialValue: this.props.values.bUnitName,
                                     })(
                                         <Input style={InputStyle} disabled={this.props.disable}/>
                                     )}（以下简称“乙方”）在平等自愿的基础上，依据《中华人民共和国合同法》有关规定就项目的执行，经友好协商后订立。
                                 </InputGroup>
                             </FormItem>
+                            {/*
+                            <FormItem {...spanLayout}>
+                                    本合同由作为委托方的
+                                    {getFieldDecorator('aUnitName', {
+                                        rules: [{ required: true, message: '请输入单位全称！' }],
+                                        initialValue: this.props.values.aUnitName,
+                                    })(
+                                        <Input style={InputStyle} disabled={this.props.disable}/>
+                                    )}（以下简称“甲方”）
+                            </FormItem>
+                            <FormItem {...spanLayout}>
+                                与作为受托方的
+                                    {getFieldDecorator('bUnitName', {
+                                        rules: [{ required: true, message: '请输入单位全称！' }],
+                                        initialValue: this.props.values.bUnitName,
+                                    })(
+                                        <Input style={InputStyle} disabled={this.props.disable}/>
+                                    )}（以下简称“乙方”）
+                            </FormItem>
+                            <FormItem {...spanLayout}>
+                                在平等自愿的基础上，依据《中华人民共和国合同法》有关规定就项目的执行，经友好协商后订立。
+                            </FormItem>
+                            */}
                         </Col>
                     </Row>
                     <FormItem/>
@@ -175,13 +211,13 @@ class ContractContentComponent extends Component {
                                     乙方按照国家软件质量测试标准和测试规范，完成甲方委托的软件
                                     {getFieldDecorator('ProjectName', {
                                         rules: [{ required: true, message: '请输入项目名称！' }],
-                                        //initialValue: this.props.values.ProjectName,
+                                        initialValue: this.props.values.ProjectName,
                                     })(
                                         <Input  style={InputStyle} disabled={this.props.disable} placeholder={"（软件测试）"}/>
                                     )}(下称受测软件)的质量特性
                                     {getFieldDecorator('qualityChar', {
                                         rules: [{ required: true, message: '请输入项目名称！' }],
-                                        //initialValue: this.props.values.qualityChar,
+                                        initialValue: this.props.values.qualityChar,
                                     })(
                                         <Input style={InputStyle}disabled={this.props.disable} />
                                     )}，进行测试，并出具相应的测试报告
@@ -231,7 +267,7 @@ class ContractContentComponent extends Component {
                                 本合同软件测试费用为人民币
                                 {getFieldDecorator('testFee', {
                                     rules: [{ required: true, message: '请输入价格！'}],
-                                    //initialValue: this.props.values.testFee,
+                                    initialValue: this.props.values.testFee,
                                 })(
                                     <InputNumber disabled={this.props.disable}/>
                                 )}（￥   元）。
@@ -329,90 +365,90 @@ class ContractContentComponent extends Component {
                     <FormItem style={{textAlign:'center'}} colon={false} label={"委托方"}/>
 
                     <FormItem {...formItemLayout2} label={"单位全称"}>
-                        {getFieldDecorator('ConsignA.unitName', {
+                        {getFieldDecorator('aUnitName', {
                             rules: [{ required: true, message: '请输入单位全称！' }],
-                            // initialValue: this.props.values.ConsignA.unitName,
+                            initialValue: this.props.values.aUnitName,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"授权代表"}>
-                        {getFieldDecorator('ConsignA.authRepresent', {
+                        {getFieldDecorator('aAuthRepresent', {
                             rules: [{ required: true, message: '请输入授权代表！' }],
-                            //  initialValue: this.props.values.ConsignA.authRepresent,
+                            initialValue: this.props.values.aAuthRepresent,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                         </FormItem>
 
                     <FormItem {...formItemLayout2} label={"签章日期"}>
-                        {getFieldDecorator('ConsignA.signData', {
-                            rules: [{ required: true, message: '请输入签章日期！' }],
-                            //initialValue: this.props.values.ConsignA.signData,
+                        {getFieldDecorator('aSignDate', {
+                            rules: [{ required: true, type: 'object', message: '请输入签章日期！' }],
+                            initialValue: moment(this.props.values.aSignDate),
                         })(
-                            <DatePicker showTime format="YYYY-MM-DD"/>
+                            <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"联系人"}>
-                        {getFieldDecorator('ConsignA.contact', {
+                        {getFieldDecorator('aContact', {
                             rules: [{ required: true, message: '请输入联系人！' ,pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$"}],
-                            // initialValue: this.props.values.ConsignA.contact,
+                            initialValue: this.props.values.aContact,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"通讯地址"}>
-                        {getFieldDecorator('ConsignA.poAddress', {
+                        {getFieldDecorator('aPoAddress', {
                             rules: [{ required: true, message: '请输入通讯地址！' }],
-                            //  initialValue: this.props.values.ConsignA.poAddress,
+                            initialValue: this.props.values.aPoAddress,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"电话"}>
-                        {getFieldDecorator('ConsignA.phone', {
+                        {getFieldDecorator('aPhone', {
                             rules: [{ required: true, message: '请输入电话！',pattern:"^[0-9/-]+$"}],
-                            //initialValue: this.props.values.ConsignA.phone,
+                            initialValue: this.props.values.aPhone,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"传真"}>
-                        {getFieldDecorator('ConsignA.fax', {
+                        {getFieldDecorator('aFax', {
                             rules: [{ required: true, message: '请输入传真！',pattern:"^[0-9/-]+$" }],
-                            //  initialValue: this.props.values.ConsignA.fax,
+                            initialValue: this.props.values.aFax,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"开户银行"}>
-                        {getFieldDecorator('ConsignA.accountBank', {
+                        {getFieldDecorator('aAccountBank', {
                             rules: [{ required: true, message: '请输入开户银行！',pattern:"^[a-zA-Z\u4E00-\u9FA5]+$" }],
-                            //  initialValue: this.props.values.ConsignA.accountBank,
+                            initialValue: this.props.values.aAccountBank,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"账号"}>
-                        {getFieldDecorator('ConsignA.accountNum', {
+                        {getFieldDecorator('aAccountNum', {
                             rules: [{ required: true, message: '请输入账号！',pattern:"^[a-zA-Z0-9]+$" }],
-                            //  initialValue: this.props.values.ConsignA.accountNum,
+                            initialValue: this.props.values.aAccountNum,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"邮编"}>
-                        {getFieldDecorator('ConsignA.postCode', {
+                        {getFieldDecorator('aPostCode', {
                             rules: [{ required: true, message: '请输入邮编！',pattern:"^[0-9/-]+$",max:6 }],
-                            //   initialValue: this.props.values.ConsignA.postCode,
+                            initialValue: this.props.values.aPostCode,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
@@ -423,90 +459,90 @@ class ContractContentComponent extends Component {
                     <FormItem style={{textAlign:'center'}} colon={false} label={"受托方"}/>
 
                     <FormItem {...formItemLayout2} label={"单位全称"}>
-                        {getFieldDecorator('ConsignB.unitName', {
+                        {getFieldDecorator('bUnitName', {
                             rules: [{ required: true, message: '请输入单位全称！' }],
-                            // initialValue: this.props.values.ConsignB.unitName,
+                            initialValue: this.props.values.bUnitName,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"授权代表"}>
-                        {getFieldDecorator('ConsignB.authRepresent', {
+                        {getFieldDecorator('bAuthRepresent', {
                             rules: [{ required: true, message: '请输入授权代表！' }],
-                            //  initialValue: this.props.values.ConsignB.authRepresent,
+                            initialValue: this.props.values.bAuthRepresent,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"签章日期"}>
-                        {getFieldDecorator('ConsignB.signData', {
-                            rules: [{ required: true, message: '请输入签章日期！' }],
-                            //initialValue: this.props.values.ConsignB.signData,
+                        {getFieldDecorator('bSignDate', {
+                            rules: [{ required: true, type:'object', message: '请输入签章日期！' }],
+                            initialValue: moment(this.props.values.bSignDate),
                         })(
-                            <DatePicker showTime format="YYYY-MM-DD"/>
+                            <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"联系人"}>
-                        {getFieldDecorator('ConsignB.contact', {
+                        {getFieldDecorator('bContact', {
                             rules: [{ required: true, message: '请输入联系人！' ,pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$"}],
-                            // initialValue: this.props.values.ConsignB.contact,
+                            initialValue: this.props.values.bContact,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"通讯地址"}>
-                        {getFieldDecorator('ConsignB.poAddress', {
+                        {getFieldDecorator('bPoAddress', {
                             rules: [{ required: true, message: '请输入通讯地址！' }],
-                            //  initialValue: this.props.values.ConsignB.poAddress,
+                            initialValue: this.props.values.bPoAddress,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"电话"}>
-                        {getFieldDecorator('ConsignB.phone', {
+                        {getFieldDecorator('bPhone', {
                             rules: [{ required: true, message: '请输入电话！',pattern:"^[0-9/-]+$"}],
-                            //initialValue: this.props.values.ConsignB.phone,
+                            initialValue: this.props.values.bPhone,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"传真"}>
-                        {getFieldDecorator('ConsignB.fax', {
+                        {getFieldDecorator('bFax', {
                             rules: [{ required: true, message: '请输入传真！',pattern:"^[0-9/-]+$" }],
-                            //  initialValue: this.props.values.ConsignB.fax,
+                            initialValue: this.props.values.bFax,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"开户银行"}>
-                        {getFieldDecorator('ConsignB.accountBank', {
+                        {getFieldDecorator('bAccountBank', {
                             rules: [{ required: true, message: '请输入开户银行！',pattern:"^[a-zA-Z\u4E00-\u9FA5]+$" }],
-                            //  initialValue: this.props.values.ConsignB.accountBank,
+                            initialValue: this.props.values.bAccountBank,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"账号"}>
-                        {getFieldDecorator('ConsignB.accountNum', {
+                        {getFieldDecorator('bAccountNum', {
                             rules: [{ required: true, message: '请输入账号！',pattern:"^[a-zA-Z0-9]+$" }],
-                            //  initialValue: this.props.values.ConsignB.accountNum,
+                            initialValue: this.props.values.bAccountNum,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
                     </FormItem>
 
                     <FormItem {...formItemLayout2} label={"邮编"}>
-                        {getFieldDecorator('ConsignB.postCode', {
+                        {getFieldDecorator('bPostCode', {
                             rules: [{ required: true, message: '请输入邮编！',pattern:"^[0-9/-]+$",max:6 }],
-                            //   initialValue: this.props.values.ConsignB.postCode,
+                            initialValue: this.props.values.bPostCode,
                         })(
                             <Input disabled={this.props.disable}/>
                         )}
@@ -533,7 +569,9 @@ class ContractContentComponent extends Component {
                         }
                     })}
                 </FormItem>
-                {true?<FormItem label='评审内容'><TextArea row={4}/></FormItem>:<div></div>}
+                {true?<FormItem label='评审内容'><TextArea
+                //    row={4}
+                /></FormItem>:<div></div>}
                 {/*<FormItem label='评审结论'><TextArea row={4}/></FormItem>*/}
             </Form>
 

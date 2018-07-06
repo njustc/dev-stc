@@ -21,7 +21,7 @@ import styles from "./styles";
 
 const datas = [
   {
-    route: "TestPlanContentPage",
+    route: "TestPlanContentList",
     text: "测试方案书"
   },
   {

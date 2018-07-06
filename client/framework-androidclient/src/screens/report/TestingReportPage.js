@@ -57,6 +57,122 @@ export  default class TestingReportPage extends Component {
     };
   }
 
+  componentDidMount(){
+    this.listener_consignUnitC = DeviceEventEmitter.addListener('consignUnitC',(events)=>{
+      this.setState({consignUnitC :events.CONSIGN_UNITC });
+    });
+
+    this.listener_sampleName = DeviceEventEmitter.addListener('sampleName',(events)=>{
+      this.setState({sampleName :events.SAMPLE_NAME });
+    });
+
+    this.listener_sampleNumber = DeviceEventEmitter.addListener('sampleNumber',(events)=>{
+      this.setState({sampleNumber :events.SAMPLE_NUMBER });
+    });
+
+    this.listener_versionModel = DeviceEventEmitter.addListener('versionModel',(events)=>{
+      this.setState({versionModel :events.VERSION_MODEL });
+    });
+
+    this.listener_receiveTime = DeviceEventEmitter.addListener('receiveTime',(events)=>{
+      this.setState({receiveTime :events.RECEIVE_TIME });
+    });
+
+    this.listener_testKind = DeviceEventEmitter.addListener('testKind',(events)=>{
+      this.setState({testKind :events.TEST_KIND });
+    });
+
+    this.listener_testTime = DeviceEventEmitter.addListener('testTime',(events)=>{
+      this.setState({testTime :events.TEST_TIME });
+    });
+
+    this.listener_testBasis = DeviceEventEmitter.addListener('testBasis',(events)=>{
+      this.setState({testBasis :events.TEST_BASIS });
+    });
+
+    this.listener_softwareDoc = DeviceEventEmitter.addListener('softwareDoc',(events)=>{
+      this.setState({softwareDoc :events.SOFT_WARE_DOC });
+    });
+
+    this.listener_testConclusion = DeviceEventEmitter.addListener('testConclusion',(events)=>{
+      this.setState({testConclusion :events.TEST_CONCLUSION });
+    });
+
+    this.listener_masterMeasuringMan = DeviceEventEmitter.addListener('masterMeasuringMan',(events)=>{
+      this.setState({masterMeasuringMan :events.MASTER_MEASURING_MAN });
+    });
+
+    this.listener_Auditor = DeviceEventEmitter.addListener('Auditor',(events)=>{
+      this.setState({Auditor :events.AUDITOR });
+    });
+
+    this.listener_Approver = DeviceEventEmitter.addListener('Approver',(events)=>{
+      this.setState({Approver :events.APPROVER });
+    });
+
+    this.listener_testUnitContractMode = DeviceEventEmitter.addListener('testUnitContractMode',(events)=>{
+      this.setState({testUnitContractMode :events.TEST_UNIT_CONTACT_MODE });
+    });
+
+    this.listener_consignUnittelephone = DeviceEventEmitter.addListener('consignUnittelephone',(events)=>{
+      this.setState({consignUnittelephone :events.CONSIGN_UNIT_TELEPHONE });
+    });
+
+    this.listener_consignUnitFax = DeviceEventEmitter.addListener('consignUnitFax',(events)=>{
+      this.setState({consignUnitFax :events.CONSIGN_UNIT_FAX });
+    });
+
+    this.listener_consignUnitaddress = DeviceEventEmitter.addListener('consignUnitaddress',(events)=>{
+      this.setState({consignUnitaddress :events.CONSIGN_UNIT_ADDRESS });
+    });
+
+    this.listener_consignUnitEmailnumber = DeviceEventEmitter.addListener('consignUnitEmailnumber',(events)=>{
+      this.setState({consignUnitEmailnumber :events.CONSIGN_UNIT_EMAILNUMBER });
+    });
+
+    this.listener_consignUnitpeople = DeviceEventEmitter.addListener('consignUnitpeople',(events)=>{
+      this.setState({consignUnitpeople :events.CONSIGN_UNIT_PEOPLE });
+    });
+
+    this.listener_consignUnitEmail = DeviceEventEmitter.addListener('consignUnitEmail',(events)=>{
+      this.setState({consignUnitEmail :events.CONSIGN_UNIT_EMAIL });
+    });
+
+    this.listener_testBasic = DeviceEventEmitter.addListener('testBasic',(events)=>{
+      this.setState({testBasic :events.TEST_BASIC });
+    });
+
+    this.listener_referenceContent = DeviceEventEmitter.addListener('referenceContent',(events)=>{
+      this.setState({referenceContent :events.REFERENCE_CONTENT });
+    });
+
+  }
+
+  componentWillUnmount(){
+    this.listener_consignUnitC.remove();
+    this.listener_sampleName.remove();
+    this.listener_sampleNumber.remove();
+    this.listener_versionModel.remove();
+    this.listener_receiveTime.remove();
+    this.listener_testKind.remove();
+    this.listener_testTime.remove();
+    this.listener_testBasis.remove();
+    this.listener_softwareDoc.remove();
+    this.listener_testConclusion.remove();
+    this.listener_masterMeasuringMan.remove();
+    this.listener_Auditor.remove();
+    this.listener_Approver.remove();
+    this.listener_testUnitContractMode.remove();
+    this.listener_consignUnittelephone.remove();
+    this.listener_consignUnitFax.remove();
+    this.listener_consignUnitaddress.remove();
+    this.listener_consignUnitEmailnumber.remove();
+    this.listener_consignUnitpeople.remove();
+    this.listener_consignUnitEmail.remove();
+    this.listener_testBasic.remove();
+    this.listener_referenceContent.remove();
+  }
+
   render(){
     return(
       <Container>
