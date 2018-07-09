@@ -120,7 +120,7 @@ class ConsignContentComponent extends Component  {
                 name: '',
                 description: '',
             }],
-            count: 2,
+            count: 3,
             visible: false,
             curButtonIdx: "",
         };

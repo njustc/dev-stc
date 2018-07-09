@@ -140,7 +140,7 @@ class CoreLayout extends Component
                             title={<span><Icon type="smile-o" /><span>结项</span></span>}
                         >
                             <Menu.Item key="10" disabled={this.props.sider["10"].disable}>测试工作检查表</Menu.Item>
-                            <Menu.Item key="11" disabled={/*this.props.sider["11"].disable*/true}>满意度调查表</Menu.Item>
+                            <Menu.Item key="11" disabled={this.props.sider["11"].disable}>满意度调查表</Menu.Item>
                         </SubMenu>
                     </Menu>
                 </Sider>
