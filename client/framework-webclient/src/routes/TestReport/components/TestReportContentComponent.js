@@ -36,28 +36,19 @@ class EditableCell extends Component {
             <div className="editable-cell">
                 {
                     editable ? (
-                        <Form>
-                            <FormItem>
-                                {getFieldDecorator('cell', {
-                                    rules: [{ required: false}],
-                                    initialValue: this.props.value.cell,
-                                })(
-                                    <Input
-                                        value={value}
-                                        onChange={this.handleChange}
-                                        onPressEnter={this.check}
-                                        disabled={this.props.disable}
-                                        suffix={
-                                            <Icon
-                                                type="check"
-                                                className="editable-cell-icon-check"
-                                                onClick={this.check}
-                                            />
-                                        }
-                                    />
-                                )}
-                            </FormItem>
-                        </Form>
+                        <Input
+                            value={value}
+                            onChange={this.handleChange}
+                            onPressEnter={this.check}
+                            disabled={this.props.disable}
+                            suffix={
+                                <Icon
+                                    type="check"
+                                    className="editable-cell-icon-check"
+                                    onClick={this.check}
+                                />
+                            }
+                        />
                     ) : (
                         <div style={{ paddingRight: 24 }}>
                             {value || ' '}
@@ -460,7 +451,7 @@ class TestReportContentComponent extends Component {
             width: '10%',
             render: (text, record) => {
                 return (
-                    this.state.dataSource.length > 1 ?
+                    this.state.dataSource.length > 0 ?
                         (
                             <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key)}>
                                 <a href="javascript:;">Delete</a>
@@ -532,6 +523,12 @@ class TestReportContentComponent extends Component {
 
     componentWillMount() {
         this.props.getValues(this.props.testReportData.id);
+        let state = this.state;
+        state.dataSource = this.props.values["functionList"];
+        if (state.dataSource === undefined)
+            state.dataSource = [];
+        state.count = state.dataSource.length;
+        this.setState(state);
     };
 
     onClick = (buttonIndex) => () => {
@@ -541,6 +538,8 @@ class TestReportContentComponent extends Component {
             }
         });
         const {buttons, form} = this.props;
+        let fieldsValue = form.getFieldsValue();
+        fieldsValue["functionList"] = this.state.dataSource;
         // buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));
     };
 
@@ -817,7 +816,7 @@ class TestReportContentComponent extends Component {
                                 <span className="ant-form-text"></span>
                             </FormItem>
 
-                              <EditableTable
+                              <SoftwareEnvironmentTable
                               />
 
                         </TabPane>

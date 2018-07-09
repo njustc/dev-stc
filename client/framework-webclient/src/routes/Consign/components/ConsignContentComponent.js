@@ -98,7 +98,7 @@ class ConsignContentComponent extends Component  {
             width: '10%',
             render: (text, record) => {
                 return (
-                    this.state.dataSource.length > 1 ?
+                    this.state.dataSource.length > 0 ?
                         (
                             <Popconfirm title="确认要删除？?" onConfirm={() => this.onDelete(record.key)}>
                                 <a href="javascript:;">Delete</a>
