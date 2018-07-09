@@ -2,12 +2,19 @@ import React, {Component} from 'react';
 import TestCaseContentComponent from "../components/TestCaseContentComponent";
 import {message} from 'antd';
 import {connect} from "react-redux";
-import {getTestCase, putTestCaseState, updateTestCase, addTestCase} from "../../../services/TestCaseService";
+import {
+    getTestCase,
+    putTestCaseState,
+    updateTestCase,
+    addTestCase,
+    deleteTestCase
+} from "../../../services/TestCaseService";
 import {STATUS} from "../../../services/common";
 import {newTestReport} from "../../../services/TestReportService";
 import {newContract} from "../../../services/ContractService";
 import {newTestPlan} from "../../../services/TestPlanService";
 import {getProjectList} from "SERVICES/ProjectService";
+import {newTestCase} from "SERVICES/TestCaseService";
 /*TODO:表单内容和按钮的可视及禁用情况*/
 const mapStateToProps = (state, ownProps) => {
     // debugger;
@@ -117,6 +124,9 @@ const mapDispatchToProps = (dispatch) => {
             getTestCase(dispatch, id);
         },
         getProjectList: () => getProjectList(dispatch),
+        newTestCase: (id, callback) => newTestCase(dispatch, id, callback),
+        updateTestCase: (data, callback) => updateTestCase(dispatch, data, callback),
+        deleteTestCase: (id, callback) => deleteTestCase(dispatch, id, callback),
     }
 };
 

@@ -1,8 +1,10 @@
 /*测试用例*/
 import React, {Component, PropTypes} from 'react';
-import {Form,Table, Card, Collapse, Badge, Dropdown, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
+import {Form, message, Table, Card, Collapse, Badge, Dropdown, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
 import {EditableCell} from "COMPONENTS/EditableCell";
 import {getProjectList} from "SERVICES/ProjectService";
+import {newTestCase} from "SERVICES/TestCaseService";
+import {STATUS} from "SERVICES/common";
 
 const FormItem=Form.Item;
 const Panel = Collapse.Panel;
@@ -31,7 +33,6 @@ class TestCaseContentComponent extends Component {
 
     static propTypes = {
         projectData: PropTypes.object.isRequired,
-        addTestCase: PropTypes.func.isRequired,
         values: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };
@@ -41,9 +42,14 @@ class TestCaseContentComponent extends Component {
         //     // console.log(this.curID);
         // this.props.getValues(this.props.projectData.id);
         //     // console.log(this.values);
-        getProjectList();
-        this.state.dataSource = this.props.projectData.testCase.map(item => {return {...item, ...item.body}});
-        this.state.count = this.props.projectData.testCase.length;
+        this.props.getProjectList();
+        const {projectData} = this.props;
+        const dataSource = projectData.testCase.map(item => {
+            const data = item.body?JSON.parse(item.body) : {};
+            return {...item, ...data}
+        });
+        const count = projectData.testCase.length;
+        this.setState({dataSource, count});
     };
 
     expandedRowRender = (record) => {
@@ -89,15 +95,16 @@ class TestCaseContentComponent extends Component {
 
     /*table列设置*/
     columns = [{
-        title:"序号",
-        dataIndex:"id",
+        title: "序号",
+        dataIndex: "id",
+        render: (_, __, index) => index,
     }, {
         title:"测试分类",
         dataIndex:"classification",
         render: (text, record) => (
             <EditableCell
                 value={text}
-                onChange={this.onCellChange(record.key, 'classification')}
+                onChange={this.onCellChange(record.id, 'classification')}
             />
         ),
     },
@@ -137,28 +144,44 @@ class TestCaseContentComponent extends Component {
     }*/
     ];
 
-    onCellChange = (key, dataIndex) => {
+    onCellChange = (id, dataIndex) => {
         return (value) => {
             const dataSource = [...this.state.dataSource];
-            const target = dataSource.find(item => item.key === key);
+            const target = dataSource.find(item => item.id === id);
             if (target) {
                 target[dataIndex] = value;
                 this.setState({ dataSource });
             }
+            target.body = {...target};
+            this.props.updateTestCase(target, (status) => {
+                if (status === STATUS.SUCCESS)
+                    message.success('修改测试用例成功');
+                else
+                    message.error('修改测试用例失败');
+            })
         };
     }
     onDelete = (id) => {
         const dataSource = [...this.state.dataSource];
         this.setState({ dataSource: dataSource.filter(item => item.id !== id) });
+        this.props.deleteTestCase(id, (status) => {
+            if (status === STATUS.SUCCESS)
+                message.success('删除测试用例成功');
+        });
     }
     handleAdd = () => {
         const { count, dataSource } = this.state;
+        const {newTestCase, projectData} = this.props;
         const newData = {
             id: count + 1,
         };
         this.setState({
             dataSource: [...dataSource, newData],
             count: count + 1,
+        });
+        newTestCase(projectData.id, (status) => {
+            if (status === STATUS.SUCCESS)
+                message.success('新添测试用例成功')
         });
     }
 
