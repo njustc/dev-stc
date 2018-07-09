@@ -310,6 +310,11 @@ class TestPlanContentComponent extends Component {
         if (state.dataSource1 === undefined)
             state.dataSource1 = [];
         state.count1 = state.dataSource1.length;
+
+        state.dataSource2 = this.props.values["software"];
+        if (state.dataSource2 === undefined)
+            state.dataSource2 = [];
+        state.count2 = state.dataSource2.length;
         this.setState(state);
         //     // console.log(this.values);
     };
@@ -319,10 +324,11 @@ class TestPlanContentComponent extends Component {
         //         this.props.buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(values));
         //     }
         // });
-        const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(this.props.testPlanData,JSON.stringify(form.getFieldsValue()));          //此处附近接口？？
+        const {buttons, form} = this.props;//此处附近接口？？
         let fieldsValue = form.getFieldsValue();
         fieldsValue["hardware"] = this.state.dataSource1;
+        fieldsValue["software"] = this.state.dataSource2;
+        buttons[buttonIndex].onClick(this.props.testPlanData,JSON.stringify(fieldsValue));
     };
 
     render() {
