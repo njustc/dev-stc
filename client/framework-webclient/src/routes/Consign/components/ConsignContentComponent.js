@@ -129,7 +129,6 @@ class ConsignContentComponent extends Component  {
     onCellChange = (key, dataIndex) => {
         return (value) => {
             const dataSource = [...this.state.dataSource];
-            debugger;
             const target = dataSource.find(item => item.key === key);
             if (target) {
                 target[dataIndex] = value;
@@ -1098,9 +1097,7 @@ class ConsignContentComponent extends Component  {
                             <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
                                 添加测试功能
                             </Button>
-                            <FormItem>
-                                <Table bordered dataSource={dataSource} columns={columns} />
-                            </FormItem>
+                            <Table bordered dataSource={dataSource} columns={columns} />
                         </div>
 
                     </TabPane>
