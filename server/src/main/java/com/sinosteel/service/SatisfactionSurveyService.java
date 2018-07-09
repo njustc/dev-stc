@@ -80,7 +80,7 @@ public class SatisfactionSurveyService extends BaseService<SatisfactionSurvey> {
             throw new Exception("Not found");
         }
 
-        satisfactionSurvey.setBody(satisfactionSurvey.getBody());
+        satisfactionSurvey.setBody(tempSatisfactionSurvey.getBody());
         this.updateEntity(satisfactionSurvey, user);
 
         satisfactionSurvey = satisfactionSurveyRepository.findById(tempSatisfactionSurvey.getId());
