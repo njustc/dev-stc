@@ -6,6 +6,7 @@ import {STATE} from "./common";
 import {getProjectList} from "SERVICES/ProjectService";
 
 const satisfactionBase = baseServiceAddress + '/v1/satisfactionSurvey';
+const satisfactionActivitiBase = baseServiceAddress + '/processInstance';
 
 export const getSatisfactionList = (dispatch, callback) => {
     /*    httpGet(projectBase, (result) => {
@@ -78,9 +79,32 @@ export const getTestWorkCheckList = (dispatch, callback) => {
 export const newSatisfaction = (dispatch, id, callback) => {
     let urlParams = 'projectID=' + id;
     httpPost(satisfactionBase, {body:null}, (result) => {
-        const {data, status} = result;
+        const {status} = result;
         getProjectList(dispatch);
         callback && callback(status);
     }, urlParams)
 };
 
+export const updateSatisfaction = (dispatch, data, callback) => {
+    httpPut(satisfactionBase, data, (result) => {
+        const {status} = result;
+        if (status === STATUS.SUCCESS) {
+            getProjectList(dispatch);
+        }
+        callback && callback(status);
+    });
+};
+
+export const putSatisfactionState = (dispatch, processInstanceID, data, id, callback) => {
+    httpPut(satisfactionActivitiBase + '/' + processInstanceID, data, (result) => {
+        const {status,data} = result;
+        if (status === STATUS.SUCCESS) {
+            const newData = {
+                ...data,
+                id: id,
+            };
+            getProjectList(dispatch);
+        }
+        callback && callback(status);
+    });
+};

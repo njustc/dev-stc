@@ -112,7 +112,7 @@ export default class SatisfactionListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"satisfaction.id",
+        dataIndex:"id",
         key:"operation",
         render: (id) => {
             /*TODO*/
