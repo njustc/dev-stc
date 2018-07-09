@@ -171,6 +171,12 @@ class ConsignContentComponent extends Component  {
 
     componentWillMount() {
         this.props.getValues(this.props.consignData.id,this.props.consignData.processInstanceID);
+        let state = this.state;
+        state.dataSource = this.props.values["functionList"];
+        if (state.dataSource === undefined)
+            state.dataSource = [];
+        state.count = state.dataSource.length;
+        this.setState(state);
     };
 
     // componentDidMount() {
@@ -184,10 +190,11 @@ class ConsignContentComponent extends Component  {
         //     }
         // });
         const {buttons, form} = this.props;
-        // const fieldsValue = JSON.stringify((form.getFieldsValue()));
+        let fieldsValue = form.getFieldsValue();
+        fieldsValue["functionList"] = this.state.dataSource;
         const consignation = JSON.stringify({
             ...this.props.values,
-            ...form.getFieldsValue(),
+            ...fieldsValue,
         });
         // debugger;
         if(buttons[buttonIndex].content === '通过'){
