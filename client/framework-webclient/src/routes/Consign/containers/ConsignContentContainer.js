@@ -129,6 +129,14 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
                                                         newSatisfaction(dispatch, id, (status) => {
                                                             if (status === STATUS.SUCCESS) {
                                                                 message.success('满意度调查表新建成功');
+
+                                                                // newTestCase(dispatch,id,(status)=>{
+                                                                //     if(status===STATUS.SUCCESS){
+                                                                //         message.success('测试用例表新建成功');
+                                                                //     }
+                                                                //     else
+                                                                //         message.error('测试用例表新建失败');
+                                                                // })
                                                             }
                                                             else
                                                                 message.error('满意度调查表新建失败');
@@ -176,8 +184,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
         };
         const {id,processInstanceID} = consignData;
         putConsignState(dispatch,processInstanceID,putData,id,(status)=>{
-            console.log(status);
-            if(status=STATUS.SUCCESS) message.success('已否决');
+            if(status === STATUS.SUCCESS) message.success('已否决');
             else message.error('否决失败');
         });
     },
