@@ -14,6 +14,14 @@ public class SatisfactionSurvey extends BaseEntity {
     @Column(name = "BODY")
     private String body;
 
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
     /**
      * processInstanceID
      */
@@ -31,7 +39,7 @@ public class SatisfactionSurvey extends BaseEntity {
     /**
      * Project外键
      */
-    @OneToOne(mappedBy = "testWorkCheck")
+    @OneToOne(mappedBy = "satisfactionSurvey")
     @JSONField(serialize = false)
     private Project project;
 
