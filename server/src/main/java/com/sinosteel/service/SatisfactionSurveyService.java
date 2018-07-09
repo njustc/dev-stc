@@ -130,7 +130,7 @@ public class SatisfactionSurveyService extends BaseService<SatisfactionSurvey> {
     }
 
 
-    private JSONObject processSatisfactionSurvey(SatisfactionSurvey satisfactionSurvey) throws Exception {
+    JSONObject processSatisfactionSurvey(SatisfactionSurvey satisfactionSurvey) throws Exception {
         //String processState = (String) processInstanceService.queryProcessState(testRecord.getProcessInstanceID()).get("state");
         JSONObject jsonObject = JSON.parseObject(JSONObject.toJSONString(satisfactionSurvey));
         if (satisfactionSurvey != null && satisfactionSurvey.getProject() != null)
@@ -140,7 +140,7 @@ public class SatisfactionSurveyService extends BaseService<SatisfactionSurvey> {
 
     }
 
-    private  JSONArray processSatisfactionSurveys(List<SatisfactionSurvey> satisfactionSurveys) throws Exception {
+    private JSONArray processSatisfactionSurveys(List<SatisfactionSurvey> satisfactionSurveys) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (SatisfactionSurvey satisfactionSurvey: satisfactionSurveys) {
             JSONObject jsonObject = processSatisfactionSurvey(satisfactionSurvey);
