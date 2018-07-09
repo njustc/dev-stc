@@ -130,7 +130,6 @@ class SatisfactionContentComponent extends Component {
                     </Row>
                 </FormItem>
 
-                <Form>
                     <FormItem {...formItemLayout} label={"测试服务响应时间"}>
                         {getFieldDecorator('reflectTime', {
                             initialValue: this.props.values.reflectTime?this.props.values.reflectTime:3.5,
@@ -183,7 +182,6 @@ class SatisfactionContentComponent extends Component {
                             <TextArea rows={4} />
                         )}
                     </FormItem>
-                </Form>
 
                 <FormItem/>
 

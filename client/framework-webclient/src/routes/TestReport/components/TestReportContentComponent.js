@@ -40,6 +40,7 @@ class EditableCell extends Component {
                             value={value}
                             onChange={this.handleChange}
                             onPressEnter={this.check}
+                            disabled={this.props.disable}
                             suffix={
                                 <Icon
                                     type="check"
@@ -63,7 +64,7 @@ class EditableCell extends Component {
         );
     }
 }
-class EditableTable extends Component {
+class SoftwareEnvironmentTable extends Component {
     constructor(props) {
         super(props);
         this.columns = [{
@@ -77,7 +78,7 @@ class EditableTable extends Component {
             render: (text, record) => (
                 <EditableCell
                     value={text}
-                    onChange={this.onCellChange(record.key, 'name')}
+                    onChange={this.onCellChange(record.key, 'softwarename')}
                 />
             ),
         }, {
@@ -87,7 +88,7 @@ class EditableTable extends Component {
             render: (text, record) => (
                 <EditableCell
                     value={text}
-                    onChange={this.onCellChange(record.key, 'description')}
+                    onChange={this.onCellChange(record.key, 'softwarekind')}
                 />
             ),
         }, {
@@ -97,7 +98,7 @@ class EditableTable extends Component {
             render: (text, record) => (
                 <EditableCell
                     value={text}
-                    onChange={this.onCellChange(record.key, 'description')}
+                    onChange={this.onCellChange(record.key, 'softwareversion')}
                 />
             ),
         }, {
@@ -152,8 +153,8 @@ class EditableTable extends Component {
     handleAdd = () => {
         const { count, dataSource } = this.state;
         const newData = {
-            key: count,
-            softwarenumber: `${count}`,
+            key: count+1,
+            softwarenumber: `${count+1}`,
             description: ``,
         };
         this.setState({
@@ -184,12 +185,12 @@ class FunctionEditableTable extends React.Component {
             width: '10%',
         }, {
             title: '功能模块',
-            dataIndex: 'iterm',
+            dataIndex: 'function',
             width: '10%',
             render: (text, record) => (
                 <EditableCell
                     value={text}
-                    onChange={this.onCellChange(record.key, 'name')}
+                    onChange={this.onCellChange(record.key, 'function')}
                 />
             ),
         }, {
@@ -199,7 +200,7 @@ class FunctionEditableTable extends React.Component {
             render: (text, record) => (
                 <EditableCell
                     value={text}
-                    onChange={this.onCellChange(record.key, 'description')}
+                    onChange={this.onCellChange(record.key, 'command')}
                 />
             ),
         }, {
@@ -209,7 +210,7 @@ class FunctionEditableTable extends React.Component {
             render: (text, record) => (
                 <EditableCell
                     value={text}
-                    onChange={this.onCellChange(record.key, 'description')}
+                    onChange={this.onCellChange(record.key, 'result')}
                 />
             ),
         }, {
@@ -230,7 +231,6 @@ class FunctionEditableTable extends React.Component {
 
         this.state = {
             dataSource: [{
-
                 number: '1',
                 iterm: '',
                 command: '',
@@ -264,8 +264,8 @@ class FunctionEditableTable extends React.Component {
     handleAdd = () => {
         const { count, dataSource } = this.state;
         const newData = {
-            key: count,
-            number: `${count}`,
+            key: count+1,
+            number: `${count+1}`,
             description: ``,
         };
         this.setState({
@@ -422,7 +422,7 @@ class TestReportContentComponent extends Component {
             render: (text, record) => (
                 <EditableCell
                     value={text}
-                    onChange={this.onCellChange(record.key, 'name')}
+                    onChange={this.onCellChange(record.key, 'kind')}
                 />
             ),
         },  {
@@ -432,7 +432,7 @@ class TestReportContentComponent extends Component {
             render: (text, record) => (
                 <EditableCell
                     value={text}
-                    onChange={this.onCellChange(record.key, 'name')}
+                    onChange={this.onCellChange(record.key, 'amount')}
                 />
             ),
         }, {
@@ -451,7 +451,7 @@ class TestReportContentComponent extends Component {
             width: '10%',
             render: (text, record) => {
                 return (
-                    this.state.dataSource.length > 1 ?
+                    this.state.dataSource.length > 0 ?
                         (
                             <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key)}>
                                 <a href="javascript:;">Delete</a>
@@ -498,8 +498,8 @@ class TestReportContentComponent extends Component {
     handleAdd = () => {
         const { count, dataSource } = this.state;
         const newData = {
-            key: count,
-            number: `${count}`,
+            key: count+1,
+            number: `${count+1}`,
             description: ``,
         };
         this.setState({
@@ -523,6 +523,12 @@ class TestReportContentComponent extends Component {
 
     componentWillMount() {
         this.props.getValues(this.props.testReportData.id);
+        let state = this.state;
+        state.dataSource = this.props.values["functionList"];
+        if (state.dataSource === undefined)
+            state.dataSource = [];
+        state.count = state.dataSource.length;
+        this.setState(state);
     };
 
     onClick = (buttonIndex) => () => {
@@ -532,6 +538,8 @@ class TestReportContentComponent extends Component {
             }
         });
         const {buttons, form} = this.props;
+        let fieldsValue = form.getFieldsValue();
+        fieldsValue["functionList"] = this.state.dataSource;
         // buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));
     };
 
@@ -548,7 +556,7 @@ class TestReportContentComponent extends Component {
         return(
             <Form onSubmit={this.handleSubmit} >
 
-                <FormItem {...formItemLayout}>
+                <FormItem>
                     <h1 style={{textAlign:'center'}}>测试报告</h1>
                 </FormItem>
 
@@ -808,7 +816,7 @@ class TestReportContentComponent extends Component {
                                 <span className="ant-form-text"></span>
                             </FormItem>
 
-                              <EditableTable
+                              <SoftwareEnvironmentTable
                               />
 
                         </TabPane>
@@ -890,9 +898,9 @@ class TestReportContentComponent extends Component {
                             <EfficiencyEditableTable
                             />
                         </TabPane>
-
-
-                <FormItem {...formItemLayout}>
+                    </Tabs>
+                </div>
+                <FormItem style={{textAlign:'center'}}>
                     {this.props.buttons.map((button, index) => {
                         let buttonCanShow = false;
                         this.props.buttonsEnable.forEach(function(element){
@@ -910,9 +918,9 @@ class TestReportContentComponent extends Component {
                     })}
                 </FormItem>
 
-             </Tabs>
 
-            </div>
+
+
 
         </Form>
 

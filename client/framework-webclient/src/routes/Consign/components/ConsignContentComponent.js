@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Steps, Modal, Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message,Table, Popconfirm } from 'antd';
+import moment from "moment/moment";
 const TabPane = Tabs.TabPane;
 
 const Panel = Collapse.Panel;
@@ -97,7 +98,7 @@ class ConsignContentComponent extends Component  {
             width: '10%',
             render: (text, record) => {
                 return (
-                    this.state.dataSource.length > 1 ?
+                    this.state.dataSource.length > 0 ?
                         (
                             <Popconfirm title="确认要删除？?" onConfirm={() => this.onDelete(record.key)}>
                                 <a href="javascript:;">Delete</a>
@@ -755,9 +756,11 @@ class ConsignContentComponent extends Component  {
 
                     <FormItem {...formItemLayout} label={"委托时间"}>
                         {getFieldDecorator('consignTime', {
-                            rules: [{ required: true, message: '请正确输入时间！',
-                                initialValue: this.props.values.consignTime,
+                            rules: [{
+                                required: true, message: '请正确输入时间！',
+                                type: 'object',
                             }],
+                            initialValue: this.props.values.consignTime ? moment(this.props.values.consignTime) : undefined,
                         })(
                             <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
                         )}
@@ -887,9 +890,11 @@ class ConsignContentComponent extends Component  {
 
                         <FormItem {...formItemLayout} label={"希望测试完成的时间"}>
                             {getFieldDecorator('sampleQuantityComTimeWish', {
-                                rules: [{ required: true, message: '请正确输入时间！',
-                                    initialValue: this.props.values.sampleQuantityComTimeWish,
+                                rules: [{
+                                    required: true, message: '请正确输入时间！',
+                                    type: 'object',
                                 }],
+                                initialValue: this.props.values.sampleQuantityComTimeWish ? moment(this.props.values.sampleQuantityComTimeWish) : undefined,
                             })(
                                 <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
                             )}
