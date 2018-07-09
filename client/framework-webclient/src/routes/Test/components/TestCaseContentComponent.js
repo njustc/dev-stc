@@ -1,6 +1,9 @@
 /*测试用例*/
 import React, {Component, PropTypes} from 'react';
 import {Form,Table, Card, Collapse, Badge, Dropdown, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
+import {EditableCell} from "COMPONENTS/EditableCell";
+import {getProjectList} from "SERVICES/ProjectService";
+
 const FormItem=Form.Item;
 const Panel = Collapse.Panel;
 const { TextArea } = Input;
@@ -11,7 +14,7 @@ class TestCaseContentComponent extends Component {
     }
 
     state={
-        data : [{
+        dataSource : [{
             id: 1,
             classification: 'yj',
             process: 'unhappy->happy',
@@ -23,20 +26,24 @@ class TestCaseContentComponent extends Component {
             statute: 'sssssss',
             accordance: 'tttttt'
         }],
+        count: 1,
     }
 
     static propTypes = {
-        testCaseData: PropTypes.object.isRequired,
+        projectData: PropTypes.object.isRequired,
         addTestCase: PropTypes.func.isRequired,
-        values: PropTypes.object.isRequired,
+        values: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };
 
     componentWillMount() {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
-        this.props.getValues(this.props.testCaseData.id);
+        // this.props.getValues(this.props.projectData.id);
         //     // console.log(this.values);
+        getProjectList();
+        this.state.dataSource = this.props.projectData.testCase.map(item => {return {...item, ...item.body}});
+        this.state.count = this.props.projectData.testCase.length;
     };
 
     expandedRowRender = (record) => {
@@ -77,7 +84,7 @@ class TestCaseContentComponent extends Component {
         /*TODO*/
         //this.state.data.push(fieldsValue);
         //console.log(this.state.data);
-        //this.props.addTestCase(this.props.testCaseData,fieldsValue);
+        //this.props.addTestCase(this.props.projectData,fieldsValue);
     };
 
     /*table列设置*/
@@ -87,6 +94,12 @@ class TestCaseContentComponent extends Component {
     }, {
         title:"测试分类",
         dataIndex:"classification",
+        render: (text, record) => (
+            <EditableCell
+                value={text}
+                onChange={this.onCellChange(record.key, 'classification')}
+            />
+        ),
     },
         /*{
         title:"测试用例设计说明",
@@ -113,7 +126,7 @@ class TestCaseContentComponent extends Component {
         dataIndex:"action",
         render: (text, record) => {
         return (
-            <Popconfirm title="确认删除此测试用例吗？" onConfirm={() => this.onDelete(record.key)}>
+            <Popconfirm title="确认删除此测试用例吗？" onConfirm={() => this.onDelete(record.id)}>
               <a href="javascript:;">删除</a>
             </Popconfirm>
         );
@@ -124,9 +137,29 @@ class TestCaseContentComponent extends Component {
     }*/
     ];
 
-    /* TODO 删除测试用例 */
-    onDelete = (key) => {
-        // this.props.deleteTestCase(key);
+    onCellChange = (key, dataIndex) => {
+        return (value) => {
+            const dataSource = [...this.state.dataSource];
+            const target = dataSource.find(item => item.key === key);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource });
+            }
+        };
+    }
+    onDelete = (id) => {
+        const dataSource = [...this.state.dataSource];
+        this.setState({ dataSource: dataSource.filter(item => item.id !== id) });
+    }
+    handleAdd = () => {
+        const { count, dataSource } = this.state;
+        const newData = {
+            id: count + 1,
+        };
+        this.setState({
+            dataSource: [...dataSource, newData],
+            count: count + 1,
+        });
     }
 
 
@@ -211,7 +244,9 @@ class TestCaseContentComponent extends Component {
                                             key={button.content}>
                                         {button.content}
                                     </Button>)*/}
-                                        <Button type='primary' onClick={this.onClick()}><Icon type="plus-circle-o" />添加测试用例</Button>
+                                        <Button type='primary' onClick={this.handleAdd}>
+                                            <Icon type="plus-circle-o" />添加测试用例
+                                        </Button>
                                 </FormItem>
                             </Form>
                         </Card>
@@ -224,7 +259,7 @@ class TestCaseContentComponent extends Component {
                     columns={this.columns}
                     expandedRowRender={this.expandedRowRender}
                     // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
-                    dataSource={/*this.props.dataSource*/this.state.data}
+                    dataSource={/*this.props.dataSource*/this.state.dataSource}
                     rowKey={'id'}
                 />
             </div>
