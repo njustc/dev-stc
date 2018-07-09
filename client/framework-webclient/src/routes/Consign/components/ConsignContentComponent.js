@@ -129,6 +129,7 @@ class ConsignContentComponent extends Component  {
     onCellChange = (key, dataIndex) => {
         return (value) => {
             const dataSource = [...this.state.dataSource];
+            debugger;
             const target = dataSource.find(item => item.key === key);
             if (target) {
                 target[dataIndex] = value;
@@ -171,6 +172,12 @@ class ConsignContentComponent extends Component  {
 
     componentWillMount() {
         this.props.getValues(this.props.consignData.id,this.props.consignData.processInstanceID);
+        let state = this.state;
+        state.dataSource = this.props.values["functionList"];
+        if (state.dataSource === undefined)
+            state.dataSource = [];
+        state.count = state.dataSource.length;
+        this.setState(state);
     };
 
     // componentDidMount() {
@@ -184,10 +191,11 @@ class ConsignContentComponent extends Component  {
         //     }
         // });
         const {buttons, form} = this.props;
-        // const fieldsValue = JSON.stringify((form.getFieldsValue()));
+        let fieldsValue = form.getFieldsValue();
+        fieldsValue["functionList"] = this.state.dataSource;
         const consignation = JSON.stringify({
             ...this.props.values,
-            ...form.getFieldsValue(),
+            ...fieldsValue,
         });
         // debugger;
         if(buttons[buttonIndex].content === '通过'){
@@ -1090,7 +1098,9 @@ class ConsignContentComponent extends Component  {
                             <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
                                 添加测试功能
                             </Button>
-                            <Table bordered dataSource={dataSource} columns={columns} />
+                            <FormItem>
+                                <Table bordered dataSource={dataSource} columns={columns} />
+                            </FormItem>
                         </div>
 
                     </TabPane>
