@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Steps, Modal, Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message,Table, Popconfirm } from 'antd';
+import moment from "moment/moment";
 const TabPane = Tabs.TabPane;
 
 const Panel = Collapse.Panel;
@@ -97,7 +98,7 @@ class ConsignContentComponent extends Component  {
             width: '10%',
             render: (text, record) => {
                 return (
-                    this.state.dataSource.length > 1 ?
+                    this.state.dataSource.length > 0 ?
                         (
                             <Popconfirm title="确认要删除？?" onConfirm={() => this.onDelete(record.key)}>
                                 <a href="javascript:;">Delete</a>
@@ -120,7 +121,7 @@ class ConsignContentComponent extends Component  {
                 name: '',
                 description: '',
             }],
-            count: 2,
+            count: 3,
             visible: false,
             curButtonIdx: "",
         };
@@ -171,6 +172,12 @@ class ConsignContentComponent extends Component  {
 
     componentWillMount() {
         this.props.getValues(this.props.consignData.id,this.props.consignData.processInstanceID);
+        let state = this.state;
+        state.dataSource = this.props.values["functionList"];
+        if (state.dataSource === undefined)
+            state.dataSource = [];
+        state.count = state.dataSource.length;
+        this.setState(state);
     };
 
     // componentDidMount() {
@@ -184,10 +191,11 @@ class ConsignContentComponent extends Component  {
         //     }
         // });
         const {buttons, form} = this.props;
-        // const fieldsValue = JSON.stringify((form.getFieldsValue()));
+        let fieldsValue = form.getFieldsValue();
+        fieldsValue["functionList"] = this.state.dataSource;
         const consignation = JSON.stringify({
             ...this.props.values,
-            ...form.getFieldsValue(),
+            ...fieldsValue,
         });
         // debugger;
         if(buttons[buttonIndex].content === '通过'){
@@ -748,9 +756,11 @@ class ConsignContentComponent extends Component  {
 
                     <FormItem {...formItemLayout} label={"委托时间"}>
                         {getFieldDecorator('consignTime', {
-                            rules: [{ required: true, message: '请正确输入时间！',
-                                initialValue: this.props.values.consignTime,
+                            rules: [{
+                                required: true, message: '请正确输入时间！',
+                                type: 'object',
                             }],
+                            initialValue: this.props.values.consignTime ? moment(this.props.values.consignTime) : undefined,
                         })(
                             <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
                         )}
@@ -880,9 +890,11 @@ class ConsignContentComponent extends Component  {
 
                         <FormItem {...formItemLayout} label={"希望测试完成的时间"}>
                             {getFieldDecorator('sampleQuantityComTimeWish', {
-                                rules: [{ required: true, message: '请正确输入时间！',
-                                    initialValue: this.props.values.sampleQuantityComTimeWish,
+                                rules: [{
+                                    required: true, message: '请正确输入时间！',
+                                    type: 'object',
                                 }],
+                                initialValue: this.props.values.sampleQuantityComTimeWish ? moment(this.props.values.sampleQuantityComTimeWish) : undefined,
                             })(
                                 <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
                             )}

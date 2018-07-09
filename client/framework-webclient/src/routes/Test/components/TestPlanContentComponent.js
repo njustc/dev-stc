@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Row,Col,Steps,Form,Button,Input,DatePicker,InputNumber,Collapse,Table,Tabs,Popconfirm} from 'antd'
+import {Icon, Row,Col,Steps,Form,Button,Input,DatePicker,InputNumber,Collapse,Table,Tabs,Popconfirm} from 'antd'
 //import {Tabs} from "antd/lib/index";
 const TabPane = Tabs.TabPane;
 const { Column, ColumnGroup } = Table;
@@ -24,14 +24,267 @@ const staffData = [{
   duty: '监督指导测试小组工作，对项目进行中遇到的问题提供支持。',
 }];
 
+
+class EditableCell extends Component {
+    state = {
+        value: this.props.value,
+        editable: false,
+    }
+    handleChange = (e) => {
+        const value = e.target.value;
+        this.setState({ value });
+    }
+    check = () => {
+        this.setState({ editable: false });
+        if (this.props.onChange) {
+            this.props.onChange(this.state.value);
+        }
+    }
+    edit = () => {
+        this.setState({ editable: true });
+    }
+    render() {
+        const { value, editable } = this.state;
+        return (
+            <div className="editable-cell">
+                {
+                    editable ? (
+                        <Input
+                            value={value}
+                            onChange={this.handleChange}
+                            onPressEnter={this.check}
+                            disabled={this.props.disable}
+                            suffix={
+                                <Icon
+                                    type="check"
+                                    className="editable-cell-icon-check"
+                                    onClick={this.check}
+                                />
+                            }
+                        />
+                    ) : (
+                        <div style={{ paddingRight: 24 }}>
+                            {value || ' '}
+                            <Icon
+                                type="edit"
+                                className="editable-cell-icon"
+                                onClick={this.edit}
+                            />
+                        </div>
+                    )
+                }
+            </div>
+        );
+    }
+}
+
 class TestPlanContentComponent extends Component {
     constructor(props) {
         super(props);
+
+        this.columns1 = [{
+            title: '序号',
+            dataIndex: 'number',
+            width: '10%',
+        }, {
+            title: '硬件名称',
+            dataIndex: 'name',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange1(record.key, 'name')}
+                />
+            ),
+        },  {
+            title: '硬件类别',
+            dataIndex: 'kind',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange1(record.key, 'kind')}
+                />
+            ),
+        },  {
+            title: '数量',
+            dataIndex: 'amount',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange1(record.key, 'amount')}
+                />
+            ),
+        }, {
+            title: '配置',
+            dataIndex: 'description',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange1(record.key, 'description')}
+                />
+            ),
+        }, {
+            title: '删除操作',
+            dataIndex: 'operation',
+            width: '10%',
+            render: (text, record) => {
+                return (
+                    this.state.dataSource1.length > 0 ?
+                        (
+                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete1(record.key)}>
+                                <a href="javascript:;">Delete</a>
+                            </Popconfirm>
+                        ) : null
+                );
+            },
+        }];
+
+        this.columns2 = [{
+            title: '序号',
+            dataIndex: 'softwarenumber',
+            width: '10%',
+        }, {
+            title: '软件名称',
+            dataIndex: 'softwarename',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange2(record.key, 'softwarename')}
+                />
+            ),
+        }, {
+            title: '软件类别',
+            dataIndex: 'softwarekind',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange2(record.key, 'softwarekind')}
+                />
+            ),
+        }, {
+            title: '软件版本',
+            dataIndex: 'softwareversion',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange2(record.key, 'softwareversion')}
+                />
+            ),
+        }, {
+            title: '删除操作',
+            dataIndex: 'operation',
+            width: '10%',
+            render: (text, record) => {
+                return (
+                    this.state.dataSource2.length > 0 ?
+                        (
+                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete2(record.key)}>
+                                <a href="javascript:;">Delete</a>
+                            </Popconfirm>
+                        ) : null
+                );
+            },
+        }];
+
         this.state = {
             values:this.props.value,
             editable:false,
+            dataSource1: [{
+                key: '1',
+                number: '1',
+                name: '',
+                kind: '',
+                amount: '',
+                description: '',
+            }, {
+                key: '2',
+                number: '2',
+                name: '',
+                kind: '',
+                amount: '',
+                description: '',
+            }],
+            count1: 2,
+
+            dataSource2: [{
+                key: '1',
+                softwarenumber: '1',
+                softwarename: '',
+                softwareversion: '',
+                softwarekind:'',
+                description: '',
+            }, {
+                key: '2',
+                softwarenumber: '2',
+                softwarename: '',
+                softwareversion: '',
+                softwarekind:'',
+                description: '',
+            }],
+            count2: 2,
         };
     };
+
+    onCellChange1 = (key, dataIndex) => {
+        return (value) => {
+            const dataSource1 = [...this.state.dataSource1];
+            const target = dataSource1.find(item => item.key === key);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource1 });
+            }
+        };
+    }
+    onDelete1 = (key) => {
+        const dataSource1 = [...this.state.dataSource1];
+        this.setState({ dataSource1: dataSource1.filter(item => item.key !== key) });
+    }
+    handleAdd1 = () => {
+        const { count1, dataSource1 } = this.state;
+        const newData = {
+            key: count1+1,
+            number: `${count1+1}`,
+            description: ``,
+        };
+        this.setState({
+            dataSource1: [...dataSource1, newData],
+            count1: count1 + 1,
+        });
+    }
+
+    onCellChange2 = (key, dataIndex) => {
+        return (value) => {
+            const dataSource2 = [...this.state.dataSource2];
+            const target = dataSource2.find(item => item.key === key);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource2 });
+            }
+        };
+    }
+    onDelete2 = (key) => {
+        const dataSource2 = [...this.state.dataSource2];
+        this.setState({ dataSource2: dataSource2.filter(item => item.key !== key) });
+    }
+    handleAdd2 = () => {
+        const { count2, dataSource2 } = this.state;
+        const newData = {
+            key: count2+1,
+            softwarenumber: `${count2+1}`,
+            description: ``,
+        };
+        this.setState({
+            dataSource2: [...dataSource2, newData],
+            count2: count2 + 1,
+        });
+    }
+
     static defaultProps = {
         values: {
             documentID:'NST-04-JS006-2011-软件测试方案-',
@@ -52,6 +305,17 @@ class TestPlanContentComponent extends Component {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
         this.props.getValues(this.props.testPlanData.id);
+        let state = this.state;
+        state.dataSource1 = this.props.values["hardware"];
+        if (state.dataSource1 === undefined)
+            state.dataSource1 = [];
+        state.count1 = state.dataSource1.length;
+
+        state.dataSource2 = this.props.values["software"];
+        if (state.dataSource2 === undefined)
+            state.dataSource2 = [];
+        state.count2 = state.dataSource2.length;
+        this.setState(state);
         //     // console.log(this.values);
     };
     onClick = (buttonIndex) => () => {
@@ -60,8 +324,11 @@ class TestPlanContentComponent extends Component {
         //         this.props.buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(values));
         //     }
         // });
-        const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(this.props.testPlanData,JSON.stringify(form.getFieldsValue()));          //此处附近接口？？
+        const {buttons, form} = this.props;//此处附近接口？？
+        let fieldsValue = form.getFieldsValue();
+        fieldsValue["hardware"] = this.state.dataSource1;
+        fieldsValue["software"] = this.state.dataSource2;
+        buttons[buttonIndex].onClick(this.props.testPlanData,JSON.stringify(fieldsValue));
     };
 
     render() {
@@ -79,25 +346,7 @@ class TestPlanContentComponent extends Component {
             width:'200',
             borderRadius:'6',
         };
-        const spanLayout =  {
-            labelCol: { offset: 0.5 },
-        };
-        const customPanelStyle = {
-            background: '#f9f9f9',
-            borderRadius: 6,
-            marginTop: 5,
-            marginBottom: 5,
-            border: 0,
-            overflow: 'hidden',
-        };
-        const customPanelStyle2 = {
-            background: '#ffffff',
-            borderRadius: 6,
-            marginTop: 5,
-            marginBottom: 5,
-            border: 0,
-            overflow: 'hidden',
-        };
+
         return(
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
                 <FormItem>
@@ -276,10 +525,15 @@ class TestPlanContentComponent extends Component {
                         </Row>
                         <Row>
                             <Col offset={2} span={20}>
-
+                                <div>
+                                    <Button onClick={this.handleAdd1} type="primary" style={{ marginBottom: 16 }}>
+                                        添加硬件环境
+                                    </Button>
+                                    <Table bordered dataSource={this.state.dataSource1} columns={this.columns1} />
+                                </div>
                             </Col>
                         </Row>
-                        /*TODO 表格*/
+
                         <FormItem/>
 
                         <Row>
@@ -289,7 +543,12 @@ class TestPlanContentComponent extends Component {
                         </Row>
                         <Row>
                             <Col offset={2} span={20}>
-                                本次测试中使用到的软件环境如下：
+                                <div>
+                                    <Button onClick={this.handleAdd2} type="primary" style={{ marginBottom: 16 }}>
+                                        添加软件环境
+                                    </Button>
+                                    <Table bordered dataSource={this.state.dataSource2} columns={this.columns2} />
+                                </div>
                             </Col>
                         </Row>
                         /*TODO 表格*/

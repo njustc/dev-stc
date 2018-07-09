@@ -2,27 +2,36 @@ import React, {Component} from 'react';
 import TestCaseContentComponent from "../components/TestCaseContentComponent";
 import {message} from 'antd';
 import {connect} from "react-redux";
-import {getTestCase, putTestCaseState, updateTestCase, addTestCase} from "../../../services/TestCaseService";
+import {
+    getTestCase,
+    putTestCaseState,
+    updateTestCase,
+    addTestCase,
+    deleteTestCase
+} from "../../../services/TestCaseService";
 import {STATUS} from "../../../services/common";
 import {newTestReport} from "../../../services/TestReportService";
 import {newContract} from "../../../services/ContractService";
 import {newTestPlan} from "../../../services/TestPlanService";
+import {getProjectList} from "SERVICES/ProjectService";
+import {newTestCase} from "SERVICES/TestCaseService";
 /*TODO:表单内容和按钮的可视及禁用情况*/
 const mapStateToProps = (state, ownProps) => {
     // debugger;
-    const content = state.TestCase.listMap[ownProps.id];
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
-    const body = content?state.TestCase.listMap[ownProps.id].body:undefined;
-    const ToBeSubmit = content?state.TestCase.listMap[ownProps.id].state!=="TobeSubmit":false;
-    const isEditVisible = authData.functionGroup["TestCase"]!==undefined&&authData.functionGroup["TestCase"].findIndex(element => element === "EDIT")!==-1;
-    const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Submit')!==-1;
-    const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
+    // const content = state.TestCase.listMap[ownProps.id];
+    // const authData = JSON.parse(sessionStorage.getItem('authData'));
+    // const body = content?state.TestCase.listMap[ownProps.id].body:undefined;
+    // const ToBeSubmit = content?state.TestCase.listMap[ownProps.id].state!=="TobeSubmit":false;
+    // const isEditVisible = authData.functionGroup["TestCase"]!==undefined&&authData.functionGroup["TestCase"].findIndex(element => element === "EDIT")!==-1;
+    // const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Submit')!==-1;
+    // const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     return {
         dataSource: undefined,
-        testCaseData: content?state.TestCase.listMap[ownProps.id]:ownProps,
-        values: body ? JSON.parse(body) : {},
-        disable:ToBeSubmit||(!isEditVisible),
-        buttonsEnable: buttonsEnable(isEditVisible,isSubmitVisible,isReviewVisible),
+        // projectData: content?state.TestCase.listMap[ownProps.id]:ownProps,
+        projectData: state.Project.listMap[ownProps.id],
+        values: state.Project.listMap[ownProps.id].testCase,
+        // disable:ToBeSubmit||(!isEditVisible),
+        // buttonsEnable: buttonsEnable(isEditVisible,isSubmitVisible,isReviewVisible),
     }
 };
 
@@ -113,7 +122,11 @@ const mapDispatchToProps = (dispatch) => {
         buttons: buttons(dispatch),
         getValues: (id, processInstanceID) => {
             getTestCase(dispatch, id);
-        }
+        },
+        getProjectList: () => getProjectList(dispatch),
+        newTestCase: (id, callback) => newTestCase(dispatch, id, callback),
+        updateTestCase: (data, callback) => updateTestCase(dispatch, data, callback),
+        deleteTestCase: (id, callback) => deleteTestCase(dispatch, id, callback),
     }
 };
 

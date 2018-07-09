@@ -96,7 +96,8 @@ export default class TestCaseListComponent extends Component {
         render:(name) => name?name:"无"
     },{
         title:"操作",
-        dataIndex:"testCase.id",
+        // dataIndex:"testCase.id",
+        dataIndex: 'id',
         key:"operation",
         render: (record) => {
             /*TODO*/

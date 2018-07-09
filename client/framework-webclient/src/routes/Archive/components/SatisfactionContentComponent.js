@@ -28,13 +28,6 @@ class SatisfactionContentComponent extends Component {
         form: PropTypes.object.isRequired,
     };
 
-    componentWillMount() {
-    //     this.curID = this.props.curKey;
-    //     // console.log(this.curID);
-         this.props.getValues(this.props.satisfactionData.id);
-    //     // console.log(this.values);
-    };
-
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
         //     if (!err) {
@@ -137,7 +130,6 @@ class SatisfactionContentComponent extends Component {
                     </Row>
                 </FormItem>
 
-                <Form>
                     <FormItem {...formItemLayout} label={"测试服务响应时间"}>
                         {getFieldDecorator('reflectTime', {
                             initialValue: this.props.values.reflectTime?this.props.values.reflectTime:3.5,
@@ -190,7 +182,6 @@ class SatisfactionContentComponent extends Component {
                             <TextArea rows={4} />
                         )}
                     </FormItem>
-                </Form>
 
                 <FormItem/>
 
