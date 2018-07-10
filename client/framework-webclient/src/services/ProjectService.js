@@ -58,7 +58,7 @@ export const newProject = (dispatch, id, projectNo, callback) => {
     httpPost(projectBase, {code:projectNo}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setProjectContent(data));
+            // dispatch(setProjectContent(data));j
             dispatch(showListMap());
         }
         callback && callback(result);

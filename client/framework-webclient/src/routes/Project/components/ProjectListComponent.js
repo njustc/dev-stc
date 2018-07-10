@@ -86,35 +86,14 @@ export default class ProjectListComponent extends Component {
     }
 
     getCurrentState(record){
-        console.log(record);
-        if(record.contract.state===STATE.FINISHED){
-            if(record.testPlan.state===STATE.FINISHED){
-                if(record.testReport.state===STATE.SATISFACTION) {
-                    //测试报告已完成
-                    return(
-                        <span><Badge status={this.state2SColor(record.testReport.statee)} text={"测试报告"+this.state2C(record.testReport.state)} /></span>
-                    );
-                }
-                else {
-                    //测试报告
-                    return(
-                        <span><Badge status={this.state2SColor(record.testReport.statee)} text={"测试报告书"+this.state2C(record.testReport.state)} /></span>
-                    );
-                }
-            }
-            else {
-                //测试方案
-                return(
-                    <span><Badge status={this.state2SColor(record.testPlan.state)} text={"测试方案书"+this.state2C(record.testPlan.state)} /></span>
-                );
-            }
-        }
-        else {
-            //合同
-            return(
-                <span><Badge status={this.state2SColor(record.contract.state)} text={"测试合同书"+this.state2C(record.contract.state)} /></span>
-            );
-        }
+        if(record.testReport&&record.testReport.state===STATE.SATISFACTION)
+            return ( <span><Badge status={this.state2SColor(record.testReport.state)} text={"测试报告"+this.state2C(record.testReport.state)} /></span>);
+        else if(record.testPlan&&record.testPlan.state===STATE.FINISHED)
+            return ( <span><Badge status={this.state2SColor(record.testPlan.state)} text={"测试方案"+this.state2C(record.testReport.state)} /></span>);
+        else if(record.contract&&record.contract.state===STATE.FINISHED)
+            return ( <span><Badge status={this.state2SColor(record.contract.state)} text={"测试报告"+this.state2C(record.testReport.state)} /></span>);
+        else
+            return ( <span><Badge status="error" text={"测试合同待编写"} /></span>);
     }
 
     // projectDetails(id){
