@@ -3,7 +3,7 @@ import ConsignContentComponent from "../components/ConsignContentComponent";
 import {message} from 'antd';
 import {connect} from "react-redux";
 import {getConsign, getConsignState, putConsignState, updateConsign} from "../../../services/ConsignService";
-import {newProject} from "../../../services/ProjectService";
+import {getProjectList, newProject} from "../../../services/ProjectService";
 import {newContract} from "../../../services/ContractService";
 import {newTestPlan} from "../../../services/TestPlanService";
 import {newTestReport} from "../../../services/TestReportService";
@@ -172,6 +172,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
                 // });
             }
             else message.error('流程新建失败');
+            getProjectList(dispatch);
         });
     },
     // enable: isReviewVisible
