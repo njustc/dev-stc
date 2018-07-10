@@ -23,7 +23,7 @@ export default class ProjectListComponent extends Component {
         getProjectState: PropTypes.func,
     };
 
-    componentDidMount() {
+    componentWillMount() {
         this.props.getProjectList();
     }
 
@@ -227,19 +227,19 @@ export default class ProjectListComponent extends Component {
         return (
             <div>
                 <div>
-                   ID： {record.id}
+                   项目编号： {record.code}
                 </div>
                 {/*<div>*/}
                     {/*项目编号： {record.id}*/}
                 {/*</div>*/}
                 <div>
-                    项目创建人ID：{record.createdUserId}
+                    项目创建人：{record.createdUserName}
                 </div>
                 <div>
                     项目创建时间：{record.createdTime}
                 </div>
                 <div>
-                    测试用例个数：{record.testCase}
+                    测试用例个数：{record.testCase.length}
                 </div>
                 <div>
                     项目价格：¥2333
