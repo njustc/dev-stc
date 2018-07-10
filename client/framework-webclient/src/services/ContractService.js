@@ -5,6 +5,7 @@ import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 import {setTestRecordList} from "../modules/ducks/TestRecord";
 import {showListMap} from "../modules/ducks/Project";
+import {getProjectList} from "SERVICES/ProjectService";
 
 const contractBase = baseServiceAddress + '/contract';
 const contractActivitiBase = baseServiceAddress + '/processInstance';
@@ -48,7 +49,8 @@ export const newContract = (dispatch, id,callback) => {
     httpPost(contractBase, {contractBody:null}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
-            dispatch(setContractContent(data));
+            // dispatch(setContractContent(data));
+            getProjectList(dispatch);
         }
         callback && callback(status);
     },urlParams);
