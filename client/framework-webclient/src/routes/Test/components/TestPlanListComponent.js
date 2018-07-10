@@ -21,6 +21,7 @@ export default class TestPlanListComponent extends Component {
         showContent: PropTypes.func,
         deleteTestPlan: PropTypes.func,
         getTestPlanList: PropTypes.func,
+        showProject: PropTypes.func,
         //newContract: PropTypes.func,
         //enableNew: PropTypes.bool,
     };
@@ -76,10 +77,18 @@ export default class TestPlanListComponent extends Component {
         }
     }
 
+    viewProject = (id) => () => {
+        /*TODO:查看项目详情*/
+        this.props.showProject(id);
+    };
+
     /*table列设置*/
     columns = [{
         title:"项目编号",
         dataIndex:"code",
+        render:(code,record)=>{
+            return (<a href="javascript:void(0);" onClick={this.viewProject(record.id)}>{code}</a>)
+        }
         // sorter:(a, b) => a.pid - b.pid,
     }/*, {
         title:"测试方案ID",

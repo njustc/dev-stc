@@ -5,6 +5,7 @@ import {TestPlanContentView} from "../../Test";
 import {deleteTestPlan,getTestPlanList, newTestPlan} from "../../../services/TestPlanService";
 import {setTestPlanFilter} from "../../../modules/ducks/TestPlan";
 import TestPlanListComponent from "../components/TestPlanListComponent";
+import {ProjectContentView} from "../../Project";
 //import {deleteContract, newContract} from "../../../services/ContractService";
 
 const mapStateToProps = (state) => {
@@ -20,6 +21,12 @@ const mapDispatchToProps = (dispatch) => {
             const key = "测试方案" + id;
             dispatch(addTabAction(key, '测试方案详情', TestPlanContentView,{id:id}));
 //            dispatch(setConsignContent())
+        },
+        showProject: (id) => {
+            // debugger;
+            console.log(id);
+            dispatch(addTabAction(id, '项目详情', ProjectContentView, {id: id}));
+//            dispatch(setContractContent())
         },
         setListFilter: (listFilter) => dispatch(setTestPlanFilter(listFilter)),
         getTestPlanList: () => getTestPlanList(dispatch),

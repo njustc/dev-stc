@@ -169,7 +169,7 @@ export default class ContractListComponent extends Component {
     viewProject = (id) => () => {
         /*TODO:查看项目详情*/
         this.props.showProject(id);
-    }
+    };
 
     /*取消委托提示框*/
     showDeleteConfirm = (id) => () => {

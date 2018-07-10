@@ -23,6 +23,8 @@ export default class SatisfactionListComponent extends Component {
         getSatisfactionList: PropTypes.func,
         //newContract: PropTypes.func,
         //enableNew: PropTypes.bool,
+        showProject: PropTypes.func,
+
     };
 
     componentDidMount() {
@@ -55,6 +57,11 @@ export default class SatisfactionListComponent extends Component {
         }
     };
 
+    viewProject = (id) => () => {
+        /*TODO:查看项目详情*/
+        this.props.showProject(id);
+    };
+
     /*状态列颜色渲染*/
     state2SColor(state) {
         switch (state){
@@ -78,6 +85,9 @@ export default class SatisfactionListComponent extends Component {
     columns = [{
         title:"项目编号",
         dataIndex: "code",
+        render:(code,record)=>{
+            return (<a href="javascript:void(0);" onClick={this.viewProject(record.id)}>{code}</a>)
+        }
     }, {
         title:"项目名称",
         dataIndex:"name",
