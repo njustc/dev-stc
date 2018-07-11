@@ -23,7 +23,8 @@ const mapDispatchToProps = (dispatch) => {
         removeTab: (targetKey) => {
             dispatch(removeTabAction(targetKey));
         },
-        switchTab: (activeKey) => dispatch(setActiveKey(activeKey))
+        switchTab: (activeKey) => dispatch(setActiveKey(activeKey)),
+        getProjectList: () => getProjectList(dispatch),
     }
 };
 

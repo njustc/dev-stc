@@ -23,6 +23,10 @@ class CoreLayout extends Component
         super(props);
     };
 
+    componentDidMount() {
+        this.interval = setInterval(() => this.props.getProjectList(), 1000);
+    }
+
     static propTypes = {
         sider: PropTypes.object.isRequired,
         sysUser: PropTypes.object.isRequired,
