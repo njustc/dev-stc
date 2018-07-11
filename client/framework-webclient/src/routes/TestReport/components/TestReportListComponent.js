@@ -147,18 +147,18 @@ export default class TestReportListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"testReport.id",
+        // dataIndex:"testReport.id",
         key:"operation",
         //width: '12%',
-        render: (record) => {
+        render: (project) => {
             /*TODO:操作应该由后台传过来*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewContent({key:project.testReport.id,id:project.id,})}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
                        //disabled={!this.props.enableNew}
-                       onClick={this.showDeleteConfirm(record)}>取消测试报告</a>
+                       onClick={this.showDeleteConfirm(project.id)}>取消测试报告</a>
                 </div>
             )
         }
