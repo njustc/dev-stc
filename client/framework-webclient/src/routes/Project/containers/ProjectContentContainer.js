@@ -40,10 +40,10 @@ const mapDispatchToProps = (dispatch) => {
                 case 2:dispatch(addTabAction(item.contract.id, '合同详情', ContractContentView, {id: item.id}));break;
                 case 3:dispatch(addTabAction(item.testPlan.id, '测试方案详情', TestPlanContentView, {id: item.id}));break;
                 case 4:dispatch(addTabAction("测试用例"+id, '测试用例详情', TestCaseContentView, {id: id}));break;
-                case 7:dispatch(addTabAction(item.testReport.id, '测试报告详情', TestReportContentView, {id: item.testReport.id}));break;
-                case 8:dispatch(addTabAction(item.testReportCheck.id, '报告检查详情', TestReportCheckContentView, {id: item.id}));break;
-                case 9:dispatch(addTabAction(item.testWorkCheck.id, '测试工作检查详情', TestWorkCheckContentView, {id: item.id}));break;
-                case 10:dispatch(addTabAction(item.satisfaction.id, '满意度调查表详情', SatisfactionContentView, {id: item.id}));break;
+                case 7:dispatch(addTabAction(item.testReport.id, '测试报告详情', TestReportContentView, {id: item.id}));break;
+                case 8:dispatch(addTabAction(item.testReportCheck.id, '报告检查详情', TestReportCheckContentView, {id: item.testReportCheck.id}));break;
+                case 9:dispatch(addTabAction(item.testWorkCheck.id, '测试工作检查详情', TestWorkCheckContentView, {id: item.testWorkCheck.id}));break;
+                case 10:dispatch(addTabAction(item.satisfaction.id, '满意度调查表详情', SatisfactionContentView, {id: item.satisfaction.id}));break;
                 default:break;
             }
             //dispatch(addTabAction(id, '流程详情', ProjectContentView, {id: id}));

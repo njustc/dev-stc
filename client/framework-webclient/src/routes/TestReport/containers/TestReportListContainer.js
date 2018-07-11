@@ -18,15 +18,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        showContent: (id) => {
-            dispatch(addTabAction(id, '测试报告详情', TestReportContentView, {id: id}));
-//            dispatch(setTestReportContent())
+        showContent: (param) => {
+            const {key,id} = param;
+            dispatch(addTabAction(key, '测试报告详情', TestReportContentView, {id: id}));
         },
         showProject: (id) => {
-            // debugger;
-            // console.log(id);
             dispatch(addTabAction(id, '项目详情', ProjectContentView, {id: id}));
-//            dispatch(setContractContent())
         },
         setListFilter: (listFilter) => dispatch(setTestReportFilter(listFilter)),
         getTestReportList: () => getTestReportList(dispatch),
