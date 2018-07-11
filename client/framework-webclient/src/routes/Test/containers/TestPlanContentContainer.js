@@ -13,7 +13,6 @@ const mapStateToProps = (state, ownProps) => {
     const isTesting = (sysUser.username==="testing");
     const isQuality = (sysUser.username==="quality");
     const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Write')!==-1;
-    console.log(content.operation);
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ConfirmPass')!==-1;
 
