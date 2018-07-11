@@ -49,9 +49,83 @@ export default class SatisfactionContentPage extends Component{
 
       satisfactionDegree:"",
       satisfactionLevel:"",
-      rate:0,
+      //rate:0,
     }
   }
+
+  componentDidMount(){
+    this.listener_consignUnit = DeviceEventEmitter.addListener('consignUnit',(events)=>{
+      this.setState({consignUnit : events.CONSIGN_UNIT });
+    });
+    this.listener_softwareName = DeviceEventEmitter.addListener('softwareName',(events)=>{
+      this.setState({softwareName : events.SOFTWARE_NAME });
+    });
+    this.listener_contact = DeviceEventEmitter.addListener('contact',(events)=>{
+      this.setState({contact : events.CONTACT });
+    });
+
+    this.listener_contactNumber = DeviceEventEmitter.addListener('contactNumber',(events)=>{
+      this.setState({contactNumber : events.CONTACTNUMBER });
+    });
+    this.listener_Email = DeviceEventEmitter.addListener('Email',(events)=>{
+      this.setState({Email: events.EMAIL });
+    });
+    this.listener_mobilePhone = DeviceEventEmitter.addListener('mobilePhone',(events)=>{
+      this.setState({mobilePhone : events.MOBILEPHONE });
+    });
+
+    this.listener_reflectTime= DeviceEventEmitter.addListener('reflectTime',(events)=>{
+      this.setState({reflectTime : events.REFLECTTIME });
+    });
+    this.listener_charge = DeviceEventEmitter.addListener('charge',(events)=>{
+      this.setState({charge : events.CHARGE });
+    });
+    this.listener_standard = DeviceEventEmitter.addListener('standard',(events)=>{
+      this.setState({standard : events.STANDARD });
+    });
+
+    this.listener_capability = DeviceEventEmitter.addListener('capability',(events)=>{
+      this.setState({capability : events.CAPABILITY });
+    });
+    this.listener_understanding = DeviceEventEmitter.addListener('understanding',(events)=>{
+      this.setState({understanding : events.UNDERSTANDING });
+    });
+    this.listener_communication = DeviceEventEmitter.addListener('communication',(events)=>{
+      this.setState({communication : events.COMMUNICATION });
+    });
+
+    this.listener_advice = DeviceEventEmitter.addListener('advice',(events)=>{
+      this.setState({advice : events.ADVICE });
+    });
+    this.listener_satisfactionDegree = DeviceEventEmitter.addListener('satisfactionDegree',(events)=>{
+      this.setState({satisfactionDegree : events.SATISFACTION_DEGREE });
+    });
+    this.listener_satisfactionLevel = DeviceEventEmitter.addListener('satisfactionLevel',(events)=>{
+      this.setState({satisfactionLevel : events.SATISFACTION_LEVEL });
+    });
+  }
+
+  componentWillUnmount(){
+    this.listener_consignUnit.remove();
+    this.listener_softwareName.remove();
+    this.listener_contact.remove();
+    this.listener_contactNumber.remove();
+    this.listener_Email.remove();
+
+    this.listener_mobilePhone.remove();
+    this.listener_reflectTime.remove();
+    this.listener_charge.remove();
+    this.listener_standard.remove();
+    this.listener_capability.remove();
+
+    this.listener_understanding.remove();
+    this.listener_communication.remove();
+    this.listener_advice.remove();
+    this.listener_satisfactionDegree.remove();
+    this.listener_satisfactionLevel.remove();
+
+  }
+
   render(){
     return(
       <Container>
