@@ -179,7 +179,7 @@ class TestCaseContentComponent extends Component {
         ),
     }, {
         title:"时间",
-        dataIndex:"time",
+        dataIndex:"createdTime",
     }, {
         title:"操作",
         dataIndex:"action",
@@ -237,18 +237,23 @@ class TestCaseContentComponent extends Component {
         });
     }
     handleAdd = () => {
-        const { count, dataSource } = this.state;
-        const {newTestCase, projectData} = this.props;
+        let { count, dataSource } = this.state;
+        const {newTestCase, updateTestCase, projectData, form} = this.props;
         const newData = {
-            id: count + 1,
+            // id: count + 1,
+            ...form.getFieldsValue(),
         };
-        this.setState({
-            dataSource: [...dataSource, newData],
-            count: count + 1,
-        });
-        newTestCase(projectData.id, (status) => {
-            if (status === STATUS.SUCCESS)
-                message.success('新添测试用例成功')
+        newTestCase(projectData.id, (data) => {
+            data.body = newData;
+            newData.createdTime = data.createdTime;
+            updateTestCase(data, (status) => {
+                if (status === STATUS.SUCCESS) {
+                    this.setState({
+                        dataSource: [...dataSource, newData],
+                    });
+                    message.success('新添测试用例成功')
+                }
+            });
         });
     }
 
@@ -306,13 +311,13 @@ class TestCaseContentComponent extends Component {
                                         <TextArea rows={4} />
                                     )}
                                 </FormItem>
-                                <FormItem {...formItemLayout} label={"时间"}>
-                                    {getFieldDecorator('time', {
-                                    // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                    })(
-                                        <DatePicker/>
-                                    )}
-                                </FormItem>
+                                {/*<FormItem {...formItemLayout} label={"时间"}>*/}
+                                    {/*{getFieldDecorator('time', {*/}
+                                    {/*// rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],*/}
+                                    {/*})(*/}
+                                        {/*<DatePicker/>*/}
+                                    {/*)}*/}
+                                {/*</FormItem>*/}
                                 <FormItem{...formItemLayout}label={"有关的规约说明"}>
                                     {getFieldDecorator('statute', {
                                     // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
