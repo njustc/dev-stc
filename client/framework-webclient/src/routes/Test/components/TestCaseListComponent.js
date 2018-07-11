@@ -20,6 +20,7 @@ export default class TestCaseListComponent extends Component {
         showContent: PropTypes.func,
         deleteTestCase: PropTypes.func,
         getTestCaseList: PropTypes.func,
+        showProject: PropTypes.func,
         //newContract: PropTypes.func,
         //enableNew: PropTypes.bool,
     };
@@ -30,7 +31,7 @@ export default class TestCaseListComponent extends Component {
 
     /*搜索框选项相关*/
     state={
-        selectOption:'id',
+        selectOption:'code',
     };
 
     onSelect = (value, option) => {
@@ -41,14 +42,14 @@ export default class TestCaseListComponent extends Component {
 
     setPlaceholder = () => {
         switch (this.state.selectOption){
-            case 'id':
-                return '请输入测试用例ID';
-            case 'customerId':
-                return '请输入委托人ID';
+            // case 'id':
+            //     return '请输入测试用例ID';
+            case 'tester':
+                return '请输入测试人';
             case 'name':
                 return '请输入项目名称';
-            case 'pid':
-                return '请输入项目ID';
+            case 'code':
+                return '请输入项目编号';
             default:break;
         }
     };
@@ -72,10 +73,18 @@ export default class TestCaseListComponent extends Component {
         }
     }
 
+    viewProject = (id) => () => {
+        /*TODO:查看项目详情*/
+        this.props.showProject(id);
+    };
+
     /*table列设置*/
     columns = [{
         title:"项目编号",
         dataIndex:"code",
+        render:(code,record)=>{
+            return (<a href="javascript:void(0);" onClick={this.viewProject(record.id)}>{code}</a>)
+        }
         // sorter:(a, b) => a.pid - b.pid,
     }, {
         title:"项目名称",
@@ -141,12 +150,17 @@ export default class TestCaseListComponent extends Component {
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
-            case 'id':
-                this.props.setListFilter((item)=>item.id.match(reg));break;
-            case 'createdUserId':
-                this.props.setListFilter((item)=>item.createdUserId.match(reg));break;
+            case 'code':
+                this.props.setListFilter((item)=>item.code.match(reg));break;
+            case 'tester':
+                this.props.setListFilter((item)=>item.testCase.createdUserName.match(reg));break;
             case 'name':
-                this.props.setListFilter((item)=>item.name.match(reg));break;
+                this.props.setListFilter((item)=>{
+                    const consignBody = item.consign.consignation?JSON.parse(item.consign.consignation):{};
+                    return consignBody!=={}&&consignBody.softwareName&&consignBody.softwareName.match(reg);
+                });break;
+                // case 'name':
+                // this.props.setListFilter((item)=>item.name.match(reg));break;
             default:break;
         }
     };
@@ -157,10 +171,10 @@ export default class TestCaseListComponent extends Component {
                 <h3 style={{ marginBottom: 16 }}>测试用例列表</h3>
                 <InputGroup>
                     <Col span={3}>
-                        <Select defaultValue="搜索测试用例ID" onSelect={this.onSelect}>
-                            <Option value="id">搜索测试用例ID</Option>
-                            <Option value="pid">搜索项目ID</Option>
-                            <Option value="customerId">搜索委托人ID</Option>
+                        <Select defaultValue="搜索项目编号" onSelect={this.onSelect}>
+                            {/*<Option value="id">搜索测试用例ID</Option>*/}
+                            <Option value="code">搜索项目编号</Option>
+                            {/*<Option value="tester">搜索测试人</Option>*/}
                             <Option value="name">搜索项目名称 </Option>
                         </Select>
                     </Col>

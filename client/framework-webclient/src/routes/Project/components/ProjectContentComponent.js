@@ -15,28 +15,16 @@ const { Header, Content, Footer } = Layout;
 export default class ProjectContentComponent extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     /*TODO:current应该放到props里面*/
-        //     current: 0,
-        // };
     }
 
     static propTypes = {
         setContentFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
-        //deleteProject: PropTypes.func,
-        //getProjectContent: PropTypes.func,
     };
 
-    /*componentDidMount() {
-        //this.props.getProjectList();
-    }*/
     componentWillMount() {
-        //     this.curID = this.props.curKey;
-        //     // console.log(this.curID);
          this.props.getValues(this.props.projectData.id);
-         //console.log(this.props);
     };
 
 
@@ -70,11 +58,8 @@ export default class ProjectContentComponent extends Component {
     data = [
         {index:1,name:'委托申请表'},
         {index:2,name:'测试合同书'},
-        //'合同评审表',
         {index:3,name:'测试方案书'},
         {index:4,name:'测试用例表'},
-        // {index:5,name:'测试记录表'},
-        // {index:6,name:'测试问题清单'},
         {index:7,name:'测试报告书'},
         {index:8,name:'测试报告检查表'},
         {index:9,name:'测试工作检查表'},
@@ -93,7 +78,10 @@ export default class ProjectContentComponent extends Component {
     /*查看详情*/
     viewContent = (item) => () => {
         //console.log(this.props.id);
-        this.props.showContent(item,this.props.id);
+        this.props.showContent({
+            index: item.index,
+            ...this.props.projectData,
+        },this.props.id);
     };
 
     consignOperation = (state) => () => {

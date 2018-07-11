@@ -1,28 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {Icon, Row,Col,Steps,Form,Button,Input,DatePicker,InputNumber,Collapse,Table,Tabs,Popconfirm} from 'antd'
-//import {Tabs} from "antd/lib/index";
 const TabPane = Tabs.TabPane;
 const { Column, ColumnGroup } = Table;
-const Step = Steps.Step;
 const FormItem=Form.Item;
 const InputGroup = Input.Group;
-const Panel=Collapse.Panel;
-const staffData = [{
-  key: '1',
-  station: '项目负责人',
-  num: '1人',
-  duty: '负责项目整体组织、工作分配、测试人员管理、项目具体协调等工作。项目经理同时承担测试执行的部分分工作。',
-}, {
-  key: '2',
-  station: '测试工程师',
-  num: '1人',
-  duty: '实施测试工作，同时担任配置管理员。',
-}, {
-  key: '3',
-  station: '项目督导',
-  num: '1人',
-  duty: '监督指导测试小组工作，对项目进行中遇到的问题提供支持。',
-}];
 
 
 class EditableCell extends Component {
@@ -85,10 +66,12 @@ class TestPlanContentComponent extends Component {
         this.columns1 = [{
             title: '序号',
             dataIndex: 'number',
+            key: 'number',
             width: '10%',
         }, {
             title: '硬件名称',
             dataIndex: 'name',
+            key: 'name',
             width: '10%',
             render: (text, record) => (
                 <EditableCell
@@ -99,6 +82,7 @@ class TestPlanContentComponent extends Component {
         },  {
             title: '硬件类别',
             dataIndex: 'kind',
+            key: 'kind',
             width: '10%',
             render: (text, record) => (
                 <EditableCell
@@ -109,6 +93,7 @@ class TestPlanContentComponent extends Component {
         },  {
             title: '数量',
             dataIndex: 'amount',
+            key: 'amount',
             width: '10%',
             render: (text, record) => (
                 <EditableCell
@@ -119,6 +104,7 @@ class TestPlanContentComponent extends Component {
         }, {
             title: '配置',
             dataIndex: 'description',
+            key: 'description',
             width: '10%',
             render: (text, record) => (
                 <EditableCell
@@ -192,6 +178,65 @@ class TestPlanContentComponent extends Component {
             },
         }];
 
+        this.columns3 = [{
+            title: '里程碑任务',
+            dataIndex: 'project',
+            width: '10%',
+        }, {
+            title: '工作量',
+            dataIndex: 'workload',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange3(record.key, 'workload')}
+                />
+            ),
+        }, {
+            title: '开始时间',
+            dataIndex: 'startingTime',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange3(record.key, 'startingTime')}
+                />
+            ),
+        }, {
+            title: '结束时间',
+            dataIndex: 'endTime',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange3(record.key, 'endTime')}
+                />
+            ),
+        }];
+
+        this.columns4 = [{
+            title: '岗位',
+            dataIndex: 'post',
+            key: 'post',
+            width: '10%',
+        }, {
+            title: '人数',
+            dataIndex: 'num',
+            key: 'num',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange4(record.key, 'num')}
+                />
+            ),
+        }, {
+            title: '职责',
+            dataIndex: 'duty',
+            key: 'duty',
+            width: '50%',
+        }];
+
         this.state = {
             values:this.props.value,
             editable:false,
@@ -228,6 +273,51 @@ class TestPlanContentComponent extends Component {
                 description: '',
             }],
             count2: 2,
+
+            dataSource3: [{
+                key: '1',
+                project: '制定测试计划',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }, {
+                key: '2',
+                project: '设计测试',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }, {
+                key: '3',
+                project: '执行测试',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }, {
+                key: '4',
+                project: '评估测试',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }],
+            count3: 4,
+
+            dataSource4: [{
+                key: '1',
+                post: '项目负责人',
+                num: '',
+                duty: '负责项目整体组织、工作分配、测试人员管理、项目具体协调等工作。项目经理同时承担测试执行的部分分工作。',
+            }, {
+                key: '2',
+                post: '测试工程师',
+                num: '',
+                duty: '实施测试工作，同时担任配置管理员。',
+            }, {
+                key: '3',
+                post: '项目督导',
+                num: '',
+                duty: '监督指导测试小组工作，对项目进展中遇到的问题提供支持。',
+            }],
+            count4: 3,
         };
     };
 
@@ -285,6 +375,28 @@ class TestPlanContentComponent extends Component {
         });
     }
 
+    onCellChange3 = (key, dataIndex) => {
+        return (value) => {
+            const dataSource3 = [...this.state.dataSource3];
+            const target = dataSource3.find(item => item.key === key);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource3 });
+            }
+        };
+    }
+
+    onCellChange4 = (key, dataIndex) => {
+        return (value) => {
+            const dataSource4 = [...this.state.dataSource4];
+            const target = dataSource4.find(item => item.key === key);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource4 });
+            }
+        };
+    }
+
     static defaultProps = {
         values: {
             documentID:'NST-04-JS006-2011-软件测试方案-',
@@ -315,6 +427,55 @@ class TestPlanContentComponent extends Component {
         if (state.dataSource2 === undefined)
             state.dataSource2 = [];
         state.count2 = state.dataSource2.length;
+
+        state.dataSource3 = this.props.values["testProgress"];
+        if (state.dataSource3 === undefined)
+            state.dataSource3 = [{
+                key: '1',
+                project: '制定测试计划',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }, {
+                key: '2',
+                project: '设计测试',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }, {
+                key: '3',
+                project: '执行测试',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }, {
+                key: '4',
+                project: '评估测试',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }];
+        state.count3 = state.dataSource3.length;
+
+        state.dataSource4 = this.props.values["people"];
+        if (state.dataSource4 === undefined)
+            state.dataSource4 = [{
+                key: '1',
+                post: '项目负责人',
+                num: '',
+                duty: '负责项目整体组织、工作分配、测试人员管理、项目具体协调等工作。项目经理同时承担测试执行的部分分工作。',
+            }, {
+                key: '2',
+                post: '测试工程师',
+                num: '',
+                duty: '实施测试工作，同时担任配置管理员。',
+            }, {
+                key: '3',
+                post: '项目督导',
+                num: '',
+                duty: '监督指导测试小组工作，对项目进展中遇到的问题提供支持。',
+            }];
+        state.count4 = state.dataSource4.length;
         this.setState(state);
         //     // console.log(this.values);
     };
@@ -328,6 +489,9 @@ class TestPlanContentComponent extends Component {
         let fieldsValue = form.getFieldsValue();
         fieldsValue["hardware"] = this.state.dataSource1;
         fieldsValue["software"] = this.state.dataSource2;
+        fieldsValue["testProgress"] = this.state.dataSource3;
+        fieldsValue["people"] = this.state.dataSource4;
+        debugger;
         buttons[buttonIndex].onClick(this.props.testPlanData,JSON.stringify(fieldsValue));
     };
 
@@ -551,8 +715,6 @@ class TestPlanContentComponent extends Component {
                                 </div>
                             </Col>
                         </Row>
-                        /*TODO 表格*/
-
 
                         <FormItem/>
                         {/*
@@ -578,11 +740,8 @@ class TestPlanContentComponent extends Component {
                             <Col offset={2} span={20}>
                                 初步定为1名测试人员，1名项目督导，1名项目负责人。各类人员具体职责如下：
 
-                                <Table dataSource={staffData} pagination={{ hideOnSinglePage:true }}>
-                                    <Column title="岗位" dataIndex="station" key="station"/>
-                                    <Column title="人数" dataIndex="num" key="num"/>
-                                    <Column title="职责" dataIndex="duty" key="duty"/>
-                                </Table>
+                                <Table bordered dataSource={this.state.dataSource4} columns={this.columns4} />
+
                             </Col>
                         </Row>
                     </TabPane>
@@ -735,8 +894,9 @@ class TestPlanContentComponent extends Component {
                                 </FormItem>
                             </Col>
                         </Row>
-
-                        /*TODO 表格*/
+                        <div>
+                            <Table bordered dataSource={this.state.dataSource3} columns={this.columns3} />
+                        </div>
                     </TabPane>
 
                     {/*
