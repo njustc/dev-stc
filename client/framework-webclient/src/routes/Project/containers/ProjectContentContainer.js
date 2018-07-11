@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch) => {
             /*TODO:文档的ID是流程的ID+文档名不同*/
             switch (item.index){
                 case 1:dispatch(addTabAction(item.consign.id, '委托详情', ConsignContentView, {id: item.consign.id}));break;
-                case 2:dispatch(addTabAction(item.contract.id, '合同详情', ContractContentView, {id: item.contract.id}));break;
+                case 2:dispatch(addTabAction(item.contract.id, '合同详情', ContractContentView, {id: item.id}));break;
                 case 3:dispatch(addTabAction(item.testPlan.id, '测试方案详情', TestPlanContentView, {id: item.testPlan.id}));break;
                 case 4:dispatch(addTabAction("测试用例"+id, '测试用例详情', TestCaseContentView, {id: id}));break;
                 case 7:dispatch(addTabAction(item.testReport.id, '测试报告详情', TestReportContentView, {id: item.testReport.id}));break;
