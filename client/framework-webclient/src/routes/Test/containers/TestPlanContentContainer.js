@@ -78,7 +78,6 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
             body: testPlan
         };
         updateTestPlan(dispatch,valueData,(status)=>{
-            console.log(status);
             if(status===STATUS.SUCCESS){
                 const putData = {
                     "object": "testPlan",

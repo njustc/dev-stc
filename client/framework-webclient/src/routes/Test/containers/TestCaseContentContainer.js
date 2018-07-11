@@ -17,21 +17,10 @@ import {getProjectList} from "SERVICES/ProjectService";
 import {newTestCase} from "SERVICES/TestCaseService";
 /*TODO:表单内容和按钮的可视及禁用情况*/
 const mapStateToProps = (state, ownProps) => {
-    // debugger;
-    // const content = state.TestCase.listMap[ownProps.id];
-    // const authData = JSON.parse(sessionStorage.getItem('authData'));
-    // const body = content?state.TestCase.listMap[ownProps.id].body:undefined;
-    // const ToBeSubmit = content?state.TestCase.listMap[ownProps.id].state!=="TobeSubmit":false;
-    // const isEditVisible = authData.functionGroup["TestCase"]!==undefined&&authData.functionGroup["TestCase"].findIndex(element => element === "EDIT")!==-1;
-    // const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Submit')!==-1;
-    // const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     return {
         dataSource: undefined,
-        // projectData: content?state.TestCase.listMap[ownProps.id]:ownProps,
         projectData: state.Project.listMap[ownProps.id],
         values: state.Project.listMap[ownProps.id].testCase,
-        // disable:ToBeSubmit||(!isEditVisible),
-        // buttonsEnable: buttonsEnable(isEditVisible,isSubmitVisible,isReviewVisible),
     }
 };
 
