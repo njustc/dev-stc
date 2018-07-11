@@ -1,6 +1,6 @@
 /*测试用例*/
 import React, {Component, PropTypes} from 'react';
-import {Form, message, Table, Card, Collapse, Badge, Dropdown, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
+import {Form, message, Table, Card, Collapse, Badge, Divider, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
 import {EditableCell} from "COMPONENTS/EditableCell";
 import {getProjectList} from "SERVICES/ProjectService";
 import {newTestCase} from "SERVICES/TestCaseService";
@@ -61,7 +61,12 @@ class TestCaseContentComponent extends Component {
             <div>
                 <Row style={rowStyle}>
                     <Col span={3}><b>设计说明</b></Col>
-                    <Col span={21}><p style={{ margin: 0 }}>{record.designNotes}</p></Col>
+                    <Col span={21}>
+                        <EditableCell
+                            value={record.designNotes}
+                            onChange={this.onCellChange(record.id, 'designNotes')}
+                        />
+                    </Col>
                 </Row>
                 <Row style={rowStyle}>
                     <Col span={3}><b>有关的规约说明</b></Col>
@@ -133,9 +138,16 @@ class TestCaseContentComponent extends Component {
         dataIndex:"action",
         render: (text, record) => {
         return (
-            <Popconfirm title="确认删除此测试用例吗？" onConfirm={() => this.onDelete(record.id)}>
-              <a href="javascript:;">删除</a>
-            </Popconfirm>
+            <div>
+                <Popconfirm title="确认删除此测试用例吗？" onConfirm={() => this.onDelete(record.id)}>
+                    <a href="javascript:;">删除</a>
+                </Popconfirm>
+                <Divider type="vertical"/>
+                <a href="javascript:void(0);" onClick={this.addTestRecord(record.id)}>测试记录</a>
+                <Divider type="vertical"/>
+                <a href="javascript:void(0);" onClick={this.addTestProblem(record.id)}>测试问题</a>
+            </div>
+
         );
       },
     },/*{
@@ -143,6 +155,14 @@ class TestCaseContentComponent extends Component {
         dataIndex:"accordance",
     }*/
     ];
+
+    addTestRecord = (id) => {
+
+    }
+
+    addTestProblem = (id) => {
+
+    }
 
     onCellChange = (id, dataIndex) => {
         return (value) => {
