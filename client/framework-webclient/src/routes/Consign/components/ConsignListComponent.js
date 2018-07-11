@@ -182,8 +182,7 @@ export default class ConsignListComponent extends Component {
             case 'name':
                 this.props.setListFilter((item)=>{
                     const consignBody = item.consignation?JSON.parse(item.consignation):{};
-                    if(consignBody!=={}&&consignBody.softwareName.match(reg))
-                        return item;
+                    return consignBody!=={}&&consignBody.softwareName&&consignBody.softwareName.match(reg);
                 });break;
             default:break;
         }
