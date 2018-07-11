@@ -8,12 +8,10 @@ import {message} from "antd/lib/index";
 const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    //console.log(authData);
-    const content = state.TestReport.listMap[ownProps.id];
+    const content = state.Project.listMap[ownProps.id].testReport;
     const body = content?content.body:undefined;
-    console.log(ownProps.id);
 
-    const isEditVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
+    const isEditVisible = true||authData.functionGroup["testReport"]!==undefined&&authData.functionGroup["testReport"].findIndex(element => element === "EDIT")!==-1;
     const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Write')!==-1:
         content.operation.findIndex(element => element === 'Write')!==-1);
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
@@ -22,15 +20,9 @@ const mapStateToProps = (state, ownProps) => {
     const isSendVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Send')!==-1;
 
     return {
-        // testReportData: {},/*fetch data with pro id*/
-        testReportData: content?state.TestReport.listMap[ownProps.id]:ownProps,
+        testReportData: content?content:ownProps,
         values:  body ? JSON.parse(body) : {},
-        disable: false/*authData.functionGroup["TestReport"]===undefined||authData.functionGroup["TestReport"].findIndex(element => element === "EDIT")===-1||state.TestReport.listMap[ownProps.id].state!=="TobeSubmit"*/,
-        //curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
-        //buttonDisabled: state.TestReport.listMap[ownProps.id].state==="TobeCheck"
-        /*buttonDisabled: authData.functionGroup["TestReport"]===undefined ||authData.functionGroup["TestReport"].findIndex(element => element === "EDIT")===-1
-            ? state.TestReport.listMap[ownProps.id].state==="TobeSubmit"||state.TestReport.listMap[ownProps.id].state==="Finished"
-            : state.TestReport.listMap[ownProps.id].state==="TobeReview"||state.TestReport.listMap[ownProps.id].state==="Finished"*/
+        disable: false,
         buttonsEnable: buttonsEnable(isEditVisible,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible),
     }
 };

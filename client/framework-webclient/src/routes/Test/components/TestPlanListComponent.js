@@ -118,34 +118,18 @@ export default class TestPlanListComponent extends Component {
                 </span>
             )
         },
-        /*TODO 给状态列加个过滤*/
-        /*
-        filters: [{
-            text: '待提交',
-            value: 'TobeSubmit',
-        }, {
-            text: '待审核',
-            value: 'TobeCheck',
-        }, {
-            text: '已通过',
-            value: 'Finished',
-        }],
-        filterMultiple: false,*/
-        // specify the condition of filtering result
-        // here is that finding the name started with `value`
-        //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"testPlan.id",
+        // dataIndex:"id",
         key:"operation",
-        render: (id) => {
+        render: (project) => {
             /*TODO*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(id)}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewContent({key:project.testPlan.id,id:project.id,})}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
-                       onClick={this.showDeleteConfirm(id)}>删除测试方案</a>
+                       onClick={this.showDeleteConfirm(project.testPlan.id)}>删除测试方案</a>
                 </div>
             )
         }
