@@ -224,13 +224,7 @@ export default class TestReportListComponent extends Component {
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    {/*this.props.enableNew*/1 ?
-                        <Col span={2}>
-                            <Button
-                                disabled={!this.props.enableNew}
-                                type="primary" onClick={this.props.newTestReport}><Icon type="plus-circle-o" />新建测试报告</Button>
-                        </Col>
-                        : <Col span={2}></Col>}
+
                 </InputGroup>
                 <br />
                 <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'}/>
