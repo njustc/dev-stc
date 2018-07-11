@@ -16,7 +16,7 @@ export default class SatisfactionListComponent extends Component {
     }
 
     static propTypes = {
-        //setListFilter: PropTypes.func,
+        setListFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
         //deleteConsign: PropTypes.func,
@@ -34,7 +34,7 @@ export default class SatisfactionListComponent extends Component {
 
     /*搜索框选项相关*/
     state={
-        selectOption:'id',
+        selectOption:'code',
     };
 
     onSelect = (value, option) => {
@@ -45,14 +45,14 @@ export default class SatisfactionListComponent extends Component {
 
     setPlaceholder = () => {
         switch (this.state.selectOption){
-            case 'id':
-                return '请输入满意度调查表ID';
-            case 'customerId':
-                return '请输入委托人ID';
+            // case 'id':
+            //     return '请输入满意度调查表ID';
+            case 'writer':
+                return '请输入填写人';
             case 'name':
                 return '请输入项目名称';
-            case 'pid':
-                return '请输入项目ID';
+            case 'code':
+                return '请输入项目编号';
             default:break;
         }
     };
@@ -90,20 +90,25 @@ export default class SatisfactionListComponent extends Component {
         }
     }, {
         title:"项目名称",
-        dataIndex:"name",
+        dataIndex:"consign",
+        key:"name",
+        render:(consign) => {
+            let consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+            return consignBody.softwareName?consignBody.softwareName:"未填写";
+        }
     }, {
-        title:"填写人名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        title:"填写人",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
         dataIndex:"satisfaction.createdUserName",
-    }, {
-        title:"状态",
-        dataIndex:"satisfaction.state",
-        render: (status) =>{
-            return (
-                <span>
-                    <Badge status={this.state2SColor(status)} text={this.state2C(status)} />
-                </span>
-            )
-        },
+    // }, {
+    //     title:"状态",
+    //     dataIndex:"satisfaction.state",
+    //     render: (status) =>{
+    //         return (
+    //             <span>
+    //                 <Badge status={this.state2SColor(status)} text={this.state2C(status)} />
+    //             </span>
+    //         )
+    //     },
         /*TODO 给状态列加个过滤*/
         /*
         filters: [{
@@ -165,12 +170,17 @@ export default class SatisfactionListComponent extends Component {
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
-            case 'id':
-                this.props.setListFilter((item)=>item.id.match(reg));break;
-            case 'createdUserId':
-                this.props.setListFilter((item)=>item.createdUserId.match(reg));break;
+            case 'code':
+                this.props.setListFilter((item)=>item.code.match(reg));break;
+            case 'writer':
+                this.props.setListFilter((item)=>item.satisfaction.createdUserName.match(reg));break;
+            // case 'name':
+            //     this.props.setListFilter((item)=>item.name.match(reg));break;
             case 'name':
-                this.props.setListFilter((item)=>item.name.match(reg));break;
+                this.props.setListFilter((item)=>{
+                    const consignBody = item.consign.consignation?JSON.parse(item.consign.consignation):{};
+                    return consignBody!=={}&&consignBody.softwareName&&consignBody.softwareName.match(reg);
+                });break;
             default:break;
         }
     };
@@ -181,10 +191,10 @@ export default class SatisfactionListComponent extends Component {
                 <h3 style={{ marginBottom: 16 }}>满意度调查列表</h3>
                 <InputGroup>
                     <Col span={3}>
-                        <Select defaultValue="搜索满意度调查表ID" onSelect={this.onSelect}>
-                            <Option value="id">搜索满意度调查表ID</Option>
-                            <Option value="pid">搜索项目ID</Option>
-                            <Option value="customerId">搜索委托人ID</Option>
+                        <Select defaultValue="搜索项目编号" onSelect={this.onSelect}>
+                            {/*<Option value="id">搜索满意度调查表ID</Option>*/}
+                            <Option value="code">搜索项目编号</Option>
+                            <Option value="writer">搜索填写人</Option>
                             <Option value="name">搜索项目名称 </Option>
                         </Select>
                     </Col>

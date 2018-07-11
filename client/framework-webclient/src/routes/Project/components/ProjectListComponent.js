@@ -29,7 +29,7 @@ export default class ProjectListComponent extends Component {
 
     /*搜索框选项相关*/
     state={
-        selectOption:'id',
+        selectOption:'code',
     };
 
     onSelect = (value, option) => {
@@ -42,10 +42,10 @@ export default class ProjectListComponent extends Component {
         switch (this.state.selectOption){
             case 'code':
                 return '请输入项目编号';
-            case 'username':
-                return '请输入委托单位名称';
-            // case 'name':
-            //     return '请输入名称';
+            case 'unit':
+                return '请输入委托单位';
+            case 'name':
+                return '请输入项目名称';
             default:break;
         }
     };
@@ -191,18 +191,28 @@ export default class ProjectListComponent extends Component {
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
-            case 'id':
-                this.props.setListFilter((item)=>item.id.match(reg));break;
-            case 'username':
-                this.props.setListFilter((item)=>item.username.match(reg));break;
+            case 'code':
+                this.props.setListFilter((item)=>item.code.match(reg));break;
+            // case 'unit':
+            //     this.props.setListFilter((item)=>item.username.match(reg));break;
+            case 'unit':
+                this.props.setListFilter((item)=>{
+                    const consignBody = item.consign.consignation?JSON.parse(item.consign.consignation):{};
+                    return consignBody!=={}&&consignBody.consignUnitC&&consignBody.consignUnitC.match(reg);
+                });break;
             // case 'name':
             //     this.props.setListFilter((item)=>item.name.match(reg));break;
+            case 'name':
+                this.props.setListFilter((item)=>{
+                    const consignBody = item.consign.consignation?JSON.parse(item.consign.consignation):{};
+                    return consignBody!=={}&&consignBody.softwareName&&consignBody.softwareName.match(reg);
+                });break;
             default:break;
         }
     };
 
     expandRow = (record) => {
-        //console.log(record);//
+        // console.log(record);//
         return (
             <div>
                 <div>
@@ -221,11 +231,17 @@ export default class ProjectListComponent extends Component {
                     测试用例个数：{record.testCase.length}
                 </div>
                 <div>
-                    项目价格：¥2333
+                    项目价格：{this.testFee(record)}
                 </div>
             </div>
         );
     };
+
+    testFee(record){
+        let contractBodyString=record.contract.contractBody;
+        let contractBody = contractBodyString?JSON.parse(contractBodyString):{};
+        return contractBody.testFee?contractBody.testFee:"未填写";
+    }
 
     render() {
         return (
@@ -233,10 +249,10 @@ export default class ProjectListComponent extends Component {
                 <h3 style={{ marginBottom: 16 }}>项目列表</h3>
                 <InputGroup>
                     <Col span={3}>
-                        <Select defaultValue="搜索项目ID" onSelect={this.onSelect}>
-                            <Option value="id">搜索项目ID</Option>
-                            <Option value="username">搜索委托单位</Option>
-                            {/*<Option value="name">搜索名称 </Option>*/}
+                        <Select defaultValue="搜索项目编号" onSelect={this.onSelect}>
+                            <Option value="code">搜索项目编号</Option>
+                            <Option value="unit">搜索委托单位</Option>
+                            <Option value="name">搜索项目名称</Option>
                         </Select>
                     </Col>
                     <Col span={8}>

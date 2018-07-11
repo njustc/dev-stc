@@ -45,12 +45,12 @@ export default class TestReportCheckListComponent extends Component {
         switch (this.state.selectOption){
             case 'id':
                 return '请输入报告检查ID';
-            case 'customerId':
-                return '请输入委托人ID';
+            case 'checker':
+                return '请输入检查人';
             case 'name':
                 return '请输入项目名称';
-            case 'pid':
-                return '请输入项目ID';
+            case 'code':
+                return '请输入项目编号';
             default:break;
         }
     };
@@ -182,12 +182,19 @@ export default class TestReportCheckListComponent extends Component {
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
+            case 'code':
+                this.props.setListFilter((item)=>item.code.match(reg));break;
             case 'id':
-                this.props.setListFilter((item)=>item.id.match(reg));break;
-            case 'createdUserId':
-                this.props.setListFilter((item)=>item.createdUserId.match(reg));break;
+                this.props.setListFilter((item)=>item.testReportCheck.id.match(reg));break;
+            case 'checker':
+                this.props.setListFilter((item)=>item.testReportCheck.createdUserName.match(reg));break;
+            // case 'name':
+            //     this.props.setListFilter((item)=>item.name.match(reg));break;
             case 'name':
-                this.props.setListFilter((item)=>item.name.match(reg));break;
+                this.props.setListFilter((item)=>{
+                    const consignBody = item.consign.consignation?JSON.parse(item.consign.consignation):{};
+                    return consignBody!=={}&&consignBody.softwareName&&consignBody.softwareName.match(reg);
+                });break;
             default:break;
         }
     };
@@ -200,8 +207,8 @@ export default class TestReportCheckListComponent extends Component {
                     <Col span={3}>
                         <Select defaultValue="搜索报告检查ID" onSelect={this.onSelect}>
                             <Option value="id">搜索报告检查ID</Option>
-                            <Option value="pid">搜索项目ID</Option>
-                            <Option value="customerId">搜索委托人ID</Option>
+                            <Option value="code">搜索项目编号</Option>
+                            <Option value="checker">搜索检查人</Option>
                             <Option value="name">搜索项目名称 </Option>
                         </Select>
                     </Col>
