@@ -23,6 +23,7 @@ export default class TestReportCheckListComponent extends Component {
         getTestReportCheckList: PropTypes.func,
         newTestReportCheck: PropTypes.func,
         enableNew: PropTypes.bool,
+        showProject: PropTypes.func,
     };
 
     componentDidMount() {
@@ -75,11 +76,19 @@ export default class TestReportCheckListComponent extends Component {
         return "可编写";
     }
 
+    viewProject = (id) => () => {
+        /*TODO:查看项目详情*/
+        this.props.showProject(id);
+    };
+
     /*table列设置*/
     columns = [{
         title:"项目编号",
         dataIndex:"code",
-        key:"number"
+        key:"number",
+        render:(code,record)=>{
+            return (<a href="javascript:void(0);" onClick={this.viewProject(record.id)}>{code}</a>)
+        }
         // sorter:(a, b) => a.pid - b.pid,
     }, {
         title:"报告检查ID",

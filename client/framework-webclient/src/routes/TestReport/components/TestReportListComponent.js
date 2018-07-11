@@ -23,6 +23,7 @@ export default class TestReportListComponent extends Component {
         getTestReportList: PropTypes.func,
         newTestReport: PropTypes.func,
         enableNew: PropTypes.bool,
+        showProject: PropTypes.func,
     };
 
     componentDidMount() {
@@ -38,7 +39,7 @@ export default class TestReportListComponent extends Component {
         this.setState({
             selectOption:value
         });
-    }
+    };
 
     setPlaceholder = () => {
         switch (this.state.selectOption){
@@ -63,7 +64,7 @@ export default class TestReportListComponent extends Component {
             case STATE.CANCELED: return "default";
             default: return "error";
         }
-    }
+    };
 
     state2C(state) {
         // debugger;
@@ -77,12 +78,20 @@ export default class TestReportListComponent extends Component {
             case STATE.SATISFACTION: return "已完成";
             default: return "未定义状态";
         }
-    }
+    };
+
+    viewProject = (id) => () => {
+        /*TODO:查看项目详情*/
+        this.props.showProject(id);
+    };
 
     /*table列设置*/
     columns = [{
         title:"项目编号",
         dataIndex:"code",
+        render:(code,record)=>{
+            return (<a href="javascript:void(0);" onClick={this.viewProject(record.id)}>{code}</a>)
+        }
         // sorter:(a, b) => a.pid - b.pid,
     }, {
     //     title:"测试报告ID",

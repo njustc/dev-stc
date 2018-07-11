@@ -5,6 +5,7 @@ import {deleteTestReport, getTestReportList, newTestReport} from "../../../servi
 import {setTestReportFilter} from "../../../modules/ducks/TestReport";
 import TestReportListComponent from "../components/TestReportListComponent";
 import {TestReportContentView} from "../index";
+import {ProjectContentView} from "../../Project";
 
 const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
@@ -22,6 +23,12 @@ const mapDispatchToProps = (dispatch) => {
             const key = "测试报告" + id;
             dispatch(addTabAction(key, '测试报告详情', TestReportContentView, {id: id}));
 //            dispatch(setTestReportContent())
+        },
+        showProject: (id) => {
+            // debugger;
+            // console.log(id);
+            dispatch(addTabAction(id, '项目详情', ProjectContentView, {id: id}));
+//            dispatch(setContractContent())
         },
         setListFilter: (listFilter) => dispatch(setTestReportFilter(listFilter)),
         getTestReportList: () => getTestReportList(dispatch),
