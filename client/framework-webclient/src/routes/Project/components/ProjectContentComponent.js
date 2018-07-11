@@ -78,7 +78,10 @@ export default class ProjectContentComponent extends Component {
     /*查看详情*/
     viewContent = (item) => () => {
         //console.log(this.props.id);
-        this.props.showContent(item,this.props.id);
+        this.props.showContent({
+            index: item.index,
+            ...this.props.projectData,
+        },this.props.id);
     };
 
     consignOperation = (state) => () => {
