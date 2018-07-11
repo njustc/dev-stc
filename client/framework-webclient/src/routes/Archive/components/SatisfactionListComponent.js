@@ -122,13 +122,13 @@ export default class SatisfactionListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"id",
+        // dataIndex:"id",
         key:"operation",
-        render: (id) => {
+        render: (project) => {
             /*TODO*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(id)}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewContent({key:project.satisfaction.id,id:project.id,})}>查看详情</a>
                     {/*<Divider type="vertical"/>
                     <a href="javascript:void(0);" onClick={this.showDeleteConfirm(id)}>取消委托</a>*/}
                 </div>
@@ -139,7 +139,6 @@ export default class SatisfactionListComponent extends Component {
 
     /*查看详情*/
     viewContent = (id) => () => {
-        //console.log(record);
         this.props.showContent(id);
     };
 

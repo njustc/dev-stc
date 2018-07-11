@@ -17,8 +17,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        showContent: (id) => {
-            dispatch(addTabAction(id, '满意度调查表详情', SatisfactionContentView,{id:id}));
+        showContent: (param) => {
+            const {key,id} = param;
+            dispatch(addTabAction(key, '满意度调查表详情', SatisfactionContentView,{id:id}));
         },
         showProject: (id) => {
             // debugger;
