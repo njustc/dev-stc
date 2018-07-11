@@ -337,7 +337,7 @@ CREATE TABLE `tbl_sys_testworkchecks`(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
-CREATE TABLE `tbl_sys_satisfactorysurveys`(
+CREATE TABLE `tbl_sys_satisfactionsurveys`(
   `ID` varchar(255) COLLATE utf8_bin NOT NULL,
   `CODE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -552,7 +552,8 @@ INSERT INTO `tbl_sys_role_users` (`user_id`, `role_id`) VALUES
 ('1','1'),
 ('2','2'),
 ('3','2'),
-('4','3');
+('4','3'),
+('5','6');
 -- --------------------------------------------------------
 
 --
@@ -584,7 +585,8 @@ INSERT INTO `tbl_sys_users` (`ID`, `CODE`, `USERNAME`, `PASSWORD`, `altered_time
 ('1','1','marketing','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'1','Marketing',NULL),
 ('2','2','customer1','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'2','Customer1',NULL),
 ('3','3','customer2','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'3','Customer2',NULL),
-('4','4','testing','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'4','Testing',NULL);
+('4','4','testing','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'4','Testing',NULL),
+('5','5','quality','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'6','Quality',NULL);
 -- --------------------------------------------------------
 
 
