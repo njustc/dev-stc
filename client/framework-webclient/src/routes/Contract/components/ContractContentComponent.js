@@ -561,7 +561,7 @@ class ContractContentComponent extends Component {
                             }});
                         if(buttonCanShow){
                             return <Button
-                                //disabled={this.props.buttonDisabled}
+                                // disabled={this.props.buttonDisabled}
                                 onClick={this.onClick(index)}
                                 key={button.content}>
                                 {button.content}
