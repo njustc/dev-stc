@@ -7,6 +7,7 @@ import {getSatisfactionList} from "../../../services/ArchiveService";
 import SatisfactionListComponent from "../components/SatisfactionListComponent";
 import {getProjectList} from "SERVICES/ProjectService";
 import {ProjectContentView} from "../../Project";
+import {setSatisfactionFilter} from "../../../modules/ducks/Satisfaction";
 
 const mapStateToProps = (state) => {
     return {
@@ -17,8 +18,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        showContent: (id) => {
-            dispatch(addTabAction(id, '满意度调查表详情', SatisfactionContentView,{id:id}));
+        showContent: (param) => {
+            const {key,id} = param;
+            dispatch(addTabAction(key, '满意度调查表详情', SatisfactionContentView,{id:id}));
         },
         showProject: (id) => {
             // debugger;
@@ -26,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(addTabAction(id, '项目详情', ProjectContentView, {id: id}));
 //            dispatch(setContractContent())
         },
-        //setListFilter: (listFilter) => dispatch(setConsignFilter(listFilter)),
+        setListFilter: (listFilter) => dispatch(setSatisfactionFilter(listFilter)),
         getSatisfactionList: () => getSatisfactionList(dispatch),
         getProjectList: () => getProjectList(dispatch),
     }

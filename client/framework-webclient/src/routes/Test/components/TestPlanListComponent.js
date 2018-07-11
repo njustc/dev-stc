@@ -32,7 +32,7 @@ export default class TestPlanListComponent extends Component {
 
     /*搜索框选项相关*/
     state={
-        selectOption:'id',
+        selectOption:'code',
     };
 
     onSelect = (value, option) => {
@@ -43,14 +43,14 @@ export default class TestPlanListComponent extends Component {
 
     setPlaceholder = () => {
         switch (this.state.selectOption){
-            case 'id':
-                return '请输入测试方案ID';
-            case 'customerId':
-                return '请输入委托人ID';
+            // case 'id':
+            //     return '请输入测试方案ID';
+            case 'writer':
+                return '请输入编制人';
             case 'name':
                 return '请输入项目名称';
-            case 'pid':
-                return '请输入项目ID';
+            case 'code':
+                return '请输入项目编号';
             default:break;
         }
     };
@@ -165,12 +165,17 @@ export default class TestPlanListComponent extends Component {
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
-            case 'id':
-                this.props.setListFilter((item)=>item.id.match(reg));break;
-            case 'createdUserId':
-                this.props.setListFilter((item)=>item.createdUserId.match(reg));break;
+            case 'code':
+                this.props.setListFilter((item)=>item.code.match(reg));break;
+            case 'writer':
+                this.props.setListFilter((item)=>item.testPlan.createdUserName.match(reg));break;
+            // case 'name':
+            //     this.props.setListFilter((item)=>item.name.match(reg));break;
             case 'name':
-                this.props.setListFilter((item)=>item.name.match(reg));break;
+                this.props.setListFilter((item)=>{
+                    const consignBody = item.consign.consignation?JSON.parse(item.consign.consignation):{};
+                    return consignBody!=={}&&consignBody.softwareName&&consignBody.softwareName.match(reg);
+                });break;
             default:break;
         }
     };
@@ -181,10 +186,10 @@ export default class TestPlanListComponent extends Component {
                 <h3 style={{ marginBottom: 16 }}>测试方案列表</h3>
                 <InputGroup>
                     <Col span={3}>
-                        <Select defaultValue="搜索测试方案ID" onSelect={this.onSelect}>
-                            <Option value="id">搜索测试方案ID</Option>
-                            <Option value="pid">搜索项目ID</Option>
-                            <Option value="customerId">搜索委托人ID</Option>
+                        <Select defaultValue="搜索项目编号" onSelect={this.onSelect}>
+                            {/*<Option value="id">搜索测试方案ID</Option>*/}
+                            <Option value="code">搜索项目编号</Option>
+                            <Option value="writer">搜索编制人</Option>
                             <Option value="name">搜索项目名称 </Option>
                         </Select>
                     </Col>

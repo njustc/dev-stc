@@ -8,7 +8,6 @@ import {updateSatisfaction,putSatisfactionState} from "../../../services/Archive
 const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    //console.log(authData);
     const content = state.Project.listMap[ownProps.id].satisfaction;
     const body = content?content.body:undefined;
 
