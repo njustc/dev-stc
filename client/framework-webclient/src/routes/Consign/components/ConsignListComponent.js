@@ -180,7 +180,10 @@ export default class ConsignListComponent extends Component {
             // case 'createdUserId':
             //     this.props.setListFilter((item)=>item.createdUserId.match(reg));break;
             case 'name':
-                this.props.setListFilter((item)=>item.name.match(reg));break;
+                this.props.setListFilter((item)=>{
+                    const consignBody = item.consignation?JSON.parse(item.consignation):{};
+                    return consignBody!=={}&&consignBody.softwareName&&consignBody.softwareName.match(reg);
+                });break;
             default:break;
         }
     };

@@ -20,6 +20,7 @@ export default class TestCaseListComponent extends Component {
         showContent: PropTypes.func,
         deleteTestCase: PropTypes.func,
         getTestCaseList: PropTypes.func,
+        showProject: PropTypes.func,
         //newContract: PropTypes.func,
         //enableNew: PropTypes.bool,
     };
@@ -72,10 +73,18 @@ export default class TestCaseListComponent extends Component {
         }
     }
 
+    viewProject = (id) => () => {
+        /*TODO:查看项目详情*/
+        this.props.showProject(id);
+    };
+
     /*table列设置*/
     columns = [{
         title:"项目编号",
         dataIndex:"code",
+        render:(code,record)=>{
+            return (<a href="javascript:void(0);" onClick={this.viewProject(record.id)}>{code}</a>)
+        }
         // sorter:(a, b) => a.pid - b.pid,
     }, {
         title:"项目名称",
@@ -96,7 +105,8 @@ export default class TestCaseListComponent extends Component {
         render:(name) => name?name:"无"
     },{
         title:"操作",
-        dataIndex:"testCase.id",
+        // dataIndex:"testCase.id",
+        dataIndex: 'id',
         key:"operation",
         render: (record) => {
             /*TODO*/

@@ -20,8 +20,16 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",

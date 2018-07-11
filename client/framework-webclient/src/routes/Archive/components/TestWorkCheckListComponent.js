@@ -23,6 +23,7 @@ export default class TestWorkCheckListComponent extends Component {
         getTestWorkCheckList: PropTypes.func,
         //newContract: PropTypes.func,
         //enableNew: PropTypes.bool,
+        showProject: PropTypes.func,
     };
 
     componentDidMount() {
@@ -75,10 +76,18 @@ export default class TestWorkCheckListComponent extends Component {
         return "可编写";
     }
 
+    viewProject = (id) => () => {
+        /*TODO:查看项目详情*/
+        this.props.showProject(id);
+    };
+
     /*table列设置*/
     columns = [{
         title:"项目编号",
         dataIndex:"code",
+        render:(code,record)=>{
+            return (<a href="javascript:void(0);" onClick={this.viewProject(record.id)}>{code}</a>)
+        }
         // sorter:(a, b) => a.pid - b.pid,
     },{
         title:"项目名称",

@@ -5,6 +5,7 @@ import {TestWorkCheckContentView} from "../index";
 import {deleteTestWorkCheck, getTestWorkCheckList, newTestWorkCheck} from "../../../services/TestWorkCheckService";
 import {setTestWorkCheckFilter} from "../../../modules/ducks/TestWorkCheck";
 import TestWorkCheckListComponent from "../components/TestWorkCheckListComponent";
+import {ProjectContentView} from "../../Project";
 
 const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
@@ -18,10 +19,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
-            // debugger;
-            const key = "报告检查" + id;
-            dispatch(addTabAction(key, '报告检查详情', TestWorkCheckContentView, {id: id}));
+            dispatch(addTabAction(id, '报告检查详情', TestWorkCheckContentView, {id: id}));
 //            dispatch(setTestWorkCheckContent())
+        },
+        showProject: (id) => {
+            // debugger;
+            console.log(id);
+            dispatch(addTabAction(id, '项目详情', ProjectContentView, {id: id}));
+//            dispatch(setContractContent())
         },
         setListFilter: (listFilter) => dispatch(setTestWorkCheckFilter(listFilter)),
         getTestWorkCheckList: () => getTestWorkCheckList(dispatch),

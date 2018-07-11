@@ -143,18 +143,18 @@ export default class ContractListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"contract.id",
+        // dataIndex:"id",
         key:"operation",
         //width: '12%',
-        render: (id) => {
+        render: (project) => {
             /*TODO:操作应该由后台传过来*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(id)}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewContent({key:project.contract.id,id:project.id,})}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
                        //disabled={!this.props.enableNew}
-                       onClick={this.showDeleteConfirm(id)}>取消合同</a>
+                       onClick={this.showDeleteConfirm(project.id)}>取消合同</a>
                 </div>
             )
         }
@@ -169,7 +169,7 @@ export default class ContractListComponent extends Component {
     viewProject = (id) => () => {
         /*TODO:查看项目详情*/
         this.props.showProject(id);
-    }
+    };
 
     /*取消委托提示框*/
     showDeleteConfirm = (id) => () => {

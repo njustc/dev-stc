@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge, Steps,Layout,Menu,List,Timeline} from 'antd';
 import {STATE} from "../../../services/common"
-
+const { Column } = Table;
 const Search = Input.Search;
 const confirm = Modal.confirm;
 const InputGroup = Input.Group;
@@ -15,28 +15,16 @@ const { Header, Content, Footer } = Layout;
 export default class ProjectContentComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            /*TODO:current应该放到props里面*/
-            current: 0,
-        };
     }
 
     static propTypes = {
         setContentFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
-        //deleteProject: PropTypes.func,
-        //getProjectContent: PropTypes.func,
     };
 
-    /*componentDidMount() {
-        //this.props.getProjectList();
-    }*/
     componentWillMount() {
-        //     this.curID = this.props.curKey;
-        //     // console.log(this.curID);
          this.props.getValues(this.props.projectData.id);
-         //console.log(this.props);
     };
 
 
@@ -70,11 +58,8 @@ export default class ProjectContentComponent extends Component {
     data = [
         {index:1,name:'委托申请表'},
         {index:2,name:'测试合同书'},
-        //'合同评审表',
         {index:3,name:'测试方案书'},
         {index:4,name:'测试用例表'},
-        {index:5,name:'测试记录表'},
-        {index:6,name:'测试问题清单'},
         {index:7,name:'测试报告书'},
         {index:8,name:'测试报告检查表'},
         {index:9,name:'测试工作检查表'},
@@ -93,7 +78,10 @@ export default class ProjectContentComponent extends Component {
     /*查看详情*/
     viewContent = (item) => () => {
         //console.log(this.props.id);
-        this.props.showContent(item,this.props.id);
+        this.props.showContent({
+            index: item.index,
+            ...this.props.projectData,
+        },this.props.id);
     };
 
     consignOperation = (state) => () => {
@@ -115,167 +103,213 @@ export default class ProjectContentComponent extends Component {
         }*/
     };
 
+    getCurrentStep(){
+        //console.log(this.props);
+        //return 0;
+        // if(this.props.projectData.consign.state===STATE.FINISHED){
+            if(this.props.projectData.contract.state===STATE.FINISHED){
+                if(this.props.projectData.testPlan.state===STATE.FINISHED){
+                    if(this.props.projectData.testReport.state===STATE.SATISFACTION) {
+                        return 4;
+                    }
+                    else return 3;
+                }
+                else return 2;
+            }
+            else return 1;
+        //}
+        // else return 0;
+    }
+
+    getConsignState(){
+        switch(this.props.projectData.consign.state){
+            case STATE.TO_SUBMIT: return (
+                <Timeline.Item color="blue">委托申请表待提交</Timeline.Item>
+            );
+            case STATE.TO_REVIEW: return (
+                <Timeline.Item color="blue">委托申请表待评审</Timeline.Item>
+            );
+            case STATE.CANCELED: return (
+                <Timeline.Item color="red">委托申请表已取消</Timeline.Item>
+            );
+            case STATE.FINISHED:return (
+                <Timeline.Item color="green">委托申请表已通过</Timeline.Item>
+            );
+            default:return (
+                {/*<Timeline.Item color="grey">委托申请表已通过</Timeline.Item>*/}
+            );
+        }
+    }
+
+    getContractState(){
+        switch(this.props.projectData.contract.state){
+            case STATE.TO_SUBMIT: return (
+                <Timeline.Item color="blue">测试合同书待提交</Timeline.Item>
+            );
+            case STATE.TO_REVIEW: return (
+                <Timeline.Item color="blue">测试合同书待评审</Timeline.Item>
+            );
+            case STATE.TO_CONFIRM: return (
+                <Timeline.Item color="blue">测试合同书待确认</Timeline.Item>
+            );
+            case STATE.CANCELED: return (
+                <Timeline.Item color="red">测试合同书已取消</Timeline.Item>
+            );
+            case STATE.FINISHED:return (
+                <Timeline.Item color="green">测试合同书已通过</Timeline.Item>
+            );
+            default:return (
+                {/*<Timeline.Item color="grey">测试合同书已通过</Timeline.Item>*/}
+            );
+        }
+    }
+
+    getTestPlanState(){
+        switch(this.props.projectData.testPlan.state){
+            case STATE.TO_WRITE: return (
+                <Timeline.Item color="blue">测试方案书待编写</Timeline.Item>
+            );
+            case STATE.TO_REVIEW: return (
+                <Timeline.Item color="blue">测试方案书待评审</Timeline.Item>
+            );
+            case STATE.TO_CONFIRM: return (
+                <Timeline.Item color="blue">测试方案书待确认</Timeline.Item>
+            );
+            case STATE.CANCELED: return (
+                <Timeline.Item color="red">测试方案书已取消</Timeline.Item>
+            );
+            case STATE.TO_IMPLEMENT: return (
+                <Timeline.Item color="green">测试方案书待实施</Timeline.Item>
+            );
+            default: return (
+                {/*<Timeline.Item color="grey">测试方案书已通过</Timeline.Item>*/}
+            );
+        }
+    }
+
+    getTestCaseState(){
+        /*TODO*/
+    }
+
+    getTestReportState(){
+        switch(this.props.projectData.testReport.state){
+            case STATE.TO_WRITE: return (
+                <Timeline.Item color="blue">测试报告书待编写</Timeline.Item>
+            );
+            case STATE.TO_REVIEW: return (
+                <Timeline.Item color="blue">测试报告书待评审</Timeline.Item>
+            );
+            case STATE.CANCELED: return (
+                <Timeline.Item color="red">测试报告书已取消</Timeline.Item>
+            );
+            case STATE.TO_APPROVE: return (
+                <Timeline.Item color="blue">测试报告书待批准</Timeline.Item>
+            );
+            case STATE.TO_SEND: return (
+                <Timeline.Item color="blue">测试报告书待发放</Timeline.Item>
+            );
+            case STATE.TO_CONFIRM: return (
+                <Timeline.Item color="blue">测试报告书待确认</Timeline.Item>
+            );
+            case STATE.SATISFACTION: return (
+                <Timeline.Item color="green">测试报告书已完成</Timeline.Item>
+            );
+            default: return (
+                {/*<Timeline.Item color="grey">测试报告书已通过</Timeline.Item>*/}
+            );
+        }
+    }
+
+    getTestReportCheckState(){
+        if(this.props.projectData.testReport.state===STATE.SATISFACTION){
+            return (
+                <Timeline.Item color="blue">测试报告检查表可填写</Timeline.Item>
+            );
+        }
+    }
+
+    getTestWorkCheckState(){
+        if(this.props.projectData.testReport.state===STATE.SATISFACTION){
+            return (
+                <Timeline.Item color="blue">测试工作检查表可填写</Timeline.Item>
+            );
+        }
+    }
+
+    getSatisfactionState(){
+        /*TODO*/
+    }
+
     render() {
         return (
             <div>
-                {/*<Layout style={{ padding: '24px 0', background: '#fff' }}>
-                    <Sider width={200} style={{ background: '#fff' }}>
-                        <Menu
-                            mode="inline"
-                            defaultSelectedKeys={['1']}
-                            defaultOpenKeys={['sub1']}
-                            style={{ height: '100%' }}
-                        >
-                                <Menu.Item key="1">option1</Menu.Item>
-                                <Menu.Item key="2">option2</Menu.Item>
-                                <Menu.Item key="3">option3</Menu.Item>
-                                <Menu.Item key="4">option4</Menu.Item>
-                                <Menu.Item key="5">option5</Menu.Item>
-                                <Menu.Item key="6">option6</Menu.Item>
-                                <Menu.Item key="7">option7</Menu.Item>
-                                <Menu.Item key="8">option8</Menu.Item>
-                                <Menu.Item key="9">option9</Menu.Item>
-                                <Menu.Item key="10">option10</Menu.Item>
-                                <Menu.Item key="11">option11</Menu.Item>
-                                <Menu.Item key="12">option12</Menu.Item>
-                        </Menu>
-                    </Sider>
-                    <Content style={{ padding: '0 24px', minHeight: 280 }}>*/}
-                    <Layout style={{ background: '#fff' }}>
-                <h3>流程详情</h3>
-                        <Card title="项目进度"
-                              hoverable
-                              //bordered={false}
-                        >
-                            <Steps current={this.state.current}>
-                                {this.steps.map(item => <Step key={item.title} title={item.title} description={item.description} />)}
+                <Layout style={{ background: '#fff' }}>
+                <h3>项目详情</h3>
+                        <Card title="项目进度" hoverable>
+                            <Steps current={this.getCurrentStep()}>
+                                {this.steps.map(item => <Step key={item.title} title={item.title}
+                                                              //description={item.description}
+                                />)}
                             </Steps>
                         </Card>
                         <br />
-
                         <Content style={{ background: '#fff' }} >
                         <Row gutter={16}>
-                            {/*<Col span={3}>
-                               <Card
-                                    //title="文档"
-                                      //bordered={false}
-                                >
-                                    <a href="javascript:void(0);"
-                                    >委托申请表</a>
-                                    <Divider />
-                                    <a href="javascript:void(0);"
-                                    >测试合同书</a>
-                                    <Divider />
-                                    <a href="javascript:void(0);"
-                                    >合同评审表</a>
-                                    <Divider />
-                                    <a href="javascript:void(0);"
-                                    >测试方案书</a>
-                                    <Divider />
-                                    <a href="javascript:void(0);"
-                                    >测试用例表</a>
-                                    <Divider />
-                                    <a href="javascript:void(0);"
-                                    >测试记录表</a>
-                                    <Divider />
-                                    <a href="javascript:void(0);"
-                                    >测试问题清单</a>
-                                    <Divider />
-                                    <a href="javascript:void(0);"
-                                    >测试报告书</a>
-                                    <Divider />
-                                    <a href="javascript:void(0);"
-                                    >测试报告检查表</a>
-                                    <Divider />
-                                    <a href="javascript:void(0);"
-                                    >测试工作检查表</a>
-                                    <Divider />
-                                    <a href="javascript:void(0);"
-                                    >满意度调查表</a>
-                                </Card>
-                            </Col>*/}
                             <Col span={3}>
                                 <List
                                     size="small"
                                     header={<div>文档</div>}
-                                    //footer={<div>Footer</div>}
                                     bordered
-                                    //loadMore={loadMore}
                                     dataSource={this.data}
                                     renderItem={item => (<List.Item><a href="javascript:void(0);" onClick={this.viewContent(item)}>{item.name}</a></List.Item>)}
-                                    /*renderItem={item => (
-                                            <List.Item actions={[<a>edit</a>, <a>more</a>]}>
-                                                <List.Item.Meta
-                                                    //avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                                                    title={<a href="https://ant.design">{item.name.last}</a>}
-                                                    description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                                                />
-                                                <div>content</div>
-                                            </List.Item>
-                                        )}*/
                                 />
                             </Col>
                             <Col span={6}>
-                                <Card title='项目摘要信息' hoverable >
-                                    <div>项目编号：未定义</div>
+                               <Card title='项目摘要信息' hoverable >
+                                    <div>项目编号：{this.props.projectData.code}</div>
                                     <br/>
-                                    {/*<div>流程ID：{this.props.projectData.id}</div>*/}
-                                    {/*<br/>*/}
-                                    <div>项目ID：未定义</div>
+                                    <div>项目ID：{this.props.projectData.id}</div>
                                     <br/>
-                                    <div>项目名称：未定义</div>
+                                    <div>项目名称：{this.props.projectData.consign.consignation.softwareName?this.props.projectData.consign.consignation.softwareName+"测试项目":"未填写"}</div>
                                     <br/>
                                     <div>委托人ID：{this.props.projectData.createdUserId}</div>
                                     <br/>
-                                    <div>委托人用户名：未定义</div>
+                                   <div>委托人用户名：{this.props.projectData.createdUserName}</div>
                                     <br/>
                                     <div>流程创建时间：{this.props.projectData.createdTime}</div>
                                     <br/>
                                     <div>项目价格：¥2333</div>
-                                    <br/>
-                                    <div>备注：感谢曹老板指导,给曹老板打call</div>
-                                </Card>
+                                    {/*<br/>*/}
+                                    {/*<div>备注：感谢曹老板指导,给曹老板打call</div>*/}
+                               </Card>
                             </Col>
-                            <Col span={15}>
-                                <Card
-                                    //title={this.onTitle()}
-                                      hoverable
-                                      //bordered={false}
-                                >
+                           <Col span={15}>
+                                <Card hoverable>
                                     <div>您现在可以：
-                                        <a href="javascript:void(0);"
-                                                  onClick={this.consignOperation(this.props.consignState)}
-                                        >查看委托申请表（待删）</a>
-                                        <div></div>
-                                        <a href="javascript:void(0);"
-                                           onClick={this.contractOperation()}
-                                        >填写测试合同书</a>
                                     </div>
                                     <Divider/>
                                     <Timeline>
-                                        {<Timeline.Item color="green">委托申请表已通过</Timeline.Item>}
-                                        {/*<Timeline.Item color="red">等待后台更新swagger</Timeline.Item>*/}
-                                        {/*<Timeline.Item color="green">测试样品已提交 2015-09-01</Timeline.Item>*/}
-                                        {/*<Timeline.Item color="green">合同通过确认 2015-09-01</Timeline.Item>*/}
-                                        {/*<Timeline.Item color="green">测试方案通过评审 2015-09-01</Timeline.Item>*/}
-                                        {/*<Timeline.Item color="green">测试报告通过确认 2015-09-01</Timeline.Item>*/}
-                                        {/*<Timeline.Item color="blue">满意度调查表待提交 2015-09-01</Timeline.Item>*/}
+                                        {this.getConsignState()}
+                                        {this.getContractState()}
+                                        {this.getTestPlanState()}
+                                        {this.getTestCaseState()}
+                                        {this.getTestReportState()}
+                                        {this.getTestReportCheckState()}
+                                        {this.getTestWorkCheckState()}
+                                        {this.getSatisfactionState()}
                                     </Timeline>
                                 </Card>
-                            </Col>
+                          </Col>
 
-                        </Row>
-                </Content>
-                        {/*TODO: 取消流程*/
-                            /*<Footer style={{ background: '#fff' }}>
-                            <TextArea rows={4} />
-                            <Button>
-                                取消
-                            </Button>
-                        </Footer>*/}
+                      </Row>
+                        </Content>
                 </Layout>
-
+                {/*<h3 style={{ marginBottom: 16 }}>项目进度</h3>
+                <Table dataSource={this.data} columns={this.columns} bordered={true}
+                    //rowKey={'id'}
+                />*/}
             </div>
+
         );
     }
 }

@@ -23,10 +23,13 @@ export default class SatisfactionListComponent extends Component {
         getSatisfactionList: PropTypes.func,
         //newContract: PropTypes.func,
         //enableNew: PropTypes.bool,
+        showProject: PropTypes.func,
+
     };
 
     componentDidMount() {
         this.props.getSatisfactionList();
+        this.props.getProjectList();
     }
 
     /*搜索框选项相关*/
@@ -54,6 +57,11 @@ export default class SatisfactionListComponent extends Component {
         }
     };
 
+    viewProject = (id) => () => {
+        /*TODO:查看项目详情*/
+        this.props.showProject(id);
+    };
+
     /*状态列颜色渲染*/
     state2SColor(state) {
         switch (state){
@@ -76,21 +84,19 @@ export default class SatisfactionListComponent extends Component {
     /*table列设置*/
     columns = [{
         title:"项目编号",
-        // dataIndex:"pid",
-        // sorter:(a, b) => a.pid - b.pid,
-    }, {
-        title:"满意度调查表ID",
-        dataIndex:"id",
-        sorter:(a, b) => a.id - b.id,
+        dataIndex: "code",
+        render:(code,record)=>{
+            return (<a href="javascript:void(0);" onClick={this.viewProject(record.id)}>{code}</a>)
+        }
     }, {
         title:"项目名称",
         dataIndex:"name",
     }, {
         title:"填写人名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
-        // dataIndex:"customerId",
+        dataIndex:"satisfaction.createdUserName",
     }, {
         title:"状态",
-        dataIndex:"status",
+        dataIndex:"satisfaction.state",
         render: (status) =>{
             return (
                 <span>
@@ -118,13 +124,13 @@ export default class SatisfactionListComponent extends Component {
         title:"操作",
         dataIndex:"id",
         key:"operation",
-        render: (record) => {
+        render: (id) => {
             /*TODO*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewContent(id)}>查看详情</a>
                     {/*<Divider type="vertical"/>
-                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>*/}
+                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(id)}>取消委托</a>*/}
                 </div>
             )
         }
@@ -132,9 +138,9 @@ export default class SatisfactionListComponent extends Component {
     ];
 
     /*查看详情*/
-    viewContent = (record) => () => {
+    viewContent = (id) => () => {
         //console.log(record);
-        this.props.showContent(record);
+        this.props.showContent(id);
     };
 
     /*取消委托提示框*/

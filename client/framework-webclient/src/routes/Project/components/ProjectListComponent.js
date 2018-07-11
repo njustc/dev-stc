@@ -23,7 +23,7 @@ export default class ProjectListComponent extends Component {
         getProjectState: PropTypes.func,
     };
 
-    componentDidMount() {
+    componentWillMount() {
         this.props.getProjectList();
     }
 
@@ -70,25 +70,36 @@ export default class ProjectListComponent extends Component {
 
     state2C(state) {
         // debugger;
-        switch (state.State){
-            case STATE.TO_WRITE: return state.Process+"待编写";
-            case STATE.TO_SUBMIT: return state.Process+"待提交"/*(<a>待提交</a>)*/;
-            case STATE.TO_REVIEW: return state.Process+"待评审"/*(<a>待提交</a>)*/;
-            case STATE.TO_CONFIRM: return state.Process+"待确认";
-            case STATE.CANCELED: return state.Process+"已取消";
-            case STATE.FINISHED: return state.Process+"已完成";
-            case STATE.TO_IMPLEMENT: return state.Process+"待实施";
-            case STATE.TO_APPROVE: return state.Process+"待批准";
-            case STATE.TO_SEND: return state.Process+"待发放";
-            case STATE.SATISFACTION: return state.Process+"已完成";
+        switch (state){
+            case STATE.TO_WRITE: return "待编写";
+            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
+            case STATE.TO_CONFIRM: return "待确认";
+            case STATE.CANCELED: return "已取消";
+            case STATE.FINISHED: return "已完成";
+            case STATE.TO_IMPLEMENT: return "待实施";
+            case STATE.TO_APPROVE: return "待批准";
+            case STATE.TO_SEND: return "待发放";
+            case STATE.SATISFACTION: return "已完成";
             default: return "未定义状态";
         }
     }
 
-    projectDetails(id){
-        /*TODO:显示项目摘要信息*/
-        return id;
+    getCurrentState(record){
+        if(record.testReport&&record.testReport.state===STATE.SATISFACTION)
+            return ( <span><Badge status={this.state2SColor(record.testReport.state)} text={"测试报告"+this.state2C(record.testReport.state)} /></span>);
+        else if(record.testPlan&&record.testPlan.state===STATE.FINISHED)
+            return ( <span><Badge status={this.state2SColor(record.testPlan.state)} text={"测试方案"+this.state2C(record.testReport.state)} /></span>);
+        else if(record.contract&&record.contract.state===STATE.FINISHED)
+            return ( <span><Badge status={this.state2SColor(record.contract.state)} text={"测试报告"+this.state2C(record.testReport.state)} /></span>);
+        else
+            return ( <span><Badge status="error" text={"测试合同待编写"} /></span>);
     }
+
+    // projectDetails(id){
+    //     /*TODO:显示项目摘要信息*/
+    //     return id;
+    // }
 
     /*table列设置*/
     columns = [{
@@ -96,17 +107,7 @@ export default class ProjectListComponent extends Component {
         dataIndex:"code",
         //width: '25%',
         //sorter:(a, b) => a.id - b.id,
-    }/*, {
-        title:"流程ID",
-        dataIndex:"processInstanceID",
-        //width: '25%',
-        //sorter:(a, b) => a.id - b.id,
     }, {
-        title:"项目ID",
-        dataIndex:"id",
-        //width: '25%',
-        //sorter:(a, b) => a.id - b.id,
-    }*/, {
         title:"项目名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
         dataIndex:"consign",
         key:"name",
@@ -129,17 +130,12 @@ export default class ProjectListComponent extends Component {
         title:"状态",
         //dataIndex:"id",
         render: (record) =>{
-            const state={
-                Process:"Contract",
-                State: STATE.CANCELED
-            }
-            this.props.getProjectState(record.id,this.getState(record.id));
-            console.log(record.id);
-            return (
-                <span>
-                    <Badge status={this.state2SColor(state.State)} text={this.state2C(state)} />
-                </span>
-            )
+            return(this.getCurrentState(record));
+            // return (
+            //     <span>
+            //         <Badge status={this.state2SColor(state.State)} text={this.state2C(state)} />
+            //     </span>
+            // )
         },
     }, {
         title:"操作",
@@ -165,9 +161,6 @@ export default class ProjectListComponent extends Component {
     }
     ];
 
-    getState(id){
-
-    }
 
     /*查看详情*/
     viewContent = (record) => () => {
@@ -213,19 +206,19 @@ export default class ProjectListComponent extends Component {
         return (
             <div>
                 <div>
-                   ID： {record.id}
+                   项目编号： {record.code}
                 </div>
                 {/*<div>*/}
                     {/*项目编号： {record.id}*/}
                 {/*</div>*/}
                 <div>
-                    项目创建人ID：{record.createdUserId}
+                    项目创建人：{record.createdUserName}
                 </div>
                 <div>
                     项目创建时间：{record.createdTime}
                 </div>
                 <div>
-                    测试用例个数：{record.testCase}
+                    测试用例个数：{record.testCase.length}
                 </div>
                 <div>
                     项目价格：¥2333

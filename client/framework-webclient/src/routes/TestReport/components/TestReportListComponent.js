@@ -23,6 +23,7 @@ export default class TestReportListComponent extends Component {
         getTestReportList: PropTypes.func,
         newTestReport: PropTypes.func,
         enableNew: PropTypes.bool,
+        showProject: PropTypes.func,
     };
 
     componentDidMount() {
@@ -38,7 +39,7 @@ export default class TestReportListComponent extends Component {
         this.setState({
             selectOption:value
         });
-    }
+    };
 
     setPlaceholder = () => {
         switch (this.state.selectOption){
@@ -63,12 +64,12 @@ export default class TestReportListComponent extends Component {
             case STATE.CANCELED: return "default";
             default: return "error";
         }
-    }
+    };
 
     state2C(state) {
         // debugger;
         switch (state){
-            case STATE.TO_WRITE: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_WRITE: return "待编写"/*(<a>待提交</a>)*/;
             case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.CANCELED: return "已取消";
             case STATE.TO_APPROVE: return "待批准";
@@ -77,22 +78,30 @@ export default class TestReportListComponent extends Component {
             case STATE.SATISFACTION: return "已完成";
             default: return "未定义状态";
         }
-    }
+    };
+
+    viewProject = (id) => () => {
+        /*TODO:查看项目详情*/
+        this.props.showProject(id);
+    };
 
     /*table列设置*/
     columns = [{
         title:"项目编号",
         dataIndex:"code",
+        render:(code,record)=>{
+            return (<a href="javascript:void(0);" onClick={this.viewProject(record.id)}>{code}</a>)
+        }
         // sorter:(a, b) => a.pid - b.pid,
     }, {
-        title:"测试报告ID",
-        dataIndex:"testReport",
-        key:"id",
-        //width: '25%',
-        render:(testReport) => {
-            return testReport.id?testReport.id:"未填写";
-        }
-    }, {
+    //     title:"测试报告ID",
+    //     dataIndex:"testReport",
+    //     key:"id",
+    //     //width: '25%',
+    //     render:(testReport) => {
+    //         return testReport.id?testReport.id:"未填写";
+    //     }
+    // }, {
         title:"项目名称",
         dataIndex:"consign",
         key:"name",
@@ -138,18 +147,18 @@ export default class TestReportListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"testReport.id",
+        // dataIndex:"testReport.id",
         key:"operation",
         //width: '12%',
-        render: (record) => {
+        render: (project) => {
             /*TODO:操作应该由后台传过来*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewContent({key:project.testReport.id,id:project.id,})}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
                        //disabled={!this.props.enableNew}
-                       onClick={this.showDeleteConfirm(record)}>取消测试报告</a>
+                       onClick={this.showDeleteConfirm(project.id)}>取消测试报告</a>
                 </div>
             )
         }
