@@ -9,27 +9,15 @@ const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //console.log(authData);
-    const content = state.TestWorkCheck.listMap[ownProps.id];
+    const content = state.Project.listMap[ownProps.id].testWorkCheck;
     const body = content?content.body:undefined;
 
-    const isEditVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
-    // const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Write')!==-1:
-    //     content.operation.findIndex(element => element === 'Write')!==-1);
-    // console.log(content.operation);
-    // const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
-    // const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ApprovePass')!==-1;
-    // const isSendVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Send')!==-1;
+    const isEditVisible = true||authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
 
     return {
-        // testWorkCheckCheckData: {},/*fetch data with pro id*/
-        testWorkCheckData: content?state.TestWorkCheck.listMap[ownProps.id]:ownProps,
+        testWorkCheckData: content?content:ownProps,
         values:  body ? JSON.parse(body) : {},
-        disable: false/*authData.functionGroup["TestWorkCheck"]===undefined||authData.functionGroup["TestWorkCheck"].findIndex(element => element === "EDIT")===-1||state.TestWorkCheck.listMap[ownProps.id].state!=="TobeSubmit"*/,
-        //curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
-        //buttonDisabled: state.TestWorkCheck.listMap[ownProps.id].state==="TobeCheck"
-        /*buttonDisabled: authData.functionGroup["TestWorkCheck"]===undefined ||authData.functionGroup["TestWorkCheck"].findIndex(element => element === "EDIT")===-1
-            ? state.TestWorkCheck.listMap[ownProps.id].state==="TobeSubmit"||state.TestWorkCheck.listMap[ownProps.id].state==="Finished"
-            : state.TestWorkCheck.listMap[ownProps.id].state==="TobeReview"||state.TestWorkCheck.listMap[ownProps.id].state==="Finished"*/
+        disable: false,
         buttonsEnable: buttonsEnable(isEditVisible/*,isSubmitVisible,isReviewVisible,isSendVisible,isConfirmVisible*/),
     }
 };
