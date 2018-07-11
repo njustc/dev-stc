@@ -570,7 +570,7 @@ class TestReportContentComponent extends Component {
 		 <FormItem {...formItemLayout} label={"委托单位"}>
                             {getFieldDecorator('consignUnitC', {
                                 rules: [{ required: false, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                //initialValue: this.props.values.consignUnit
+                                initialValue: this.props.values.consignUnitC
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -579,7 +579,7 @@ class TestReportContentComponent extends Component {
 		 <FormItem {...formItemLayout} label={"项目编号"}>
                             {getFieldDecorator('sampleNumber', {
                                 rules: [{ required: false, message: '请正确输入项目编号！' ,pattern:"^[A-Za-z]+$"}],
-                                //initialValue: this.props.values.sampleNumber
+                                initialValue: this.props.values.sampleNumber
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -588,7 +588,7 @@ class TestReportContentComponent extends Component {
 						 <FormItem {...formItemLayout} label={"样品名称"}>
                             {getFieldDecorator('sampleName', {
                                 rules: [{ required: false, message: '请正确输入样品名称！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                //initialValue: this.props.values.sampleName
+                                initialValue: this.props.values.sampleName
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -597,7 +597,7 @@ class TestReportContentComponent extends Component {
                         <FormItem {...formItemLayout} label={"版本/型号"}>
                             {getFieldDecorator('versionModel', {
                                 rules: [{ required: false, message: '请正确输入版本/型号！',pattern:"^[a-zA-Z0-9/.]+$" }],
-                                //initialValue: this.props.values.versionModel
+                                initialValue: this.props.values.versionModel
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -606,7 +606,7 @@ class TestReportContentComponent extends Component {
 						 <FormItem {...formItemLayout} label={"来样日期"}>
                             {getFieldDecorator('receiveTime', {
                                 rules: [{ required: false, message: '请正确输入来样日期！',pattern:"^[a-zA-Z0-9/.]+$" }],
-                                //initialValue: this.props.values.receiveTime
+                                initialValue: this.props.values.receiveTime
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -615,7 +615,7 @@ class TestReportContentComponent extends Component {
 						 <FormItem {...formItemLayout} label={"测试类型"}>
                             {getFieldDecorator('testKind', {
                                 rules: [{ required: false, message: '请正确输入测试类型！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
-                                //initialValue: this.props.values.testKind
+                                initialValue: this.props.values.testKind
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -624,7 +624,7 @@ class TestReportContentComponent extends Component {
 						 <FormItem {...formItemLayout} label={"测试时间"}>
                             {getFieldDecorator('testTime', {
                                 rules: [{ required: false, message: '请正确输入测试时间！',pattern:"^[a-zA-Z0-9/.]+$" }],
-                                //initialValue: this.props.values.testTime
+                                initialValue: this.props.values.testTime
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -633,7 +633,7 @@ class TestReportContentComponent extends Component {
 						 <FormItem {...formItemLayout} label={"测试依据"}>
                             {getFieldDecorator('testBasis', {
                                 rules: [{ required: false, message: '请正确输入测试依据！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
-                                //initialValue: this.props.values.testBasis
+                                initialValue: this.props.values.testBasis
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -650,7 +650,7 @@ class TestReportContentComponent extends Component {
 						 <FormItem {...formItemLayout} label={"软件样本"}>
                             {getFieldDecorator('softwareSample', {
                                 rules: [{ required: false, message: '请正确输入软件样本！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
-                                //initialValue: this.props.values.softwareSample
+                                initialValue: this.props.values.softwareSample
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -660,7 +660,7 @@ class TestReportContentComponent extends Component {
 						 <FormItem {...formItemLayout} label={"软件文档"}>
                             {getFieldDecorator('softwareDoc', {
                                 rules: [{ required: false, message: '请正确输入软件文档！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
-                                //initialValue: this.props.values.softwareDoc
+                                initialValue: this.props.values.softwareDoc
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -670,7 +670,7 @@ class TestReportContentComponent extends Component {
 						 <FormItem {...formItemLayout} label={"测试结论"}>
                             {getFieldDecorator('testConclusion', {
                                 rules: [{ required: false, message: '请正确输入测试结论！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
-                                //initialValue: this.props.values.testConclusion
+                                initialValue: this.props.values.testConclusion
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -679,7 +679,7 @@ class TestReportContentComponent extends Component {
 						 <FormItem {...formItemLayout} label={"主测人"}>
                             {getFieldDecorator('masterMeasuringMan', {
                                 rules: [{ required: false, message: '请正确输入主测人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
-                                //initialValue: this.props.values.masterMeasuringMan
+                                initialValue: this.props.values.masterMeasuringMan
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -688,7 +688,7 @@ class TestReportContentComponent extends Component {
 						 <FormItem {...formItemLayout} label={"审核人"}>
                             {getFieldDecorator('Auditor', {
                                 rules: [{ required: false, message: '请正确输入审核人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
-                                //initialValue: this.props.values.Auditor
+                                initialValue: this.props.values.Auditor
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -697,7 +697,7 @@ class TestReportContentComponent extends Component {
 						 <FormItem {...formItemLayout} label={"批准人"}>
                             {getFieldDecorator('Approver', {
                                 rules: [{ required: false, message: '请正确输入批准人"！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
-                                //initialValue: this.props.values.Approver
+                                initialValue: this.props.values.Approver
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -709,7 +709,7 @@ class TestReportContentComponent extends Component {
                         <FormItem {...formItemLayout} label={"测试单位联系方式"}>
                             {getFieldDecorator('testUnitContactMode', {
                                 rules: [{ required: false, message: '请输入！' }],
-                                //initialValue: this.props.values.testUnitContactMode
+                                initialValue: this.props.values.testUnitContactMode
                             })(
                                 <TextArea disabled={this.props.disable}
                                           rows={"4"}  placeholder="请输入软件用户对象描述"/>
@@ -723,7 +723,7 @@ class TestReportContentComponent extends Component {
                         >
                             {getFieldDecorator('consignUnittelephone', {
                                 rules: [{ required: false, message: '请输入委托单位信息！',pattern:"^[a-zA-Z0-9/.]+$" }],
-                                //initialValue: this.props.values.consignUnittelephone
+                                initialValue: this.props.values.consignUnittelephone
                             })(
                                 <Input placeholder="请输入电话号码" />
                             )}
@@ -735,7 +735,7 @@ class TestReportContentComponent extends Component {
                         >
                             {getFieldDecorator('consignUnitFax', {
                                 rules: [{ required: false, message: '请输入传真号！',pattern:"^[a-zA-Z0-9/.]+$" }],
-                                //initialValue: this.props.values.consignUnitFax
+                                initialValue: this.props.values.consignUnitFax
                             })(
                                 <Input placeholder="请输入传真号" />
                             )}
@@ -748,7 +748,7 @@ class TestReportContentComponent extends Component {
                         >
                             {getFieldDecorator('consignUnitaddress', {
                                 rules: [{ required: false, message: '请输入地址！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
-                                //initialValue: this.props.values.consignUnitaddress
+                                initialValue: this.props.values.consignUnitaddress
                             })(
                                 <Input placeholder="请输入地址" />
                             )}
@@ -760,7 +760,7 @@ class TestReportContentComponent extends Component {
                         >
                             {getFieldDecorator('consignUnitEmailnumber', {
                                 rules: [{ required: false, message: '请输入邮编！',pattern:"^[a-zA-Z0-9/.]+$" }],
-                                //initialValue: this.props.values.consignUnitEmailnumber
+                                initialValue: this.props.values.consignUnitEmailnumber
                             })(
                                 <Input placeholder="请输入邮编" />
                             )}
@@ -772,7 +772,7 @@ class TestReportContentComponent extends Component {
                         >
                             {getFieldDecorator('consignUnitpeople', {
                                 rules: [{ required: false, message: '请输入联系人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
-                                //initialValue: this.props.values.consignUnitpeople
+                                initialValue: this.props.values.consignUnitpeople
                             })(
                                 <Input placeholder="请输入联系人" />
                             )}
@@ -786,7 +786,7 @@ class TestReportContentComponent extends Component {
                         >
                             {getFieldDecorator('consignUnitEmail', {
                                 rules: [{ required: false, message: '请输入E-mail！',pattern:"^[a-zA-Z0-9/.]+$" }],
-                                //initialValue: this.props.values.consignUnitEmail
+                                initialValue: this.props.values.consignUnitEmail
                             })(
                                 <Input placeholder="请输入邮箱地址" />
                             )}
@@ -826,7 +826,7 @@ class TestReportContentComponent extends Component {
                            <FormItem {...formItemLayout} label={"测试依据"}>
                                {getFieldDecorator('testBasic', {
                                    rules: [{ required: false, message: '请正确输入测试依据！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                   //initialValue: this.props.values.testBasic
+                                   initialValue: this.props.values.testBasic
                                })(
                                    <Input disabled={this.props.disable}/>
                                )}
@@ -835,7 +835,7 @@ class TestReportContentComponent extends Component {
                            <FormItem {...formItemLayout} label={"参考资料"}>
                                {getFieldDecorator('referenceContent', {
                                    rules: [{ required: false, message: '请正确输入参考资料！' ,pattern:"^[A-Za-z]+$"}],
-                                   //initialValue: this.props.values.referenceContent
+                                   initialValue: this.props.values.referenceContent
                                })(
                                    <Input disabled={this.props.disable}/>
                                )}

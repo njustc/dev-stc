@@ -143,7 +143,7 @@ export default class ContractListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"contract.id",
+        dataIndex:"id",
         key:"operation",
         //width: '12%',
         render: (id) => {
