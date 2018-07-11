@@ -19,13 +19,10 @@ const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
             dispatch(addTabAction(id, '测试方案详情', TestPlanContentView,{id:id}));
-//            dispatch(setConsignContent())
         },
         showProject: (id) => {
-            // debugger;
             console.log(id);
             dispatch(addTabAction(id, '项目详情', ProjectContentView, {id: id}));
-//            dispatch(setContractContent())
         },
         setListFilter: (listFilter) => dispatch(setTestPlanFilter(listFilter)),
         getTestPlanList: () => getTestPlanList(dispatch),
