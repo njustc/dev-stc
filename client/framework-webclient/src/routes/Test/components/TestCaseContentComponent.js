@@ -1,6 +1,6 @@
 /*测试用例*/
 import React, {Component, PropTypes} from 'react';
-import {Form, message, Table, Card, Collapse, Badge, Divider, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
+import {Form, message, Table, Card, Collapse, Badge, Divider, Modal, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
 import {EditableCell} from "COMPONENTS/EditableCell";
 import {getProjectList} from "SERVICES/ProjectService";
 import {newTestCase} from "SERVICES/TestCaseService";
@@ -69,12 +69,40 @@ class TestCaseContentComponent extends Component {
                     </Col>
                 </Row>
                 <Row style={rowStyle}>
+                    <Col span={3}><b>执行过程</b></Col>
+                    <Col span={21}>
+                        <EditableCell
+                            value={record.process}
+                            onChange={this.onCellChange(record.id, 'process')}
+                        />
+                    </Col>
+                </Row>
+                <Row style={rowStyle}>
+                    <Col span={3}><b>预期结果</b></Col>
+                    <Col span={21}>
+                        <EditableCell
+                            value={record.expectedResult}
+                            onChange={this.onCellChange(record.id, 'expectedResult')}
+                        />
+                    </Col>
+                </Row>
+                <Row style={rowStyle}>
                     <Col span={3}><b>有关的规约说明</b></Col>
-                    <Col span={21}><p style={{ margin: 0 }}>{record.statute}</p></Col>
+                    <Col span={21}>
+                        <EditableCell
+                            value={record.statute}
+                            onChange={this.onCellChange(record.id, 'statute')}
+                        />
+                    </Col>
                 </Row>
                 <Row style={rowStyle}>
                     <Col span={3}><b>依据</b></Col>
-                    <Col span={21}><p style={{ margin: 0 }}>{record.accordance}</p></Col>
+                    <Col span={21}>
+                        <EditableCell
+                            value={record.accordance}
+                            onChange={this.onCellChange(record.id, 'accordance')}
+                        />
+                    </Col>
                 </Row>
             </div>
         );
@@ -120,16 +148,35 @@ class TestCaseContentComponent extends Component {
      {
         title:"与本测试用例有关的规约说明",
         dataIndex:"statute",
-    },*/
+    },
         {
         title:"执行过程",
         dataIndex:"process",
+        render: (text, record) => (
+            <EditableCell
+                value={text}
+                onChange={this.onCellChange(record.id, 'process')}
+            />
+        ),
     }, {
         title:"预期结果",
         dataIndex:"expectedResult",
-    }, {
+        render: (text, record) => (
+            <EditableCell
+                value={text}
+                onChange={this.onCellChange(record.id, 'expectedResult')}
+            />
+        ),
+    }, */
+        {
         title:"设计者",
         dataIndex:"designer",
+        render: (text, record) => (
+            <EditableCell
+                value={text}
+                onChange={this.onCellChange(record.id, 'designer')}
+            />
+        ),
     }, {
         title:"时间",
         dataIndex:"time",
@@ -204,7 +251,6 @@ class TestCaseContentComponent extends Component {
                 message.success('新添测试用例成功')
         });
     }
-
 
     render(){
         const { getFieldDecorator } = this.props.form;
