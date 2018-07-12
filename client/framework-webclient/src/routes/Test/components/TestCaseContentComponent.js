@@ -57,6 +57,14 @@ class TestCaseContentComponent extends Component {
             marginBottom:'10pt',
         };
 
+        const customPanelStyle = {
+            background: '#fafafa',
+            borderRadius: 4,
+            marginBottom: 0,
+            border: 0,
+            overflow: 'hidden',
+        };
+
         return (
             <div>
                 <Row style={rowStyle}>
@@ -141,6 +149,64 @@ class TestCaseContentComponent extends Component {
                         />
                     </Col>
                 </Row>
+
+                <Collapse bordered={false}>
+                    <Panel
+                        header={<p>添加/修改测试记录<Icon type="edit" /></p>}
+                        key="1"
+                        //showArrow={false}
+                        style={customPanelStyle}
+                    >
+                        <Row style={rowStyle}>
+                            <Col span={3}><b>实际结果</b></Col>
+                            <Col span={21}>
+                                <EditableCell
+                                    value={record.result}
+                                    onChange={this.onCellChange(record.id, 'result')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row style={rowStyle}>
+                            <Col span={3}><b>执行者</b></Col>
+                            <Col span={21}>
+                                <EditableCell
+                                    value={record.executor}
+                                    onChange={this.onCellChange(record.id, 'executor')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row style={rowStyle}>
+                            <Col span={3}><b>确认人</b></Col>
+                            <Col span={21}>
+                                <EditableCell
+                                    value={record.confirmor}
+                                    onChange={this.onCellChange(record.id, 'confirmor')}
+                                />
+                            </Col>
+                        </Row>
+                    </Panel>
+                    <Panel header="添加/修改测试问题" key="2" showArrow={false} style={customPanelStyle}>
+                        <Row style={rowStyle}>
+                            <Col span={5}><b>问题/缺陷简要描述</b></Col>
+                            <Col span={19}>
+                                <EditableCell
+                                    value={record.description}
+                                    onChange={this.onCellChange(record.id, 'description')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row style={rowStyle}>
+                            <Col span={5}><b>对应需求条目</b></Col>
+                            <Col span={19}>
+                                <EditableCell
+                                    value={record.requirementIndex}
+                                    onChange={this.onCellChange(record.id, 'requirementIndex')}
+                                />
+                            </Col>
+                        </Row>
+                    </Panel>
+                </Collapse>
+
                 <Divider orientation="left">测试问题</Divider>
                 <Row style={rowStyle}>
                     <Col span={5}><b>问题/缺陷简要描述</b></Col>
@@ -441,14 +507,27 @@ class TestCaseContentComponent extends Component {
                     </Panel>
                 </Collapse>
 
-                <Table
-                    className="components-table-demo-nested"
-                    columns={this.columns}
-                    expandedRowRender={this.expandedRowRender}
-                    // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
-                    dataSource={/*this.props.dataSource*/this.state.dataSource}
-                    rowKey={'id'}
-                />
+                <Row gutter={16}>
+                    <Col span={18}>
+                        <Table
+                            className="components-table-demo-nested"
+                            columns={this.columns}
+                            expandedRowRender={this.expandedRowRender}
+                            // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
+                            dataSource={/*this.props.dataSource*/this.state.dataSource}
+                            rowKey={'id'}
+                        />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col offset={18} span={6}>
+                        <Card title="Card title" extra={<a href="#">More</a>} style={{ width: "100%" }}>
+                            <p>Card content</p>
+                            <p>Card content</p>
+                            <p>Card content</p>
+                        </Card>
+                    </Col>
+                </Row>
             </div>
         );
     }
