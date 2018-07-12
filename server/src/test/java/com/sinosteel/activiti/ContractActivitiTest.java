@@ -1,214 +1,290 @@
 package com.sinosteel.activiti;
 
+import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.FrameworkApplication;
-import org.activiti.spring.integration.Activiti;
+import com.sinosteel.domain.User;
+import com.sinosteel.framework.core.web.Request;
+import com.sinosteel.service.ConsignService;
+import com.sinosteel.service.ContractService;
+import com.sinosteel.service.TestPlanService;
+import com.sinosteel.service.UserService;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import springfox.documentation.spring.web.json.Json;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.assertNotNull;
 
-import static org.junit.Assert.*;
-
-/*
- * @author Paul
+/**
+ * @author ZWH
  */
 
-
-@IntegrationTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
-//@SpringApplicationConfiguration(classes=MyActiviti.class)
-
 public class ContractActivitiTest {
-
     @Autowired
-    private BaseActiviti baseActiviti;
+    private ProcessInstanceService processInstanceService;
     @Autowired
-    private ContractActiviti contractActiviti;
-    @Test
-    //测试新建合同
-    public void testNewContract()throws Exception
-    {
-        System.out.println("创建合同测试");
-        List<String> workerIds=new ArrayList<String>();
-        workerIds.add("W0");
-        workerIds.add("W1");
-        workerIds.add("W2");
-        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0","W0");
-        assertNotNull(processInstanceID);
-        System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID);
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
+    private UserService userService;
+    //测试中使用的用户
+    private User customer1;
+    private User customer2;
+    private User marketing;
+    private User testing;
+
+    private String processInstanceId;
+    private String prId1;
+    private String prId3;
+    private String prId2;
+    @Before
+    public void setUp() {
+        customer1 = userService.getUserByUsername("customer1");
+        marketing = userService.getUserByUsername("marketing");
+        customer2 = userService.getUserByUsername("customer2");
+        testing = userService.getUserByUsername("testing");
+
+        JSONObject jsonObject0 = new JSONObject();
+        JSONObject jsonObject1 = new JSONObject();
+        JSONObject jsonObject2 = new JSONObject();
+        try {
+            processInstanceId=processInstanceService.createContractProcess(jsonObject1,customer1);
+            prId1=processInstanceService.createTestPlanProcess(jsonObject2,marketing);
+            prId3=processInstanceService.createTestReportProcess(jsonObject0,marketing);
+            prId2=processInstanceService.createConsignProcess(jsonObject0,customer2);
+            Assert.assertNotNull(prId1);
+            Assert.assertNotNull(processInstanceId);
+            Assert.assertNotNull(prId3);
+            //  prId2=processInstanceService.createConsignProcess(jsonObject0,customer2);
+            //consignJson = consignService.addConsign(jsonObject, null, customer1);
+            // contractJson= contractService.addContract(jsonObject1,null,customer2);
+            //testplanJson=testPlanService.addTestPlan(jsonObject2,null,customer1);
+            // Assert.assertNotNull(prId2);
+            // Assert.assertNotNull(contractJson);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
     @Test
-    //测试提交合同
-    public void testSubmitContract()throws Exception
-    {
-        List<String> workerIds=new ArrayList<String>();
-        workerIds.add("W0");
-        workerIds.add("W1");
-        workerIds.add("W2");
-       // System.out.println("创建合同测试");
-        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0","W0");
-        assertNotNull(processInstanceID);
-        System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID);
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-        String processInstanceID1 =  contractActiviti.createContractProcess("Contract1","C1","W0");
-        assertNotNull(processInstanceID1);
-        System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID1);
-
-        System.out.println("提交合同测试C0");
-        contractActiviti.submit(processInstanceID,"C0");
-        System.out.println("合同流程ID "+processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-
-        System.out.println("提交合同测试C1");
-        contractActiviti.submit(processInstanceID1,"C1");
-        System.out.println("合同流程ID "+processInstanceID1+"  "+baseActiviti.getProcessState(processInstanceID1));
+    public void queryProcessState() {
+        JSONObject state = new JSONObject();
+        try {
+            //state = processInstanceService.queryProcessState(consignJson.getString("processInstanceID"));
+            state=processInstanceService.queryProcessState(processInstanceId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(state);
+        //确认state不为空
+        assertNotNull(state.getString("state"));
     }
-
     @Test
-    //测试审核合同
-    public void testCheckContract()throws Exception
-    {
-        List<String> workerIds=new ArrayList<String>();
-        workerIds.add("W0");
-        workerIds.add("W1");
-        workerIds.add("W2");
-        //System.out.println("创建合同测试");
-        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0","W0");
-        assertNotNull(processInstanceID);
-        System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID);
-        String processInstanceID1 =  contractActiviti.createContractProcess("Contract1","C1","W0");
-        assertNotNull(processInstanceID1);
-        System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID1);
+    public void  updateProcessContractState() {
+        try {
+            JSONObject state ;
+            System.out.println("======查询合同状态========");
+            //System.out.println(processInstanceService.queryProcessState(contractJson.getString("processInstanceID")));
+            System.out.println(processInstanceService.queryProcessState(processInstanceId));
+            System.out.println("======customer2提交合同=======");
+            //构造提交委托请求
+            Request request = new Request();
+            request.setUser(customer2);
+            JSONObject submitJson = new JSONObject();
+            submitJson.put("operation", "Submit");
+            submitJson.put("object", "contract");
+            request.setParams(submitJson);
 
-        contractActiviti.submit(processInstanceID,"C0");
-        contractActiviti.submit(processInstanceID1,"C1");
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-        System.out.println(processInstanceID1+"  "+baseActiviti.getProcessState(processInstanceID1));
+            Thread.sleep(2000);
+            System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            state = processInstanceService.queryProcessState(processInstanceId);
+            Assert.assertEquals("TobeReview",state.getString("state"));
+            System.out.println("======工作人员否决合同======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(marketing);
+            JSONObject rejectJson = new JSONObject();
+            rejectJson.put("operation", "ReviewReject");
+            rejectJson.put("object", "contract");
+            rejectJson.put("comments","notoknotok");
+            request.setParams(rejectJson);
 
-        System.out.println("评审合同不通过测试");
-        contractActiviti.reviewContract(processInstanceID,"W0","reviewreject");
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
+            Thread.sleep(2000);
+            // System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            state = processInstanceService.queryProcessState(processInstanceId);
+            Assert.assertEquals("TobeSubmit",state.getString("state"));
+            System.out.println("======customer2再次请求======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(customer2);
+            request.setParams(submitJson);
+            Thread.sleep(2000);
+            // System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            state = processInstanceService.queryProcessState(processInstanceId);
+            Assert.assertEquals("TobeReview",state.getString("state"));
+            System.out.println("======工作人员通过合同======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(marketing);
+            JSONObject passJson = new JSONObject();
+            passJson.put("operation", "ReviewPass");
+            passJson.put("object", "contract");
+            passJson.put("comments","okokok");
+            request.setParams(passJson);
 
-        System.out.println("评审合同通过测试");
-        contractActiviti.reviewContract(processInstanceID1,"W1","reviewpass");
-        System.out.println(processInstanceID1+"  "+baseActiviti.getProcessState(processInstanceID1));
-        System.out.println(baseActiviti.queryHistoricTask(processInstanceID));
-        System.out.println(baseActiviti.queryHistoricTask(processInstanceID1));
+            Thread.sleep(2000);
+            // System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            state = processInstanceService.queryProcessState(processInstanceId);
+            System.out.println(processInstanceService.getComments(processInstanceId));
+            Assert.assertEquals("TobeConfirm",state.getString("state"));
+            System.out.println("=====客户通过合同======");
+
+            request=new Request();
+            request.setUser(customer2);
+            JSONObject confirmJson=new JSONObject();
+            confirmJson.put("operation","ConfirmPass");
+            confirmJson.put("object","contract");
+            confirmJson.put("comments","okokokoko!!!");
+            request.setParams(confirmJson);
+            //  System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            state = processInstanceService.queryProcessState(processInstanceId);
+            Assert.assertEquals("Finished",state.getString("state"));
+            System.out.println(processInstanceService.getComments(processInstanceId));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
     @Test
-    //测试确认合同
-    public void testConfirmContract()throws Exception
-    {
-        List<String> workerIds=new ArrayList<String>();
-        workerIds.add("W0");
-        workerIds.add("W1");
-        workerIds.add("W2");
-        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0","W0");
-        assertNotNull(processInstanceID);
-        System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID);
-        String processInstanceID1 =  contractActiviti.createContractProcess("Contract1","C1","W0");
-        assertNotNull(processInstanceID1);
-        System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID1);
+    public void  updateProcessContractState2() {
+        try {
+            JSONObject state ;
+            System.out.println("======查询合同状态========");
+            //System.out.println(processInstanceService.queryProcessState(contractJson.getString("processInstanceID")));
+            System.out.println(processInstanceService.queryProcessState(processInstanceId));
 
-        System.out.println("测试确认合同");
+            System.out.println("======customer1提交合同=======");
+            //构造提交委托请求
+            Request request = new Request();
+            request.setUser(customer1);
+            JSONObject submitJson = new JSONObject();
+            submitJson.put("operation", "Submit");
+            submitJson.put("object", "contract");
+            request.setParams(submitJson);
+            Thread.sleep(2000);
+            System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            state = processInstanceService.queryProcessState(processInstanceId);
+            Assert.assertEquals("TobeReview",state.getString("state"));
 
-        contractActiviti.submit(processInstanceID,"C0");
-        contractActiviti.submit(processInstanceID1,"C1");
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-        System.out.println(processInstanceID1+"  "+baseActiviti.getProcessState(processInstanceID1));
+            System.out.println("======市场部主任否决合同======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(marketing);
+            JSONObject rejectJson = new JSONObject();
+            rejectJson.put("operation", "ReviewReject");
+            rejectJson.put("object", "contract");
+            rejectJson.put("comments","to be more");
+            request.setParams(rejectJson);
+            Thread.sleep(2000);
+            // System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            System.out.println(processInstanceService.getComments(processInstanceId));
+            state = processInstanceService.queryProcessState(processInstanceId);
+            Assert.assertEquals("TobeSubmit",state.getString("state"));
 
-        contractActiviti.reviewContract(processInstanceID,"W0","reviewpass");
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-        contractActiviti.reviewContract(processInstanceID1,"W0","reviewreject");
-        System.out.println(processInstanceID1+"  "+baseActiviti.getProcessState(processInstanceID1));
+            System.out.println("======customer1再次请求======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(customer1);
+            request.setParams(submitJson);
+            Thread.sleep(2000);
+            // System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            state = processInstanceService.queryProcessState(processInstanceId);
+            Assert.assertEquals("TobeReview",state.getString("state"));
 
-        System.out.println("确认合同不通过测试");
-        contractActiviti.confirmContract(processInstanceID,"C0","confirmreject");
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
+            System.out.println("======市场部主任通过合同======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(marketing);
+            JSONObject passJson = new JSONObject();
+            passJson.put("operation", "ReviewPass");
+            passJson.put("object", "contract");
+            passJson.put("comments","can be pass");
+            request.setParams(passJson);
+            Thread.sleep(2000);
+            // System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            state = processInstanceService.queryProcessState(processInstanceId);
+            Assert.assertEquals("TobeConfirm",state.getString("state"));
 
-        System.out.println("确认合同通过测试");
-        contractActiviti.confirmContract(processInstanceID1,"C1","confirmreject");
-        System.out.println(processInstanceID1+"  "+baseActiviti.getProcessState(processInstanceID1));
+            System.out.println("=====customer1不通过合同======");
+            request=new Request();
+            request.setUser(customer1);
+            JSONObject confirmJson=new JSONObject();
+            confirmJson.put("operation","ConfirmReject");
+            confirmJson.put("object","contract");
+            confirmJson.put("comments","can not be confirmed");
+            request.setParams(confirmJson);
+            //  System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            state = processInstanceService.queryProcessState(processInstanceId);
+            Assert.assertEquals("TobeSubmit",state.getString("state"));
+
+            System.out.println("======customer1再再次请求======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(customer1);
+            request.setParams(submitJson);
+            Thread.sleep(2000);
+            // System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            state = processInstanceService.queryProcessState(processInstanceId);
+            Assert.assertEquals("TobeReview",state.getString("state"));
+
+            System.out.println("======质量部主任通过合同======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(marketing);
+            JSONObject passJson2 = new JSONObject();
+            passJson2.put("operation", "ReviewPass");
+            passJson2.put("object", "contract");
+            passJson2.put("comments","pass pass");
+            request.setParams(passJson2);
+            Thread.sleep(2000);
+            // System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            System.out.println(processInstanceService.getComments(processInstanceId));
+            state = processInstanceService.queryProcessState(processInstanceId);
+            Assert.assertEquals("TobeConfirm",state.getString("state"));
+
+            System.out.println("=====customer1通过合同======");
+            request=new Request();
+            request.setUser(customer1);
+            JSONObject confirmJson2=new JSONObject();
+            confirmJson2.put("operation","ConfirmPass");
+            confirmJson2.put("object","contract");
+            confirmJson2.put("comments","pass pass pass");
+            request.setParams(confirmJson2);
+            //  System.out.println(processInstanceService.updateProcessState(contractJson.getString("processInstanceID"), request));
+            System.out.println(processInstanceService.updateProcessState(processInstanceId, request));
+            System.out.println(processInstanceService.getComments(processInstanceId));
+            state = processInstanceService.queryProcessState(processInstanceId);
+            Assert.assertEquals("Finished",state.getString("state"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
-    @Test
-    //测试查询合同状态
-    public void testgetContractProcesstasks()throws Exception
-    {
-        List<String> workerIds=new ArrayList<String>();
-        workerIds.add("W0");
-        workerIds.add("W1");
-        workerIds.add("W2");
-        System.out.println("创建合同测试");
-        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0","W0");
-        assertNotNull(processInstanceID);
-        System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID);
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-
-        System.out.println("提交合同测试");
-        contractActiviti.submit(processInstanceID,"C0");
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-
-        System.out.println("评审合同不通过测试");
-        contractActiviti.reviewContract(processInstanceID,"W0","reviewreject");
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-
-        System.out.println("提交合同测试");
-        contractActiviti.submit(processInstanceID,"C0");
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-
-        System.out.println("评审合同通过测试");
-        contractActiviti.reviewContract(processInstanceID,"W0","reviewpass");
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-
-        System.out.println("确认合同不通过测试");
-        contractActiviti.confirmContract(processInstanceID,"C0","confirmreject");
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-
-        System.out.println("提交合同测试");
-        contractActiviti.submit(processInstanceID,"C0");
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-
-        System.out.println("评审合同通过测试");
-        contractActiviti.reviewContract(processInstanceID,"W0","reviewpass");
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-
-        System.out.println("确认合同通过测试");
-        contractActiviti.confirmContract(processInstanceID,"C0","confirmpass");
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-
-        System.out.println("合同流程ID错误测试");
-        System.out.println("1000"+"  "+baseActiviti.getProcessState("1000"));
-    }
-
-    @Test
-    //测试查询市场部主任和质量部主任工作列表
-    public void testGetTwoTasks()throws Exception
-    {
-        List<String> workerIds=new ArrayList<String>();
-        workerIds.add("W0");
-        workerIds.add("W1");
-        workerIds.add("W2");
-        String processInstanceID =  contractActiviti.createContractProcess("Contract0","C0","W0");
-        assertNotNull(processInstanceID);
-        System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID);
-        String processInstanceID1 =  contractActiviti.createContractProcess("Contract1","C1","W0");
-        assertNotNull(processInstanceID1);
-        System.out.println("合同实例成功创建。 ProcessInstanceID: " + processInstanceID1);
-
-        contractActiviti.submit(processInstanceID,"C0");
-        contractActiviti.submit(processInstanceID1,"C1");
-        System.out.println(processInstanceID+"  "+baseActiviti.getProcessState(processInstanceID));
-        System.out.println(processInstanceID1+"  "+baseActiviti.getProcessState(processInstanceID1));
-        //System.out.println(contractActiviti.getMarketEmployerTasks("E0"));
-        //System.out.println(contractActiviti.getQualityEmployerTasks("Q0"));
+    //测试结束后删除该委托
+    @After
+    public void cleanUp() {
+        //consignService.deleteConsign(prId0);
+        //contractService.deleteContract(contractJson);
     }
 }

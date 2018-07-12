@@ -37,8 +37,6 @@ export const TestPlanReducer = (state = initialState, action) => {
                 ...state.listMap[id],
                 ...TestPlanData,
             };
-            console.log(newData);
-            console.log(state.listMap[id]);
             return {
                 ...state,
                 listMap: {

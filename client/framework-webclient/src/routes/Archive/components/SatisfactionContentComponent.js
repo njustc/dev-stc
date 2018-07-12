@@ -23,7 +23,8 @@ class SatisfactionContentComponent extends Component {
     static propTypes = {
         satisfactionData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
-        disable: PropTypes.bool.isRequired,
+        disableC: PropTypes.bool.isRequired,
+        disableQ: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };
@@ -61,18 +62,18 @@ class SatisfactionContentComponent extends Component {
                 <FormItem {...formItemLayout} label={"单位名称"}>
                     {getFieldDecorator('consignUnit', {
                         rules: [{ required: true, message: '请输入单位名称！' }],
-                        initialValue: this.props.values.developUnit,
+                        initialValue: this.props.consignUnit,
                     })(
-                        <Input disabled={this.props.disable}/>
+                        <Input disabled={true}/>
                     )}
                 </FormItem>
 
                 <FormItem {...formItemLayout} label="被测软件名称">
                     {getFieldDecorator('softwareName', {
                         rules: [{ required: true, message: '请输入被测软件名称！' }],
-                        initialValue: this.props.values.softwareName,
+                        initialValue: this.props.softwareName,
                     })(
-                        <Input disabled={this.props.disable}/>
+                        <Input disabled={true}/>
                     )}
                 </FormItem>
 
@@ -88,7 +89,7 @@ class SatisfactionContentComponent extends Component {
                                     rules: [{ required: true, message: '请正确输入联系人！' ,pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
                                     initialValue: this.props.values.contact,
                                 })(
-                                    <Input disabled={this.props.disable}/>
+                                    <Input disabled={this.props.disableC}/>
                                 )}
                             </FormItem>
                         </Col>
@@ -98,7 +99,7 @@ class SatisfactionContentComponent extends Component {
                                     rules: [{ required: true, message: '请正确输入联系电话！' ,pattern:"^(\(\d{3,4}-)|\d{3.4}-)?\d{7,8}$"}],
                                     initialValue: this.props.values.contactNumber,
                                 })(
-                                    <Input disabled={this.props.disable} placeholder={"025-89685110"}/>
+                                    <Input disabled={this.props.disableC} placeholder={"025-89685110"}/>
                                 )}
                             </FormItem>
                         </Col>
@@ -113,7 +114,7 @@ class SatisfactionContentComponent extends Component {
                                     rules: [{ required: true, message: '请正确输入Email！' ,pattern:"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"}],
                                     initialValue: this.props.values.Email,
                                 })(
-                                    <Input disabled={this.props.disable}/>
+                                    <Input disabled={this.props.disableC}/>
                                 )}
                             </FormItem>
                         </Col>
@@ -123,7 +124,7 @@ class SatisfactionContentComponent extends Component {
                                     rules: [{ required: true, message: '请正确输入手机号！' ,pattern:"^(13[0-9]|14[0-9]|15[0-9]|166|17[0-9]|18[0-9]|19[8|9])\\d{8}$"}],
                                     initialValue: this.props.values.mobilePhone,
                                 })(
-                                    <Input disabled={this.props.disable} placeholder={"15195908360"}/>
+                                    <Input disabled={this.props.disableC} placeholder={"15195908360"}/>
                                 )}
                             </FormItem>
                         </Col>
@@ -134,42 +135,42 @@ class SatisfactionContentComponent extends Component {
                         {getFieldDecorator('reflectTime', {
                             initialValue: this.props.values.reflectTime?this.props.values.reflectTime:3.5,
                         })(
-                            <Rate  allowHalf/>
+                            <Rate  disabled={this.props.disableC} allowHalf/>
                         )}
                     </FormItem>
                     <FormItem {...formItemLayout} label={"测试服务收费合理性"}>
                         {getFieldDecorator('charge', {
                             initialValue: this.props.values.charge?this.props.values.charge:3.5,
                         })(
-                            <Rate  allowHalf/>
+                            <Rate  disabled={this.props.disableC}  allowHalf/>
                         )}
                     </FormItem>
                     <FormItem {...formItemLayout} label={"测试服务规范性"}>
                         {getFieldDecorator('standard', {
                             initialValue: this.props.values.standard?this.props.values.standard:3.5,
                         })(
-                            <Rate  allowHalf/>
+                            <Rate  disabled={this.props.disableC}  allowHalf/>
                         )}
                     </FormItem>
                     <FormItem {...formItemLayout} label={"测试服务技术能力"}>
                         {getFieldDecorator('capability', {
                             initialValue: this.props.values.capability?this.props.values.capability:3.5,
                         })(
-                            <Rate  allowHalf/>
+                            <Rate  disabled={this.props.disableC}  allowHalf/>
                         )}
                     </FormItem>
                     <FormItem {...formItemLayout} label={"客户需求的了解"}>
                         {getFieldDecorator('understanding', {
                             initialValue: this.props.values.understanding?this.props.values.understanding:3.5,
                         })(
-                            <Rate  allowHalf/>
+                            <Rate  disabled={this.props.disableC}  allowHalf/>
                         )}
                     </FormItem>
                     <FormItem {...formItemLayout} label={"服务时的沟通能力"}>
                         {getFieldDecorator('communication', {
                             initialValue: this.props.values.communication?this.props.values.communication:3.5,
                         })(
-                            <Rate  allowHalf/>
+                            <Rate  disabled={this.props.disableC}  allowHalf/>
                         )}
                     </FormItem>
                     <FormItem {...formItemLayout} label={"其他意见和建议"}>
@@ -179,7 +180,7 @@ class SatisfactionContentComponent extends Component {
                             }],
                             initialValue: this.props.values.advice,
                         })(
-                            <TextArea rows={4} />
+                            <TextArea disabled={this.props.disableC} rows={4} />
                         )}
                     </FormItem>
 
@@ -196,7 +197,7 @@ class SatisfactionContentComponent extends Component {
                         rules: [{ required: true, message: '请正确输入满意度！'}],
                         initialValue: this.props.values.satisfactionDegree,
                     })(
-                        <InputNumber min={0} max={100} step={0.1}/>
+                        <InputNumber disabled={this.props.disableQ} min={0} max={100} step={0.1}/>
                     )}
                 </FormItem>
 
@@ -205,7 +206,7 @@ class SatisfactionContentComponent extends Component {
                         rules: [{ required: true, message: '请选择客户满意情况！'}],
                         initialValue: this.props.values.satisfactionLevel
                     })(
-                        <RadioGroup disabled={this.props.disable}>
+                        <RadioGroup disabled={this.props.disableQ}>
                             <Radio value={1}>很满意</Radio>
                             <Radio value={2}>较满意</Radio>
                             <Radio value={3}>一般</Radio>
