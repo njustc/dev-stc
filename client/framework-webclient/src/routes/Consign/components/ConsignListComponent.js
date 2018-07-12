@@ -42,8 +42,8 @@ export default class ConsignListComponent extends Component {
 
     setPlaceholder = () => {
         switch (this.state.selectOption){
-            // case 'id':
-            //     return '请输入委托ID';
+            case 'unit':
+                return '请输入委托单位';
             // case 'createdUserId':
             //     return '请输入委托人ID';
             case 'name':
@@ -171,16 +171,20 @@ export default class ConsignListComponent extends Component {
         });
     };
 
-    /*TODO:搜索功能*/
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
-            // case 'id':
-            //     this.props.setListFilter((item)=>item.id.match(reg));break;
-            // case 'createdUserId':
+            case 'unit':
+                this.props.setListFilter((item)=>{
+                    const consignBody = item.consignation?JSON.parse(item.consignation):{};
+                    return consignBody!=={}&&consignBody.consignUnitC&&consignBody.consignUnitC.match(reg);
+                });break;            // case 'createdUserId':
             //     this.props.setListFilter((item)=>item.createdUserId.match(reg));break;
             case 'name':
-                this.props.setListFilter((item)=>item.name.match(reg));break;
+                this.props.setListFilter((item)=>{
+                    const consignBody = item.consignation?JSON.parse(item.consignation):{};
+                    return consignBody!=={}&&consignBody.softwareName&&consignBody.softwareName.match(reg);
+                });break;
             default:break;
         }
     };
@@ -192,9 +196,9 @@ export default class ConsignListComponent extends Component {
                 <InputGroup>
                     <Col span={3}>
                         <Select defaultValue="搜索委托名称" onSelect={this.onSelect}>
-                            {/*<Option value="id">搜索委托ID</Option>*/}
                             {/*<Option value="createdUserId">搜索委托人ID</Option>*/}
                             <Option value="name">搜索委托名称 </Option>
+                            <Option value="unit">搜索委托单位</Option>
                         </Select>
                     </Col>
                     <Col span={8}>

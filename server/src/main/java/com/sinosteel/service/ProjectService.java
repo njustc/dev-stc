@@ -46,6 +46,8 @@ public class ProjectService extends BaseService<Project>{
     private TestReportCheckService testReportCheckService;
     @Autowired
     private TestWorkCheckService testWorkCheckService;
+    @Autowired
+    private SatisfactionSurveyService satisfactionSurveyService;
 
     //根据用户查询工程
     public JSON queryProjects(User user) throws Exception{
@@ -172,6 +174,7 @@ public class ProjectService extends BaseService<Project>{
         Contract contract = project.getContract();
         TestPlan testPlan = project.getTestPlan();
         TestReport testReport = project.getTestReport();
+        SatisfactionSurvey satisfactionSurvey = project.getSatisfactionSurvey();
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(project));
         //jsonObject.put("username", project.getUser().getUsername());
         //jsonObject.put("userID", project.getUser().getId());
@@ -189,6 +192,9 @@ public class ProjectService extends BaseService<Project>{
         }
         if (testReport != null) {
             jsonObject.put("testReport", testReportService.processTestReport(testReport));
+        }
+        if (satisfactionSurvey != null) {
+            jsonObject.put("satisfaction", satisfactionSurveyService.processSatisfactionSurvey(satisfactionSurvey));
         }
         return jsonObject;
     }

@@ -23,6 +23,7 @@ export default class TestReportListComponent extends Component {
         getTestReportList: PropTypes.func,
         newTestReport: PropTypes.func,
         enableNew: PropTypes.bool,
+        showProject: PropTypes.func,
     };
 
     componentDidMount() {
@@ -31,23 +32,23 @@ export default class TestReportListComponent extends Component {
 
     /*搜索框选项相关*/
     state={
-        selectOption:'id',
+        selectOption:'code',
     };
 
     onSelect = (value, option) => {
         this.setState({
             selectOption:value
         });
-    }
+    };
 
     setPlaceholder = () => {
         switch (this.state.selectOption){
-            case 'id':
-                return '请输入测试报告ID';
-            case 'createdUserId':
-                return '请输入委托人ID';
+            case 'code':
+                return '请输入项目编号';
+            case 'reporter':
+                return '请输入报告人';
             case 'name':
-                return '请输入测试报告名称';
+                return '请输入项目名称';
             default:break;
         }
     };
@@ -63,12 +64,12 @@ export default class TestReportListComponent extends Component {
             case STATE.CANCELED: return "default";
             default: return "error";
         }
-    }
+    };
 
     state2C(state) {
         // debugger;
         switch (state){
-            case STATE.TO_WRITE: return "待提交"/*(<a>待提交</a>)*/;
+            case STATE.TO_WRITE: return "待编写"/*(<a>待提交</a>)*/;
             case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
             case STATE.CANCELED: return "已取消";
             case STATE.TO_APPROVE: return "待批准";
@@ -77,22 +78,30 @@ export default class TestReportListComponent extends Component {
             case STATE.SATISFACTION: return "已完成";
             default: return "未定义状态";
         }
-    }
+    };
+
+    viewProject = (id) => () => {
+        /*TODO:查看项目详情*/
+        this.props.showProject(id);
+    };
 
     /*table列设置*/
     columns = [{
         title:"项目编号",
         dataIndex:"code",
+        render:(code,record)=>{
+            return (<a href="javascript:void(0);" onClick={this.viewProject(record.id)}>{code}</a>)
+        }
         // sorter:(a, b) => a.pid - b.pid,
     }, {
-        title:"测试报告ID",
-        dataIndex:"testReport",
-        key:"id",
-        //width: '25%',
-        render:(testReport) => {
-            return testReport.id?testReport.id:"未填写";
-        }
-    }, {
+    //     title:"测试报告ID",
+    //     dataIndex:"testReport",
+    //     key:"id",
+    //     //width: '25%',
+    //     render:(testReport) => {
+    //         return testReport.id?testReport.id:"未填写";
+    //     }
+    // }, {
         title:"项目名称",
         dataIndex:"consign",
         key:"name",
@@ -138,18 +147,18 @@ export default class TestReportListComponent extends Component {
         //onFilter: (value, record) => record.state.indexOf(value) === 0,
     }, {
         title:"操作",
-        dataIndex:"testReport.id",
+        // dataIndex:"testReport.id",
         key:"operation",
         //width: '12%',
-        render: (record) => {
+        render: (project) => {
             /*TODO:操作应该由后台传过来*/
             return (
                 <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
+                    <a href="javascript:void(0);" onClick={this.viewContent({key:project.testReport.id,id:project.id,})}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
                        //disabled={!this.props.enableNew}
-                       onClick={this.showDeleteConfirm(record)}>取消测试报告</a>
+                       onClick={this.showDeleteConfirm(project.id)}>取消测试报告</a>
                 </div>
             )
         }
@@ -184,12 +193,17 @@ export default class TestReportListComponent extends Component {
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
-            case 'id':
-                this.props.setListFilter((item)=>item.id.match(reg));break;
-            case 'createdUserId':
-                this.props.setListFilter((item)=>item.createdUserId.match(reg));break;
+            case 'code':
+                this.props.setListFilter((item)=>item.code.match(reg));break;
+            case 'reporter':
+                this.props.setListFilter((item)=>item.testReport.createdUserName.match(reg));break;
+            // case 'name':
+            //     this.props.setListFilter((item)=>item.name.match(reg));break;
             case 'name':
-                this.props.setListFilter((item)=>item.name.match(reg));break;
+                this.props.setListFilter((item)=>{
+                    const consignBody = item.consign.consignation?JSON.parse(item.consign.consignation):{};
+                    return consignBody!=={}&&consignBody.softwareName&&consignBody.softwareName.match(reg);
+                });break;
             default:break;
         }
     };
@@ -197,26 +211,20 @@ export default class TestReportListComponent extends Component {
     render() {
         return (
             <div>
-                <h3 style={{ marginBottom: 16 }}>委托列表</h3>
+                <h3 style={{ marginBottom: 16 }}>测试报告列表</h3>
                 <InputGroup>
                     <Col span={3}>
-                        <Select defaultValue="搜索测试报告ID" onSelect={this.onSelect}>
-                            <Option value="id">搜索测试报告ID</Option>
-                            <Option value="createdUserId">搜索委托人ID</Option>
-                            <Option value="name">搜索测试报告名称 </Option>
+                        <Select defaultValue="搜索项目编号" onSelect={this.onSelect}>
+                            <Option value="code">搜索项目编号</Option>
+                            <Option value="reporter">搜索报告人</Option>
+                            <Option value="name">搜索项目名称 </Option>
                         </Select>
                     </Col>
                     <Col span={8}>
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    {/*this.props.enableNew*/1 ?
-                        <Col span={2}>
-                            <Button
-                                disabled={!this.props.enableNew}
-                                type="primary" onClick={this.props.newTestReport}><Icon type="plus-circle-o" />新建测试报告</Button>
-                        </Col>
-                        : <Col span={2}></Col>}
+
                 </InputGroup>
                 <br />
                 <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'}/>

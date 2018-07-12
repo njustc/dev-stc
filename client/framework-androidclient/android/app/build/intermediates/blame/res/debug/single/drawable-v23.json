@@ -12,12 +12,24 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-v23/abc_control_background_material.xml"
     },
     {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-v23/abc_control_background_material.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-v23/abc_control_background_material.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-v23/abc_control_background_material.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-v23/abc_control_background_material.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-v23/abc_control_background_material.xml"
     },
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml",

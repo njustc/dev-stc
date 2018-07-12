@@ -25,7 +25,7 @@ class TestProblemContentComponent extends Component {
     componentWillMount() {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
-        this.props.getValues(this.props.testCaseData.id);
+        this.props.getValues(this.props.projectData.id);
         //     // console.log(this.values);
     };
     */

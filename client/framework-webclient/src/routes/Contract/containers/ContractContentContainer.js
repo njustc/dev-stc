@@ -7,50 +7,42 @@ import {message} from "antd/lib/index";
 
 const mapStateToProps = (state, ownProps) => {
     // debugger;
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
-    //console.log(authData);
-    const content = state.Contract.listMap[ownProps.id];
+    const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
+    const content = state.Project.listMap[ownProps.id].contract;
     const contractBody = content?content.contractBody:undefined;
-    console.log(content);
-
-    const isEditVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
-    const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Submit')!==-1:
-        content.operation.findIndex(element => element === 'Submit')!==-1);
+    const contractState = content?content.state:"error";
+    const isCustomer = (sysUser.username==="customer1"||sysUser.username==="customer2");
+    const isMarketing = (sysUser.username==="marketing");
+    const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Submit')!==-1;
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ConfirmPass')!==-1;
 
     return {
-        // contractData: {},/*fetch data with pro id*/
-        contractData: content?state.Contract.listMap[ownProps.id]:ownProps,
+        contractData: content?content:ownProps,
         values:  contractBody ? JSON.parse(contractBody) : {},
-        disable: false/*authData.functionGroup["Contract"]===undefined||authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===-1||state.Contract.listMap[ownProps.id].state!=="TobeSubmit"*/,
-        //curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
-        //buttonDisabled: state.Contract.listMap[ownProps.id].state==="TobeCheck"
-        /*buttonDisabled: authData.functionGroup["Contract"]===undefined ||authData.functionGroup["Contract"].findIndex(element => element === "EDIT")===-1
-            ? state.Contract.listMap[ownProps.id].state==="TobeSubmit"||state.Contract.listMap[ownProps.id].state==="Finished"
-            : state.Contract.listMap[ownProps.id].state==="TobeReview"||state.Contract.listMap[ownProps.id].state==="Finished"*/
-        buttonsEnable: buttonsEnable(isEditVisible,isSubmitVisible,isReviewVisible,isConfirmVisible),
+        disable: contractState!=="TobeSubmit",
+        buttonsEnable: buttonsEnable(isCustomer,isMarketing,isSubmitVisible,isReviewVisible,isConfirmVisible),
     }
 };
 
-const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
+const buttonsEnable = (isCustomer,isMarketing,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
     content: '保存',
-    enable: isEditVisible&&isSubmitVisible,
+    enable: isMarketing&&isSubmitVisible,
 },{
     content: '提交',
-    enable: isSubmitVisible,
+    enable: isMarketing&&isSubmitVisible,
 },{
     content: '通过',
-    enable: isReviewVisible,
+    enable: isMarketing&&isReviewVisible,
 },{
     content: '否决',
-    enable: isReviewVisible,
+    enable: isMarketing&&isReviewVisible,
 },{
     content: '确认',
-    enable: isConfirmVisible,
+    enable: isCustomer&&isConfirmVisible,
 },{
     content: "拒绝",
-    enable: isConfirmVisible,
+    enable: isCustomer&&isConfirmVisible,
 }
 ];
 
@@ -153,7 +145,6 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
 }];
 
 const mapDispatchToProps = (dispatch,ownProps) => {
-    console.log("here");
     return {
         buttons: buttons(dispatch),
         getValues: (id) => getContract(dispatch,id)

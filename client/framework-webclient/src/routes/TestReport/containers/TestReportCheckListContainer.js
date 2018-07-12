@@ -5,6 +5,7 @@ import {TestReportCheckContentView} from "../index";
 import {deleteTestReportCheck, getTestReportCheckList, newTestReportCheck} from "../../../services/TestReportCheckService";
 import {setTestReportCheckFilter} from "../../../modules/ducks/TestReportCheck";
 import TestReportCheckListComponent from "../components/TestReportCheckListComponent";
+import {ProjectContentView} from "../../Project";
 
 const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
@@ -17,11 +18,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        showContent: (id) => {
-            // debugger;
-            const key = "报告检查" + id;
+        showContent: (param) => {
+            const {key,id} = param;
             dispatch(addTabAction(key, '报告检查详情', TestReportCheckContentView, {id: id}));
 //            dispatch(setTestReportCheckContent())
+        },
+        showProject: (id) => {
+            // debugger;
+            console.log(id);
+            dispatch(addTabAction(id, '项目详情', ProjectContentView, {id: id}));
+//            dispatch(setContractContent())
         },
         setListFilter: (listFilter) => dispatch(setTestReportCheckFilter(listFilter)),
         getTestReportCheckList: () => getTestReportCheckList(dispatch),

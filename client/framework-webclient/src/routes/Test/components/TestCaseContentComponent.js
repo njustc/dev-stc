@@ -1,6 +1,11 @@
 /*测试用例*/
 import React, {Component, PropTypes} from 'react';
-import {Form,Table, Card, Collapse, Badge, Dropdown, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
+import {Form, message, Table, Card, Collapse, Badge, Dropdown, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
+import {EditableCell} from "COMPONENTS/EditableCell";
+import {getProjectList} from "SERVICES/ProjectService";
+import {newTestCase} from "SERVICES/TestCaseService";
+import {STATUS} from "SERVICES/common";
+
 const FormItem=Form.Item;
 const Panel = Collapse.Panel;
 const { TextArea } = Input;
@@ -11,7 +16,7 @@ class TestCaseContentComponent extends Component {
     }
 
     state={
-        data : [{
+        dataSource : [{
             id: 1,
             classification: 'yj',
             process: 'unhappy->happy',
@@ -23,20 +28,28 @@ class TestCaseContentComponent extends Component {
             statute: 'sssssss',
             accordance: 'tttttt'
         }],
+        count: 1,
     }
 
     static propTypes = {
-        testCaseData: PropTypes.object.isRequired,
-        addTestCase: PropTypes.func.isRequired,
-        values: PropTypes.object.isRequired,
+        projectData: PropTypes.object.isRequired,
+        values: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };
 
     componentWillMount() {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
-        this.props.getValues(this.props.testCaseData.id);
+        // this.props.getValues(this.props.projectData.id);
         //     // console.log(this.values);
+        this.props.getProjectList();
+        const {projectData} = this.props;
+        const dataSource = projectData.testCase.map(item => {
+            const data = item.body?JSON.parse(item.body) : {};
+            return {...item, ...data}
+        });
+        const count = projectData.testCase.length;
+        this.setState({dataSource, count});
     };
 
     expandedRowRender = (record) => {
@@ -77,16 +90,23 @@ class TestCaseContentComponent extends Component {
         /*TODO*/
         //this.state.data.push(fieldsValue);
         //console.log(this.state.data);
-        //this.props.addTestCase(this.props.testCaseData,fieldsValue);
+        //this.props.addTestCase(this.props.projectData,fieldsValue);
     };
 
     /*table列设置*/
     columns = [{
-        title:"序号",
-        dataIndex:"id",
+        title: "序号",
+        dataIndex: "id",
+        render: (_, __, index) => index,
     }, {
         title:"测试分类",
         dataIndex:"classification",
+        render: (text, record) => (
+            <EditableCell
+                value={text}
+                onChange={this.onCellChange(record.id, 'classification')}
+            />
+        ),
     },
         /*{
         title:"测试用例设计说明",
@@ -107,13 +127,13 @@ class TestCaseContentComponent extends Component {
         dataIndex:"designer",
     }, {
         title:"时间",
-        dataIndex:"time",
+        dataIndex:"createdTime",
     }, {
         title:"操作",
         dataIndex:"action",
         render: (text, record) => {
         return (
-            <Popconfirm title="确认删除此测试用例吗？" onConfirm={() => this.onDelete(record.key)}>
+            <Popconfirm title="确认删除此测试用例吗？" onConfirm={() => this.onDelete(record.id)}>
               <a href="javascript:;">删除</a>
             </Popconfirm>
         );
@@ -124,9 +144,50 @@ class TestCaseContentComponent extends Component {
     }*/
     ];
 
-    /* TODO 删除测试用例 */
-    onDelete = (key) => {
-        // this.props.deleteTestCase(key);
+    onCellChange = (id, dataIndex) => {
+        return (value) => {
+            const dataSource = [...this.state.dataSource];
+            const target = dataSource.find(item => item.id === id);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource });
+            }
+            target.body = {...target};
+            this.props.updateTestCase(target, (status) => {
+                if (status === STATUS.SUCCESS)
+                    message.success('修改测试用例成功');
+                else
+                    message.error('修改测试用例失败');
+            })
+        };
+    }
+    onDelete = (id) => {
+        const dataSource = [...this.state.dataSource];
+        this.setState({ dataSource: dataSource.filter(item => item.id !== id) });
+        this.props.deleteTestCase(id, (status) => {
+            if (status === STATUS.SUCCESS)
+                message.success('删除测试用例成功');
+        });
+    }
+    handleAdd = () => {
+        let { count, dataSource } = this.state;
+        const {newTestCase, updateTestCase, projectData, form} = this.props;
+        const newData = {
+            // id: count + 1,
+            ...form.getFieldsValue(),
+        };
+        newTestCase(projectData.id, (data) => {
+            data.body = newData;
+            newData.createdTime = data.createdTime;
+            updateTestCase(data, (status) => {
+                if (status === STATUS.SUCCESS) {
+                    this.setState({
+                        dataSource: [...dataSource, newData],
+                    });
+                    message.success('新添测试用例成功')
+                }
+            });
+        });
     }
 
 
@@ -184,13 +245,13 @@ class TestCaseContentComponent extends Component {
                                         <TextArea rows={4} />
                                     )}
                                 </FormItem>
-                                <FormItem {...formItemLayout} label={"时间"}>
-                                    {getFieldDecorator('time', {
-                                    // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                    })(
-                                        <DatePicker/>
-                                    )}
-                                </FormItem>
+                                {/*<FormItem {...formItemLayout} label={"时间"}>*/}
+                                    {/*{getFieldDecorator('time', {*/}
+                                    {/*// rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],*/}
+                                    {/*})(*/}
+                                        {/*<DatePicker/>*/}
+                                    {/*)}*/}
+                                {/*</FormItem>*/}
                                 <FormItem{...formItemLayout}label={"有关的规约说明"}>
                                     {getFieldDecorator('statute', {
                                     // rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
@@ -211,7 +272,9 @@ class TestCaseContentComponent extends Component {
                                             key={button.content}>
                                         {button.content}
                                     </Button>)*/}
-                                        <Button type='primary' onClick={this.onClick()}><Icon type="plus-circle-o" />添加测试用例</Button>
+                                        <Button type='primary' onClick={this.handleAdd}>
+                                            <Icon type="plus-circle-o" />添加测试用例
+                                        </Button>
                                 </FormItem>
                             </Form>
                         </Card>
@@ -224,7 +287,7 @@ class TestCaseContentComponent extends Component {
                     columns={this.columns}
                     expandedRowRender={this.expandedRowRender}
                     // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
-                    dataSource={/*this.props.dataSource*/this.state.data}
+                    dataSource={/*this.props.dataSource*/this.state.dataSource}
                     rowKey={'id'}
                 />
             </div>

@@ -60,6 +60,80 @@ export default class TestPlanContentPage extends Component{
         ]
     }
   }
+
+  componentDidMount(){
+    this.listener_softwareName = DeviceEventEmitter.addListener('softwareName',(events)=>{
+      this.setState({softwareName : events.SOFTWARE_NAME });
+    });
+    this.listener_projectName = DeviceEventEmitter.addListener('projectName',(events)=>{
+      this.setState({projectName : events.PROJECT_NAME });
+    });
+    this.listener_testPlanVer = DeviceEventEmitter.addListener('testPlanVer',(events)=>{
+      this.setState({testPlanVer : events.TEST_PLAN_VER });
+    });
+    this.listener_establisher = DeviceEventEmitter.addListener('establisher',(events)=>{
+      this.setState({establisher : events.ESTABLISHER });
+    });
+    this.listener_reviewer = DeviceEventEmitter.addListener('reviewer',(events)=>{
+      this.setState({reviewer : events.REVIEWER });
+    });
+    this.listener_approver = DeviceEventEmitter.addListener('approver',(events)=>{
+      this.setState({approver : events.APPROVER });
+    });
+    this.listener_doRecord = DeviceEventEmitter.addListener('doRecord',(events)=>{
+      this.setState({doRecord : events.DORECORD });
+    });
+    this.listener_documentID = DeviceEventEmitter.addListener('documentID',(events)=>{
+      this.setState({documentID : events.DOCUMENT_ID });
+    });
+    this.listener_baseline = DeviceEventEmitter.addListener('baseline',(events)=>{
+      this.setState({baseline : events.BASE_LINE });
+    });
+    this.listener_testMethods = DeviceEventEmitter.addListener('testMethods',(events)=>{
+      this.setState({testMethods : events.TEST_METHODS });
+    });
+    this.listener_testType = DeviceEventEmitter.addListener('testType',(events)=>{
+      this.setState({testType : events.TEST_TYPE });
+    });
+    this.listener_testLevel = DeviceEventEmitter.addListener('testLevel',(events)=>{
+      this.setState({testLevel : events.TEST_LEVEL });
+    });
+    this.listener_testCategory = DeviceEventEmitter.addListener('testCategory',(events)=>{
+      this.setState({testCategory : events.TEST_CATEGORY });
+    });
+    this.listener_testObject = DeviceEventEmitter.addListener('testObject',(events)=>{
+      this.setState({testObject : events.TEST_OBJECT });
+    });
+    this.listener_caseNum = DeviceEventEmitter.addListener('caseNum',(events)=>{
+      this.setState({caseNum : events.CASE_NUM });
+    });
+    this.listener_costDay = DeviceEventEmitter.addListener('costDay',(events)=>{
+      this.setState({costDay : events.COST_DAY });
+    });
+
+  }
+
+  componentWillUnmount(){
+    this.listener_softwareName.remove();
+    this.listener_projectName.remove();
+    this.listener_testPlanVer.remove();
+    this.listener_establisher.remove();
+    this.listener_reviewer.remove();
+    this.listener_approver.remove();
+    this.listener_doRecord.remove();
+    this.listener_documentID.remove();
+    this.listener_baseline.remove();
+    this.listener_testMethods.remove();
+    this.listener_testType.remove();
+    this.listener_testLevel.remove();
+    this.listener_testCategory.remove();
+    this.listener_testObject.remove();
+    this.listener_caseNum.remove();
+    this.listener_costDay.remove();
+
+
+  }
+
   render(){
     return(
       <Container>

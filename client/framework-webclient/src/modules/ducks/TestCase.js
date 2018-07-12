@@ -5,7 +5,7 @@ const SET_FILTER = 'TestCase/SET_FILTER';
 
 const initialState = {
     listFilter: () => true,//绑定按钮传入的过滤条件
-    listMap: { },  //项目集合，用key-value表示，key为id，value为TestCaseData
+    listMap: {},  //项目集合，用key-value表示，key为id，value为TestCaseData
     //TestCaseData为对象，仍然包含id字段
     casesMap: { },
 };
@@ -47,14 +47,9 @@ export const TestCaseReducer = (state = initialState, action) => {
                     [id]: newData,
                 },*/
             /*TODO*/
-            const cases = action.payload;
             //console.log(cases);
             return {
                 ...state,
-                casesMap: cases.reduce((casesMap, TestCaseData) => {
-                    casesMap[TestCaseData.id] = TestCaseData;
-                    return casesMap;
-                }, {}),
             };
         }
         case SET_FILTER:

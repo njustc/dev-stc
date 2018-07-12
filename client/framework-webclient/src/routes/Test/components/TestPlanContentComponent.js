@@ -1,37 +1,402 @@
 import React, {Component, PropTypes} from 'react';
-import {Row,Col,Steps,Form,Button,Input,DatePicker,InputNumber,Collapse,Table,Tabs,Popconfirm} from 'antd'
-//import {Tabs} from "antd/lib/index";
+import {Icon, Row,Col,Steps,Form,Button,Input,DatePicker,InputNumber,Collapse,Table,Tabs,Popconfirm} from 'antd'
 const TabPane = Tabs.TabPane;
 const { Column, ColumnGroup } = Table;
-const Step = Steps.Step;
 const FormItem=Form.Item;
 const InputGroup = Input.Group;
-const Panel=Collapse.Panel;
-const staffData = [{
-  key: '1',
-  station: '项目负责人',
-  num: '1人',
-  duty: '负责项目整体组织、工作分配、测试人员管理、项目具体协调等工作。项目经理同时承担测试执行的部分分工作。',
-}, {
-  key: '2',
-  station: '测试工程师',
-  num: '1人',
-  duty: '实施测试工作，同时担任配置管理员。',
-}, {
-  key: '3',
-  station: '项目督导',
-  num: '1人',
-  duty: '监督指导测试小组工作，对项目进行中遇到的问题提供支持。',
-}];
+
+
+class EditableCell extends Component {
+    state = {
+        value: this.props.value,
+        editable: false,
+    }
+    handleChange = (e) => {
+        const value = e.target.value;
+        this.setState({ value });
+    }
+    check = () => {
+        this.setState({ editable: false });
+        if (this.props.onChange) {
+            this.props.onChange(this.state.value);
+        }
+    }
+    edit = () => {
+        this.setState({ editable: true });
+    }
+    render() {
+        const { value, editable } = this.state;
+        return (
+            <div className="editable-cell">
+                {
+                    editable ? (
+                        <Input
+                            value={value}
+                            onChange={this.handleChange}
+                            onPressEnter={this.check}
+                            disabled={this.props.disable}
+                            suffix={
+                                <Icon
+                                    type="check"
+                                    className="editable-cell-icon-check"
+                                    onClick={this.check}
+                                />
+                            }
+                        />
+                    ) : (
+                        <div style={{ paddingRight: 24 }}>
+                            {value || ' '}
+                            <Icon
+                                type="edit"
+                                className="editable-cell-icon"
+                                onClick={this.edit}
+                            />
+                        </div>
+                    )
+                }
+            </div>
+        );
+    }
+}
 
 class TestPlanContentComponent extends Component {
     constructor(props) {
         super(props);
+
+        this.columns1 = [{
+            title: '序号',
+            dataIndex: 'number',
+            key: 'number',
+            width: '10%',
+        }, {
+            title: '硬件名称',
+            dataIndex: 'name',
+            key: 'name',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange1(record.key, 'name')}
+                />
+            ),
+        },  {
+            title: '硬件类别',
+            dataIndex: 'kind',
+            key: 'kind',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange1(record.key, 'kind')}
+                />
+            ),
+        },  {
+            title: '数量',
+            dataIndex: 'amount',
+            key: 'amount',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange1(record.key, 'amount')}
+                />
+            ),
+        }, {
+            title: '配置',
+            dataIndex: 'description',
+            key: 'description',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange1(record.key, 'description')}
+                />
+            ),
+        }, {
+            title: '删除操作',
+            dataIndex: 'operation',
+            width: '10%',
+            render: (text, record) => {
+                return (
+                    this.state.dataSource1.length > 0 ?
+                        (
+                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete1(record.key)}>
+                                <a href="javascript:;">Delete</a>
+                            </Popconfirm>
+                        ) : null
+                );
+            },
+        }];
+
+        this.columns2 = [{
+            title: '序号',
+            dataIndex: 'softwarenumber',
+            width: '10%',
+        }, {
+            title: '软件名称',
+            dataIndex: 'softwarename',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange2(record.key, 'softwarename')}
+                />
+            ),
+        }, {
+            title: '软件类别',
+            dataIndex: 'softwarekind',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange2(record.key, 'softwarekind')}
+                />
+            ),
+        }, {
+            title: '软件版本',
+            dataIndex: 'softwareversion',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange2(record.key, 'softwareversion')}
+                />
+            ),
+        }, {
+            title: '删除操作',
+            dataIndex: 'operation',
+            width: '10%',
+            render: (text, record) => {
+                return (
+                    this.state.dataSource2.length > 0 ?
+                        (
+                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete2(record.key)}>
+                                <a href="javascript:;">Delete</a>
+                            </Popconfirm>
+                        ) : null
+                );
+            },
+        }];
+
+        this.columns3 = [{
+            title: '里程碑任务',
+            dataIndex: 'project',
+            width: '10%',
+        }, {
+            title: '工作量',
+            dataIndex: 'workload',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange3(record.key, 'workload')}
+                />
+            ),
+        }, {
+            title: '开始时间',
+            dataIndex: 'startingTime',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange3(record.key, 'startingTime')}
+                />
+            ),
+        }, {
+            title: '结束时间',
+            dataIndex: 'endTime',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange3(record.key, 'endTime')}
+                />
+            ),
+        }];
+
+        this.columns4 = [{
+            title: '岗位',
+            dataIndex: 'post',
+            key: 'post',
+            width: '10%',
+        }, {
+            title: '人数',
+            dataIndex: 'num',
+            key: 'num',
+            width: '10%',
+            render: (text, record) => (
+                <EditableCell
+                    value={text}
+                    onChange={this.onCellChange4(record.key, 'num')}
+                />
+            ),
+        }, {
+            title: '职责',
+            dataIndex: 'duty',
+            key: 'duty',
+            width: '50%',
+        }];
+
         this.state = {
             values:this.props.value,
             editable:false,
+            dataSource1: [{
+                key: '1',
+                number: '1',
+                name: '',
+                kind: '',
+                amount: '',
+                description: '',
+            }, {
+                key: '2',
+                number: '2',
+                name: '',
+                kind: '',
+                amount: '',
+                description: '',
+            }],
+            count1: 2,
+
+            dataSource2: [{
+                key: '1',
+                softwarenumber: '1',
+                softwarename: '',
+                softwareversion: '',
+                softwarekind:'',
+                description: '',
+            }, {
+                key: '2',
+                softwarenumber: '2',
+                softwarename: '',
+                softwareversion: '',
+                softwarekind:'',
+                description: '',
+            }],
+            count2: 2,
+
+            dataSource3: [{
+                key: '1',
+                project: '制定测试计划',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }, {
+                key: '2',
+                project: '设计测试',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }, {
+                key: '3',
+                project: '执行测试',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }, {
+                key: '4',
+                project: '评估测试',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }],
+            count3: 4,
+
+            dataSource4: [{
+                key: '1',
+                post: '项目负责人',
+                num: '',
+                duty: '负责项目整体组织、工作分配、测试人员管理、项目具体协调等工作。项目经理同时承担测试执行的部分分工作。',
+            }, {
+                key: '2',
+                post: '测试工程师',
+                num: '',
+                duty: '实施测试工作，同时担任配置管理员。',
+            }, {
+                key: '3',
+                post: '项目督导',
+                num: '',
+                duty: '监督指导测试小组工作，对项目进展中遇到的问题提供支持。',
+            }],
+            count4: 3,
         };
     };
+
+    onCellChange1 = (key, dataIndex) => {
+        return (value) => {
+            const dataSource1 = [...this.state.dataSource1];
+            const target = dataSource1.find(item => item.key === key);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource1 });
+            }
+        };
+    }
+    onDelete1 = (key) => {
+        const dataSource1 = [...this.state.dataSource1];
+        this.setState({ dataSource1: dataSource1.filter(item => item.key !== key) });
+    }
+    handleAdd1 = () => {
+        const { count1, dataSource1 } = this.state;
+        const newData = {
+            key: count1+1,
+            number: `${count1+1}`,
+            description: ``,
+        };
+        this.setState({
+            dataSource1: [...dataSource1, newData],
+            count1: count1 + 1,
+        });
+    }
+
+    onCellChange2 = (key, dataIndex) => {
+        return (value) => {
+            const dataSource2 = [...this.state.dataSource2];
+            const target = dataSource2.find(item => item.key === key);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource2 });
+            }
+        };
+    }
+    onDelete2 = (key) => {
+        const dataSource2 = [...this.state.dataSource2];
+        this.setState({ dataSource2: dataSource2.filter(item => item.key !== key) });
+    }
+    handleAdd2 = () => {
+        const { count2, dataSource2 } = this.state;
+        const newData = {
+            key: count2+1,
+            softwarenumber: `${count2+1}`,
+            description: ``,
+        };
+        this.setState({
+            dataSource2: [...dataSource2, newData],
+            count2: count2 + 1,
+        });
+    }
+
+    onCellChange3 = (key, dataIndex) => {
+        return (value) => {
+            const dataSource3 = [...this.state.dataSource3];
+            const target = dataSource3.find(item => item.key === key);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource3 });
+            }
+        };
+    }
+
+    onCellChange4 = (key, dataIndex) => {
+        return (value) => {
+            const dataSource4 = [...this.state.dataSource4];
+            const target = dataSource4.find(item => item.key === key);
+            if (target) {
+                target[dataIndex] = value;
+                this.setState({ dataSource4 });
+            }
+        };
+    }
+
     static defaultProps = {
         values: {
             documentID:'NST-04-JS006-2011-软件测试方案-',
@@ -52,6 +417,66 @@ class TestPlanContentComponent extends Component {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
         this.props.getValues(this.props.testPlanData.id);
+        let state = this.state;
+        state.dataSource1 = this.props.values["hardware"];
+        if (state.dataSource1 === undefined)
+            state.dataSource1 = [];
+        state.count1 = state.dataSource1.length;
+
+        state.dataSource2 = this.props.values["software"];
+        if (state.dataSource2 === undefined)
+            state.dataSource2 = [];
+        state.count2 = state.dataSource2.length;
+
+        state.dataSource3 = this.props.values["testProgress"];
+        if (state.dataSource3 === undefined)
+            state.dataSource3 = [{
+                key: '1',
+                project: '制定测试计划',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }, {
+                key: '2',
+                project: '设计测试',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }, {
+                key: '3',
+                project: '执行测试',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }, {
+                key: '4',
+                project: '评估测试',
+                workload: '',
+                staringTime: '',
+                endTime: '',
+            }];
+        state.count3 = state.dataSource3.length;
+
+        state.dataSource4 = this.props.values["people"];
+        if (state.dataSource4 === undefined)
+            state.dataSource4 = [{
+                key: '1',
+                post: '项目负责人',
+                num: '',
+                duty: '负责项目整体组织、工作分配、测试人员管理、项目具体协调等工作。项目经理同时承担测试执行的部分分工作。',
+            }, {
+                key: '2',
+                post: '测试工程师',
+                num: '',
+                duty: '实施测试工作，同时担任配置管理员。',
+            }, {
+                key: '3',
+                post: '项目督导',
+                num: '',
+                duty: '监督指导测试小组工作，对项目进展中遇到的问题提供支持。',
+            }];
+        state.count4 = state.dataSource4.length;
+        this.setState(state);
         //     // console.log(this.values);
     };
     onClick = (buttonIndex) => () => {
@@ -60,8 +485,14 @@ class TestPlanContentComponent extends Component {
         //         this.props.buttons[buttonIndex].onClick(this.props.consignData, JSON.stringify(values));
         //     }
         // });
-        const {buttons, form} = this.props;
-        buttons[buttonIndex].onClick(this.props.testPlanData,JSON.stringify(form.getFieldsValue()));          //此处附近接口？？
+        const {buttons, form} = this.props;//此处附近接口？？
+        let fieldsValue = form.getFieldsValue();
+        fieldsValue["hardware"] = this.state.dataSource1;
+        fieldsValue["software"] = this.state.dataSource2;
+        fieldsValue["testProgress"] = this.state.dataSource3;
+        fieldsValue["people"] = this.state.dataSource4;
+        debugger;
+        buttons[buttonIndex].onClick(this.props.testPlanData,JSON.stringify(fieldsValue));
     };
 
     render() {
@@ -79,25 +510,7 @@ class TestPlanContentComponent extends Component {
             width:'200',
             borderRadius:'6',
         };
-        const spanLayout =  {
-            labelCol: { offset: 0.5 },
-        };
-        const customPanelStyle = {
-            background: '#f9f9f9',
-            borderRadius: 6,
-            marginTop: 5,
-            marginBottom: 5,
-            border: 0,
-            overflow: 'hidden',
-        };
-        const customPanelStyle2 = {
-            background: '#ffffff',
-            borderRadius: 6,
-            marginTop: 5,
-            marginBottom: 5,
-            border: 0,
-            overflow: 'hidden',
-        };
+
         return(
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
                 <FormItem>
@@ -108,11 +521,11 @@ class TestPlanContentComponent extends Component {
                     defaultActiveKey="1"
                     tabPosition="left"
                 >
-                    <TabPane tab="0.基本信息" key="1">
+                    <TabPane tab="基本信息" key="1">
                         <FormItem {...formItemLayout} label={"软件名称"}>
                             {getFieldDecorator('softwareName', {
                                 rules: [{ required: true, message: '请输入软件名称！' }],
-//                                initialValue: this.props.values.softwareName,
+                                initialValue: this.props.values.softwareName,
                             })(
                                 <Input  disabled={this.props.disable}/>
                             )}
@@ -121,7 +534,7 @@ class TestPlanContentComponent extends Component {
                         <FormItem {...formItemLayout} label={"项目名称"}>
                             {getFieldDecorator('projectName', {
                                 rules: [{ required: true, message: '请输入项目名称！' }],
-//                                initialValue: this.props.values.projectName,
+                                initialValue: this.props.values.projectName,
                             })(
                                 <Input  disabled={this.props.disable}/>
                             )}
@@ -130,16 +543,25 @@ class TestPlanContentComponent extends Component {
                         <FormItem {...formItemLayout} label={"测试方案版本号"}>
                             {getFieldDecorator('testPlanVer', {
                                 rules: [{ required: true, message: '请输入测试方案版本号！' }],
-//                                initialValue: this.props.values.testPlanVer,
+                                initialValue: this.props.values.testPlanVer,
                             })(
                                 <Input  disabled={this.props.disable}/>
+                            )}
+                        </FormItem>
+
+                        <FormItem {...formItemLayout} label="文档标识">
+                            {getFieldDecorator('documentID', {
+                                rules: [{ required: true,message: '请输入文档标识！' }],
+                                initialValue: this.props.values.documentID,
+                            })(
+                                <Input  disabled={this.props.disable} placeholder={"NST-04-JS006-2011-软件测试方案-"}/>
                             )}
                         </FormItem>
 
                         <FormItem {...formItemLayout} label={"编制人"}>
                             {getFieldDecorator('establisher', {
                                 rules: [{ required: true, message: '请输入编制人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"  }],
-//                                initialValue: this.props.values.establisher,
+                                initialValue: this.props.values.establisher,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
@@ -148,7 +570,7 @@ class TestPlanContentComponent extends Component {
                         <FormItem {...formItemLayout} label={"审核人"}>
                             {getFieldDecorator('reviewer', {
                                 rules: [{ required: true, message: '请输入审核人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"  }],
-//                                initialValue: this.props.values.reviewer,
+                                initialValue: this.props.values.reviewer,
                             })(
                                 <Input  disabled={this.props.disable}/>
                             )}
@@ -157,22 +579,25 @@ class TestPlanContentComponent extends Component {
                         <FormItem {...formItemLayout} label={"批准人"}>
                             {getFieldDecorator('approver', {
                                 rules: [{ required: true, message: '请输入批准人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"  }],
-//                                initialValue: this.props.values.approver,
+                                initialValue: this.props.values.approver,
                             })(
                                 <Input disabled={this.props.disable}/>
                             )}
                         </FormItem>
 
-                        <FormItem {...formItemLayout} label={"文档修改记录"}>
-                            {getFieldDecorator('doRecord', {
-                                rules: [{ required: true, message: '请输入！'}],
- //                               initialValue: this.props.values.doRecord,
-                            })(
-                                <Table disabled={this.props.disable}/>
-                            )}
-                        </FormItem>
+                        {/*
+                            <FormItem {...formItemLayout} label={"文档修改记录"}>
+                                {getFieldDecorator('doRecord', {
+                                    rules: [{required: true, message: '请输入！'}],
+                                    initialValue: this.props.values.doRecord,
+                                })(
+                                    <Table disabled={this.props.disable}/>
+                                )}
+                            </FormItem>
+                        */}
                     </TabPane>
 
+                    {/*
                     <TabPane tab="1.引言" key="2">
                         <Row>
                             <Col offset={1} span={21}>
@@ -195,9 +620,8 @@ class TestPlanContentComponent extends Component {
                                 <Input  disabled={this.props.disable}/>
                             )}
                         </FormItem>
+
                         <FormItem/>
-
-
                         <Row>
                             <Col offset={1} span={21}>
                                 <h3>1.2 系统概述</h3>
@@ -236,6 +660,7 @@ class TestPlanContentComponent extends Component {
                         </Row>
                         <FormItem/>
 
+
                         <Row>
                             <Col offset={1} span={21}>
                                 <h3>1.4 基线</h3>
@@ -249,13 +674,14 @@ class TestPlanContentComponent extends Component {
                                 <Input  disabled={this.props.disable}/>
                             )}
                         </FormItem>
-                    </TabPane>
-
-                    <TabPane tab="2.引用文件" key="3">
 
                     </TabPane>
+                        <TabPane tab="2.引用文件" key="3">
 
-                    <TabPane tab="3.软件测试环境" key="4">
+                        </TabPane>
+                    */}
+
+                    <TabPane tab="软件测试环境" key="2">
                         <Row>
                             <Col offset={1} span={21}>
                                 <h3>3.1 硬件</h3>
@@ -263,10 +689,15 @@ class TestPlanContentComponent extends Component {
                         </Row>
                         <Row>
                             <Col offset={2} span={20}>
-
+                                <div>
+                                    <Button onClick={this.handleAdd1} type="primary" style={{ marginBottom: 16 }}>
+                                        添加硬件环境
+                                    </Button>
+                                    <Table bordered dataSource={this.state.dataSource1} columns={this.columns1} />
+                                </div>
                             </Col>
                         </Row>
-                        /*TODO 表格*/
+
                         <FormItem/>
 
                         <Row>
@@ -276,12 +707,17 @@ class TestPlanContentComponent extends Component {
                         </Row>
                         <Row>
                             <Col offset={2} span={20}>
-                                本次测试中使用到的软件环境如下：
+                                <div>
+                                    <Button onClick={this.handleAdd2} type="primary" style={{ marginBottom: 16 }}>
+                                        添加软件环境
+                                    </Button>
+                                    <Table bordered dataSource={this.state.dataSource2} columns={this.columns2} />
+                                </div>
                             </Col>
                         </Row>
-                        /*TODO 表格*/
-                        <FormItem/>
 
+                        <FormItem/>
+                        {/*
                         <Row>
                             <Col offset={1} span={21}>
                                 <h3>3.3 参与组织</h3>
@@ -292,6 +728,7 @@ class TestPlanContentComponent extends Component {
 
                             </Col>
                         </Row>
+                        */}
                         <FormItem/>
 
                         <Row>
@@ -303,16 +740,13 @@ class TestPlanContentComponent extends Component {
                             <Col offset={2} span={20}>
                                 初步定为1名测试人员，1名项目督导，1名项目负责人。各类人员具体职责如下：
 
-                                <Table dataSource={staffData} pagination={{ hideOnSinglePage:true }}>
-                                    <Column title="岗位" dataIndex="station" key="station"/>
-                                    <Column title="人数" dataIndex="num" key="num"/>
-                                    <Column title="职责" dataIndex="duty" key="duty"/>
-                                </Table>
+                                <Table bordered dataSource={this.state.dataSource4} columns={this.columns4} />
+
                             </Col>
                         </Row>
                     </TabPane>
 
-                    <TabPane tab="4.计划" key="5">
+                    <TabPane tab="测试计划" key="3">
                         <Row>
                             <Col offset={1} span={21}>
                                 本章描述了计划测试的总范围并且描述了本测试计划适用的每个测试，包括对相关文档的审查。
@@ -322,7 +756,7 @@ class TestPlanContentComponent extends Component {
                                 <FormItem {...formItemLayout2} label="测试方法">
                                     {getFieldDecorator('testMethods', {
                                         rules: [{ required: true,message: '请输入测试方法！' }],
-                                        //initialValue: this.props.values.testMethods,
+                                        initialValue: this.props.values.testMethods,
                                     })(
                                         <Input  disabled={this.props.disable}/>
                                     )}
@@ -345,7 +779,7 @@ class TestPlanContentComponent extends Component {
                                         本测试的测试级别为
                                         {getFieldDecorator('testLevel', {
                                             rules: [{ required: true, message: '请输入测试级别！' }],
-  //                                        initialValue: this.props.values.testLevel,
+                                            initialValue: this.props.values.testLevel,
                                         })(
                                             <Input style={InputStyle} disabled={this.props.disable} placeholder={"系统级"}/>
                                         )}
@@ -361,7 +795,7 @@ class TestPlanContentComponent extends Component {
                                         本测试的测试类别为
                                         {getFieldDecorator('testCategory', {
                                             rules: [{ required: true, message: '请输入测试类别！' }],
-  //                                        initialValue: this.props.values.testCategory,
+                                            initialValue: this.props.values.testCategory,
                                         })(
                                             <Input style={InputStyle} disabled={this.props.disable} />
                                         )}
@@ -385,7 +819,7 @@ class TestPlanContentComponent extends Component {
                                 <FormItem {...formItemLayout2} label={"测试对象"}>
                                     {getFieldDecorator('testObject', {
                                         rules: [{ required: true, message: '请输入测试对象！' }],
-                                //        initialValue: this.props.values.testObject,
+                                        initialValue: this.props.values.testObject,
                                     })(
                                         <Input disabled={this.props.disable}/>
                                     )}
@@ -409,7 +843,7 @@ class TestPlanContentComponent extends Component {
                                 <FormItem {...formItemLayout2} label={"测试方法"}>
                                     {getFieldDecorator('testMethods', {
                                         rules: [{ required: true, message: '请输入测试方法！'}],
-                                    //    initialValue: this.props.values.testMethods,
+                                        initialValue: this.props.values.testMethods,
                                     })(
                                         <Input disabled={this.props.disable} placeholder={"人工设计测试用例，人工执行测试，人工分析测试结果"}/>
                                     )}
@@ -417,56 +851,63 @@ class TestPlanContentComponent extends Component {
                             </Col>
                         </Row>
                         <FormItem/>
-
-                        <Row>
-                            <Col offset={1} span={21}>
-                                <h3>4.3 测试用例</h3>
-                            </Col>
-                            <Col offset={2} span={20}>
-                                <FormItem {...formItemLayout}>
-                                    <InputGroup compact>
-                                        本次测试共设计了
-                                        {getFieldDecorator('caseNum', {
-                                            rules: [{ required: true, message: '请输入测试用例数目！' }],
-                                            //initialValue: this.props.values.caseNum,
-                                        })(
-                                            <Input style={InputStyle} disabled={this.props.disable} pattern="^[0-9]+$"/>
-                                        )}个测试用例，覆盖了测试类别中指明的各个方面。具体用例见《测试用例》。
-                                    </InputGroup>
-                                </FormItem>
-                            </Col>
-                        </Row>
+                        {/*
+                            <Row>
+                                <Col offset={1} span={21}>
+                                    <h3>4.3 测试用例</h3>
+                                </Col>
+                                <Col offset={2} span={20}>
+                                    <FormItem {...formItemLayout}>
+                                        <InputGroup compact>
+                                            本次测试共设计了
+                                            {getFieldDecorator('caseNum', {
+                                                rules: [{required: true, message: '请输入测试用例数目！'}],
+                                                //initialValue: this.props.values.caseNum,
+                                            })(
+                                                <Input style={InputStyle} disabled={this.props.disable}
+                                                       pattern="^[0-9]+$"/>
+                                            )}个测试用例，覆盖了测试类别中指明的各个方面。具体用例见《测试用例》。
+                                        </InputGroup>
+                                    </FormItem>
+                                </Col>
+                            </Row>
+                        */}
                         <FormItem/>
                     </TabPane>
 
-                    <TabPane tab="5.测试进度表 " key="6">
+                    <TabPane tab="测试进度表 " key="4">
                         <Row>
                             <Col offset={1} span={22}>
                                 <FormItem>
-                                    <InputGroup compact>
-                                        此项目主要分为：业务测试和文档审查两部分的工作。两部分的工作可以并行完成。测试方为完成本方案所述的测试所需时间大约为
-                                        {getFieldDecorator('costDay', {
-                                            rules: [{ required: true, message: '请输入所需时间！' }],
-  //                                        initialValue: this.props.values.costDay,
-                                        })(
-                                            <Input style={InputStyle} disabled={this.props.disable} pattern="^[0-9]+$"/>
-                                        )}个工作日，如测试需求产生变更会导致测试时间的变化。<br/>
-                                        下表大致估计了本次测试各个阶段所需工作量及起止时间。
-                                    </InputGroup>
+                                    {/*<InputGroup compact>*/}
+                                    此项目主要分为：业务测试和文档审查两部分的工作。两部分的工作可以并行完成。<br/>
+                                    测试方为完成本方案所述的测试所需时间大约为
+                                    {getFieldDecorator('costDay', {
+                                        rules: [{ required: true, message: '请输入所需时间！' }],
+                                        initialValue: this.props.values.costDay,
+                                    })(
+                                        //<Input style={InputStyle} disabled={this.props.disable} pattern="^[0-9]+$"/>
+                                        <InputNumber style={InputStyle} disabled={this.props.disable} />
+                                    )}个工作日，如测试需求产生变更会导致测试时间的变化。<br/>
+                                    下表大致估计了本次测试各个阶段所需工作量及起止时间。
+                                    {/*</InputGroup>*/}
                                 </FormItem>
                             </Col>
                         </Row>
-
-                        /*TODO 表格*/
+                        <div>
+                            <Table bordered dataSource={this.state.dataSource3} columns={this.columns3} />
+                        </div>
                     </TabPane>
 
-                    <TabPane tab="6.需求的可追踪性 " key="7">
-                        <Row>
-                            <Col offset={1} span={22}>
-                                设计的测试用例的ID中包含其对应的相关规约说明中对应条目的名称，每个测试用例都是可追踪的。
-                            </Col>
-                        </Row>
-                    </TabPane>
+                    {/*
+                        <TabPane tab="6.需求的可追踪性 " key="7">
+                            <Row>
+                                <Col offset={1} span={22}>
+                                    设计的测试用例的ID中包含其对应的相关规约说明中对应条目的名称，每个测试用例都是可追踪的。
+                                </Col>
+                            </Row>
+                        </TabPane>
+                    */}
                 </Tabs>
 
 

@@ -14,17 +14,29 @@ import ContractPage from './screens/contract/ContractPage'
 
 import Testing from './screens/testing/Testing'
 import TestCaseContentPage from './screens/testing/TestCaseContentPage'
+
+import TestPlanContentList from './screens/testing/TestPlanContentList'
 import TestPlanContentPage from './screens/testing/TestPlanContentPage'
+
+
 import TestProblemContentPage from './screens/testing/TestProblemContentPage'
 import TestRecordContentPage from './screens/testing/TestRecordContentPage'
 
 import Report from './screens/report/Report'
+
+import TestingReportCheckTableList from './screens/report/TestingReportCheckTableList'
 import TestingReportCheckTablePage from './screens/report/TestingReportCheckTablePage'
+
+import TestingReportList from './screens/report/TestingReportList'
 import TestingReportPage from './screens/report/TestingReportPage'
 
 
 import ProjectClosing from './screens/projectclosing/ProjectClosing'
+
+import TestingWorkCheckTableList from './screens/projectclosing/TestingWorkCheckTableList'
 import TestingWorkCheckTablePage from './screens/projectclosing/TestingWorkCheckTablePage'
+
+import SatisfactionContentList from './screens/projectclosing/SatisfactionContentList'
 import SatisfactionContentPage from './screens/projectclosing/SatisfactionContentPage'
 
 import Header from "./screens/Header/";
@@ -208,15 +220,23 @@ const AppNavigator = StackNavigator(
     ContractList:{screen: ContractList},
 
     TestCaseContentPage:{screen: TestCaseContentPage},
+
     TestPlanContentPage:{screen: TestPlanContentPage},
+    TestPlanContentList:{screen: TestPlanContentList},
+
     TestProblemContentPage:{screen: TestProblemContentPage},
     TestRecordContentPage:{screen: TestRecordContentPage},
 
+    TestingReportCheckTableList:{screen: TestingReportCheckTableList},
     TestingReportCheckTablePage:{screen: TestingReportCheckTablePage},
+
+    TestingReportList:{screen: TestingReportList},
     TestingReportPage:{screen: TestingReportPage},
 
-
+    TestingWorkCheckTableList:{screen: TestingWorkCheckTableList},
     TestingWorkCheckTablePage:{screen: TestingWorkCheckTablePage},
+
+    SatisfactionContentList:{screen: SatisfactionContentList},
     SatisfactionContentPage:{screen: SatisfactionContentPage},
 
     Header1: { screen: Header1 },
