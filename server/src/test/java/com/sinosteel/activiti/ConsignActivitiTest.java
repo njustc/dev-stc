@@ -1,130 +1,153 @@
 package com.sinosteel.activiti;
 
+import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.FrameworkApplication;
-import org.activiti.spring.integration.Activiti;
+import com.sinosteel.domain.User;
+import com.sinosteel.framework.core.web.Request;
+import com.sinosteel.service.ConsignService;
+import com.sinosteel.service.ContractService;
+import com.sinosteel.service.TestPlanService;
+import com.sinosteel.service.UserService;
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import springfox.documentation.spring.web.json.Json;
+import static org.junit.Assert.assertNotNull;
 
-import static org.junit.Assert.*;
-
-/*
-* @author LBW&Paul
+/**
+ * @author ZWH
  */
 
-
-@IntegrationTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
-//@SpringApplicationConfiguration(classes=MyActiviti.class)
 public class ConsignActivitiTest {
-
     @Autowired
-    private BaseActiviti baseActiviti;
+    private ProcessInstanceService processInstanceService;
     @Autowired
-    private ConsignActiviti consignActiviti;
+    private UserService userService;
+    //测试中使用的用户
+    private User customer1;
+    private User customer2;
+    private User marketing;
+    private User testing;
 
+    private String processInstanceId;
+    private String prId1;
+    private String prId3;
+    private String prId2;
+    @Before
+    public void setUp() {
+        customer1 = userService.getUserByUsername("customer1");
+        marketing = userService.getUserByUsername("marketing");
+        customer2 = userService.getUserByUsername("customer2");
+        testing = userService.getUserByUsername("testing");
 
-
-    @Test
-    public void newConsign() throws Exception{
-
-       String processInstanceID =  consignActiviti.createConsignProcess("0", "汤聪");
-        assertNotNull(processInstanceID);
-       System.out.println("委托实例成功创建。 ProcessInstanceID: " + processInstanceID);
-
-        String queryResult = baseActiviti.getProcessState(processInstanceID);
-        assertNotNull(queryResult);
-        System.out.println(queryResult);
+        JSONObject jsonObject0 = new JSONObject();
+        JSONObject jsonObject1 = new JSONObject();
+        JSONObject jsonObject2 = new JSONObject();
+        try {
+            processInstanceId=processInstanceService.createContractProcess(jsonObject1,customer1);
+            prId1=processInstanceService.createTestPlanProcess(jsonObject2,marketing);
+            prId3=processInstanceService.createTestReportProcess(jsonObject0,marketing);
+            prId2=processInstanceService.createConsignProcess(jsonObject0,customer2);
+            Assert.assertNotNull(prId1);
+            Assert.assertNotNull(processInstanceId);
+            Assert.assertNotNull(prId3);
+            //  prId2=processInstanceService.createConsignProcess(jsonObject0,customer2);
+            //consignJson = consignService.addConsign(jsonObject, null, customer1);
+            // contractJson= contractService.addContract(jsonObject1,null,customer2);
+            //testplanJson=testPlanService.addTestPlan(jsonObject2,null,customer1);
+            // Assert.assertNotNull(prId2);
+            // Assert.assertNotNull(contractJson);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
-
     @Test
-    public void submitConsign() throws Exception {
-        String processInstanceID = consignActiviti.createConsignProcess("0", "0");
-        assertNotNull(processInstanceID);
-        String processInstanceID1 = consignActiviti.createConsignProcess("1", "0");
-        assertNotNull(processInstanceID);
-        System.out.println("委托实例成功创建。 ProcessInstanceID: " + processInstanceID);
-        System.out.println("委托实例成功创建。 ProcessInstanceID: " + processInstanceID1);
-        System.out.println(baseActiviti.getUserTasks("0"));
-
-        System.out.println("正在测试提交委托");
-        consignActiviti.submit(processInstanceID, "0");
-        consignActiviti.submit(processInstanceID1, "0");
-        System.out.println(baseActiviti.getProcessState(processInstanceID));
-        System.out.println(baseActiviti.getProcessState(processInstanceID1));
+    public void queryProcessState() {
+        JSONObject state = new JSONObject();
+        try {
+            //state = processInstanceService.queryProcessState(consignJson.getString("processInstanceID"));
+            state=processInstanceService.queryProcessState(processInstanceId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(state);
+        //确认state不为空
+        assertNotNull(state.getString("state"));
     }
-
     @Test
-    public void checkConsign() throws Exception{
-        String processInstanceID =  consignActiviti.createConsignProcess("0", "0");
-        assertNotNull(processInstanceID);
-        System.out.println("委托实例成功创建  ProcessInstanceID: " + processInstanceID);
+    public void  updateProcessConsignState() {
+        JSONObject state ;
+        try {
+            System.out.println("======查询委托状态========");
+            System.out.println(processInstanceService.queryProcessState(prId2));
 
-        String queryResult = baseActiviti.getProcessState(processInstanceID);
-        assertNotNull(queryResult);
-        consignActiviti.submit(processInstanceID, "0");
+            System.out.println("======customer1提交委托=======");
+            //构造提交委托请求
+            Request request = new Request();
+            request.setUser(customer1);
+            JSONObject submitJson = new JSONObject();
+            submitJson.put("operation", "Submit");
+            submitJson.put("object", "consign");
+            request.setParams(submitJson);
+            Thread.sleep(2000);
+            System.out.println(processInstanceService.updateProcessState(prId2, request));
+            state = processInstanceService.queryProcessState(prId2);
+            Assert.assertEquals("TobeReview",state.getString("state"));
 
-        System.out.println("正在测试否决委托");
-        consignActiviti.reviewConsign("reviewreject", processInstanceID, "W1" );
-        System.out.println(baseActiviti.getProcessState(processInstanceID));
-        //consignActiviti.queryHistoricActivitiyInstance(processInstanceID);
-        consignActiviti.submit(processInstanceID, "0");
+            System.out.println("======市场部人员否决委托======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(marketing);
+            JSONObject rejectJson = new JSONObject();
+            rejectJson.put("operation", "ReviewReject");
+            rejectJson.put("object", "consign");
+            rejectJson.put("comments","notok");
+            request.setParams(rejectJson);
+            Thread.sleep(2000);
+            System.out.println(processInstanceService.updateProcessState(prId2, request));
+            System.out.println(processInstanceService.getComments(processInstanceId));
+            state = processInstanceService.queryProcessState(prId2);
+            Assert.assertEquals("TobeSubmit",state.getString("state"));
 
-        System.out.println("正在测试通过委托");
-        consignActiviti.reviewConsign("reviewpass", processInstanceID, "W1" );
-        System.out.println(baseActiviti.getProcessState(processInstanceID));
+            System.out.println("======customer1再次委托======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(customer1);
+            request.setParams(submitJson);
+            Thread.sleep(2000);
+            System.out.println(processInstanceService.updateProcessState(prId2, request));
+            state = processInstanceService.queryProcessState(prId2);
+            Assert.assertEquals("TobeReview",state.getString("state"));
+
+            System.out.println("======市场部人员通过委托======");
+            //构造提交委托请求
+            request = new Request();
+            request.setUser(marketing);
+            JSONObject passJson = new JSONObject();
+            passJson.put("operation", "ReviewPass");
+            passJson.put("object", "consign");
+            passJson.put("comments","itsok");
+            request.setParams(passJson);
+            Thread.sleep(2000);
+            System.out.println(processInstanceService.updateProcessState(prId2, request));
+            System.out.println(processInstanceService.getComments(processInstanceId));
+            state = processInstanceService.queryProcessState(prId2);
+            Assert.assertEquals("Finished",state.getString("state"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
-/*根据客户ID查询测试*/
-
-    @Test
-    public void getClientTasks() throws Exception{
-        String processInstanceID =  consignActiviti.createConsignProcess("Con0", "Cit0");
-        assertNotNull(processInstanceID);
-        String processInstanceID1 =  consignActiviti.createConsignProcess("Con1", "Cit0");
-        assertNotNull(processInstanceID1);
-        String processInstanceID2 =  consignActiviti.createConsignProcess("Con2", "Cit1");
-        assertNotNull(processInstanceID2);
-        System.out.println("委托实例成功创建  ProcessInstanceID: " + processInstanceID);
-        System.out.println("委托实例成功创建  ProcessInstanceID: " + processInstanceID1);
-        System.out.println("委托实例成功创建  ProcessInstanceID: " + processInstanceID2);
-        System.out.println("正在测试客户查询");
-       // System.out.println(consignActiviti.getUserTasks("Cit0"));
-        //System.out.println(consignActiviti.getUserTasks("Cit1"));
-        //System.out.println(consignActiviti.getUserTasks("Cit2"));
-        System.out.println("Cit0提交一个委托后");
-        consignActiviti.submit(processInstanceID, "Cit0");
-       // System.out.println(consignActiviti.getUserTasks("Cit0"));
+    //测试结束后删除该委托
+    @After
+    public void cleanUp() {
+        //consignService.deleteConsign(prId0);
+        //contractService.deleteContract(contractJson);
     }
-
-
-    @Test
-    public void getWorkerTasks()throws Exception
-    {
-        String processInstanceID =  consignActiviti.createConsignProcess("Con0", "Cit0");
-        assertNotNull(processInstanceID);
-        String processInstanceID1 =  consignActiviti.createConsignProcess("Con1", "Cit0");
-        assertNotNull(processInstanceID1);
-        String processInstanceID2 =  consignActiviti.createConsignProcess("Con2", "Cit1");
-        assertNotNull(processInstanceID2);
-        System.out.println("委托实例成功创建  ProcessInstanceID: " + processInstanceID);
-        System.out.println("委托实例成功创建  ProcessInstanceID: " + processInstanceID1);
-        System.out.println("委托实例成功创建  ProcessInstanceID: " + processInstanceID2);
-        consignActiviti.submit(processInstanceID, "Cit0");
-        consignActiviti.submit(processInstanceID1, "Cit0");
-        consignActiviti.submit(processInstanceID2, "Cit1");
-        System.out.println("正在测试测试人员查询");
-        //System.out.println(consignActiviti.GetWorkerTasks());
-        System.out.println("通过第一个合同");
-        consignActiviti.reviewConsign("pass",processInstanceID,"W1");
-        System.out.println("正在测试测试人员查询");
-        //System.out.println(consignActiviti.GetWorkerTasks());
-   }
 }
-
