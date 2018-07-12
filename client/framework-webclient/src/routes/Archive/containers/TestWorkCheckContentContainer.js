@@ -7,57 +7,23 @@ import {message} from "antd/lib/index";
 
 const mapStateToProps = (state, ownProps) => {
     // debugger;
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
-    //console.log(authData);
-    const content = state.TestWorkCheck.listMap[ownProps.id];
+    const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
+    const content = state.Project.listMap[ownProps.id].testWorkCheck;
     const body = content?content.body:undefined;
-
-    const isEditVisible = authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
-    // const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Write')!==-1:
-    //     content.operation.findIndex(element => element === 'Write')!==-1);
-    // console.log(content.operation);
-    // const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
-    // const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ApprovePass')!==-1;
-    // const isSendVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Send')!==-1;
+    const isQuality = (sysUser.username==="quality");
 
     return {
-        // testWorkCheckCheckData: {},/*fetch data with pro id*/
-        testWorkCheckData: content?state.TestWorkCheck.listMap[ownProps.id]:ownProps,
+        testWorkCheckData: content?content:ownProps,
         values:  body ? JSON.parse(body) : {},
-        disable: false/*authData.functionGroup["TestWorkCheck"]===undefined||authData.functionGroup["TestWorkCheck"].findIndex(element => element === "EDIT")===-1||state.TestWorkCheck.listMap[ownProps.id].state!=="TobeSubmit"*/,
-        //curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
-        //buttonDisabled: state.TestWorkCheck.listMap[ownProps.id].state==="TobeCheck"
-        /*buttonDisabled: authData.functionGroup["TestWorkCheck"]===undefined ||authData.functionGroup["TestWorkCheck"].findIndex(element => element === "EDIT")===-1
-            ? state.TestWorkCheck.listMap[ownProps.id].state==="TobeSubmit"||state.TestWorkCheck.listMap[ownProps.id].state==="Finished"
-            : state.TestWorkCheck.listMap[ownProps.id].state==="TobeReview"||state.TestWorkCheck.listMap[ownProps.id].state==="Finished"*/
-        buttonsEnable: buttonsEnable(isEditVisible/*,isSubmitVisible,isReviewVisible,isSendVisible,isConfirmVisible*/),
+        disable: false,
+        buttonsEnable: buttonsEnable(isQuality),
     }
 };
 
-const buttonsEnable = (isEditVisible/*,isSubmitVisible,isReviewVisible,isSendVisible,isConfirmVisible*/) => [{
+const buttonsEnable = (isQuality) => [{
     content: '保存',
-    enable: isEditVisible/* && isSubmitVisible*/,
-}
-// },{
-//     content: '提交',
-//     enable: isSubmitVisible,
-// },{
-//     content: '批准',
-//     enable: isReviewVisible,
-// },{
-//     content: '否决',
-//     enable: isReviewVisible,
-// },{
-//     content: '发放',
-//     enable: isSendVisible,
-// },{
-//     content: '确认',
-//     enable: isConfirmVisible,
-// },{
-//     content: "拒绝",
-//     enable: isConfirmVisible,
-// }
-];
+    enable: isQuality,
+}];
 
 const buttons = (dispatch) => [{
     /*TODO:buttons的显示和禁用还存在问题*/

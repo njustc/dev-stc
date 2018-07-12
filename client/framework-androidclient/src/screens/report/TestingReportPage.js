@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View,DeviceEventEmitter } from "react-native";
+import { View,DeviceEventEmitter,StyleSheet } from "react-native";
 import {
   Container,
   Header,
@@ -24,8 +24,11 @@ import {
   Tab,
   ScrollableTab
 } from "native-base";
+import { Table, TableWrapper, Row,Rows } from 'react-native-table-component';
 
-import styles from "./styles";
+
+
+//import styles from "./styles";
 
 export  default class TestingReportPage extends Component {
   constructor(props){
@@ -52,7 +55,43 @@ export  default class TestingReportPage extends Component {
       consignUnitpeople:"",
       consignUnitEmail:"",
       testBasic:"",
-      referenceContent:""
+      referenceContent:"",
+
+      tableHead: ['序号', '硬件名称', '硬件类别', '数量', '配置'],
+      tableData: [
+        ['1', '', '', '', ''],
+        ['2', '', '', '', ''],
+        ['3', '', '', '', ''],
+      ],//硬件
+
+      tableHead2: ['序号', '软件名称', '软件类别', '软件版本'],
+      tableData2: [
+        ['1', '', '', ''],
+        ['2', '', '', ''],
+        ['3', '', '', ''],
+      ],//软件
+
+      tableHead3: ['序号', '功能模块', '功能要求', '测试结果'],
+      tableData3: [
+        ['1', '', '', ''],
+        ['2', '', '', ''],
+        ['3', '', '', ''],
+      ],//功能性测试
+
+
+
+
+      tableHead4: ['序号','分类', '测试特性', '测试说明', '测试结果'],
+      tableData4: [
+        ['1','', '', '', ''],
+        ['2','', '', '', ''],
+        ['3','', '', '', ''],
+      ],//非功能性测试
+
+
+
+      //以数组形式从后台读入
+      PageID:""
 
     };
   }
@@ -419,9 +458,23 @@ export  default class TestingReportPage extends Component {
                   硬件环境
                 </Text>
 
+                <View style={styles.container}>
+                  <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+                    <Row data={this.state.tableHead} style={styles.head} textStyle={styles.text}/>
+                    <Rows data={this.state.tableData} textStyle={styles.text}/>
+                  </Table>
+                </View>
+
                 <Text>
                   软件环境
                 </Text>
+
+                <View style={styles.container}>
+                  <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+                    <Row data={this.state.tableHead2} style={styles.head} textStyle={styles.text}/>
+                    <Rows data={this.state.tableData2} textStyle={styles.text}/>
+                  </Table>
+                </View>
 
               </Content>
           </Tab>
@@ -462,25 +515,26 @@ export  default class TestingReportPage extends Component {
                 功能性测试
               </Text>
 
-              <Text>
-                效率测试
-              </Text>
+              <View style={styles.container}>
+                <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+                  <Row data={this.state.tableHead3} style={styles.head} textStyle={styles.text}/>
+                  <Rows data={this.state.tableData3} textStyle={styles.text}/>
+                </Table>
+              </View>
 
               <Text>
-                可移植性测试
+                非功能性测试
               </Text>
 
-              <Text>
-                易用性测试
-              </Text>
+              <View style={styles.container}>
+                <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+                  <Row data={this.state.tableHead4} style={styles.head} textStyle={styles.text}/>
+                  <Rows data={this.state.tableData4} textStyle={styles.text}/>
+                </Table>
+              </View>
 
-              <Text>
-                可靠性测试
-              </Text>
 
-              <Text>
-                可维护测试
-              </Text>
+
             </Content>
           </Tab>
 
@@ -490,3 +544,8 @@ export  default class TestingReportPage extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
+  head: { height: 40, backgroundColor: '#f1f8ff' },
+  text: { margin: 6 }
+});

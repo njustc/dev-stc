@@ -25,17 +25,17 @@ const datas = [
     text: "测试方案书"
   },
   {
-    route:"TestCaseContentPage",
+    route:"TestCaseContentList",
     text:"测试用例表"
   },
-  {
-    route: "TestRecordContentPage",
-    text: "测试记录表"
-  },
-  {
-    route:"TestProblemContentPage",
-    text:"测试问题清单"
-  },
+  // {
+  //   route: "TestRecordContentPage",
+  //   text: "测试记录表"
+  // },
+  // {
+  //   route:"TestProblemContentPage",
+  //   text:"测试问题清单"
+  // },
 ];//TODO: 修改界面跳转 route
 
 export  default class Testing extends Component {
@@ -67,7 +67,7 @@ export  default class Testing extends Component {
         </Header>
 
         <Content>
-          <Text>TODO: change to jump to a list first</Text>
+          {/*<Text>TODO: change to jump to a list first</Text>*/}
           <List
             dataArray={datas}
             renderRow={data =>

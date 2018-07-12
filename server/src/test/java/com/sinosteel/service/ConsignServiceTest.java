@@ -100,10 +100,12 @@ import javax.transaction.Transactional;
             //test_deleteconsign
             System.out.println("=====删除该委托=====");
             consignService.deleteConsign(jsonConsign);
-            JSONObject jsonDel = consignService.queryConsignByID(id);
-            Assert.assertNull("委托删除失败",jsonDel);
-            System.out.println("委托删除成功");
-
+            try {
+                JSONObject jsonDel = consignService.queryConsignByID(id);
+                Assert.assertNull("委托删除失败", jsonDel);
+            } catch (Exception e) {
+                System.out.println("委托删除成功");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

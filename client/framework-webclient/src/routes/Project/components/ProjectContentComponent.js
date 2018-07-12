@@ -255,7 +255,7 @@ export default class ProjectContentComponent extends Component {
                         <br />
                         <Content style={{ background: '#fff' }} >
                         <Row gutter={16}>
-                            <Col span={3}>
+                            <Col span={5}>
                                 <List
                                     size="small"
                                     header={<div>文档</div>}
@@ -264,7 +264,7 @@ export default class ProjectContentComponent extends Component {
                                     renderItem={item => (<List.Item><a href="javascript:void(0);" onClick={this.viewContent(item)}>{item.name}</a></List.Item>)}
                                 />
                             </Col>
-                            <Col span={6}>
+                            <Col span={10}>
                                <Card title='项目摘要信息' hoverable >
                                     <div>项目编号：{this.props.projectData.code}</div>
                                     <br/>
@@ -283,7 +283,7 @@ export default class ProjectContentComponent extends Component {
                                     {/*<div>备注：感谢曹老板指导,给曹老板打call</div>*/}
                                </Card>
                             </Col>
-                           <Col span={15}>
+                           <Col span={8}>
                                 <Card hoverable>
                                     <div>您现在可以：
                                     </div>

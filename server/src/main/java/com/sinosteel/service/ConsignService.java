@@ -81,17 +81,17 @@ public class ConsignService extends BaseService<Consign> {
     //更新委托
     public JSONObject editConsign(JSONObject params, List<MultipartFile> files, User user) throws Exception
     {
-        Consign tempconsign = JSONObject.toJavaObject(params, Consign.class);
+        Consign tempConsign = JSONObject.toJavaObject(params, Consign.class);
         Consign consign;
-        if ((consign = this.findEntityById(tempconsign.getId())) == null) {
+        if ((consign = this.findEntityById(tempConsign.getId())) == null) {
             throw new Exception("Not found");
         }
         //编辑委托时只编辑内容
-        consign.setConsignation(tempconsign.getConsignation());
+        consign.setConsignation(tempConsign.getConsignation());
         this.updateEntity(consign, user);
 
         //return the consign with STATE!
-        consign = consignRepository.findById(tempconsign.getId());
+        consign = consignRepository.findById(tempConsign.getId());
         return processConsign(consign);
     }
 

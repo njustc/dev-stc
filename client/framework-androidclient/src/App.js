@@ -13,6 +13,8 @@ import ContractList from'./screens/contract/ContractList'
 import ContractPage from './screens/contract/ContractPage'
 
 import Testing from './screens/testing/Testing'
+
+import TestCaseContentList from './screens/testing/TestCaseContentList'
 import TestCaseContentPage from './screens/testing/TestCaseContentPage'
 
 import TestPlanContentList from './screens/testing/TestPlanContentList'
@@ -36,6 +38,7 @@ import ProjectClosing from './screens/projectclosing/ProjectClosing'
 import TestingWorkCheckTableList from './screens/projectclosing/TestingWorkCheckTableList'
 import TestingWorkCheckTablePage from './screens/projectclosing/TestingWorkCheckTablePage'
 
+import SatisfactionContentList from './screens/projectclosing/SatisfactionContentList'
 import SatisfactionContentPage from './screens/projectclosing/SatisfactionContentPage'
 
 import Header from "./screens/Header/";
@@ -218,6 +221,7 @@ const AppNavigator = StackNavigator(
     ContractPage:{screen:ContractPage},
     ContractList:{screen: ContractList},
 
+    TestCaseContentList:{screen: TestCaseContentList},
     TestCaseContentPage:{screen: TestCaseContentPage},
 
     TestPlanContentPage:{screen: TestPlanContentPage},
@@ -234,6 +238,8 @@ const AppNavigator = StackNavigator(
 
     TestingWorkCheckTableList:{screen: TestingWorkCheckTableList},
     TestingWorkCheckTablePage:{screen: TestingWorkCheckTablePage},
+
+    SatisfactionContentList:{screen: SatisfactionContentList},
     SatisfactionContentPage:{screen: SatisfactionContentPage},
 
     Header1: { screen: Header1 },

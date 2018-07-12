@@ -8,6 +8,7 @@ import com.sinosteel.repository.ProjectRepository;
 import com.sinosteel.repository.TestCaseRepository;
 import com.sinosteel.repository.UserRepository;
 import org.junit.Test;
+import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -29,35 +30,22 @@ public class TestCaseTests {
     @Autowired
     private ProjectRepository projectRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
     @Test
-    public void testCaseAdd(){
-        //获取user
-        User user = userRepository.findByUsername("testing");
-        System.out.println("获取的User id = "+user.getId());
-        //添加project
-        Project project = new Project();
-        project.setId("1");
-        project.setUser(user);
-        projectRepository.save(project);
-        //添加testcase;
+    @Transactional
+    public void testTestCase(){
         TestCase testcase = new TestCase();
-        testcase.setId("1");
-        testcase.setBody("fuck it");
+        testcase.setId("case");
+        Project project = projectRepository.findById("test");
+
         testcase.setProject(project);
+        projectRepository.save(project);
         testCaseRepository.save(testcase);
-        List<TestCase> testCaseList = new ArrayList<TestCase>();
-        testCaseList.add(testcase);
-        project.setTestCase(testCaseList);
+        TestCase testcasefind = testCaseRepository.findById("case");
+        Assert.assertNotNull("testcase为空",testcasefind);
 
-        List<Project> projectList = user.getProjects();
-        if(projectList==null)
-            projectList = new ArrayList<Project>();
-        projectList.add(project);
-        user.setProjects(projectList);
-        userRepository.save(user);
-
+        testCaseRepository.save(testcase);
+        testCaseRepository.delete("case");
+        testcasefind = testCaseRepository.findById("case");
+        Assert.assertNull("testcase不为空",testcasefind);
     }
 }

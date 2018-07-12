@@ -12,472 +12,13 @@ const { TextArea } = Input;
 function handleChange(value) {
     console.log(`selected ${value}`);
 }
-class EditableCell extends Component {
-    state = {
-        value: this.props.value,
-        editable: false,
-    }
-    handleChange = (e) => {
-        const value = e.target.value;
-        this.setState({ value });
-    }
-    check = () => {
-        this.setState({ editable: false });
-        if (this.props.onChange) {
-            this.props.onChange(this.state.value);
-        }
-    }
-    edit = () => {
-        this.setState({ editable: true });
-    }
-    render() {
-        const { value, editable } = this.state;
-        return (
-            <div className="editable-cell">
-                {
-                    editable ? (
-                        <Input
-                            value={value}
-                            onChange={this.handleChange}
-                            onPressEnter={this.check}
-                            disabled={this.props.disable}
-                            suffix={
-                                <Icon
-                                    type="check"
-                                    className="editable-cell-icon-check"
-                                    onClick={this.check}
-                                />
-                            }
-                        />
-                    ) : (
-                        <div style={{ paddingRight: 24 }}>
-                            {value || ' '}
-                            <Icon
-                                type="edit"
-                                className="editable-cell-icon"
-                                onClick={this.edit}
-                            />
-                        </div>
-                    )
-                }
-            </div>
-        );
-    }
-}
-class SoftwareEnvironmentTable extends Component {
-    constructor(props) {
-        super(props);
-        this.columns = [{
-            title: '序号',
-            dataIndex: 'softwarenumber',
-            width: '10%',
-        }, {
-            title: '软件名称',
-            dataIndex: 'softwarename',
-            width: '10%',
-            render: (text, record) => (
-                <EditableCell
-                    value={text}
-                    onChange={this.onCellChange(record.key, 'softwarename')}
-                />
-            ),
-        }, {
-            title: '软件类别',
-            dataIndex: 'softwarekind',
-            width: '10%',
-            render: (text, record) => (
-                <EditableCell
-                    value={text}
-                    onChange={this.onCellChange(record.key, 'softwarekind')}
-                />
-            ),
-        }, {
-            title: '软件版本',
-            dataIndex: 'softwareversion',
-            width: '10%',
-            render: (text, record) => (
-                <EditableCell
-                    value={text}
-                    onChange={this.onCellChange(record.key, 'softwareversion')}
-                />
-            ),
-        }, {
-            title: '删除操作',
-            dataIndex: 'operation',
-            width: '10%',
-            render: (text, record) => {
-                return (
-                    this.state.dataSource.length > 1 ?
-                        (
-                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key)}>
-                                <a href="javascript:;">Delete</a>
-                            </Popconfirm>
-                        ) : null
-                );
-            },
-        }];
-
-        this.state = {
-            dataSource: [{
-                key: '1',
-                softwarenumber: '1',
-                softwarename: '',
-                softwareversion: '',
-                softwarekind:'',
-                description: '',
-            }, {
-                key: '2',
-                softwarenumber: '2',
-                softwarename: '',
-                softwareversion: '',
-                softwarekind:'',
-                description: '',
-            }],
-            count: 2,
-        };
-    }
-    onCellChange = (key, dataIndex) => {
-        return (value) => {
-            const dataSource = [...this.state.dataSource];
-            const target = dataSource.find(item => item.key === key);
-            if (target) {
-                target[dataIndex] = value;
-                this.setState({ dataSource });
-            }
-        };
-    }
-    onDelete = (key) => {
-        const dataSource = [...this.state.dataSource];
-        this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
-    }
-    handleAdd = () => {
-        const { count, dataSource } = this.state;
-        const newData = {
-            key: count+1,
-            softwarenumber: `${count+1}`,
-            description: ``,
-        };
-        this.setState({
-            dataSource: [...dataSource, newData],
-            count: count + 1,
-        });
-    }
-    render() {
-        const { dataSource } = this.state;
-        const columns = this.columns;
-        return (
-            <div>
-                <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
-                    添加软件环境
-                </Button>
-                <Table bordered dataSource={dataSource} columns={columns} />
-            </div>
-        );
-    }
-}
-
-class FunctionEditableTable extends React.Component {
-    constructor(props) {
-        super(props);
-        this.columns = [{
-            title: '序号',
-            dataIndex: 'number',
-            width: '10%',
-        }, {
-            title: '功能模块',
-            dataIndex: 'function',
-            width: '10%',
-            render: (text, record) => (
-                <EditableCell
-                    value={text}
-                    onChange={this.onCellChange(record.key, 'function')}
-                />
-            ),
-        }, {
-            title: '功能要求',
-            dataIndex: 'command',
-            width: '10%',
-            render: (text, record) => (
-                <EditableCell
-                    value={text}
-                    onChange={this.onCellChange(record.key, 'command')}
-                />
-            ),
-        }, {
-            title: '测试结果',
-            dataIndex: 'result',
-            width: '10%',
-            render: (text, record) => (
-                <EditableCell
-                    value={text}
-                    onChange={this.onCellChange(record.key, 'result')}
-                />
-            ),
-        }, {
-            title: '删除操作',
-            dataIndex: 'operation',
-            width: '10%',
-            render: (text, record) => {
-                return (
-                    this.state.dataSource.length > 1 ?
-                        (
-                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key)}>
-                                <a href="javascript:;">Delete</a>
-                            </Popconfirm>
-                        ) : null
-                );
-            },
-        }];
-
-        this.state = {
-            dataSource: [{
-                number: '1',
-                iterm: '',
-                command: '',
-                result:'',
-
-            }, {
-
-                number: '2',
-                iterm: '',
-                command: '',
-                result:'',
-
-            }],
-            count: 2,
-        };
-    }
-    onCellChange = (key, dataIndex) => {
-        return (value) => {
-            const dataSource = [...this.state.dataSource];
-            const target = dataSource.find(item => item.key === key);
-            if (target) {
-                target[dataIndex] = value;
-                this.setState({ dataSource });
-            }
-        };
-    }
-    onDelete = (key) => {
-        const dataSource = [...this.state.dataSource];
-        this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
-    }
-    handleAdd = () => {
-        const { count, dataSource } = this.state;
-        const newData = {
-            key: count+1,
-            number: `${count+1}`,
-            description: ``,
-        };
-        this.setState({
-            dataSource: [...dataSource, newData],
-            count: count + 1,
-        });
-    }
-    render() {
-        const { dataSource } = this.state;
-        const columns = this.columns;
-        return (
-            <div>
-                <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
-                    添加功能性测试
-                </Button>
-                <Table bordered dataSource={dataSource} columns={columns} />
-            </div>
-        );
-    }
-}
-class EfficiencyEditableTable extends React.Component {
-    constructor(props) {
-        super(props);
-        this.columns = [{
-            title: '序号',
-            dataIndex: 'number',
-            width: '10%',
-        }, {
-            title: '测试特性',
-            dataIndex: 'iterm',
-            width: '10%',
-            render: (text, record) => (
-                <EditableCell
-                    value={text}
-                    onChange={this.onCellChange(record.key, 'name')}
-                />
-            ),
-        }, {
-            title: '测试说明',
-            dataIndex: 'command',
-            width: '10%',
-            render: (text, record) => (
-                <EditableCell
-                    value={text}
-                    onChange={this.onCellChange(record.key, 'description')}
-                />
-            ),
-        }, {
-            title: '测试结果',
-            dataIndex: 'result',
-            width: '10%',
-            render: (text, record) => (
-                <EditableCell
-                    value={text}
-                    onChange={this.onCellChange(record.key, 'description')}
-                />
-            ),
-        }, {
-            title: '删除操作',
-            dataIndex: 'operation',
-            width: '10%',
-            render: (text, record) => {
-                return (
-                    this.state.dataSource.length > 1 ?
-                        (
-                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key)}>
-                                <a href="javascript:;">Delete</a>
-                            </Popconfirm>
-                        ) : null
-                );
-            },
-        }];
-
-        this.state = {
-            dataSource: [{
-
-                number: '1',
-                iterm: '',
-                command: '',
-                result:'',
-
-            }, {
-
-                number: '2',
-                iterm: '',
-                command: '',
-                result:'',
-
-            }],
-            count: 2,
-        };
-    }
-    onCellChange = (key, dataIndex) => {
-        return (value) => {
-            const dataSource = [...this.state.dataSource];
-            const target = dataSource.find(item => item.key === key);
-            if (target) {
-                target[dataIndex] = value;
-                this.setState({ dataSource });
-            }
-        };
-    }
-    onDelete = (key) => {
-        const dataSource = [...this.state.dataSource];
-        this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
-    }
-    handleAdd = () => {
-        const { count, dataSource } = this.state;
-        const newData = {
-            key: count,
-            number: `${count}`,
-            description: ``,
-        };
-        this.setState({
-            dataSource: [...dataSource, newData],
-            count: count + 1,
-        });
-    }
-    render() {
-        const { dataSource } = this.state;
-        const columns = this.columns;
-        return (
-            <div>
-                <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
-                    添加功能性测试
-                </Button>
-                <Table bordered dataSource={dataSource} columns={columns} />
-            </div>
-        );
-    }
-}
 
 class TestReportContentComponent extends Component {
     constructor(props) {
         super(props);
-        this.columns = [{
-            title: '序号',
-            dataIndex: 'number',
-            width: '10%',
-        }, {
-            title: '硬件名称',
-            dataIndex: 'name',
-            width: '10%',
-            render: (text, record) => (
-                <EditableCell
-                    value={text}
-                    onChange={this.onCellChange(record.key, 'name')}
-                />
-            ),
-        },  {
-            title: '硬件类别',
-            dataIndex: 'kind',
-            width: '10%',
-            render: (text, record) => (
-                <EditableCell
-                    value={text}
-                    onChange={this.onCellChange(record.key, 'kind')}
-                />
-            ),
-        },  {
-            title: '数量',
-            dataIndex: 'amount',
-            width: '10%',
-            render: (text, record) => (
-                <EditableCell
-                    value={text}
-                    onChange={this.onCellChange(record.key, 'amount')}
-                />
-            ),
-        }, {
-            title: '配置',
-            dataIndex: 'description',
-            width: '10%',
-            render: (text, record) => (
-                <EditableCell
-                    value={text}
-                    onChange={this.onCellChange(record.key, 'description')}
-                />
-            ),
-        }, {
-            title: '删除操作',
-            dataIndex: 'operation',
-            width: '10%',
-            render: (text, record) => {
-                return (
-                    this.state.dataSource.length > 0 ?
-                        (
-                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key)}>
-                                <a href="javascript:;">Delete</a>
-                            </Popconfirm>
-                        ) : null
-                );
-            },
-        }];
 
         this.state = {
-            dataSource: [{
-                key: '1',
-                number: '1',
-                name: '',
-                kind: '',
-                amount: '',
-                description: '',
-            }, {
-                key: '2',
-                number: '2',
-                name: '',
-                kind: '',
-                amount: '',
-                description: '',
-            }],
-            count: 2,
+
         };
 
     };
@@ -495,18 +36,7 @@ class TestReportContentComponent extends Component {
         const dataSource = [...this.state.dataSource];
         this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
     }
-    handleAdd = () => {
-        const { count, dataSource } = this.state;
-        const newData = {
-            key: count+1,
-            number: `${count+1}`,
-            description: ``,
-        };
-        this.setState({
-            dataSource: [...dataSource, newData],
-            count: count + 1,
-        });
-    }
+
     static defaultProps = {
 	curID : '',
         values : {},
@@ -545,13 +75,96 @@ class TestReportContentComponent extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { dataSource } = this.state;
-        const columns = this.columns;
+        //const { dataSource } = this.state;
+        //const columns = this.columns;
         const formItemLayout =  {
             labelCol: { span: 4 },
             wrapperCol: { span: 19 },
         };
 
+        const dataSource1 = [];
+        const columns1 = [{
+            title: '序号',
+            dataIndex: 'number',
+            key: 'number',
+        }, {
+            title: '硬件名称',
+            dataIndex: 'name',
+            key: 'name',
+        }, {
+            title: '硬件类别',
+            dataIndex: 'kind',
+            key: 'kind',
+        }, {
+            title: '配置',
+            dataIndex: 'description',
+            key: 'description',
+        }, {
+            title: '数量',
+            dataIndex: 'amount',
+            key: 'amount',
+        }];
+
+        const dataSource2 = [];
+        const columns2 = [{
+            title: '序号',
+            dataIndex: 'softwarenumber',
+            key: 'softwarenumber',
+        }, {
+            title: '软件名称',
+            dataIndex: 'softwarename',
+            key: 'softwarename',
+        }, {
+            title: '软件类别',
+            dataIndex: 'softwarekind',
+            key: 'softwarekind',
+        }, {
+            title: '软件版本',
+            dataIndex: 'softwareversion',
+            key: 'softwareversion',
+        },];
+
+        const dataSource3 = [];
+        const columns3 = [{
+            title: '序号',
+            dataIndex: 'functionalnumber',
+            key: 'functionalnumber',
+        }, {
+            title: '功能模块',
+            dataIndex: 'functionalmodule',
+            key: 'softwarename',
+        }, {
+            title: '功能要求',
+            dataIndex: 'functionalrequirements',
+            key: 'functionalrequirements',
+        }, {
+            title: '测试结果',
+            dataIndex: 'testresult',
+            key: 'testresult',
+        },];
+
+        const dataSource4 = [];
+        const columns4 = [{
+            title: '类别',
+            dataIndex: 'notfunctionalkind',
+            key: 'notfunctionalkind',
+        },{
+            title: '序号',
+            dataIndex: 'notfunctionalnumber',
+            key: 'notfunctionalnumber',
+        }, {
+            title: '测试特性',
+            dataIndex: 'testcharacteristics',
+            key: 'testcharacteristics',
+        }, {
+            title: '测试说明',
+            dataIndex: 'testinstructions',
+            key: 'testinstructions',
+        }, {
+            title: '测试结果',
+            dataIndex: 'notfunctionaltestresult',
+            key: 'notfunctionaltestresult',
+        },];
 
         return(
             <Form onSubmit={this.handleSubmit} >
@@ -802,12 +415,7 @@ class TestReportContentComponent extends Component {
                                 <span className="ant-form-text"></span>
                             </FormItem>
 
-                            <div>
-                                <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
-                                    添加硬件环境
-                                </Button>
-                                <Table bordered dataSource={dataSource} columns={columns} />
-                            </div>
+                            <Table dataSource={dataSource1} columns={columns1} />
 
                             <FormItem
                                 label="软件环境"
@@ -816,8 +424,8 @@ class TestReportContentComponent extends Component {
                                 <span className="ant-form-text"></span>
                             </FormItem>
 
-                              <SoftwareEnvironmentTable
-                              />
+                            <Table dataSource={dataSource2} columns={columns2} />
+
 
                         </TabPane>
 
@@ -850,53 +458,19 @@ class TestReportContentComponent extends Component {
                             >
                                 <span className="ant-form-text"></span>
                             </FormItem>
-                            <FunctionEditableTable
-                            />
+
+                            <Table dataSource={dataSource3} columns={columns3} />
 
                             <FormItem
-                                label="效率测试"
+                                label="非功能性测试"
                                 {...formItemLayout}
                             >
                                 <span className="ant-form-text"></span>
                             </FormItem>
-                            <EfficiencyEditableTable
-                            />
 
-                            <FormItem
-                                label="可移植性测试"
-                                {...formItemLayout}
-                            >
-                                <span className="ant-form-text"></span>
-                            </FormItem>
-                            <EfficiencyEditableTable
-                            />
+                            <Table dataSource={dataSource4} columns={columns4} />
 
-                            <FormItem
-                                label="易用性测试"
-                                {...formItemLayout}
-                            >
-                                <span className="ant-form-text"></span>
-                            </FormItem>
-                            <EfficiencyEditableTable
-                            />
 
-                            <FormItem
-                                label="可靠性测试"
-                                {...formItemLayout}
-                            >
-                                <span className="ant-form-text"></span>
-                            </FormItem>
-                            <EfficiencyEditableTable
-                            />
-
-                            <FormItem
-                                label="可维护测试"
-                                {...formItemLayout}
-                            >
-                                <span className="ant-form-text"></span>
-                            </FormItem>
-                            <EfficiencyEditableTable
-                            />
                         </TabPane>
                     </Tabs>
                 </div>
