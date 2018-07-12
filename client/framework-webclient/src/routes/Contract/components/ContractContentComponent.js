@@ -569,9 +569,9 @@ class ContractContentComponent extends Component {
                         }
                     })}
                 </FormItem>
-                <FormItem label='评审内容'><TextArea
-                    disabled={this.props.disableM}
-                /></FormItem>
+                {true?<FormItem label='评审内容'><TextArea
+                //    row={4}
+                /></FormItem>:<div></div>}
                 {/*<FormItem label='评审结论'><TextArea row={4}/></FormItem>*/}
             </Form>
 

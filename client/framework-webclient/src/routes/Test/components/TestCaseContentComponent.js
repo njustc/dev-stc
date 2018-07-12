@@ -121,13 +121,40 @@ class TestCaseContentComponent extends Component {
                         />
                     </Col>
                 </Row>
-                {/*<Divider orientation="left">测试记录</Divider>*/}
+                <Divider orientation="left">测试记录</Divider>
+                <Row style={rowStyle}>
+                    <Col span={3}><b>实际结果</b></Col>
+                    <Col span={21}>
+                        <EditableCell
+                            value={record.result}
+                            onChange={this.onCellChange(record.id, 'result')}
+                        />
+                    </Col>
+                </Row>
+                <Row style={rowStyle}>
+                    <Col span={3}><b>执行者</b></Col>
+                    <Col span={21}>
+                        <EditableCell
+                            value={record.executor}
+                            onChange={this.onCellChange(record.id, 'executor')}
+                        />
+                    </Col>
+                </Row>
+                <Row style={rowStyle}>
+                    <Col span={3}><b>确认人</b></Col>
+                    <Col span={21}>
+                        <EditableCell
+                            value={record.confirmor}
+                            onChange={this.onCellChange(record.id, 'confirmor')}
+                        />
+                    </Col>
+                </Row>
 
                 <Collapse bordered={false}>
                     <Panel
-                        header={<Button><a href="javascript:;">添加/修改测试记录</a><Icon type="edit" /></Button>}
+                        header={<p>添加/修改测试记录<Icon type="edit" /></p>}
                         key="1"
-                        showArrow={false}
+                        //showArrow={false}
                         style={customPanelStyle}
                     >
                         <Row style={rowStyle}>
@@ -158,12 +185,7 @@ class TestCaseContentComponent extends Component {
                             </Col>
                         </Row>
                     </Panel>
-                    <Panel
-                        header={<Button><a href="javascript:;">添加/修改测试问题</a><Icon type="edit" /></Button>}
-                        key="2"
-                        showArrow={false}
-                        style={customPanelStyle}
-                    >
+                    <Panel header="添加/修改测试问题" key="2" showArrow={false} style={customPanelStyle}>
                         <Row style={rowStyle}>
                             <Col span={5}><b>问题/缺陷简要描述</b></Col>
                             <Col span={19}>
@@ -182,47 +204,64 @@ class TestCaseContentComponent extends Component {
                                 />
                             </Col>
                         </Row>
-                        <Row style={rowStyle}>
-                            <Col span={5}><b>发现缺陷的初始条件</b></Col>
-                            <Col span={19}>
-                                <EditableCell
-                                    value={record.initialConditions}
-                                    onChange={this.onCellChange(record.id, 'initialConditions')}
-                                />
-                            </Col>
-                        </Row>
-                        <Row style={rowStyle}>
-                            <Col span={5}><b>发现缺陷的具体操作路径</b></Col>
-                            <Col span={19}>
-                                <EditableCell
-                                    value={record.operationPath}
-                                    onChange={this.onCellChange(record.id, 'operationPath')}
-                                />
-                            </Col>
-                        </Row>
-                        <Row style={rowStyle}>
-                            <Col span={5}><b>发现时间</b></Col>
-                            <Col span={19}>
-                                <EditableCell
-                                    value={record.discoveryTime}
-                                    onChange={this.onCellChange(record.id, 'discoveryTime')}
-                                />
-                            </Col>
-                        </Row>
-                        <Row style={rowStyle}>
-                            <Col span={5}><b>修改建议</b></Col>
-                            <Col span={19}>
-                                <EditableCell
-                                    value={record.advice}
-                                    onChange={this.onCellChange(record.id, 'advice')}
-                                />
-                            </Col>
-                        </Row>
                     </Panel>
                 </Collapse>
 
-                {/*<Divider orientation="left">测试问题</Divider>*/}
-
+                <Divider orientation="left">测试问题</Divider>
+                <Row style={rowStyle}>
+                    <Col span={5}><b>问题/缺陷简要描述</b></Col>
+                    <Col span={19}>
+                        <EditableCell
+                            value={record.description}
+                            onChange={this.onCellChange(record.id, 'description')}
+                        />
+                    </Col>
+                </Row>
+                <Row style={rowStyle}>
+                    <Col span={5}><b>对应需求条目</b></Col>
+                    <Col span={19}>
+                        <EditableCell
+                            value={record.requirementIndex}
+                            onChange={this.onCellChange(record.id, 'requirementIndex')}
+                        />
+                    </Col>
+                </Row>
+                <Row style={rowStyle}>
+                    <Col span={5}><b>发现缺陷的初始条件</b></Col>
+                    <Col span={19}>
+                        <EditableCell
+                            value={record.initialConditions}
+                            onChange={this.onCellChange(record.id, 'initialConditions')}
+                        />
+                    </Col>
+                </Row>
+                <Row style={rowStyle}>
+                    <Col span={5}><b>发现缺陷的具体操作路径</b></Col>
+                    <Col span={19}>
+                        <EditableCell
+                            value={record.operationPath}
+                            onChange={this.onCellChange(record.id, 'operationPath')}
+                        />
+                    </Col>
+                </Row>
+                <Row style={rowStyle}>
+                    <Col span={5}><b>发现时间</b></Col>
+                    <Col span={19}>
+                        <EditableCell
+                            value={record.discoveryTime}
+                            onChange={this.onCellChange(record.id, 'discoveryTime')}
+                        />
+                    </Col>
+                </Row>
+                <Row style={rowStyle}>
+                    <Col span={5}><b>修改建议</b></Col>
+                    <Col span={19}>
+                        <EditableCell
+                            value={record.advice}
+                            onChange={this.onCellChange(record.id, 'advice')}
+                        />
+                    </Col>
+                </Row>
 
             </div>
         );
@@ -309,12 +348,10 @@ class TestCaseContentComponent extends Component {
                 <Popconfirm title="确认删除此测试用例吗？" onConfirm={() => this.onDelete(record.id)}>
                     <a href="javascript:;">删除</a>
                 </Popconfirm>
-                {/*
                 <Divider type="vertical"/>
                 <a href="javascript:void(0);" onClick={this.addTestRecord(record.id)}>测试记录</a>
                 <Divider type="vertical"/>
                 <a href="javascript:void(0);" onClick={this.addTestProblem(record.id)}>测试问题</a>
-                */}
             </div>
 
         );
@@ -325,14 +362,13 @@ class TestCaseContentComponent extends Component {
     }*/
     ];
 
+    addTestRecord = (id) => {
 
-    // addTestRecord = (id) => {
-    //
-    // }
-    //
-    // addTestProblem = (id) => {
-    //
-    // }
+    }
+
+    addTestProblem = (id) => {
+
+    }
 
     onCellChange = (id, dataIndex) => {
         return (value) => {
@@ -351,7 +387,6 @@ class TestCaseContentComponent extends Component {
             })
         };
     }
-
     onDelete = (id) => {
         const dataSource = [...this.state.dataSource];
         this.setState({ dataSource: dataSource.filter(item => item.id !== id) });
@@ -472,14 +507,27 @@ class TestCaseContentComponent extends Component {
                     </Panel>
                 </Collapse>
 
-                <Table
-                    className="components-table-demo-nested"
-                    columns={this.columns}
-                    expandedRowRender={this.expandedRowRender}
-                    // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
-                    dataSource={/*this.props.dataSource*/this.state.dataSource}
-                    rowKey={'id'}
-                />
+                <Row gutter={16}>
+                    <Col span={18}>
+                        <Table
+                            className="components-table-demo-nested"
+                            columns={this.columns}
+                            expandedRowRender={this.expandedRowRender}
+                            // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
+                            dataSource={/*this.props.dataSource*/this.state.dataSource}
+                            rowKey={'id'}
+                        />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col offset={18} span={6}>
+                        <Card title="Card title" extra={<a href="#">More</a>} style={{ width: "100%" }}>
+                            <p>Card content</p>
+                            <p>Card content</p>
+                            <p>Card content</p>
+                        </Card>
+                    </Col>
+                </Row>
             </div>
         );
     }

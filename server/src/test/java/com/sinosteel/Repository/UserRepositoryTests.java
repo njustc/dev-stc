@@ -29,14 +29,14 @@ public class UserRepositoryTests {
     {
         User user = new User();
         user.setName("user1");
-        user.setId("1008");
+        user.setId("10086");
         userRepository.save(user);
-       User userfind =userRepository.findByUsername("user1");
+       User userfind =userRepository.findById("10086");
         Assert.assertNotNull("TestWorkCheck为空",userfind);
 
         userRepository.save(user);
-        userRepository.delete("1008");
-        userfind = userRepository.findByUsername("user1");
+        userRepository.delete("10086");
+        userfind = userRepository.findById("10086");
         Assert.assertNull("testReportCheck不为空",userfind);
     }
 
