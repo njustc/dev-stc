@@ -18,7 +18,7 @@ import {getTestReportState} from "./TestReportService";
 const projectBase = baseServiceAddress + '/v1/project';
 const projectActivitiBase = baseServiceAddress + '/processInstance';
 
-export const getProjectList = (dispatch, callback) => {/*TODO 后台接口实现有误*/
+export const getProjectList = (dispatch, callback) => {
     httpGet(projectBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {

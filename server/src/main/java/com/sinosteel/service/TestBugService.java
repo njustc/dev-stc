@@ -9,6 +9,7 @@ import com.sinosteel.domain.TestBug;
 import com.sinosteel.domain.User;
 import com.sinosteel.repository.ProjectRepository;
 import com.sinosteel.repository.TestBugRepository;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +25,7 @@ import java.util.List;
 public class TestBugService extends BaseService<TestBug> {
     @Autowired
     private TestBugRepository testBugRepository;
+
     @Autowired
     private ProjectRepository projectRepository;
 
