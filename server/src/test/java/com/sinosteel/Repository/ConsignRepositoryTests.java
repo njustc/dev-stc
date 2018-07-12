@@ -25,20 +25,28 @@ public class ConsignRepositoryTests {
     @Autowired
     private ProjectRepository projectRepository;
     @Test
-    @Transactional
     public void testConsignProject() {
         Consign consign = new Consign();
 
         consign.setId("1");
 
-        consign.setProject(projectRepository.findById("test"));
+
+        Project project = projectRepository.findById("test");
+        project.setConsign(consign);
+        consign.setProject(project);
         consignRepository.save(consign);
+        projectRepository.save(project);
+
 
         Consign consignfind = consignRepository.findById("1");
 
         Assert.assertNotNull("consign为空",consignfind);
 
         consignRepository.delete("1");
+
+        consignfind = consignRepository.findById("1");
+
+        Assert.assertNull("consign不为空",consignfind);
 
 
     }

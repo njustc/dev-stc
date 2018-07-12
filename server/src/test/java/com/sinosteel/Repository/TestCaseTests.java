@@ -8,6 +8,7 @@ import com.sinosteel.repository.ProjectRepository;
 import com.sinosteel.repository.TestCaseRepository;
 import com.sinosteel.repository.UserRepository;
 import org.junit.Test;
+import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -29,12 +30,22 @@ public class TestCaseTests {
     @Autowired
     private ProjectRepository projectRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
     @Test
     @Transactional
     public void testTestCase(){
+        TestCase testcase = new TestCase();
+        testcase.setId("case");
+        Project project = projectRepository.findById("test");
 
+        testcase.setProject(project);
+        projectRepository.save(project);
+        testCaseRepository.save(testcase);
+        TestCase testcasefind = testCaseRepository.findById("case");
+        Assert.assertNotNull("testcase为空",testcasefind);
+
+        testCaseRepository.save(testcase);
+        testCaseRepository.delete("case");
+        testcasefind = testCaseRepository.findById("case");
+        Assert.assertNull("testcase不为空",testcasefind);
     }
 }

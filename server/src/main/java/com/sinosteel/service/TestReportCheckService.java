@@ -79,7 +79,7 @@ public class TestReportCheckService extends BaseService<TestReportCheck> {
     {
         TestReportCheck temptestReportCheck = JSONObject.toJavaObject(params, TestReportCheck.class);
         TestReportCheck testReportCheck;
-        if ((testReportCheck = this.findEntityById(temptestReportCheck.getId())) == null) {
+        if ((testReportCheck = testReportCheckRepository.findById(temptestReportCheck.getId())) == null) {
             throw new Exception("Not found");
         }
         //编辑测试结果时只编辑内容

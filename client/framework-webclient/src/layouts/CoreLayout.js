@@ -24,7 +24,7 @@ class CoreLayout extends Component
     };
 
     componentDidMount() {
-        this.interval = setInterval(() => this.props.getProjectList(), 1000);
+        this.interval = setInterval(() => {this.props.getProjectList();this.props.getConsignList();}, 1000);
     }
 
     static propTypes = {
