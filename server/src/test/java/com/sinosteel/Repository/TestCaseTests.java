@@ -33,31 +33,8 @@ public class TestCaseTests {
     private UserRepository userRepository;
 
     @Test
-    public void testCaseAdd(){
-        //获取user
-        User user = userRepository.findByUsername("testing");
-        System.out.println("获取的User id = "+user.getId());
-        //添加project
-        Project project = new Project();
-        project.setId("1");
-        project.setUser(user);
-        projectRepository.save(project);
-        //添加testcase;
-        TestCase testcase = new TestCase();
-        testcase.setId("1");
-        testcase.setBody("fuck it");
-        testcase.setProject(project);
-        testCaseRepository.save(testcase);
-        List<TestCase> testCaseList = new ArrayList<TestCase>();
-        testCaseList.add(testcase);
-        project.setTestCase(testCaseList);
-
-        List<Project> projectList = user.getProjects();
-        if(projectList==null)
-            projectList = new ArrayList<Project>();
-        projectList.add(project);
-        user.setProjects(projectList);
-        userRepository.save(user);
+    @Transactional
+    public void testTestCase(){
 
     }
 }
