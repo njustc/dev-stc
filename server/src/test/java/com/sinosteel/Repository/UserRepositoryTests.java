@@ -27,11 +27,7 @@ public class UserRepositoryTests {
     @Transactional
     public void testUserProject()
     {
-        User user = userRepository.findByUsername("customer1");
-        List<Project> projects = user.getProjects();
-        Assert.assertNotNull("projects为空",projects);
-        List<Contract> contracts = user.getContracts();
-        Assert.assertNotNull("contract为空",contracts);
+
     }
 
 }

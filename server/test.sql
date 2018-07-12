@@ -1,8 +1,7 @@
-INSERT INTO `tbl_sys_consigns` ( `CONSIGNATION`,`PROCESS_INSTANCE_ID`, `ID`, `CODE`, `NAME`, `CREATED_TIME`, `CREATED_USER_ID`, `ALTERED_TIME`, `ALTERED_USER_ID`, `USER_ID`) VALUES
-('consign1 belong to customer1','consign1','1',NULL,NULL,NULL,NULL,NULL,NULL,'2'),
-('consign2 belong to customer1','consign2','2',NULL,NULL,NULL,NULL,NULL,NULL,'2'),
-('consign3 belong to customer2','consign3','3',NULL,NULL,NULL,NULL,NULL,NULL,'3');
+INSERT INTO `tbl_sys_projects` (`ID`,`CODE`,`NAME`,`CREATED_TIME`,`CREATED_USER_ID`,`ALTERED_TIME`,`ALTERED_USER_ID`,`USER_ID`,`CONSIGN_ID`,`CONTRACT_ID`,`TESTREPORT_ID`,`TESTREPORTCHECK_ID`,`TESTWORKCHECK_ID`,`TESTPLAN_ID`,`SATISFACTIONSURVEY_ID`) VALUES
+('test',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
+<<<<<<< HEAD
 INSERT INTO `tbl_sys_contracts` (`CONTRACTBODY`,`PROCESS_INSTANCE_ID`,`ID`,`CODE`,`NAME`,`CREATED_TIME`,`CREATED_USER_ID`,`ALTERED_TIME`,`ALTERED_USER_ID`,`USER_ID`) VALUES
 ('contract1 belong to consign1','consign1','contract1',NULL,NULL,NULL,NULL,NULL,NULL,'2'),
 ('contract2 belong to consign2','consign2','contract2',NULL,NULL,NULL,NULL,NULL,NULL,'2'),
@@ -18,5 +17,7 @@ INSERT INTO `tbl_sys_projects` (`ID`,`CODE`,`NAME`,`CREATED_TIME`,`CREATED_USER_
 ('p1',NULL,'project1',NULL,NULL,NULL,NULL,'2','1','contract1','tr1'),
 ('p2',NULL,'project2',NULL,NULL,NULL,NULL,'2','2','contract2','tr2'),
 ('p3',NULL,'project3',NULL,NULL,NULL,NULL,'3','3','contract3','tr3');
+=======
+>>>>>>> 88400a154402aca0e07bdcf95dffd002ec159111
 
 
