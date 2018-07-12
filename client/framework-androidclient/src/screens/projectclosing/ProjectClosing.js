@@ -25,7 +25,7 @@ const datas = [
     text: "测试工作检查表"
   },
   {
-    route:"SatisfactionContentPage",
+    route:"SatisfactionContentList",
     text:"满意度调查表"
   },
 ];//TODO: 修改界面跳转 route
@@ -59,7 +59,7 @@ export  default class ProjectClosing extends Component {
         </Header>
 
         <Content>
-          <Text>TODO: change to jump to a list first</Text>
+          {/*<Text>TODO: change to jump to a list first</Text>*/}
           <List
             dataArray={datas}
             renderRow={data =>
