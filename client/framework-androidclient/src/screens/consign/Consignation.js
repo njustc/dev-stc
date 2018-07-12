@@ -113,7 +113,7 @@ export  default class Consignation extends Component {
         for (var i = 0; i < this.state.currentdatas.length; i++)
         {
           // console.warn("now"+this.state.currentdatas[i].id);
-          if (this.state.currentdatas[i].id==text) {
+          if (this.state.currentdatas[i].consignUnitC==text) {
             this.setState({
               datas:[this.state.currentdatas[i]],
             });
@@ -136,12 +136,32 @@ export  default class Consignation extends Component {
     return index+item;
   }
 
+  getConsignList = () => {
+    //let toastMsg2 = 'emmmm';
+    //ToastAndroid.showWithGravity(toastMsg2, 1000, ToastAndroid.CENTER);
+    const consignBase = baseServiceAddress+'/consign?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
+    httpGet(consignBase,(result) => {
+      const {status, data} = result;
+      if (status === STATUS.SUCCESS) {
+        ConsignList = data.map(item => {
+          const body = JSON.parse(item.consignation);
+          return {...item, ...body};
+        });
+        //CurrentConsignList=data;
+        this.setState({datas: ConsignList});
+        //console.warn(ConsignList);
+
+      }
+      // callback && callback(status);
+    });
+  };
+
   componentWillMount() {
     userName=getLocaluserName();
     clientDigest=getLocalclientDigest();
     // console.warn(msg);
     // console.warn(msg2);
-    getConsignList();
+    this.getConsignList();
 
     //this.state.datas=ConsignList;
   }
@@ -291,7 +311,8 @@ export  default class Consignation extends Component {
               >
                 <Left>
                   <Text>
-                    {data.id}
+                    {/*{data.id}*/}
+                    {data.consignUnitC + '-' + data.softwareName}
                   </Text>
                 </Left>
                 <Right>
