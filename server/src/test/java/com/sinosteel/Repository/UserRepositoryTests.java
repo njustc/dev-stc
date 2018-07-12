@@ -31,7 +31,7 @@ public class UserRepositoryTests {
         user.setName("user1");
         user.setId("1008");
         userRepository.save(user);
-       User userfind =userRepository.findByUsername("user1")
+       User userfind =userRepository.findByUsername("user1");
         Assert.assertNotNull("TestWorkCheck为空",userfind);
 
         userRepository.save(user);
