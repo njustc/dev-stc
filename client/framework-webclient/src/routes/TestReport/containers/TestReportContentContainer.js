@@ -7,13 +7,15 @@ import {message} from "antd/lib/index";
 
 const mapStateToProps = (state, ownProps) => {
     // debugger;
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
+    const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const content = state.Project.listMap[ownProps.id].testReport;
     const body = content?content.body:undefined;
-
-    const isEditVisible = true||authData.functionGroup["testReport"]!==undefined&&authData.functionGroup["testReport"].findIndex(element => element === "EDIT")!==-1;
-    const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Write')!==-1:
-        content.operation.findIndex(element => element === 'Write')!==-1);
+    const testPlanState = content?content.state:"error";
+    const isCustomer = (sysUser.username==="customer1"||sysUser.username==="customer2")
+    const isMarketing = (sysUser.username==="marketing");
+    const isTesting = (sysUser.username==="testing");
+    const isQuality = (sysUser.username==="quality");
+    const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Write')!==-1;
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     const isApproveVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ApprovePass')!==-1;
     const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ConfirmPass')!==-1;
@@ -22,38 +24,38 @@ const mapStateToProps = (state, ownProps) => {
     return {
         testReportData: content?content:ownProps,
         values:  body ? JSON.parse(body) : {},
-        disable: false,
-        buttonsEnable: buttonsEnable(isEditVisible,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible),
+        disable: testPlanState!=='TobeWrite',
+        buttonsEnable: buttonsEnable(isCustomer,isMarketing,isTesting,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible),
     }
 };
 
-const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible) => [{
+const buttonsEnable = (isCustomer,isMarketing,isTesting,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible) => [{
     content: '保存',
-    enable: isEditVisible&&isSubmitVisible,
+    enable: isTesting&&isSubmitVisible,
 },{
     content: '提交',
-    enable: isSubmitVisible,
+    enable: isTesting&&isSubmitVisible,
 },{
-    content: '评审',
-    enable: isReviewVisible,
+    content: '通过',
+    enable: isTesting&&isReviewVisible,
 },{
     content: '否决',
-    enable: isReviewVisible,
+    enable: isTesting&&isReviewVisible,
 },{
     content: '批准',
-    enable: isApproveVisible,
+    enable: isQuality&&isApproveVisible,
 },{
     content: '不批准',
-    enable: isApproveVisible,
+    enable: isQuality&&isApproveVisible,
 },{
     content: '发放',
-    enable: isSendVisible,
+    enable: isMarketing&&isSendVisible,
 },{
     content: '确认',
-    enable: isConfirmVisible,
+    enable: isCustomer&&isConfirmVisible,
 },{
     content: "拒绝",
-    enable: isConfirmVisible,
+    enable: isCustomer&&isConfirmVisible,
 }
 ];
 
@@ -99,7 +101,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
         });
     }
 },{
-    content: '评审',
+    content: '通过',
     onClick: (testReportData,testReport) =>{
         const putData = {
             "object": "testReport",

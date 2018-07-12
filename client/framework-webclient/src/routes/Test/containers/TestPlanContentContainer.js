@@ -6,43 +6,42 @@ import {STATUS} from "../../../services/common";
 import {message} from "antd/lib/index";
 
 const mapStateToProps = (state, ownProps) => {
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
+    const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const content = state.Project.listMap[ownProps.id].testPlan;
     const body = content?content.body:undefined;
-
-    const isEditVisible = true||authData.functionGroup["testPlan"]!==undefined&&authData.functionGroup["testPlan"].findIndex(element => element === "EDIT")!==-1;
-    const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Submit')!==-1:
-        content.operation.findIndex(element => element === 'Write')!==-1);
+    const testPlanState = content?content.state:"error";
+    const isTesting = (sysUser.username==="testing");
+    const isQuality = (sysUser.username==="quality");
+    const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Write')!==-1;
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ConfirmPass')!==-1;
 
     return {
-        // testPlanData: {},/*fetch data with pro id*/
         testPlanData: content?content:ownProps,
         values:  body ? JSON.parse(body) : {},
-        disable: false,
-        buttonsEnable: buttonsEnable(isEditVisible,isSubmitVisible,isReviewVisible,isConfirmVisible),
+        disable: testPlanState!=="TobeWrite",
+        buttonsEnable: buttonsEnable(isTesting,isQuality,isSubmitVisible,isReviewVisible,isConfirmVisible),
     }
 };
 
-const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
+const buttonsEnable = (isTesting,isQuality,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
     content: '保存',
-    enable: isEditVisible&&isSubmitVisible,
+    enable: isTesting&&isSubmitVisible,
 },{
     content: '提交',
-    enable: isSubmitVisible,
+    enable: isTesting&&isSubmitVisible,
 },{
     content: '通过',
-    enable: isReviewVisible,
+    enable: isQuality&&isReviewVisible,
 },{
     content: '否决',
-    enable: isReviewVisible,
+    enable: isQuality&&isReviewVisible,
 },{
     content: '确认',
-    enable: isConfirmVisible,
+    enable: isTesting&&isConfirmVisible,
 },{
     content: "拒绝",
-    enable: isConfirmVisible,
+    enable: isTesting&&isConfirmVisible,
 }
 ];
 

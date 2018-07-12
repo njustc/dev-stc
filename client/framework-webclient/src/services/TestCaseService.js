@@ -87,7 +87,8 @@ export const newTestCase = (dispatch,id, callback) => {
             // dispatch(setTestCaseContent(data));
             console.log(status);
         }
-        callback && callback(status);
+        // callback && callback(status);
+        callback && callback(data);
     },urlParams);
 };
 

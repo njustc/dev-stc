@@ -456,97 +456,97 @@ class ContractContentComponent extends Component {
 
                     <FormItem />
 
-                    <FormItem style={{textAlign:'center'}} colon={false} label={"受托方"}/>
+                    {/*<FormItem style={{textAlign:'center'}} colon={false} label={"受托方"}/>*/}
 
-                    <FormItem {...formItemLayout2} label={"单位全称"}>
-                        {getFieldDecorator('bUnitName', {
-                            rules: [{ required: true, message: '请输入单位全称！' }],
-                            initialValue: this.props.values.bUnitName,
-                        })(
-                            <Input disabled={this.props.disable}/>
-                        )}
-                    </FormItem>
+                    {/*<FormItem {...formItemLayout2} label={"单位全称"}>*/}
+                        {/*{getFieldDecorator('bUnitName', {*/}
+                            {/*rules: [{ required: true, message: '请输入单位全称！' }],*/}
+                            {/*initialValue: this.props.values.bUnitName,*/}
+                        {/*})(*/}
+                            {/*<Input disabled={this.props.disable}/>*/}
+                        {/*)}*/}
+                    {/*</FormItem>*/}
 
-                    <FormItem {...formItemLayout2} label={"授权代表"}>
-                        {getFieldDecorator('bAuthRepresent', {
-                            rules: [{ required: true, message: '请输入授权代表！' }],
-                            initialValue: this.props.values.bAuthRepresent,
-                        })(
-                            <Input disabled={this.props.disable}/>
-                        )}
-                    </FormItem>
+                    {/*<FormItem {...formItemLayout2} label={"授权代表"}>*/}
+                        {/*{getFieldDecorator('bAuthRepresent', {*/}
+                            {/*rules: [{ required: true, message: '请输入授权代表！' }],*/}
+                            {/*initialValue: this.props.values.bAuthRepresent,*/}
+                        {/*})(*/}
+                            {/*<Input disabled={this.props.disable}/>*/}
+                        {/*)}*/}
+                    {/*</FormItem>*/}
 
-                    <FormItem {...formItemLayout2} label={"签章日期"}>
-                        {getFieldDecorator('bSignDate', {
-                            rules: [{ required: true, type:'object', message: '请输入签章日期！' }],
-                            initialValue: moment(this.props.values.bSignDate),
-                        })(
-                            <DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>
-                        )}
-                    </FormItem>
+                    {/*<FormItem {...formItemLayout2} label={"签章日期"}>*/}
+                        {/*{getFieldDecorator('bSignDate', {*/}
+                            {/*rules: [{ required: true, type:'object', message: '请输入签章日期！' }],*/}
+                            {/*initialValue: moment(this.props.values.bSignDate),*/}
+                        {/*})(*/}
+                            {/*<DatePicker disabled={this.props.disable} showTime format="YYYY-MM-DD"/>*/}
+                        {/*)}*/}
+                    {/*</FormItem>*/}
 
-                    <FormItem {...formItemLayout2} label={"联系人"}>
-                        {getFieldDecorator('bContact', {
-                            rules: [{ required: true, message: '请输入联系人！' ,pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$"}],
-                            initialValue: this.props.values.bContact,
-                        })(
-                            <Input disabled={this.props.disable}/>
-                        )}
-                    </FormItem>
+                    {/*<FormItem {...formItemLayout2} label={"联系人"}>*/}
+                        {/*{getFieldDecorator('bContact', {*/}
+                            {/*rules: [{ required: true, message: '请输入联系人！' ,pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$"}],*/}
+                            {/*initialValue: this.props.values.bContact,*/}
+                        {/*})(*/}
+                            {/*<Input disabled={this.props.disable}/>*/}
+                        {/*)}*/}
+                    {/*</FormItem>*/}
 
-                    <FormItem {...formItemLayout2} label={"通讯地址"}>
-                        {getFieldDecorator('bPoAddress', {
-                            rules: [{ required: true, message: '请输入通讯地址！' }],
-                            initialValue: this.props.values.bPoAddress,
-                        })(
-                            <Input disabled={this.props.disable}/>
-                        )}
-                    </FormItem>
+                    {/*<FormItem {...formItemLayout2} label={"通讯地址"}>*/}
+                        {/*{getFieldDecorator('bPoAddress', {*/}
+                            {/*rules: [{ required: true, message: '请输入通讯地址！' }],*/}
+                            {/*initialValue: this.props.values.bPoAddress,*/}
+                        {/*})(*/}
+                            {/*<Input disabled={this.props.disable}/>*/}
+                        {/*)}*/}
+                    {/*</FormItem>*/}
 
-                    <FormItem {...formItemLayout2} label={"电话"}>
-                        {getFieldDecorator('bPhone', {
-                            rules: [{ required: true, message: '请输入电话！',pattern:"^[0-9/-]+$"}],
-                            initialValue: this.props.values.bPhone,
-                        })(
-                            <Input disabled={this.props.disable}/>
-                        )}
-                    </FormItem>
+                    {/*<FormItem {...formItemLayout2} label={"电话"}>*/}
+                        {/*{getFieldDecorator('bPhone', {*/}
+                            {/*rules: [{ required: true, message: '请输入电话！',pattern:"^[0-9/-]+$"}],*/}
+                            {/*initialValue: this.props.values.bPhone,*/}
+                        {/*})(*/}
+                            {/*<Input disabled={this.props.disable}/>*/}
+                        {/*)}*/}
+                    {/*</FormItem>*/}
 
-                    <FormItem {...formItemLayout2} label={"传真"}>
-                        {getFieldDecorator('bFax', {
-                            rules: [{ required: true, message: '请输入传真！',pattern:"^[0-9/-]+$" }],
-                            initialValue: this.props.values.bFax,
-                        })(
-                            <Input disabled={this.props.disable}/>
-                        )}
-                    </FormItem>
+                    {/*<FormItem {...formItemLayout2} label={"传真"}>*/}
+                        {/*{getFieldDecorator('bFax', {*/}
+                            {/*rules: [{ required: true, message: '请输入传真！',pattern:"^[0-9/-]+$" }],*/}
+                            {/*initialValue: this.props.values.bFax,*/}
+                        {/*})(*/}
+                            {/*<Input disabled={this.props.disable}/>*/}
+                        {/*)}*/}
+                    {/*</FormItem>*/}
 
-                    <FormItem {...formItemLayout2} label={"开户银行"}>
-                        {getFieldDecorator('bAccountBank', {
-                            rules: [{ required: true, message: '请输入开户银行！',pattern:"^[a-zA-Z\u4E00-\u9FA5]+$" }],
-                            initialValue: this.props.values.bAccountBank,
-                        })(
-                            <Input disabled={this.props.disable}/>
-                        )}
-                    </FormItem>
+                    {/*<FormItem {...formItemLayout2} label={"开户银行"}>*/}
+                        {/*{getFieldDecorator('bAccountBank', {*/}
+                            {/*rules: [{ required: true, message: '请输入开户银行！',pattern:"^[a-zA-Z\u4E00-\u9FA5]+$" }],*/}
+                            {/*initialValue: this.props.values.bAccountBank,*/}
+                        {/*})(*/}
+                            {/*<Input disabled={this.props.disable}/>*/}
+                        {/*)}*/}
+                    {/*</FormItem>*/}
 
-                    <FormItem {...formItemLayout2} label={"账号"}>
-                        {getFieldDecorator('bAccountNum', {
-                            rules: [{ required: true, message: '请输入账号！',pattern:"^[a-zA-Z0-9]+$" }],
-                            initialValue: this.props.values.bAccountNum,
-                        })(
-                            <Input disabled={this.props.disable}/>
-                        )}
-                    </FormItem>
+                    {/*<FormItem {...formItemLayout2} label={"账号"}>*/}
+                        {/*{getFieldDecorator('bAccountNum', {*/}
+                            {/*rules: [{ required: true, message: '请输入账号！',pattern:"^[a-zA-Z0-9]+$" }],*/}
+                            {/*initialValue: this.props.values.bAccountNum,*/}
+                        {/*})(*/}
+                            {/*<Input disabled={this.props.disable}/>*/}
+                        {/*)}*/}
+                    {/*</FormItem>*/}
 
-                    <FormItem {...formItemLayout2} label={"邮编"}>
-                        {getFieldDecorator('bPostCode', {
-                            rules: [{ required: true, message: '请输入邮编！',pattern:"^[0-9/-]+$",max:6 }],
-                            initialValue: this.props.values.bPostCode,
-                        })(
-                            <Input disabled={this.props.disable}/>
-                        )}
-                    </FormItem>
+                    {/*<FormItem {...formItemLayout2} label={"邮编"}>*/}
+                        {/*{getFieldDecorator('bPostCode', {*/}
+                            {/*rules: [{ required: true, message: '请输入邮编！',pattern:"^[0-9/-]+$",max:6 }],*/}
+                            {/*initialValue: this.props.values.bPostCode,*/}
+                        {/*})(*/}
+                            {/*<Input disabled={this.props.disable}/>*/}
+                        {/*)}*/}
+                    {/*</FormItem>*/}
 
                     </TabPane>
                 </Tabs>
@@ -561,7 +561,7 @@ class ContractContentComponent extends Component {
                             }});
                         if(buttonCanShow){
                             return <Button
-                                //disabled={this.props.buttonDisabled}
+                                // disabled={this.props.buttonDisabled}
                                 onClick={this.onClick(index)}
                                 key={button.content}>
                                 {button.content}
@@ -569,9 +569,9 @@ class ContractContentComponent extends Component {
                         }
                     })}
                 </FormItem>
-                {true?<FormItem label='评审内容'><TextArea
-                //    row={4}
-                /></FormItem>:<div></div>}
+                <FormItem label='评审内容'><TextArea
+                    disabled={this.props.disableM}
+                /></FormItem>
                 {/*<FormItem label='评审结论'><TextArea row={4}/></FormItem>*/}
             </Form>
 

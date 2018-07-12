@@ -7,43 +7,43 @@ import {message} from "antd/lib/index";
 
 const mapStateToProps = (state, ownProps) => {
     // debugger;
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
+    const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const content = state.Project.listMap[ownProps.id].contract;
     const contractBody = content?content.contractBody:undefined;
-    console.log(content);
-
-    const isEditVisible = authData.functionGroup["Contract"]!==undefined&&authData.functionGroup["Contract"].findIndex(element => element === "EDIT")!==-1;
-    const isSubmitVisible = content&&content.operation&&(typeof(content.operation)==="string"?JSON.parse(content.operation).findIndex(element => element === 'Submit')!==-1:
-        content.operation.findIndex(element => element === 'Submit')!==-1);
+    const contractState = content?content.state:"error";
+    const isCustomer = (sysUser.username==="customer1"||sysUser.username==="customer2");
+    const isMarketing = (sysUser.username==="marketing");
+    const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Submit')!==-1;
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ConfirmPass')!==-1;
 
     return {
         contractData: content?content:ownProps,
         values:  contractBody ? JSON.parse(contractBody) : {},
-        disable: false,
-        buttonsEnable: buttonsEnable(isEditVisible,isSubmitVisible,isReviewVisible,isConfirmVisible),
+        disable: !(contractState==="TobeSubmit"&&isMarketing),
+        disableM: !(isCustomer&&isConfirmVisible),
+        buttonsEnable: buttonsEnable(isCustomer,isMarketing,isSubmitVisible,isReviewVisible,isConfirmVisible),
     }
 };
 
-const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
+const buttonsEnable = (isCustomer,isMarketing,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
     content: '保存',
-    enable: isEditVisible&&isSubmitVisible,
+    enable: isMarketing&&isSubmitVisible,
 },{
     content: '提交',
-    enable: isSubmitVisible,
+    enable: isMarketing&&isSubmitVisible,
 },{
     content: '通过',
-    enable: isReviewVisible,
+    enable: isMarketing&&isReviewVisible,
 },{
     content: '否决',
-    enable: isReviewVisible,
+    enable: isMarketing&&isReviewVisible,
 },{
     content: '确认',
-    enable: isConfirmVisible,
+    enable: isCustomer&&isConfirmVisible,
 },{
     content: "拒绝",
-    enable: isConfirmVisible,
+    enable: isCustomer&&isConfirmVisible,
 }
 ];
 

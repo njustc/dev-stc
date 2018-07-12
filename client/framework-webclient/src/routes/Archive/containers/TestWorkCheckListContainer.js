@@ -18,8 +18,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        showContent: (id) => {
-            dispatch(addTabAction(id, '报告检查详情', TestWorkCheckContentView, {id: id}));
+        showContent: (param) => {
+            const {key,id} = param;
+            dispatch(addTabAction(key, '报告检查详情', TestWorkCheckContentView, {id: id}));
 //            dispatch(setTestWorkCheckContent())
         },
         showProject: (id) => {

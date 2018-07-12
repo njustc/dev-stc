@@ -7,35 +7,32 @@ import {updateSatisfaction,putSatisfactionState} from "../../../services/Archive
 
 const mapStateToProps = (state, ownProps) => {
     // debugger;
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
-    //console.log(authData);
+    const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const content = state.Project.listMap[ownProps.id].satisfaction;
+    const consign = state.Project.listMap[ownProps.id].consign;
+    const consignation = consign.consignation?JSON.parse(consign.consignation):{};
     const body = content?content.body:undefined;
-
-    const isEditVisible = authData.functionGroup["Satisfaction"]!==undefined&&authData.functionGroup["Satisfaction"].findIndex(element => element === "EDIT")!==-1;
-
+    const isCustomer = (sysUser.username==="customer1"||sysUser.username==="customer2");
+    const isMarketing = (sysUser.username==="marketing");
     return {
-        // satisfactionData: {},/*fetch data with pro id*/
         satisfactionData: content?content:ownProps,
         values:  body ? JSON.parse(body) : {},
-        disable: false/*authData.functionGroup["Satisfaction"]===undefined||authData.functionGroup["Satisfaction"].findIndex(element => element === "EDIT")===-1||state.Satisfaction.listMap[ownProps.id].state!=="TobeSubmit"*/,
-        //curKey: state.Layout.activeKey, /*TODO: 将当前页面id保存为组件静态变量，通过此id获取页面内容*/
-        //buttonDisabled: state.Satisfaction.listMap[ownProps.id].state==="TobeCheck"
-        /*buttonDisabled: authData.functionGroup["Satisfaction"]===undefined ||authData.functionGroup["Satisfaction"].findIndex(element => element === "EDIT")===-1
-            ? state.Satisfaction.listMap[ownProps.id].state==="TobeSubmit"||state.Satisfaction.listMap[ownProps.id].state==="Finished"
-            : state.Satisfaction.listMap[ownProps.id].state==="TobeReview"||state.Satisfaction.listMap[ownProps.id].state==="Finished"*/
-        buttonsEnable: buttonsEnable(isEditVisible),
+        consignUnit: consignation.consignUnitC?consignation.consignUnitC:"未填写",
+        softwareName: consignation.softwareName?consignation.softwareName:"未填写",
+        disableC: !isCustomer,
+        disableQ: !isMarketing,
+        buttonsEnable: buttonsEnable(isCustomer||isMarketing),
     }
 };
 
 const buttonsEnable = (isEditVisible) => [{
-    content: '提交',
+    content: '保存',
     enable: isEditVisible,
 }
 ];
 
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
-    content: '提交',
+    content: '保存',
     onClick: (satisfactionData,satisfaction) =>{
         const valueData = {
             id: satisfactionData.id,
@@ -43,8 +40,8 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
         };
         updateSatisfaction(dispatch,valueData,(status)=>{
             console.log(status);
-            if(status===STATUS.SUCCESS) message.success('提交成功');
-            else message.error('提交失败');
+            if(status===STATUS.SUCCESS) message.success('保存成功');
+            else message.error('保存失败');
         });
     }
 }];
