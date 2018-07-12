@@ -91,11 +91,13 @@ export default class TestReportCheckListComponent extends Component {
         }
         // sorter:(a, b) => a.pid - b.pid,
     }, {
-        title:"报告检查ID",
-        dataIndex:"testReportCheck.id",
+        title:"委托单位",
+        dataIndex:"consign",
         key:"id",
-        render:(id) => id?id:"未填写"
-        // sorter:(a, b) => a.id - b.id,
+        render:(consign) => {
+            let consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+            return consignBody.consignUnitC?consignBody.consignUnitC:"未填写";
+        }
     }, {
         title:"项目名称",
         dataIndex:"consign",

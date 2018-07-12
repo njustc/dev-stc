@@ -23,6 +23,7 @@ const mapStateToProps = (state, ownProps) => {
 
     return {
         testReportData: content?content:ownProps,
+        projectData: state.Project.listMap[ownProps.id],
         values:  body ? JSON.parse(body) : {},
         disable: testPlanState!=='TobeWrite',
         buttonsEnable: buttonsEnable(isCustomer,isMarketing,isTesting,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible),
