@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class TestBugServiceTest {
 
-    private User testUser;
+    private User tester;
     private User customer1;
     private User customer2;
 
@@ -32,25 +32,62 @@ public class TestBugServiceTest {
     private TestBugService testBugService;
 
     @Autowired
+    private ConsignService consignService;
+
+    @Autowired
+    private ProjectService projectService;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Before
     public void getUser() {
-        testUser = userRepository.findByUsername("testing");
+        tester = userRepository.findByUsername("testing");
         customer1 = userRepository.findByUsername("customer1");
         customer2 = userRepository.findByUsername(("customer2"));
     }
 
     @Test
+    public void test_queryTestBugs(){
+        System.out.println("开始测试工作人员获取测试Bug");
+        try {
+            JSON result = testBugService.queryTestBugs(tester);
+
+            Assert.assertNotNull("工作人员 - 工程查询失败",result);
+
+            System.out.println(result);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("开始测试用户获取工程");
+        try {
+            JSON result = testBugService.queryTestBugs(customer1);
+
+            Assert.assertNotNull("用户 - 工程查询失败",result);
+
+            System.out.println(result);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
     public void test_SE(){
-        System.out.println("=====testUser 新建一个测试Bug=====");
+        System.out.println("=====tester 新建一个测试Bug=====");
         JSONObject TestBug = new JSONObject();
-        //TestBug.put("body", "这是customer1测试中新建的一个测试Bug");
+        TestBug.put("body", "这是testUser测试中新建的一个测试Bug");
+
 
         try {
 
             //test_addTestBug
-            JSONObject jsonResult = testBugService.addTestBug(TestBug, null, testUser);
+            JSONObject consign = new JSONObject();
+            JSONObject jsonConsign = consignService.addConsign(consign,null,tester);
+            JSONObject project = new JSONObject();
+            String consign_id = jsonConsign.getString("id");
+            JSONObject jsonProject = projectService.addProject(consign_id,project,null,tester);
+            JSONObject jsonResult = testBugService.addTestBug(jsonProject, null, tester);
             String id = jsonResult.getString("id");
             Assert.assertNotNull("测试Bug新建失败",id);
             System.out.println("测试Bug新建成功, 测试Bug的ID为: " + id);
@@ -62,24 +99,27 @@ public class TestBugServiceTest {
             Assert.assertNotNull("通过ID查询测试Bug失败",jsonTestBug);
             System.out.println(jsonTestBug);
 
-            /*
+
             //test_editTestBug
             System.out.println("=====编辑该测试Bug内容=====");
             String edit_object = "body";
-            String edit_contents = "这是testUser在测试中修改的测试Bug";
+            String edit_contents = "这是tester在测试中修改的测试Bug";
             jsonTestBug.put(edit_object,edit_contents );
-            jsonTestBug = testBugService.editTestBug(jsonTestBug, null, testUser);
+            jsonTestBug = testBugService.editTestBug(jsonTestBug, null, tester);
             Assert.assertEquals("测试Bug修改失败",edit_contents,jsonTestBug.getString(edit_object));  //检验Bug内容修改是否符合预期
             System.out.println(jsonTestBug);
-            */
+
 
             //test_deleteTestBug
             System.out.println("=====删除该测试Bug=====");
             testBugService.deleteTestBug(jsonTestBug);
-            JSONObject jsonDel = testBugService.queryTestBugByID(id);
-            Assert.assertNull("测试Bug删除失败",jsonDel);
-            System.out.println("测试Bug删除成功");
-
+            try{
+                JSONObject jsonDel = testBugService.queryTestBugByID(id);
+                Assert.assertNull("测试Bug删除失败",jsonDel);
+            }
+            catch (Exception e){
+                System.out.println("测试Bug删除成功");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
