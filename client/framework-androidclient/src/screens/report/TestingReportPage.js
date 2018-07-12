@@ -79,40 +79,16 @@ export  default class TestingReportPage extends Component {
       ],//功能性测试
 
 
-      tableHead4: ['序号', '功能模块', '功能要求', '测试结果'],
+
+
+      tableHead4: ['序号','分类', '测试特性', '测试说明', '测试结果'],
       tableData4: [
-        ['1', '', '', ''],
-        ['2', '', '', ''],
-        ['3', '', '', ''],
-      ],//效率测试
+        ['1','', '', '', ''],
+        ['2','', '', '', ''],
+        ['3','', '', '', ''],
+      ],//非功能性测试
 
-      tableHead5: ['序号', '功能模块', '功能要求', '测试结果'],
-      tableData5: [
-        ['1', '', '', ''],
-        ['2', '', '', ''],
-        ['3', '', '', ''],
-      ],//可移植性测试
 
-      tableHead6: ['序号', '功能模块', '功能要求', '测试结果'],
-      tableData6: [
-        ['1', '', '', ''],
-        ['2', '', '', ''],
-        ['3', '', '', ''],
-      ],//易用性测试
-
-      tableHead7: ['序号', '功能模块', '功能要求', '测试结果'],
-      tableData7: [
-        ['1', '', '', ''],
-        ['2', '', '', ''],
-        ['3', '', '', ''],
-      ],//可靠性测试
-
-      tableHead8: ['序号', '功能模块', '功能要求', '测试结果'],
-      tableData8: [
-        ['1', '', '', ''],
-        ['2', '', '', ''],
-        ['3', '', '', ''],
-      ],//可维护测试
 
       //以数组形式从后台读入
       PageID:""
@@ -547,7 +523,7 @@ export  default class TestingReportPage extends Component {
               </View>
 
               <Text>
-                效率测试
+                非功能性测试
               </Text>
 
               <View style={styles.container}>
@@ -557,49 +533,7 @@ export  default class TestingReportPage extends Component {
                 </Table>
               </View>
 
-              <Text>
-                可移植性测试
-              </Text>
 
-              <View style={styles.container}>
-                <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-                  <Row data={this.state.tableHead5} style={styles.head} textStyle={styles.text}/>
-                  <Rows data={this.state.tableData5} textStyle={styles.text}/>
-                </Table>
-              </View>
-
-              <Text>
-                易用性测试
-              </Text>
-
-              <View style={styles.container}>
-                <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-                  <Row data={this.state.tableHead6} style={styles.head} textStyle={styles.text}/>
-                  <Rows data={this.state.tableData6} textStyle={styles.text}/>
-                </Table>
-              </View>
-
-              <Text>
-                可靠性测试
-              </Text>
-
-              <View style={styles.container}>
-                <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-                  <Row data={this.state.tableHead7} style={styles.head} textStyle={styles.text}/>
-                  <Rows data={this.state.tableData7} textStyle={styles.text}/>
-                </Table>
-              </View>
-
-              <Text>
-                可维护测试
-              </Text>
-
-              <View style={styles.container}>
-                <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-                  <Row data={this.state.tableHead8} style={styles.head} textStyle={styles.text}/>
-                  <Rows data={this.state.tableData8} textStyle={styles.text}/>
-                </Table>
-              </View>
 
             </Content>
           </Tab>

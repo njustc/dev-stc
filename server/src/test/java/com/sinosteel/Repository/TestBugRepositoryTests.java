@@ -1,9 +1,11 @@
 package com.sinosteel.Repository;
 
 import com.sinosteel.FrameworkApplication;
+import com.sinosteel.domain.SatisfactionSurvey;
 import com.sinosteel.repository.TestBugRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -21,6 +23,7 @@ public class TestBugRepositoryTests {
     @Transactional
 
     public void testTestBugRepository(){
+
 
     }
 }

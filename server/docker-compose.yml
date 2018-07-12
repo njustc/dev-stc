@@ -6,8 +6,8 @@ services:
     container_name: 'mymysql'
     ports:
       - '33006:3306'
-    volumes:
-      - '~/mnt/mysql/:/var/lib/mysql/'
+#    volumes:
+#      - '~/mnt/mysql/:/var/lib/mysql/'
     environment:
       - MYSQL_ROOT_PASSWORD=mysql
       - MYSQL_DATABASE=stc

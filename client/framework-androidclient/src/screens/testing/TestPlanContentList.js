@@ -91,7 +91,7 @@ export default  class TestPlanContentList extends Component{
         for (var i = 0; i < this.state.currentdatas.length; i++)
         {
           // console.warn("now"+this.state.currentdatas[i].id);
-          if (this.state.currentdatas[i].id==text) {
+          if (this.state.currentdatas[i].softwareName==text) {
             this.setState({
               datas:[this.state.currentdatas[i]],
             });
@@ -114,8 +114,23 @@ export default  class TestPlanContentList extends Component{
     return index+item;
   }
 
+  getTestPlanContentList = () =>{
+    const contractBase = baseServiceAddress+'/v1/testPlan?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
+    httpGet(contractBase,(result)=>{
+      const{status,data}=result;
+      if(status===STATUS.SUCCESS){
+        AllTestPlanContentList=data.map(item=>{
+          const body = JSON.parse(item.body);
+          return {...item, ...body};
+        });
+
+        this.setState({datas:AllTestPlanContentList});
+      }
+    });
+  };
+
   componentWillMount(){
-    getTestPlanContentList();
+    this.getTestPlanContentList();
   }
 
   gotoTestPlanContentPage = (id) =>{
@@ -186,7 +201,7 @@ export default  class TestPlanContentList extends Component{
               >
                 <Left>
                   <Text>
-                    {data.id}
+                    {data.softwareName}
                   </Text>
                 </Left>
                 <Right>

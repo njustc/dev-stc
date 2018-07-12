@@ -1,4 +1,5 @@
-export const baseAddress = 'http://192.168.1.104:8000';
+//export const baseAddress = 'http://121.42.175.137:8000';
+export const baseAddress = 'http://192.168.1.116:8000';
 export const baseServiceAddress = baseAddress + '/services';
 
 export const STATUS = {
