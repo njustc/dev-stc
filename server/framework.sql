@@ -158,6 +158,8 @@ CREATE TABLE `tbl_sys_projects` (
   `SATISFACTIONSURVEY_ID` varchar(255) COLLATE utf8_bin DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+
+
 --
 -- 表的结构 `tbl_sys_testreports`
 --

@@ -7,45 +7,23 @@ import {message} from "antd/lib/index";
 
 const mapStateToProps = (state, ownProps) => {
     // debugger;
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
-    //console.log(authData);
+    const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const content = state.Project.listMap[ownProps.id].testWorkCheck;
     const body = content?content.body:undefined;
-
-    const isEditVisible = true||authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "EDIT")!==-1;
+    const isQuality = (sysUser.username==="quality");
 
     return {
         testWorkCheckData: content?content:ownProps,
         values:  body ? JSON.parse(body) : {},
         disable: false,
-        buttonsEnable: buttonsEnable(isEditVisible/*,isSubmitVisible,isReviewVisible,isSendVisible,isConfirmVisible*/),
+        buttonsEnable: buttonsEnable(isQuality),
     }
 };
 
-const buttonsEnable = (isEditVisible/*,isSubmitVisible,isReviewVisible,isSendVisible,isConfirmVisible*/) => [{
+const buttonsEnable = (isQuality) => [{
     content: '保存',
-    enable: isEditVisible/* && isSubmitVisible*/,
-}
-// },{
-//     content: '提交',
-//     enable: isSubmitVisible,
-// },{
-//     content: '批准',
-//     enable: isReviewVisible,
-// },{
-//     content: '否决',
-//     enable: isReviewVisible,
-// },{
-//     content: '发放',
-//     enable: isSendVisible,
-// },{
-//     content: '确认',
-//     enable: isConfirmVisible,
-// },{
-//     content: "拒绝",
-//     enable: isConfirmVisible,
-// }
-];
+    enable: isQuality,
+}];
 
 const buttons = (dispatch) => [{
     /*TODO:buttons的显示和禁用还存在问题*/
