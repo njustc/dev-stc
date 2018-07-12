@@ -30,10 +30,9 @@ public class TestPlanRepositoryTests {
         Assert.assertNotNull("TestPlan为空",testPlanfind);
 
         testPlanRepository.save(testPlan);
-        testPlanRepository.delete("paln");
-
-        testPlanfind = testPlanRepository.findById("paln");
-
+        testPlanRepository.delete("plan");
+        testPlanfind =null;
+        testPlanfind = testPlanRepository.findById("plan");
         Assert.assertNull("testPlan不为空",testPlanfind);
     }
 

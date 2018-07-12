@@ -11,6 +11,13 @@ import javax.persistence.*;
 @Table(name = "TBL_SYS_CONTRACTS")
 public class Contract extends BaseEntity {
 
+    /**
+     * 委托方(甲方)
+     */
+    @Column(name = "CLIENT")
+    private String client;
+
+
     @Column(name = "CONTRACTBODY")
     private String contractBody;
 
