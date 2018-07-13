@@ -1,8 +1,14 @@
 # Client模块
 
 ## 前端jsdoc生成步骤
+### 准备工作
+ - npm install -g jsdoc
+ 
+### 操作
  - cd dev-stc  (进入dev-stc目录)
  - jsdoc -c web-jsdoc.json(依据web-jsdoc.json配置文件来生成文件)
+ 
+### 生成
  - 默认生成目录为dev-stc/web-out/
  - web-out/index.html即为生成文档
 
