@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 /**
- * @author SongJunju
+ * @author SongJunju && FW
  */
 
 /**
@@ -58,5 +58,74 @@ public class TestReportCheck extends BaseEntity{
     }
     public void setProject(Project project){
         this.project = project;
+    }
+
+    /**
+     * 软件名称
+     */
+    @Column (name = "SOFTWARENAME")
+    private String softwareName;
+
+    public String getSoftwareName() {
+        return softwareName;
+    }
+    public void setSoftwareName(String softwareName) {
+        this.softwareName = softwareName;
+    }
+
+    /**
+     * 委托单位
+     */
+    @Column (name = "CLIENTCOMPANY")
+    private String clientCompany;
+
+    public String getClientCompany() {
+        return clientCompany;
+    }
+
+    public void setClientCompany(String clientCompany) {
+        this.clientCompany = clientCompany;
+    }
+
+    /**
+     * 检查内容 （下面的表）
+     */
+    @Column (name = "CHECKBODY")
+    private String checkBody;
+
+    public String getCheckBody() {
+        return checkBody;
+    }
+
+    public void setCheckBody(String checkBody) {
+        this.checkBody = checkBody;
+    }
+
+    /**
+     * 检查人
+     */
+    @Column (name = "CHECKMAN")
+    private String checkMan;
+
+    public String getCheckMan() {
+        return checkMan;
+    }
+
+    public void setCheckMan(String checkMan) {
+        this.checkMan = checkMan;
+    }
+
+    /**
+     * 检查日期
+     */
+    @Column (name = "CHECKDATA")
+    private String checkData;
+
+    public String getCheckData() {
+        return checkData;
+    }
+
+    public void setCheckData(String checkData) {
+        this.checkData = checkData;
     }
 }
