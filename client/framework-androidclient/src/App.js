@@ -13,6 +13,8 @@ import ContractList from'./screens/contract/ContractList'
 import ContractPage from './screens/contract/ContractPage'
 
 import Testing from './screens/testing/Testing'
+
+import TestCaseContentList from './screens/testing/TestCaseContentList'
 import TestCaseContentPage from './screens/testing/TestCaseContentPage'
 
 import TestPlanContentList from './screens/testing/TestPlanContentList'
@@ -219,6 +221,7 @@ const AppNavigator = StackNavigator(
     ContractPage:{screen:ContractPage},
     ContractList:{screen: ContractList},
 
+    TestCaseContentList:{screen: TestCaseContentList},
     TestCaseContentPage:{screen: TestCaseContentPage},
 
     TestPlanContentPage:{screen: TestPlanContentPage},

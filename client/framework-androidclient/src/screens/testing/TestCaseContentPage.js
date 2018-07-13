@@ -28,39 +28,83 @@ import {
 } from "native-base";
 import styles from "./styles";
 
+import {baseAddress,baseServiceAddress,STATUS} from "../../common";
+import {httpPost,httpGet,httpDelete,httpPut} from "../../FetchUtil";
+import { getLocalclientDigest, getLocaluserName } from "../../login/Login";
+
+//let List = [];//data from 后端
 
 export default class TestPlanContentPage extends Component{
   constructor(props){
     super(props);
     this.state={
+      ProjectID:"",
       datas : [
         {
-        id: 1,
-        classification: 'yj',
-        process: 'unhappy->happy',
-        expectedResult: 'happy',
-        designer: 'yj',
-        time: '2018-06-03',
-        action: 'delete',
-        designNotes: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-        statute: 'sssssss',
-        accordance: 'tttttt'
+          id: 1,
+          classification: '',
+          process: '',
+          expectedResult: '',
+          designer: '',
+          time: '',
+          action: '',
+          designNotes: '',
+          statute: '',
+          accordance: ''
         },
+      ],
+      currentdatas:[
         {
-          id: 2,
-          classification: '杨杰',
-          process: 'unhappy->happy',
-          expectedResult: 'happy',
-          designer: 'yj',
-          time: '2018-06-03',
-          action: 'delete',
-          designNotes: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-          statute: 'sssssss',
-          accordance: 'tttttt'
-        }
+          id: 1,
+          classification: '',
+          process: '',
+          expectedResult: '',
+          designer: '',
+          time: '',
+          action: '',
+          designNotes: '',
+          statute: '',
+          accordance: ''
+        },
       ],
     }
   }
+
+
+
+  componentDidMount(){
+    this.listener_id = DeviceEventEmitter.addListener('id',(events)=>{
+      this.setState({ProjectID:events.ID});
+
+      const contractBase = baseServiceAddress+'/v1/project/'+events.ID+'?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
+      httpGet(contractBase,(result)=>{
+        const{status,data}=result;
+        if(status===STATUS.SUCCESS){
+          this.state.datas = data.testCase.map(item => {
+            const body = JSON.parse(item.body);
+            return {
+              ...item,
+              ...body,
+            }
+          })
+          //console.warn(this.state.datas);
+          this.setState({datas: this.state.datas});
+          //console.warn(data.testCase);
+          //let dataContent=JSON.parse(data);
+          //console.warn(dataContent.testCase);
+        }
+      });
+    });
+    //console.warn("ctmd");
+    //console.warn();
+    //console.warn(this.state.ProjectID);
+  }
+
+  componentWillUnmount(){
+    this.listener_id.remove();
+
+  }
+
   render(){
     return(
       <Container>
@@ -81,13 +125,14 @@ export default class TestPlanContentPage extends Component{
                 dataArray={this.state.datas}
                 renderRow={data=>
                   <CardItem header bordered>
-                    <Text>测试用例序号：{data.id}</Text>
+                    {/*<Text>测试用例序号：{data.id}</Text>*/}
+                    {/*<Text>时间：{data.createdTime}</Text>*/}
                     <Body>
                     <Text>测试分类：{data.classification}</Text>
                     <Text>执行过程：{data.process}</Text>
                     <Text>预期结果：{data.expectedResult}</Text>
                     <Text>设计者：{data.designer}</Text>
-                    <Text>时间：{data.time}</Text>
+                    <Text>时间：{data.createdTime}</Text>
                     <Text>设计说明：{data.designNotes}</Text>
                     <Text>有关的规约说明：{data.statute}</Text>
                     <Text>依据：{data.accordance}</Text>

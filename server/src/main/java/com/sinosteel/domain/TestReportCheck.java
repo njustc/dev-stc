@@ -59,4 +59,13 @@ public class TestReportCheck extends BaseEntity{
     public void setProject(Project project){
         this.project = project;
     }
+
+
+    /**
+     * 软件名称|softwareName|未定义
+     委托单位|clientCompany|未定义
+     检查内容（下面的表）|checkBody|未定义
+     检查人|checkMan|未定义
+     检查日期|checkData|未定义
+     */
 }
