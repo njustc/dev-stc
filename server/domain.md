@@ -151,7 +151,7 @@ processInstanceID|流程ID|已定义
 委托单位|clientCompany|未定义
 测试类别|testType|未定义
 报告日期|reportData|未定义
-项目编号|code|已定义 - BaseEntity
+项目编号|codeId|已定义 - BaseEntity
 样品名称|sampleName|未定义
 来样日期|sampleData|未定义
 测试时间|testData|未定义
@@ -189,9 +189,9 @@ processInstanceID|流程ID|已定义
 --|--|--
 软件名称|softwareName|未定义
 版本号|version|未定义
-委托单位|clientCompany|未定义
-起始时间|startData|未定义
-预计完成时间|preData|未定义
-主测人|checkMan|未定义
-实际完成时间|relData|未定义
+委托单位|client|未定义
+起始时间|starttime|未定义
+预计完成时间|fcendtime|未定义
+主测人|testworker|未定义
+实际完成时间|acendtime|未定义
 检查内容（下面的表）|checkBody|未定义
