@@ -2,7 +2,7 @@
 
 ## 前端jsdoc生成步骤
 ### 准备工作
- - npm install -g jsdoc
+ - npm install -g jsdoc  (一次就好)
  
 ### 操作
  - cd dev-stc  (进入dev-stc目录)
