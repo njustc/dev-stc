@@ -82,7 +82,7 @@ class TestReportContentComponent extends Component {
             wrapperCol: { span: 19 },
         };
 
-        const dataSource1 = [];
+        const dataSource1 = JSON.parse(this.props.projectData.testPlan.body).hardware;
         const columns1 = [{
             title: '序号',
             dataIndex: 'number',
@@ -105,7 +105,7 @@ class TestReportContentComponent extends Component {
             key: 'amount',
         }];
 
-        const dataSource2 = [];
+        const dataSource2 = JSON.parse(this.props.projectData.testPlan.body).software;
         const columns2 = [{
             title: '序号',
             dataIndex: 'softwarenumber',
@@ -450,28 +450,28 @@ class TestReportContentComponent extends Component {
                            </FormItem>
 
                        </TabPane>
-                        <TabPane tab="测试内容" key="4">
+                        {/*<TabPane tab="测试内容" key="4">*/}
 
-                            <FormItem
-                                label="功能性测试"
-                                {...formItemLayout}
-                            >
-                                <span className="ant-form-text"></span>
-                            </FormItem>
+                            {/*<FormItem*/}
+                                {/*label="功能性测试"*/}
+                                {/*{...formItemLayout}*/}
+                            {/*>*/}
+                                {/*<span className="ant-form-text"></span>*/}
+                            {/*</FormItem>*/}
 
-                            <Table dataSource={dataSource3} columns={columns3} />
+                            {/*<Table dataSource={dataSource3} columns={columns3} />*/}
 
-                            <FormItem
-                                label="非功能性测试"
-                                {...formItemLayout}
-                            >
-                                <span className="ant-form-text"></span>
-                            </FormItem>
+                            {/*<FormItem*/}
+                                {/*label="非功能性测试"*/}
+                                {/*{...formItemLayout}*/}
+                            {/*>*/}
+                                {/*<span className="ant-form-text"></span>*/}
+                            {/*</FormItem>*/}
 
-                            <Table dataSource={dataSource4} columns={columns4} />
+                            {/*<Table dataSource={dataSource4} columns={columns4} />*/}
 
 
-                        </TabPane>
+                        {/*</TabPane>*/}
                     </Tabs>
                 </div>
                 <FormItem style={{textAlign:'center'}}>

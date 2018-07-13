@@ -13,7 +13,7 @@ export const ConsignReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_LIST:
             const list = action.payload;
-            console.log(list);
+            // console.log(list);
             return {
                 ...state,
                 listMap: list.reduce((listMap, ConsignData) => {
