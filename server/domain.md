@@ -92,34 +92,34 @@ processInstanceID|流程ID|已定义
 名称|变量名|状态
 --|--|--
 项目名称|name|已定义 - 使用BaseEntity中的name
-委托方(甲方)|client|未定义
-受托方(乙方)|assignee|未定义
-签订地点|signPlace|未定义
-签订日期|signData|未定义
-质量特性|quality|未定义
-合同价款|price|未定义
-履行期限|finishTime|未定义
-委托方-单位全称|clientCompanyName|未定义
-委托方-授权代表|clientAuthRepre|未定义
-委托方-签章日期|clientSignData|未定义
-委托方-联系人|clientContact|未定义
-委托方-通讯地址|clientAddr|未定义
-委托方-电话|clientTel|未定义
-委托方-传真|clientFax|未定义
-委托方-开户银行|clientBank|未定义
-委托方-账号|clientUserName|未定义
-委托方-邮编|clientPostCode|未定义
-受托方-单位全称|assigneeCompanyName|未定义
-受托方-授权代表|assigneeAuthRepre|未定义
-受托方-签章日期|assigneeSignData|未定义
-受托方-联系人|assigneeContact|未定义
-受托方-通讯地址|assigneeAddr|未定义
-受托方-电话|assigneeTel|未定义
-受托方-传真|assigneeFax|未定义
-受托方-邮编|assigneePostCode|未定义
-受托方-开户银行|assigneeBank|未定义
-受托方-户名|assigneeBankName|未定义
-受托方-账号|assigneeUserName|未定义
+委托方(甲方)|client|已定义
+受托方(乙方)|assignee|已定义
+签订地点|signPlace|已定义
+签订日期|signData|已定义
+质量特性|quality|已定义
+合同价款|price|已定义
+履行期限|finishTime|已定义
+委托方-单位全称|clientCompanyName|已定义
+委托方-授权代表|clientAuthRepre|已定义
+委托方-签章日期|clientSignData|已定义
+委托方-联系人|clientContact|已定义
+委托方-通讯地址|clientAddr|已定义
+委托方-电话|clientTel|已定义
+委托方-传真|clientFax|已定义
+委托方-开户银行|clientBank|已定义
+委托方-账号|clientUserName|已定义
+委托方-邮编|clientPostCode|已定义
+受托方-单位全称|assigneeCompanyName|已定义
+受托方-授权代表|assigneeAuthRepre|已定义
+受托方-签章日期|assigneeSignData|已定义
+受托方-联系人|assigneeContact|已定义
+受托方-通讯地址|assigneeAddr|已定义
+受托方-电话|assigneeTel|已定义
+受托方-传真|assigneeFax|已定义
+受托方-邮编|assigneePostCode|已定义
+受托方-开户银行|assigneeBank|已定义
+受托方-户名|assigneeBankName|已定义
+受托方-账号|assigneeUserName|已定义
 
 # 委托测试软件功能列表 TestFunctions
 
@@ -134,64 +134,64 @@ processInstanceID|流程ID|已定义
 
 名称|变量名|状态
 --|--|--
-编制人|author|未定义
-审核人|auditor|未定义
-批准人|approver|未定义
-测试环境 - 硬件|hardware|未定义 - 这里这整个表作为一个字符串，交给前端处理。
-测试环境 - 软件|software|未定义 - 这里整个表作为一个字符串，交给前端处理。
-测试环境 - 人员|staff|未定义 - 同上
-测试进度表|progressTable|未定义 - 同上
+编制人|author|已定义
+审核人|auditor|已定义
+批准人|approver|已定义
+测试环境 - 硬件|hardware|已定义 - 这里这整个表作为一个字符串，交给前端处理。
+测试环境 - 软件|software|已定义 - 这里整个表作为一个字符串，交给前端处理。
+测试环境 - 人员|staff|已定义 - 同上
+测试进度表|progressTable|已定义 - 同上
 
 # 测试报告 TestReport
 
 名称|变量名|状态
 --|--|--
 软件名称|name|已定义 - BaseEntity
-版本号|version|未定义
-委托单位|clientCompany|未定义
-测试类别|testType|未定义
-报告日期|reportData|未定义
-项目编号|code|已定义 - BaseEntity
-样品名称|sampleName|未定义
-来样日期|sampleData|未定义
-测试时间|testData|未定义
-测试依据|testBasis|未定义
-样品清单 - 软件样本|testMenuSample|未定义
-样品清单 - 软件文档|testMenuDoc|未定义
-测试结论|testConclusion|未定义
-主测人|tester|未定义
-主测人日期|testerTime|未定义
-审核人|auditor|未定义
-审核人日期|auditorData|未定义
-批准人|approver|未定义
-批准人日期|approverData|未定义
-委托单位电话|clientTel|未定义
-委托单位传真|clientFax|未定义
-委托单位地址|clientAddr|未定义
-委托单位邮编|clientPostCode|未定义
-委托单位联系人|clientContact|未定义
-委托单位Email|clientEmail|未定义
+版本号|version|已定义
+委托单位|clientCompany|已定义
+测试类别|testType|已定义
+报告日期|reportData|已定义
+项目编号|codeId|已定义 - BaseEntity
+样品名称|sampleName|已定义
+来样日期|sampleData|已定义
+测试时间|testData|已定义
+测试依据|testBasis|已定义
+样品清单 - 软件样本|testMenuSample|已定义
+样品清单 - 软件文档|testMenuDoc|已定义
+测试结论|testConclusion|已定义
+主测人|tester|已定义
+主测人日期|testerTime|已定义
+审核人|auditor|已定义
+审核人日期|auditorData|已定义
+批准人|approver|已定义
+批准人日期|approverData|已定义
+委托单位电话|clientTel|已定义
+委托单位传真|clientFax|已定义
+委托单位地址|clientAddr|已定义
+委托单位邮编|clientPostCode|已定义
+委托单位联系人|clientContact|已定义
+委托单位Email|clientEmail|已定义
 
 
 # 测试报告检查表 TestReportCheck
 
 名称|变量名|状态
 --|--|--
-软件名称|softwareName|未定义
-委托单位|clientCompany|未定义
-检查内容（下面的表）|checkBody|未定义
-检查人|checkMan|未定义
-检查日期|checkData|未定义
+软件名称|softwareName|已定义
+委托单位|clientCompany|已定义
+检查内容（下面的表）|checkBody|已定义
+检查人|checkMan|已定义
+检查日期|checkData|已定义
 
 # 测试工作检查表 TestWorkCheck
 
 名称|变量名|状态
 --|--|--
-软件名称|softwareName|未定义
-版本号|version|未定义
-委托单位|clientCompany|未定义
-起始时间|startData|未定义
-预计完成时间|preData|未定义
-主测人|checkMan|未定义
-实际完成时间|relData|未定义
-检查内容（下面的表）|checkBody|未定义
+软件名称|softwareName|已定义
+版本号|version|已定义
+委托单位|client|已定义
+起始时间|starttime|已定义
+预计完成时间|fcendtime|已定义
+主测人|testworker|已定义
+实际完成时间|acendtime|已定义
+检查内容（下面的表）|checkBody|已定义

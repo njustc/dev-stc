@@ -23,6 +23,7 @@ const mapStateToProps = (state, ownProps) => {
 
     return {
         testReportData: content?content:ownProps,
+        projectData: state.Project.listMap[ownProps.id],
         values:  body ? JSON.parse(body) : {},
         disable: testPlanState!=='TobeWrite',
         buttonsEnable: buttonsEnable(isCustomer,isMarketing,isTesting,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible),
@@ -101,7 +102,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
         });
     }
 },{
-    content: '通过',
+    content: '评审',
     onClick: (testReportData,testReport) =>{
         const putData = {
             "object": "testReport",

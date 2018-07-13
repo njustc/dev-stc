@@ -91,7 +91,7 @@ export default class ContractList extends Component{
         for (var i = 0; i < this.state.currentdatas.length; i++)
         {
           // console.warn("now"+this.state.currentdatas[i].id);
-          if (this.state.currentdatas[i].id==text) {
+          if (this.state.currentdatas[i].projectName==text) {
             this.setState({
               datas:[this.state.currentdatas[i]],
             });
@@ -114,8 +114,24 @@ export default class ContractList extends Component{
     return index+item;
   }
 
+  getContractList = () => {
+    const contractBase = baseServiceAddress+'/contract?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
+    httpGet(contractBase,(result)=>{
+      const{status,data}=result;
+      if(status===STATUS.SUCCESS){
+        AllContractList=data.map(item=>{
+          const body =JSON.parse(item.contractBody);
+          return {...item, ...body};
+        });
+
+        //console.warn(AllContractList);
+        this.setState({datas: AllContractList});
+      }
+    });
+  };
+
   componentWillMount() {
-    getContractList();
+    this.getContractList();
 
     //this.state.datas=ConsignList;
   }
@@ -206,7 +222,7 @@ export default class ContractList extends Component{
               >
                 <Left>
                   <Text>
-                    {data.id}
+                    {data.projectName+'('+ data.consignDate+')'}
                   </Text>
                 </Left>
                 <Right>

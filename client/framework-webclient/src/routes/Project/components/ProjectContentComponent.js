@@ -192,6 +192,7 @@ export default class ProjectContentComponent extends Component {
     }
 
     getTestReportState(){
+        //console.log(this.props.projectData);
         switch(this.props.projectData.testReport.state){
             case STATE.TO_WRITE: return (
                 <Timeline.Item color="blue">测试报告书待编写</Timeline.Item>
@@ -240,6 +241,13 @@ export default class ProjectContentComponent extends Component {
         /*TODO*/
     }
 
+    testFee(){
+        console.log(this.props.projectData.contract.contractBody);//
+        let contractBodyString=this.props.projectData.contract.contractBody;
+        let contractBody = contractBodyString?JSON.parse(contractBodyString):{};
+        return contractBody.testFee?"¥"+contractBody.testFee:"未填写";
+    }
+
     render() {
         return (
             <div>
@@ -278,7 +286,7 @@ export default class ProjectContentComponent extends Component {
                                     <br/>
                                     <div>流程创建时间：{this.props.projectData.createdTime}</div>
                                     <br/>
-                                    <div>项目价格：¥2333</div>
+                                    <div>项目价格：{this.testFee()}</div>
                                     {/*<br/>*/}
                                     {/*<div>备注：感谢曹老板指导,给曹老板打call</div>*/}
                                </Card>

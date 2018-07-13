@@ -19,6 +19,7 @@ import javax.transaction.Transactional;
 /**
  * @author LBW,Lumpy
  */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
 @Transactional
@@ -27,9 +28,13 @@ import javax.transaction.Transactional;
     private User marketUser;
     private User customer1;
     private User customer2;
+    private User tester;
 
     @Autowired
     private ConsignService consignService;
+
+    @Autowired
+    private ProjectService projectService;
 
     @Autowired
     private UserRepository userRepository;
@@ -39,7 +44,9 @@ import javax.transaction.Transactional;
         marketUser = userRepository.findByUsername("marketing");
         customer1 = userRepository.findByUsername("customer1");
         customer2 = userRepository.findByUsername(("customer2"));
+        tester = userRepository.findByUsername("testing");
     }
+
     @Test
     public void queryConsigns() {
         System.out.println("开始测试工作人员获取委托");
@@ -66,8 +73,6 @@ import javax.transaction.Transactional;
         }
     }
 
-
-
     @Test
     public void testCURD() {
         System.out.println("=====customer1 增加一个委托=====");
@@ -87,6 +92,15 @@ import javax.transaction.Transactional;
             JSONObject jsonConsign = consignService.queryConsignByID(id);
             Assert.assertNotNull("通过ID委托查询失败",jsonConsign);
             System.out.println(jsonConsign);
+
+            //test_queryconsingByProject
+            System.out.println("=====通过工程查询委托=====");
+            JSONObject project = new JSONObject();
+            JSONObject jsonProject = projectService.addProject(id,project,null,tester);
+            String pro_id = jsonProject.getString("id");
+            JSON jsonConsign_pro = consignService.queryConsignsByProject(pro_id);
+            Assert.assertNotNull("通过工程查询委托失败",jsonConsign_pro);
+            System.out.println(jsonConsign_pro);
 
             //test_editconsign
             System.out.println("=====编辑该委托=====");
@@ -110,5 +124,4 @@ import javax.transaction.Transactional;
             e.printStackTrace();
         }
     }
-
 }

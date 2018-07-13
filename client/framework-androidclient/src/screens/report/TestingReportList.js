@@ -91,7 +91,7 @@ export default class TestingReportList extends Component{
         for (var i = 0; i < this.state.currentdatas.length; i++)
         {
           // console.warn("now"+this.state.currentdatas[i].id);
-          if (this.state.currentdatas[i].id==text) {
+          if (this.state.currentdatas[i].consignUnitC==text) {
             this.setState({
               datas:[this.state.currentdatas[i]],
             });
@@ -114,8 +114,22 @@ export default class TestingReportList extends Component{
     return index+item;
   }
 
+  getTestingReportList = () => {
+    const contractBase = baseServiceAddress+'/v1/testReport?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
+    httpGet(contractBase,(result)=>{
+      const{status,data}=result;
+      if(status===STATUS.SUCCESS){
+        AllTestingReportList=data.map(item=>{
+          const body = JSON.parse(item.body);
+          return {...item, ...body};
+        });
+        this.setState({datas: AllTestingReportList});
+      }
+    });
+  };
+
   componentWillMount() {
-    getTestingReportList();
+    this.getTestingReportList();
 
     //this.state.datas=ConsignList;
   }
@@ -193,7 +207,7 @@ export default class TestingReportList extends Component{
               >
                 <Left>
                   <Text>
-                    {data.id}
+                    {data.consignUnitC}
                   </Text>
                 </Left>
                 <Right>

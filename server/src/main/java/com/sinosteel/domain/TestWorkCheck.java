@@ -55,12 +55,12 @@ public class TestWorkCheck extends BaseEntity{
         this.softwarename = softwarename;
     }
 
+
     /**
      * 版本号
      */
-    @Column(name = "VERSION")
+    @Column (name =  "VERSION")
     private String version;
-
     public String getVersion() {
         return version;
     }
@@ -72,9 +72,8 @@ public class TestWorkCheck extends BaseEntity{
     /**
      * 委托单位
      */
-    @Column(name = "CLIENT")
+    @Column (name = "CLIENT")
     private String client;
-
     public String getClient() {
         return client;
     }
@@ -137,6 +136,20 @@ public class TestWorkCheck extends BaseEntity{
 
     public void setAcendtime(String acendtime) {
         this.acendtime = acendtime;
+    }
+
+    /**
+     * 检查内容
+     */
+    @Column (name = "CHECKBAODY")
+    private String checkBody;
+
+    public String getCheckBody() {
+        return checkBody;
+    }
+
+    public void setCheckBody(String checkBody) {
+        this.checkBody = checkBody;
     }
 
 
