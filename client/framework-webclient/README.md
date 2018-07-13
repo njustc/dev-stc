@@ -1,5 +1,9 @@
 # Client模块
 
+## 前端jsdoc生成步骤
+cd dev-stc  (进入dev-stc目录)
+jsdoc -c web-jsdoc.json -r
+
 ## 前端部署步骤
 ### 准备工作
 首先确保以下已经安装
