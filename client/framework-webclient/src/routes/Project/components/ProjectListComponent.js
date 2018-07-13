@@ -231,7 +231,7 @@ export default class ProjectListComponent extends Component {
                     测试用例个数：{record.testCase.length}
                 </div>
                 <div>
-                    项目价格：¥{this.testFee(record)}
+                    项目价格：{this.testFee(record)}
                 </div>
             </div>
         );
@@ -240,7 +240,7 @@ export default class ProjectListComponent extends Component {
     testFee(record){
         let contractBodyString=record.contract.contractBody;
         let contractBody = contractBodyString?JSON.parse(contractBodyString):{};
-        return contractBody.testFee?contractBody.testFee:"未填写";
+        return contractBody.testFee?"¥"+contractBody.testFee:"未填写";
     }
 
     render() {
