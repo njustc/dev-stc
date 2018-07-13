@@ -31,9 +31,11 @@ public class ContractServiceTest {
     private User customer2;
 
 
-
     @Autowired
     private ContractService contractService;
+
+    @Autowired
+    private ProjectService projectService;
 
     @Autowired
     private UserRepository userRepository;
@@ -49,7 +51,7 @@ public class ContractServiceTest {
     public void test_queryContracts(){
         System.out.println("开始测试工作人员获取合同");
         try {
-            JSON result = contractService.queryContracts(marketUser);
+            JSON result = contractService.queryContracts(tester);
 
             Assert.assertNotNull("工作人员 - 合同查询失败",result);
 
@@ -60,7 +62,7 @@ public class ContractServiceTest {
         }
         System.out.println("开始测试用户获取合同");
         try {
-            JSON result = contractService.queryContracts(customer1);
+            JSON result = contractService.queryContracts(tester);
 
             Assert.assertNotNull("用户 - 查询失败",result);
 
@@ -92,6 +94,12 @@ public class ContractServiceTest {
             Assert.assertNotNull("通过ID合同查询失败",jsonContract);
             System.out.println(jsonContract);
 
+            //test_querycnotractByProject
+            System.out.println("=====通过工程查询该合同=====");
+            JSON jsonConsign_pro = contractService.queryContractsByProject(pro_id);
+            Assert.assertNotNull("通过工程查询委托失败",jsonConsign_pro);
+            System.out.println(jsonConsign_pro);
+
             //test_editcontract
             System.out.println("=====编辑该合同=====");
             String edit_object = "contractBody";
@@ -103,7 +111,7 @@ public class ContractServiceTest {
 
             //test_deletecontract
             System.out.println("=====删除该合同=====");
-            contractService.deleteContract(jsonContract);
+            contractService.deleteContract(jsonResult);
             try {
                 JSONObject jsonDel = contractService.queryContractByID(id);
                 Assert.assertNull("委托删除失败", jsonDel);

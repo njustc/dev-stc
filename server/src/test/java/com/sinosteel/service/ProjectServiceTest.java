@@ -16,6 +16,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.transaction.Transactional;
 
+/**
+ * @author Lumpy
+ */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
 @Transactional
