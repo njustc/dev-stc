@@ -17,7 +17,19 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * @author LBW & SQW
+ * {@code ConsignService} It's a Consign Service
+ *
+ *
+ * <p> Including function: query consigns by users or programmers, query cosigns by Project ID,
+ * query consign by Consign ID, edit  consign , add consigns, delete consigns</p>
+ *
+ *
+ * @author LBW
+ * @author SQW
+ * @since 2018/7/14
+ * @version 1.0
+ *
+ *
  */
 
 @Service
@@ -32,7 +44,22 @@ public class ConsignService extends BaseService<Consign> {
     @Autowired
     private ProjectRepository projectRepository;
 
-
+    /**
+     *通过用户查询订委托
+     *
+     * <p>查询委托需要传入用户身份User</p>
+     *
+     * <p><pre>{@code
+     * Todo:演示如何使用该接口
+     *}
+     * </pre></p>
+     *
+     * @param user 用户信息
+     * @return 以JSON形式返回查询结果
+     * @throws Exception 抛出异常
+     *
+     *
+     */
 
     public JSON queryConsigns(User user) throws Exception {
         if (user != null)
@@ -60,6 +87,16 @@ public class ConsignService extends BaseService<Consign> {
         }
     }
 
+    /**
+     * 通过委托所属projectID查询委托
+     *
+     * <p>查询委托需要传入工程ID projectID</p>
+     *
+     * @param projectID 以String形式传入工程ID
+     * @return 以JSON形式返回查询结果
+     * @throws Exception 抛出异常
+     */
+
     public JSON queryConsignsByProject(String projectID) throws Exception {
         Project project = projectRepository.findById(projectID);
         if (project == null) {
@@ -78,7 +115,19 @@ public class ConsignService extends BaseService<Consign> {
         return JSON.parseObject(JSONObject.toJSONString(consign));
     }
 
-    //更新委托
+    /**
+     * 对委托内容进行编辑
+     *
+     * <p>编辑委托内容需要传入修改内容,上传的文件以及用户信息</p>
+     *
+     *
+     * @param params 更新内容
+     * @param files 文件上传
+     * @param user 用户信息
+     * @return 以JSONObject形式返回委托状态的更新以及更新后的委托
+     * @throws Exception
+     */
+
     public JSONObject editConsign(JSONObject params, List<MultipartFile> files, User user) throws Exception
     {
         Consign tempConsign = JSONObject.toJavaObject(params, Consign.class);
@@ -95,7 +144,17 @@ public class ConsignService extends BaseService<Consign> {
         return processConsign(consign);
     }
 
-    //增加委托
+    /**
+     * 新增一个委托
+     *
+     * <p>新增委托需要传入创建的对象,上传文件以及用户信息</p>
+     *
+     * @param params 新创建的对象
+     * @param files 上传文件
+     * @param user 用户信息
+     * @return 以JSONObject形式返回新增的委托以及委托状态的更新
+     * @throws Exception
+     */
     public JSONObject addConsign(JSONObject params,List<MultipartFile> files,User user) throws Exception {
 
         String uid=UUID.randomUUID().toString();
@@ -114,7 +173,15 @@ public class ConsignService extends BaseService<Consign> {
         return processConsign(consign);
     }
 
-    //删除委托（不删除相关委托文件?）
+    /**
+     * 对委托进行删除
+     *
+     * <p>删除委托需要传入相应的委托信息</p>
+     *
+     *
+     * @param params 待删除委托信息
+     * @throws Exception 若传入的委托信息不存在则抛出异常
+     */
 
     public void deleteConsign(JSONObject params) throws Exception
     {
@@ -127,7 +194,15 @@ public class ConsignService extends BaseService<Consign> {
     }
 
 
-    //增加委托状态
+    /**
+     * 增加委托状态
+     *
+     * <p>增加委托状态应传入该委托信息</p>
+     *
+     * @param consign 委托信息
+     * @return 以JSONObject形式返回更新状态后委托信息以及委托信息
+     * @throws Exception
+     */
     JSONObject processConsign(Consign consign) throws Exception {
         JSONObject processState = processInstanceService.queryProcessState(consign.getProcessInstanceID());
 
@@ -137,6 +212,13 @@ public class ConsignService extends BaseService<Consign> {
 
     }
 
+    /**
+     * <p>添加委托状态</p>
+     *
+     * @param consigns 委托信息
+     * @return 以JSONArray状态返回状态更新后的委托
+     * @throws Exception
+     */
     JSONArray processConsigns(List<Consign> consigns) throws Exception {
         JSONArray resultArray = new JSONArray();
         for (Consign consign: consigns) {
