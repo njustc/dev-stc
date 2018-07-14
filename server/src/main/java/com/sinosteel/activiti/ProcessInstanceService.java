@@ -12,6 +12,10 @@ import springfox.documentation.spring.web.json.Json;
 
 import java.util.List;
 
+/**
+ * 定义了流程实例各种操作的接口.
+ * @author TC
+ */
 @Service
 public class ProcessInstanceService {
 /*    @Autowired
@@ -19,39 +23,79 @@ public class ProcessInstanceService {
     @Autowired
     private TCProcessEngine TCProcessEngine;
 
-    /*开启一个委托实例*/
+
+    /**
+     * 开启一个委托实例
+     * @param params json对象
+     * @param user 创建实例的用户
+     * @return 以String形式返回流程实例的ID
+     * @throws Exception
+     */
     public String createConsignProcess(JSONObject params, User user)throws Exception
     {
         Consign consign = JSONObject.toJavaObject(params, Consign.class);
        // return baseActiviti.consignActiviti.createConsignProcess(consign.getId(), user.getId());
         return TCProcessEngine.createConsignProcess(consign.getId(),user.getId());
     }
-    /*开启一个合同实例*/
+
+    /**
+     * 开启一个合同实例
+     * @param params json对象
+     * @param user 创建实例的用户
+     * @return 以String形式返回流程实例的ID
+     * @throws Exception
+     */
     public String createContractProcess(JSONObject params, User user) throws Exception{
         Contract contract = JSONObject.toJavaObject(params, Contract.class);
         //return baseActiviti.contractActiviti.createContractProcess(contract.getId(), user.getId(),"W0");
         return TCProcessEngine.createContractProcess(contract.getId(),user.getId());
     }
 
-    /*开启一个测试方案*/
+    /**
+     * 开启一个测试方案
+     * @param params json对象
+     * @param user 创建实例的用户
+     * @return 以String形式返回流程实例的ID
+     * @throws Exception
+     */
     public String createTestPlanProcess(JSONObject params, User user) throws Exception{
         //TestCase testCase = JSONObject.toJavaObject(params, TestCase.class);
         //return baseActiviti.contractActiviti.createContractProcess(contract.getId(), user.getId(),"W0");
         return TCProcessEngine.createTestplanProcess();
     }
-    /*开启一个测试报告*/
+
+    /**
+     * 开启一个测试报告
+     * @param params json对象
+     * @param user 创建实例的用户
+     * @return 以String形式返回流程实例的ID
+     * @throws Exception
+     */
     public String createTestReportProcess(JSONObject params, User user) throws Exception{
         //TestReport testReport = JSONObject.toJavaObject(params, TestReport.class);
         //return baseActiviti.contractActiviti.createContractProcess(contract.getId(), user.getId(),"W0");
         return TCProcessEngine.createTestreportProcess(user.getId());
     }
-    /*更新具体流程实例状态*/
+
+    /**
+     * 更新具体流程实例状态
+     * @param processInstanceID 流程实例的ID
+     * @param request 要执行的操作、请求
+     * @return 对象在流程中的状态
+     * @throws Exception
+     */
     public JSONObject updateProcessState(String processInstanceID, Request request) throws Exception {
         //baseActiviti.updateProcessInstanceState(processInstanceID,request);
         TCProcessEngine.updateProcess(processInstanceID,request);
         return queryProcessState(processInstanceID);
     }
-    /*查询具体流程实例状态*/
+
+    /**
+     * 查询具体流程实例状态
+     * @param processInstanceID 流程实例的ID
+     * @return json对象
+     * @throws Exception
+     */
     public JSONObject queryProcessState(String processInstanceID) throws Exception {
         String state = TCProcessEngine.getProcessState(processInstanceID);
         List<String> operation = TCProcessEngine.getUserOperation(processInstanceID);
@@ -64,7 +108,13 @@ public class ProcessInstanceService {
         return queryResultJson;
     }
 
-    /*获取当前task的用户权限*/
+
+    /**
+     * 获取当前task的用户权限
+     * @param processInstanceID 流程实例的ID
+     * @return json对象
+     * @throws Exception
+     */
     public JSONObject getUserOperation(String processInstanceID) throws Exception {
         List<String> operation = TCProcessEngine.getUserOperation(processInstanceID);
         JSONObject userOperationJson = new JSONObject();
@@ -73,7 +123,13 @@ public class ProcessInstanceService {
         return userOperationJson;
     }
 
-    /*查询具体流程实例的历史任务信息*/
+
+    /**
+     * 查询具体流程实例的历史任务信息
+     * @param processInstanceID 流程实例的ID
+     * @return json对象
+     * @throws Exception
+     */
     public JSONObject getHistoricTasks(String processInstanceID) throws Exception {
         List<String> operation = TCProcessEngine.queryHistoricTask(processInstanceID);
         JSONObject historicTaskJson = new JSONObject();
@@ -82,7 +138,13 @@ public class ProcessInstanceService {
         return historicTaskJson;
     }
 
-    /*获取当前task的用户类型*/
+
+    /**
+     * 获取当前task的用户类型
+     * @param processInstanceID 流程实例的ID
+     * @return json对象
+     * @throws Exception
+     */
     public JSONObject getUserType(String processInstanceID) throws Exception{
         String userType=TCProcessEngine.getTaskAssignee(processInstanceID);
         JSONObject getUserTypeJson=new JSONObject();
@@ -91,7 +153,13 @@ public class ProcessInstanceService {
         return getUserTypeJson;
     }
 
-    /*获取用户评论*/
+
+    /**
+     * 获取用户意见
+     * @param processInstanceID 流程实例的ID
+     * @return json对象
+     * @throws Exception
+     */
    public JSONObject getComments(String processInstanceID) throws Exception
     {
         List<String> formProperties=TCProcessEngine.getComments(processInstanceID);
