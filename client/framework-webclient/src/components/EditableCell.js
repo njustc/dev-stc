@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import {Icon, Input} from "antd";
 
+/**
+ * tobe included
+ */
 export class EditableCell extends Component {
     state = {
         value: this.props.value,

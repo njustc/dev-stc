@@ -10,6 +10,14 @@ const initialState = {
     problemsMap: { },
 };
 
+/**
+ *
+ * @param state
+ * @param action
+ * @returns {*}
+ * @constructor
+ */
+
 export const TestProblemReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_LIST:

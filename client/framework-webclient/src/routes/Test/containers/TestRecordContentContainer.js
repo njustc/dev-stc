@@ -5,6 +5,12 @@ import {connect} from "react-redux";
 import {getTestRecord, putTestRecordState, updateTestRecord} from "../../../services/TestRecordService";
 import {STATUS} from "../../../services/common";
 /*TODO:表单内容和按钮的可视及禁用情况*/
+/**
+ * this is a test record container
+ * @param state
+ * @param ownProps
+ * @returns {{testRecordData: *, values: {}, buttonsDisabled: Array}}
+ */
 const mapStateToProps = (state, ownProps) => {
     // debugger;
     const authData = JSON.parse(sessionStorage.getItem('authData'));

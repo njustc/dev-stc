@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * @author SongJunju
+ * @author SongJunju && FW
  */
 
 @Entity
