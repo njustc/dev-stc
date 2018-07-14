@@ -278,7 +278,7 @@ export default class ProjectContentComponent extends Component {
                                     <br/>
                                     <div>流程创建时间：{this.props.projectData.createdTime}</div>
                                     <br/>
-                                    <div>项目价格：¥2333</div>
+                                    <div>项目价格：¥10000</div>
                                     {/*<br/>*/}
                                     {/*<div>备注：感谢曹老板指导,给曹老板打call</div>*/}
                                </Card>
