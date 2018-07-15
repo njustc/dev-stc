@@ -45,8 +45,10 @@ public class ContractService extends BaseService<Contract> {
      * 通过用户查询合同
      * 
      * <p>查询合同需要传入用户身份信息User</p>
-     * 
-     * 
+     * <p>
+     *  根据传入User身份进行判断,如果User身份是普通客户,则返回客户名下的所有合同信息;
+     *  如果User身份是工作人员,则调用user.getContracts返回所有的合同信息
+     *</p>
      * @param user 用户信息
      * @return 以JSON形式返回查询结果
      * @throws Exception 抛出异常
@@ -67,10 +69,16 @@ public class ContractService extends BaseService<Contract> {
     }
 
     /**
-     * 通过合同所属Poject ID查询合同
+     * 通过合同所属Project ID查询合同
      * 
      * <p>查询合同需要传入工程ID project ID</p>
-     * 
+     *<p>
+     * 传入工程ID后会首先调用 projectRepository.findById 对该合同对应的工程project进行查找,
+     * 若该工程ID不属于任何已存在的工程,则会抛出异常,返回字段"can't find project by id : projectID";
+     * 若存在,则调用project.getContract 检查该工程是否有合同与其对应,
+     * 若无法找到,则抛出异常,返回字段"can't find contract with project:  projectID".
+     * 否则调用processContract更新合同状态,并最终返回工程ID为projectID的工程对应的合同信息
+     *</p>
      * @param projectID 以String形式传入工程ID
      * @return 以JSON形式返回查询结果
      * @throws Exception 抛出异常
@@ -90,7 +98,11 @@ public class ContractService extends BaseService<Contract> {
      * 通过合同ID查询合同
      * 
      * <p>通过合同ID查询合同需要传入合同ID</p>
-     * 
+     *<p>
+     *  传入合同ID后,首先调用contractRepository.findById 对合同ID进行查找,
+     *  并对返回结果进行检查,若返回值为空,则抛出异常,并返回错误信息"Not Found",
+     *  否则以JSONObject格式返回查询得到的合同信息.
+     *</p>
      * @param id 以String形式传入合同ID
      * @return 以JSONObject形式返回合同ID
      * @throws Exception 抛出异常
@@ -108,7 +120,14 @@ public class ContractService extends BaseService<Contract> {
      * 对合同内容进行编辑
      *
      * <p>编辑合同内容需要传入修改内容,上传的文件以及用户信息</p>
+     *<p>传入参数后首先将JSONObject形式的params转换为JavaObject,
+     * 并提取出合同id以调用this.findEntityById检测该合同是否存在,
+     * 若不存在,则抛出异常,返回错误信息"Not found",
+     * 若该合同存在,则调用baseService类中的updateEntity函数修改合同内容Contractation
+     * 之后调用contractRepository.findById获取该合同信息
+     * 最终调用processContract更新合同状态,并返回编辑完成后的合同信息
      *
+     *</p>
      *
      * @param params 更新内容
      * @param files 文件上传
@@ -135,7 +154,18 @@ public class ContractService extends BaseService<Contract> {
      * 新增一个合同
      *
      * <p>新增合同需要传入创建的对象,上传文件以及用户信息</p>
+     *<p>首先通过随机数生成来生成uid,
+     * 并调用projectRepository.findById 检测传入的工程ID是否存在,
+     * 若不存在则抛出异常,返回错误信息"Can't find project with ID: project ID"
+     * 若存在则将获取该ID对应的工程信息
+     * 并将JSONObject形式的params转换为JavaObject,将params中的数据存入contract中,
+     * 将uid作为新合同的contract ID,传入的用户信息user作为新合同的持有者User
+     * 调用processInstanceService.createContractProcess设置新合同的流程实例ID
+     * 调用BaseService类中的saveEntity将该新合同存入数据库
+     * 最后调用processContract更新合同状态,并返回添加完成后的合同信息
      *
+     *</p>
+     * @param projectID 对应的工程ID
      * @param params 新创建的对象
      * @param files 上传文件
      * @param user 用户信息
@@ -175,7 +205,11 @@ public class ContractService extends BaseService<Contract> {
      * 对合同进行删除
      *
      * <p>删除合同需要传入相应的合同信息</p>
-     *
+     * <p>首先提取出待删除合同的Contract ID,
+     * 并调用contractRepository.findById检测该合同是否存在
+     * 若返回值为NULL,则抛出异常,返回错误信息"Can't find contract with id: id"
+     * 若返回值不为空,则调用BaseService类中的deleteEntity删除该合同
+     * </p>
      *
      * @param params 待删除合同信息
      * @throws Exception 若传入的合同信息不存在则抛出异常
