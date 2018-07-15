@@ -86,7 +86,7 @@ public class TestReportService extends BaseService<TestReport>{
      * 若该工程ID不属于任何已存在的工程,则会抛出异常,返回字段"can't find project by id : projectID";
      * 若存在,则调用project.getTestReport 检查该工程是否有测试报告与其对应,
      * 若无法找到,则抛出异常,返回字段"can't find testReports with project:  projectID".
-     * 否则调用processTestReport更新测试报告状态,并最终返回工程ID为projectID的工程对应的测试报告信息
+     * 否则返回工程ID为projectID的工程对应的测试报告信息
      *</p>
      * @param projectID 以String形式传入工程ID
      * @return 以JSON形式返回查询结果
@@ -135,7 +135,7 @@ public class TestReportService extends BaseService<TestReport>{
      * 若不存在,则抛出异常,返回错误信息"Not found",
      * 若该测试报告存在,则调用baseService类中的updateEntity函数修改测试报告内容body
      * 之后调用testReportRepository.findById获取该测试报告信息
-     * 最终调用processTestReport更新测试报告状态,并返回编辑完成后的测试报告信息
+     * 最终返回编辑完成后的测试报告信息
      *
      *</p>
      *
@@ -172,7 +172,7 @@ public class TestReportService extends BaseService<TestReport>{
      * 将uid作为新测试报告的testReport ID,传入的用户信息user作为新测试报告的持有者User
      * 调用processInstanceService.createTestReportProcess设置新测试报告的流程实例ID
      * 调用BaseService类中的saveEntity将该新测试报告存入数据库
-     * 最后调用processTestReport更新测试报告状态,并返回添加完成后的测试报告信息
+     * 最后返回添加完成后的测试报告信息
      *
      *</p>
      * @param projectID 对应的工程ID

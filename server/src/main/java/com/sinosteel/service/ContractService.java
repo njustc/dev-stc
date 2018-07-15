@@ -43,7 +43,7 @@ public class ContractService extends BaseService<Contract> {
 
     /**
      * 通过用户查询合同
-     * 
+     *
      * <p>查询合同需要传入用户身份信息User</p>
      * <p>
      *  根据传入User身份进行判断,如果User身份是普通客户,则返回客户名下的所有合同信息;
@@ -70,7 +70,7 @@ public class ContractService extends BaseService<Contract> {
 
     /**
      * 通过合同所属Project ID查询合同
-     * 
+     *
      * <p>查询合同需要传入工程ID project ID</p>
      *<p>
      * 传入工程ID后会首先调用 projectRepository.findById 对该合同对应的工程project进行查找,
@@ -96,17 +96,18 @@ public class ContractService extends BaseService<Contract> {
 
     /**
      * 通过合同ID查询合同
-     * 
+     *
      * <p>通过合同ID查询合同需要传入合同ID</p>
      *<p>
      *  传入合同ID后,首先调用contractRepository.findById 对合同ID进行查找,
      *  并对返回结果进行检查,若返回值为空,则抛出异常,并返回错误信息"Not Found",
      *  否则以JSONObject格式返回查询得到的合同信息.
      *</p>
+     *
      * @param id 以String形式传入合同ID
      * @return 以JSONObject形式返回合同ID
      * @throws Exception 抛出异常
-     * 
+     *
      */
     public JSONObject queryContractByID(String id) throws Exception{
         Contract contract = contractRepository.findById(id);
@@ -126,7 +127,6 @@ public class ContractService extends BaseService<Contract> {
      * 若该合同存在,则调用baseService类中的updateEntity函数修改合同内容Contractation
      * 之后调用contractRepository.findById获取该合同信息
      * 最终调用processContract更新合同状态,并返回编辑完成后的合同信息
-     *
      *</p>
      *
      * @param params 更新内容
@@ -162,7 +162,7 @@ public class ContractService extends BaseService<Contract> {
      * 将uid作为新合同的contract ID,传入的用户信息user作为新合同的持有者User
      * 调用processInstanceService.createContractProcess设置新合同的流程实例ID
      * 调用BaseService类中的saveEntity将该新合同存入数据库
-     * 最后调用processContract更新合同状态,并返回添加完成后的合同信息
+     * 最后返回添加完成后的合同信息
      *
      *</p>
      * @param projectID 对应的工程ID
@@ -208,7 +208,7 @@ public class ContractService extends BaseService<Contract> {
      * <p>首先提取出待删除合同的Contract ID,
      * 并调用contractRepository.findById检测该合同是否存在
      * 若返回值为NULL,则抛出异常,返回错误信息"Can't find contract with id: id"
-     * 若返回值不为空,则调用BaseService类中的deleteEntity删除该合同
+     * 若返回值不为空,则调用project.setContract置为NULL,以删除该合同.
      * </p>
      *
      * @param params 待删除合同信息

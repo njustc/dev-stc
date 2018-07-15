@@ -97,7 +97,7 @@ public class ConsignService extends BaseService<Consign> {
      * 若该工程ID不属于任何已存在的工程,则会抛出异常,返回字段"can't find project by id : projectID";
      * 若存在,则调用project.getConsign 检查该工程是否有委托与其对应,
      * 若无法找到,则抛出异常,返回字段"can't find consign with project:  projectID".
-     * 否则调用processConsign更新委托状态,并最终返回工程ID为projectID的工程对应的委托信息
+     * 否则返回工程ID为projectID的工程对应的委托信息
      *</p>
      *
      * @param projectID 以String形式传入工程ID
@@ -146,7 +146,7 @@ public class ConsignService extends BaseService<Consign> {
      * 若不存在,则抛出异常,返回错误信息"Not found",
      * 若该委托存在,则调用baseService类中的updateEntity函数修改委托内容Consignation
      * 之后调用consignRepository.findById获取该委托信息
-     * 最终调用processConsign更新委托状态,并返回编辑完成后的委托信息
+     * 最终返回编辑完成后的委托信息
      *
      *</p>
      *
@@ -181,7 +181,7 @@ public class ConsignService extends BaseService<Consign> {
      * 将uid作为新委托的consign ID,传入的用户信息user作为新委托的持有者User
      * 调用processInstanceService.createConsignProcess设置新委托的流程实例ID
      * 调用BaseService类中的saveEntity将该新委托存入数据库
-     * 最后调用processConsign更新委托状态,并返回添加完成后的委托信息
+     * 最后返回添加完成后的委托信息
      *
      *</p>
      * @param params 新创建的对象
