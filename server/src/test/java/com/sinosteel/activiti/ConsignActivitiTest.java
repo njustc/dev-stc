@@ -20,9 +20,36 @@ import springfox.documentation.spring.web.json.Json;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * @author ZWH
+ * 该类用来测试委托流程实例在调用接口后状态变化情况
+ * <table border="1">
+ *     <tr>
+ *         <th>执行操作</th>
+ *         <th>预期状态</th>
+ *     </tr>
+ *     <tr>
+ *         <td>查询委托状态</td>
+ *         <td>&nbsp;</td>
+ *     </tr>
+ *     <tr>
+ *         <td>customer1提交委托</td>
+ *         <td>TobeReview</td>
+ *     </tr>
+ *     <tr>
+ *         <td>市场部人员否决委托</td>
+ *         <td>TobeSubmit</td>
+ *     </tr>
+ *     <tr>
+ *         <td>customer1再次委托</td>
+ *         <td>TobeReview</td>
+ *     </tr>
+ *     <tr>
+ *         <td>市场部人员通过委托</td>
+ *         <td>Finished</td>
+ *     </tr>
+ * <table>
+ *
+ * @author zwh
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
 public class ConsignActivitiTest {
