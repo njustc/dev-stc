@@ -1,4 +1,7 @@
 import {STATUS} from "SERVICES/common";
+/**@module utils/fetchUtil
+ *
+ */
 /**
  * 实现向后台发送GET请求
  * @param url username、clientDigest之前的url部分
@@ -6,7 +9,7 @@ import {STATUS} from "SERVICES/common";
  * @param urlParams uesename、clientDigest之后的url部分（不一定都有）
  * @return 已传入参数的sysFetch方法
  */
-export const httpGet = (url, callback, urlParams) => {
+const httpGet = (url, callback, urlParams) => {
     return sysFetch('GET', url, null, callback, urlParams);
 };
 
@@ -17,7 +20,7 @@ export const httpGet = (url, callback, urlParams) => {
  * @param {*} callback 回调内容为POST请求传输结果的状态，可能为SUCCESS或FAILURE
  * @param {*} urlParams uesename、clientDigest之后的url部分（不一定都有）
  */
-export const httpPost = (url, params, callback, urlParams) => {
+const httpPost = (url, params, callback, urlParams) => {
     return sysFetch('POST', url, params, callback, urlParams);
 };
 
@@ -28,7 +31,7 @@ export const httpPost = (url, params, callback, urlParams) => {
  * @param {*} callback 回调内容为POST请求传输结果的状态，可能为SUCCESS或FAILURE
  * @param {*} urlParams uesename、clientDigest之后的url部分（不一定都有）
  */
-export const httpPut = (url, params, callback, urlParams) => {
+const httpPut = (url, params, callback, urlParams) => {
     return sysFetch('PUT', url, params, callback, urlParams);
 };
 
@@ -39,7 +42,7 @@ export const httpPut = (url, params, callback, urlParams) => {
  * @param {*} callback 回调内容为POST请求传输结果的状态，可能为SUCCESS或FAILURE
  * @param {*} urlParams uesename、clientDigest之后的url部分（不一定都有）
  */
-export const httpDelete = (url, params, callback, urlParams) => {
+const httpDelete = (url, params, callback, urlParams) => {
     return sysFetch('DELETE', url, params, callback, urlParams);
 };
 
@@ -105,3 +108,5 @@ const sysFetch = (Method, url, params, callback, urlParams) => {
         callback(result);
     })
 };
+
+export {httpGet,httpDelete,httpPost,httpPut}
