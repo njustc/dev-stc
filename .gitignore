@@ -1,6 +1,9 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
 
+### WEB-OUT ###
+/web-out/
+
 ### STS ###
 .apt_generated
 .classpath
