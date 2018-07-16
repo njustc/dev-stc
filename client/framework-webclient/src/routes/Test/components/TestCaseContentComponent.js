@@ -1,6 +1,6 @@
 /*测试用例*/
 import React, {Component, PropTypes} from 'react';
-import {Form, message, Table, Card, Collapse, Badge, Dropdown, Menu, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
+import {Form, message, Table, Card, Collapse, Badge, Divider, Modal, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
 import {EditableCell} from "COMPONENTS/EditableCell";
 import {getProjectList} from "SERVICES/ProjectService";
 import {newTestCase} from "SERVICES/TestCaseService";
@@ -57,20 +57,169 @@ class TestCaseContentComponent extends Component {
             marginBottom:'10pt',
         };
 
+        const customPanelStyle = {
+            background: '#fafafa',
+            borderRadius: 4,
+            marginBottom: 0,
+            border: 0,
+            overflow: 'hidden',
+        };
+
         return (
             <div>
                 <Row style={rowStyle}>
                     <Col span={3}><b>设计说明</b></Col>
-                    <Col span={21}><p style={{ margin: 0 }}>{record.designNotes}</p></Col>
+                    <Col span={21}>
+                        <EditableCell
+                            value={record.designNotes}
+                            onChange={this.onCellChange(record.id, 'designNotes')}
+                        />
+                    </Col>
                 </Row>
                 <Row style={rowStyle}>
                     <Col span={3}><b>有关的规约说明</b></Col>
-                    <Col span={21}><p style={{ margin: 0 }}>{record.statute}</p></Col>
+                    <Col span={21}>
+                        <EditableCell
+                            value={record.statute}
+                            onChange={this.onCellChange(record.id, 'statute')}
+                        />
+                    </Col>
                 </Row>
                 <Row style={rowStyle}>
                     <Col span={3}><b>依据</b></Col>
-                    <Col span={21}><p style={{ margin: 0 }}>{record.accordance}</p></Col>
+                    <Col span={21}>
+                        <EditableCell
+                            value={record.accordance}
+                            onChange={this.onCellChange(record.id, 'accordance')}
+                        />
+                    </Col>
                 </Row>
+                <Row style={rowStyle}>
+                    <Col span={3}><b>前提条件</b></Col>
+                    <Col span={21}>
+                        <EditableCell
+                            value={record.prerequisites}
+                            onChange={this.onCellChange(record.id, 'prerequisites')}
+                        />
+                    </Col>
+                </Row>
+                <Row style={rowStyle}>
+                    <Col span={3}><b>执行过程</b></Col>
+                    <Col span={21}>
+                        <EditableCell
+                            value={record.process}
+                            onChange={this.onCellChange(record.id, 'process')}
+                        />
+                    </Col>
+                </Row>
+                <Row style={rowStyle}>
+                    <Col span={3}><b>预期结果</b></Col>
+                    <Col span={21}>
+                        <EditableCell
+                            value={record.expectedResult}
+                            onChange={this.onCellChange(record.id, 'expectedResult')}
+                        />
+                    </Col>
+                </Row>
+
+                <Collapse bordered={false}>
+                    <Panel
+                        header={<Button><a href="javascript:;">添加/修改测试记录</a><Icon type="edit" /></Button>}
+                        key="1"
+                        showArrow={false}
+                        style={customPanelStyle}
+                    >
+                        <Row style={rowStyle}>
+                            <Col span={3}><b>实际结果</b></Col>
+                            <Col span={21}>
+                                <EditableCell
+                                    value={record.result}
+                                    onChange={this.onCellChange(record.id, 'result')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row style={rowStyle}>
+                            <Col span={3}><b>执行者</b></Col>
+                            <Col span={21}>
+                                <EditableCell
+                                    value={record.executor}
+                                    onChange={this.onCellChange(record.id, 'executor')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row style={rowStyle}>
+                            <Col span={3}><b>确认人</b></Col>
+                            <Col span={21}>
+                                <EditableCell
+                                    value={record.confirmor}
+                                    onChange={this.onCellChange(record.id, 'confirmor')}
+                                />
+                            </Col>
+                        </Row>
+                    </Panel>
+                    <Panel
+                        header={<Button><a href="javascript:;">添加/修改测试问题</a><Icon type="edit" /></Button>}
+                        key="2"
+                        showArrow={false}
+                        style={customPanelStyle}
+                    >
+                        <Row style={rowStyle}>
+                            <Col span={5}><b>问题/缺陷简要描述</b></Col>
+                            <Col span={19}>
+                                <EditableCell
+                                    value={record.description}
+                                    onChange={this.onCellChange(record.id, 'description')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row style={rowStyle}>
+                            <Col span={5}><b>对应需求条目</b></Col>
+                            <Col span={19}>
+                                <EditableCell
+                                    value={record.requirementIndex}
+                                    onChange={this.onCellChange(record.id, 'requirementIndex')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row style={rowStyle}>
+                            <Col span={5}><b>发现缺陷的初始条件</b></Col>
+                            <Col span={19}>
+                                <EditableCell
+                                    value={record.initialConditions}
+                                    onChange={this.onCellChange(record.id, 'initialConditions')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row style={rowStyle}>
+                            <Col span={5}><b>发现缺陷的具体操作路径</b></Col>
+                            <Col span={19}>
+                                <EditableCell
+                                    value={record.operationPath}
+                                    onChange={this.onCellChange(record.id, 'operationPath')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row style={rowStyle}>
+                            <Col span={5}><b>发现时间</b></Col>
+                            <Col span={19}>
+                                <EditableCell
+                                    value={record.discoveryTime}
+                                    onChange={this.onCellChange(record.id, 'discoveryTime')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row style={rowStyle}>
+                            <Col span={5}><b>修改建议</b></Col>
+                            <Col span={19}>
+                                <EditableCell
+                                    value={record.advice}
+                                    onChange={this.onCellChange(record.id, 'advice')}
+                                />
+                            </Col>
+                        </Row>
+                    </Panel>
+                </Collapse>
+
             </div>
         );
     };
@@ -115,16 +264,35 @@ class TestCaseContentComponent extends Component {
      {
         title:"与本测试用例有关的规约说明",
         dataIndex:"statute",
-    },*/
+    },
         {
         title:"执行过程",
         dataIndex:"process",
+        render: (text, record) => (
+            <EditableCell
+                value={text}
+                onChange={this.onCellChange(record.id, 'process')}
+            />
+        ),
     }, {
         title:"预期结果",
         dataIndex:"expectedResult",
-    }, {
+        render: (text, record) => (
+            <EditableCell
+                value={text}
+                onChange={this.onCellChange(record.id, 'expectedResult')}
+            />
+        ),
+    }, */
+        {
         title:"设计者",
         dataIndex:"designer",
+        render: (text, record) => (
+            <EditableCell
+                value={text}
+                onChange={this.onCellChange(record.id, 'designer')}
+            />
+        ),
     }, {
         title:"时间",
         dataIndex:"createdTime",
@@ -133,9 +301,16 @@ class TestCaseContentComponent extends Component {
         dataIndex:"action",
         render: (text, record) => {
         return (
-            <Popconfirm title="确认删除此测试用例吗？" onConfirm={() => this.onDelete(record.id)}>
-              <a href="javascript:;">删除</a>
-            </Popconfirm>
+            <div>
+                <Popconfirm title="确认删除此测试用例吗？" onConfirm={() => this.onDelete(record.id)}>
+                    <a href="javascript:;">删除</a>
+                </Popconfirm>
+                {/*<Divider type="vertical"/>*/}
+                {/*<a href="javascript:void(0);" onClick={this.addTestRecord(record.id)}>测试记录</a>*/}
+                {/*<Divider type="vertical"/>*/}
+                {/*<a href="javascript:void(0);" onClick={this.addTestProblem(record.id)}>测试问题</a>*/}
+            </div>
+
         );
       },
     },/*{
@@ -143,6 +318,14 @@ class TestCaseContentComponent extends Component {
         dataIndex:"accordance",
     }*/
     ];
+
+    addTestRecord = (id) => {
+
+    }
+
+    addTestProblem = (id) => {
+
+    }
 
     onCellChange = (id, dataIndex) => {
         return (value) => {
@@ -189,7 +372,6 @@ class TestCaseContentComponent extends Component {
             });
         });
     }
-
 
     render(){
         const { getFieldDecorator } = this.props.form;
@@ -281,7 +463,6 @@ class TestCaseContentComponent extends Component {
                         </div>
                     </Panel>
                 </Collapse>
-
                 <Table
                     className="components-table-demo-nested"
                     columns={this.columns}

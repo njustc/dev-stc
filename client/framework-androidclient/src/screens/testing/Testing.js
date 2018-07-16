@@ -25,7 +25,7 @@ const datas = [
     text: "测试方案书"
   },
   {
-    route:"TestCaseContentPage",
+    route:"TestCaseContentList",
     text:"测试用例表"
   },
   // {

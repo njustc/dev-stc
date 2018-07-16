@@ -93,7 +93,7 @@ export default class ProjectListComponent extends Component {
         else if(record.contract&&record.contract.state===STATE.FINISHED)
             return ( <span><Badge status={this.state2SColor(record.contract.state)} text={"测试报告"+this.state2C(record.testReport.state)} /></span>);
         else
-            return ( <span><Badge status="error" text={"测试合同待编写"} /></span>);
+            return ( <span><Badge status="processing" text={"测试合同待编写"} /></span>);
     }
 
     // projectDetails(id){
@@ -240,7 +240,7 @@ export default class ProjectListComponent extends Component {
     testFee(record){
         let contractBodyString=record.contract.contractBody;
         let contractBody = contractBodyString?JSON.parse(contractBodyString):{};
-        return contractBody.testFee?contractBody.testFee:"未填写";
+        return contractBody.testFee?"¥"+contractBody.testFee:"未填写";
     }
 
     render() {

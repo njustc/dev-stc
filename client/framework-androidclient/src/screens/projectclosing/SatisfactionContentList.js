@@ -89,7 +89,7 @@ export default class SatisfactionContentList extends Component{
         for (var i = 0; i < this.state.currentdatas.length; i++)
         {
           // console.warn("now"+this.state.currentdatas[i].id);
-          if (this.state.currentdatas[i].id==text) {
+          if (this.state.currentdatas[i].consignUnit==text) {
             this.setState({
               datas:[this.state.currentdatas[i]],
             });
@@ -112,8 +112,22 @@ export default class SatisfactionContentList extends Component{
     return index+item;
   }
 
+  getSatisfactionContentList = () => {
+    const contractBase = baseServiceAddress+'/v1/satisfactionSurvey?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
+    httpGet(contractBase,(result)=>{
+      const{status,data}=result;
+      if(status===STATUS.SUCCESS){
+        AllSatisfactionContentList=data.map(item=>{
+          const body = JSON.parse(item.body);
+          return {...item, ...body};
+        });
+        this.setState({datas: AllSatisfactionContentList});
+      }
+    });
+  };
+
   componentWillMount() {
-    getSatisfactionContentList();
+    this.getSatisfactionContentList();
 
     //this.state.datas=ConsignList;
   }
@@ -190,7 +204,7 @@ export default class SatisfactionContentList extends Component{
               >
                 <Left>
                   <Text>
-                    {data.id}
+                    {data.consignUnit}
                   </Text>
                 </Left>
                 <Right>

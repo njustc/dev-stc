@@ -91,7 +91,7 @@ export default class TestingWorkCheckTableList extends Component{
         for (var i = 0; i < this.state.currentdatas.length; i++)
         {
           // console.warn("now"+this.state.currentdatas[i].id);
-          if (this.state.currentdatas[i].id==text) {
+          if (this.state.currentdatas[i].softwareName==text) {
             this.setState({
               datas:[this.state.currentdatas[i]],
             });
@@ -114,8 +114,22 @@ export default class TestingWorkCheckTableList extends Component{
     return index+item;
   }
 
+  getTestingWorkCheckTableList = () => {
+    const contractBase = baseServiceAddress+'/v1/testWorkCheck?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
+    httpGet(contractBase,(result)=>{
+      const{status,data}=result;
+      if(status===STATUS.SUCCESS){
+        AllTestingWorkCheckTableList=data.map(item=>{
+          const body = JSON.parse(item.body);
+          return {...item, ...body};
+        });
+        this.setState({datas: AllTestingWorkCheckTableList});
+      }
+    });
+  };
+
   componentWillMount() {
-    getTestingWorkCheckTableList();
+    this.getTestingWorkCheckTableList();
 
     //this.state.datas=ConsignList;
   }
@@ -278,7 +292,7 @@ export default class TestingWorkCheckTableList extends Component{
               >
                 <Left>
                   <Text>
-                    {data.id}
+                    {data.softwareName}
                   </Text>
                 </Left>
                 <Right>

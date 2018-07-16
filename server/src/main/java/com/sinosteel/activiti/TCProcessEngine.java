@@ -45,6 +45,10 @@ public class TCProcessEngine {
     @Autowired
     private UserMapper userMapper;
 
+    /**
+     * 获取工作人员列表
+     * @return 以字符串形式返回工作人员ID
+     */
     public List<String> getWorkersList() {
         List<String> userids = userMapper.getUserIdsByRoleId("1");
         return userids;
@@ -52,10 +56,11 @@ public class TCProcessEngine {
 
     /**
      * TODO 将用户组传入流程实例 新建一个新的委托实例
-     * 
+     * 新建委托实例
      * @param consignId 委托ID
-     * @param clientId  客户ID
-     *
+     * @param clientId 客户ID
+     * @return 以String形式返回流程实例的ID
+     * @throws Exception
      */
     public String createConsignProcess(String consignId, String clientId) throws Exception {
         Map<String, Object> variables = new HashMap<String, Object>();
@@ -76,8 +81,9 @@ public class TCProcessEngine {
      * 新建一个新的合同实例
      * 
      * @param contractId 委托ID
-     * @param clientId   客户ID
-     *
+     * @param clientId 客户ID
+     * @return 以String形式返回流程实例的ID
+     * @throws Exception
      */
     public String createContractProcess(String contractId, String clientId) throws Exception {
         Map<String, Object> variables = new HashMap<String, Object>();
@@ -94,7 +100,12 @@ public class TCProcessEngine {
         return pi.getProcessInstanceId();
     }
 
-    /* 新建测试方案 */
+
+    /**
+     * 新建测试方案实例
+     * @return 以String形式返回流程实例的ID
+     * @throws Exception
+     */
     public String createTestplanProcess() throws Exception {
         Map<String, Object> variables = new HashMap<String, Object>();
         List<String> userids = this.getWorkersList();
@@ -108,7 +119,13 @@ public class TCProcessEngine {
         return pi.getProcessInstanceId();
     }
 
-    /* 新建测试报告 */
+
+    /**
+     * 新建测试报告实例
+     * @param clientId 客户ID
+     * @return 以String形式返回流程实例的ID
+     * @throws Exception
+     */
     public String createTestreportProcess(String clientId) throws Exception {
         Map<String, Object> variables = new HashMap<String, Object>();
         variables.put("ClientID", clientId);
@@ -127,7 +144,7 @@ public class TCProcessEngine {
      * 根据具体流程实例的ID，更新其状态
      * 
      * @param processInstanceId 流程实例ID
-     * @param request
+     * @param request 要执行的操作、请求
      * @throws Exception
      */
     public void updateProcess(String processInstanceId, Request request) throws Exception {
@@ -170,7 +187,13 @@ public class TCProcessEngine {
         }
     }
 
-    /* 根据具体流程实例的ID获取其在流程中的状态 */
+
+    /**
+     * 根据具体流程实例的ID获取其在流程中的状态
+     * @param processInstanceId 流程实例ID
+     * @return 以String形式返回流程实例的状态
+     * @throws Exception
+     */
     public String getProcessState(String processInstanceId) throws Exception {
         ProcessInstance pi = runtimeService.createProcessInstanceQuery().processInstanceId(processInstanceId)
                 .singleResult();
@@ -186,7 +209,13 @@ public class TCProcessEngine {
         }
     }
 
-    /* 当前task用户可执行的权限 */
+
+    /**
+     * 当前task用户可执行的权限
+     * @param processInstanceId 流程实例ID
+     * @return 以String形式返回用户可执行的操作
+     * @throws Exception
+     */
     public List<String> getUserOperation(String processInstanceId) throws Exception {
         List<String> varies = new ArrayList<String>();
         Task task = taskService.createTaskQuery().processInstanceId(processInstanceId).singleResult();
@@ -251,7 +280,13 @@ public class TCProcessEngine {
         return varies;*/
     }
 
-    /* 获取当前task的用户类型，若流程结束，返回nouser */
+
+    /**
+     * 获取当前task的用户类型，若流程结束，返回nouser
+     * @param processInstanceId 流程实例ID
+     * @return 以String形式返回用户任务的候选执行者
+     * @throws Exception
+     */
     public String getTaskAssignee(String processInstanceId) throws Exception {
         Task task = taskService.createTaskQuery().processInstanceId(processInstanceId).singleResult();
         String S = this.getProcessState(processInstanceId);
@@ -272,7 +307,13 @@ public class TCProcessEngine {
         return user;
     }
 
-    /* 查询某个流程实例的历史活动的详细信息 */
+
+    /**
+     * 查询某个流程实例的历史活动的详细信息
+     * @param processInstanceId 流程实例ID
+     * @return 以String形式返回历史任务的信息
+     * @throws Exception
+     */
     public List<String> queryHistoricTask(String processInstanceId) throws Exception {
         List<HistoricTaskInstance> hti = historyService.createHistoricTaskInstanceQuery()
                 .processInstanceId(processInstanceId).orderByHistoricTaskInstanceStartTime().asc().list();
@@ -287,6 +328,12 @@ public class TCProcessEngine {
             throw new Exception("historicList is null");
     }
 
+    /**
+     * 获取用户意见
+     * @param processInstanceId 流程实例ID
+     * @return 以String形式返回意见
+     * @throws Exception
+     */
     public List<String> getComments(String processInstanceId) throws Exception {
         List<String> list=new ArrayList<String>();
         List<HistoricVariableInstance> hviList=historyService.createHistoricVariableInstanceQuery()
@@ -312,6 +359,12 @@ public class TCProcessEngine {
     return list;
     }
 
+    /**
+     * 获取历史任务
+     * @param processInstanceId 流程实例ID
+     * @return 以String形式返回历史任务的ID
+     * @throws Exception
+     */
     public String getLastTask(String processInstanceId) throws Exception{
         List<HistoricTaskInstance> htiList=historyService.createHistoricTaskInstanceQuery().processInstanceId(processInstanceId)
                 .orderByHistoricTaskInstanceStartTime().desc().list();

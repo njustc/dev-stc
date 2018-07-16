@@ -17,6 +17,28 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * 这个类用来测试role类对应repository和role对应function；
+ * 其中role代表角色 例：市场部 .etc
+ *<table border="1">
+ *     <tr>
+ *     </tr><th>测试内容</th>
+ *     <th>对应操作</th>
+ *     <th>测试结果</th>
+ *     </tr>
+ *     <tr>
+ *         <td>从仓库获取角色</td>
+ *         <td>executeHql</td>
+ *         <td>不为空</td>
+ *          </tr>
+ *          <td>读取角色功能列表</td>
+ *         <td>getFunctions</td>
+ *         <td>（List）function不为空</td>
+ *         </tr>
+ * <table>
+ * @author FW
+ */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
 public class RoleRepositoryTests {
