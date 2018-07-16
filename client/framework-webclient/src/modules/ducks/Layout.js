@@ -5,7 +5,13 @@ const SET_STATE = "Layout/SET_STATE";
 const SET_ACTIVE_KEY = "Layout/SET_ACTIVE_KEY";
 const ADD_TAB = "Layout/ADD_TAB";
 const REMOVE_TAB = 'Layout/REMOVE_TAB';
-
+/**
+ * @module CoreLayout/LayoutState
+ */
+/**
+ * 主页面初始化状态，Tab数组为空，活跃键也为空
+ * @type {{panes: Array, activeKey: string}}
+ */
 const initialState = {
     panes: [],
     activeKey: "",
@@ -24,7 +30,13 @@ const  containsPane = (key, panes) => {
     }
     return false;
 };
-
+/**
+ * 主页面reducer
+ * @param state
+ * @param action
+ * @returns {*}
+ * @constructor
+ */
 export const LayoutReducer = (state = initialState, action) =>{
     switch(action.type) {
         case SET_ACTIVE_KEY:
@@ -71,14 +83,25 @@ export const LayoutReducer = (state = initialState, action) =>{
             return state;
     }
 };
-
+/**
+ * 设置当前活跃的键，使当前页面切换到该键值对应的页面
+ * @param activekey
+ * @returns {{type: string, payload: *}}
+ */
 export const setActiveKey = (activekey) => {
     return {
         type: SET_ACTIVE_KEY,
         payload: activekey
     }
 };
-
+/**
+ * 依据参数新增一个页面
+ * @param key 键值
+ * @param name 页面名
+ * @param component 对应组件
+ * @param props ownprops参数
+ * @returns {{type: string, payload: {key: *, name: *, component: *, props: *}}}
+ */
 export const addTabAction = (key, name, component, props) => {
     return {
         type: ADD_TAB,
@@ -90,7 +113,11 @@ export const addTabAction = (key, name, component, props) => {
         },
     }
 };
-
+/**
+ * 依据键值删除页面
+ * @param key
+ * @returns {{type: string, payload: *}}
+ */
 export const removeTabAction = (key) => {
     return {
         type: REMOVE_TAB,

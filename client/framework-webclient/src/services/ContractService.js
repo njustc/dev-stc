@@ -108,7 +108,7 @@ const getContractState = (dispatch, ProjectID, callback) => {
     },PID)
 };
 
-export const putContractState = (dispatch, processInstanceID, data, id, callback) => {
+const putContractState = (dispatch, processInstanceID, data, id, callback) => {
     httpPut(contractActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
         if (status === STATUS.SUCCESS) {
