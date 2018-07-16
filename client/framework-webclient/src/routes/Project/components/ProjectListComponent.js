@@ -10,7 +10,7 @@ const InputGroup = Input.Group;
 const Option = Select.Option;
 
 /**
- * @module Project/ListComponent
+ * @module ProjectListComponent
  */
 export default class ProjectListComponent extends Component {
     constructor(props) {
@@ -26,6 +26,9 @@ export default class ProjectListComponent extends Component {
         getProjectState: PropTypes.func,
     };
 
+    /**
+     * componentWillMount会在组件render之前执行，并且永远都只执行一次。
+     */
     componentWillMount() {
         this.props.getProjectList();
     }
@@ -109,7 +112,7 @@ export default class ProjectListComponent extends Component {
 
     /**
      * 获取并渲染项目状态
-     * @param record 被选择项目的记录
+     * @param record 被选择项目的标识
      * @returns {*} 渲染项目状态
      */
     getCurrentState(record){
@@ -129,7 +132,7 @@ export default class ProjectListComponent extends Component {
     // }
 
     /**
-     * 设置表格Table的表头
+     * 设置表格Table
      */
     columns = [{
         title:"项目编号",
@@ -172,7 +175,6 @@ export default class ProjectListComponent extends Component {
         key:"operation",
         //width: '12%',
         render: (record) => {
-            /*TODO:操作应该由后台传过来*/
             // console.log(record);//
             return (
                 <div>
@@ -193,7 +195,7 @@ export default class ProjectListComponent extends Component {
 
     /**
      * 打开项目详情页面
-     * @param record 被选择项目的记录
+     * @param record 被选择项目的标识
      * @returns {Function} 调用showContent
      */
     viewContent = (record) => () => {
@@ -202,7 +204,7 @@ export default class ProjectListComponent extends Component {
 
     /**
      * 显示取消项目提示框
-     * @param record 被选择项目的记录
+     * @param record 被选择项目的标识
      * @returns {Function}
      */
     showDeleteConfirm = (record) => () => {
@@ -253,7 +255,7 @@ export default class ProjectListComponent extends Component {
 
     /**
      * 行展开渲染
-     * @param record 被选择项目的记录
+     * @param record 被选择项目的标识
      */
     expandRow = (record) => {
         // console.log(record);//
@@ -291,7 +293,7 @@ export default class ProjectListComponent extends Component {
     }
 
     /**
-     * 绘制项目List页面，包括：页面标题、可以改变搜索选项的搜索框、项目表格
+     * 绘制项目列表页面，包括：页面标题、可以改变搜索选项的搜索框、项目表格
      */
     render() {
         return (

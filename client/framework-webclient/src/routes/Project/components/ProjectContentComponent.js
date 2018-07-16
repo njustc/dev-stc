@@ -13,7 +13,7 @@ const { TextArea } = Input;
 const { Header, Content, Footer } = Layout;
 
 /**
- * @module Project/ContentComponent
+ * @module ProjectContentComponent
  */
 
 export default class ProjectContentComponent extends Component {
@@ -302,7 +302,7 @@ export default class ProjectContentComponent extends Component {
     }
 
     /**
-     * 绘制项目详情页面，包括：页面标题，项目进度Steps，文档List，项目摘要信息，项目进度Timeline
+     * 绘制项目详情页面，包括：页面标题、项目进度Steps、文档List、项目摘要信息、项目进度Timeline
      */
     render() {
         return (

@@ -10,6 +10,10 @@ const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
 
+/**
+ * @module SatisfactionListComponent
+ */
+
 export default class SatisfactionListComponent extends Component {
     constructor(props) {
         super(props);
@@ -27,22 +31,36 @@ export default class SatisfactionListComponent extends Component {
 
     };
 
+    /**
+     * componentDidMount，（装载完成），在render之后调用
+     */
     componentDidMount() {
         this.props.getSatisfactionList();
         this.props.getProjectList();
     }
 
-    /*搜索框选项相关*/
+    /**
+     * 记录搜索框当前选项，默认项是项目编号
+     */
     state={
         selectOption:'code',
     };
 
+    /**
+     * 用户的选择操作触发改变搜索框当前选项的记录
+     * @param value 被选择的选项名称
+     * @param option 暂时没用
+     */
     onSelect = (value, option) => {
         this.setState({
             selectOption:value
         });
-    }
+    };
 
+    /**
+     * 根据搜索框选项选择搜索输入框中显示的文字
+     * @returns {string} 搜索输入框中的提示文字
+     */
     setPlaceholder = () => {
         switch (this.state.selectOption){
             // case 'id':
@@ -58,7 +76,6 @@ export default class SatisfactionListComponent extends Component {
     };
 
     viewProject = (id) => () => {
-        /*TODO:查看项目详情*/
         this.props.showProject(id);
     };
 
