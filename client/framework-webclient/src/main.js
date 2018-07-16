@@ -18,6 +18,9 @@ const MOUNT_NODE = document.getElementById('root')
 setStore(store);
 
 // 定义一个渲染方法
+/**
+ * say something
+ */
 let render = () => {
   // 将store方法注入路由器，用于管理state状态树，并获取该路由
   const routes = require('ROUTES').default(store)

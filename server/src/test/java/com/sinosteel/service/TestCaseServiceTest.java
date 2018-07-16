@@ -74,8 +74,8 @@ public class TestCaseServiceTest {
     @Test
     public void test_SE(){
         System.out.println("=====testUser 新建一个测试样例=====");
-        JSONObject TestCase = new JSONObject();
-        TestCase.put("body", "这是customer1测试中新建的一个测试样例");
+
+
 
         try {
 
@@ -86,6 +86,8 @@ public class TestCaseServiceTest {
             String consign_id = jsonConsign.getString("id");
             JSONObject jsonProject = projectService.addProject(consign_id,project,null,tester);
             String pro_id = jsonProject.getString("id");
+            JSONObject TestCase = new JSONObject();
+            TestCase.put("body", "这是customer1测试中新建的一个测试样例");
             JSONObject jsonResult = testCaseService.addTestCase(pro_id,TestCase, null,tester);
             String id = jsonResult.getString("id");
             Assert.assertNotNull("测试样例新建失败",id);

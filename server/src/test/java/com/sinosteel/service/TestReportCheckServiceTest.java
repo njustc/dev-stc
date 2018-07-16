@@ -84,7 +84,7 @@ public class TestReportCheckServiceTest {
             String consign_id = jsonConsign.getString("id");
             JSONObject jsonProject = projectService.addProject(consign_id,project,null,tester);
             String pro_id = jsonProject.getString("id");
-            JSONObject jsonResult = testReportCheckService.addTestReportCheck(pro_id,jsonProject, null, tester);
+            JSONObject jsonResult = testReportCheckService.addTestReportCheck(pro_id,TestReportCheck, null, tester);
             String id = jsonResult.getString("id");
             Assert.assertNotNull("测试报告检查新建失败",id);
             System.out.println("测试报告检查新建成功, 测试报告检查的ID为: " + id);

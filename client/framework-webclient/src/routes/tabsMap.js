@@ -5,6 +5,10 @@ import {TestCaseListView, TestRecordListView, TestProblemListView, TestPlanListV
 import {TestReportListView, TestReportCheckListView} from "./TestReport"
 import {TestWorkCheckListView, SatisfactionListView} from "./Archive";
 
+/**
+ *
+ * @type {{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}}
+ */
 const tabsMap = {
     "1" : ProjectListView,
     "2" : ConsignListView,

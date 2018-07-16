@@ -1,0 +1,22 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc","closure"]
+  },
+  "source": {
+    "include": ["client/framework-webclient/src"],
+    "exclude": [],
+    "includePattern": ".+\\.js$",
+    "excludePattern": ""
+  },
+  "plugins": [],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  },
+  "opts": {
+    "encoding": "utf8",
+    "destination": "./web-out/",
+    "recurse": true
+  }
+}

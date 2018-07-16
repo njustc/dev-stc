@@ -4,8 +4,14 @@ import { browserHistory, Router } from 'react-router'
 // 通过 Provider 将store传递给组件
 import { Provider } from 'react-redux'
 
+/**
+ * @extends Component
+ */
 class AppComponent extends Component {
-
+    /**
+     *
+     * @type {{routes: *, store: *}}
+     */
   static propTypes = {
     routes : PropTypes.object.isRequired,
     store  : PropTypes.object.isRequired
