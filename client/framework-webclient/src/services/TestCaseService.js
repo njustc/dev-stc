@@ -8,6 +8,10 @@ import {setProjectList} from "../modules/ducks/Project";
 const testCaseBase = baseServiceAddress + '/v1/testCase';
 const testCaseActivitiBase = baseServiceAddress + '/processInstance';
 
+/**
+ * @module services/testCaseService
+ */
+
 export const getTestCaseList = (dispatch, callback) => {
     // dispatch(setTestCaseList(/*data*/
     //     [

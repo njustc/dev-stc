@@ -7,6 +7,10 @@ import {STATE} from "./common";
 const testWorkCheckBase = baseServiceAddress + '/v1/testWorkCheck';
 const testWorkCheckActivitiBase = baseServiceAddress + '/processInstance';
 
+/**
+ * @module services/testWorkCheckService
+ */
+
 export const getTestWorkCheckList = (dispatch, callback) => {
     httpGet(testWorkCheckBase,(result) => {
         const {status, data} = result;

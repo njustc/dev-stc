@@ -8,6 +8,10 @@ import {setTestReportCheckContent, setTestReportCheckList} from "../modules/duck
 const testReportBase = baseServiceAddress + '/v1/testReport';
 const testReportActivitiBase = baseServiceAddress + '/processInstance';
 
+/**
+ * @module services/testReportService
+ */
+
 export const getTestReportList = (dispatch, callback) => {
     httpGet(testReportBase,(result) => {
         const {status, data} = result;
