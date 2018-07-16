@@ -78,6 +78,7 @@ public class BaseOperation {
      * @param operation request中的operation
      * @param processInstanceId 流程实例的ID
      * @param workerId 分配给用户组中的成员ID
+     * @param comments 用户意见
      * @throws Exception 任务未完成
      */
     public void containGate(String operation,String processInstanceId,String workerId,String comments) throws Exception

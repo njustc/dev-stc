@@ -25,11 +25,16 @@ export default class ConsignListComponent extends Component {
         enableNew: PropTypes.bool,
     };
 
+    /**
+     * componentWillMount会在组件render之前执行，并且永远都只执行一次。
+     */
     componentDidMount() {
         this.props.getConsignList();
     }
 
-    /*搜索框选项相关*/
+    /**
+     * 记录搜索框当前选项，默认项是委托名称
+     */
     state={
         selectOption:'name',
     };

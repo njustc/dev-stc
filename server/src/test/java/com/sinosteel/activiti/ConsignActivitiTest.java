@@ -4,6 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.sinosteel.FrameworkApplication;
 import com.sinosteel.domain.User;
 import com.sinosteel.framework.core.web.Request;
+import com.sinosteel.service.ConsignService;
+import com.sinosteel.service.ContractService;
+import com.sinosteel.service.TestPlanService;
 import com.sinosteel.service.UserService;
 import org.junit.After;
 import org.junit.Assert;
@@ -13,7 +16,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
+import springfox.documentation.spring.web.json.Json;
 import static org.junit.Assert.assertNotNull;
 
 /**

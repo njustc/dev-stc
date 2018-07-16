@@ -324,7 +324,7 @@ public class TestCase extends BaseEntity {
     }
 
     /**
-     * processInstanceID
+     * 流程ID
      */
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
@@ -338,7 +338,7 @@ public class TestCase extends BaseEntity {
     }
 
     /**
-     * 连接Project类的外键
+     * 对应的项目
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))

@@ -18,8 +18,7 @@ import javax.persistence.Table;
 public class TestReportCheck extends BaseEntity{
 
     /**
-     * 详细字段未定
-     * 暂时先用来存储
+     * 测试记录检查表文档整体
      */
     @Column(name = "BODY")
     private String body;
@@ -34,7 +33,7 @@ public class TestReportCheck extends BaseEntity{
 
 
     /**
-     * processInstanceID
+     * 流程ID
      */
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
@@ -47,7 +46,7 @@ public class TestReportCheck extends BaseEntity{
         this.processInstanceID = processInstanceID;
     }
     /**
-     * 连接Project的外键
+     * 对应项目
      */
     @OneToOne(mappedBy = "testReportCheck")
     @JSONField(serialize = false)

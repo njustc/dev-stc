@@ -7,10 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * 该类是测试流程中的满意度调查表
+ */
 @Entity
 @Table(name = "TBL_SYS_SATISFACTIONSURVEYs")
 public class SatisfactionSurvey extends BaseEntity {
 
+    /**
+     * 满意度调查表文档的整体
+     */
     @Column(name = "BODY")
     private String body;
 
@@ -23,7 +29,7 @@ public class SatisfactionSurvey extends BaseEntity {
     }
 
     /**
-     * processInstanceID
+     * 流程ID
      */
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
@@ -37,7 +43,7 @@ public class SatisfactionSurvey extends BaseEntity {
     }
 
     /**
-     * Project外键
+     * 对应的项目
      */
     @OneToOne(mappedBy = "satisfactionSurvey")
     @JSONField(serialize = false)
