@@ -1,13 +1,9 @@
 import React, {Component, PropTypes} from 'react';
-import {Row,Col,Steps, Form,Button,Input,DatePicker,InputNumber,Collapse,Tabs,message} from 'antd'
+import {Row,Col,Steps, Form,Button,Input,DatePicker,InputNumber,Collapse,Tabs} from 'antd'
 import moment from "moment";
-//import TextArea from "../../../../../framework-androidclient/src/screens/form/textArea";
-//import {message} from "antd/lib/index";
-const Step = Steps.Step;
 const TabPane = Tabs.TabPane;
 const FormItem=Form.Item;
 const InputGroup = Input.Group;
-const Panel=Collapse.Panel;
 const { TextArea } = Input;
 const unit=[
     "分",
