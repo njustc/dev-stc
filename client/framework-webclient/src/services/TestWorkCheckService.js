@@ -11,7 +11,12 @@ const testWorkCheckActivitiBase = baseServiceAddress + '/processInstance';
  * @module services/testWorkCheckService
  */
 
-export const getTestWorkCheckList = (dispatch, callback) => {
+/**
+ * 获取测试工作检查表列表
+ * @param dispatch dispatch
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const getTestWorkCheckList = (dispatch, callback) => {
     httpGet(testWorkCheckBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
@@ -21,8 +26,13 @@ export const getTestWorkCheckList = (dispatch, callback) => {
     });
 };
 
-export const getTestWorkCheck = (dispatch, id, callback) => {
-    // dispatch(setTestWorkCheckContent({id:id,}));
+/**
+ * 获取测试工作检查表
+ * @param dispatch dispatch
+ * @param id 测试工作检查表ID
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const getTestWorkCheck = (dispatch, id, callback) => {
     httpGet(testWorkCheckBase + '/' + id, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
@@ -32,7 +42,13 @@ export const getTestWorkCheck = (dispatch, id, callback) => {
     });
 };
 
-export const deleteTestWorkCheck = (dispatch, id, callback) => {
+/**
+ * 删除测试工作检查表
+ * @param dispatch dispatch
+ * @param id 测试工作检查表ID
+ * @param callback　callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const deleteTestWorkCheck = (dispatch, id, callback) => {
     httpDelete(testWorkCheckBase, {id:id}, (result) => {
         const {status} = result;
         if(status === STATUS.SUCCESS)
@@ -41,7 +57,13 @@ export const deleteTestWorkCheck = (dispatch, id, callback) => {
     });
 };
 
-export const newTestWorkCheck = (dispatch,id, callback) => {
+/**
+ * 新建测试记录检查表
+ * @param dispatch dispatch
+ * @param id 测试工作检查表ID
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const newTestWorkCheck = (dispatch,id, callback) => {
     const urlParams = 'projectID=' + id;
     httpPost(testWorkCheckBase, {body:null,}, (result) => {
         const {data, status} = result;
@@ -52,7 +74,13 @@ export const newTestWorkCheck = (dispatch,id, callback) => {
     },urlParams);
 };
 
-export const updateTestWorkCheck = (dispatch, data, callback) => {
+/**
+ * 更新测试工作检查表内容
+ * @param dispatch dispatch
+ * @param data 测试工作检查表内容
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const updateTestWorkCheck = (dispatch, data, callback) => {
     console.log(data);
     httpPut(testWorkCheckBase, data, (result) => {
         console.log(result);
@@ -93,3 +121,5 @@ export const putTestWorkCheckState = (dispatch, processInstanceID, data, id, cal
         callback && callback(status);
     });
 };
+
+export {getTestWorkCheckList,getTestWorkCheck,deleteTestWorkCheck,newTestWorkCheck,updateTestWorkCheck}
