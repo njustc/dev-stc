@@ -30,7 +30,11 @@ const datas = [
   },
 ];//TODO: 修改界面跳转 route
 
-export  default class ProjectClosing extends Component {
+/**
+ * 结项功能
+ * @class
+ */
+class ProjectClosing extends Component {
   constructor(props){
     super(props);
   }
@@ -84,3 +88,4 @@ export  default class ProjectClosing extends Component {
   }
 }
 
+export  default ProjectClosing;

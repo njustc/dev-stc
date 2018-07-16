@@ -40,7 +40,11 @@ export const getContractList = () => {
   });
 };
 
-export default class ContractList extends Component{
+/**
+ * 合同列表
+ * @class
+ */
+class ContractList extends Component{
   constructor(props){
     super(props);
     this.state={
@@ -65,6 +69,11 @@ export default class ContractList extends Component{
     this.timeA(text);
   }
 
+  /**
+   * 搜索函数
+   * @function
+   * @name timeA
+   */
   timeA(text){
     if(this.time){
       clearTimeout(this.time)
@@ -237,3 +246,5 @@ export default class ContractList extends Component{
   }
 
 }
+
+export default ContractList;

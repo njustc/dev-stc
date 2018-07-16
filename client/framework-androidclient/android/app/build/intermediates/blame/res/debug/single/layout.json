@@ -40,6 +40,10 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_activity_chooser_view_list_item.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_radio.xml"
     },
@@ -80,12 +84,16 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_media.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_layout.xml"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_view_list_nav_layout.xml"
     },
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_layout.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
@@ -148,12 +156,12 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_singlechoice_material.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_close_item_material.xml"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_close_item_material.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
@@ -166,6 +174,10 @@
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
@@ -188,6 +200,10 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_up_container.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_part_time.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_action.xml"
     },
@@ -204,16 +220,16 @@
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_alert_dialog_material.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/support_simple_spinner_dropdown_item.xml"
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_select_dialog_material.xml"
     },
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/redbox_item_title.xml",
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/res/layout/redbox_item_title.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_select_dialog_material.xml"
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/support_simple_spinner_dropdown_item.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
@@ -224,12 +240,20 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_checkbox.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_action.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple_overlay_action_mode.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_activity_chooser_view_list_item.xml"
     },
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
@@ -244,24 +268,24 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_item_material.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple.xml"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple.xml"
     },
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_checkbox.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_close_item_material.xml"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_close_item_material.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
@@ -276,12 +300,16 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_big_media_narrow.xml"
     },
     {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_icon.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_icon.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_icon.xml"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_part_chronometer.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
@@ -296,16 +324,28 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_radio.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_action.xml"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_singlechoice_material.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_expanded_menu_layout.xml"
     },
     {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_action.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_icon.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/layout/notification_template_lines.xml",
@@ -348,20 +388,20 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_dialog_title_material.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple.xml"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_item_layout.xml"
     },
     {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_part_time.xml"
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_part_time.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
@@ -372,12 +412,12 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_item_material.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_toolbar.xml"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_toolbar.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
@@ -424,6 +464,10 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_radio.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_dialog_title_material.xml"
+    },
+    {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_multichoice_material.xml"
     },
@@ -468,6 +512,10 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_view_list_nav_layout.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_up_container.xml"
     },
@@ -508,12 +556,12 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_dialog_title_material.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_alert_dialog_material.xml"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/layout/redbox_item_title.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/res/layout/redbox_item_title.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_alert_dialog_material.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
@@ -552,6 +600,10 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_bar.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/fps_view.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/res/layout/fps_view.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_activity_chooser_view_list_item.xml"
     },
@@ -564,24 +616,28 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_toolbar.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_dialog_title_material.xml"
-    },
-    {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_search_view.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_dialog_title_material.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_multichoice_material.xml"
     },
     {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_part_time.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/layout/notification_template_lines.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_lines.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_part_time.xml"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_up_container.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
@@ -640,12 +696,16 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/res/layout/dev_loading_view.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_layout.xml"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_toolbar.xml"
     },
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/notification_template_lines.xml",
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_lines.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_layout.xml"
     },
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
@@ -676,12 +736,12 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_item_layout.xml"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple.xml"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple.xml"
     },
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml",
@@ -696,6 +756,10 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_item_material.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_popup_menu_item_layout.xml"
+    },
+    {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_item_layout.xml"
     },
@@ -708,8 +772,16 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/res/layout/dev_loading_view.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_media.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/redbox_item_frame.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/res/layout/redbox_item_frame.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
@@ -722,6 +794,10 @@
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/dev_loading_view.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/res/layout/dev_loading_view.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
@@ -758,6 +834,10 @@
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_item_material.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_search_view.xml"
     },
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
@@ -812,6 +892,14 @@
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_search_dropdown_item_icons_2line.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/layout/redbox_item_frame.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/res/layout/redbox_item_frame.xml"
     },
@@ -852,6 +940,10 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/res/layout/redbox_item_frame.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_item_layout.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/redbox_item_frame.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/res/layout/redbox_item_frame.xml"
     },
@@ -890,6 +982,14 @@
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_expanded_menu_layout.xml"
     },
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
@@ -1004,6 +1104,18 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_bar_title_item.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/notification_template_lines.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_lines.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/layout/redbox_item_frame.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/res/layout/redbox_item_frame.xml"
     },
@@ -1026,6 +1138,10 @@
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/redbox_item_title.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/res/layout/redbox_item_title.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
@@ -1090,6 +1206,10 @@
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_big_media.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml",
@@ -1184,6 +1304,14 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_lines.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_select_dialog_material.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_radio.xml"
     },
@@ -1234,6 +1362,10 @@
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_cancel_action.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
@@ -1384,6 +1516,10 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_multichoice_material.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_bar.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_action.xml"
     },
@@ -1398,6 +1534,10 @@
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/layout/fps_view.xml",
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/res/layout/fps_view.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_checkbox.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
@@ -1484,6 +1624,10 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_template_big_media_narrow.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/support_simple_spinner_dropdown_item.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_icon.xml"
     },
@@ -1508,12 +1652,20 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_icon.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_multichoice_material.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_icon.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/redbox_view.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/res/layout/redbox_view.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
@@ -1572,8 +1724,20 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_alert_dialog_material.xml"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_item_material.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_content_include.xml"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_layout.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",

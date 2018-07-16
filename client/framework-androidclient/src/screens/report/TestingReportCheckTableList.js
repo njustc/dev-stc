@@ -40,7 +40,11 @@ export const getTestingReportCheckTableList = () => {
   });
 };
 
-export default class TestingReportCheckTableList extends Component{
+/**
+ * 测试报告检查表列表
+ * @class
+ */
+class TestingReportCheckTableList extends Component{
   constructor(props){
     super(props);
     this.state={
@@ -65,6 +69,11 @@ export default class TestingReportCheckTableList extends Component{
     this.timeA(text);
   }
 
+  /**
+   * 测试报告检查表搜索函数
+   * @function
+   * @name timeA
+   */
   timeA(text){
     if(this.time){
       clearTimeout(this.time)
@@ -261,3 +270,5 @@ export default class TestingReportCheckTableList extends Component{
   }
 
 }
+
+export default TestingReportCheckTableList;

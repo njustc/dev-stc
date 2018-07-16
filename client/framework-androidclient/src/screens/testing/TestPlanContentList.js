@@ -40,8 +40,12 @@ export const getTestPlanContentList = () =>{
   });
 };
 
+/**
+ * 测试方案列表
+ * @class
+ */
 
-export default  class TestPlanContentList extends Component{
+class TestPlanContentList extends Component{
   constructor(props){
     super(props);
     this.state={
@@ -65,6 +69,11 @@ export default  class TestPlanContentList extends Component{
     this.timeA(text);
   }
 
+  /**
+   * 测试方案列表搜索函数
+   * @function
+   * @name timeA
+   */
   timeA(text){
     if(this.time){
       clearTimeout(this.time)
@@ -215,3 +224,5 @@ export default  class TestPlanContentList extends Component{
     );}
 
 }
+
+export default  TestPlanContentList;
