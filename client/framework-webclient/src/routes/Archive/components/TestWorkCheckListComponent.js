@@ -10,6 +10,9 @@ const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
 
+/**
+ * @module Archive/TestWorkCheckListComponent
+ */
 export default class TestWorkCheckListComponent extends Component {
     constructor(props) {
         super(props);
@@ -26,21 +29,35 @@ export default class TestWorkCheckListComponent extends Component {
         showProject: PropTypes.func,
     };
 
+    /**
+     * componentDidMount，（装载完成），在render之后调用
+     */
     componentDidMount() {
         this.props.getTestWorkCheckList();
     }
 
-    /*搜索框选项相关*/
+    /**
+     * 记录搜索框当前选项，默认项是项目编号
+     */
     state={
         selectOption:'code',
     };
 
+    /**
+     * 用户的选择操作触发改变搜索框当前选项的记录
+     * @param value 被选择的选项名称
+     * @param option 暂时没用
+     */
     onSelect = (value, option) => {
         this.setState({
             selectOption:value
         });
-    }
+    };
 
+    /**
+     * 根据搜索框选项选择搜索输入框中显示的文字
+     * @returns {string} 搜索输入框中的提示文字
+     */
     setPlaceholder = () => {
         switch (this.state.selectOption){
             // case 'id':
@@ -55,7 +72,10 @@ export default class TestWorkCheckListComponent extends Component {
         }
     };
 
-    /*状态列颜色渲染*/
+    /**
+     * 根据搜索框选项选择搜索输入框中显示的文字
+     * @returns {string} 搜索输入框中的提示文字
+     */
     state2SColor(state) {
         // switch (state){
         //     case STATE.TO_SUBMIT: return "processing";
@@ -66,6 +86,11 @@ export default class TestWorkCheckListComponent extends Component {
         return "processing";
     }
 
+    /**
+     * 根据测试工作检查表状态选择状态点的颜色
+     * @param state 测试工作检查表状态
+     * @returns {string} Badge点的颜色
+     */
     state2C(state) {
         // switch (state){/*TODO*/
         //     case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
@@ -76,12 +101,18 @@ export default class TestWorkCheckListComponent extends Component {
         return "可编写";
     }
 
+    /**
+     * 打开项目详情页面
+     * @param id 被选择测试工作检查表的标识
+     * @returns {Function} 调用showProject
+     */
     viewProject = (id) => () => {
-        /*TODO:查看项目详情*/
         this.props.showProject(id);
     };
 
-    /*table列设置*/
+    /**
+     * 设置表格Table
+     */
     columns = [{
         title:"项目编号",
         dataIndex:"code",
@@ -98,7 +129,7 @@ export default class TestWorkCheckListComponent extends Component {
             return consignBody.softwareName?consignBody.softwareName:"未填写";
         }
     }, {
-        title:"检查人",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        title:"检查人",
         dataIndex:"testWorkCheck.createdUserName",
         key:"createdUserName",
         render:(name) => name?name:"无"
@@ -113,7 +144,6 @@ export default class TestWorkCheckListComponent extends Component {
                 </span>
             )
         },
-        /*TODO 给状态列加个过滤*/
         /*
         filters: [{
             text: '待提交',
@@ -145,13 +175,21 @@ export default class TestWorkCheckListComponent extends Component {
     }
     ];
 
-    /*查看详情*/
+    /**
+     * 打开测试工作检查表详情页面
+     * @param id 被选择测试工作检查表的标识
+     * @returns {Function} 调用showContent
+     */
     viewContent = (record) => () => {
         //console.log(record);
         this.props.showContent(record);
     };
 
-    /*取消委托提示框*/
+    /**
+     * 显示取消测试工作检查表提示框
+     * @param id 被选择测试工作检查表的标识
+     * @returns {Function}
+     */
     showDeleteConfirm = (record) => () => {
         confirm({
             title: 'Are you sure to delete this consign?',
@@ -170,7 +208,10 @@ export default class TestWorkCheckListComponent extends Component {
         });
     };
 
-    /*TODO 搜索功能*/
+    /**
+     * 搜索框功能
+     * @param value 在搜索框中输入的值
+     */
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
@@ -189,6 +230,9 @@ export default class TestWorkCheckListComponent extends Component {
         }
     };
 
+    /**
+     * 绘制测试工作检查表列表页面， 包括：页面标题、可以改变搜索选项的搜索框、测试工作检查表表格
+     */
     render() {
         return (
             <div>

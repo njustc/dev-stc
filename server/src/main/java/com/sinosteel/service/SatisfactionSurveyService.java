@@ -30,7 +30,6 @@ import java.util.UUID;
  * @version 1.0
  *
  */
-
 @Service
 public class SatisfactionSurveyService extends BaseService<SatisfactionSurvey> {
     @Autowired
@@ -42,6 +41,12 @@ public class SatisfactionSurveyService extends BaseService<SatisfactionSurvey> {
     @Autowired
     private ProjectRepository projectRepository;
 
+    /**
+     * 以工程为来源查询SatisfactionSurvey
+     * @param user 用户
+     * @return 返回满意度调查表的JSON文件
+     * @throws Exception 流程引擎异常。
+     */
 
 
     /**

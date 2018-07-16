@@ -9,7 +9,9 @@ const Search = Input.Search;
 const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
-
+/**
+ * @module TestReport/TestReportListComponent
+ */
 export default class TestReportListComponent extends Component {
     constructor(props) {
         super(props);
@@ -26,21 +28,35 @@ export default class TestReportListComponent extends Component {
         showProject: PropTypes.func,
     };
 
+    /**
+     * componentDidMount，（装载完成），在render之后调用
+     */
     componentDidMount() {
         this.props.getTestReportList();
     }
 
-    /*搜索框选项相关*/
+    /**
+     * 记录搜索框当前选项，默认项是项目编号
+     */
     state={
         selectOption:'code',
     };
 
+    /**
+     * 用户的选择操作触发改变搜索框当前选项的记录
+     * @param value 被选择的选项名称
+     * @param option 暂时没用
+     */
     onSelect = (value, option) => {
         this.setState({
             selectOption:value
         });
     };
 
+    /**
+     * 根据搜索框选项选择搜索输入框中显示的文字
+     * @returns {string} 搜索输入框中的提示文字
+     */
     setPlaceholder = () => {
         switch (this.state.selectOption){
             case 'code':
@@ -53,7 +69,11 @@ export default class TestReportListComponent extends Component {
         }
     };
 
-    /*状态列颜色渲染*/
+    /**
+     * 根据测试报告状态选择状态点的颜色
+     * @param state 测试报告状态
+     * @returns {string} Badge点的颜色
+     */
     state2SColor(state) {
         switch (state){
             case STATE.TO_WRITE: return "processing";
@@ -66,6 +86,11 @@ export default class TestReportListComponent extends Component {
         }
     };
 
+    /**
+     * 根据测试煲噶状态选择显示的状态文字描述
+     * @param state 测试报告状态
+     * @returns {string} 状态的文字描述
+     */
     state2C(state) {
         // debugger;
         switch (state){
@@ -80,12 +105,18 @@ export default class TestReportListComponent extends Component {
         }
     };
 
+    /**
+     * 打开项目详情页面
+     * @param id 被选择合同的标识
+     * @returns {Function} 调用showProject
+     */
     viewProject = (id) => () => {
-        /*TODO:查看项目详情*/
         this.props.showProject(id);
     };
 
-    /*table列设置*/
+    /**
+     * 设置表格Table
+     */
     columns = [{
         title:"项目编号",
         dataIndex:"code",
@@ -130,7 +161,6 @@ export default class TestReportListComponent extends Component {
                 </span>
             )*/
         },
-        /*TODO 给状态列加个过滤*/
         /*filters: [{
             text: '待提交',
             value: 'TobeSubmit',
@@ -151,7 +181,6 @@ export default class TestReportListComponent extends Component {
         key:"operation",
         //width: '12%',
         render: (project) => {
-            /*TODO:操作应该由后台传过来*/
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent({key:project.testReport.id,id:project.id,})}>查看详情</a>
@@ -165,12 +194,20 @@ export default class TestReportListComponent extends Component {
     }
     ];
 
-    /*查看详情*/
+    /**
+     * 打开测试报告详情页面
+     * @param record 被选择测试报告的标识
+     * @returns {Function} 调用showContent
+     */
     viewContent = (record) => () => {
         this.props.showContent(record);
     };
 
-    /*取消委托提示框*/
+    /**
+     * 显示取消测试报告提示框
+     * @param record 被选择测试报告的标识
+     * @returns {Function}
+     */
     showDeleteConfirm = (record) => () => {
         confirm({
             title: '您确定要取消当前测试报告吗?',
@@ -189,7 +226,10 @@ export default class TestReportListComponent extends Component {
         });
     };
 
-    /*TODO:搜索功能*/
+    /**
+     * 搜索框功能
+     * @param value 在搜索框中输入的值
+     */
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
@@ -208,6 +248,9 @@ export default class TestReportListComponent extends Component {
         }
     };
 
+    /**
+     * 绘制测试报告列表页面， 包括：页面标题、可以改变搜索选项的搜索框、测试报告表格
+     */
     render() {
         return (
             <div>

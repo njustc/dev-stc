@@ -29,8 +29,15 @@ import { Table, TableWrapper, Row,Rows } from 'react-native-table-component';
 
 
 //import styles from "./styles";
-
-export  default class TestingReportPage extends Component {
+/**
+ * testingReport实现类
+ */
+class TestingReportPage extends Component {
+  /**
+   * constructor
+   * @param props
+   * 其中含有各个值的初始值，以及定义
+   */
   constructor(props){
     super(props);
     this.state={
@@ -211,7 +218,11 @@ export  default class TestingReportPage extends Component {
     this.listener_testBasic.remove();
     this.listener_referenceContent.remove();
   }
-
+  /**
+   * render()
+   * @func
+   * 移动端显示html代码
+   */
   render(){
     return(
       <Container>
@@ -544,8 +555,15 @@ export  default class TestingReportPage extends Component {
     );
   }
 }
+
+/**
+ * style
+ * @func
+ * 定义窗口大小
+ */
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   head: { height: 40, backgroundColor: '#f1f8ff' },
   text: { margin: 6 }
 });
+export  default TestingReportPage;

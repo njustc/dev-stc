@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 
 /**
  * 这个类用来测试TestFunction类对应repository的增删查功能
- * <br/>
+ * <br>
  *<table border="1" summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
@@ -23,7 +23,7 @@ import javax.transaction.Transactional;
  *     </tr>
  *     <tr>
  *         <td>新建测试报告检查表</td>
- *         <td>new + save</td>
+            <td>new + save</td>
  *         <td>FindById成功</td>
  *      </tr>
  *      <tr>
@@ -31,7 +31,7 @@ import javax.transaction.Transactional;
  *         <td>delete对应Id</td>
  *         <td>FindById为空</td>
  *      </tr>
- * <table>
+ * </table>
  * @author FW
  */
 
@@ -42,7 +42,7 @@ public class TestReportCheckRepositoryTests {
     private TestReportCheckRepository testReportCheckRepository;
 
     @Test
-    @Transactional
+   // @Transactional
 
     public void testTesReportCheck(){
         TestReportCheck testReportCheck = new TestReportCheck();

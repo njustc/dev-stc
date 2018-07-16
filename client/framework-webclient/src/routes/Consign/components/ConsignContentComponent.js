@@ -97,13 +97,14 @@ class EditableCell extends Component {
 }
 
 /**
- * ContractContentComponent类，代表委托内容组件部分
+ * ConsignContentComponent类，即委托内容组件类，代表委托内容组件部分的所有项
  * @extends Component
  */
 class ConsignContentComponent extends Component  {
     /**
+     * 创建并初始化一个委托内容组件类
      * 功能表定义
-     * @param props
+     * @param props - 构造委托内容的时候传入的多个数据
      * columns：功能表模块定义，dataSource：功能表数值定义，count：功能表初始数值
      */
 
@@ -191,8 +192,6 @@ class ConsignContentComponent extends Component  {
      * @param key
      * @func
      */
-
-
     onDelete = (key) => {
         const dataSource = [...this.state.dataSource];
         this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
@@ -216,8 +215,8 @@ class ConsignContentComponent extends Component  {
     }
 
     /**
-     * 规定一些属性的默认值
-     * @type {{values: {consignPlace: string}, disable: boolean, buttons: Array}}
+     * 规定在没有传来的值的情况下，一些属性的默认值
+     * @type {{values: {}, disable: boolean, buttons: Array}}
      */
     static defaultProps = {
         values: {},
@@ -227,8 +226,8 @@ class ConsignContentComponent extends Component  {
     };
 
     /**
-     * 设置各种属性
-     * @type {{contractData: *, values: *, disable: *, buttons: *, form: *}}
+     * 定义props里面的属性的类型，isRequired表示必填项
+     * @type {{consignData: *, values: *, disable: *, buttons: *, form: *}}
      */
     static propTypes = {
         consignData: PropTypes.object.isRequired,
@@ -240,7 +239,7 @@ class ConsignContentComponent extends Component  {
     };
 
     /**
-     * 获得合同内容界面各功能项所需的值
+     * 在通过render()渲染界面之前，获得委托内容界面各功能项所需的值
      * @function
      */
     componentWillMount() {
@@ -325,11 +324,12 @@ class ConsignContentComponent extends Component  {
     };
 
     /**
+     * 用于渲染渲染合同UI页面的视图的函数
+     * 返回用于描述合同功能组件的表单
      * dataSource:功能表的值，columns:功能表模块定义，formItemLayout：，getFieldDecorator：装饰器
      * return中是前端页面显示html代码
      * @func
      */
-
     render() {
 
         const { dataSource } = this.state;
@@ -1033,8 +1033,7 @@ class ConsignContentComponent extends Component  {
                             <FormItem
                                 {...formItemLayout}
                                 label="材料检查："
-                            ><span className="ant-form-text">
-                    </span>
+                            ><span className="ant-form-text"></span>
                             </FormItem>
 
                             <FormItem

@@ -91,6 +91,7 @@ class TestPlanContentComponent extends Component {
     /**
      * 构造器
      * @param props
+     * 创建并初始化一个测试方案组件类：
      * volumes1-4设置了四张表格的列，state设置了这个类的一些状态。
      * state中，datasource1-4设置了四张表格的初始数据。
      */

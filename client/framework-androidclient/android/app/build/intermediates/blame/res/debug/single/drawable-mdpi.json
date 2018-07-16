@@ -4,28 +4,16 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_longpressed_holo.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_longpressed_holo.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
@@ -36,16 +24,16 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png",
@@ -56,64 +44,24 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_longpressed_holo.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_longpressed_holo.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
@@ -132,16 +80,8 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png",
@@ -152,72 +92,28 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
@@ -228,60 +124,24 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_light.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_longpressed_holo.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_longpressed_holo.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_light.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_light.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_longpressed_holo.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_longpressed_holo.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
     },
     {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_dark.9.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_dark.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_light.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_light.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
@@ -304,8 +164,8 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
@@ -314,30 +174,6 @@
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_light.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_light.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
@@ -356,80 +192,36 @@
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_light.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_light.9.png"
     },
     {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_longpressed_holo.9.png",
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_longpressed_holo.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png",
@@ -444,20 +236,8 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_dark.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_dark.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png",
@@ -476,44 +256,20 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
@@ -524,14 +280,6 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
     },
@@ -540,44 +288,12 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_dark.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_dark.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_dark.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_dark.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png",
@@ -604,20 +320,8 @@
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
@@ -632,20 +336,8 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png",
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png",
@@ -660,32 +352,12 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_light.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_light.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png",
@@ -696,40 +368,16 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
@@ -744,36 +392,16 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png"
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png",
@@ -784,26 +412,6 @@
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
     },
@@ -812,28 +420,12 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
@@ -848,14 +440,6 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_dark.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_dark.9.png"
     },
@@ -868,6 +452,10 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
     },
@@ -876,12 +464,8 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png",
@@ -912,68 +496,16 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_longpressed_holo.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_longpressed_holo.9.png"
     },
     {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
-    },
-    {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png",
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png",
@@ -984,24 +516,8 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png",
@@ -1020,40 +536,12 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_dark.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_dark.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png",
@@ -1072,32 +560,12 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
@@ -1120,22 +588,6 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
     },
@@ -1144,20 +596,12 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png",
@@ -1170,10 +614,6 @@
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
@@ -1192,16 +632,8 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_longpressed_holo.9.png",
@@ -1212,24 +644,12 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png",
@@ -1256,44 +676,28 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png",
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png",
@@ -1308,16 +712,8 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_longpressed_holo.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_longpressed_holo.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
@@ -1340,12 +736,816 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_longpressed_holo.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_longpressed_holo.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_light.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_longpressed_holo.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_longpressed_holo.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_light.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_longpressed_holo.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_longpressed_holo.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_dark.9.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_light.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_dark.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_dark.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_voice_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_go_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_dark.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_cab_background_top_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_popup_background_mtrl_mult.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_popup_background_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_dark.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png",
+        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_light.9.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_search_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_focused_holo.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_textfield_default_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
@@ -1368,10 +1568,6 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png"
     },
@@ -1380,20 +1576,12 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_light.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_longpressed_holo.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_longpressed_holo.9.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_tab_indicator_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_ab_back_mtrl_am_alpha.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_000.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png",
@@ -1424,24 +1612,12 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_rating_star_on_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_cut_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_dark.9.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_dark.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_check_to_on_mtrl_000.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_rating_star_off_mtrl_alpha.png",
@@ -1456,26 +1632,6 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_switch_track_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_spinner_mtrl_am_alpha.9.png"
-    },
-    {
-        "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
-        "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_clear_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_clear_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.8/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_light.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.5/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_commit_search_api_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
     },
@@ -1488,16 +1644,12 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_selectall_mtrl_alpha.png"
+    },
+    {
         "merged": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png",
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_search_api_mtrl_alpha.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.6/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_selector_disabled_holo_dark.9.png"
-    },
-    {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ab_share_pack_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.3/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_paste_mtrl_am_alpha.png",
@@ -1508,8 +1660,8 @@
         "source": "/Users/jieyang/Desktop/RNstc4.2/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_ic_menu_moreoverflow_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_list_pressed_holo_light.9.png",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_list_pressed_holo_light.9.png"
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/drawable-mdpi/abc_btn_radio_to_on_mtrl_015.png"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/drawable-mdpi/abc_ic_menu_share_mtrl_alpha.png",

@@ -7,17 +7,25 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * @author SongJunju && FW
+ * 这个类是测试流程中的委托表
+ *
+ * @author SongJunju
+ * @author FW
  */
 
 @Entity
 @Table(name = "TBL_SYS_CONSIGNS")
 public class Consign extends BaseEntity{
 
-
+    /**
+     * 存储测试文档整体
+     */
     @Column(name = "CONSIGNATION")
     private String consignation;
 
+    /**
+     * 流程ID
+     */
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
 
@@ -745,15 +753,17 @@ public class Consign extends BaseEntity{
     }
 
 
-
-
-
-
+    /**
+     * 用户信息
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID",foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT))
     @JSONField(serialize = false)
     private User user;
 
+    /**
+     * 对应项目
+     */
     //委托所在的工程
     @OneToOne(mappedBy = "consign")
     @JSONField(serialize = false)

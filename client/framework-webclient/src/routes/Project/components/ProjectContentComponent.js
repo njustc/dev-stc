@@ -12,6 +12,10 @@ const { SubMenu } = Menu;
 const { TextArea } = Input;
 const { Header, Content, Footer } = Layout;
 
+/**
+ * @module Project/ProjectContentComponent
+ */
+
 export default class ProjectContentComponent extends Component {
     constructor(props) {
         super(props);
@@ -23,11 +27,17 @@ export default class ProjectContentComponent extends Component {
         showContent: PropTypes.func,
     };
 
+    /**
+     * componentWillMount会在组件render之前执行，并且永远都只执行一次。
+     */
     componentWillMount() {
          this.props.getValues(this.props.projectData.id);
     };
 
 
+    /**
+     * 设置步骤条Steps
+     */
     steps = [{
         title: '委托',
         //description: "委托已通过",
@@ -55,6 +65,9 @@ export default class ProjectContentComponent extends Component {
         //content: 'Last-content',
     }*/];
 
+    /**
+     * 文档项
+     */
     data = [
         {index:1,name:'委托申请表'},
         {index:2,name:'测试合同书'},
@@ -66,15 +79,16 @@ export default class ProjectContentComponent extends Component {
         {index:10,name:'满意度调查表'}
     ];
 
-    onTitle() {
-        /*TODO 完善各种状态*/
-        switch (this.props.consignState)  {
-          case 'Finish': return (
-              <div>流程当前状态为：委托申请表已通过</div>
-          );
-      }
 
-    };
+    // onTitle() {
+    //     switch (this.props.consignState)  {
+    //       case 'Finish': return (
+    //           <div>流程当前状态为：委托申请表已通过</div>
+    //       );
+    //   }
+    //
+    // };
+
     /*查看详情*/
     viewContent = (item) => () => {
         //console.log(this.props.id);
@@ -84,25 +98,29 @@ export default class ProjectContentComponent extends Component {
         },this.props.id);
     };
 
-    consignOperation = (state) => () => {
-        switch (state){
-            case 'Submit' : this.props.showContent({index:1,name:'委托申请表'},this.props.id);break;
-            case 'Finish' : this.props.showContent({index:1,name:'委托申请表'},this.props.id);break;
-            case 'Undefined' : break;
-            default: break;
-        }
-    };
+    // consignOperation = (state) => () => {
+    //     switch (state){
+    //         case 'Submit' : this.props.showContent({index:1,name:'委托申请表'},this.props.id);break;
+    //         case 'Finish' : this.props.showContent({index:1,name:'委托申请表'},this.props.id);break;
+    //         case 'Undefined' : break;
+    //         default: break;
+    //     }
+    // };
+    //
+    // contractOperation = () => () => {
+    //     this.props.showContent({index:2,name:'测试合同书'},this.props.id);
+    //     /*switch (state){
+    //         case 'Submit' : this.props.showContent({index:2,name:'测试合同书'},this.props.id);break;
+    //         case 'Finish' : this.props.showContent({index:2,name:'测试合同书'},this.props.id);break;
+    //         case 'Undefined' : break;
+    //         default: break;
+    //     }*/
+    // };
 
-    contractOperation = () => () => {
-        this.props.showContent({index:2,name:'测试合同书'},this.props.id);
-        /*switch (state){
-            case 'Submit' : this.props.showContent({index:2,name:'测试合同书'},this.props.id);break;
-            case 'Finish' : this.props.showContent({index:2,name:'测试合同书'},this.props.id);break;
-            case 'Undefined' : break;
-            default: break;
-        }*/
-    };
-
+    /**
+     * 获取当前项目进度并转换为Steps的步骤数
+     * @returns {number} 当前项目状态对应的步骤数
+     */
     getCurrentStep(){
         //console.log(this.props);
         //return 0;
@@ -121,6 +139,10 @@ export default class ProjectContentComponent extends Component {
         // else return 0;
     }
 
+    /**
+     * 获取委托状态
+     * @returns {*}
+     */
     getConsignState(){
         switch(this.props.projectData.consign.state){
             case STATE.TO_SUBMIT: return (
@@ -141,6 +163,10 @@ export default class ProjectContentComponent extends Component {
         }
     }
 
+    /**
+     * 获取合同状态
+     * @returns {*}
+     */
     getContractState(){
         switch(this.props.projectData.contract.state){
             case STATE.TO_SUBMIT: return (
@@ -164,6 +190,10 @@ export default class ProjectContentComponent extends Component {
         }
     }
 
+    /**
+     * 获取测试方案状态
+     * @returns {*}
+     */
     getTestPlanState(){
         switch(this.props.projectData.testPlan.state){
             case STATE.TO_WRITE: return (
@@ -187,10 +217,18 @@ export default class ProjectContentComponent extends Component {
         }
     }
 
+    /**
+     * 获取测试用例状态
+     * 目前系统中测试用例没有状态
+     */
     getTestCaseState(){
         /*TODO*/
     }
 
+    /**
+     * 获取测试报告状态
+     * @returns {*}
+     */
     getTestReportState(){
         //console.log(this.props.projectData);
         switch(this.props.projectData.testReport.state){
@@ -221,6 +259,10 @@ export default class ProjectContentComponent extends Component {
         }
     }
 
+    /**
+     * 获取测试报告检查表状态
+     * @returns {*}
+     */
     getTestReportCheckState(){
         if(this.props.projectData.testReport.state===STATE.SATISFACTION){
             return (
@@ -229,6 +271,10 @@ export default class ProjectContentComponent extends Component {
         }
     }
 
+    /**
+     * 获取测试工作检查表状态
+     * @returns {*}
+     */
     getTestWorkCheckState(){
         if(this.props.projectData.testReport.state===STATE.SATISFACTION){
             return (
@@ -237,10 +283,17 @@ export default class ProjectContentComponent extends Component {
         }
     }
 
+    /**
+     * 获取满意度调查表状态
+     * 目前系统中满意度调查表没有状态
+     */
     getSatisfactionState(){
         /*TODO*/
     }
 
+    /**
+     * 获取项目价格并渲染
+     */
     testFee(){
         console.log(this.props.projectData.contract.contractBody);//
         let contractBodyString=this.props.projectData.contract.contractBody;
@@ -248,6 +301,9 @@ export default class ProjectContentComponent extends Component {
         return contractBody.testFee?"¥"+contractBody.testFee:"未填写";
     }
 
+    /**
+     * 绘制项目详情页面，包括：页面标题、项目进度Steps、文档List、项目摘要信息、项目进度Timeline
+     */
     render() {
         return (
             <div>

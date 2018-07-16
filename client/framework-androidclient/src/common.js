@@ -1,5 +1,13 @@
 //export const baseAddress = 'http://121.42.175.137:8000';
+/**
+ * 后端ip地址
+ * @constant
+ */
 export const baseAddress = 'http://192.168.1.116:8000';
+/**
+ * 后端ip地址
+ * @constant
+ */
 export const baseServiceAddress = baseAddress + '/services';
 
 export const STATUS = {

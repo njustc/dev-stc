@@ -16,7 +16,7 @@ import javax.transaction.Transactional;
 
 /**
  * 这个类用来测试TestPlan类对应repository的增删查功能
- * <br/>
+ * <br>
  *<table border="1" summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
@@ -33,7 +33,7 @@ import javax.transaction.Transactional;
  *         <td>delete对应Id</td>
  *         <td>FindById为空</td>
  *      </tr>
- * <table>
+ * </table>
  * @author FW
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -43,7 +43,7 @@ public class TestPlanRepositoryTests {
     private TestPlanRepository testPlanRepository;
 
     @Test
-    @Transactional
+  //  @Transactional
     public void testTestPlan(){
         TestPlan testPlan = new TestPlan();
         testPlan.setId("plan");

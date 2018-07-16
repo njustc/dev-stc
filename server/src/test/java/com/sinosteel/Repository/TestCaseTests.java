@@ -3,10 +3,8 @@ package com.sinosteel.Repository;
 import com.sinosteel.FrameworkApplication;
 import com.sinosteel.domain.Project;
 import com.sinosteel.domain.TestCase;
-import com.sinosteel.domain.User;
 import com.sinosteel.repository.ProjectRepository;
 import com.sinosteel.repository.TestCaseRepository;
-import com.sinosteel.repository.UserRepository;
 import org.junit.Test;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
@@ -16,12 +14,10 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 这个类用来测试TestCase类对应repository的增删查功能
- * <br/>
+ * <br>
  *<table border="1" summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
@@ -38,13 +34,13 @@ import java.util.List;
  *         <td>delete对应Id</td>
  *         <td>FindById为空</td>
  *      </tr>
- * <table>
+ * </table>
  * @author FW
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
-@Transactional
+//@Transactional
 public class TestCaseTests {
 
     @Autowired
@@ -54,7 +50,7 @@ public class TestCaseTests {
     private ProjectRepository projectRepository;
 
     @Test
-    @Transactional
+    // @Transactional
     public void testTestCase(){
         TestCase testcase = new TestCase();
         testcase.setId("case");

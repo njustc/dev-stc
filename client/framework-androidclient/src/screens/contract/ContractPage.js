@@ -27,8 +27,22 @@ import {
 } from "native-base";
 
 import styles from "./styles";
+<<<<<<< HEAD
+/**
+ * ContractPage
+ * 实现类
+ */
+class ContractPage extends Component{
+    /**
+     * constructor
+     * 其中包含了初始值和定义
+     * @param props
+     */
+=======
 
-export  default class ContractPage extends Component{
+
+class ContractPage extends Component{
+>>>>>>> 639ac84ca7552fb63f97f29520e37fbdc5cc7709
     constructor(props){
         super(props);
         this.state={
@@ -66,7 +80,11 @@ export  default class ContractPage extends Component{
             },
     }
     }
-
+    /**
+     * componentDidmount
+     * 在第一次渲染后调用，组件已经生成对应的DOM结构
+     * @func
+     */
     componentDidMount(){
     //    this.listener_consignUnitC=DeviceEventEmitter.addListener('consignUnitC',(events)=>{
       //       this.setState({consignUnitC: events.CONSIGN_UNITC});
@@ -208,7 +226,11 @@ export  default class ContractPage extends Component{
 
 
     }
-
+    /**
+     * componentWillUnmount
+     * 在组件从DOM中移除的时候立刻被调用
+     * @func
+     */
     componentWillUnmount(){
       // this.listener_consignUnitC.remove();
       this.listener_projectName.remove();
@@ -249,7 +271,12 @@ export  default class ContractPage extends Component{
 
     }
 
-
+    /**
+     * render
+     * 移动端绘制合同详情页面，包括：合同基本信息、合同内容、签章
+     * @func
+     * @returns {*}
+     */
   render(){
     return(
         <Container>
@@ -648,3 +675,5 @@ export  default class ContractPage extends Component{
   }
 
 }
+
+export  default ContractPage;

@@ -9,6 +9,9 @@ const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
 
+/**
+ * @module Project/ProjectListComponent
+ */
 export default class ProjectListComponent extends Component {
     constructor(props) {
         super(props);
@@ -23,21 +26,35 @@ export default class ProjectListComponent extends Component {
         getProjectState: PropTypes.func,
     };
 
+    /**
+     * componentWillMount会在组件render之前执行，并且永远都只执行一次。
+     */
     componentWillMount() {
         this.props.getProjectList();
     }
 
-    /*搜索框选项相关*/
+    /**
+     * 记录搜索框当前选项，默认项是项目编号
+     */
     state={
         selectOption:'code',
     };
 
+    /**
+     * 用户的选择操作触发改变搜索框当前选项的记录
+     * @param value 被选择的选项名称
+     * @param option 暂时没用
+     */
     onSelect = (value, option) => {
         this.setState({
             selectOption:value
         });
-    }
+    };
 
+    /**
+     * 根据搜索框选项选择搜索输入框中显示的文字
+     * @returns {string} 搜索输入框中的提示文字
+     */
     setPlaceholder = () => {
         switch (this.state.selectOption){
             case 'code':
@@ -50,8 +67,11 @@ export default class ProjectListComponent extends Component {
         }
     };
 
-    /*状态列颜色渲染*/
-    /*TODO*/
+    /**
+     * 根据项目状态选择状态点的颜色
+     * @param state 项目的文档状态
+     * @returns {string} Badge点的颜色
+     */
     state2SColor(state) {
         switch (state){
             case STATE.TO_WRITE: return "processing";
@@ -68,6 +88,11 @@ export default class ProjectListComponent extends Component {
         }
     }
 
+    /**
+     * 根据项目状态选择显示的状态文字描述
+     * @param state 项目的文档状态
+     * @returns {string} 状态的文字描述
+     */
     state2C(state) {
         // debugger;
         switch (state){
@@ -85,6 +110,11 @@ export default class ProjectListComponent extends Component {
         }
     }
 
+    /**
+     * 获取并渲染项目状态
+     * @param record 被选择项目的标识
+     * @returns {*} 渲染项目状态
+     */
     getCurrentState(record){
         if(record.testReport&&record.testReport.state===STATE.SATISFACTION)
             return ( <span><Badge status={this.state2SColor(record.testReport.state)} text={"测试报告"+this.state2C(record.testReport.state)} /></span>);
@@ -101,14 +131,16 @@ export default class ProjectListComponent extends Component {
     //     return id;
     // }
 
-    /*table列设置*/
+    /**
+     * 设置表格Table
+     */
     columns = [{
         title:"项目编号",
         dataIndex:"code",
         //width: '25%',
         //sorter:(a, b) => a.id - b.id,
     }, {
-        title:"项目名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        title:"项目名称",
         dataIndex:"consign",
         key:"name",
         render: (consign) => {
@@ -116,7 +148,7 @@ export default class ProjectListComponent extends Component {
             return consignBody.softwareName?consignBody.softwareName+"测试项目":"未填写";
         }
     }, {
-        title:"委托单位",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        title:"委托单位",
         dataIndex:"consign",
         key:"unit",
         render: (consign) => {
@@ -124,7 +156,7 @@ export default class ProjectListComponent extends Component {
             return consignBody.consignUnitC?consignBody.consignUnitC:"未填写";
         },
     }, {
-        title:"创建日期",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        title:"创建日期",
         dataIndex:"createdTime",
     }, {
         title:"状态",
@@ -143,7 +175,6 @@ export default class ProjectListComponent extends Component {
         key:"operation",
         //width: '12%',
         render: (record) => {
-            /*TODO:操作应该由后台传过来*/
             // console.log(record);//
             return (
                 <div>
@@ -162,12 +193,20 @@ export default class ProjectListComponent extends Component {
     ];
 
 
-    /*查看详情*/
+    /**
+     * 打开项目详情页面
+     * @param record 被选择项目的标识
+     * @returns {Function} 调用showContent
+     */
     viewContent = (record) => () => {
         this.props.showContent(record);
     };
 
-    /*取消委托提示框*/
+    /**
+     * 显示取消项目提示框
+     * @param record 被选择项目的标识
+     * @returns {Function}
+     */
     showDeleteConfirm = (record) => () => {
         confirm({
             title: '您确定要取消当前项目吗?',
@@ -187,7 +226,10 @@ export default class ProjectListComponent extends Component {
         });
     };
 
-    /*TODO:搜索功能*/
+    /**
+     * 搜索框功能
+     * @param value 在搜索框中输入的值
+     */
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
@@ -211,6 +253,10 @@ export default class ProjectListComponent extends Component {
         }
     };
 
+    /**
+     * 行展开渲染
+     * @param record 被选择项目的标识
+     */
     expandRow = (record) => {
         // console.log(record);//
         return (
@@ -237,12 +283,18 @@ export default class ProjectListComponent extends Component {
         );
     };
 
+    /**
+     * 获取项目价格并渲染
+     */
     testFee(record){
         let contractBodyString=record.contract.contractBody;
         let contractBody = contractBodyString?JSON.parse(contractBodyString):{};
         return contractBody.testFee?"¥"+contractBody.testFee:"未填写";
     }
 
+    /**
+     * 绘制项目列表页面，包括：页面标题、可以改变搜索选项的搜索框、项目表格
+     */
     render() {
         return (
             <div>

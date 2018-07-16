@@ -4,9 +4,16 @@ import {connect} from "react-redux";
 import {getContract, putContractState, updateContract} from "../../../services/ContractService";
 import {STATUS} from "../../../services/common";
 import {message} from "antd/lib/index";
-
+/**
+ * @module Contract/ContractContentContainer
+ */
+/**
+ * 把store里面的合同数据映射到委托组件，根据store数据计算页面编辑权限，计算并传入buttonsEnable数组
+ * @param state
+ * @param ownProps
+ * @returns {{contractData: *, values: {}, disable: boolean, buttonsEnable: *}}
+ */
 const mapStateToProps = (state, ownProps) => {
-    // debugger;
     const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const content = state.Project.listMap[ownProps.id].contract;
     const contractBody = content?content.contractBody:undefined;
@@ -24,7 +31,15 @@ const mapStateToProps = (state, ownProps) => {
         buttonsEnable: buttonsEnable(isCustomer,isMarketing,isSubmitVisible,isReviewVisible,isConfirmVisible),
     }
 };
-
+/**
+ * 按钮显示控制，根据当前用户和状态判断按钮是否可用
+ * @param isCustomer
+ * @param isMarketing
+ * @param isSubmitVisible
+ * @param isReviewVisible
+ * @param isConfirmVisible
+ * @returns {Array}
+ */
 const buttonsEnable = (isCustomer,isMarketing,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
     content: '保存',
     enable: isMarketing&&isSubmitVisible,
@@ -45,7 +60,11 @@ const buttonsEnable = (isCustomer,isMarketing,isSubmitVisible,isReviewVisible,is
     enable: isCustomer&&isConfirmVisible,
 }
 ];
-
+/**
+ * 合同相关的数据操作和对应的按钮
+ * @param dispatch
+ * @returns {Array}
+ */
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
     onClick: (contractData,contract) =>{
@@ -143,7 +162,12 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
         });
     }
 }];
-
+/**
+ * 向合同组件分发buttons数组和获取委托的方法
+ * @param dispatch
+ * @param ownProps
+ * @returns {{buttons: Array, getValues: (function(*=): void)}}
+ */
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {
         buttons: buttons(dispatch),

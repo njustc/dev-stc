@@ -32,7 +32,11 @@ export const getLocalclientDigest = () =>
     return LocalclientDigest;
 };
 
-export default class LoginView extends React.Component{
+/**
+ * 登录界面
+ */
+
+class LoginView extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -42,8 +46,12 @@ export default class LoginView extends React.Component{
         }
     }
 
+  /**
+   * 登录按钮调用函数，将登录用户名、密码传至后台匹配是否成功登录
+   * @func
+   */
 
-    renderClick(){
+  renderClick(){
 
         let userName = this.state.username;
         let password = this.state.password;
@@ -70,7 +78,7 @@ export default class LoginView extends React.Component{
         //
         let loginUrl = loginBase;
 
-      httpPost(loginUrl, params, (result) => {
+    httpPost(loginUrl, params, (result) => {
             const {status, data} = result;
             if (status === STATUS.SUCCESS) {
                 toastMsg = '登录成功';
@@ -90,7 +98,11 @@ export default class LoginView extends React.Component{
         })
     }
 
-    render(){
+  /**
+   * 登录界面渲染函数
+   * @func
+   */
+  render(){
 
         return(
             <View style={styles.container}>
@@ -195,3 +207,4 @@ const styles = StyleSheet.create({
 
 });
 
+export default LoginView;

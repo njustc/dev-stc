@@ -21,14 +21,13 @@ public class TestWorkCheck extends BaseEntity{
 
 
     /**
-     * 详细字段未定
-     * 暂时先用来存储
+     * 测试工作检查表文档整体
      */
     @Column(name = "BODY")
     private String body;
 
     /**
-     * processInstanceID
+     * 流程ID
      */
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
@@ -154,7 +153,7 @@ public class TestWorkCheck extends BaseEntity{
 
 
     /**
-     * Project外键
+     * 对应的项目
      */
     @OneToOne(mappedBy = "testWorkCheck")
     @JSONField(serialize = false)

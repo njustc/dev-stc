@@ -2,10 +2,7 @@
 import React, {Component, PropTypes} from 'react';
 import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message,Table,Popconfirm} from 'antd';
 
-/**
- * 页面显示定义的tab
- * @type {React.ClassicComponentClass<TabPaneProps>}
- */
+
 const TabPane = Tabs.TabPane;
 const Option=Select.Option;
 const OptGroup=Select.OptGroup;
@@ -19,8 +16,7 @@ function handleChange(value) {
 }
 
 /**
- * test主函数
- * @func
+ * testReport的类实现
  */
 class TestReportContentComponent extends Component {
 
@@ -32,16 +28,21 @@ class TestReportContentComponent extends Component {
         };
 
     };
-    onCellChange = (key, dataIndex) => {
-        return (value) => {
-            const dataSource = [...this.state.dataSource];
-            const target = dataSource.find(item => item.key === key);
-            if (target) {
-                target[dataIndex] = value;
-                this.setState({ dataSource });
-            }
-        };
-    }
+    // onCellChange = (key, dataIndex) => {
+    //     return (value) => {
+    //         const dataSource = [...this.state.dataSource];
+    //         const target = dataSource.find(item => item.key === key);
+    //         if (target) {
+    //             target[dataIndex] = value;
+    //             this.setState({ dataSource });
+    //         }
+    //     };
+    // }
+    /**
+     * 删除的回调函数
+     * @func
+     * @param key
+     */
     onDelete = (key) => {
         const dataSource = [...this.state.dataSource];
         this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
@@ -85,6 +86,7 @@ class TestReportContentComponent extends Component {
     };
 
     /**
+     *
      *  formItemLayout：定义form的大小；dataSource1：从后台得到硬件环境表格的数据；columns1：定义硬件环境表格的格式
      *  dataSource2：从后台得到软件环境表格的数据；columns2：定义软件环境表格的格式
      *  dataSource3：从后台得到功能性测试表格的数据；columns3：定义功能性测试表格的格式

@@ -14,7 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * 这个类用来测试consign类对应repository的增删查功能
- * <br/>
  * <table border="1" summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
@@ -43,6 +42,22 @@ public class ConsignRepositoryTests {
 
     @Autowired
     private ProjectRepository projectRepository;
+
+    /**
+     * testConsignPoroject
+     * 测试过程
+     * <ol>
+     *  <li>新建委托</li>
+     *  <li>查找委托</li>
+     *  <li>删除委托</li>
+     *  <li>确认是否删除</li>
+     * </ol>
+     * 测试结果
+     * <ol>
+     *     <li>查找委托时，不为空</li>
+     *     <li></li>
+     * </ol>
+     */
     @Test
     public void testConsignProject() {
         Consign consign = new Consign();

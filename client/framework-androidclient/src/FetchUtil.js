@@ -1,21 +1,36 @@
 import {STATUS} from "./common";
-
+/**
+ * 向后台发送GET请求
+ * @constant
+ */
 export const httpGet = (url, callback) => {
     return sysFetch('GET', url, null, callback);
 };
-
+/**
+ * 向后台发送POST请求
+ * @constant
+ */
 export const httpPost = (url, params, callback) => {
     return sysFetch('POST', url, params, callback);
 };
-
+/**
+ * 向后台发送PUT请求
+ * @constant
+ */
 export const httpPut = (url, params, callback) => {
     return sysFetch('PUT', url, params, callback);
 };
-
+/**
+ * 向后台发送DELETE请求
+ * @constant
+ */
 export const httpDelete = (url, params, callback) => {
     return sysFetch('DELETE', url, params, callback);
 };
-
+/**
+ * http方法调用，向后台发送fetch请求
+ * @constant
+ */
 const sysFetch = (Method, url, params, callback) => {
 
     let result = {

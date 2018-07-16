@@ -40,8 +40,11 @@ export const getTestPlanContentList = () =>{
   });
 };
 
+/**
+ * 测试方案列表
+ */
 
-export default  class TestPlanContentList extends Component{
+class TestPlanContentList extends Component{
   constructor(props){
     super(props);
     this.state={
@@ -62,10 +65,14 @@ export default  class TestPlanContentList extends Component{
 
   onChanegeTextKeyword(text){
     //console.warn("yyy");
-    this.timeA(text);
+    this.search(text);
   }
 
-  timeA(text){
+  /**
+   * 测试方案列表搜索函数
+   * @func
+   */
+  search(text){
     if(this.time){
       clearTimeout(this.time)
     }
@@ -114,6 +121,10 @@ export default  class TestPlanContentList extends Component{
     return index+item;
   }
 
+  /**
+   * 从后端获取测试方案列表具体内容
+   * @func
+   */
   getTestPlanContentList = () =>{
     const contractBase = baseServiceAddress+'/v1/testPlan?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
     httpGet(contractBase,(result)=>{
@@ -129,10 +140,19 @@ export default  class TestPlanContentList extends Component{
     });
   };
 
+  /**
+   * 获取测试方案具体内容
+   * @func
+   */
   componentWillMount(){
     this.getTestPlanContentList();
   }
 
+  /**
+   * 测试方案跳转函数，根据测试方案id获取测试方案具体内容并传给跳转的界面
+   * @param id
+   * @func
+   */
   gotoTestPlanContentPage = (id) =>{
     httpGet(baseServiceAddress+'/v1/testPlan/'+id+'?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest(),(result)=> {
       const {status,data}=result;
@@ -165,6 +185,11 @@ export default  class TestPlanContentList extends Component{
     this.props.navigation.navigate("TestPlanContentPage");
   }
 
+  /**
+   * 测试方案列表界面渲染函数
+   * @return {*}
+   * @func
+   */
   render(){
     return (
       <Container style={styles.container}>
@@ -215,3 +240,5 @@ export default  class TestPlanContentList extends Component{
     );}
 
 }
+
+export default  TestPlanContentList;

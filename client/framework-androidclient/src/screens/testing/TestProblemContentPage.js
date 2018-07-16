@@ -27,8 +27,16 @@ import {
 } from "native-base";
 import styles from "./styles";
 
-
-export default class TestProblemContentPage extends Component{
+/**
+ * TestProblemContentPage
+ * 实现类
+ */
+class TestProblemContentPage extends Component{
+    /**
+     * constructor
+     * 其中包含了初始值和定义
+     * @param props
+     */
   constructor(props){
     super(props);
     this.state={
@@ -61,6 +69,13 @@ export default class TestProblemContentPage extends Component{
       ],
     }
   }
+
+    /**
+     * render
+     * 移动端绘制测试问题详情页面
+     * @func
+     * @returns {*}
+     */
   render(){
     return(
       <Container>
@@ -103,3 +118,4 @@ export default class TestProblemContentPage extends Component{
     )
   }
 }
+export default TestProblemContentPage;

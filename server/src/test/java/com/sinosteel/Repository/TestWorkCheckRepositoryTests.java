@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 这个类用来测试TestFunction类对应repository的增删查功能
- * <br/>
+ * <br>
  *<table border="1" summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
@@ -26,11 +26,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  *         <td>new + save</td>
  *         <td>FindById成功</td>
  *      </tr>
+ *      <tr>
  *          <td>删除该表</td>
  *         <td>delete对应Id</td>
  *         <td>FindById为空</td>
  *      </tr>
- * <table>
+ * </table>
  * @author FW
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -40,7 +41,7 @@ public class TestWorkCheckRepositoryTests {
     private TestWorkCheckRepository testWorkCheckRepository;
 
     @Test
-    @Transactional
+  //  @Transactional
     public void testTesReport(){
         TestWorkCheck testWorkCheck = new TestWorkCheck();
         testWorkCheck.setId("workcheck");
