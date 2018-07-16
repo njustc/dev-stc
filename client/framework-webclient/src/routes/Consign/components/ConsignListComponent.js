@@ -26,7 +26,7 @@ export default class ConsignListComponent extends Component {
     };
 
     /**
-     * componentWillMount会在组件render之前执行，并且永远都只执行一次。
+     * componentDidMount，（装载完成），在render之后调用
      */
     componentDidMount() {
         this.props.getConsignList();
@@ -39,12 +39,21 @@ export default class ConsignListComponent extends Component {
         selectOption:'name',
     };
 
+    /**
+     * 用户的选择操作触发改变搜索框当前选项的记录
+     * @param value 被选择的选项名称
+     * @param option 暂时没用
+     */
     onSelect = (value, option) => {
         this.setState({
             selectOption:value
         });
     };
 
+    /**
+     * 根据搜索框选项选择搜索输入框中显示的文字
+     * @returns {string} 搜索输入框中的提示文字
+     */
     setPlaceholder = () => {
         switch (this.state.selectOption){
             case 'unit':
@@ -57,7 +66,11 @@ export default class ConsignListComponent extends Component {
         }
     };
 
-    /*状态列颜色渲染*/
+    /**
+     * 根据委托状态选择状态点的颜色
+     * @param state 委托状态
+     * @returns {string} Badge点的颜色
+     */
     state2SColor(state) {
         switch (state){
             case STATE.TO_SUBMIT: return "processing";
@@ -67,6 +80,11 @@ export default class ConsignListComponent extends Component {
         }
     }
 
+    /**
+     * 根据委托状态选择显示的状态文字描述
+     * @param state 委托状态
+     * @returns {string} 状态的文字描述
+     */
     state2C(state) {
         // debugger;
         switch (state){
@@ -78,7 +96,9 @@ export default class ConsignListComponent extends Component {
         }
     }
 
-    /*table列设置*/
+    /**
+     * 设置表格Table
+     */
     columns = [/*{
         title:"委托ID",
         dataIndex:"id",
@@ -118,7 +138,6 @@ export default class ConsignListComponent extends Component {
                 </span>
             )*/
         },
-        /*TODO 给状态列加个过滤*/
         /*filters: [{
             text: '待提交',
             value: 'TobeSubmit',
@@ -139,7 +158,6 @@ export default class ConsignListComponent extends Component {
         key:"operation",
         //width: '12%',
         render: (record) => {
-            /*TODO:操作应该由后台传过来*/
             //console.log(record);
             return (
                 <div>
@@ -152,12 +170,20 @@ export default class ConsignListComponent extends Component {
     }
     ];
 
-    /*查看详情*/
+    /**
+     * 打开委托详情页面
+     * @param record 被选择委托的标识
+     * @returns {Function} 调用showContent
+     */
     viewContent = (record) => () => {
         this.props.showContent(record);
     };
 
-    /*取消委托提示框*/
+    /**
+     * 显示取消委托提示框
+     * @param record 被选择委托的标识
+     * @returns {Function}
+     */
     showDeleteConfirm = (record) => () => {
         confirm({
             title: '您确定要取消当前委托吗?',
@@ -176,6 +202,10 @@ export default class ConsignListComponent extends Component {
         });
     };
 
+    /**
+     * 搜索框功能
+     * @param value 在搜索框中输入的值
+     */
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
@@ -194,6 +224,9 @@ export default class ConsignListComponent extends Component {
         }
     };
 
+    /**
+     * 绘制委托列表页面， 包括：页面标题、可以改变搜索选项的搜索框、委托表格
+     */
     render() {
         return (
             <div>
