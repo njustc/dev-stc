@@ -17,13 +17,15 @@ class AppComponent extends Component {
     store  : PropTypes.object.isRequired
   }
 
-  // 组件在决定重新渲染（虚拟dom比对完毕生成最终的dom后）之前会调用该函数
+    /** 组件在决定重新渲染（虚拟dom比对完毕生成最终的dom后）之前会调用该函数
+     *
+     * @returns {boolean}
+     */
   shouldComponentUpdate () {
     return false
   }
 
   render () {
-  	// 通过传递的父元素属性获取 routes 和 store
     const { routes, store } = this.props
 
   	return (

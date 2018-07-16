@@ -20,9 +20,80 @@ import springfox.documentation.spring.web.json.Json;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * @author ZWH
+ * 该类用来测试测试方案流程实例在调用接口后状态变化情况
+ * <table border="1" summary="测试过程1">
+ *     <tr>
+ *         <th>执行操作</th>
+ *         <th>预期状态</th>
+ *     </tr>
+ *     <tr>
+ *         <td>查询测试方案状态</td>
+ *         <td>&nbsp;</td>
+ *     </tr>
+ *     <tr>
+ *         <td>customer1提交测试方案</td>
+ *         <td>TobeReview</td>
+ *     </tr>
+ *     <tr>
+ *         <td>工作人员否决测试方案</td>
+ *         <td>TobeWrite</td>
+ *     </tr>
+ *     <tr>
+ *         <td>customer2再次请求</td>
+ *         <td>TobeReview</td>
+ *     </tr>
+ *     <tr>
+ *         <td>工作人员通过测试方案</td>
+ *         <td>TobeConfirm</td>
+ *     </tr>
+ *     <tr>
+ *         <td>客户通过测试方案</td>
+ *         <td>TobeImplement</td>
+ *     </tr>
+ *     <tr>
+ *         <td>客户实施测试方案</td>
+ *         <td>Finished</td>
+ *     </tr>
+ * </table>
+ *
+ *
+ * <table border="1" summary="测试过程2">
+ *     <tr>
+ *         <th>执行操作</th>
+ *         <th>预期状态</th>
+ *     </tr>
+ *     <tr>
+ *         <td>查询测试方案状态</td>
+ *         <td>&nbsp;</td>
+ *     </tr>
+ *     <tr>
+ *         <td>测试部工作人员提交测试方案</td>
+ *         <td>TobeReview</td>
+ *     </tr>
+ *     <tr>
+ *         <td>测试部主任否决测试方案</td>
+ *         <td>TobeWrite</td>
+ *     </tr>
+ *     <tr>
+ *         <td>测试部工作人员再次提交测试方案</td>
+ *         <td>TobeReview</td>
+ *     </tr>
+ *     <tr>
+ *         <td>测试部主任通过测试方案</td>
+ *         <td>TobeConfirm</td>
+ *     </tr>
+ *     <tr>
+ *         <td>质量部通过测试方案</td>
+ *         <td>TobeImplement</td>
+ *     </tr>
+ *     <tr>
+ *         <td>测试部工作人员实施测试方案</td>
+ *         <td>Finished</td>
+ *     </tr>
+ * </table>
+ *
+ * @author zwh
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
 public class TestPlanActivitiTest {

@@ -147,7 +147,7 @@ public class User extends BaseEntity
 	
 	/**
      * 密码盐.
-     * @return
+     * @return 密码盐
      */
     public String getCredentialsSalt()
     {
