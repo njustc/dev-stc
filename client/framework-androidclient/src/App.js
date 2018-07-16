@@ -161,6 +161,16 @@ import Segment from "./screens/segment";
 import NHToast from "./screens/toast/";
 import Actionsheet from "./screens/actionsheet";
 
+/**
+ * @author 卫昱阳 <151220119@smail.nju.edu.cn>
+ * @file stc for Android
+ * @copyright WEIYUYANG 2018
+ */
+
+/**
+ * 侧边栏导航内容
+ * @constant
+ */
 const Drawer = DrawerNavigator(
   {
 
@@ -210,6 +220,10 @@ const Drawer = DrawerNavigator(
   }
 );
 
+/**
+ * 栈导航内容
+ * @constant
+ */
 const AppNavigator = StackNavigator(
   {
     Login:{screen: LoginScreen},

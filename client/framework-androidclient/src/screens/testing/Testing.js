@@ -38,7 +38,10 @@ const datas = [
   // },
 ];//TODO: 修改界面跳转 route
 
-export  default class Testing extends Component {
+/**
+ * 测试所有功能
+ */
+class Testing extends Component {
   constructor(props){
     super(props);
   }
@@ -92,3 +95,4 @@ export  default class Testing extends Component {
   }
 }
 
+export  default Testing;

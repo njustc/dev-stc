@@ -62,6 +62,10 @@ const datas = [
 //   this.props.navigation.navigate(data.route);
 // }
 
+/**
+ * 侧边栏
+ * @class
+ */
 class SideBar extends Component {
   constructor(props) {
     super(props);

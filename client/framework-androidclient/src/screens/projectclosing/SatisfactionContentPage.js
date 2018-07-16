@@ -126,6 +126,7 @@ export default class SatisfactionContentPage extends Component{
 
   }
 
+
   render(){
     return(
       <Container>

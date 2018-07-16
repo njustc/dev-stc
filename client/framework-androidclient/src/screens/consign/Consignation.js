@@ -63,7 +63,10 @@ export const getConsignList = () => {
   });
 };
 
-export  default class Consignation extends Component {
+/**
+ * 委托列表
+ */
+class Consignation extends Component {
   constructor(props){
     super(props);
     this.state= {
@@ -86,6 +89,11 @@ export  default class Consignation extends Component {
     //console.warn("yyy");
     this.timeA(text);
   }
+
+  /**
+   * 搜索函数
+   * @func
+   */
 
   timeA(text){
     if(this.time){
@@ -327,3 +335,4 @@ export  default class Consignation extends Component {
 
 }
 
+export  default Consignation;

@@ -33,8 +33,12 @@ const datas = [
   // },
 ];//TODO: 修改界面跳转 route
 
+/**
+ * 合同功能界面
+ * @class
+ */
 
-export  default class Contract extends Component {
+class Contract extends Component {
   constructor(props){
     super(props);
   }
@@ -88,3 +92,4 @@ export  default class Contract extends Component {
   }
 }
 
+export  default Contract;

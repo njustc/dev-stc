@@ -38,7 +38,11 @@ export const getTestCaseContentList = () => {
   });
 };
 
-export default class TestCaseContentList extends Component{
+/**
+ * 测试用例列表
+ * @class
+ */
+class TestCaseContentList extends Component{
   constructor(props){
     super(props);
     this.state={
@@ -63,6 +67,11 @@ export default class TestCaseContentList extends Component{
     this.timeA(text);
   }
 
+  /**
+   * 测试用例列表搜索函数
+   * @function
+   * @name timeA
+   */
   timeA(text){
     if(this.time){
       clearTimeout(this.time)
@@ -201,3 +210,5 @@ export default class TestCaseContentList extends Component{
   }
 
 }
+
+export default TestCaseContentList;
