@@ -1,4 +1,32 @@
-//export default Form.create()(TestReportContentComponent);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: routes/TestReport/components/TestReportContentComponent.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: routes/TestReport/components/TestReportContentComponent.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//export default Form.create()(TestReportContentComponent);
 import React, {Component, PropTypes} from 'react';
 import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message,Table,Popconfirm} from 'antd';
 const TabPane = Tabs.TabPane;
@@ -177,170 +205,170 @@ class TestReportContentComponent extends Component {
         },];
 
         return(
-            <Form onSubmit={this.handleSubmit} >
+            &lt;Form onSubmit={this.handleSubmit} >
 
-                <FormItem>
-                    <h1 style={{textAlign:'center'}}>测试报告</h1>
-                </FormItem>
+                &lt;FormItem>
+                    &lt;h1 style={{textAlign:'center'}}>测试报告&lt;/h1>
+                &lt;/FormItem>
 
-                <div>
-                    <Tabs
+                &lt;div>
+                    &lt;Tabs
                         defaultActiveKey="1"
                         tabPosition="left"
 
                     >
-                        <TabPane tab="基本信息" key="1">
-		 <FormItem {...formItemLayout} label={"委托单位"}>
+                        &lt;TabPane tab="基本信息" key="1">
+		 &lt;FormItem {...formItemLayout} label={"委托单位"}>
                             {getFieldDecorator('consignUnitC', {
                                 rules: [{ required: false, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
                                 initialValue: this.props.values.consignUnitC
                             })(
-                                <Input disabled={this.props.disable}/>
+                                &lt;Input disabled={this.props.disable}/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
-		 <FormItem {...formItemLayout} label={"项目编号"}>
+		 &lt;FormItem {...formItemLayout} label={"项目编号"}>
                             {getFieldDecorator('sampleNumber', {
                                 rules: [{ required: false, message: '请正确输入项目编号！' ,pattern:"^[A-Za-z]+$"}],
                                 initialValue: this.props.values.sampleNumber
                             })(
-                                <Input disabled={this.props.disable}/>
+                                &lt;Input disabled={this.props.disable}/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
-						 <FormItem {...formItemLayout} label={"样品名称"}>
+						 &lt;FormItem {...formItemLayout} label={"样品名称"}>
                             {getFieldDecorator('sampleName', {
                                 rules: [{ required: false, message: '请正确输入样品名称！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
                                 initialValue: this.props.values.sampleName
                             })(
-                                <Input disabled={this.props.disable}/>
+                                &lt;Input disabled={this.props.disable}/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
-                        <FormItem {...formItemLayout} label={"版本/型号"}>
+                        &lt;FormItem {...formItemLayout} label={"版本/型号"}>
                             {getFieldDecorator('versionModel', {
                                 rules: [{ required: false, message: '请正确输入版本/型号！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.versionModel
                             })(
-                                <Input disabled={this.props.disable}/>
+                                &lt;Input disabled={this.props.disable}/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
-						 <FormItem {...formItemLayout} label={"来样日期"}>
+						 &lt;FormItem {...formItemLayout} label={"来样日期"}>
                             {getFieldDecorator('receiveTime', {
                                 rules: [{ required: false, message: '请正确输入来样日期！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.receiveTime
                             })(
-                                <Input disabled={this.props.disable}/>
+                                &lt;Input disabled={this.props.disable}/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
-						 <FormItem {...formItemLayout} label={"测试类型"}>
+						 &lt;FormItem {...formItemLayout} label={"测试类型"}>
                             {getFieldDecorator('testKind', {
                                 rules: [{ required: false, message: '请正确输入测试类型！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
                                 initialValue: this.props.values.testKind
                             })(
-                                <Input disabled={this.props.disable}/>
+                                &lt;Input disabled={this.props.disable}/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
-						 <FormItem {...formItemLayout} label={"测试时间"}>
+						 &lt;FormItem {...formItemLayout} label={"测试时间"}>
                             {getFieldDecorator('testTime', {
                                 rules: [{ required: false, message: '请正确输入测试时间！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.testTime
                             })(
-                                <Input disabled={this.props.disable}/>
+                                &lt;Input disabled={this.props.disable}/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
-						 <FormItem {...formItemLayout} label={"测试依据"}>
+						 &lt;FormItem {...formItemLayout} label={"测试依据"}>
                             {getFieldDecorator('testBasis', {
                                 rules: [{ required: false, message: '请正确输入测试依据！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
                                 initialValue: this.props.values.testBasis
                             })(
-                                <Input disabled={this.props.disable}/>
+                                &lt;Input disabled={this.props.disable}/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
 
-						<FormItem
+						&lt;FormItem
                             label="样品清单"
                             {...formItemLayout}
                         >
-                            <span className="ant-form-text"></span>
-                        </FormItem>
+                            &lt;span className="ant-form-text">&lt;/span>
+                        &lt;/FormItem>
 
-						 <FormItem {...formItemLayout} label={"软件样本"}>
+						 &lt;FormItem {...formItemLayout} label={"软件样本"}>
                             {getFieldDecorator('softwareSample', {
                                 rules: [{ required: false, message: '请正确输入软件样本！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
                                 initialValue: this.props.values.softwareSample
                             })(
-                                <Input disabled={this.props.disable}/>
+                                &lt;Input disabled={this.props.disable}/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
 
-						 <FormItem {...formItemLayout} label={"软件文档"}>
+						 &lt;FormItem {...formItemLayout} label={"软件文档"}>
                             {getFieldDecorator('softwareDoc', {
                                 rules: [{ required: false, message: '请正确输入软件文档！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
                                 initialValue: this.props.values.softwareDoc
                             })(
-                                <Input disabled={this.props.disable}/>
+                                &lt;Input disabled={this.props.disable}/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
 
-						 <FormItem {...formItemLayout} label={"测试结论"}>
+						 &lt;FormItem {...formItemLayout} label={"测试结论"}>
                             {getFieldDecorator('testConclusion', {
                                 rules: [{ required: false, message: '请正确输入测试结论！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
                                 initialValue: this.props.values.testConclusion
                             })(
-                                <Input disabled={this.props.disable}/>
+                                &lt;Input disabled={this.props.disable}/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
-						 <FormItem {...formItemLayout} label={"主测人"}>
+						 &lt;FormItem {...formItemLayout} label={"主测人"}>
                             {getFieldDecorator('masterMeasuringMan', {
                                 rules: [{ required: false, message: '请正确输入主测人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
                                 initialValue: this.props.values.masterMeasuringMan
                             })(
-                                <Input disabled={this.props.disable}/>
+                                &lt;Input disabled={this.props.disable}/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
-						 <FormItem {...formItemLayout} label={"审核人"}>
+						 &lt;FormItem {...formItemLayout} label={"审核人"}>
                             {getFieldDecorator('Auditor', {
                                 rules: [{ required: false, message: '请正确输入审核人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
                                 initialValue: this.props.values.Auditor
                             })(
-                                <Input disabled={this.props.disable}/>
+                                &lt;Input disabled={this.props.disable}/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
-						 <FormItem {...formItemLayout} label={"批准人"}>
+						 &lt;FormItem {...formItemLayout} label={"批准人"}>
                             {getFieldDecorator('Approver', {
                                 rules: [{ required: false, message: '请正确输入批准人"！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
                                 initialValue: this.props.values.Approver
                             })(
-                                <Input disabled={this.props.disable}/>
+                                &lt;Input disabled={this.props.disable}/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
 
 
 
-                        <FormItem {...formItemLayout} label={"测试单位联系方式"}>
+                        &lt;FormItem {...formItemLayout} label={"测试单位联系方式"}>
                             {getFieldDecorator('testUnitContactMode', {
                                 rules: [{ required: false, message: '请输入！' }],
                                 initialValue: this.props.values.testUnitContactMode
                             })(
-                                <TextArea disabled={this.props.disable}
+                                &lt;TextArea disabled={this.props.disable}
                                           rows={"4"}  placeholder="请输入软件用户对象描述"/>
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
 
-                        <FormItem
+                        &lt;FormItem
                             label="电话"
                             {...formItemLayout}
                         >
@@ -348,11 +376,11 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入委托单位信息！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.consignUnittelephone
                             })(
-                                <Input placeholder="请输入电话号码" />
+                                &lt;Input placeholder="请输入电话号码" />
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
-                        <FormItem
+                        &lt;FormItem
                             label="传真"
                             {...formItemLayout}
                         >
@@ -360,12 +388,12 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入传真号！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.consignUnitFax
                             })(
-                                <Input placeholder="请输入传真号" />
+                                &lt;Input placeholder="请输入传真号" />
                             )}
 
-                        </FormItem>
+                        &lt;/FormItem>
 
-                        <FormItem
+                        &lt;FormItem
                             label="地址"
                             {...formItemLayout}
                         >
@@ -373,11 +401,11 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入地址！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
                                 initialValue: this.props.values.consignUnitaddress
                             })(
-                                <Input placeholder="请输入地址" />
+                                &lt;Input placeholder="请输入地址" />
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
-                        <FormItem
+                        &lt;FormItem
                             label="邮编"
                             {...formItemLayout}
                         >
@@ -385,11 +413,11 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入邮编！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.consignUnitEmailnumber
                             })(
-                                <Input placeholder="请输入邮编" />
+                                &lt;Input placeholder="请输入邮编" />
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
-                        <FormItem
+                        &lt;FormItem
                             label="联系人"
                             {...formItemLayout}
                         >
@@ -397,13 +425,13 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入联系人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
                                 initialValue: this.props.values.consignUnitpeople
                             })(
-                                <Input placeholder="请输入联系人" />
+                                &lt;Input placeholder="请输入联系人" />
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
 
 
-                        <FormItem
+                        &lt;FormItem
                             label="E-mail"
                             {...formItemLayout}
                         >
@@ -411,102 +439,102 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入E-mail！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.consignUnitEmail
                             })(
-                                <Input placeholder="请输入邮箱地址" />
+                                &lt;Input placeholder="请输入邮箱地址" />
                             )}
-                        </FormItem>
+                        &lt;/FormItem>
 
-                        </TabPane>
-                        <TabPane tab="测试环境" key="2">
+                        &lt;/TabPane>
+                        &lt;TabPane tab="测试环境" key="2">
 
-                            <FormItem
+                            &lt;FormItem
                                 label="硬件环境"
                                 {...formItemLayout}
                             >
-                                <span className="ant-form-text"></span>
-                            </FormItem>
+                                &lt;span className="ant-form-text">&lt;/span>
+                            &lt;/FormItem>
 
-                            <Table dataSource={dataSource1} columns={columns1} />
+                            &lt;Table dataSource={dataSource1} columns={columns1} />
 
-                            <FormItem
+                            &lt;FormItem
                                 label="软件环境"
                                 {...formItemLayout}
                             >
-                                <span className="ant-form-text"></span>
-                            </FormItem>
+                                &lt;span className="ant-form-text">&lt;/span>
+                            &lt;/FormItem>
 
-                            <Table dataSource={dataSource2} columns={columns2} />
-
-
-                        </TabPane>
+                            &lt;Table dataSource={dataSource2} columns={columns2} />
 
 
-                       <TabPane tab="测试依据和参考资料" key="3">
-                           <FormItem {...formItemLayout} label={"测试依据"}>
+                        &lt;/TabPane>
+
+
+                       &lt;TabPane tab="测试依据和参考资料" key="3">
+                           &lt;FormItem {...formItemLayout} label={"测试依据"}>
                                {getFieldDecorator('testBasic', {
                                    rules: [{ required: false, message: '请正确输入测试依据！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
                                    initialValue: this.props.values.testBasic
                                })(
-                                   <Input disabled={this.props.disable}/>
+                                   &lt;Input disabled={this.props.disable}/>
                                )}
-                           </FormItem>
+                           &lt;/FormItem>
 
-                           <FormItem {...formItemLayout} label={"参考资料"}>
+                           &lt;FormItem {...formItemLayout} label={"参考资料"}>
                                {getFieldDecorator('referenceContent', {
                                    rules: [{ required: false, message: '请正确输入参考资料！' ,pattern:"^[A-Za-z]+$"}],
                                    initialValue: this.props.values.referenceContent
                                })(
-                                   <Input disabled={this.props.disable}/>
+                                   &lt;Input disabled={this.props.disable}/>
                                )}
-                           </FormItem>
+                           &lt;/FormItem>
 
-                       </TabPane>
-                        {/*<TabPane tab="测试内容" key="4">*/}
+                       &lt;/TabPane>
+                        {/*&lt;TabPane tab="测试内容" key="4">*/}
 
-                            {/*<FormItem*/}
+                            {/*&lt;FormItem*/}
                                 {/*label="功能性测试"*/}
                                 {/*{...formItemLayout}*/}
                             {/*>*/}
-                                {/*<span className="ant-form-text"></span>*/}
-                            {/*</FormItem>*/}
+                                {/*&lt;span className="ant-form-text">&lt;/span>*/}
+                            {/*&lt;/FormItem>*/}
 
-                            {/*<Table dataSource={dataSource3} columns={columns3} />*/}
+                            {/*&lt;Table dataSource={dataSource3} columns={columns3} />*/}
 
-                            {/*<FormItem*/}
+                            {/*&lt;FormItem*/}
                                 {/*label="非功能性测试"*/}
                                 {/*{...formItemLayout}*/}
                             {/*>*/}
-                                {/*<span className="ant-form-text"></span>*/}
-                            {/*</FormItem>*/}
+                                {/*&lt;span className="ant-form-text">&lt;/span>*/}
+                            {/*&lt;/FormItem>*/}
 
-                            {/*<Table dataSource={dataSource4} columns={columns4} />*/}
+                            {/*&lt;Table dataSource={dataSource4} columns={columns4} />*/}
 
 
-                        {/*</TabPane>*/}
-                    </Tabs>
-                </div>
-                <FormItem style={{textAlign:'center'}}>
+                        {/*&lt;/TabPane>*/}
+                    &lt;/Tabs>
+                &lt;/div>
+                &lt;FormItem style={{textAlign:'center'}}>
                     {this.props.buttons.map((button, index) => {
                         let buttonCanShow = false;
                         this.props.buttonsEnable.forEach(function(element){
-                            if(element.content === button.content && element.enable){
+                            if(element.content === button.content &amp;&amp; element.enable){
                                 buttonCanShow = true;
                             }});
                         if(buttonCanShow){
-                            return <Button
+                            return &lt;Button
                                 //disabled={this.props.buttonDisabled}
                                 onClick={this.onClick(index)}
                                 key={button.content}>
                                 {button.content}
-                            </Button>
+                            &lt;/Button>
                         }
                     })}
-                </FormItem>
+                &lt;/FormItem>
 
 
 
 
 
-        </Form>
+        &lt;/Form>
 
 
 
@@ -517,3 +545,26 @@ class TestReportContentComponent extends Component {
     }
 }
 export default Form.create()(TestReportContentComponent);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AppComponent.html">AppComponent</a></li><li><a href="ConsignContentComponent.html">ConsignContentComponent</a></li><li><a href="EditableCell.html">EditableCell</a></li><li><a href="TestProblemReducer.html">TestProblemReducer</a></li></ul><h3>Global</h3><ul><li><a href="global.html#containsPane">containsPane</a></li><li><a href="global.html#mapStateToProps">mapStateToProps</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#TabPane">TabPane</a></li><li><a href="global.html#tabsMap">tabsMap</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jul 16 2018 11:11:46 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
