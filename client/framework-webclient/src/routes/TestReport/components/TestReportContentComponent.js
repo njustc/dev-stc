@@ -1,6 +1,11 @@
 //export default Form.create()(TestReportContentComponent);
 import React, {Component, PropTypes} from 'react';
 import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message,Table,Popconfirm} from 'antd';
+
+/**
+ * 页面显示定义的tab
+ * @type {React.ClassicComponentClass<TabPaneProps>}
+ */
 const TabPane = Tabs.TabPane;
 const Option=Select.Option;
 const OptGroup=Select.OptGroup;
@@ -18,6 +23,7 @@ function handleChange(value) {
  * @func
  */
 class TestReportContentComponent extends Component {
+
     constructor(props) {
         super(props);
 
@@ -77,7 +83,6 @@ class TestReportContentComponent extends Component {
         fieldsValue["functionList"] = this.state.dataSource;
         // buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));
     };
-
 
     /**
      *  formItemLayout：定义form的大小；dataSource1：从后台得到硬件环境表格的数据；columns1：定义硬件环境表格的格式

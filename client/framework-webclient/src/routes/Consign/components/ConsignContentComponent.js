@@ -257,7 +257,9 @@ class ConsignContentComponent extends Component  {
     };
 
     /**
-    *
+     * dataSource:功能表的值，columns:功能表模块定义，formItemLayout：，getFieldDecorator：装饰器
+     * return中是前端页面显示html代码
+     * @func
     */
     render() {
 
