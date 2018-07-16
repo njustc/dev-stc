@@ -13,6 +13,10 @@ import javax.persistence.EntityManager;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * 该类是所有仓库接口类的
+ * @param <T> T是BaseEntity的子类
+ */
 @Component(value = "baseRepository")
 @NoRepositoryBean
 public interface BaseRepository<T extends BaseEntity> extends JpaRepository<T, String>, JpaSpecificationExecutor<T>, PagingAndSortingRepository<T, String>

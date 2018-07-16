@@ -18,9 +18,10 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * @author LBW & SQW
+ * 满意度调查表服务
+ * @author LBW
+ * @author SQW
  */
-
 @Service
 public class SatisfactionSurveyService extends BaseService<SatisfactionSurvey> {
     @Autowired
@@ -32,6 +33,12 @@ public class SatisfactionSurveyService extends BaseService<SatisfactionSurvey> {
     @Autowired
     private ProjectRepository projectRepository;
 
+    /**
+     * 以工程为来源查询SatisfactionSurvey
+     * @param user 用户
+     * @return 返回满意度调查表的JSON文件
+     * @throws Exception 流程引擎异常。
+     */
 
     //以工程为来源查询SatisfactionSurvey
     public JSON querySatisfactionSurveys(User user) throws Exception {

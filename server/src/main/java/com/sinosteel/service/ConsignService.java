@@ -23,6 +23,9 @@ import java.util.UUID;
 @Service
 public class ConsignService extends BaseService<Consign> {
 
+    /**
+     * 自动注入consignRepository
+     */
     @Autowired
     private ConsignRepository consignRepository;
 

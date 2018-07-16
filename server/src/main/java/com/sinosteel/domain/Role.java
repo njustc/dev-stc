@@ -20,8 +20,10 @@ public class Role extends BaseEntity {
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "TBL_SYS_ROLE_FUNCTIONS", joinColumns = {
-			@JoinColumn(name = "ROLE_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT)) }, inverseJoinColumns = {
-					@JoinColumn(name = "FUNCTION_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT)) })
+			@JoinColumn(name = "ROLE_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+	}, inverseJoinColumns = {
+			@JoinColumn(name = "FUNCTION_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+	})
 	@JSONField(deserialize = false)
 	private List<Function> functions;
 

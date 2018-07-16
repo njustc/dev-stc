@@ -15,6 +15,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * ConsignRepository
+ * 这个类是用来测试xxxx
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
 public class ConsignRepositoryTests {
@@ -24,6 +28,22 @@ public class ConsignRepositoryTests {
 
     @Autowired
     private ProjectRepository projectRepository;
+
+    /**
+     * testConsignPoroject
+     * 测试过程
+     * <ol>
+     *  <li>新建委托</li>
+     *  <li>查找委托</li>
+     *  <li>删除委托</li>
+     *  <li>确认是否删除</li>
+     * </ol>
+     * 测试结果
+     * <ol>
+     *     <li>查找委托时，不为空</li>
+     *     <li></li>
+     * </ol>
+     */
     @Test
     @Transactional
     public void testConsignProject() {
