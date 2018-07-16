@@ -99,7 +99,7 @@ const updateTestCase = (dispatch, data, callback) => {
     });
 };
 
-export const getTestCaseState = (dispatch, processInstanceID, id, callback) => {
+const getTestCaseState = (dispatch, processInstanceID, id, callback) => {
     httpGet(testCaseActivitiBase + '/' + processInstanceID, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
@@ -113,7 +113,7 @@ export const getTestCaseState = (dispatch, processInstanceID, id, callback) => {
     })
 };
 
-export const putTestCaseState = (dispatch, processInstanceID, data, id, callback) => {
+const putTestCaseState = (dispatch, processInstanceID, data, id, callback) => {
     // console.log("ID = " + processInstanceID);
     httpPut(testCaseActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
@@ -128,4 +128,4 @@ export const putTestCaseState = (dispatch, processInstanceID, data, id, callback
     });
 };
 
-export {getTestCaseList,deleteTestCase,newTestCase,updateTestCase,getTestCase,putTestCaseState}
+export {getTestCaseList,deleteTestCase,newTestCase,updateTestCase,getTestCase,getTestCaseState,putTestCaseState}
