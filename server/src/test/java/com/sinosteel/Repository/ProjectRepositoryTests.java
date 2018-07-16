@@ -10,7 +10,6 @@ import com.sinosteel.domain.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import javax.transaction.Transactional;
 
 /**
@@ -42,7 +41,7 @@ public class ProjectRepositoryTests {
     private ProjectRepository projectRepository;
 
     @Test
-    @Transactional
+  //  @Transactional
     public void testProject(){
 
         Project project = new Project();

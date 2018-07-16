@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * 包括按照用户查询、按照工程查询、按照id查询；添加测试报告；删除测试报告；修改测试报告
  *
  * @author LBW
- * @autuor Lumpy
+ * @author Lumpy
  * @author SQW
  *
  */
