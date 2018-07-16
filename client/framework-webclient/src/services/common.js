@@ -2,11 +2,19 @@
 export const baseAddress = 'http://localhost:8000';
 export const baseServiceAddress = baseAddress + '/services';
 
+/**
+ * @module services/common
+ */
+
 export const STATUS = {
     SUCCESS: 'SUCCESS',
     FAILURE: 'FAILURE',
 };
 
+/**
+ * TobeWrite 待编写
+ * TobeSubmit 待提交
+ */
 export const STATE = {
     TO_WRITE: 'TobeWrite',
     TO_SUBMIT: 'TobeSubmit',    //待提交
