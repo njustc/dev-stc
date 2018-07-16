@@ -15,7 +15,6 @@ import javax.transaction.Transactional;
 
 /**
  * 这个类用来测试project类对应repository的增删查功能
- * <br/>
  * <table border="1" summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>

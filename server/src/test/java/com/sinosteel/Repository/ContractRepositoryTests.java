@@ -16,7 +16,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 /**
  * 这个类用来测试contract类对应repository的增删查功能
- * <br/>
  * <table border="1" summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
