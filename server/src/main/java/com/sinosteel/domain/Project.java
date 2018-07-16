@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
+ * 该类用来管理测试流程中的项目
  * @author SongJunju
  */
 @Entity

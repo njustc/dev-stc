@@ -6,16 +6,30 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 继承自 {@code BaseEntity}
+ * 表示用户账号
+ */
 @Entity
 @Table(name = "TBL_SYS_USERS")
 public class User extends BaseEntity
 {
-	
+
+	/**
+	 * 用户名
+	 */
 	@Column(name = "USERNAME")
 	private String username;
+
+	/**
+	 * 密码
+	 */
 	@Column(name = "PASSWORD")
 	private String password;
-	
+
+	/**
+	 * 密码盐
+	 */
 	private String salt;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -26,6 +40,10 @@ public class User extends BaseEntity
 	{
 		@JoinColumn(name = "ROLE_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
 	})
+
+	/**
+	 * 用户所对应的角色组
+	 */
 	private List<Role> roles;
 
 	@OneToMany(fetch = FetchType.LAZY)
@@ -56,6 +74,9 @@ public class User extends BaseEntity
 		this.consigns = consigns;
 	}
 
+	/**
+	 * 用户所有项目
+	 */
 	//角色所对应的所有项目，项目包括委托合同等。
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
@@ -84,6 +105,9 @@ public class User extends BaseEntity
 		this.testReports = testReports;
 	}
 
+	/**
+	 * 用户权限组
+	 */
 	@Transient
 	private List<Function> functions;
 
