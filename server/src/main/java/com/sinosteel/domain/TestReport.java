@@ -6,7 +6,8 @@ import javax.persistence.*;
 
 
 /**
- * @author SongJunju && FW
+ * @author SongJunju
+ * @author FW
  */
 
 /**
