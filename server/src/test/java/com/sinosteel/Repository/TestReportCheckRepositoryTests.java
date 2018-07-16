@@ -23,7 +23,7 @@ import javax.transaction.Transactional;
  *     </tr>
  *     <tr>
  *         <td>新建测试报告检查表</td>
- *         <td>new + save</td>
+            <td>new + save</td>
  *         <td>FindById成功</td>
  *      </tr>
  *      <tr>
