@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: screens/testing/Testing.js</title>
+    <title>JSDoc: Source: screens/testing/TestProblemContentPage.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: screens/testing/Testing.js</h1>
+    <h1 class="page-title">Source: screens/testing/TestProblemContentPage.js</h1>
 
     
 
@@ -27,6 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React, { Component } from "react";
+import { View,DeviceEventEmitter } from "react-native";
 import {
   Container,
   Header,
@@ -41,89 +42,111 @@ import {
   Right,
   Body,
   List,
-  ListItem
+  ListItem,
+  Accordion,
+  Card,
+  CardItem,
+  Footer,
+  FooterTab,
+  Tabs,
+  Tab,
+  ScrollableTab,
+  Textarea
 } from "native-base";
-
-
 import styles from "./styles";
 
-const datas = [
-  {
-    route: "TestPlanContentList",
-    text: "测试方案书"
-  },
-  {
-    route:"TestCaseContentList",
-    text:"测试用例表"
-  },
-  // {
-  //   route: "TestRecordContentPage",
-  //   text: "测试记录表"
-  // },
-  // {
-  //   route:"TestProblemContentPage",
-  //   text:"测试问题清单"
-  // },
-];//TODO: 修改界面跳转 route
-
 /**
- * 测试所有功能
+ * TestProblemContentPage
+ * 实现类
  */
-class Testing extends Component {
+class TestProblemContentPage extends Component{
+    /**
+     * constructor
+     * 其中包含了初始值和定义
+     * @param props
+     */
   constructor(props){
     super(props);
+    this.state={
+      datas : [{
+        id: 1,
+        description: 'a bug in 小猪佩奇',
+        process: 'unhappy->happy',
+        requirementIndex: 25,
+        initialConditions: '佩奇是一只猪',
+        operationPath: '佩奇->乔治',
+        relatedTestCase: 'yj',
+        discoveryTime: '2018-06-06',
+        executor: 'yj',
+        confirmor: 'qqyx',
+        advice: '给曹老板打call'
+      },
+        {
+          id: 2,
+          description: 'a bug in 小猪佩奇',
+          process: 'unhappy->happy',
+          requirementIndex: 25,
+          initialConditions: '佩奇是一只猪',
+          operationPath: '佩奇->乔治',
+          relatedTestCase: 'yj',
+          discoveryTime: '2018-06-06',
+          executor: 'yj',
+          confirmor: 'qqyx',
+          advice: '给曹老板打call'
+        }
+      ],
+    }
   }
 
-
-  extraUniqueKey(item,index){
-    return index+item;
-  }
-
-  render() {
-    return (
-      &lt;Container style={styles.container}>
-        &lt;Header searchBar rounded>
+    /**
+     * render
+     * 移动端绘制测试问题详情页面
+     * @func
+     * @returns {*}
+     */
+  render(){
+    return(
+      &lt;Container>
+        &lt;Header>
           &lt;Left>
-            &lt;Button
-              transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}
-            >
-              &lt;Icon name="menu" />
+            &lt;Button transparent onPress={() => this.props.navigation.goBack()}>
+              &lt;Icon name="arrow-back" />
             &lt;/Button>
           &lt;/Left>
           &lt;Body>
-          &lt;Title>测试&lt;/Title>
+          &lt;Title>测试问题详情&lt;/Title>
           &lt;/Body>
           &lt;Right />
         &lt;/Header>
+        &lt;Content padder style={{ marginTop: 0 }}>
+          {/*&lt;Text>TODO: change to a list&lt;/Text>*/}
+          &lt;Card style={styles.md}
+                dataArray={this.state.datas}
+                renderRow={data=>
+                  &lt;CardItem bordered>
+                    &lt;Body>
+                    &lt;Text style={{color:'#4169e1'}}>测试问题序号：{data.id}&lt;/Text>
+                    &lt;Text>问题（缺陷）简要描述：{data.description}&lt;/Text>
+                    &lt;Text>对应需求条目：{data.requirementIndex}&lt;/Text>
+                    &lt;Text>关联用例：{data.relatedTestCase}&lt;/Text>
+                    &lt;Text>发现时间：{data.discoveryTime}&lt;/Text>
+                    &lt;Text>测试执行人：{data.executor}&lt;/Text>
+                    &lt;Text>确认人：{data.confirmor}&lt;/Text>
+                    &lt;Text>问题（缺陷）简要描述：{data.description}&lt;/Text>
+                    &lt;Text>发现缺陷的初始条件：{data.initialConditions}&lt;/Text>
+                    &lt;Text>发现缺陷用例及具体操作路径：{data.operationPath}&lt;/Text>
+                    &lt;Text>修改建议：{data.advice}&lt;/Text>
+                    &lt;/Body>
+                  &lt;/CardItem>
 
-        &lt;Content>
-          {/*&lt;Text>TODO: change to jump to a list first&lt;/Text>*/}
-          &lt;List
-            dataArray={datas}
-            renderRow={data =>
-              &lt;ListItem
-                button
-                onPress={() => this.props.navigation.navigate(data.route)}
-                keyExtractor = {this.extraUniqueKey}//去除警告
-              >
-                &lt;Left>
-                  &lt;Text>
-                    {data.text}
-                  &lt;/Text>
-                &lt;/Left>
-                &lt;Right>
-                  &lt;Icon name="arrow-forward" />
-                &lt;/Right>
-              &lt;/ListItem>}
+                }
           />
         &lt;/Content>
       &lt;/Container>
-    );
+    )
   }
 }
-
-export  default Testing;
+export default TestProblemContentPage;
 </code></pre>
         </article>
     </section>

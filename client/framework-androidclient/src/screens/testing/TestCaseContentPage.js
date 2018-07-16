@@ -33,8 +33,16 @@ import {httpPost,httpGet,httpDelete,httpPut} from "../../FetchUtil";
 import { getLocalclientDigest, getLocaluserName } from "../../login/Login";
 
 //let List = [];//data from 后端
-
-export default class TestPlanContentPage extends Component{
+/**
+ * TestCaseContentPage
+ * 实现类
+ */
+class TestCaseContentPage extends Component{
+    /**
+     * constructor
+     * 其中包含了初始值和定义
+     * @param props
+     */
   constructor(props){
     super(props);
     this.state={
@@ -70,7 +78,11 @@ export default class TestPlanContentPage extends Component{
     }
   }
 
-
+    /**
+     * componentDidmount
+     * 在第一次渲染后调用，组件已经生成对应的DOM结构
+     * @func
+     */
 
   componentDidMount(){
     this.listener_id = DeviceEventEmitter.addListener('id',(events)=>{
@@ -99,12 +111,21 @@ export default class TestPlanContentPage extends Component{
     //console.warn();
     //console.warn(this.state.ProjectID);
   }
-
+    /**
+     * componentWillUnmount
+     * 在组件从DOM中移除的时候立刻被调用
+     * @func
+     */
   componentWillUnmount(){
     this.listener_id.remove();
 
   }
-
+    /**
+     * render
+     * 移动端绘制测试用例详情页面
+     * @func
+     * @returns {*}
+     */
   render(){
     return(
       <Container>
@@ -145,3 +166,4 @@ export default class TestPlanContentPage extends Component{
     )
   }
 }
+export default TestCaseContentPage;

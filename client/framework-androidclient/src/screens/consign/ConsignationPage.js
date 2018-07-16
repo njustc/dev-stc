@@ -28,8 +28,16 @@ import { Table, TableWrapper, Row,Rows } from 'react-native-table-component';
 
 //import styles from "./styles";
 
-
-export  default class ConsignationPage extends Component{
+/**
+ *ConsignationPage
+ * 实现类
+ */
+class ConsignationPage extends Component{
+    /**
+     * constructor
+     * 其中包含了初始值和定义
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.state = {
@@ -143,6 +151,11 @@ export  default class ConsignationPage extends Component{
     //     this.setState({ PageID: events.ID});
     //   });
     // }
+    /**
+     * componentDidmount
+     * 在第一次渲染后调用，组件已经生成对应的DOM结构
+     * @func
+     */
   componentDidMount() {
       //tabone
     this.listener_consignUnitC=DeviceEventEmitter.addListener('consignUnitC',(events)=>{
@@ -361,6 +374,11 @@ export  default class ConsignationPage extends Component{
 
 
   }
+    /**
+     * componentWillUnmount
+     * 在组件从DOM中移除的时候立刻被调用
+     * @func
+     */
 //在组件销毁的时候要将其移除
   componentWillUnmount(){
     //this.listener.remove();
@@ -431,7 +449,12 @@ export  default class ConsignationPage extends Component{
     this.listener_remarksE.remove();
 
   }
-
+    /**
+     * render
+     * 移动端绘制委托详情页面，包括：单位信息、软件基本信息、软件运行环境、委托测试信息、委托测试软件功能列表
+     * @func
+     * @returns {*}
+     */
     render() {
         return (
             <Container>
@@ -1024,3 +1047,5 @@ const styles = StyleSheet.create({
   head: { height: 40, backgroundColor: '#f1f8ff' },
   text: { margin: 6 }
 });
+
+export default ConsignationPage;
