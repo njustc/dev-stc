@@ -23,7 +23,7 @@ const mapStateToProps = (state) => {
 }
 };
 /**
- * 把设置列表过滤器和委托页面控制的dispatch方法分发给list页面
+ * 把设置列表过滤器和委托Tab控制的dispatch方法分发给list页面
  * @param dispatch
  * @returns {{showContent: showContent, setListFilter: (function(*=): *), getConsignList: (function(): void), deleteConsign: (function(*=): void), newConsign: (function(): void)}}
  */
