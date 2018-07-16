@@ -33,13 +33,25 @@ const num=[
     "玖"
 ]
 
-
+/**
+ * ContractContentComponent类，即合同内容组件类，代表合同内容组件部分的所有项
+ * @extends Component
+ */
 class ContractContentComponent extends Component {
+    /**
+     * 创建并初始化一个合同内容组件类
+     * @param  props - 构造合同内容的时候传入的多个数据
+     */
     constructor(props) {
         super(props);
          this.state = {
          };
     }
+
+    /**
+     * 规定在没有传来的值的情况下，一些属性的默认值
+     * @type {{values: {consignPlace: string}, disable: boolean, buttons: Array}}
+     */
     static defaultProps = {
         values: {
             consignPlace:"南京",
@@ -48,6 +60,10 @@ class ContractContentComponent extends Component {
         buttons: [],
     };
 
+    /**
+     * 定义props里面的属性的类型，isRequired表示必填项
+     * @type {{contractData: *, values: *, disable: *, buttons: *, form: *}}
+     */
     static propTypes ={
         contractData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
@@ -56,12 +72,25 @@ class ContractContentComponent extends Component {
         form: PropTypes.object.isRequired,
     };
 
+
+    /**
+     * 在通过render()渲染界面之前，获得合同内容界面各功能项所需的值
+     * @function
+     */
     componentWillMount() {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
         this.props.getValues(this.props.contractData.id);
         //     // console.log(this.values);
     };
+
+
+    /**
+     *点击按钮映射对应功能
+     * @param buttonIndex 按钮编号
+     * @returns {Function} 根据按钮编号选择对应功能
+     * @function
+     */
 
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
@@ -72,6 +101,13 @@ class ContractContentComponent extends Component {
         const {buttons, form} = this.props;
         buttons[buttonIndex].onClick(this.props.contractData,JSON.stringify(form.getFieldsValue()));          //此处附近接口？？
     };
+
+
+    /**
+     * 用于渲染渲染合同UI页面的视图的函数
+     * 返回用于描述合同功能组件的表单
+     * @function
+     */
     render() {
         const { current } = this.state;
         const { getFieldDecorator } = this.props.form;
@@ -93,6 +129,7 @@ class ContractContentComponent extends Component {
             width:'200',
             borderRadius:'6',
         }
+
         return(
             <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
                 <FormItem>

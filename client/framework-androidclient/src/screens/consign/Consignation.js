@@ -87,15 +87,15 @@ class Consignation extends Component {
 
   onChanegeTextKeyword(text){
     //console.warn("yyy");
-    this.timeA(text);
+    this.search(text);
   }
 
   /**
-   * 搜索函数
+   * 委托列表搜索函数
    * @func
    */
 
-  timeA(text){
+  search(text){
     if(this.time){
       clearTimeout(this.time)
     }
@@ -144,6 +144,10 @@ class Consignation extends Component {
     return index+item;
   }
 
+  /**
+   * 从后端获取委托列表
+   * @func
+   */
   getConsignList = () => {
     //let toastMsg2 = 'emmmm';
     //ToastAndroid.showWithGravity(toastMsg2, 1000, ToastAndroid.CENTER);
@@ -164,6 +168,10 @@ class Consignation extends Component {
     });
   };
 
+  /**
+   * 获取委托列表内容
+   * @func
+   */
   componentWillMount() {
     userName=getLocaluserName();
     clientDigest=getLocalclientDigest();
@@ -174,6 +182,11 @@ class Consignation extends Component {
     //this.state.datas=ConsignList;
   }
 
+  /**
+   * 委托列表跳转到委托单函数，根据委托单id，将委托单具体内容传递给跳转界面
+   * @param id
+   * @func
+   */
   gotoConsignationPage = (id) => {
       //httpGet(baseServiceAddress + '/consign/' + id + '?username=admin&clientDigest=qqq', (result) => {
       httpGet(baseServiceAddress+'/consign/' + id + '?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest(),(result)=>{
@@ -283,6 +296,11 @@ class Consignation extends Component {
     this.props.navigation.navigate("ConsignPage");
   }
 
+  /**
+   * 委托列表渲染函数
+   * @returns {*}
+   * @func
+   */
   render() {
     return (
       <Container style={styles.container}>

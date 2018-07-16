@@ -59,7 +59,16 @@ class EditableCell extends Component {
     }
 }
 
+/**
+ * TestPlanContentComponent类，即测试方案组件类，代表测试方案内容组件部分的所有项
+ * @extends Component
+ */
 class TestPlanContentComponent extends Component {
+    /**
+     * 创建并初始化一个测试方案组件类
+     * 初始化包括对所有表格属性设定的初始化
+     * @param props - 构造测试方案内容的时候传入的多个数据
+     */
     constructor(props) {
         super(props);
 
@@ -397,6 +406,10 @@ class TestPlanContentComponent extends Component {
         };
     }
 
+    /**
+     * 规定在没有传来的值的情况下，一些属性的默认值
+     * @type {{values: {documentID: string, testLevel: string}, disable: boolean, buttons: Array}}
+     */
     static defaultProps = {
         values: {
             documentID:'NST-04-JS006-2011-软件测试方案-',
@@ -406,6 +419,10 @@ class TestPlanContentComponent extends Component {
         buttons: [],
     };
 
+    /**
+     * 定义props里面的属性的类型，isRequired表示必填项
+     * @type {{testPlanData: *, values: *, disable: *, buttons: *, form: *}}
+     */
     static propTypes = {
         testPlanData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
@@ -413,6 +430,11 @@ class TestPlanContentComponent extends Component {
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };
+
+    /**
+     * 在通过render()渲染界面之前，获得测试方案界面各功能项所需的值
+     * @function
+     */
     componentWillMount() {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
@@ -479,6 +501,13 @@ class TestPlanContentComponent extends Component {
         this.setState(state);
         //     // console.log(this.values);
     };
+
+    /**
+     *点击按钮映射对应功能
+     * @param buttonIndex 按钮编号
+     * @returns {Function} 根据按钮编号选择对应功能
+     * @function
+     */
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
         //     if (!err) {
@@ -495,6 +524,11 @@ class TestPlanContentComponent extends Component {
         buttons[buttonIndex].onClick(this.props.testPlanData,JSON.stringify(fieldsValue));
     };
 
+    /**
+     * 用于渲染渲染合同UI页面的视图的函数
+     * 返回用于描述合同功能组件的表单
+     * @function
+     */
     render() {
         const { current } = this.state;
         const { getFieldDecorator } = this.props.form;
