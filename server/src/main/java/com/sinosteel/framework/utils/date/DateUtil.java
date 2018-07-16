@@ -1,15 +1,11 @@
 package com.sinosteel.framework.utils.date;
 
+import com.sinosteel.framework.utils.string.StringUtil;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
-
-import com.sinosteel.framework.utils.string.StringUtil;
+import java.util.*;
 
 /**
  * 日期工具类
@@ -46,8 +42,9 @@ public class DateUtil
     /**
      * 日期格式化yyyy-MM-dd
      * 
-     * @param date
-     * @return
+     * @param date 日期
+     * @param format 格式
+     * @return 格式化的日期
      */
     public static Date formatDate(String date, String format)
     {
@@ -67,8 +64,8 @@ public class DateUtil
     /**
      * 日期格式化yyyy-MM-dd
      * 
-     * @param date
-     * @return
+     * @param date 日期
+     * @return 格式化的日期
      */
     public static String formatDate(Date date) 
     {
@@ -78,8 +75,8 @@ public class DateUtil
     /**
      * 日期格式化yyyy-MM-dd HH:mm:ss
      * 
-     * @param date
-     * @return
+     * @param date 日期
+     * @return 格式化的日期字符串
      */
     public static String formatDateTime(Date date)
     {
@@ -89,7 +86,7 @@ public class DateUtil
     /**
      * 时间格式化
      * 
-     * @param date
+     * @param date 日期
      * @return HH:mm:ss
      */
     public static String formatTime(Date date) 
@@ -100,9 +97,9 @@ public class DateUtil
     /**
      * 日期格式化
      * 
-     * @param date
-     * @param 格式类型
-     * @return
+     * @param date 日期
+     * @param formatStr 格式类型
+     * @return 格式化
      */
     public static String getDateFormat(Date date, String formatStr)
     {
@@ -117,8 +114,8 @@ public class DateUtil
     /**
      * 日期格式化
      * 
-     * @param date
-     * @return
+     * @param date 日期
+     * @return 格式化日期
      */
     public static Date getDateFormat(String date) 
     {
@@ -138,8 +135,8 @@ public class DateUtil
     /**
      * 时间格式化
      * 
-     * @param date
-     * @return
+     * @param date 时间
+     * @return 格式化时间
      */
     public static Date getDateTimeFormat(String date) 
     {
@@ -158,9 +155,8 @@ public class DateUtil
 
     /**
      * 获取当前日期(yyyy-MM-dd)
-     * 
-     * @param date
-     * @return
+     *
+     * @return 当前日期
      */
     public static Date getNowDate() 
     {
@@ -195,7 +191,7 @@ public class DateUtil
     /**
      * 获取日期星期一日期
      * 
-     * @param 指定日期
+     * @param date 指定日期
      * @return date
      */
     public static Date getFirstDayOfWeek(Date date) {
@@ -211,7 +207,7 @@ public class DateUtil
     /**
      * 获取日期星期一日期
      * 
-     * @param 指定日期
+     * @param date 指定日期
      * @return date
      */
     public static Date getLastDayOfWeek(Date date) {
@@ -239,7 +235,7 @@ public class DateUtil
     /**
      * 获取当前月的最后一天
      * 
-     * @return
+     * @return 天
      */
     public static Date getLastDayOfMonth()
     {
@@ -253,8 +249,8 @@ public class DateUtil
     /**
      * 获取指定月的第一天
      * 
-     * @param date
-     * @return
+     * @param date 日期
+     * @return 日期
      */
     public static Date getFirstDayOfMonth(Date date) {
         gregorianCalendar.setTime(date);
@@ -265,8 +261,8 @@ public class DateUtil
     /**
      * 获取指定月的最后一天
      * 
-     * @param date
-     * @return
+     * @param date 日期
+     * @return 日期
      */
     public static Date getLastDayOfMonth(Date date) {
         gregorianCalendar.setTime(date);
@@ -279,8 +275,8 @@ public class DateUtil
     /**
      * 获取日期前一天
      * 
-     * @param date
-     * @return
+     * @param date 日期
+     * @return 日期
      */
     public static Date getDayBefore(Date date) {
         gregorianCalendar.setTime(date);
@@ -292,8 +288,8 @@ public class DateUtil
     /**
      * 获取日期后一天
      * 
-     * @param date
-     * @return
+     * @param date 日期
+     * @return 日期
      */
     public static Date getDayAfter(Date date) {
         gregorianCalendar.setTime(date);
@@ -305,7 +301,7 @@ public class DateUtil
     /**
      * 获取当前年
      * 
-     * @return
+     * @return 当前年
      */
     public static int getNowYear() {
         Calendar d = Calendar.getInstance();
@@ -315,7 +311,7 @@ public class DateUtil
     /**
      * 获取当前月份
      * 
-     * @return
+     * @return 当前月份
      */
     public static int getNowMonth() {
         Calendar d = Calendar.getInstance();
@@ -325,7 +321,7 @@ public class DateUtil
     /**
      * 获取当月天数
      * 
-     * @return
+     * @return 当月天数
      */
     public static int getNowMonthDay() {
         Calendar d = Calendar.getInstance();
@@ -335,8 +331,8 @@ public class DateUtil
     /**
      * 获取时间段的每一天
      * 
-     * @param 开始日期
-     * @param 结算日期
+     * @param startDate 开始日期
+     * @param endDate 结算日期
      * @return 日期列表
      */
     public static List<Date> getEveryDay(Date startDate, Date endDate) {
@@ -360,8 +356,8 @@ public class DateUtil
     /**
      * 获取提前多少个月
      * 
-     * @param monty
-     * @return
+     * @param monty 月
+     * @return 多少个月
      */
     public static Date getFirstMonth(int monty) {
         Calendar c = Calendar.getInstance();
@@ -372,8 +368,9 @@ public class DateUtil
     /**
      * 根据范围随机生成日期
      * 
-     * @param monty
-     * @return
+     * @param beginDate 开始日期
+     * @param endDate  结束日期
+     * @return 随机日期
      */
 	public static Date randomDate(String beginDate, String endDate)
 	{  
@@ -412,8 +409,9 @@ public class DateUtil
 	
 	/**
      * 获得月份差值
-     * 
-     * @return
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @return 月份差值
      */
     public static int getMonthSpace(String startDate, String endDate)
     {
@@ -441,7 +439,7 @@ public class DateUtil
     /**
      * 获得上个月份的相应日期
      * 
-     * @return
+     * @return 上个月相应日期
      */
     public static Date getLastMonth()
     {
@@ -453,7 +451,7 @@ public class DateUtil
     /**
      * 获得上个月份的相应日期
      * 
-     * @return
+     * @return 上个月相应日期
      */
     public static Date getLastMonth(Date date)
     {

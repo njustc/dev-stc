@@ -21,9 +21,84 @@ import springfox.documentation.spring.web.json.Json;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * @author ZWH
+ * 该类用来测试合同流程实例在调用接口后状态变化情况
+ * <table border="1" summary="测试过程1">
+ *     <tr>
+ *         <th>执行操作</th>
+ *         <th>预期状态</th>
+ *     </tr>
+ *     <tr>
+ *         <td>查询合同状态</td>
+ *         <td>&nbsp;</td>
+ *     </tr>
+ *     <tr>
+ *         <td>customer2提交合同</td>
+ *         <td>TobeReview</td>
+ *     </tr>
+ *     <tr>
+ *         <td>工作人员否决合同</td>
+ *         <td>TobeSubmit</td>
+ *     </tr>
+ *     <tr>
+ *         <td>customer2再次请求</td>
+ *         <td>TobeReview</td>
+ *     </tr>
+ *     <tr>
+ *         <td>工作人员通过合同</td>
+ *         <td>TobeConfirm</td>
+ *     </tr>
+ *     <tr>
+ *         <td>客户通过合同</td>
+ *         <td>Finished</td>
+ *     </tr>
+ * </table>
+ *
+ *
+ * <table border="1" summary="测试过程2">
+ *     <tr>
+ *         <th>执行操作</th>
+ *         <th>预期状态</th>
+ *     </tr>
+ *     <tr>
+ *         <td>查询合同状态</td>
+ *         <td>&nbsp;</td>
+ *     </tr>
+ *     <tr>
+ *         <td>customer1提交合同</td>
+ *         <td>TobeReview</td>
+ *     </tr>
+ *     <tr>
+ *         <td>市场部主任否决合同</td>
+ *         <td>TobeSubmit</td>
+ *     </tr>
+ *     <tr>
+ *         <td>customer1再次请求</td>
+ *         <td>TobeReview</td>
+ *     </tr>
+ *     <tr>
+ *         <td>市场部主任通过合同</td>
+ *         <td>TobeConfirm</td>
+ *     </tr>
+ *     <tr>
+ *         <td>customer1不通过合同</td>
+ *         <td>TobeSubmit</td>
+ *     </tr>
+ *     <tr>
+ *         <td>customer1再再次请求</td>
+ *         <td>TobeReview</td>
+ *     </tr>
+ *     <tr>
+ *         <td>质量部主任通过合同</td>
+ *         <td>TobeConfirm</td>
+ *     </tr>
+ *     <tr>
+ *         <td>customer1通过合同</td>
+ *         <td>Finished</td>
+ *     </tr>
+ * </table>
+ *
+ * @author zwh
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
 public class ContractActivitiTest {

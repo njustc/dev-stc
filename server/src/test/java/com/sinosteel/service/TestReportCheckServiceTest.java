@@ -15,6 +15,51 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.transaction.Transactional;
 
+/**
+ *
+ * 本测试用来测试TestReportCheck Service
+ * <table border = "1">
+ *      <tr>
+ *          <th>测试内容</th>
+ *          <th>测试操作</th>
+ *          <th>测试结果</th>
+ *      </tr>
+ *      <tr>
+ *          <td>通过用户查询测试报告检查</td>
+ *          <td>queryTestReportChecks</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>新建测试报告检查</td>
+ *          <td>addTestReportCheck</td>
+ *          <td>新建成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过测试报告检查ID查询测试报告检查</td>
+ *          <td>queryTestReportCheckByID</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过工程查询测试报告检查</td>
+ *          <td>queryTestReportChecksByProject</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>编辑测试报告检查内容</td>
+ *          <td>editTestReportCheck</td>
+ *          <td>编辑成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>删除测试报告检查</td>
+ *          <td>deleteTestReportCheck</td>
+ *          <td>queryTestReportCheckByID为空,删除成功</td>
+ *      </tr>
+ * </table>
+ *
+ *
+ * @author Lumpy
+ */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
 @Transactional

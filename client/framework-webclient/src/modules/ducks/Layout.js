@@ -10,7 +10,12 @@ const initialState = {
     panes: [],
     activeKey: "",
 };
-
+/**
+ * 判断数组里是否包含含有某个键的元素
+ * @param key 需要搜索的键
+ * @param panes 目标数组
+ * @returns {boolean} 如果数组中存在该元素则返回true，否则false
+ */
 const  containsPane = (key, panes) => {
     for(let i=0; i<panes.length; i++) {
         if(key === panes[i].key) {

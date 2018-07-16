@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * {@code TestTestBugService} It's a testTestBugs service.
+ * {@code TestTestBugService} It's a testTestBug service.
  *
  * Including functions:query testTestBugs by user,
  * query testTestBugs by testTestBugs ID,

@@ -1,6 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import {Steps, Modal, Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message,Table, Popconfirm } from 'antd';
 import moment from "moment/moment";
+
+/**
+ * 页面定义的tab
+ * @type {React.ClassicComponentClass<TabPaneProps>}
+ */
 const TabPane = Tabs.TabPane;
 
 const Panel = Collapse.Panel;
@@ -14,6 +19,11 @@ const { TextArea } = Input;
 function handleChange(value) {
     console.log(`selected ${value}`);
 }
+
+/**
+ * 功能表编辑函数，让表格中的内容可以在线编辑
+ * @func
+ */
 class EditableCell extends Component {
     state = {
         value: this.props.value,
@@ -66,8 +76,14 @@ class EditableCell extends Component {
     }
 }
 class ConsignContentComponent extends Component  {
+    /**
+     * 功能表定义
+     * @param props
+     * columns：功能表模块定义，dataSource：功能表数值定义，count：功能表初始数值
+     */
     constructor(props) {
         super(props);
+
         this.columns = [{
             title: '模块编号',
             dataIndex: 'number',
@@ -141,6 +157,11 @@ class ConsignContentComponent extends Component  {
         const dataSource = [...this.state.dataSource];
         this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
     }
+    /**
+     *
+     * 功能表添加函数
+     * @func
+     */
     handleAdd = () => {
         const { count, dataSource } = this.state;
         const newData = {
@@ -235,6 +256,11 @@ class ConsignContentComponent extends Component  {
         });
     };
 
+    /**
+     * dataSource:功能表的值，columns:功能表模块定义，formItemLayout：，getFieldDecorator：装饰器
+     * return中是前端页面显示html代码
+     * @func
+    */
     render() {
 
         const { dataSource } = this.state;

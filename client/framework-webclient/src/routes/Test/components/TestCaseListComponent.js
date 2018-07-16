@@ -8,7 +8,9 @@ const Search = Input.Search;
 const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
-
+/**
+ * TestListComponent
+ */
 export default class TestCaseListComponent extends Component {
     constructor(props) {
         super(props);
@@ -33,7 +35,11 @@ export default class TestCaseListComponent extends Component {
     state={
         selectOption:'code',
     };
-
+    /**
+     * @func
+     * @param value
+     * @param option
+     */
     onSelect = (value, option) => {
         this.setState({
             selectOption:value

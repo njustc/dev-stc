@@ -1,6 +1,12 @@
 // 该方法拦截 action，数据请求封装
 import 'isomorphic-fetch'
-
+/**
+ * @module utils
+ */
+/**
+ *
+ * @type {symbol}
+ */
 export const BZ_REQUESTER = Symbol('BZ REQUESTER')
 
 export default store => next => action => {
