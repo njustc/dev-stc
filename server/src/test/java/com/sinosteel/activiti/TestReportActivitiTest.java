@@ -20,9 +20,72 @@ import springfox.documentation.spring.web.json.Json;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * @author ZWH
+ * 该类用来测试测试报告流程实例在调用接口后状态变化情况
+ * <table border="1" summary="测试过程">
+ *     <tr>
+ *         <th>执行操作</th>
+ *         <th>预期状态</th>
+ *     </tr>
+ *     <tr>
+ *         <td>查询测试报告状态</td>
+ *         <td>&nbsp;</td>
+ *     </tr>
+ *     <tr>
+ *         <td>customer1提交测试报告</td>
+ *         <td>TobeReview</td>
+ *     </tr>
+ *     <tr>
+ *         <td>工作人员否决测试报告</td>
+ *         <td>TobeWrite</td>
+ *     </tr>
+ *     <tr>
+ *         <td>customer2再次请求</td>
+ *         <td>TobeReview</td>
+ *     </tr>
+ *     <tr>
+ *         <td>工作人员通过测试报告</td>
+ *         <td>TobeApprove</td>
+ *     </tr>
+ *     <tr>
+ *         <td>主任否决测试报告</td>
+ *         <td>TobeWrite</td>
+ *     </tr>
+ *     <tr>
+ *         <td>工作人员再次提交</td>
+ *         <td>TobeReview</td>
+ *     </tr>
+ *     <tr>
+ *         <td>主任通过测试报告</td>
+ *         <td>TobeApprove</td>
+ *     </tr>
+ *     <tr>
+ *         <td>主任通过测试报告</td>
+ *         <td>TobeSend</td>
+ *     </tr>
+ *     <tr>
+ *         <td>发放测试报告</td>
+ *         <td>TobeConfirm</td>
+ *     </tr>
+ *     <tr>
+ *         <td>确认测试报告</td>
+ *         <td>Satisfaction</td>
+ *     </tr>
+ *     <tr>
+ *         <td>满意度测试报告</td>
+ *         <td>TobeDone</td>
+ *     </tr>
+ *     <tr>
+ *         <td>结项测试报告</td>
+ *         <td>TobeFiling</td>
+ *     </tr>
+ *     <tr>
+ *         <td>归档测试报告</td>
+ *         <td>Finished</td>
+ *     </tr>
+ * </table>
+ *
+ * @author zwh
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
 public class TestReportActivitiTest {

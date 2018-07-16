@@ -13,7 +13,10 @@ function handleChange(value) {
     console.log(`selected ${value}`);
 }
 
-
+/**
+ * test主函数
+ * @func
+ */
 class TestReportContentComponent extends Component {
     constructor(props) {
         super(props);
@@ -82,6 +85,7 @@ class TestReportContentComponent extends Component {
      *  dataSource3：从后台得到功能性测试表格的数据；columns3：定义功能性测试表格的格式
      *  dataSource4：从后台得到非功能性测试表格的数据；columns4：定义非功能性测试表格的格式
      *  return是前端显示页面的html
+     *  @func
      */
     render() {
         const { getFieldDecorator } = this.props.form;

@@ -22,7 +22,7 @@ function handleChange(value) {
 
 /**
  * 功能表编辑函数，让表格中的内容可以在线编辑
- *
+ * @func
  */
 class EditableCell extends Component {
     state = {
@@ -158,7 +158,9 @@ class ConsignContentComponent extends Component  {
         this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
     }
     /**
+     *
      * 功能表添加函数
+     * @func
      */
     handleAdd = () => {
         const { count, dataSource } = this.state;
