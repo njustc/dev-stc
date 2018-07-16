@@ -13,8 +13,8 @@ import javax.persistence.EntityManager;
 import java.io.Serializable;
 
 /**
- * 使BaseRepositoryFactoryBean代替默认的RepositoryFactoryBean<br/>
- * 返回一个自定义的RepositoryFactory<br/>
+ * <br>使BaseRepositoryFactoryBean代替默认的RepositoryFactoryBean</br>
+ * <br>返回一个自定义的RepositoryFactory</br>
  * 用来给{@code BaseRepository}添加自定义接口
  * @param <R> 继承自{@code JpaRepository}的仓库接口类型
  * @param <T> 继承自{@code BaseEntity}的实体类型
@@ -33,7 +33,7 @@ public class BaseRepositoryFactoryBean<R extends JpaRepository<T, String>, T ext
     }
 
     /**
-     * 自定义的 RepositoryFactory类<br/>
+     * <br>自定义的 RepositoryFactory类</br>
      * 用来给BaseRepository添加自定义接口
      * @param <T> BaseEntity的子类
      * @param <I> Serializable的子类
