@@ -14,6 +14,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 为流程引擎定制几种基本的操作.
+ * 定义了流程中各个对象的状态.
+ * @author TC
+ */
 @Service
 public class BaseOperation {
 
@@ -36,7 +41,8 @@ public class BaseOperation {
     }
     /**
      * 没有gate的task,对应于所有流程图中的提交,编写，实施等
-     * @param processInstanceId
+     * @param processInstanceId 流程实例的ID
+     * @param workerId 分配给用户组中的成员ID
      * @throws Exception
      */
     public void noGate (String processInstanceId,String workerId) throws  Exception
@@ -70,7 +76,7 @@ public class BaseOperation {
     /**
      * 对应于流程图中有gate，需要提供参数判断流程走向的操作
      * @param operation request中的operation
-     * @param processInstanceId
+     * @param processInstanceId 流程实例的ID
      * @param workerId 分配给用户组中的成员ID
      * @throws Exception
      */
@@ -119,6 +125,15 @@ public class BaseOperation {
             throw new Exception(task.getProcessDefinitionId()+ "error");
         }*/
     }
+
+    /**
+     * 对于流程中评审、批准等任务提供填写意见功能
+     * @param task 用户任务
+     * @param formProperties 表单
+     * @param comments 意见内容
+     * @param variables 流程变量，用于储存意见
+     * @throws Exception
+     */
     public void addComments(Task task,List<FormProperty> formProperties,String comments,Map<String,Object> variables) throws Exception {
         List<String> varies = new ArrayList<String>();
         for (FormProperty formProperty : formProperties) {

@@ -17,7 +17,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.transaction.Transactional;
 
 /**
- * @author LBW,Lumpy
+ * Tt's a Junit test for ConsignService
+ *
+ *
+ *
+ * @author LBW
+ * @author Lumpy
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -40,6 +45,9 @@ import javax.transaction.Transactional;
     private UserRepository userRepository;
 
     @Before
+    /**
+     *
+     */
     public void getUser() {
         marketUser = userRepository.findByUsername("marketing");
         customer1 = userRepository.findByUsername("customer1");

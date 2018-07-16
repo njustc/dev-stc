@@ -84,7 +84,8 @@ public class TestReportServiceTest {
             String consign_id = jsonConsign.getString("id");
             JSONObject jsonProject = projectService.addProject(consign_id,project,null,tester);
             String pro_id = jsonProject.getString("id");
-            JSONObject jsonResult = testReportService.addTestReport(pro_id,jsonProject, null, tester);
+
+            JSONObject jsonResult = testReportService.addTestReport(pro_id,TestReport, null, tester);
             String id = jsonResult.getString("id");
             Assert.assertNotNull("测试报告新建失败",id);
             System.out.println("测试报告新建成功, 测试报告的ID为: " + id);
@@ -109,6 +110,7 @@ public class TestReportServiceTest {
 
             //test_deleteTestReport
             System.out.println("=====删除该测试报告=====");
+
             testReportService.deleteTestReport(jsonTestReport);
             try{
                 JSONObject jsonDel = testReportService.queryTestReportByID(id);
