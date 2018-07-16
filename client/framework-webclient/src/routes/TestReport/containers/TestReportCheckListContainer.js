@@ -8,7 +8,7 @@ import TestReportCheckListComponent from "../components/TestReportCheckListCompo
 import {ProjectContentView} from "../../Project";
 
 /**
- * @module TestReport/TestReportCheckListContainer
+ * @module TestReportCheck/TestReportCheckListContainer
  */
 /**
  * 把store中的测试报告检查表分发给list页面

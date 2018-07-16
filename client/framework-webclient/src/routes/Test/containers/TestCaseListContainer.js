@@ -7,7 +7,7 @@ import {setTestCaseFilter} from "../../../modules/ducks/TestCase";
 import TestCaseListComponent from "../components/TestCaseListComponent";
 import {ProjectContentView} from "../../Project";
 /**
- * @module Test/TestCaseListContainer
+ * @module TestCase/TestCaseListContainer
  */
 
 /**

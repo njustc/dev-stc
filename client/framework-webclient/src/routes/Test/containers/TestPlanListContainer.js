@@ -9,7 +9,7 @@ import {ProjectContentView} from "../../Project";
 //import {deleteContract, newContract} from "../../../services/ContractService";
 
 /**
- * @module Test/TestPlanListContainer
+ * @module TestPlan/TestPlanListContainer
  */
 /**
  * 把store中的测试方案分发给list页面
