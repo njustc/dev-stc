@@ -16,6 +16,47 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ *
+ * 本测试用来测试TestBug Service
+ * <table border = "1">
+ *      <tr>
+ *          <th>测试内容</th>
+ *          <th>测试操作</th>
+ *          <th>测试结果</th>
+ *      </tr>
+ *      <tr>
+ *          <td>通过用户查询测试错误</td>
+ *          <td>queryTestBugs</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>新建测试错误</td>
+ *          <td>addTestBug</td>
+ *          <td>新建成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过测试错误ID查询测试错误</td>
+ *          <td>queryTestBugByID</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过工程查询测试错误</td>
+ *          <td>queryTestBugsByProject</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>编辑测试错误内容</td>
+ *          <td>editTestBug</td>
+ *          <td>编辑成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>删除测试错误</td>
+ *          <td>deleteTestBug</td>
+ *          <td>queryTestBugByID为空,删除成功</td>
+ *      </tr>
+ * </table>
+ *
+ *
  * @author Lumpy
  */
 
