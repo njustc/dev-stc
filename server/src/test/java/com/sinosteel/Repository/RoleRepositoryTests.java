@@ -38,7 +38,7 @@ import java.util.List;
  *         <td>getFunctions</td>
  *         <td>（List）function</td>
  *     </tr>
- * <table>
+ * </table>
  * @author FW
  */
 
