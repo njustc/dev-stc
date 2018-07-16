@@ -42,7 +42,6 @@ export const getTestingReportList = () => {
 
 /**
  * 测试报告列表
- * @class
  */
 class TestingReportList extends Component{
   constructor(props){
@@ -66,15 +65,14 @@ class TestingReportList extends Component{
 
   onChanegeTextKeyword(text){
     //console.warn("yyy");
-    this.timeA(text);
+    this.search(text);
   }
 
   /**
    * 测试报告列表搜索函数
-   * @function
-   * @name timeA
+   * @func
    */
-  timeA(text){
+  search(text){
     if(this.time){
       clearTimeout(this.time)
     }
@@ -123,6 +121,10 @@ class TestingReportList extends Component{
     return index+item;
   }
 
+  /**
+   * 从后端获取测试报告列表
+   * @func
+   */
   getTestingReportList = () => {
     const contractBase = baseServiceAddress+'/v1/testReport?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
     httpGet(contractBase,(result)=>{
@@ -137,12 +139,21 @@ class TestingReportList extends Component{
     });
   };
 
+  /**
+   * 获取测试报告列表内容
+   * @func
+   */
   componentWillMount() {
     this.getTestingReportList();
 
     //this.state.datas=ConsignList;
   }
 
+  /**
+   * 测试报告跳转函数，根据测试报告id获取测试报告具体内容并传给跳转界面
+   * @param id
+   * @func
+   */
   gotoTestingReportPage = (id) =>{
     httpGet(baseServiceAddress+'/v1/testReport/'+id+'?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest(),(result)=>{
       const {status,data}=result;
@@ -180,6 +191,11 @@ class TestingReportList extends Component{
     this.props.navigation.navigate("TestingReportPage");
   }
 
+  /**
+   * 测试报告界面渲染函数
+   * @return {*}
+   * @func
+   */
   render(){
     return(
       <Container style={styles.container}>

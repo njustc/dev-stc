@@ -19,6 +19,10 @@ import {
 
 import styles from "./styles";
 
+/**
+ * 报告所有功能内容
+ * @const
+ */
 const datas = [
   {
     route: "TestingReportList",
@@ -32,7 +36,6 @@ const datas = [
 
 /**
  * 报告所有功能
- * @class
  */
 class Report extends Component {
   constructor(props){
@@ -44,6 +47,10 @@ class Report extends Component {
     return index+item;
   }
 
+  /**
+   * 报告所有功能界面渲染函数
+   * @func
+   */
   render() {
     return (
       <Container style={styles.container}>

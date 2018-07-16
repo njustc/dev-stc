@@ -28,7 +28,8 @@ import {
 
 import styles from "./styles";
 
-export  default class ContractPage extends Component{
+
+class ContractPage extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -648,3 +649,5 @@ export  default class ContractPage extends Component{
   }
 
 }
+
+export  default ContractPage;

@@ -19,6 +19,10 @@ import {
 
 import styles from "./styles";
 
+/**
+ * 结项功能内容列表
+ * @const
+ */
 const datas = [
   {
     route: "TestingWorkCheckTableList",
@@ -32,7 +36,6 @@ const datas = [
 
 /**
  * 结项功能
- * @class
  */
 class ProjectClosing extends Component {
   constructor(props){
@@ -44,6 +47,11 @@ class ProjectClosing extends Component {
     return index+item;
   }
 
+  /**
+   * 结项功能渲染函数
+   * @returns {*}
+   * @func
+   */
   render() {
     return (
       <Container style={styles.container}>
