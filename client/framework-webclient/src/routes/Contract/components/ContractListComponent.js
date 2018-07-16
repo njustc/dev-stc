@@ -8,7 +8,9 @@ const Search = Input.Search;
 const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
-
+/**
+ * @module ContractListComponent
+ */
 export default class ContractListComponent extends Component {
     constructor(props) {
         super(props);

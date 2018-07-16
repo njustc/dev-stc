@@ -10,6 +10,10 @@ const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
 
+/**
+ * @module ConsignListComponent
+ */
+
 export default class ConsignListComponent extends Component {
     constructor(props) {
         super(props);

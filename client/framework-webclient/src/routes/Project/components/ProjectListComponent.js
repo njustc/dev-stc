@@ -10,7 +10,7 @@ const InputGroup = Input.Group;
 const Option = Select.Option;
 
 /**
- * @module Project/ListComponent
+ * @module ProjectListComponent
  */
 export default class ProjectListComponent extends Component {
     constructor(props) {
@@ -175,7 +175,6 @@ export default class ProjectListComponent extends Component {
         key:"operation",
         //width: '12%',
         render: (record) => {
-            /*TODO:操作应该由后台传过来*/
             // console.log(record);//
             return (
                 <div>
