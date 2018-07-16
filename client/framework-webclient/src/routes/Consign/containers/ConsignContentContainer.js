@@ -13,8 +13,6 @@ import {globalOperation, STATUS} from "../../../services/common";
 import {newTestRecord} from "../../../services/TestRecordService";
 import {newTestCase} from "../../../services/TestCaseService";
 import {newSatisfaction} from "SERVICES/ArchiveService";
-// import "./common"
-/*TODO:表单内容和按钮的可视及禁用情况*/
 /**
  * @module Consign/ConsignContentContainer
  */
