@@ -15,6 +15,15 @@ import {newTestCase} from "../../../services/TestCaseService";
 import {newSatisfaction} from "SERVICES/ArchiveService";
 // import "./common"
 /*TODO:表单内容和按钮的可视及禁用情况*/
+/**
+ * @module Consign/ConsignContentContainer
+ */
+/**
+ * 把store里面的委托数据映射到委托组件，根据store数据计算页面编辑权限，计算并传入buttonsEnable数组
+ * @param state
+ * @param ownProps
+ * @returns {{consignData: *, values: {}, disable: boolean, buttonsEnable: *}}
+ */
 const mapStateToProps = (state, ownProps) => {
     // debugger;
     const content = state.Consign.listMap[ownProps.id];
@@ -32,7 +41,14 @@ const mapStateToProps = (state, ownProps) => {
         buttonsEnable: buttonsEnable(isCustomer,isMarketing,isSubmitVisible,isReviewVisible),
     }
 };
-
+/**
+ * 按钮显示控制，根据当前用户和状态判断按钮是否可用
+ * @param isCustomer
+ * @param isMarketing
+ * @param isSubmitVisible
+ * @param isReviewVisible
+ * @returns {Array}
+ */
 const buttonsEnable = (isCustomer,isMarketing,isSubmitVisible,isReviewVisible) => [{
     content: '保存',
     enable: isCustomer&&isSubmitVisible,
@@ -46,7 +62,11 @@ const buttonsEnable = (isCustomer,isMarketing,isSubmitVisible,isReviewVisible) =
     content: '否决',
     enable: isMarketing&&isReviewVisible,
 }];
-
+/**
+ * 委托相关的数据操作和对应的按钮
+ * @param dispatch
+ * @returns {Array}
+ */
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
     onClick: (consignData,consignation) =>{
@@ -164,7 +184,12 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
     },
     // enable: isReviewVisible
 }];
-
+/**
+ * 向委托组件分发buttons数组和获取委托的方法
+ * @param dispatch
+ * @param ownProps
+ * @returns {{buttons: {Array}, getValues: getValues}}
+ */
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {
         buttons: buttons(dispatch),
