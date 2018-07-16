@@ -72,7 +72,11 @@ export default class TestPlanListComponent extends Component {
         }
     };
 
-    /*状态列颜色渲染*/
+    /**
+     * 根据测试方案状态选择显示的状态文字描述
+     * @param state 测试方案文档状态
+     * @returns {string} 状态的文字描述
+     */
     state2SColor(state) {
         switch (state){
             case STATE.TO_WRITE: return "processing";
@@ -83,6 +87,11 @@ export default class TestPlanListComponent extends Component {
         }
     }
 
+    /**
+     * 获取并渲染测试方案状态
+     * @param record 被选择测试方案的标识
+     * @returns {*} 渲染测试方案状态
+     */
     state2C(state) {
         switch (state){/*TODO*/
             case STATE.TO_WRITE: return "待编写"/*(<a>待提交</a>)*/;
@@ -94,12 +103,19 @@ export default class TestPlanListComponent extends Component {
         }
     }
 
+    /**
+     * 打开项目详情页面
+     * @param id 被选择测试方案的标识
+     * @returns {Function} 调用showProject
+     */
     viewProject = (id) => () => {
         /*TODO:查看项目详情*/
         this.props.showProject(id);
     };
 
-    /*table列设置*/
+    /**
+     * 设置表格Table
+     */
     columns = [{
         title:"项目编号",
         dataIndex:"code",
@@ -120,7 +136,7 @@ export default class TestPlanListComponent extends Component {
             return consignBody.softwareName?consignBody.softwareName+"测试项目合同":"未填写";
         },
     }, {
-        title: "编制人", /*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        title: "编制人",
         dataIndex: "testPlan.createdUserName",
         key: "writer",
         render: (name) => name ? name : "无"
@@ -140,7 +156,6 @@ export default class TestPlanListComponent extends Component {
         // dataIndex:"id",
         key:"operation",
         render: (project) => {
-            /*TODO*/
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent({key:project.testPlan.id,id:project.id,})}>查看详情</a>
@@ -153,13 +168,21 @@ export default class TestPlanListComponent extends Component {
     }
     ];
 
-    /*查看详情*/
+    /**
+     * 打开测试方案详情页面
+     * @param id 被选择测试方案的标识
+     * @returns {Function} 调用showContent
+     */
     viewContent = (record) => () => {
         //console.log(record);
         this.props.showContent(record);
     };
 
-    /*取消委托提示框*/
+    /**
+     * 显示取消测试方案提示框
+     * @param id 被选择测试方案的标识
+     * @returns {Function}
+     */
     showDeleteConfirm = (record) => () => {
         confirm({
             title: 'Are you sure to delete this testCase?',
@@ -178,7 +201,10 @@ export default class TestPlanListComponent extends Component {
         });
     };
 
-    /*TODO 搜索功能*/
+    /**
+     * 搜索框功能
+     * @param value 在搜索框中输入的值
+     */
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
@@ -197,6 +223,9 @@ export default class TestPlanListComponent extends Component {
         }
     };
 
+    /**
+     * 绘制测试方案列表页面， 包括：页面标题、可以改变搜索选项的搜索框、测试方案表格
+     */
     render() {
         return (
             <div>

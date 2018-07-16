@@ -75,7 +75,8 @@ export default class ContractListComponent extends Component {
      * 根据合同状态选择状态点的颜色
      * @param state 合同状态
      * @returns {string} Badge点的颜色
-     */    state2SColor(state) {
+     */
+    state2SColor(state) {
         switch (state){
             case STATE.TO_SUBMIT: return "processing";
             case STATE.TO_REVIEW: return "processing";

@@ -284,8 +284,8 @@ export default class ProjectContentComponent extends Component {
     }
 
     /**
-     * 获取用户满意度调查表状态
-     * 目前系统中用户满意度调查表没有状态
+     * 获取满意度调查表状态
+     * 目前系统中满意度调查表没有状态
      */
     getSatisfactionState(){
         /*TODO*/

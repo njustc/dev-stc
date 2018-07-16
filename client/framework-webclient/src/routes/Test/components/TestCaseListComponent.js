@@ -70,7 +70,11 @@ export default class TestCaseListComponent extends Component {
         }
     };
 
-    /*状态列颜色渲染*/
+    /**
+     * 根据测试用例状态选择状态点的颜色
+     * @param state 测试用例状态
+     * @returns {string} Badge点的颜色
+     */
     state2SColor(state) {
         switch (state){
             case STATE.TO_SUBMIT: return "processing";
@@ -80,6 +84,11 @@ export default class TestCaseListComponent extends Component {
         }
     }
 
+    /**
+     * 根据测试用例状态选择显示的状态文字描述
+     * @param state 测试用例状态
+     * @returns {string} 状态的文字描述
+     */
     state2C(state) {
         switch (state){/*TODO*/
             case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
@@ -89,12 +98,18 @@ export default class TestCaseListComponent extends Component {
         }
     }
 
+    /**
+     * 打开项目详情页面
+     * @param id 被选择合同的标识
+     * @returns {Function} 调用showProject
+     */
     viewProject = (id) => () => {
-        /*TODO:查看项目详情*/
         this.props.showProject(id);
     };
 
-    /*table列设置*/
+    /**
+     * 设置表格Table
+     */
     columns = [{
         title:"项目编号",
         dataIndex:"code",
@@ -137,13 +152,21 @@ export default class TestCaseListComponent extends Component {
     }
     ];
 
-    /*查看详情*/
+    /**
+     * 打开测试用例详情页面
+     * @param id 被选择测试用例的标识
+     * @returns {Function} 调用showContent
+     */
     viewContent = (record) => () => {
         //console.log(record);
         this.props.showContent(record);
     };
 
-    /*取消委托提示框*/
+    /**
+     * 显示取消测试用例提示框
+     * @param id 被选择测试用例的标识
+     * @returns {Function}
+     */
     showDeleteConfirm = (record) => () => {
         confirm({
             title: 'Are you sure to delete this test case?',
@@ -162,7 +185,10 @@ export default class TestCaseListComponent extends Component {
         });
     };
 
-    /*TODO 搜索功能*/
+    /**
+     * 搜索框功能
+     * @param value 在搜索框中输入的值
+     */
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
@@ -181,6 +207,9 @@ export default class TestCaseListComponent extends Component {
         }
     };
 
+    /**
+     * 绘制测试用例列表页面， 包括：页面标题、可以改变搜索选项的搜索框、测试用例表格
+     */
     render() {
         return (
             <div>
