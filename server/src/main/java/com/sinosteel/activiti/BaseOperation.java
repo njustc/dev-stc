@@ -40,10 +40,10 @@ public class BaseOperation {
         TobeReview, TobeConfirm, TobeApprove
     }
     /**
-     * 没有gate的task,对应于所有流程图中的提交,编写，实施等
+     * 没有gate的task,对应于所有流程图中的提交,编写,实施等
      * @param processInstanceId 流程实例的ID
      * @param workerId 分配给用户组中的成员ID
-     * @throws Exception
+     * @throws Exception 任务未完成
      */
     public void noGate (String processInstanceId,String workerId) throws  Exception
     {
@@ -78,7 +78,7 @@ public class BaseOperation {
      * @param operation request中的operation
      * @param processInstanceId 流程实例的ID
      * @param workerId 分配给用户组中的成员ID
-     * @throws Exception
+     * @throws Exception 任务未完成
      */
     public void containGate(String operation,String processInstanceId,String workerId,String comments) throws Exception
     {
@@ -132,7 +132,7 @@ public class BaseOperation {
      * @param formProperties 表单
      * @param comments 意见内容
      * @param variables 流程变量，用于储存意见
-     * @throws Exception
+     * @throws Exception 添加意见错误
      */
     public void addComments(Task task,List<FormProperty> formProperties,String comments,Map<String,Object> variables) throws Exception {
         List<String> varies = new ArrayList<String>();

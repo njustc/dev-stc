@@ -19,22 +19,25 @@ import java.util.List;
 
 /**
  * 这个类用来测试role类对应repository和role对应function；
+ * <br/>
  * 其中role代表角色 例：市场部 .etc
- *<table border="1">
+ * <br/>
+ * <table border="1" summary="">
  *     <tr>
- *     </tr><th>测试内容</th>
- *     <th>对应操作</th>
- *     <th>测试结果</th>
+ *     <th><b>测试内容</b></th>
+ *     <th><b>对应操作</b></th>
+ *     <th><b>测试结果</b></th>
  *     </tr>
  *     <tr>
- *         <td>从仓库获取角色</td>
+ *         <td>获取角色信息</td>
  *         <td>executeHql</td>
- *         <td>不为空</td>
- *          </tr>
+ *         <td>得到角色不为空</td>
+ *     </tr>
+ *     <tr>
  *          <td>读取角色功能列表</td>
  *         <td>getFunctions</td>
- *         <td>（List）function不为空</td>
- *         </tr>
+ *         <td>（List）function</td>
+ *     </tr>
  * <table>
  * @author FW
  */

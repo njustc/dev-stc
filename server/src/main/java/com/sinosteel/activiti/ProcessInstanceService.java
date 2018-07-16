@@ -29,7 +29,7 @@ public class ProcessInstanceService {
      * @param params json对象
      * @param user 创建实例的用户
      * @return 以String形式返回流程实例的ID
-     * @throws Exception
+     * @throws Exception 创建委托实例失败
      */
     public String createConsignProcess(JSONObject params, User user)throws Exception
     {
@@ -43,7 +43,7 @@ public class ProcessInstanceService {
      * @param params json对象
      * @param user 创建实例的用户
      * @return 以String形式返回流程实例的ID
-     * @throws Exception
+     * @throws Exception 创建合同实例失败
      */
     public String createContractProcess(JSONObject params, User user) throws Exception{
         Contract contract = JSONObject.toJavaObject(params, Contract.class);
@@ -56,7 +56,7 @@ public class ProcessInstanceService {
      * @param params json对象
      * @param user 创建实例的用户
      * @return 以String形式返回流程实例的ID
-     * @throws Exception
+     * @throws Exception 创建测试方案失败
      */
     public String createTestPlanProcess(JSONObject params, User user) throws Exception{
         //TestCase testCase = JSONObject.toJavaObject(params, TestCase.class);
@@ -69,7 +69,7 @@ public class ProcessInstanceService {
      * @param params json对象
      * @param user 创建实例的用户
      * @return 以String形式返回流程实例的ID
-     * @throws Exception
+     * @throws Exception 创建测试报告失败
      */
     public String createTestReportProcess(JSONObject params, User user) throws Exception{
         //TestReport testReport = JSONObject.toJavaObject(params, TestReport.class);
@@ -82,7 +82,7 @@ public class ProcessInstanceService {
      * @param processInstanceID 流程实例的ID
      * @param request 要执行的操作、请求
      * @return 对象在流程中的状态
-     * @throws Exception
+     * @throws Exception 更新流程实例状态失败
      */
     public JSONObject updateProcessState(String processInstanceID, Request request) throws Exception {
         //baseActiviti.updateProcessInstanceState(processInstanceID,request);
@@ -94,7 +94,7 @@ public class ProcessInstanceService {
      * 查询具体流程实例状态
      * @param processInstanceID 流程实例的ID
      * @return json对象
-     * @throws Exception
+     * @throws Exception 查询流程实例状态失败
      */
     public JSONObject queryProcessState(String processInstanceID) throws Exception {
         String state = TCProcessEngine.getProcessState(processInstanceID);
@@ -113,7 +113,7 @@ public class ProcessInstanceService {
      * 获取当前task的用户权限
      * @param processInstanceID 流程实例的ID
      * @return json对象
-     * @throws Exception
+     * @throws Exception 获取当前任务的用户权限失败
      */
     public JSONObject getUserOperation(String processInstanceID) throws Exception {
         List<String> operation = TCProcessEngine.getUserOperation(processInstanceID);
@@ -128,7 +128,7 @@ public class ProcessInstanceService {
      * 查询具体流程实例的历史任务信息
      * @param processInstanceID 流程实例的ID
      * @return json对象
-     * @throws Exception
+     * @throws Exception 查询具体流程实例的历史任务信息失败
      */
     public JSONObject getHistoricTasks(String processInstanceID) throws Exception {
         List<String> operation = TCProcessEngine.queryHistoricTask(processInstanceID);
@@ -143,7 +143,7 @@ public class ProcessInstanceService {
      * 获取当前task的用户类型
      * @param processInstanceID 流程实例的ID
      * @return json对象
-     * @throws Exception
+     * @throws Exception 获取当前任务的用户类型失败
      */
     public JSONObject getUserType(String processInstanceID) throws Exception{
         String userType=TCProcessEngine.getTaskAssignee(processInstanceID);
@@ -158,7 +158,7 @@ public class ProcessInstanceService {
      * 获取用户意见
      * @param processInstanceID 流程实例的ID
      * @return json对象
-     * @throws Exception
+     * @throws Exception 获取用户意见失败
      */
    public JSONObject getComments(String processInstanceID) throws Exception
     {
