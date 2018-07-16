@@ -16,6 +16,17 @@ import {newTestPlan} from "../../../services/TestPlanService";
 import {getProjectList} from "SERVICES/ProjectService";
 import {newTestCase} from "SERVICES/TestCaseService";
 /*TODO:表单内容和按钮的可视及禁用情况*/
+
+/**
+ * @module Consign/TestCaseContentContainer
+ */
+
+/**
+ * 把store里面的测试样例数据映射到测试样例组件
+ * @param state
+ * @param ownProps
+ * @returns {{dataSource: undefined, projectData: *, values: *}}
+ */
 const mapStateToProps = (state, ownProps) => {
     return {
         dataSource: undefined,
@@ -38,6 +49,11 @@ const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible) => [{
     enable: isReviewVisible,
 }];
 
+/**
+ * 测试样例对应的按钮
+ * @param dispatch
+ * @returns {*[]}
+ */
 const buttons = (dispatch) => [{
     content: '保存',
     onClick: (testCaseData,testCaseBody) =>{
@@ -106,6 +122,11 @@ const buttons = (dispatch) => [{
     // enable: isReviewVisible
 }];
 
+/**
+ * 向测试样例组件分发buttons数组和获取测试样例的方法
+ * @param dispatch
+ * @returns {{buttons: *[], getValues: getValues, getProjectList: (function(): *), newTestCase: (function(*=, *=): *), updateTestCase: (function(*=, *=): void), deleteTestCase: (function(*=, *=): void)}}
+ */
 const mapDispatchToProps = (dispatch) => {
     return {
         buttons: buttons(dispatch),
