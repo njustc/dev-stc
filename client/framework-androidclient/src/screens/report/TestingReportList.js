@@ -40,7 +40,11 @@ export const getTestingReportList = () => {
   });
 };
 
-export default class TestingReportList extends Component{
+/**
+ * 测试报告列表
+ * @class
+ */
+class TestingReportList extends Component{
   constructor(props){
     super(props);
     this.state={
@@ -65,6 +69,11 @@ export default class TestingReportList extends Component{
     this.timeA(text);
   }
 
+  /**
+   * 测试报告列表搜索函数
+   * @function
+   * @name timeA
+   */
   timeA(text){
     if(this.time){
       clearTimeout(this.time)
@@ -222,3 +231,5 @@ export default class TestingReportList extends Component{
   }
 
 }
+
+export default TestingReportList;

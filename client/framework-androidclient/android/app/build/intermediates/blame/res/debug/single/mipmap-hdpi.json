@@ -8,6 +8,10 @@
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.1/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
+        "merged": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
+        "source": "/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },

@@ -38,7 +38,10 @@ export const getSatisfactionContentList = () => {
   });
 };
 
-export default class SatisfactionContentList extends Component{
+/**
+ * 客户满意度调查表列表
+ */
+class SatisfactionContentList extends Component{
   constructor(props){
     super(props);
     this.state={
@@ -63,6 +66,10 @@ export default class SatisfactionContentList extends Component{
     this.timeA(text);
   }
 
+  /**
+   * 客户满意度调查表搜索函数
+   * @func
+   */
   timeA(text){
     if(this.time){
       clearTimeout(this.time)
@@ -219,3 +226,5 @@ export default class SatisfactionContentList extends Component{
   }
 
 }
+
+export default SatisfactionContentList;

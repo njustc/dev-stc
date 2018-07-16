@@ -15,7 +15,6 @@ import javax.transaction.Transactional;
 
 /**
  * 这个类用来测试project类对应repository的增删查功能
- * <br/>
  * <table border="1" summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
@@ -24,7 +23,7 @@ import javax.transaction.Transactional;
  *     </tr>
  *     <tr>
  *         <td>新建项目</td>
- *         <td>new project && save</td>
+ *         <td>new project + save</td>
  *         <td>FindById成功</td>
  *     </tr>
  *     <tr>
@@ -32,7 +31,7 @@ import javax.transaction.Transactional;
  *         <td>delete对应Id</td>
  *         <td>FindById为空</td>
  *     </tr>
- * <table>
+ * </table>
  * @author FW
  */
 @RunWith(SpringJUnit4ClassRunner.class)
