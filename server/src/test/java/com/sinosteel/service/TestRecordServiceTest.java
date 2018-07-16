@@ -17,6 +17,47 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ *
+ * 本测试用来测试TestRecord Service
+ * <table border = "1">
+ *      <tr>
+ *          <th>测试内容</th>
+ *          <th>测试操作</th>
+ *          <th>测试结果</th>
+ *      </tr>
+ *      <tr>
+ *          <td>通过用户查询测试记录</td>
+ *          <td>queryTestRecords</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>新建测试记录</td>
+ *          <td>addTestRecord</td>
+ *          <td>新建成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过测试记录ID查询测试记录</td>
+ *          <td>queryTestRecordByID</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过工程查询测试记录</td>
+ *          <td>queryTestRecordsByProject</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>编辑测试记录内容</td>
+ *          <td>editTestRecord</td>
+ *          <td>编辑成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>删除测试记录</td>
+ *          <td>deleteTestRecord</td>
+ *          <td>queryTestRecordByID为空,删除成功</td>
+ *      </tr>
+ * </table>
+ *
+ *
  * @author Lumpy
  */
 

@@ -15,7 +15,48 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.transaction.Transactional;
 
-/**
+
+ /**
+ * 本测试用来测试SatisfactionSurvey Service
+ * <table border = "1">
+ *      <tr>
+ *          <th>测试内容</th>
+ *          <th>测试操作</th>
+ *          <th>测试结果</th>
+ *      </tr>
+ *      <tr>
+ *          <td>通过用户查询用户满意度调查表</td>
+ *          <td>querySatisfactionSurveys</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>新建用户满意度调查表</td>
+ *          <td>addSatisfactionSurvey</td>
+ *          <td>新建成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过用户满意度调查表ID查询用户满意度调查表</td>
+ *          <td>querySatisfactionSurveyByID</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过工程查询用户满意度调查表</td>
+ *          <td>querySatisfactionSurveysByProject</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>编辑用户满意度调查表内容</td>
+ *          <td>editSatisfactionSurvey</td>
+ *          <td>编辑成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>删除用户满意度调查表</td>
+ *          <td>deleteSatisfactionSurvey</td>
+ *          <td>querySatisfactionSurveyByID为空,删除成功</td>
+ *      </tr>
+ * </table>
+ *
+ * 
  * @author Lumpy
  */
 

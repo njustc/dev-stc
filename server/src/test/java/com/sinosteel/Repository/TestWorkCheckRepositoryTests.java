@@ -14,21 +14,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 这个类用来测试TestFunction类对应repository的增删查功能
- *<table border="1">
+ * <br/>
+ *<table border="1" summary="">
  *     <tr>
- *     </tr><th>测试内容</th>
- *     <th>对应操作</th>
- *     <th>测试结果</th>
+ *     <th><b>测试内容</b></th>
+ *     <th><b>对应操作</b></th>
+ *     <th><b>测试结果</b></th>
  *     </tr>
  *     <tr>
- *         <td>新建测试工作检查表td>
+ *         <td>新建测试工作检查表</td>
  *         <td>new + save</td>
  *         <td>FindById成功</td>
- *          </tr>
+ *      </tr>
  *          <td>删除该表</td>
  *         <td>delete对应Id</td>
  *         <td>FindById为空</td>
- *         </tr>
+ *      </tr>
  * <table>
  * @author FW
  */

@@ -17,6 +17,47 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.transaction.Transactional;
 
 /**
+ * 本测试用来测试Project Service
+ * <table border = "1">
+ *      <tr>
+ *          <th>测试内容</th>
+ *          <th>测试操作</th>
+ *          <th>测试结果</th>
+ *      </tr>
+ *      <tr>
+ *          <td>通过用户查询工程</td>
+ *          <td>queryProjects</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>新建工程</td>
+ *          <td>addProject</td>
+ *          <td>新建成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过工程ID查询工程</td>
+ *          <td>queryProjectByID</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过工程查询工程</td>
+ *          <td>queryProjectsByProject</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>编辑工程内容</td>
+ *          <td>editProject</td>
+ *          <td>编辑成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>删除工程</td>
+ *          <td>deleteProject</td>
+ *          <td>queryProjectByID为空,删除成功</td>
+ *      </tr>
+ * </table>
+ *
+ *
+ * 
  * @author Lumpy
  */
 

@@ -17,6 +17,51 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.transaction.Transactional;
 
+/**
+ *
+ * 本测试用来测试TestWorkCheck Service
+ * <table border = "1">
+ *      <tr>
+ *          <th>测试内容</th>
+ *          <th>测试操作</th>
+ *          <th>测试结果</th>
+ *      </tr>
+ *      <tr>
+ *          <td>通过用户查询测试工作检查</td>
+ *          <td>queryTestWorkChecks</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>新建测试工作检查</td>
+ *          <td>addTestWorkCheck</td>
+ *          <td>新建成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过测试工作检查ID查询测试工作检查</td>
+ *          <td>queryTestWorkCheckByID</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过工程查询测试工作检查</td>
+ *          <td>queryTestWorkChecksByProject</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>编辑测试工作检查内容</td>
+ *          <td>editTestWorkCheck</td>
+ *          <td>编辑成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>删除测试工作检查</td>
+ *          <td>deleteTestWorkCheck</td>
+ *          <td>queryTestWorkCheckByID为空,删除成功</td>
+ *      </tr>
+ * </table>
+ *
+ *
+ * @author Lumpy
+ */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
 @Transactional
