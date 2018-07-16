@@ -18,7 +18,7 @@ import {newTestCase} from "SERVICES/TestCaseService";
 /*TODO:表单内容和按钮的可视及禁用情况*/
 
 /**
- * @module Consign/TestCaseContentContainer
+ * @module Test/TestCaseContentContainer
  */
 
 /**

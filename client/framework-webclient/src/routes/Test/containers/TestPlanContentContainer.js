@@ -6,7 +6,7 @@ import {STATUS} from "../../../services/common";
 import {message} from "antd/lib/index";
 
 /**
- * @module Consign/TestPlanContentContainer
+ * @module Test/TestPlanContentContainer
  */
 
 /**
