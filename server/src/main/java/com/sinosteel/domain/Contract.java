@@ -5,7 +5,9 @@ import com.alibaba.fastjson.annotation.JSONField;
 import javax.persistence.*;
 
 /**
- * @author SongJunju && FW
+ * 这个类是测试流程中的合同
+ * @author SongJunju
+ * @author FW
  */
 @Entity
 @Table(name = "TBL_SYS_CONTRACTS")
@@ -369,11 +371,16 @@ public class Contract extends BaseEntity {
     }
 
 
-
+    /**
+     * 用来存储合同文档整体
+     */
     @Column(name = "CONTRACTBODY")
     private String contractBody;
 
 
+    /**
+     * 用户信息
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID", foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT))
     @JSONField(serialize = false)
@@ -387,6 +394,9 @@ public class Contract extends BaseEntity {
         this.user = user;
     }
 
+    /**
+     * 流程ID
+     */
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
 
@@ -398,6 +408,9 @@ public class Contract extends BaseEntity {
         this.processInstanceID = processInstanceID;
     }
 
+    /**
+     * 对应项目
+     */
     // 合同所在的工程
     @OneToOne(mappedBy = "contract")
     @JSONField(serialize = false)

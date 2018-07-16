@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {Steps, Modal, Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message,Table, Popconfirm } from 'antd';
 import moment from "moment/moment";
+
+
 const TabPane = Tabs.TabPane;
 
 const Panel = Collapse.Panel;
@@ -14,21 +16,39 @@ const { TextArea } = Input;
 function handleChange(value) {
     console.log(`selected ${value}`);
 }
+
+/**
+ * 功能表编辑类，让表格中的内容可以在线编辑
+ */
 class EditableCell extends Component {
+    /**
+     * value:表格的值，editable：表格某栏的编辑状态
+     * @type {{value: *, editable: boolean}}
+     */
     state = {
         value: this.props.value,
         editable: false,
     }
+    /**
+     * change函数用来响应表格某行状态的改变
+     * @func
+     * @param e
+     */
     handleChange = (e) => {
         const value = e.target.value;
         this.setState({ value });
     }
+
     check = () => {
         this.setState({ editable: false });
         if (this.props.onChange) {
             this.props.onChange(this.state.value);
         }
     }
+    /**
+     * edit改变表格编辑的状态
+     * @func
+     */
     edit = () => {
         this.setState({ editable: true });
     }
@@ -66,8 +86,14 @@ class EditableCell extends Component {
     }
 }
 class ConsignContentComponent extends Component  {
+    /**
+     * 功能表定义
+     * @param props
+     * columns：功能表模块定义，dataSource：功能表数值定义，count：功能表初始数值
+     */
     constructor(props) {
         super(props);
+
         this.columns = [{
             title: '模块编号',
             dataIndex: 'number',
@@ -127,6 +153,14 @@ class ConsignContentComponent extends Component  {
         };
 
     }
+
+    /**
+     * 功能表列数改变的回调函数
+     * @param key
+     * @param dataIndex
+     * @returns {Function}
+     * @func
+     */
     onCellChange = (key, dataIndex) => {
         return (value) => {
             const dataSource = [...this.state.dataSource];
@@ -137,10 +171,20 @@ class ConsignContentComponent extends Component  {
             }
         };
     }
+    /**
+     * 删除的回调函数
+     * @param key
+     * @func
+     */
     onDelete = (key) => {
         const dataSource = [...this.state.dataSource];
         this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
     }
+    /**
+     *
+     * 功能表添加函数
+     * @func
+     */
     handleAdd = () => {
         const { count, dataSource } = this.state;
         const newData = {
@@ -235,6 +279,11 @@ class ConsignContentComponent extends Component  {
         });
     };
 
+    /**
+     * dataSource:功能表的值，columns:功能表模块定义，formItemLayout：，getFieldDecorator：装饰器
+     * return中是前端页面显示html代码
+     * @func
+    */
     render() {
 
         const { dataSource } = this.state;

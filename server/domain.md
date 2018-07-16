@@ -27,6 +27,7 @@
 
 # Consign说明
 
+
 变量名|名称|状态
 --|--|--
 testType|测试类型|已定义
@@ -125,10 +126,9 @@ processInstanceID|流程ID|已定义
 
 名称|变量名|状态
 --|--|--
-模块编号|已有 BaseEntity中的code
-模块名称|已有 BaseEntity中的name
-功能简述|已有 直接用body吧
-
+模块编号|已有 BaseEntity中的code|未定义
+模块名称|已有 BaseEntity中的name|未定义
+功能简述|已有 直接用body吧|未定义
 
 # 测试方案 TestPlan
 

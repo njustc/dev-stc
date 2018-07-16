@@ -21,8 +21,7 @@ public class TestPlan extends BaseEntity {
 
 
     /**
-     * 详细字段未定
-     * 暂时先用来存储
+     * 测试方案文档整体
      */
     @Column(name = "BODY")
     private String body;
@@ -36,7 +35,7 @@ public class TestPlan extends BaseEntity {
     }
 
     /**
-     * processInstanceID
+     * 流程ID
      */
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
@@ -50,7 +49,7 @@ public class TestPlan extends BaseEntity {
     }
 
     /**
-     * 连接Project的外键
+     * 流程所对应的Project
      */
     @OneToOne(mappedBy = "testPlan")
     @JSONField(serialize = false)

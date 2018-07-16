@@ -16,6 +16,51 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.transaction.Transactional;
 
+/**
+ *
+ * 本测试用来测试TestPlan Service
+ * <table border = "1">
+ *      <tr>
+ *          <th>测试内容</th>
+ *          <th>测试操作</th>
+ *          <th>测试结果</th>
+ *      </tr>
+ *      <tr>
+ *          <td>通过用户查询测试计划</td>
+ *          <td>queryTestPlans</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>新建测试计划</td>
+ *          <td>addTestPlan</td>
+ *          <td>新建成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过测试计划ID查询测试计划</td>
+ *          <td>queryTestPlanByID</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过工程查询测试计划</td>
+ *          <td>queryTestPlansByProject</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>编辑测试计划内容</td>
+ *          <td>editTestPlan</td>
+ *          <td>编辑成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>删除测试计划</td>
+ *          <td>deleteTestPlan</td>
+ *          <td>queryTestPlanByID为空,删除成功</td>
+ *      </tr>
+ * </table>
+ *
+ *
+ * @author Lumpy
+ */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
 @Transactional

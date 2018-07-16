@@ -8,7 +8,9 @@ const Search = Input.Search;
 const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
-
+/**
+ * @module ContractListComponent
+ */
 export default class ContractListComponent extends Component {
     constructor(props) {
         super(props);
@@ -25,22 +27,36 @@ export default class ContractListComponent extends Component {
         enableNew: PropTypes.bool,
     };
 
+    /**
+     * componentDidMount，（装载完成），在render之后调用
+     */
     componentDidMount() {
         this.props.getContractList();
         this.props.getProjectList();
     }
 
-    /*搜索框选项相关*/
+    /**
+     * 记录搜索框当前选项，默认项是项目编号
+     */
     state={
         selectOption:'code',
     };
 
+    /**
+     * 用户的选择操作触发改变搜索框当前选项的记录
+     * @param value 被选择的选项名称
+     * @param option 暂时没用
+     */
     onSelect = (value, option) => {
         this.setState({
             selectOption:value
         });
-    }
+    };
 
+    /**
+     * 根据搜索框选项选择搜索输入框中显示的文字
+     * @returns {string} 搜索输入框中的提示文字
+     */
     setPlaceholder = () => {
         switch (this.state.selectOption){
             case 'code':
@@ -55,8 +71,11 @@ export default class ContractListComponent extends Component {
         }
     };
 
-    /*状态列颜色渲染*/
-    state2SColor(state) {
+    /**
+     * 根据合同状态选择状态点的颜色
+     * @param state 合同状态
+     * @returns {string} Badge点的颜色
+     */    state2SColor(state) {
         switch (state){
             case STATE.TO_SUBMIT: return "processing";
             case STATE.TO_REVIEW: return "processing";
@@ -66,6 +85,11 @@ export default class ContractListComponent extends Component {
         }
     }
 
+    /**
+     * 根据合同状态选择显示的状态文字描述
+     * @param state 合同状态
+     * @returns {string} 状态的文字描述
+     */
     state2C(state) {
         // debugger;
         switch (state){
@@ -78,7 +102,9 @@ export default class ContractListComponent extends Component {
         }
     }
 
-    /*table列设置*/
+    /**
+     * 设置表格Table
+     */
     columns = [{
         title:"项目编号",
         dataIndex:"code",
@@ -93,7 +119,7 @@ export default class ContractListComponent extends Component {
         //width: '25%',
         sorter:(a, b) => a.id - b.id,
     },*/ {
-        title:"合同名称",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        title:"合同名称",
         dataIndex:"consign.consignation",
         key:"name",
         render:(consignation) => {
@@ -101,7 +127,7 @@ export default class ContractListComponent extends Component {
             return consignBody.softwareName?consignBody.softwareName+"测试项目合同":"未填写";
         },
     }, {
-        title:"委托单位",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        title:"委托单位",
         dataIndex:"consign.consignation",
         key:"unit",
         render:(consignation) => {
@@ -109,7 +135,7 @@ export default class ContractListComponent extends Component {
             return consignBody.consignUnitC?consignBody.consignUnitC:"未填写";
         }
     },{
-        title:"合同金额",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        title:"合同金额",
         dataIndex:"contract.contractBody",
         key:"fee",
         render:(contractBodyString) => {
@@ -126,7 +152,6 @@ export default class ContractListComponent extends Component {
                 </span>
             )
         },
-        /*TODO 给状态列加个过滤*/
         /*filters: [{
             text: '待提交',
             value: 'TobeSubmit',
@@ -147,7 +172,6 @@ export default class ContractListComponent extends Component {
         key:"operation",
         //width: '12%',
         render: (project) => {
-            /*TODO:操作应该由后台传过来*/
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent({key:project.contract.id,id:project.id,})}>查看详情</a>
@@ -161,17 +185,29 @@ export default class ContractListComponent extends Component {
     }
     ];
 
-    /*查看详情*/
+    /**
+     * 打开合同详情页面
+     * @param id 被选择合同的标识
+     * @returns {Function} 调用showContent
+     */
     viewContent = (id) => () => {
         this.props.showContent(id);
     };
 
+    /**
+     * 打开项目详情页面
+     * @param id 被选择合同的标识
+     * @returns {Function} 调用showProject
+     */
     viewProject = (id) => () => {
-        /*TODO:查看项目详情*/
         this.props.showProject(id);
     };
 
-    /*取消委托提示框*/
+    /**
+     * 显示取消合同提示框
+     * @param id 被选择合同的标识
+     * @returns {Function}
+     */
     showDeleteConfirm = (id) => () => {
         confirm({
             title: '您确定要取消当前合同吗?',
@@ -190,7 +226,10 @@ export default class ContractListComponent extends Component {
         });
     };
 
-    /*TODO:搜索功能*/
+    /**
+     * 搜索框功能
+     * @param value 在搜索框中输入的值
+     */
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
@@ -214,6 +253,9 @@ export default class ContractListComponent extends Component {
         }
     };
 
+    /**
+     * 绘制合同列表页面， 包括：页面标题、可以改变搜索选项的搜索框、合同表格
+     */
     render() {
         return (
             <div>
