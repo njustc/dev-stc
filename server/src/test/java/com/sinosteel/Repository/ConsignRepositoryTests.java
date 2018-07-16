@@ -43,6 +43,22 @@ public class ConsignRepositoryTests {
 
     @Autowired
     private ProjectRepository projectRepository;
+
+    /**
+     * testConsignPoroject
+     * 测试过程
+     * <ol>
+     *  <li>新建委托</li>
+     *  <li>查找委托</li>
+     *  <li>删除委托</li>
+     *  <li>确认是否删除</li>
+     * </ol>
+     * 测试结果
+     * <ol>
+     *     <li>查找委托时，不为空</li>
+     *     <li></li>
+     * </ol>
+     */
     @Test
     public void testConsignProject() {
         Consign consign = new Consign();

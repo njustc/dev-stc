@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * 包括按照用户查询、按照工程查询、按照id查询；添加满意度调查表；删除满意度调查表；修改满意度调查表
  *
  * @author LBW
- * @aotuor SQW
+ * @autuor SQW
  *
  */
 

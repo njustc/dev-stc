@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class TestFunction extends BaseEntity {
 
     /**
-     * 详细字段未定 暂时先用来存储
+     * 软件功能表文档整体
      */
     @Column(name = "BODY")
     private String body;
@@ -30,7 +30,7 @@ public class TestFunction extends BaseEntity {
     }
 
     /**
-     * processInstanceID
+     * 流程ID
      */
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
@@ -44,7 +44,7 @@ public class TestFunction extends BaseEntity {
     }
 
     /**
-     * 连接Project的外键
+     * 对应的项目
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_ID", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))

@@ -7,6 +7,9 @@ import javax.persistence.*;
 import static javax.management.openmbean.SimpleType.STRING;
 
 
+/**
+ * 这个类是用来权限管理
+ */
 @Entity
 @Table(name = "TBL_SYS_FUNCTIONS")
 public class Function extends BaseEntity
@@ -22,6 +25,9 @@ public class Function extends BaseEntity
 //	@Column(name = "FUNCTION_CODE")
 //	private String functionCode;
 
+	/**
+	 * 权限类型
+	 */
 	@Column(name = "FUNCTION_TYPE")
 	@Enumerated(EnumType.STRING)
 	private FunctionType functionType;
@@ -34,6 +40,9 @@ public class Function extends BaseEntity
 		this.functionType = functionType;
 	}
 
+	/**
+	 * 权限对应文档
+	 */
 	@Column(name = "FUNCTION_OBJECT")
 	private String object;
 

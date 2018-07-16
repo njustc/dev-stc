@@ -6,7 +6,8 @@ import javax.persistence.*;
 
 
 /**
- * @author SongJunju && FW
+ * @author SongJunju
+ * @author FW
  */
 
 /**
@@ -17,8 +18,7 @@ import javax.persistence.*;
 public class TestReport extends BaseEntity {
 
     /**
-     * 详细字段未定
-     * 暂时先用来存储
+     * 测试报告文档整体
      */
     @Column(name = "BODY")
     private String body;
@@ -32,7 +32,7 @@ public class TestReport extends BaseEntity {
     }
 
     /**
-     * processInstanceID
+     * 流程ID
      */
     @Column(name = "PROCESS_INSTANCE_ID")
     private String processInstanceID;
@@ -46,7 +46,7 @@ public class TestReport extends BaseEntity {
     }
 
     /**
-     * 连接Project的外键
+     * 对应项目
      */
     @OneToOne(mappedBy = "testReport")
     @JoinColumn(name = "TESTREPORT_ID",foreignKey = @ForeignKey(name = "none",value = ConstraintMode.NO_CONSTRAINT))
