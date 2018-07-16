@@ -1,4 +1,32 @@
-import React, {Component} from 'react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: routes/Test/components/TestCaseListComponent.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: routes/Test/components/TestCaseListComponent.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge} from 'antd';
 import {STATE} from "../../../services/common"
@@ -72,8 +100,8 @@ export default class TestCaseListComponent extends Component {
 
     state2C(state) {
         switch (state){/*TODO*/
-            case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
-            case STATE.TO_REVIEW: return "待评审"/*(<a>待提交</a>)*/;
+            case STATE.TO_SUBMIT: return "待提交"/*(&lt;a>待提交&lt;/a>)*/;
+            case STATE.TO_REVIEW: return "待评审"/*(&lt;a>待提交&lt;/a>)*/;
             case STATE.CANCELED: return "已取消";
             default: return "未定义状态";
         }
@@ -89,7 +117,7 @@ export default class TestCaseListComponent extends Component {
         title:"项目编号",
         dataIndex:"code",
         render:(code,record)=>{
-            return (<a href="javascript:void(0);" onClick={this.viewProject(record.id)}>{code}</a>)
+            return (&lt;a href="javascript:void(0);" onClick={this.viewProject(record.id)}>{code}&lt;/a>)
         }
         // sorter:(a, b) => a.pid - b.pid,
     }, {
@@ -117,11 +145,11 @@ export default class TestCaseListComponent extends Component {
         render: (record) => {
             /*TODO*/
             return (
-                <div>
-                    <a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情</a>
-                    {/*<Divider type="vertical"/>
-                    <a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托</a>*/}
-                </div>
+                &lt;div>
+                    &lt;a href="javascript:void(0);" onClick={this.viewContent(record)}>查看详情&lt;/a>
+                    {/*&lt;Divider type="vertical"/>
+                    &lt;a href="javascript:void(0);" onClick={this.showDeleteConfirm(record)}>取消委托&lt;/a>*/}
+                &lt;/div>
             )
         }
     }
@@ -163,7 +191,7 @@ export default class TestCaseListComponent extends Component {
             case 'name':
                 this.props.setListFilter((item)=>{
                     const consignBody = item.consign.consignation?JSON.parse(item.consign.consignation):{};
-                    return consignBody!=={}&&consignBody.softwareName&&consignBody.softwareName.match(reg);
+                    return consignBody!=={}&amp;&amp;consignBody.softwareName&amp;&amp;consignBody.softwareName.match(reg);
                 });break;
                 // case 'name':
                 // this.props.setListFilter((item)=>item.name.match(reg));break;
@@ -173,30 +201,52 @@ export default class TestCaseListComponent extends Component {
 
     render() {
         return (
-            <div>
-                <h3 style={{ marginBottom: 16 }}>测试用例列表</h3>
-                <InputGroup>
-                    <Col span={3}>
-                        <Select defaultValue="搜索项目编号" onSelect={this.onSelect}>
-                            {/*<Option value="id">搜索测试用例ID</Option>*/}
-                            <Option value="code">搜索项目编号</Option>
-                            {/*<Option value="tester">搜索测试人</Option>*/}
-                            <Option value="name">搜索项目名称 </Option>
-                        </Select>
-                    </Col>
-                    <Col span={8}>
-                        <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
-                    </Col>
-                    <Col span={1}></Col>
+            &lt;div>
+                &lt;h3 style={{ marginBottom: 16 }}>测试用例列表&lt;/h3>
+                &lt;InputGroup>
+                    &lt;Col span={3}>
+                        &lt;Select defaultValue="搜索项目编号" onSelect={this.onSelect}>
+                            {/*&lt;Option value="id">搜索测试用例ID&lt;/Option>*/}
+                            &lt;Option value="code">搜索项目编号&lt;/Option>
+                            {/*&lt;Option value="tester">搜索测试人&lt;/Option>*/}
+                            &lt;Option value="name">搜索项目名称 &lt;/Option>
+                        &lt;/Select>
+                    &lt;/Col>
+                    &lt;Col span={8}>
+                        &lt;Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
+                    &lt;/Col>
+                    &lt;Col span={1}>&lt;/Col>
                     {/*this.props.enableNew0 ?
-                        <Col span={2}>
-                            <Button type="primary" onClick={this.props.newTestCase}><Icon type="plus-circle-o" />新建测试用例</Button>
-                        </Col>
-                        : <Col span={2}></Col>*/}
-                </InputGroup>
-                <br />
-                <Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'}/>
-            </div>
+                        &lt;Col span={2}>
+                            &lt;Button type="primary" onClick={this.props.newTestCase}>&lt;Icon type="plus-circle-o" />新建测试用例&lt;/Button>
+                        &lt;/Col>
+                        : &lt;Col span={2}>&lt;/Col>*/}
+                &lt;/InputGroup>
+                &lt;br />
+                &lt;Table dataSource={this.props.dataSource} columns={this.columns} rowKey={'id'}/>
+            &lt;/div>
         );
     }
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-utils_fetchUtil.html">utils/fetchUtil</a></li></ul><h3>Classes</h3><ul><li><a href="AppComponent.html">AppComponent</a></li><li><a href="module.exports.html">exports</a></li><li><a href="TestProblemReducer.html">TestProblemReducer</a></li></ul><h3>Global</h3><ul><li><a href="global.html#containsPane">containsPane</a></li><li><a href="global.html#mapStateToProps">mapStateToProps</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#tabsMap">tabsMap</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jul 16 2018 11:12:27 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -32,7 +32,7 @@ public class ListUtil
 		return false;
 	}
 	
-	/**比较list1相对于list2中不存在的数据*/
+
 	public static List<String> getDifference(List<String> list1, List<String> list2)
 	{
 		List<String> difference = new ArrayList<String>();

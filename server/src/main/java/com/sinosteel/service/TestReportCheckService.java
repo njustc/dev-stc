@@ -21,7 +21,7 @@ import java.util.UUID;
  *
  * Including functions:query testReportChecks by user,
  * query testReportChecks by project ID,query testReportChecks by testReportChecks ID,
- * edit testReportChecks ,add testReportChecks, delete testReportChecks..
+ * edit testReportChecks ,add testReportChecks, delete testReportChecks.
  *
  * @author LBW
  * @author SQW
@@ -232,13 +232,11 @@ public class TestReportCheckService extends BaseService<TestReportCheck> {
     }
 
 
-    //这两个函数留下用来处理testReportCheck为空的情况
-
     /**
      * 处理TestReportCheck为空的情况
      * 
-     * @param testReportCheck 测试检查报告的信息
-     * @return 返回JSONObject形式的测试检查报告信息
+     * @param testReportCheck 测试报告检查的信息
+     * @return 返回JSONObject形式的测试报告检查信息
      * @throws Exception 抛出异常
      */
     private JSONObject processTestReportCheck(TestReportCheck testReportCheck) throws Exception {
