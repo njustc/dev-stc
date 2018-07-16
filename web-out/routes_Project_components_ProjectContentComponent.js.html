@@ -1,4 +1,32 @@
-import React, {Component} from 'react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: routes/Project/components/ProjectContentComponent.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: routes/Project/components/ProjectContentComponent.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Row, Col, Card, Tabs, Select, Button, Icon, Table, Form, Input, Divider, Modal, message, Badge, Steps,Layout,Menu,List,Timeline} from 'antd';
 import {STATE} from "../../../services/common"
@@ -83,7 +111,7 @@ export default class ProjectContentComponent extends Component {
     // onTitle() {
     //     switch (this.props.consignState)  {
     //       case 'Finish': return (
-    //           <div>流程当前状态为：委托申请表已通过</div>
+    //           &lt;div>流程当前状态为：委托申请表已通过&lt;/div>
     //       );
     //   }
     //
@@ -146,19 +174,19 @@ export default class ProjectContentComponent extends Component {
     getConsignState(){
         switch(this.props.projectData.consign.state){
             case STATE.TO_SUBMIT: return (
-                <Timeline.Item color="blue">委托申请表待提交</Timeline.Item>
+                &lt;Timeline.Item color="blue">委托申请表待提交&lt;/Timeline.Item>
             );
             case STATE.TO_REVIEW: return (
-                <Timeline.Item color="blue">委托申请表待评审</Timeline.Item>
+                &lt;Timeline.Item color="blue">委托申请表待评审&lt;/Timeline.Item>
             );
             case STATE.CANCELED: return (
-                <Timeline.Item color="red">委托申请表已取消</Timeline.Item>
+                &lt;Timeline.Item color="red">委托申请表已取消&lt;/Timeline.Item>
             );
             case STATE.FINISHED:return (
-                <Timeline.Item color="green">委托申请表已通过</Timeline.Item>
+                &lt;Timeline.Item color="green">委托申请表已通过&lt;/Timeline.Item>
             );
             default:return (
-                {/*<Timeline.Item color="grey">委托申请表已通过</Timeline.Item>*/}
+                {/*&lt;Timeline.Item color="grey">委托申请表已通过&lt;/Timeline.Item>*/}
             );
         }
     }
@@ -170,22 +198,22 @@ export default class ProjectContentComponent extends Component {
     getContractState(){
         switch(this.props.projectData.contract.state){
             case STATE.TO_SUBMIT: return (
-                <Timeline.Item color="blue">测试合同书待提交</Timeline.Item>
+                &lt;Timeline.Item color="blue">测试合同书待提交&lt;/Timeline.Item>
             );
             case STATE.TO_REVIEW: return (
-                <Timeline.Item color="blue">测试合同书待评审</Timeline.Item>
+                &lt;Timeline.Item color="blue">测试合同书待评审&lt;/Timeline.Item>
             );
             case STATE.TO_CONFIRM: return (
-                <Timeline.Item color="blue">测试合同书待确认</Timeline.Item>
+                &lt;Timeline.Item color="blue">测试合同书待确认&lt;/Timeline.Item>
             );
             case STATE.CANCELED: return (
-                <Timeline.Item color="red">测试合同书已取消</Timeline.Item>
+                &lt;Timeline.Item color="red">测试合同书已取消&lt;/Timeline.Item>
             );
             case STATE.FINISHED:return (
-                <Timeline.Item color="green">测试合同书已通过</Timeline.Item>
+                &lt;Timeline.Item color="green">测试合同书已通过&lt;/Timeline.Item>
             );
             default:return (
-                {/*<Timeline.Item color="grey">测试合同书已通过</Timeline.Item>*/}
+                {/*&lt;Timeline.Item color="grey">测试合同书已通过&lt;/Timeline.Item>*/}
             );
         }
     }
@@ -197,22 +225,22 @@ export default class ProjectContentComponent extends Component {
     getTestPlanState(){
         switch(this.props.projectData.testPlan.state){
             case STATE.TO_WRITE: return (
-                <Timeline.Item color="blue">测试方案书待编写</Timeline.Item>
+                &lt;Timeline.Item color="blue">测试方案书待编写&lt;/Timeline.Item>
             );
             case STATE.TO_REVIEW: return (
-                <Timeline.Item color="blue">测试方案书待评审</Timeline.Item>
+                &lt;Timeline.Item color="blue">测试方案书待评审&lt;/Timeline.Item>
             );
             case STATE.TO_CONFIRM: return (
-                <Timeline.Item color="blue">测试方案书待确认</Timeline.Item>
+                &lt;Timeline.Item color="blue">测试方案书待确认&lt;/Timeline.Item>
             );
             case STATE.CANCELED: return (
-                <Timeline.Item color="red">测试方案书已取消</Timeline.Item>
+                &lt;Timeline.Item color="red">测试方案书已取消&lt;/Timeline.Item>
             );
             case STATE.TO_IMPLEMENT: return (
-                <Timeline.Item color="green">测试方案书待实施</Timeline.Item>
+                &lt;Timeline.Item color="green">测试方案书待实施&lt;/Timeline.Item>
             );
             default: return (
-                {/*<Timeline.Item color="grey">测试方案书已通过</Timeline.Item>*/}
+                {/*&lt;Timeline.Item color="grey">测试方案书已通过&lt;/Timeline.Item>*/}
             );
         }
     }
@@ -233,28 +261,28 @@ export default class ProjectContentComponent extends Component {
         //console.log(this.props.projectData);
         switch(this.props.projectData.testReport.state){
             case STATE.TO_WRITE: return (
-                <Timeline.Item color="blue">测试报告书待编写</Timeline.Item>
+                &lt;Timeline.Item color="blue">测试报告书待编写&lt;/Timeline.Item>
             );
             case STATE.TO_REVIEW: return (
-                <Timeline.Item color="blue">测试报告书待评审</Timeline.Item>
+                &lt;Timeline.Item color="blue">测试报告书待评审&lt;/Timeline.Item>
             );
             case STATE.CANCELED: return (
-                <Timeline.Item color="red">测试报告书已取消</Timeline.Item>
+                &lt;Timeline.Item color="red">测试报告书已取消&lt;/Timeline.Item>
             );
             case STATE.TO_APPROVE: return (
-                <Timeline.Item color="blue">测试报告书待批准</Timeline.Item>
+                &lt;Timeline.Item color="blue">测试报告书待批准&lt;/Timeline.Item>
             );
             case STATE.TO_SEND: return (
-                <Timeline.Item color="blue">测试报告书待发放</Timeline.Item>
+                &lt;Timeline.Item color="blue">测试报告书待发放&lt;/Timeline.Item>
             );
             case STATE.TO_CONFIRM: return (
-                <Timeline.Item color="blue">测试报告书待确认</Timeline.Item>
+                &lt;Timeline.Item color="blue">测试报告书待确认&lt;/Timeline.Item>
             );
             case STATE.SATISFACTION: return (
-                <Timeline.Item color="green">测试报告书已完成</Timeline.Item>
+                &lt;Timeline.Item color="green">测试报告书已完成&lt;/Timeline.Item>
             );
             default: return (
-                {/*<Timeline.Item color="grey">测试报告书已通过</Timeline.Item>*/}
+                {/*&lt;Timeline.Item color="grey">测试报告书已通过&lt;/Timeline.Item>*/}
             );
         }
     }
@@ -266,7 +294,7 @@ export default class ProjectContentComponent extends Component {
     getTestReportCheckState(){
         if(this.props.projectData.testReport.state===STATE.SATISFACTION){
             return (
-                <Timeline.Item color="blue">测试报告检查表可填写</Timeline.Item>
+                &lt;Timeline.Item color="blue">测试报告检查表可填写&lt;/Timeline.Item>
             );
         }
     }
@@ -278,7 +306,7 @@ export default class ProjectContentComponent extends Component {
     getTestWorkCheckState(){
         if(this.props.projectData.testReport.state===STATE.SATISFACTION){
             return (
-                <Timeline.Item color="blue">测试工作检查表可填写</Timeline.Item>
+                &lt;Timeline.Item color="blue">测试工作检查表可填写&lt;/Timeline.Item>
             );
         }
     }
@@ -306,53 +334,53 @@ export default class ProjectContentComponent extends Component {
      */
     render() {
         return (
-            <div>
-                <Layout style={{ background: '#fff' }}>
-                <h3>项目详情</h3>
-                        <Card title="项目进度" hoverable>
-                            <Steps current={this.getCurrentStep()}>
-                                {this.steps.map(item => <Step key={item.title} title={item.title}
+            &lt;div>
+                &lt;Layout style={{ background: '#fff' }}>
+                &lt;h3>项目详情&lt;/h3>
+                        &lt;Card title="项目进度" hoverable>
+                            &lt;Steps current={this.getCurrentStep()}>
+                                {this.steps.map(item => &lt;Step key={item.title} title={item.title}
                                                               //description={item.description}
                                 />)}
-                            </Steps>
-                        </Card>
-                        <br />
-                        <Content style={{ background: '#fff' }} >
-                        <Row gutter={16}>
-                            <Col span={5}>
-                                <List
+                            &lt;/Steps>
+                        &lt;/Card>
+                        &lt;br />
+                        &lt;Content style={{ background: '#fff' }} >
+                        &lt;Row gutter={16}>
+                            &lt;Col span={5}>
+                                &lt;List
                                     size="small"
-                                    header={<div>文档</div>}
+                                    header={&lt;div>文档&lt;/div>}
                                     bordered
                                     dataSource={this.data}
-                                    renderItem={item => (<List.Item><a href="javascript:void(0);" onClick={this.viewContent(item)}>{item.name}</a></List.Item>)}
+                                    renderItem={item => (&lt;List.Item>&lt;a href="javascript:void(0);" onClick={this.viewContent(item)}>{item.name}&lt;/a>&lt;/List.Item>)}
                                 />
-                            </Col>
-                            <Col span={10}>
-                               <Card title='项目摘要信息' hoverable >
-                                    <div>项目编号：{this.props.projectData.code}</div>
-                                    <br/>
-                                    <div>项目ID：{this.props.projectData.id}</div>
-                                    <br/>
-                                    <div>项目名称：{this.props.projectData.consign.consignation.softwareName?this.props.projectData.consign.consignation.softwareName+"测试项目":"未填写"}</div>
-                                    <br/>
-                                    <div>委托人ID：{this.props.projectData.createdUserId}</div>
-                                    <br/>
-                                   <div>委托人用户名：{this.props.projectData.createdUserName}</div>
-                                    <br/>
-                                    <div>流程创建时间：{this.props.projectData.createdTime}</div>
-                                    <br/>
-                                    <div>项目价格：{this.testFee()}</div>
-                                    {/*<br/>*/}
-                                    {/*<div>备注：感谢曹老板指导,给曹老板打call</div>*/}
-                               </Card>
-                            </Col>
-                           <Col span={8}>
-                                <Card hoverable>
-                                    <div>您现在可以：
-                                    </div>
-                                    <Divider/>
-                                    <Timeline>
+                            &lt;/Col>
+                            &lt;Col span={10}>
+                               &lt;Card title='项目摘要信息' hoverable >
+                                    &lt;div>项目编号：{this.props.projectData.code}&lt;/div>
+                                    &lt;br/>
+                                    &lt;div>项目ID：{this.props.projectData.id}&lt;/div>
+                                    &lt;br/>
+                                    &lt;div>项目名称：{this.props.projectData.consign.consignation.softwareName?this.props.projectData.consign.consignation.softwareName+"测试项目":"未填写"}&lt;/div>
+                                    &lt;br/>
+                                    &lt;div>委托人ID：{this.props.projectData.createdUserId}&lt;/div>
+                                    &lt;br/>
+                                   &lt;div>委托人用户名：{this.props.projectData.createdUserName}&lt;/div>
+                                    &lt;br/>
+                                    &lt;div>流程创建时间：{this.props.projectData.createdTime}&lt;/div>
+                                    &lt;br/>
+                                    &lt;div>项目价格：{this.testFee()}&lt;/div>
+                                    {/*&lt;br/>*/}
+                                    {/*&lt;div>备注：感谢曹老板指导,给曹老板打call&lt;/div>*/}
+                               &lt;/Card>
+                            &lt;/Col>
+                           &lt;Col span={8}>
+                                &lt;Card hoverable>
+                                    &lt;div>您现在可以：
+                                    &lt;/div>
+                                    &lt;Divider/>
+                                    &lt;Timeline>
                                         {this.getConsignState()}
                                         {this.getContractState()}
                                         {this.getTestPlanState()}
@@ -361,19 +389,41 @@ export default class ProjectContentComponent extends Component {
                                         {this.getTestReportCheckState()}
                                         {this.getTestWorkCheckState()}
                                         {this.getSatisfactionState()}
-                                    </Timeline>
-                                </Card>
-                          </Col>
+                                    &lt;/Timeline>
+                                &lt;/Card>
+                          &lt;/Col>
 
-                      </Row>
-                        </Content>
-                </Layout>
-                {/*<h3 style={{ marginBottom: 16 }}>项目进度</h3>
-                <Table dataSource={this.data} columns={this.columns} bordered={true}
+                      &lt;/Row>
+                        &lt;/Content>
+                &lt;/Layout>
+                {/*&lt;h3 style={{ marginBottom: 16 }}>项目进度&lt;/h3>
+                &lt;Table dataSource={this.data} columns={this.columns} bordered={true}
                     //rowKey={'id'}
                 />*/}
-            </div>
+            &lt;/div>
 
         );
     }
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Project_ContentComponent.html">Project/ContentComponent</a></li><li><a href="module-Project_ListComponent.html">Project/ListComponent</a></li></ul><h3>Classes</h3><ul><li><a href="AppComponent.html">AppComponent</a></li><li><a href="EditableCell.html">EditableCell</a></li><li><a href="TestProblemReducer.html">TestProblemReducer</a></li></ul><h3>Global</h3><ul><li><a href="global.html#componentDidMount">componentDidMount</a></li><li><a href="global.html#containsPane">containsPane</a></li><li><a href="global.html#mapStateToProps">mapStateToProps</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#tabsMap">tabsMap</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jul 16 2018 11:03:00 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
