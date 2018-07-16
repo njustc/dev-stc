@@ -36,6 +36,7 @@ export default class TestCaseListComponent extends Component {
         selectOption:'code',
     };
     /**
+     * @func
      * @param value
      * @param option
      */
