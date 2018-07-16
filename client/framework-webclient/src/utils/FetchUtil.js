@@ -2,6 +2,7 @@ import {STATUS} from "SERVICES/common";
 /**@module utils/fetchUtil
  *
  */
+
 /**
  * 实现向后台发送GET请求
  * @param url username、clientDigest之前的url部分
