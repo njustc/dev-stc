@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNotNull;
 
 /**
  * 该类用来测试委托流程实例在调用接口后状态变化情况
- * <table border="1">
+ * <table border="1" summary="测试过程">
  *     <tr>
  *         <th>执行操作</th>
  *         <th>预期状态</th>
@@ -46,7 +46,7 @@ import static org.junit.Assert.assertNotNull;
  *         <td>市场部人员通过委托</td>
  *         <td>Finished</td>
  *     </tr>
- * <table>
+ * </table>
  *
  * @author zwh
  */
