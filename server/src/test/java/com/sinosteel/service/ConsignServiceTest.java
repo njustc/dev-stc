@@ -17,7 +17,44 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.transaction.Transactional;
 
 /**
- * Tt's a Junit test for ConsignService
+ * 本测试用来测试Consign Service
+ * <table border = "1">
+ *      <tr>
+ *          <th>测试内容</th>
+ *          <th>测试操作</th>
+ *          <th>测试结果</th>
+ *      </tr>
+ *      <tr>
+ *          <td>通过用户查询委托</td>
+ *          <td>queryConsigns</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>新建委托</td>
+ *          <td>addConsign</td>
+ *          <td>新建成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过委托ID查询委托</td>
+ *          <td>queryConsignByID</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过工程查询委托</td>
+ *          <td>queryConsignsByProject</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>编辑委托内容</td>
+ *          <td>editConsign</td>
+ *          <td>编辑成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>删除委托</td>
+ *          <td>deleteConsign</td>
+ *          <td>queryConsignByID为空,删除成功</td>
+ *      </tr>
+ * </table>
  *
  *
  *
@@ -99,7 +136,7 @@ import javax.transaction.Transactional;
             System.out.println("=====通过ID查询该委托=====");
             JSONObject jsonConsign = consignService.queryConsignByID(id);
             Assert.assertNotNull("通过ID委托查询失败",jsonConsign);
-            System.out.println(jsonConsign);
+            System.out.println("查询成功.委托信息为:"+ jsonConsign);
 
             //test_queryconsingByProject
             System.out.println("=====通过工程查询委托=====");
@@ -108,7 +145,7 @@ import javax.transaction.Transactional;
             String pro_id = jsonProject.getString("id");
             JSON jsonConsign_pro = consignService.queryConsignsByProject(pro_id);
             Assert.assertNotNull("通过工程查询委托失败",jsonConsign_pro);
-            System.out.println(jsonConsign_pro);
+            System.out.println("查询成功.委托信息为:"+ jsonConsign_pro);
 
             //test_editconsign
             System.out.println("=====编辑该委托=====");
@@ -117,7 +154,7 @@ import javax.transaction.Transactional;
             jsonConsign.put(edit_object,edit_contents );
             jsonConsign = consignService.editConsign(jsonConsign, null, customer1);
             Assert.assertEquals(edit_contents,jsonConsign.getString(edit_object));  //检验委托内容修改是否符合预期
-            System.out.println(jsonConsign);
+            System.out.println("编辑成功.委托信息为:"+ jsonConsign);
 
             //test_deleteconsign
             System.out.println("=====删除该委托=====");

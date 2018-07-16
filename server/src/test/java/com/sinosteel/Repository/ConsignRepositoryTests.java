@@ -14,11 +14,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * 这个类用来测试consign类对应repository的增删查功能
+ * <br/>
  * <table border="1" summary="">
  *     <tr>
- *     <th>测试内容</th>
- *     <th>对应操作</th>
- *     <th>测试结果</th>
+ *     <th><b>测试内容</b></th>
+ *     <th><b>对应操作</b></th>
+ *     <th><b>测试结果</b></th>
  *     </tr>
  *     <tr>
  *         <td>新建委托</td>
@@ -31,7 +32,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  *         <td>FindById为空</td>
  *     </tr>
  * </table>
- *
  * @author FW
  */
 @RunWith(SpringJUnit4ClassRunner.class)

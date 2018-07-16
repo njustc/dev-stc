@@ -1,6 +1,11 @@
 //export default Form.create()(TestReportContentComponent);
 import React, {Component, PropTypes} from 'react';
 import {Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message,Table,Popconfirm} from 'antd';
+
+/**
+ * 页面显示定义的tab
+ * @type {React.ClassicComponentClass<TabPaneProps>}
+ */
 const TabPane = Tabs.TabPane;
 const Option=Select.Option;
 const OptGroup=Select.OptGroup;
@@ -13,7 +18,12 @@ function handleChange(value) {
     console.log(`selected ${value}`);
 }
 
+/**
+ * test主函数
+ * @func
+ */
 class TestReportContentComponent extends Component {
+
     constructor(props) {
         super(props);
 
@@ -61,6 +71,7 @@ class TestReportContentComponent extends Component {
         this.setState(state);
     };
 
+
     onClick = (buttonIndex) => () => {
         this.props.form.validateFields((err, values) => {
             if (!err) {
@@ -73,6 +84,14 @@ class TestReportContentComponent extends Component {
         // buttons[buttonIndex].onClick(JSON.stringify(form.getFieldsValue()));
     };
 
+    /**
+     *  formItemLayout：定义form的大小；dataSource1：从后台得到硬件环境表格的数据；columns1：定义硬件环境表格的格式
+     *  dataSource2：从后台得到软件环境表格的数据；columns2：定义软件环境表格的格式
+     *  dataSource3：从后台得到功能性测试表格的数据；columns3：定义功能性测试表格的格式
+     *  dataSource4：从后台得到非功能性测试表格的数据；columns4：定义非功能性测试表格的格式
+     *  return是前端显示页面的html
+     *  @func
+     */
     render() {
         const { getFieldDecorator } = this.props.form;
         //const { dataSource } = this.state;
