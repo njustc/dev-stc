@@ -11,6 +11,10 @@ const contractBase = baseServiceAddress + '/contract';
 const contractActivitiBase = baseServiceAddress + '/processInstance';
 
 /**
+ * @module services/contractService
+ */
+
+/**
  * 实现利用GET请求从后台获取合同列表
  * @param {*} dispatch dispatch
  * @param {*} callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
@@ -108,6 +112,14 @@ const getContractState = (dispatch, ProjectID, callback) => {
     },PID)
 };
 
+/**
+ * 改变合同状态
+ * @param dispatch dispatch
+ * @param processInstanceID 合同的流程ID
+ * @param data 含有状态改变的数据
+ * @param id 合同ID
+ * @param callback　callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
 const putContractState = (dispatch, processInstanceID, data, id, callback) => {
     httpPut(contractActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;

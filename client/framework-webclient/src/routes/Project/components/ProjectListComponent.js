@@ -10,7 +10,7 @@ const InputGroup = Input.Group;
 const Option = Select.Option;
 
 /**
- * @module ProjectListComponent
+ * @module Project/ProjectListComponent
  */
 export default class ProjectListComponent extends Component {
     constructor(props) {

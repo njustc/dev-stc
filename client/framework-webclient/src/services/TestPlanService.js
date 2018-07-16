@@ -8,6 +8,10 @@ import {setContractContent} from "../modules/ducks/Contract";
 const testPlanBase = baseServiceAddress + '/v1/testPlan';
 const testPlanActivitiBase = baseServiceAddress + '/processInstance';
 
+/**
+ * @module services/testPlanService
+ */
+
 export const getTestPlanList = (dispatch, callback) => {
     httpGet(testPlanBase,(result) => {
         const {status, data} = result;

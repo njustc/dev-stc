@@ -78,6 +78,7 @@ export const setConsignList = (list) => {
         payload: list,
     }
 };
+
 /**
  * 删除委托
  * @function
