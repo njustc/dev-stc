@@ -44,7 +44,7 @@ class SatisfactionContentComponent extends Component {
      * 点击button的回调函数
      * @func
      * @param {Number} buttonIndex - 所点击的button的编号
-     * @returns {Function} 保存表单各部分的值。
+     * 保存表单各部分的值。
      */
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {

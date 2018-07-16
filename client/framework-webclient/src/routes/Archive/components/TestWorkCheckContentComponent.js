@@ -72,7 +72,6 @@ class TestWorkCheckContentComponent extends Component {
 
 
     /**
-     *
      * 测试工作检查表表单组件的render函数。
      * 其中formItemLayout、rowStyle、tipStyle、switchStyle以CSS语言定义了各种组件的样式；
      * 返回"测试工作检查表"表单详情的html代码，包括测试软件的基本信息、测试信息及测试时可预见的问题和注意事项。
