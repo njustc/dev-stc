@@ -12,16 +12,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-
 import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * 这个类用来测试role类对应repository和role对应function；
- * <br/>
+ * <br>
  * 其中role代表角色 例：市场部 .etc
- * <br/>
+ * <br>
  * <table border="1" summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
@@ -54,7 +52,7 @@ public class RoleRepositoryTests {
 
 
     @Test
-    @Transactional
+  // @Transactional
     public void testRoleFunction()
     {
         System.out.println("测试角色对应Function");

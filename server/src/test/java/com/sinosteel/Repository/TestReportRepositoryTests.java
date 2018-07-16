@@ -14,7 +14,7 @@ import org.junit.Test;
 
 /**
  * 这个类用来测试TestFunction类对应repository的增删查功能
- * <br/>
+ * <br>
  *<table border="1" summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
@@ -42,7 +42,7 @@ public class TestReportRepositoryTests {
     private TestReportRepository testReportRepository;
 
     @Test
-    @Transactional
+   // @Transactional
     public void testTesReport(){
         TestReport testReport = new TestReport();
         testReport.setId("report");
