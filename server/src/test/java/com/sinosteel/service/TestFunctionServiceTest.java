@@ -16,6 +16,47 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 /**
+ *
+ * 本测试用来测试TestFunction Service
+ * <table border = "1">
+ *      <tr>
+ *          <th>测试内容</th>
+ *          <th>测试操作</th>
+ *          <th>测试结果</th>
+ *      </tr>
+ *      <tr>
+ *          <td>通过用户查询测试功能</td>
+ *          <td>queryTestFunctions</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>新建测试功能</td>
+ *          <td>addTestFunction</td>
+ *          <td>新建成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过测试功能ID查询测试功能</td>
+ *          <td>queryTestFunctionByID</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过工程查询测试功能</td>
+ *          <td>queryTestFunctionsByProject</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>编辑测试功能内容</td>
+ *          <td>editTestFunction</td>
+ *          <td>编辑成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>删除测试功能</td>
+ *          <td>deleteTestFunction</td>
+ *          <td>queryTestFunctionByID为空,删除成功</td>
+ *      </tr>
+ * </table>
+ *
+ *
  * @author Lumpy
  */
 

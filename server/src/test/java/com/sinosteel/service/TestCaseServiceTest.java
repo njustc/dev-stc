@@ -15,8 +15,50 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ *
+ * 本测试用来测试TestCase Service
+ * <table border = "1">
+ *      <tr>
+ *          <th>测试内容</th>
+ *          <th>测试操作</th>
+ *          <th>测试结果</th>
+ *      </tr>
+ *      <tr>
+ *          <td>通过用户查询测试样例</td>
+ *          <td>queryTestCases</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>新建测试样例</td>
+ *          <td>addTestCase</td>
+ *          <td>新建成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过测试样例ID查询测试样例</td>
+ *          <td>queryTestCaseByID</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过工程查询测试样例</td>
+ *          <td>queryTestCasesByProject</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>编辑测试样例内容</td>
+ *          <td>editTestCase</td>
+ *          <td>编辑成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>删除测试样例</td>
+ *          <td>deleteTestCase</td>
+ *          <td>queryTestCaseByID为空,删除成功</td>
+ *      </tr>
+ * </table>
+ *
+ *
  * @author Lumpy
  */
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)

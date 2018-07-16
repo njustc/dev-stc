@@ -18,6 +18,46 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.transaction.Transactional;
 
 /**
+ * 本测试用来测试Contract Service
+ * <table border = "1">
+ *      <tr>
+ *          <th>测试内容</th>
+ *          <th>测试操作</th>
+ *          <th>测试结果</th>
+ *      </tr>
+ *      <tr>
+ *          <td>通过用户查询合同</td>
+ *          <td>queryContracts</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>新建合同</td>
+ *          <td>addContract</td>
+ *          <td>新建成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过合同ID查询合同</td>
+ *          <td>queryContractByID</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>通过工程查询合同</td>
+ *          <td>queryContractsByProject</td>
+ *          <td>查询成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>编辑合同内容</td>
+ *          <td>editContract</td>
+ *          <td>编辑成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>删除合同</td>
+ *          <td>deleteContract</td>
+ *          <td>queryContractByID为空,删除成功</td>
+ *      </tr>
+ * </table>
+ *
+ *
  * @author Lumpy
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -96,9 +136,9 @@ public class ContractServiceTest {
 
             //test_querycnotractByProject
             System.out.println("=====通过工程查询该合同=====");
-            JSON jsonConsign_pro = contractService.queryContractsByProject(pro_id);
-            Assert.assertNotNull("通过工程查询委托失败",jsonConsign_pro);
-            System.out.println(jsonConsign_pro);
+            JSON jsonContract_pro = contractService.queryContractsByProject(pro_id);
+            Assert.assertNotNull("通过工程查询合同失败",jsonContract_pro);
+            System.out.println(jsonContract_pro);
 
             //test_editcontract
             System.out.println("=====编辑该合同=====");
@@ -114,9 +154,9 @@ public class ContractServiceTest {
             contractService.deleteContract(jsonResult);
             try {
                 JSONObject jsonDel = contractService.queryContractByID(id);
-                Assert.assertNull("委托删除失败", jsonDel);
+                Assert.assertNull("合同删除失败", jsonDel);
             } catch (Exception e) {
-                System.out.println("委托删除成功");
+                System.out.println("合同删除成功");
             }
 
 
