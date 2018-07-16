@@ -12,19 +12,28 @@ const testReportActivitiBase = baseServiceAddress + '/processInstance';
  * @module services/testReportService
  */
 
-export const getTestReportList = (dispatch, callback) => {
+/**
+ * 获取测试报告列表
+ * @param dispatch dispatch
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const getTestReportList = (dispatch, callback) => {
     httpGet(testReportBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
-            // console.log(data);
             dispatch(setTestReportList(data));
         }
         callback && callback(status);
     });
 };
 
-export const getTestReport = (dispatch, id, callback) => {
-    // dispatch(setTestReportContent({id:id,}));
+/**
+ * 获取测试报告详情
+ * @param dispatch dispatch
+ * @param id 测试报告ID
+ * @param callback　callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const getTestReport = (dispatch, id, callback) => {
     httpGet(testReportBase + '/' + id, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
@@ -35,7 +44,13 @@ export const getTestReport = (dispatch, id, callback) => {
     });
 };
 
-export const deleteTestReport = (dispatch, id, callback) => {
+/**
+ * 删除测试报告
+ * @param dispatch dispatch
+ * @param id 测试报告ID
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const deleteTestReport = (dispatch, id, callback) => {
     httpDelete(testReportBase, {id:id}, (result) => {
         const {status} = result;
         if(status === STATUS.SUCCESS)
@@ -44,7 +59,13 @@ export const deleteTestReport = (dispatch, id, callback) => {
     });
 };
 
-export const newTestReport = (dispatch,id, callback) => {
+/**
+ * 新建测试报告
+ * @param dispatch dispatch
+ * @param id 测试报告ID
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const newTestReport = (dispatch,id, callback) => {
     const urlParams = 'projectID=' + id;
     httpPost(testReportBase, {body:null,}, (result) => {
         const {data, status} = result;
@@ -55,7 +76,13 @@ export const newTestReport = (dispatch,id, callback) => {
     },urlParams);
 };
 
-export const updateTestReport = (dispatch, data, callback) => {
+/**
+ * 更新测试报告内容
+ * @param dispatch dispatch
+ * @param data 测试报告内容
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const updateTestReport = (dispatch, data, callback) => {
     console.log(data);
     httpPut(testReportBase, data, (result) => {
         console.log(result);
@@ -67,7 +94,7 @@ export const updateTestReport = (dispatch, data, callback) => {
     });
 };
 
-export const getTestReportState = (dispatch, ProjectID, callback) => {
+const getTestReportState = (dispatch, ProjectID, callback) => {
     const PID = 'projectID=' + ProjectID;
     httpGet(testReportBase, (result) => {
         const {status, data} = result;
@@ -80,7 +107,15 @@ export const getTestReportState = (dispatch, ProjectID, callback) => {
     },PID)
 };
 
-export const putTestReportState = (dispatch, processInstanceID, data, id, callback) => {
+/**
+ * 更改测试报告状态
+ * @param dispatch dispatch
+ * @param processInstanceID 测试报告流程ID
+ * @param data 含有测试报告状态改变的数据
+ * @param id 项目ID
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const putTestReportState = (dispatch, processInstanceID, data, id, callback) => {
     console.log("ID = " + processInstanceID);
     httpPut(testReportActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
@@ -95,3 +130,5 @@ export const putTestReportState = (dispatch, processInstanceID, data, id, callba
         callback && callback(status);
     });
 };
+
+export {getTestReportList,getTestReport,deleteTestReport,newTestReport,updateTestReport,getTestReportState,putTestReportState}

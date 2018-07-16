@@ -95,12 +95,6 @@ const updateTestPlan = (dispatch, data, callback) => {
     });
 };
 
-/**
- * 获取测试方案状态
- * @param dispatch dispatch
- * @param ProjectID 项目ID
- * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
- */
 const getTestPlanState = (dispatch, ProjectID, callback) => {
     const PID = 'projectID=' + ProjectID;
     httpGet(testPlanBase, (result) => {
@@ -119,7 +113,7 @@ const getTestPlanState = (dispatch, ProjectID, callback) => {
  * @param dispatch dispatch
  * @param processInstanceID 测试方案流程ID
  * @param data 含有状态修改内容的数据
- * @param id 测试方案ID
+ * @param id 项目ID
  * @param callback　callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
  */
 const putTestPlanState = (dispatch, processInstanceID, data, id, callback) => {
