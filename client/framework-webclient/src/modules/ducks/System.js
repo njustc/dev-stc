@@ -1,13 +1,25 @@
 const SET_AUTHDATA = "System/SET_AUTHDATA";
 const SET_SYS_USER = 'System/SET_SYS_USER';
 const SET_SIDER = 'System/SET_SIDER';
-
+/**
+ * @module System
+ */
+/**
+ * 系统用户初始化变量，包括系统用户，权限数组，侧边栏显示项
+ * @type {{sysUser: {}, authData: {}, siderData: {}}}
+ */
 const initialState = {
     sysUser: {},
     authData: {},
     siderData: {}
 };
-
+/**
+ * 系统用户reducer
+ * @param state
+ * @param action
+ * @returns {{sysUser: {}, authData: {}, siderData: {}}}
+ * @constructor
+ */
 export const SystemReducer = (state = initialState, action) =>
 {
     switch(action.type) {
@@ -34,7 +46,11 @@ export const SystemReducer = (state = initialState, action) =>
             return state;
     }
 };
-
+/**
+ * 设置系统用户，保存用户名
+ * @param sysUser
+ * @returns {{type: string, payload: *}}
+ */
 export const setSysUser = (sysUser) => {
     sessionStorage.setItem('sysUser',JSON.stringify(sysUser));
     return {
@@ -43,7 +59,11 @@ export const setSysUser = (sysUser) => {
     };
 };
 
-
+/**
+ * 设置系统用户权限
+ * @param authData
+ * @returns {{type: string, payload: *}}
+ */
 export const setAuthData = (authData) => {
     sessionStorage.setItem('authData',JSON.stringify(authData));
     return {
@@ -51,7 +71,11 @@ export const setAuthData = (authData) => {
         payload: authData
     };
 };
-
+/**
+ * 设置侧边栏数据
+ * @param list
+ * @returns {{type: string, payload: *}}
+ */
 export const setSiderData = (list) => {
     sessionStorage.setItem('sider',JSON.stringify(list));
     return {

@@ -38,7 +38,7 @@ const mapStateToProps = (state, ownProps) => {
  * @param isSubmitVisible
  * @param isReviewVisible
  * @param isConfirmVisible
- * @returns {*[]}
+ * @returns {Array}
  */
 const buttonsEnable = (isCustomer,isMarketing,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
     content: '保存',
@@ -63,7 +63,7 @@ const buttonsEnable = (isCustomer,isMarketing,isSubmitVisible,isReviewVisible,is
 /**
  * 合同相关的数据操作和对应的按钮
  * @param dispatch
- * @returns {*[]}
+ * @returns {Array}
  */
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
@@ -166,7 +166,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
  * 向合同组件分发buttons数组和获取委托的方法
  * @param dispatch
  * @param ownProps
- * @returns {{buttons: *[], getValues: (function(*=): void)}}
+ * @returns {{buttons: Array, getValues: (function(*=): void)}}
  */
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {
