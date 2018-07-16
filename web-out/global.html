@@ -98,6 +98,254 @@
 
         
             
+<h4 class="name" id="httpDelete"><span class="type-signature">(constant) </span>httpDelete<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    实现向后台发送DELETE请求
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_FetchUtil.js.html">utils/FetchUtil.js</a>, <a href="utils_FetchUtil.js.html#line42">line 42</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="httpGet"><span class="type-signature">(constant) </span>httpGet<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    实现向后台发送GET请求
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_FetchUtil.js.html">utils/FetchUtil.js</a>, <a href="utils_FetchUtil.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="httpPost"><span class="type-signature">(constant) </span>httpPost<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    实现向后台发送POST请求
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_FetchUtil.js.html">utils/FetchUtil.js</a>, <a href="utils_FetchUtil.js.html#line20">line 20</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="httpPut"><span class="type-signature">(constant) </span>httpPut<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    实现向后台发送PUT请求
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_FetchUtil.js.html">utils/FetchUtil.js</a>, <a href="utils_FetchUtil.js.html#line31">line 31</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
 <h4 class="name" id="tabsMap"><span class="type-signature">(constant) </span>tabsMap<span class="type-signature"> :Object</span></h4>
 
 
@@ -593,6 +841,233 @@
 
 
         
+            
+
+    
+
+    
+    <h4 class="name" id="sysFetch"><span class="type-signature"></span>sysFetch<span class="signature">(Method, url, params, callback, urlParams)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    各http请求方法通过调用此方法实现向后台发送fetch请求
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>Method</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">用来标识http方法的种类，可能为POST、PUT、GET、DELETE</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">username、clientDigest之前的url部分</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">需要向后台传输的数据，格式为JSON</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">回调内容为与后台数据传输结果的状态，可能为SUCCESS或FAILURE</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>urlParams</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">uesename、clientDigest之后的url部分（不一定都有）</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_FetchUtil.js.html">utils/FetchUtil.js</a>, <a href="utils_FetchUtil.js.html#line54">line 54</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     
 
     
@@ -608,13 +1083,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AppComponent.html">AppComponent</a></li><li><a href="EditableCell.html">EditableCell</a></li><li><a href="TestProblemReducer.html">TestProblemReducer</a></li></ul><h3>Global</h3><ul><li><a href="global.html#containsPane">containsPane</a></li><li><a href="global.html#mapStateToProps">mapStateToProps</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#tabsMap">tabsMap</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AppComponent.html">AppComponent</a></li><li><a href="TestProblemReducer.html">TestProblemReducer</a></li></ul><h3>Global</h3><ul><li><a href="global.html#containsPane">containsPane</a></li><li><a href="global.html#httpDelete">httpDelete</a></li><li><a href="global.html#httpGet">httpGet</a></li><li><a href="global.html#httpPost">httpPost</a></li><li><a href="global.html#httpPut">httpPut</a></li><li><a href="global.html#mapStateToProps">mapStateToProps</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#sysFetch">sysFetch</a></li><li><a href="global.html#tabsMap">tabsMap</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jul 16 2018 09:40:29 GMT+0800 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jul 16 2018 10:33:56 GMT+0800 (CST)
 </footer>
 
 <script> prettyPrint(); </script>
