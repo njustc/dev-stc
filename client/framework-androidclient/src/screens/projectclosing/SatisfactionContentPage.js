@@ -28,8 +28,16 @@ import {
 import styles from "./styles"
 import StarRating from "react-native-star-rating"
 
-
-export default class SatisfactionContentPage extends Component{
+/**
+ * SatisfactionContentPage
+ * 实现类
+ */
+class SatisfactionContentPage extends Component{
+    /**
+     * constructor
+     * 其中包含了初始值和定义
+     * @param props
+     */
   constructor(props){
     super(props);
     this.state={
@@ -53,6 +61,11 @@ export default class SatisfactionContentPage extends Component{
     }
   }
 
+    /**
+     * componentDidmount
+     * 在第一次渲染后调用，组件已经生成对应的DOM结构
+     * @func
+     */
   componentDidMount(){
     this.listener_consignUnit = DeviceEventEmitter.addListener('consignUnit',(events)=>{
       this.setState({consignUnit : events.CONSIGN_UNIT });
@@ -105,6 +118,11 @@ export default class SatisfactionContentPage extends Component{
     });
   }
 
+    /**
+     * componentWillUnmount
+     * 在组件从DOM中移除的时候立刻被调用
+     * @func
+     */
   componentWillUnmount(){
     this.listener_consignUnit.remove();
     this.listener_softwareName.remove();
@@ -126,7 +144,12 @@ export default class SatisfactionContentPage extends Component{
 
   }
 
-
+    /**
+     * render
+     * 移动端绘制满意度调查表页面，包括：客户方填写、客户方评分、测试中心填写
+     * @func
+     * @returns {*}
+     */
   render(){
     return(
       <Container>
@@ -384,4 +407,6 @@ export default class SatisfactionContentPage extends Component{
     )
   }
 }
+
+export default SatisfactionContentPage;
 

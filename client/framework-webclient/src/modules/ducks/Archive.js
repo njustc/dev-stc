@@ -3,10 +3,6 @@ const S_SET_CONTENT = 'Satisfaction/SET_CONTENT';
 const TWC_SET_LIST = 'TestWorkCheck/SET_LIST';
 const TWC_SET_CONTENT = 'TestWorkCheck/SET_CONTENT';
 
-/*const RM_CONTENT = 'Contract/RM_CONTENT';
-const SET_CONTENT = 'Contract/SET_CONTENT';
-const SET_FILTER = 'Contract/SET_FILTER';*/
-
 const initialSatisfactionState = {
     listFilter: () => true,//绑定按钮传入的过滤条件
     listMap: { },  //项目集合，用key-value表示，key为id，value为ContractData

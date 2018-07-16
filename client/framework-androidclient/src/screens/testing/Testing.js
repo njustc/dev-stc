@@ -19,6 +19,10 @@ import {
 
 import styles from "./styles";
 
+/**
+ * 测试功能所有内容
+ * @const
+ */
 const datas = [
   {
     route: "TestPlanContentList",
@@ -51,6 +55,9 @@ class Testing extends Component {
     return index+item;
   }
 
+  /**
+   * 测试所有功能界面渲染函数
+   */
   render() {
     return (
       <Container style={styles.container}>

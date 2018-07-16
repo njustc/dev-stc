@@ -42,7 +42,6 @@ export const getTestingWorkCheckTableList = () => {
 
 /**
  * 测试工作检查表列表
- * @class
  */
 class TestingWorkCheckTableList extends Component{
   constructor(props){
@@ -66,14 +65,14 @@ class TestingWorkCheckTableList extends Component{
 
   onChanegeTextKeyword(text){
     //console.warn("yyy");
-    this.timeA(text);
+    this.search(text);
   }
 
   /**
    * 测试工作检查表搜索函数
-   * @name timeA
+   * @func
    */
-  timeA(text){
+  search(text){
     if(this.time){
       clearTimeout(this.time)
     }
@@ -122,6 +121,10 @@ class TestingWorkCheckTableList extends Component{
     return index+item;
   }
 
+  /**
+   * 从后端获取测试工作检查表列表
+   * @func
+   */
   getTestingWorkCheckTableList = () => {
     const contractBase = baseServiceAddress+'/v1/testWorkCheck?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
     httpGet(contractBase,(result)=>{
@@ -136,12 +139,21 @@ class TestingWorkCheckTableList extends Component{
     });
   };
 
+  /**
+   * 获取测试工作检查表列表具体内容
+   * @func
+   */
   componentWillMount() {
     this.getTestingWorkCheckTableList();
 
     //this.state.datas=ConsignList;
   }
 
+  /**
+   * 测试工作检查表跳转函数，根据测试工作检查表id从后端获取测试工作检查表具体内容传给所跳转的界面
+   * @param id
+   * @func
+   */
   gotoTestingWorkCheckTablePage = (id) =>{
     httpGet(baseServiceAddress+'/v1/testWorkCheck/'+id+'?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest(),(result)=>{
       const {status,data}=result;
@@ -264,6 +276,11 @@ class TestingWorkCheckTableList extends Component{
     this.props.navigation.navigate("TestingWorkCheckTablePage");
   }
 
+  /**
+   * 测试工作检查表界面渲染函数
+   * @return {*}
+   * @func
+   */
   render(){
     return(
       <Container style={styles.container}>

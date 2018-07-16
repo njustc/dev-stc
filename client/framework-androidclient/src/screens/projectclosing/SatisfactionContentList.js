@@ -63,14 +63,14 @@ class SatisfactionContentList extends Component{
 
   onChanegeTextKeyword(text){
     //console.warn("yyy");
-    this.timeA(text);
+    this.search(text);
   }
 
   /**
    * 客户满意度调查表搜索函数
    * @func
    */
-  timeA(text){
+  search(text){
     if(this.time){
       clearTimeout(this.time)
     }
@@ -119,6 +119,10 @@ class SatisfactionContentList extends Component{
     return index+item;
   }
 
+  /**
+   * 从后端获取用户满意度调查表
+   * @func
+   */
   getSatisfactionContentList = () => {
     const contractBase = baseServiceAddress+'/v1/satisfactionSurvey?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
     httpGet(contractBase,(result)=>{
@@ -133,12 +137,21 @@ class SatisfactionContentList extends Component{
     });
   };
 
+  /**
+   * 获取用户满意度调查表
+   * @func
+   */
   componentWillMount() {
     this.getSatisfactionContentList();
 
     //this.state.datas=ConsignList;
   }
 
+  /**
+   * 用户满意度调查表跳转函数，根据用户满意度调查表id获取用户满意度调查表具体内容传给跳转界面
+   * @param id
+   * @func
+   */
   gotoSatisfactionContentPage = (id) =>{
     httpGet(baseServiceAddress+'/v1/satisfactionSurvey/'+id+'?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest(),(result)=>{
       const {status,data}=result;
@@ -175,6 +188,10 @@ class SatisfactionContentList extends Component{
     this.props.navigation.navigate("SatisfactionContentPage");
   }
 
+  /**
+   * 用户满意度调查表渲染函数
+   * @return {*}
+   */
   render(){
     return(
       <Container style={styles.container}>

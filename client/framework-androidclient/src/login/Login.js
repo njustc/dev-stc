@@ -47,7 +47,7 @@ class LoginView extends React.Component{
     }
 
   /**
-   * 登录按钮调用函数
+   * 登录按钮调用函数，将登录用户名、密码传至后台匹配是否成功登录
    * @func
    */
 
@@ -78,7 +78,7 @@ class LoginView extends React.Component{
         //
         let loginUrl = loginBase;
 
-      httpPost(loginUrl, params, (result) => {
+    httpPost(loginUrl, params, (result) => {
             const {status, data} = result;
             if (status === STATUS.SUCCESS) {
                 toastMsg = '登录成功';
@@ -99,7 +99,7 @@ class LoginView extends React.Component{
     }
 
   /**
-   * 登录界面构造函数
+   * 登录界面渲染函数
    * @func
    */
   render(){

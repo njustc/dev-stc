@@ -13,12 +13,13 @@ const RadioGroup = Radio.Group;
 const CheckboxGroup = Checkbox.Group;
 const { TextArea } = Input;
 
-function handleChange(value) {
-    console.log(`selected ${value}`);
-}
+//function handleChange(value) {
+//    console.log(`selected ${value}`);
+//}
 
 /**
  * 功能表编辑类，让表格中的内容可以在线编辑
+ * @extends Component
  */
 class EditableCell extends Component {
     /**
@@ -39,6 +40,10 @@ class EditableCell extends Component {
         this.setState({ value });
     }
 
+    /**
+     * 检查表格状态并选择性改变表格的值
+     * @function
+     */
     check = () => {
         this.setState({ editable: false });
         if (this.props.onChange) {
@@ -52,6 +57,11 @@ class EditableCell extends Component {
     edit = () => {
         this.setState({ editable: true });
     }
+
+    /**
+     * 渲染表格的视图
+     * @returns {*}
+     */
     render() {
         const { value, editable } = this.state;
         return (
@@ -85,12 +95,20 @@ class EditableCell extends Component {
         );
     }
 }
+
+/**
+ * ConsignContentComponent类，即委托内容组件类，代表委托内容组件部分的所有项
+ * @extends Component
+ */
 class ConsignContentComponent extends Component  {
     /**
+     * 创建并初始化一个委托内容组件类
      * 功能表定义
-     * @param props
+     * @param props - 构造委托内容的时候传入的多个数据
      * columns：功能表模块定义，dataSource：功能表数值定义，count：功能表初始数值
      */
+
+
     constructor(props) {
         super(props);
 
@@ -198,6 +216,10 @@ class ConsignContentComponent extends Component  {
         });
     }
 
+    /**
+     * 规定在没有传来的值的情况下，一些属性的默认值
+     * @type {{values: {}, disable: boolean, buttons: Array}}
+     */
     static defaultProps = {
         values: {},
         disable:false,
@@ -205,6 +227,10 @@ class ConsignContentComponent extends Component  {
         //buttonDisabled:false,
     };
 
+    /**
+     * 定义props里面的属性的类型，isRequired表示必填项
+     * @type {{consignData: *, values: *, disable: *, buttons: *, form: *}}
+     */
     static propTypes = {
         consignData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
@@ -214,6 +240,10 @@ class ConsignContentComponent extends Component  {
         form: PropTypes.object.isRequired,
     };
 
+    /**
+     * 在通过render()渲染界面之前，获得委托内容界面各功能项所需的值
+     * @function
+     */
     componentWillMount() {
         this.props.getValues(this.props.consignData.id,this.props.consignData.processInstanceID);
         let state = this.state;
@@ -228,6 +258,12 @@ class ConsignContentComponent extends Component  {
     //     this.values = this.props.getValues(this.curID);
     // };
 
+    /**
+     *点击按钮映射对应功能
+     * @param buttonIndex 按钮编号
+     * @returns {Function} 根据按钮编号选择对应功能
+     * @function
+     */
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
         //     if (!err) {
@@ -261,6 +297,11 @@ class ConsignContentComponent extends Component  {
         }*/
     };
 
+    /**
+     * 改变表格值以及表格状态视图
+     * @param e
+     * @function
+     */
     handleOk = (e) => {
         const processNo = this.props.form.getFieldsValue().processNo;
         console.log(processNo);
@@ -271,6 +312,11 @@ class ConsignContentComponent extends Component  {
         });
     };
 
+    /**
+     * 取消对于表格项值的修改操作
+     * @param e
+     * @function
+     */
     handleCancel = (e) => {
         console.log(e);
         this.setState({
@@ -280,10 +326,12 @@ class ConsignContentComponent extends Component  {
     };
 
     /**
+     * 用于渲染渲染合同UI页面的视图的函数
+     * 返回用于描述合同功能组件的表单
      * dataSource:功能表的值，columns:功能表模块定义，formItemLayout：，getFieldDecorator：装饰器
      * return中是前端页面显示html代码
      * @func
-    */
+     */
     render() {
 
         const { dataSource } = this.state;
@@ -352,7 +400,7 @@ class ConsignContentComponent extends Component  {
                                 initialValue: this.props.values.unitProp,
                             })(
                                 <Select  style={{ width: 200 }} placeholder="请选择"
-                                         onChange={handleChange} disabled={this.props.disable}>
+                                         disabled={this.props.disable}>
                                     <Option value={"内资企业"}>内资企业</Option>
                                     <Option value={"外(合)资企业"}>外(合)资企业</Option>
                                     <Option value={"港澳台(合)资企业"}>港澳台(合)资企业</Option>
@@ -553,7 +601,7 @@ class ConsignContentComponent extends Component  {
                                 initialValue: this.props.values.softwareType,
                             })(
                                 <Select style={{ width: 200 }}
-                                        onChange={handleChange} disabled={this.props.disable}>
+                                        disabled={this.props.disable}>
                                     <OptGroup label={"系统软件"}>
                                         <Option value={"操作系统"}>操作系统</Option>
                                         <Option value={"中文处理系统"}>中文处理系统</Option>
@@ -688,7 +736,7 @@ class ConsignContentComponent extends Component  {
                                   initialValue: this.props.values.operateEnvironmentServiceHardwareArch,
                             })(
                                 <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
-                                        placeholder="请选择" onChange={handleChange}>
+                                        placeholder="请选择">
                                     <Option value={"PC服务器"}>PC服务器</Option>
                                     <Option value={"UNIX／Linux服务器"}>UNIX／Linux服务器</Option>
                                     <Option value={"其他"}>其他</Option>
@@ -758,7 +806,7 @@ class ConsignContentComponent extends Component  {
                                 initialValue: this.props.values.operateEnvironmentServiceSoftArch,
                             })(
                                 <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
-                                        placeholder="请选择" onChange={handleChange}>
+                                        placeholder="请选择">
                                     <Option value={"C/S"}>C/S</Option>
                                     <Option value={"B/S"}>B/S</Option>
                                     <Option value={"其他"}>其他</Option>
@@ -823,7 +871,7 @@ class ConsignContentComponent extends Component  {
                                 initialValue: this.props.values.testType,
                             })(
                                 <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
-                                        placeholder="请选择" onChange={handleChange}>
+                                        placeholder="请选择">
                                     <Option value={"软件确认测试"}>软件确认测试</Option>
                                     <Option value={"成果/技术鉴定测试"}>成果/技术鉴定测试</Option>
                                     <Option value={"专项资金验收测试"}>专项资金验收测试</Option>
@@ -838,7 +886,7 @@ class ConsignContentComponent extends Component  {
                                 initialValue: this.props.values.testBasis,
                             })(
                                 <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
-                                        placeholder="请选择" onChange={handleChange}>
+                                        placeholder="请选择">
                                     <Option value={"GB/T 25000.51-2016"}>GB/T 25000.51-2016</Option>
                                     <Option value={"GB/T 25000.10-2016"}>GB/T 25000.10-2016</Option>
                                     <Option value={"GB/T 28452-2012"}>GB/T 28452-2012</Option>
@@ -857,7 +905,7 @@ class ConsignContentComponent extends Component  {
                                 initialValue: this.props.values.testIndicator,
                             })(
                                 <Select mode="multiple" style={{ width: '100%' }} disabled={this.props.disable}
-                                        placeholder="请选择" onChange={handleChange}>
+                                        placeholder="请选择" >
                                     <Option value={"功能性"}>功能性</Option>
                                     <Option value={"可靠性"}>可靠性</Option>
                                     <Option value={"易用性"}>易用性</Option>
@@ -930,7 +978,7 @@ class ConsignContentComponent extends Component  {
                                 initialValue: this.props.values.sampleQuantityToHandle,
                             })(
                                 <Select style={{ width: 200 }} disabled={this.props.disable}
-                                        placeholder="请选择" onChange={handleChange}>
+                                        placeholder="请选择">
                                     <Option value={"由本实验室销毁"}>由本实验室销毁</Option>
                                     <Option value={"退还给我们"}>退还给我们</Option>
                                 </Select>

@@ -42,7 +42,6 @@ export const getTestPlanContentList = () =>{
 
 /**
  * 测试方案列表
- * @class
  */
 
 class TestPlanContentList extends Component{
@@ -66,15 +65,14 @@ class TestPlanContentList extends Component{
 
   onChanegeTextKeyword(text){
     //console.warn("yyy");
-    this.timeA(text);
+    this.search(text);
   }
 
   /**
    * 测试方案列表搜索函数
-   * @function
-   * @name timeA
+   * @func
    */
-  timeA(text){
+  search(text){
     if(this.time){
       clearTimeout(this.time)
     }
@@ -123,6 +121,10 @@ class TestPlanContentList extends Component{
     return index+item;
   }
 
+  /**
+   * 从后端获取测试方案列表具体内容
+   * @func
+   */
   getTestPlanContentList = () =>{
     const contractBase = baseServiceAddress+'/v1/testPlan?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
     httpGet(contractBase,(result)=>{
@@ -138,10 +140,19 @@ class TestPlanContentList extends Component{
     });
   };
 
+  /**
+   * 获取测试方案具体内容
+   * @func
+   */
   componentWillMount(){
     this.getTestPlanContentList();
   }
 
+  /**
+   * 测试方案跳转函数，根据测试方案id获取测试方案具体内容并传给跳转的界面
+   * @param id
+   * @func
+   */
   gotoTestPlanContentPage = (id) =>{
     httpGet(baseServiceAddress+'/v1/testPlan/'+id+'?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest(),(result)=> {
       const {status,data}=result;
@@ -174,6 +185,11 @@ class TestPlanContentList extends Component{
     this.props.navigation.navigate("TestPlanContentPage");
   }
 
+  /**
+   * 测试方案列表界面渲染函数
+   * @return {*}
+   * @func
+   */
   render(){
     return (
       <Container style={styles.container}>

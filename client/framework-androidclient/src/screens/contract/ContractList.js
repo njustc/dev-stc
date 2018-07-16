@@ -42,7 +42,6 @@ export const getContractList = () => {
 
 /**
  * 合同列表
- * @class
  */
 class ContractList extends Component{
   constructor(props){
@@ -66,15 +65,14 @@ class ContractList extends Component{
 
   onChanegeTextKeyword(text){
     //console.warn("yyy");
-    this.timeA(text);
+    this.search(text);
   }
 
   /**
-   * 搜索函数
+   * 合同列表搜索函数
    * @function
-   * @name timeA
    */
-  timeA(text){
+  search(text){
     if(this.time){
       clearTimeout(this.time)
     }
@@ -123,6 +121,10 @@ class ContractList extends Component{
     return index+item;
   }
 
+  /**
+   * 从后端获取合同列表
+   * @func
+   */
   getContractList = () => {
     const contractBase = baseServiceAddress+'/contract?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
     httpGet(contractBase,(result)=>{
@@ -139,12 +141,21 @@ class ContractList extends Component{
     });
   };
 
+  /**
+   * 获取合同列表内容
+   * @func
+   */
   componentWillMount() {
     this.getContractList();
 
     //this.state.datas=ConsignList;
   }
 
+  /**
+   * 合同列表跳转函数，根据合同id获取合同具体内容并传给跳转界面
+   * @param id
+   * @func
+   */
   gotoContractPage = (id) =>{
     httpGet(baseServiceAddress+'/contract/'+id+'?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest(),(result)=>{
       const {status,data}=result;
@@ -195,6 +206,10 @@ class ContractList extends Component{
     this.props.navigation.navigate("ContractPage");
   }
 
+  /**
+   * 合同界面渲染函数
+   * @returns {*}
+   */
   render(){
     return(
       <Container style={styles.container}>

@@ -40,7 +40,6 @@ export const getTestCaseContentList = () => {
 
 /**
  * 测试用例列表
- * @class
  */
 class TestCaseContentList extends Component{
   constructor(props){
@@ -64,15 +63,14 @@ class TestCaseContentList extends Component{
 
   onChanegeTextKeyword(text){
     //console.warn("yyy");
-    this.timeA(text);
+    this.search(text);
   }
 
   /**
    * 测试用例列表搜索函数
-   * @function
-   * @name timeA
+   * @func
    */
-  timeA(text){
+  search(text){
     if(this.time){
       clearTimeout(this.time)
     }
@@ -121,6 +119,10 @@ class TestCaseContentList extends Component{
     return index+item;
   }
 
+  /**
+   * 从后台获取测试用例列表内容
+   * @func
+   */
   getTestCaseContentList = () => {
     const contractBase = baseServiceAddress+'/v1/project?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
     httpGet(contractBase,(result)=>{
@@ -137,12 +139,21 @@ class TestCaseContentList extends Component{
     });
   };
 
+  /**
+   * 获取测试用例列表具体内容
+   * @func
+   */
   componentWillMount() {
     this.getTestCaseContentList();
 
     //this.state.datas=ConsignList;
   }
 
+  /**
+   * 测试用例跳转函数，根据测试用例id获取测试用例具体内容并传给跳转的界面
+   * @param id
+   * @func
+   */
   gotoTestCaseContentPage = (id) =>{
     httpGet(baseServiceAddress+'/v1/project/'+id+'?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest(),(result)=>{
       const {status,data}=result;
@@ -159,6 +170,11 @@ class TestCaseContentList extends Component{
     this.props.navigation.navigate("TestCaseContentPage");
   }
 
+  /**
+   * 测试用例列表界面渲染函数
+   * @return {*}
+   * @func
+   */
   render(){
     return(
       <Container style={styles.container}>

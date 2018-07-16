@@ -27,8 +27,16 @@ import {
   Textarea
 } from "native-base";
 
-
-export default class TestPlanContentPage extends Component{
+/**
+ * TestPlanContentPage
+ * 实现类
+ */
+class TestPlanContentPage extends Component{
+    /**
+     * constructor
+     * 其中包含了初始值和定义
+     * @param props
+     */
   constructor(props){
     super(props);
     this.state={
@@ -60,7 +68,11 @@ export default class TestPlanContentPage extends Component{
         ]
     }
   }
-
+    /**
+     * componentDidmount
+     * 在第一次渲染后调用，组件已经生成对应的DOM结构
+     * @func
+     */
   componentDidMount(){
     this.listener_softwareName = DeviceEventEmitter.addListener('softwareName',(events)=>{
       this.setState({softwareName : events.SOFTWARE_NAME });
@@ -112,7 +124,11 @@ export default class TestPlanContentPage extends Component{
     });
 
   }
-
+    /**
+     * componentWillUnmount
+     * 在组件从DOM中移除的时候立刻被调用
+     * @func
+     */
   componentWillUnmount(){
     this.listener_softwareName.remove();
     this.listener_projectName.remove();
@@ -133,7 +149,12 @@ export default class TestPlanContentPage extends Component{
 
 
   }
-
+    /**
+     * render
+     * 移动端绘制测试方案详情页面，包括：基本信息、引言、引用文件、软件测试环境、计划、测试计划表、需求的可追踪性
+     * @func
+     * @returns {*}
+     */
   render(){
     return(
       <Container>
@@ -498,3 +519,4 @@ const styles = StyleSheet.create({
   head: { height: 40, backgroundColor: '#f1f8ff' },
   text: { margin: 6 }
 });
+export default TestPlanContentPage;
