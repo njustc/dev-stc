@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * 这个类用来测试TestFunction类对应repository的增删查功能
- * <br/>
+ * <br>
  *<table border="1" summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
@@ -46,7 +46,7 @@ public class UserRepositoryTests {
     private UserRepository userRepository;
 
     @Test
-    @Transactional
+   // @Transactional
     public void testUserProject()
     {
         User user = new User();

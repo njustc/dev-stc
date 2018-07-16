@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 这个类用来测试TestFunction类对应repository的增删查功能
- * <br/>
+ * <br>
  *<table border="1" summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
@@ -40,7 +40,7 @@ public class TestWorkCheckRepositoryTests {
     private TestWorkCheckRepository testWorkCheckRepository;
 
     @Test
-    @Transactional
+  //  @Transactional
     public void testTesReport(){
         TestWorkCheck testWorkCheck = new TestWorkCheck();
         testWorkCheck.setId("workcheck");
