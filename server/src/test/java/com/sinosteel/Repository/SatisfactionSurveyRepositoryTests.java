@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.transaction.Transactional;
 /**
  * 这个类用来测试SatisfactionSurvey类对应repository的增删查功能
- * <br/>
+ * <br>
  *<table border="1"summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
@@ -41,7 +41,7 @@ public class SatisfactionSurveyRepositoryTests {
     private SatisfactionSurveyRepository satisfactionSurveyRepository;
 
     @Test
-    @Transactional
+   // @Transactional
     public void testSatisfactionSurvey(){
         SatisfactionSurvey satisfactionsurvey = new SatisfactionSurvey();
         satisfactionsurvey.setId("name");

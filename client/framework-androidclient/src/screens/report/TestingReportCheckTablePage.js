@@ -26,7 +26,16 @@ import {
 } from "native-base";
 
 import styles from "./styles";
-export  default class TestingReportCheckTablePage extends Component {
+
+/**
+ * TestingReportCheckTablePage 实现类
+ */
+class TestingReportCheckTablePage extends Component {
+    /**
+     * constructor
+     * 其中包含了初始值和定义
+     * @param props
+     */
   constructor(props) {
     super(props);
     this.state = {
@@ -152,6 +161,12 @@ export  default class TestingReportCheckTablePage extends Component {
 
   }
 
+    /**
+     * render
+     * 移动端显示页面的html代码
+     * @func
+     * @returns {*}
+     */
   render() {
     return (
       <Container>
@@ -357,5 +372,5 @@ export  default class TestingReportCheckTablePage extends Component {
     );
   }
 }
-
+export  default TestingReportCheckTablePage;
 

@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 
 /**
  * 这个类用来测试TestBug类对应repository的增删查功能
- * <br/>
+ * <br>
  *<table border="1"summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
@@ -42,7 +42,7 @@ public class TestBugRepositoryTests {
     private TestBugRepository testBugRepository;
 
     @Test
-    @Transactional
+   // @Transactional
 
     public void testTestBugRepository(){
 

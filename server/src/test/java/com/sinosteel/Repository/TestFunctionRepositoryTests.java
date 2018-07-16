@@ -16,7 +16,7 @@ import javax.transaction.Transactional;
 
 /**
  * 这个类用来测试TestFunction类对应repository的增删查功能
- * <br/>
+ * <br>
  *<table border="1" summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
@@ -44,7 +44,7 @@ public class TestFunctionRepositoryTests {
     private TestFunctionRepository testFunctionRepository;
 
     @Test
-    @Transactional
+   // @Transactional
     public void testTestFunction(){
        TestFunction testFunction = new TestFunction();
         testFunction.setId("func");
