@@ -10,7 +10,7 @@ const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
 /**
- * @module TestPlanListComponent
+ * @module Test/TestPlanListComponent
  */
 
 export default class TestPlanListComponent extends Component {

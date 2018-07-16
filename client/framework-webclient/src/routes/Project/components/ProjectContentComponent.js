@@ -13,7 +13,7 @@ const { TextArea } = Input;
 const { Header, Content, Footer } = Layout;
 
 /**
- * @module ProjectContentComponent
+ * @module Project/ProjectContentComponent
  */
 
 export default class ProjectContentComponent extends Component {

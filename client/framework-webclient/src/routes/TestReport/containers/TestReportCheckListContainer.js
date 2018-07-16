@@ -7,6 +7,14 @@ import {setTestReportCheckFilter} from "../../../modules/ducks/TestReportCheck";
 import TestReportCheckListComponent from "../components/TestReportCheckListComponent";
 import {ProjectContentView} from "../../Project";
 
+/**
+ * @module TestReport/TestReportCheckListContainer
+ */
+/**
+ * 把store中的测试报告检查表分发给list页面
+ * @param state
+ * @returns {{dataSource: any[], enableNew: boolean}}
+ */
 const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //console.log(state.TestReportCheck.listMap);
@@ -16,6 +24,11 @@ const mapStateToProps = (state) => {
     }
 };
 
+/**
+ * 把设置列表过滤器和测试报告检查表Tab控制的dispatch方法分发给list页面
+ * @param dispatch
+ * @returns {{showContent: showContent, showProject: showProject, setListFilter: (function(*=): *), getTestReportCheckList: (function(): void), deleteTestReportCheck: (function(*=): void), newTestReportCheck: (function(): void)}}
+ */
 const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (param) => {

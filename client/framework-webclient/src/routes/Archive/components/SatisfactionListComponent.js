@@ -11,7 +11,7 @@ const InputGroup = Input.Group;
 const Option = Select.Option;
 
 /**
- * @module SatisfactionListComponent
+ * @module Archive/SatisfactionListComponent
  */
 
 export default class SatisfactionListComponent extends Component {

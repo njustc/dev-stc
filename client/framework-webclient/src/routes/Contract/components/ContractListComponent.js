@@ -9,7 +9,7 @@ const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
 /**
- * @module ContractListComponent
+ * @module Contract/ContractListComponent
  */
 export default class ContractListComponent extends Component {
     constructor(props) {
