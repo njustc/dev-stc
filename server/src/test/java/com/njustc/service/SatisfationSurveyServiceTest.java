@@ -123,13 +123,8 @@ public class SatisfationSurveyServiceTest {
         try {
 
             //test_addSatisfactionSurvey
-            JSONObject consign = new JSONObject();
-            JSONObject jsonConsign = consignService.addConsign(consign,null,tester);
 
-            JSONObject project = new JSONObject();
-            String consign_id = jsonConsign.getString("id");
-            JSONObject jsonProject = projectService.addProject(consign_id,project,null,tester);
-            String pro_id = jsonProject.getString("id");
+            String pro_id = "p1";
             JSONObject jsonResult = satisfactionSurveyService.addSatisfactionSurvey(pro_id,SatisfactionSurvey, null,tester);
             String id = jsonResult.getString("id");
             Assert.assertNotNull("用户满意度调查表新建失败",id);

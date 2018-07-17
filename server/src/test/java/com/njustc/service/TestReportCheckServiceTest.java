@@ -121,12 +121,8 @@ public class TestReportCheckServiceTest {
         try {
 
             //test_addTestReportCheck
-            JSONObject consign = new JSONObject();
-            JSONObject jsonConsign = consignService.addConsign(consign,null,tester);
-            JSONObject project = new JSONObject();
-            String consign_id = jsonConsign.getString("id");
-            JSONObject jsonProject = projectService.addProject(consign_id,project,null,tester);
-            String pro_id = jsonProject.getString("id");
+
+            String pro_id = "p1";
             JSONObject jsonResult = testReportCheckService.addTestReportCheck(pro_id,TestReportCheck, null, tester);
             String id = jsonResult.getString("id");
             Assert.assertNotNull("测试报告检查新建失败",id);

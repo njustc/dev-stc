@@ -13,10 +13,11 @@ const { TextArea } = Input;
 const { Header, Content, Footer } = Layout;
 
 /**
- * @module Project/ProjectContentComponent
+ * 项目详情类，负责渲染，展示项目的进度和详细信息
+ * @extends Component
  */
 
-export default class ProjectContentComponent extends Component {
+class ProjectContentComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -376,3 +377,5 @@ export default class ProjectContentComponent extends Component {
         );
     }
 }
+
+export default ProjectContentComponent;

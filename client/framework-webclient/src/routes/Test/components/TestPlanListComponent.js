@@ -9,11 +9,12 @@ const Search = Input.Search;
 const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
-/**
- * @module TestPlan/TestPlanListComponent
- */
 
-export default class TestPlanListComponent extends Component {
+/**
+ * 测试方案列表类，负责渲染，展示测试方案的列表
+ * @extends Component
+ */
+class TestPlanListComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -255,3 +256,5 @@ export default class TestPlanListComponent extends Component {
         );
     }
 }
+
+export default TestPlanListComponent;
