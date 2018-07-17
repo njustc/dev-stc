@@ -14,9 +14,6 @@ import {ProjectView} from "ROUTES/Project";
 import tabsMap from "../routes/tabsMap";
 
 /**
- * @module CoreLayout/CoreLayoutComponent
- */
-/**
  * @extends Component
  */
 class CoreLayout extends Component

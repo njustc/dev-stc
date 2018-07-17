@@ -21,8 +21,8 @@ import {SatisfactionContentView} from "../../Archive";
  */
 /**
  * 把store里面的合同数据映射到委托组件，根据store数据计算项目状态，传入项目详情组件
- * @param state
- * @param ownProps
+ * @param state {object} store中数据
+ * @param ownProps {object} 创建组件时传入的数据
  * @returns {{projectData: *, disable: boolean, consignState: string}}
  */
 const mapStateToProps = (state, ownProps) => {
@@ -37,7 +37,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 /**
  * 向页面分发跳转到指定文档Tab的方法，和获取项目详情的方法
- * @param dispatch
+ * @param dispatch {function} 分发action并触发state变化的方法
  * @returns {{showContent: showContent, getValues: (function(*=): void)}}
  */
 const mapDispatchToProps = (dispatch) => {

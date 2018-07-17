@@ -11,8 +11,8 @@ import {message} from "antd/lib/index";
 
 /**
  * 把store里面的测试报告数据映射到测试报告组件，根据store数据计算页面编辑权限，计算并传入buttonsEnable数组
- * @param state
- * @param ownProps
+ * @param state {object} store中数据
+ * @param ownProps {object} 创建组件时传入的数据
  * @returns {{testReportData: *, projectData: *, values: {}, disable: boolean, buttonsEnable: *}}
  */
 const mapStateToProps = (state, ownProps) => {
@@ -42,15 +42,15 @@ const mapStateToProps = (state, ownProps) => {
 
 /**
  * 按钮显示控制，根据当前用户和状态判断按钮是否可用
- * @param isCustomer
- * @param isMarketing
- * @param isTesting
- * @param isQuality
- * @param isSubmitVisible
- * @param isReviewVisible
- * @param isApproveVisible
- * @param isSendVisible
- * @param isConfirmVisible
+ * @param isCustomer {boolean} 是否为客户
+ * @param isMarketing {boolean} 是否为市场部成员
+ * @param isTesting {boolean} 是否为测试部成员
+ * @param isQuality {boolean} 是否为质量部成员
+ * @param isSubmitVisible {boolean} 是否可以提交
+ * @param isReviewVisible {boolean} 是否可以评审
+ * @param isApproveVisible {boolean} 是否可以通过
+ * @param isSendVisible {boolean} 是否可以发放
+ * @param isConfirmVisible {boolean} 是否可以确认
  * @returns {Array}
  */
 const buttonsEnable = (isCustomer,isMarketing,isTesting,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible) => [{
@@ -85,7 +85,7 @@ const buttonsEnable = (isCustomer,isMarketing,isTesting,isQuality,isSubmitVisibl
 
 /**
  * 测试报告相关的数据操作和对应的按钮
- * @param dispatch
+ * @param dispatch {function} 分发action并触发state变化的方法
  * @returns {Array}
  */
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
@@ -232,11 +232,10 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
 
 /**
  * 向测试报告组件分发buttons数组和获取测试报告的方法
- * @param dispatch
- * @param ownProps
+ * @param dispatch {function} 分发action并触发state变化的方法
  * @returns {{buttons: Array, getValues: (function(*=): void)}}
  */
-const mapDispatchToProps = (dispatch,ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     console.log("here");
     return {
         buttons: buttons(dispatch),

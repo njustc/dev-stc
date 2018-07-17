@@ -9,11 +9,10 @@ import {getConsignList} from "../services/ConsignService";
  */
 /**
  * 把store中的系统用户，Tab数组，当前活跃Tab键值，侧边栏数据分发给CoreLayout界面
- * @param state
+ * @param state store数据
  * @returns {{sysUser: ({}|initialState.sysUser|sysUser), panes: (Array|*), activeKey: *, sider: ({}|initialState.siderData|siderData|Function)}}
  */
 const mapStateToProps = (state) => {
-    // console.log(state.Layout.panes);
     return {
         sysUser: state.System.sysUser,
         panes: state.Layout.panes,
@@ -24,7 +23,7 @@ const mapStateToProps = (state) => {
 /**
  * 把store的Tab控制的Action，和从数据库获取项目，委托列表的方法分发给CoreLayout页面
  * @function
- * @param dispatch
+ * @param dispatch 分发action并触发state变化的方法
  * @returns {{addTab: addTab, removeTab: removeTab, switchTab: (function(*=): *), getProjectList: (function(): void), getConsignList: (function(): void)}}
  */
 const mapDispatchToProps = (dispatch) => {

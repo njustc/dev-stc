@@ -11,8 +11,8 @@ import {message} from "antd/lib/index";
 
 /**
  * 把store里面的测试样例数据映射到测试报告检查表组件
- * @param state
- * @param ownProps
+ * @param state {object} store中的数据
+ * @param ownProps {object} 创建组件时传入的数据
  * @returns {{testReportCheckData: *, values: {}, disable: boolean, buttonsEnable: *}}
  */
 const mapStateToProps = (state, ownProps) => {
@@ -30,7 +30,7 @@ const mapStateToProps = (state, ownProps) => {
 
 /**
  * 按钮显示控制，根据当前用户和状态判断按钮是否可用
- * @param isQuality
+ * @param isQuality {boolean} 是否为质量部成员
  * @returns {Array}
  */
 const buttonsEnable = (isQuality) => [{
@@ -40,7 +40,7 @@ const buttonsEnable = (isQuality) => [{
 
 /**
  * 测试报告检查表相关的数据操作和对应的按钮
- * @param dispatch
+ * @param dispatch {function} 分发action并触发state变化的方法
  * @returns {Array}
  */
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
@@ -62,11 +62,10 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
 
 /**
  * 向测试报告检查表组件分发buttons数组和获取测试报告检查表的方法
- * @param dispatch
- * @param ownProps
+ * @param dispatch {function} 分发action并触发state变化的方法
  * @returns {{buttons: Array, getValues: (function(*=): void)}}
  */
-const mapDispatchToProps = (dispatch,ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         buttons: buttons(dispatch),
         getValues: (id) => getTestReportCheck(dispatch,id)
