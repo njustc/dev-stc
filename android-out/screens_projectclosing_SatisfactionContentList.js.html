@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: screens/projectclosing/SatisfactionContentList.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: screens/projectclosing/SatisfactionContentList.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from "react";
+import {
+  Container,
+  Header,
+  Title,
+  Button,
+  Icon,
+  Item,
+  Input,
+  Content,
+  Text,
+  Left,
+  Right,
+  Body,
+  List,
+  ListItem
+} from "native-base";
+
+import styles from "./styles";
+
+import { ToastAndroid,DeviceEventEmitter } from "react-native";
+
+import SatisfactionContentPage from './SatisfactionContentPage'
+
+import {baseAddress,baseServiceAddress,STATUS} from "../../common";
+import {httpPost,httpGet,httpDelete,httpPut} from "../../FetchUtil";
+import { getLocalclientDigest, getLocaluserName } from "../../login/Login";
+
+let AllSatisfactionContentList = [];//data from 后端
+
+export const getSatisfactionContentList = () => {
+  const contractBase = baseServiceAddress+'/v1/satisfactionSurvey?username='+getLocaluserName()+'&amp;clientDigest='+getLocalclientDigest();
+  httpGet(contractBase,(result)=>{
+    const{status,data}=result;
+    if(status===STATUS.SUCCESS){
+      AllSatisfactionContentList=data;
+    }
+  });
+};
+
+/**
+ * 客户满意度调查表列表
+ */
+class SatisfactionContentList extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      datas:[
+        {
+          route:"SatisfactionContentPage",
+          text: ""
+        }
+      ],
+      currentdatas:[
+        {
+          route: "SatisfactionContentPage",
+          text: ""
+        }
+      ],
+    };
+  }
+
+
+  onChanegeTextKeyword(text){
+    //console.warn("yyy");
+    this.search(text);
+  }
+
+  /**
+   * 客户满意度调查表搜索函数
+   * @func
+   */
+  search(text){
+    if(this.time){
+      clearTimeout(this.time)
+    }
+
+    this.time = setTimeout(()=>{
+      //console.warn(text);
+      //this.setState({currentdatas:ConsignList});
+      //console.warn(this.state.currentdatas);
+
+      if (text=='') {
+        this.setState({
+          datas:AllSatisfactionContentList,
+        });//所有的
+
+        this.setState({currentdatas:AllSatisfactionContentList});
+        //console.warn(this.state.datas);
+        return;
+      }else{
+        this.setState({currentdatas:AllSatisfactionContentList});
+        //console.warn(this.state.currentdatas);
+        //console.warn(this.state.currentdatas.length);
+        //console.warn(this.state.currentdatas[1].id);
+        for (var i = 0; i &lt; this.state.currentdatas.length; i++)
+        {
+          // console.warn("now"+this.state.currentdatas[i].id);
+          if (this.state.currentdatas[i].consignUnit==text) {
+            this.setState({
+              datas:[this.state.currentdatas[i]],
+            });
+            return;
+          }
+          else{
+            this.setState({
+              datas:[],
+            });
+            //console.warn(this.state.datas);
+          }
+        }
+      }
+    },500);
+
+  }//搜索函数
+
+
+  extraUniqueKey(item,index){
+    return index+item;
+  }
+
+  /**
+   * 从后端获取用户满意度调查表
+   * @func
+   */
+  getSatisfactionContentList = () => {
+    const contractBase = baseServiceAddress+'/v1/satisfactionSurvey?username='+getLocaluserName()+'&amp;clientDigest='+getLocalclientDigest();
+    httpGet(contractBase,(result)=>{
+      const{status,data}=result;
+      if(status===STATUS.SUCCESS){
+        AllSatisfactionContentList=data.map(item=>{
+          const body = JSON.parse(item.body);
+          return {...item, ...body};
+        });
+        this.setState({datas: AllSatisfactionContentList});
+      }
+    });
+  };
+
+  /**
+   * 获取用户满意度调查表
+   * @func
+   */
+  componentWillMount() {
+    this.getSatisfactionContentList();
+
+    //this.state.datas=ConsignList;
+  }
+
+  /**
+   * 用户满意度调查表跳转函数，根据用户满意度调查表id获取用户满意度调查表具体内容传给跳转界面
+   * @param id
+   * @func
+   */
+  gotoSatisfactionContentPage = (id) =>{
+    httpGet(baseServiceAddress+'/v1/satisfactionSurvey/'+id+'?username='+getLocaluserName()+'&amp;clientDigest='+getLocalclientDigest(),(result)=>{
+      const {status,data}=result;
+
+      if(status===STATUS.SUCCESS){
+        let satisfactioncontentpage_content=JSON.parse(data.body);
+        //console.warn(satisfactioncontentpage_content);
+        //DeviceEventEmitter.emit('consignUnitC',{CONSIGN_UNITC: consignationpage_content1.consignUnitC});
+        DeviceEventEmitter.emit('consignUnit',{CONSIGN_UNIT:satisfactioncontentpage_content.consignUnit});
+        DeviceEventEmitter.emit('softwareName',{SOFTWARE_NAME:satisfactioncontentpage_content.softwareName});
+        DeviceEventEmitter.emit('contact',{CONTACT:satisfactioncontentpage_content.contact});
+        DeviceEventEmitter.emit('contactNumber',{CONTACTNUMBER:satisfactioncontentpage_content.contactNumber});
+        DeviceEventEmitter.emit('Email',{EMAIL:satisfactioncontentpage_content.Email});
+        DeviceEventEmitter.emit('mobilePhone',{MOBILEPHONE:satisfactioncontentpage_content.mobilePhone});
+        DeviceEventEmitter.emit('reflectTime',{REFLECTTIME:satisfactioncontentpage_content.reflectTime});
+        DeviceEventEmitter.emit('charge',{CHARGE:satisfactioncontentpage_content.charge});
+        DeviceEventEmitter.emit('standard',{STANDARD:satisfactioncontentpage_content.standard});
+        DeviceEventEmitter.emit('capability',{CAPABILITY:satisfactioncontentpage_content.capability});
+        DeviceEventEmitter.emit('understanding',{UNDERSTANDING:satisfactioncontentpage_content.understanding});
+        DeviceEventEmitter.emit('communication',{COMMUNICATION:satisfactioncontentpage_content.communication});
+        DeviceEventEmitter.emit('advice',{ADVICE:satisfactioncontentpage_content.advice});
+        DeviceEventEmitter.emit('satisfactionDegree',{SATISFACTION_DEGREE:satisfactioncontentpage_content.satisfactionDegree});
+        //console.warn(satisfactioncontentpage_content.satisfactionLevel);
+        //DeviceEventEmitter.emit('satisfactionLevel',{SATISFACTION_LEVEL:satisfactioncontentpage_content.satisfactionLevel});
+        switch (satisfactioncontentpage_content.satisfactionLevel){
+          case 1:DeviceEventEmitter.emit('satisfactionLevel',{SATISFACTION_LEVEL:"很满意"});break;
+          case 2:DeviceEventEmitter.emit('satisfactionLevel',{SATISFACTION_LEVEL:"较满意"});break;
+          case 3:DeviceEventEmitter.emit('satisfactionLevel',{SATISFACTION_LEVEL:"一般"});break;
+          case 4:DeviceEventEmitter.emit('satisfactionLevel',{SATISFACTION_LEVEL:"不满意"});break;
+          case 5:DeviceEventEmitter.emit('satisfactionLevel',{SATISFACTION_LEVEL:"很不满意"});break;
+        }
+      }
+    });
+    this.props.navigation.navigate("SatisfactionContentPage");
+  }
+
+  /**
+   * 用户满意度调查表渲染函数
+   * @return {*}
+   */
+  render(){
+    return(
+      &lt;Container style={styles.container}>
+        &lt;Header searchBar rounded>
+          &lt;Left>
+            &lt;Button
+              transparent
+              onPress={() => this.props.navigation.goBack()}
+            >
+              &lt;Icon name="arrow-back" />
+            &lt;/Button>
+          &lt;/Left>
+          &lt;Body>
+          &lt;Title>客户满意度调查表列表&lt;/Title>
+          &lt;/Body>
+          &lt;Right />
+        &lt;/Header>
+
+        &lt;Content>
+          &lt;Item>
+            &lt;Icon active name="search" />
+            &lt;Input placeholder="输入测试满意度调查表ID查询"
+                   onChangeText={this.onChanegeTextKeyword.bind(this)} />
+          &lt;/Item>
+
+          &lt;List
+            dataArray={this.state.datas}
+            //dataArray={ConsignList}
+            renderRow={data =>
+              &lt;ListItem
+                button
+                onPress={() => this.gotoSatisfactionContentPage(data.id)}
+                keyExtractor = {this.extraUniqueKey}//去除警告
+              >
+                &lt;Left>
+                  &lt;Text>
+                    {data.consignUnit}
+                  &lt;/Text>
+                &lt;/Left>
+                &lt;Right>
+                  &lt;Icon name="arrow-forward" />
+                &lt;/Right>
+              &lt;/ListItem>}
+          />
+        &lt;/Content>
+      &lt;/Container>
+
+    );
+  }
+
+}
+
+export default SatisfactionContentList;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Consignation.html">Consignation</a></li><li><a href="ConsignationPage.html">ConsignationPage</a></li><li><a href="Contract.html">Contract</a></li><li><a href="ContractList.html">ContractList</a></li><li><a href="LoginView.html">LoginView</a></li><li><a href="ProjectClosing.html">ProjectClosing</a></li><li><a href="Report.html">Report</a></li><li><a href="SatisfactionContentList.html">SatisfactionContentList</a></li><li><a href="SatisfactionContentPage.html">SatisfactionContentPage</a></li><li><a href="SideBar.html">SideBar</a></li><li><a href="TestCaseContentList.html">TestCaseContentList</a></li><li><a href="TestCaseContentPage.html">TestCaseContentPage</a></li><li><a href="Testing.html">Testing</a></li><li><a href="TestingReportCheckTableList.html">TestingReportCheckTableList</a></li><li><a href="TestingReportCheckTablePage.html">TestingReportCheckTablePage</a></li><li><a href="TestingReportList.html">TestingReportList</a></li><li><a href="TestingReportPage.html">TestingReportPage</a></li><li><a href="TestingWorkCheckTableList.html">TestingWorkCheckTableList</a></li><li><a href="TestingWorkCheckTablePagePage.html">TestingWorkCheckTablePagePage</a></li><li><a href="TestPlanContentList.html">TestPlanContentList</a></li><li><a href="TestPlanContentPage.html">TestPlanContentPage</a></li><li><a href="TestProblemContentPage.html">TestProblemContentPage</a></li><li><a href="TestRecordContentPage.html">TestRecordContentPage</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AppNavigator">AppNavigator</a></li><li><a href="global.html#baseAddress">baseAddress</a></li><li><a href="global.html#baseServiceAddress">baseServiceAddress</a></li><li><a href="global.html#datas">datas</a></li><li><a href="global.html#Drawer">Drawer</a></li><li><a href="global.html#httpDelete">httpDelete</a></li><li><a href="global.html#httpGet">httpGet</a></li><li><a href="global.html#httpPost">httpPost</a></li><li><a href="global.html#httpPut">httpPut</a></li><li><a href="global.html#sysFetch">sysFetch</a></li><li><a href="global.html#%25E5%25AE%259A%25E4%25B9%2589%25E7%25AA%2597%25E5%258F%25A3%25E5%25A4%25A7%25E5%25B0%258F">定义窗口大小</a></li><li><a href="global.html#%25E7%25A7%25BB%25E5%258A%25A8%25E7%25AB%25AF%25E6%2598%25BE%25E7%25A4%25BAhtml%25E4%25BB%25A3%25E7%25A0%2581">移动端显示html代码</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jul 16 2018 20:04:44 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

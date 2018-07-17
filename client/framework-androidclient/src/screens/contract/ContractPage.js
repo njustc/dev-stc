@@ -27,7 +27,7 @@ import {
 } from "native-base";
 
 import styles from "./styles";
-<<<<<<< HEAD
+
 /**
  * ContractPage
  * 实现类
@@ -38,11 +38,7 @@ class ContractPage extends Component{
      * 其中包含了初始值和定义
      * @param props
      */
-=======
 
-
-class ContractPage extends Component{
->>>>>>> 639ac84ca7552fb63f97f29520e37fbdc5cc7709
     constructor(props){
         super(props);
         this.state={

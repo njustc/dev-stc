@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: screens/report/TestingReportCheckTablePage.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: screens/report/TestingReportCheckTablePage.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from "react";
+import { View,DeviceEventEmitter } from "react-native";
+import {
+  Container,
+  Header,
+  Title,
+  Button,
+  Icon,
+  Item,
+  Input,
+  Content,
+  Text,
+  Left,
+  Right,
+  Body,
+  List,
+  ListItem,
+  Accordion,
+  Card,
+  CardItem,
+  Footer,
+  FooterTab,
+  Tabs,
+  Tab,
+  ScrollableTab
+} from "native-base";
+
+import styles from "./styles";
+
+/**
+ * TestingReportCheckTablePage 实现类
+ */
+class TestingReportCheckTablePage extends Component {
+    /**
+     * constructor
+     * 其中包含了初始值和定义
+     * @param props
+     */
+  constructor(props) {
+    super(props);
+    this.state = {
+      softwareName:"",
+      consignUnit:"",
+      checker:"",
+      date:"",
+      reportNumber:"",
+      pageNumber:"",
+      softwareNameOrNot:"",
+      versionModel:"",
+      consignUnitOrNot:"",
+      finishDate:"",
+      consignUnitAddr:"",
+      Number:"",
+      testSample:"",
+      softwareHardwareList:"",
+      wrongWords:"",
+      wrongSentences:"",
+      wrongStyle:"",
+      usersTestReport:""
+    };
+  }
+
+  componentDidMount(){
+    this.listener_softwareName = DeviceEventEmitter.addListener('softwareName',(events)=>{
+      this.setState({softwareName : events.SOFTWARE_NAME });
+    });
+
+    this.listener_consignUnit = DeviceEventEmitter.addListener('consignUnit',(events)=>{
+      this.setState({consignUnit : events.CONSIGN_UNIT });
+    });
+
+    this.listener_checker = DeviceEventEmitter.addListener('checker',(events)=>{
+      this.setState({checker : events.CHECKER });
+    });
+
+    this.listener_date = DeviceEventEmitter.addListener('date',(events)=>{
+      this.setState({date : events.DATE });
+    });
+
+    this.listener_reportNumber = DeviceEventEmitter.addListener('reportNumber',(events)=>{
+      this.setState({reportNumber : events.REPORT_NUMBER });
+    });
+
+    this.listener_pageNumber = DeviceEventEmitter.addListener('pageNumber',(events)=>{
+      this.setState({pageNumber : events.PAGE_NUMBER });
+    });
+
+    this.listener_softwareNameOrNot = DeviceEventEmitter.addListener('softwareNameOrNot',(events)=>{
+      this.setState({softwareNameOrNot : events.SOFRWARE_NAMEORNOT });
+    });
+
+    this.listener_versionModel = DeviceEventEmitter.addListener('versionModel',(events)=>{
+      this.setState({versionModel : events.VERSION_MODEL });
+    });
+
+    this.listener_consignUnitOrNot = DeviceEventEmitter.addListener('consignUnitOrNot',(events)=>{
+      this.setState({consignUnitOrNot : events.CONSIGN_UNITORNOT });
+    });
+
+    this.listener_finishDate = DeviceEventEmitter.addListener('finishDate',(events)=>{
+      this.setState({finishDate : events.FINISH_DATE });
+    });
+
+    this.listener_consignUnitAddr = DeviceEventEmitter.addListener('consignUnitAddr',(events)=>{
+      this.setState({consignUnitAddr : events.CONSIGN_UNIT_ADDR });
+    });
+
+    this.listener_Number = DeviceEventEmitter.addListener('Number',(events)=>{
+      this.setState({Number : events.NUMBER });
+    });
+
+    this.listener_testSample = DeviceEventEmitter.addListener('testSample',(events)=>{
+      //console.warn(events.TEST_SAMPLE);
+      this.setState({testSample : events.TEST_SAMPLE });
+    });
+
+    this.listener_softwareHardwareList = DeviceEventEmitter.addListener('softwareHardwareList',(events)=>{
+      //console.warn(events.SOFRWARE_HARDWARE_LIST);
+      this.setState({softwareHardwareList : events.SOFRWARE_HARDWARE_LIST });
+    });
+
+    this.listener_wrongWords = DeviceEventEmitter.addListener('wrongWords',(events)=>{
+      this.setState({wrongWords : events.WRONG_WORDS });
+    });
+
+    this.listener_wrongSentences = DeviceEventEmitter.addListener('wrongSentences',(events)=>{
+      this.setState({wrongSentences : events.WRONG_SENTENCES });
+    });
+
+    this.listener_wrongStyle = DeviceEventEmitter.addListener('wrongStyle',(events)=>{
+      this.setState({wrongStyle : events.WRONG_STYLE });
+    });
+
+    this.listener_usersTestReport = DeviceEventEmitter.addListener('usersTestReport',(events)=>{
+      this.setState({usersTestReport : events.USERSTESTREPORT });
+    });
+
+
+  }
+
+  componentWillUnmount(){
+    this.listener_softwareName.remove();
+    this.listener_consignUnit.remove();
+    this.listener_checker.remove();
+    this.listener_date.remove();
+    this.listener_reportNumber.remove();
+    this.listener_pageNumber.remove();
+    this.listener_softwareNameOrNot.remove();
+    this.listener_versionModel.remove();
+    this.listener_consignUnitOrNot.remove();
+    this.listener_finishDate.remove();
+    this.listener_consignUnitAddr.remove();
+    this.listener_Number.remove();
+    this.listener_testSample.remove();
+    this.listener_softwareHardwareList.remove();
+    this.listener_wrongWords.remove();
+    this.listener_wrongSentences.remove();
+    this.listener_wrongStyle.remove();
+    this.listener_usersTestReport.remove();
+
+
+  }
+
+    /**
+     * render
+     * 移动端显示页面的html代码
+     * @func
+     * @returns {*}
+     */
+  render() {
+    return (
+      &lt;Container>
+        &lt;Header hasTabs>
+        &lt;Left>
+          &lt;Button transparent onPress={() => this.props.navigation.goBack()}>
+            &lt;Icon name="arrow-back" />
+          &lt;/Button>
+        &lt;/Left>
+        &lt;Body>
+        &lt;Title>测试报告检查表详情&lt;/Title>
+        &lt;/Body>
+        &lt;Right />
+      &lt;/Header>
+
+        &lt;Tabs renderTabBar={() => &lt;ScrollableTab />}>
+
+          &lt;Tab heading="基本信息">
+        &lt;Card style={{ flex: 0 }}>
+          &lt;CardItem>
+            &lt;Body>
+            &lt;Text>
+              软件名称：{this.state.softwareName}
+            &lt;/Text>
+            &lt;/Body>
+          &lt;/CardItem>
+        &lt;/Card>
+
+
+        &lt;Card style={{ flex: 0 }}>
+          &lt;CardItem>
+            &lt;Body>
+            &lt;Text>
+              委托单位：{this.state.consignUnit}
+            &lt;/Text>
+            &lt;/Body>
+          &lt;/CardItem>
+        &lt;/Card>
+
+        &lt;Card style={{ flex: 0 }}>
+          &lt;CardItem>
+            &lt;Body>
+            &lt;Text>
+              检查人：{this.state.checker}
+            &lt;/Text>
+            &lt;/Body>
+          &lt;/CardItem>
+        &lt;/Card>
+
+        &lt;Card style={{ flex: 0 }}>
+          &lt;CardItem>
+            &lt;Body>
+            &lt;Text>
+              日期：{this.state.date}
+            &lt;/Text>
+            &lt;/Body>
+          &lt;/CardItem>
+        &lt;/Card>
+
+          &lt;/Tab>
+
+          &lt;Tab heading="检查实现">
+            &lt;Content padder style={{ marginTop: 0 }}>
+              &lt;Card style={{ flex: 0 }}>
+                &lt;CardItem>
+                  &lt;Body>
+                    &lt;Text>
+                      1. 报告编号：检查报告编号的正确性（是否符合编码规则）与前后的一致性（报告首页与每页页眉):{this.state.reportNumber}
+                    &lt;/Text>
+                  &lt;/Body>
+                &lt;/CardItem>
+              &lt;/Card>
+
+              &lt;Card style={{ flex: 0 }}>
+                &lt;CardItem>
+                  &lt;Body>
+                    &lt;Text>
+                      2. 页码：检查页码与总页数是否正确（报告首页与每页页眉）:{this.state.pageNumber}
+                    &lt;/Text>
+                  &lt;/Body>
+                &lt;/CardItem>
+              &lt;/Card>
+
+              &lt;Card style={{ flex: 0 }}>
+                &lt;CardItem>
+                  &lt;Body>
+                    &lt;Text>
+                      3. 软件名称：是否和确认单一致，是否前后一致（共三处，包括首页、报告页、附件三）:{this.state.softwareNameOrNot}
+                    &lt;/Text>
+                  &lt;/Body>
+                &lt;/CardItem>
+              &lt;/Card>
+
+              &lt;Card style={{ flex: 0 }}>
+                &lt;CardItem>
+                  &lt;Body>
+                    &lt;Text>
+                      4. 版本号：是否和确认单一致，是否前后一致（共二处，包括首页、报告页）:{this.state.versionModel}
+                    &lt;/Text>
+                  &lt;/Body>
+                &lt;/CardItem>
+              &lt;/Card>
+
+              &lt;Card style={{ flex: 0 }}>
+                &lt;CardItem>
+                  &lt;Body>
+                    &lt;Text>
+                      5. 委托单位：是否和确认单一致，是否前后一致（共二处，包括首页、报告页）:{this.state.consignUnitOrNot}
+                    &lt;/Text>
+                  &lt;/Body>
+                &lt;/CardItem>
+              &lt;/Card>
+
+              &lt;Card style={{ flex: 0 }}>
+                &lt;CardItem>
+                  &lt;Body>
+                    &lt;Text>
+                      6. 完成日期：是否前后一致（共二处，包括首页、报告页页末）:{this.state.finishDate}
+                    &lt;/Text>
+                  &lt;/Body>
+                &lt;/CardItem>
+              &lt;/Card>
+
+        &lt;Card style={{ flex: 0 }}>
+          &lt;CardItem>
+            &lt;Body>
+            &lt;Text>
+              7. 委托单位地址：是否和确认单一致（共一处，报告页）:{this.state.consignUnitAddr}
+            &lt;/Text>
+            &lt;/Body>
+          &lt;/CardItem>
+        &lt;/Card>
+
+
+        &lt;Card style={{ flex: 0 }}>
+          &lt;CardItem>
+            &lt;Body>
+            &lt;Text>
+              8. 序号：附件二、附件三中的序号是否正确、连续:{this.state.Number}
+            &lt;/Text>
+            &lt;/Body>
+          &lt;/CardItem>
+        &lt;/Card>
+
+
+        &lt;Card style={{ flex: 0 }}>
+          &lt;CardItem>
+            &lt;Body>
+            &lt;Text>
+              9. 测试样品：样品名称是否正确，数量是否正确:{this.state.testSample}
+            &lt;/Text>
+            &lt;/Body>
+          &lt;/CardItem>
+        &lt;/Card>
+
+        &lt;Card style={{ flex: 0 }}>
+          &lt;CardItem>
+            &lt;Body>
+            &lt;Text>
+              10. 软、硬件列表：列表是否完整（如打印机），用途描述是否合理正确:{this.state.softwareHardwareList}
+            &lt;/Text>
+            &lt;/Body>
+          &lt;/CardItem>
+        &lt;/Card>
+
+        &lt;Card style={{ flex: 0 }}>
+          &lt;CardItem>
+            &lt;Body>
+            &lt;Text>
+              11. 文字、内容、格式:错别字：报告中是否还有错别字。{this.state.wrongWords}
+            &lt;/Text>
+
+            &lt;Text>
+              语句：报告的语句是否通顺合理；每个功能描述结束后是否都有句号。{this.state.wrongSentences}
+            &lt;/Text>
+
+            &lt;Text>
+              格式：报告的格式是否美观，字体是否一致，表格大小是否一致（如无特殊情况尽量不要将报告页中的表格分为2页）:{this.state.wrongStyle}
+            &lt;/Text>
+
+            &lt;/Body>
+          &lt;/CardItem>
+        &lt;/Card>
+
+        &lt;Card style={{ flex: 0 }}>
+          &lt;CardItem>
+            &lt;Body>
+            &lt;Text>
+              12 用户文档测试报告：语句是否通顺，是否准确描述用户的文档:{this.state.usersTestReport}
+            &lt;/Text>
+            &lt;/Body>
+          &lt;/CardItem>
+        &lt;/Card>
+            &lt;/Content>
+          &lt;/Tab>
+
+        &lt;/Tabs>
+      &lt;/Container>
+
+
+
+
+    );
+  }
+}
+export  default TestingReportCheckTablePage;
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Consignation.html">Consignation</a></li><li><a href="ConsignationPage.html">ConsignationPage</a></li><li><a href="Contract.html">Contract</a></li><li><a href="ContractList.html">ContractList</a></li><li><a href="LoginView.html">LoginView</a></li><li><a href="ProjectClosing.html">ProjectClosing</a></li><li><a href="Report.html">Report</a></li><li><a href="SatisfactionContentList.html">SatisfactionContentList</a></li><li><a href="SatisfactionContentPage.html">SatisfactionContentPage</a></li><li><a href="SideBar.html">SideBar</a></li><li><a href="TestCaseContentList.html">TestCaseContentList</a></li><li><a href="TestCaseContentPage.html">TestCaseContentPage</a></li><li><a href="Testing.html">Testing</a></li><li><a href="TestingReportCheckTableList.html">TestingReportCheckTableList</a></li><li><a href="TestingReportCheckTablePage.html">TestingReportCheckTablePage</a></li><li><a href="TestingReportList.html">TestingReportList</a></li><li><a href="TestingReportPage.html">TestingReportPage</a></li><li><a href="TestingWorkCheckTableList.html">TestingWorkCheckTableList</a></li><li><a href="TestingWorkCheckTablePagePage.html">TestingWorkCheckTablePagePage</a></li><li><a href="TestPlanContentList.html">TestPlanContentList</a></li><li><a href="TestPlanContentPage.html">TestPlanContentPage</a></li><li><a href="TestProblemContentPage.html">TestProblemContentPage</a></li><li><a href="TestRecordContentPage.html">TestRecordContentPage</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AppNavigator">AppNavigator</a></li><li><a href="global.html#baseAddress">baseAddress</a></li><li><a href="global.html#baseServiceAddress">baseServiceAddress</a></li><li><a href="global.html#datas">datas</a></li><li><a href="global.html#Drawer">Drawer</a></li><li><a href="global.html#httpDelete">httpDelete</a></li><li><a href="global.html#httpGet">httpGet</a></li><li><a href="global.html#httpPost">httpPost</a></li><li><a href="global.html#httpPut">httpPut</a></li><li><a href="global.html#sysFetch">sysFetch</a></li><li><a href="global.html#%25E5%25AE%259A%25E4%25B9%2589%25E7%25AA%2597%25E5%258F%25A3%25E5%25A4%25A7%25E5%25B0%258F">定义窗口大小</a></li><li><a href="global.html#%25E7%25A7%25BB%25E5%258A%25A8%25E7%25AB%25AF%25E6%2598%25BE%25E7%25A4%25BAhtml%25E4%25BB%25A3%25E7%25A0%2581">移动端显示html代码</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jul 16 2018 20:04:44 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
