@@ -40,7 +40,7 @@ var mockTestCaseData=[{
     accordance: 'tttttt'
 }];
 
-export const getTestCase = (dispatch, id, callback) => {
+const getTestCase = (dispatch, id, callback) => {
     dispatch(setTestCaseContent(/*data*/
         mockTestCaseData
     ));
@@ -78,7 +78,7 @@ const newTestCase = (dispatch,id, callback) => {
     },urlParams);
 };
 
-export const addTestCase = (dispatch, data/*, callback*/) => {
+const addTestCase = (dispatch, data/*, callback*/) => {
     mockTestCaseData.push(data);
     console.log(mockTestCaseData);//
 };

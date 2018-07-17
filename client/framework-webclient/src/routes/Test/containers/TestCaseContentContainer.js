@@ -52,7 +52,7 @@ const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible) => [{
 /**
  * 测试样例对应的按钮
  * @param dispatch
- * @returns {*[]}
+ * @returns {Array}
  */
 const buttons = (dispatch) => [{
     content: '保存',
@@ -125,7 +125,7 @@ const buttons = (dispatch) => [{
 /**
  * 向测试样例组件分发buttons数组和获取测试样例的方法
  * @param dispatch
- * @returns {{buttons: *[], getValues: getValues, getProjectList: (function(): *), newTestCase: (function(*=, *=): *), updateTestCase: (function(*=, *=): void), deleteTestCase: (function(*=, *=): void)}}
+ * @returns {{buttons: Array, getValues: getValues, getProjectList: (function(): *), newTestCase: (function(*=, *=): *), updateTestCase: (function(*=, *=): void), deleteTestCase: (function(*=, *=): void)}}
  */
 const mapDispatchToProps = (dispatch) => {
     return {

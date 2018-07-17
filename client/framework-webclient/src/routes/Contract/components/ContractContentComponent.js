@@ -117,10 +117,6 @@ class ContractContentComponent extends Component {
      * 返回用于描述合同功能组件的表单
      * @function
      */
-<<<<<<< HEAD
-
-=======
->>>>>>> 853917bdc9794c04dd0d3e59a04dad7b0c502a75
     render() {
         const { current } = this.state;
         const { getFieldDecorator } = this.props.form;
