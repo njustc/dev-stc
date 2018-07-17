@@ -78,7 +78,7 @@ const newTestCase = (dispatch,id, callback) => {
     },urlParams);
 };
 
-export const addTestCase = (dispatch, data/*, callback*/) => {
+const addTestCase = (dispatch, data/*, callback*/) => {
     mockTestCaseData.push(data);
     console.log(mockTestCaseData);//
 };
