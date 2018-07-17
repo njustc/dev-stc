@@ -35,6 +35,7 @@ springBeans
 # Log file
 *.log
 *.log.*
+log.*
 nohup.out
 
 # OSX
