@@ -188,7 +188,6 @@ public class TestBugService extends BaseService<TestBug> {
      * </p>
      *
      * @param params 待删除测试错误信息
-     * @throws Exception 若传入的测试错误信息不存在则抛出异常
      */
     public void deleteTestBug(JSONObject params)
     {
@@ -205,7 +204,7 @@ public class TestBugService extends BaseService<TestBug> {
      *
      * @param testBug 测试错误信息
      * @return 以JSONArray形式返回更新状态后测试错误信息以及测试错误信息
-     * @throws Exception 抛出异常
+     * @throws Exception 传入的测试错误信息不存在则抛出异常
      */
     private JSONObject processTestBug(TestBug testBug) throws Exception {
         //String processState = (String) processInstanceService.queryProcessState(testCase.getProcessInstanceID()).get("state");
