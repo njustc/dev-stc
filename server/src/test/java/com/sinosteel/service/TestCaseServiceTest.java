@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  *
  * 本测试用来测试TestCase Service
- * <table border = "1">
+ * <table border = "1" summary="">
  *      <tr>
  *          <th>测试内容</th>
  *          <th>测试操作</th>

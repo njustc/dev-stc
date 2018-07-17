@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  *
  * 本测试用来测试TestRecord Service
- * <table border = "1">
+ * <table border = "1" summary="">
  *      <tr>
  *          <th>测试内容</th>
  *          <th>测试操作</th>
@@ -63,7 +63,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
-@Transactional
+//@Transactional
 public class TestRecordServiceTest {
 
     private User tester;

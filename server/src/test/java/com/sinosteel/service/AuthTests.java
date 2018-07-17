@@ -65,7 +65,7 @@ public class AuthTests {
 
     }
     @Test
-    @Transactional
+  //  @Transactional
     public void testUserConsign()
     {
         System.out.println("测试用户委托");

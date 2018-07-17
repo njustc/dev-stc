@@ -18,7 +18,7 @@ import javax.transaction.Transactional;
 
 /**
  * 本测试用来测试Consign Service
- * <table border = "1">
+ * <table border = "1" summary="">
  *      <tr>
  *          <th>测试内容</th>
  *          <th>测试操作</th>
@@ -64,7 +64,7 @@ import javax.transaction.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
-@Transactional
+//@Transactional
     public class ConsignServiceTest {
 
     private User marketUser;
