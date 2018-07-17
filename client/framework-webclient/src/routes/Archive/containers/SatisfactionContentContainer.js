@@ -34,7 +34,7 @@ const mapStateToProps = (state, ownProps) => {
 /**
  * 按钮显示控制，根据当前用户和状态判断按钮是否可用
  * @param isEditVisible
- * @returns {*[]}
+ * @returns {Array}
  */
 const buttonsEnable = (isEditVisible) => [{
     content: '保存',
@@ -44,7 +44,7 @@ const buttonsEnable = (isEditVisible) => [{
 /**
  * 满意度调查表相关的数据操作和对应的按钮
  * @param dispatch
- * @returns {*[]}
+ * @returns {Array}
  */
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
@@ -64,7 +64,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
  * 向组件分发buttons数组
  * @param dispatch
  * @param ownProps
- * @returns {{buttons: *[]}}
+ * @returns {{buttons: Array}}
  */
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {

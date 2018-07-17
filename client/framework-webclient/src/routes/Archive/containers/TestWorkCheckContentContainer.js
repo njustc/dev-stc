@@ -29,7 +29,7 @@ const mapStateToProps = (state, ownProps) => {
 /**
  * 按钮显示控制，根据当前用户和状态判断按钮是否可用
  * @param isQuality
- * @returns {*[]}
+ * @returns {Array}
  */
 const buttonsEnable = (isQuality) => [{
     content: '保存',
@@ -38,7 +38,7 @@ const buttonsEnable = (isQuality) => [{
 /**
  * 测试工作检查表相关的数据操作和对应的按钮
  * @param dispatch
- * @returns {*[]}
+ * @returns {Array}
  */
 const buttons = (dispatch) => [{
     content: '保存',
@@ -60,7 +60,7 @@ const buttons = (dispatch) => [{
  * 向测试工作检查表组件分发buttons数组和获取检查表的方法
  * @param dispatch
  * @param ownProps
- * @returns {{buttons: *[], getValues: (function(*=): void)}}
+ * @returns {{buttons: Array, getValues: (function(*=): void)}}
  */
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {

@@ -2,13 +2,24 @@ const SET_LIST = 'Contract/SET_LIST';
 const RM_CONTENT = 'Contract/RM_CONTENT';
 const SET_CONTENT = 'Contract/SET_CONTENT';
 const SET_FILTER = 'Contract/SET_FILTER';
-
+/**
+ * @module Contract/ContractState
+ */
+/**
+ * 合同初始化state
+ * @type {{listFilter: (function(): boolean), listMap: {}}}
+ */
 const initialState = {
     listFilter: () => true,//绑定按钮传入的过滤条件
     listMap: { },  //项目集合，用key-value表示，key为id，value为ContractData
-    //ContractData为对象，仍然包含id字段
 };
-
+/**
+ * 合同reducer
+ * @param state
+ * @param action
+ * @returns {*}
+ * @constructor
+ */
 export const ContractReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_LIST:
@@ -57,28 +68,44 @@ export const ContractReducer = (state = initialState, action) => {
             return state;
     }
 };
-
+/**
+ * 设置合同列表
+ * @param list
+ * @returns {{type: string, payload: *}}
+ */
 export const setContractList = (list) => {
     return {
         type: SET_LIST,
         payload: list,
     }
 };
-
+/**
+ * 删除合同
+ * @param id
+ * @returns {{type: string, payload: *}}
+ */
 export const removeContract = (id) => {
     return {
         type: RM_CONTENT,
         payload: id,
     }
 };
-
+/**
+ * 新增一个合同或修改一个合同的内容
+ * @param ContractData
+ * @returns {{type: string, payload: *}}
+ */
 export const setContractContent = (ContractData) => {
     return {
         type: SET_CONTENT,
         payload: ContractData,
     }
 };
-
+/**
+ * 设置合同过滤器
+ * @param listFilter
+ * @returns {{type: string, payload: *}}
+ */
 export const setContractFilter = (listFilter) => {
     return {
         type: SET_FILTER,

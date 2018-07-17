@@ -5,6 +5,17 @@ import {getTestPlan, putTestPlanState, updateTestPlan} from "../../../services/T
 import {STATUS} from "../../../services/common";
 import {message} from "antd/lib/index";
 
+/**
+ * @module Test/TestPlanContentContainer
+ */
+
+/**
+ * 把store里面的测试方案数据映射到测试方案组件，根据store数据计算页面编辑权限，计算并传入buttonsEnable数组
+ * @param state
+ * @param ownProps
+ * @returns {{testPlanData: *, values: {}, disable: boolean, buttonsEnable: *}}
+ */
+
 const mapStateToProps = (state, ownProps) => {
     const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const content = state.Project.listMap[ownProps.id].testPlan;
@@ -24,6 +35,15 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
+/**
+ * 按钮显示控制，根据当前用户和状态判断按钮是否可用
+ * @param isTesting
+ * @param isQuality
+ * @param isSubmitVisible
+ * @param isReviewVisible
+ * @param isConfirmVisible
+ * @returns {*[]}
+ */
 const buttonsEnable = (isTesting,isQuality,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
     content: '保存',
     enable: isTesting&&isSubmitVisible,
@@ -45,6 +65,11 @@ const buttonsEnable = (isTesting,isQuality,isSubmitVisible,isReviewVisible,isCon
 }
 ];
 
+/**
+ * 测试方案相关的数据操作和对应的按钮
+ * @param dispatch
+ * @returns {*[]}
+ */
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
     onClick: (testPlanData,testPlan) =>{
@@ -144,6 +169,12 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
     }
 }];
 
+/**
+ * 向测试方案组件分发buttons数组和获取测试方案的方法
+ * @param dispatch
+ * @param ownProps
+ * @returns {{buttons: *[], getValues: (function(*=): void)}}
+ */
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {
         buttons: buttons(dispatch),
