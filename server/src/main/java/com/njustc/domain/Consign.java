@@ -46,6 +46,12 @@ public class Consign extends BaseEntity{
      */
     @Column(name = "SOFTWARENAME")
     private String  sotfwareName;
+    public String getSotfwareName() {
+        return sotfwareName;
+    }
+    public void setSotfwareName(String sotfwareName) {
+        this.sotfwareName = sotfwareName;
+    }
 
 
     /**
@@ -68,13 +74,6 @@ public class Consign extends BaseEntity{
 
     @Column(name = "COMPANY_EN")
     private String company_En;
-
-    public String getSotfwareName() {
-        return sotfwareName;
-    }
-    public void setSotfwareName(String sotfwareName) {
-        this.sotfwareName = sotfwareName;
-    }
 
     public void setCompany_En(String company_En) {
         this.company_En = company_En;
