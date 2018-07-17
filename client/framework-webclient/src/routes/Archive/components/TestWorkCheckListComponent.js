@@ -11,7 +11,7 @@ const InputGroup = Input.Group;
 const Option = Select.Option;
 
 /**
- * @module Archive/TestWorkCheckListComponent
+ * @module TestWorkCheck/TestWorkCheckListComponent
  */
 export default class TestWorkCheckListComponent extends Component {
     constructor(props) {
