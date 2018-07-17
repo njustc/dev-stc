@@ -40,7 +40,7 @@ var mockTestCaseData=[{
     accordance: 'tttttt'
 }];
 
-export const getTestCase = (dispatch, id, callback) => {
+const getTestCase = (dispatch, id, callback) => {
     dispatch(setTestCaseContent(/*data*/
         mockTestCaseData
     ));
