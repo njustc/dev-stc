@@ -42,7 +42,7 @@ const mapStateToProps = (state, ownProps) => {
  * @param isSubmitVisible
  * @param isReviewVisible
  * @param isConfirmVisible
- * @returns {*[]}
+ * @returns {Array}
  */
 const buttonsEnable = (isTesting,isQuality,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
     content: '保存',
@@ -68,7 +68,7 @@ const buttonsEnable = (isTesting,isQuality,isSubmitVisible,isReviewVisible,isCon
 /**
  * 测试方案相关的数据操作和对应的按钮
  * @param dispatch
- * @returns {*[]}
+ * @returns {Array}
  */
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
@@ -173,7 +173,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
  * 向测试方案组件分发buttons数组和获取测试方案的方法
  * @param dispatch
  * @param ownProps
- * @returns {{buttons: *[], getValues: (function(*=): void)}}
+ * @returns {{buttons: Array, getValues: (function(*=): void)}}
  */
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {
