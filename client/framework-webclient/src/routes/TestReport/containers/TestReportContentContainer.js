@@ -5,6 +5,16 @@ import {getTestReport, putTestReportState, updateTestReport} from "../../../serv
 import {STATUS} from "../../../services/common";
 import {message} from "antd/lib/index";
 
+/**
+ * @module TestReport/TestReportContentContainer
+ */
+
+/**
+ * 把store里面的测试报告数据映射到测试报告组件，根据store数据计算页面编辑权限，计算并传入buttonsEnable数组
+ * @param state
+ * @param ownProps
+ * @returns {{testReportData: *, projectData: *, values: {}, disable: boolean, buttonsEnable: *}}
+ */
 const mapStateToProps = (state, ownProps) => {
     // debugger;
     const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
@@ -30,6 +40,19 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
+/**
+ * 按钮显示控制，根据当前用户和状态判断按钮是否可用
+ * @param isCustomer
+ * @param isMarketing
+ * @param isTesting
+ * @param isQuality
+ * @param isSubmitVisible
+ * @param isReviewVisible
+ * @param isApproveVisible
+ * @param isSendVisible
+ * @param isConfirmVisible
+ * @returns {*[]}
+ */
 const buttonsEnable = (isCustomer,isMarketing,isTesting,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible) => [{
     content: '保存',
     enable: isTesting&&isSubmitVisible,
@@ -60,6 +83,11 @@ const buttonsEnable = (isCustomer,isMarketing,isTesting,isQuality,isSubmitVisibl
 }
 ];
 
+/**
+ * 测试报告相关的数据操作和对应的按钮
+ * @param dispatch
+ * @returns {*[]}
+ */
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
     onClick: (testReportData,testReport) =>{
@@ -202,6 +230,12 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
     }
 }];
 
+/**
+ * 向测试报告组件分发buttons数组和获取测试报告的方法
+ * @param dispatch
+ * @param ownProps
+ * @returns {{buttons: *[], getValues: (function(*=): void)}}
+ */
 const mapDispatchToProps = (dispatch,ownProps) => {
     console.log("here");
     return {

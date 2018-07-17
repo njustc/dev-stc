@@ -11,7 +11,7 @@ const InputGroup = Input.Group;
 const Option = Select.Option;
 
 /**
- * @module ConsignListComponent
+ * @module Consign/ConsignListComponent
  */
 
 export default class ConsignListComponent extends Component {

@@ -6,6 +6,10 @@ import {globalOperation, STATE} from "./common";
 import {setContractContent} from "../modules/ducks/Contract";
 // import "./common";
 
+/**
+ * @module services/consignService
+ */
+
 const consignBase = baseServiceAddress + '/consign';
 const consignActivitiBase = baseServiceAddress + '/processInstance';
 

@@ -6,7 +6,15 @@ import {deleteTestCase, getTestCaseList, newTestCase} from "../../../services/Te
 import {setTestCaseFilter} from "../../../modules/ducks/TestCase";
 import TestCaseListComponent from "../components/TestCaseListComponent";
 import {ProjectContentView} from "../../Project";
+/**
+ * @module TestCase/TestCaseListContainer
+ */
 
+/**
+ * 把store中的测试用例分发给list页面
+ * @param state
+ * @returns {{dataSource: any[]}}
+ */
 const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //console.log(state.Consign.listMap);
@@ -16,6 +24,11 @@ const mapStateToProps = (state) => {
     }
 };
 
+/**
+ * 把设置列表过滤器和测试用例Tab控制的dispatch方法分发给list页面
+ * @param dispatch
+ * @returns {{showContent: showContent, showProject: showProject, setListFilter: (function(*=): *), getTestCaseList: (function(): void), deleteTestCase: (function(*=): void)}}
+ */
 const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {

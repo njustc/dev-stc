@@ -1,25 +1,36 @@
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Card, Tabs, Select, Button, Layout, Rate, Form, Input,Radio,Table, Checkbox,Icon,DatePicker,Collapse, InputNumber} from 'antd';
+import {Row, Col, Button, Rate, Form, Input,Radio, InputNumber} from 'antd';
 
 const FormItem=Form.Item;
 const RadioGroup = Radio.Group;
 const { TextArea } = Input;
 
-function handleChange(value) {
-    console.log(`selected ${value}`);
-}
-
+/**
+ * SatisfactionContentComponent类，实现了满意度调查表的具体表单内容。
+ */
 class SatisfactionContentComponent extends Component {
+    /**
+     * 构造器
+     * @param props
+     */
     constructor(props) {
         super(props);
     }
 
+    /**
+     * 若上个界面没有传值，则使用这个默认props
+     * @type {{values: {}, disable: boolean, buttons: Array}}
+     */
     static defaultProps = {
         values: {},
         disable:false,
         buttons: [],
     };
 
+    /**
+     * 对props里面的属性进行类型判断，isRequired指定必填项
+     * @type {{satisfactionData: *, values: * , disableC: *, disableQ: *, buttons: *, form: *}}
+     */
     static propTypes = {
         satisfactionData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
@@ -29,6 +40,12 @@ class SatisfactionContentComponent extends Component {
         form: PropTypes.object.isRequired,
     };
 
+    /**
+     * 点击button的回调函数
+     * @func
+     * @param {Number} buttonIndex - 所点击的button的编号
+     * 保存表单各部分的值。
+     */
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
         //     if (!err) {
@@ -39,6 +56,12 @@ class SatisfactionContentComponent extends Component {
         buttons[buttonIndex].onClick(this.props.satisfactionData, JSON.stringify(form.getFieldsValue()));
     };
 
+    /**
+     *
+     * 满意度调查表表单组件的render函数。
+     * 其中formItemLayout、rowStyle、tipStyle以CSS语言定义了各种组件的样式；
+     * 返回"满意度调查表"表单详情的html代码，包括客户满意度调查、测试中心满意度计算和满意度调查说明。
+     */
     render() {
         const { getFieldDecorator } = this.props.form;
         const formItemLayout =  {

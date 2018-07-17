@@ -8,30 +8,16 @@ import {setProjectList} from "../modules/ducks/Project";
 const testCaseBase = baseServiceAddress + '/v1/testCase';
 const testCaseActivitiBase = baseServiceAddress + '/processInstance';
 
-export const getTestCaseList = (dispatch, callback) => {
-    // dispatch(setTestCaseList(/*data*/
-    //     [
-    //         {
-    //             pid : "110",
-    //             id : "110",
-    //             name : "快乐星球小杨杰",
-    //             customerId : "151220140",
-    //             status: STATE.TO_SUBMIT
-    //         },{
-    //         pid :"120",
-    //         id : "120",
-    //         name : "不快乐星球小杨杰",
-    //         customerId : "151220140",
-    //         status: STATE.TO_CHECK
-    //     },{
-    //         pid : "119",
-    //         id : "119",
-    //         name : "不快乐星球老杨杰",
-    //         customerId : "151220140",
-    //         status: STATE.CANCELED
-    //     }
-    //     ]
-    // ));
+/**
+ * @module services/testCaseService
+ */
+
+/**
+ * 获取测试样例列表
+ * @param dispatch dispatch
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const getTestCaseList = (dispatch, callback) => {
     httpGet(testCaseBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
@@ -55,23 +41,19 @@ var mockTestCaseData=[{
 }];
 
 export const getTestCase = (dispatch, id, callback) => {
-    //dispatch(setTestCaseContent({id:id,}));
     dispatch(setTestCaseContent(/*data*/
         mockTestCaseData
     ));
-    // httpGet(testCaseBase + '/' + id, (result) => {
-    //     const {status, data} = result;
-    //     if (status === STATUS.SUCCESS) {
-    //         dispatch(setTestCaseContent(data));
-    //     }
-    //     callback && callback(status);
-    // });
 };
 
-export const deleteTestCase = (dispatch, id, callback) => {
+/**
+ * 删除测试样例
+ * @param dispatch dispatch
+ * @param id 测试样例ID
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const deleteTestCase = (dispatch, id, callback) => {
     httpDelete(testCaseBase, {id:id}, (result) => {
-        // console.log("before remove");
-        // dispatch(removeTestCase(id));
         const {status} = result;
         if(status === STATUS.SUCCESS)
             dispatch(removeTestCase(id));
@@ -79,33 +61,35 @@ export const deleteTestCase = (dispatch, id, callback) => {
     });
 };
 
-export const newTestCase = (dispatch,id, callback) => {
+/**
+ * 新建测试样例
+ * @param dispatch dispatch
+ * @param id 测试样例ID
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const newTestCase = (dispatch,id, callback) => {
     const urlParams = 'projectID=' + id;
     httpPost(testCaseBase, {body:null,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
-            // dispatch(setTestCaseContent(data));
             console.log(status);
         }
-        // callback && callback(status);
         callback && callback(data);
     },urlParams);
 };
 
 export const addTestCase = (dispatch, data/*, callback*/) => {
-    /*httpPost(testCaseBase, {testcase:null,}, (result) => {
-        const {data, status} = result;
-        if (status === STATUS.SUCCESS) {
-            dispatch(setTestCaseContent(data));
-        }
-        callback && callback(status);
-    });*/
     mockTestCaseData.push(data);
     console.log(mockTestCaseData);//
 };
 
-export const updateTestCase = (dispatch, data, callback) => {
-    //console.log(data);
+/**
+ * 更新测试样例内容
+ * @param dispatch dispatch
+ * @param data 测试样例内容
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const updateTestCase = (dispatch, data, callback) => {
     httpPut(testCaseBase, data, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
@@ -115,7 +99,7 @@ export const updateTestCase = (dispatch, data, callback) => {
     });
 };
 
-export const getTestCaseState = (dispatch, processInstanceID, id, callback) => {
+const getTestCaseState = (dispatch, processInstanceID, id, callback) => {
     httpGet(testCaseActivitiBase + '/' + processInstanceID, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
@@ -129,7 +113,7 @@ export const getTestCaseState = (dispatch, processInstanceID, id, callback) => {
     })
 };
 
-export const putTestCaseState = (dispatch, processInstanceID, data, id, callback) => {
+const putTestCaseState = (dispatch, processInstanceID, data, id, callback) => {
     // console.log("ID = " + processInstanceID);
     httpPut(testCaseActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
@@ -143,3 +127,5 @@ export const putTestCaseState = (dispatch, processInstanceID, data, id, callback
         callback && callback(status);
     });
 };
+
+export {getTestCaseList,deleteTestCase,newTestCase,updateTestCase,getTestCase,getTestCaseState,putTestCaseState}

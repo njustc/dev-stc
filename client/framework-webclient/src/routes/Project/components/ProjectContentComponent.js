@@ -13,7 +13,7 @@ const { TextArea } = Input;
 const { Header, Content, Footer } = Layout;
 
 /**
- * @module ProjectContentComponent
+ * @module Project/ProjectContentComponent
  */
 
 export default class ProjectContentComponent extends Component {
@@ -284,8 +284,8 @@ export default class ProjectContentComponent extends Component {
     }
 
     /**
-     * 获取用户满意度调查表状态
-     * 目前系统中用户满意度调查表没有状态
+     * 获取满意度调查表状态
+     * 目前系统中满意度调查表没有状态
      */
     getSatisfactionState(){
         /*TODO*/
@@ -342,7 +342,6 @@ export default class ProjectContentComponent extends Component {
                                     <br/>
                                     <div>流程创建时间：{this.props.projectData.createdTime}</div>
                                     <br/>
-                                    <div>项目价格：{this.testFee()}</div>
                                     {/*<br/>*/}
                                     {/*<div>备注：感谢曹老板指导,给曹老板打call</div>*/}
                                </Card>

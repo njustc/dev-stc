@@ -13,6 +13,12 @@ import {ProjectView} from "ROUTES/Project";
 
 import tabsMap from "../routes/tabsMap";
 
+/**
+ * @module CoreLayout/CoreLayoutComponent
+ */
+/**
+ * @extends Component
+ */
 class CoreLayout extends Component
 {
     state = {
@@ -36,7 +42,12 @@ class CoreLayout extends Component
         removeTab: PropTypes.func.isRequired,
         switchTab: PropTypes.func.isRequired
     };
-
+    /**
+     * 点击登录控制按钮的时候触发
+     * @function
+     * @param e {*} 点击事件的键值
+     * @returns {*} 无返回值
+     */
     handleMenuClick = (e) =>{
         if(e.key==="logout"){
             sessionStorage.removeItem('sysUser');
@@ -51,14 +62,20 @@ class CoreLayout extends Component
             });
         }
     };
-
+    /**
+     * 修改密码界面点击取消时触发
+     * @function
+     */
     onCancel = () => {
         this.setState({
             ...this.state,
             visible:false,
         });
     };
-
+    /**
+     * 修改密码界面点击ok时触发
+     * @function
+     */
     onOk = () => {
         this.props.form.validateFields((err, values) => {
             this.setState({
@@ -67,16 +84,25 @@ class CoreLayout extends Component
             });
         });
     };
-
+    /**
+     * 点击侧边栏时触发
+     * @function
+     */
     onClick = (e) => {
         const page = this.props.sider[e.key];
         this.props.addTab(page.key,page.name,tabsMap[page.key]);
     };
-
+    /**
+     * 关闭Tab时触发
+     * @function
+     */
     onEdit = (targetKey) => {
         this.props.removeTab(targetKey);
     };
-
+    /**
+     * 切换Tab时触发
+     * @function
+     */
     onChange = (activeKey) => {
         this.props.switchTab(activeKey);
     };
@@ -95,7 +121,10 @@ class CoreLayout extends Component
             <Menu.Item key="logout">message</Menu.Item>
         </Menu>
     );
-
+    /**
+     * 页面渲染函数
+     * @function
+     */
     render(){
         const formItemLayout = {
                 labelCol: { span: 3 },

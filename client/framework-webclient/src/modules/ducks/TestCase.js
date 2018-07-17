@@ -3,6 +3,13 @@ const RM_CONTENT = 'TestCase/RM_CONTENT';
 const SET_CONTENT = 'TestCase/SET_CONTENT';
 const SET_FILTER = 'TestCase/SET_FILTER';
 
+/**
+ * @module TestCase/TestCaseState
+ */
+/**
+ * 测试用例表初始化state
+ * @type {{listFilter: (function(): boolean), listMap: {}, casesMap: {}}}
+ */
 const initialState = {
     listFilter: () => true,//绑定按钮传入的过滤条件
     listMap: {},  //项目集合，用key-value表示，key为id，value为TestCaseData
@@ -10,6 +17,13 @@ const initialState = {
     casesMap: { },
 };
 
+/**
+ * 测试用例表Reducer
+ * @param state 当前状态
+ * @param action 传入的action
+ * @returns {*} 返回新状态
+ * @constructor
+ */
 export const TestCaseReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_LIST:
@@ -63,6 +77,12 @@ export const TestCaseReducer = (state = initialState, action) => {
     }
 };
 
+/**
+ * 设置测试用例表列表
+ * @function
+ * @param list 测试用例表列表
+ * @returns {{type: string, payload: *}}
+ */
 export const setTestCaseList = (list) => {
     return {
         type: SET_LIST,
@@ -70,6 +90,12 @@ export const setTestCaseList = (list) => {
     }
 };
 
+/**
+ * 删除测试用例表
+ * @function
+ * @param id 需要删除的测试用例表id
+ * @returns {{type: string, payload: *}}
+ */
 export const removeTestCase = (id) => {
     return {
         type: RM_CONTENT,
@@ -77,6 +103,11 @@ export const removeTestCase = (id) => {
     }
 };
 
+/**
+ * 新增一个测试用例表，或修改一个测试用例表的内容
+ * @param cases 新增或需要修改的测试用例表
+ * @returns {{type: string, payload: *}}
+ */
 export const setTestCaseContent = (cases/*TestCaseData*/) => {
     return {
         type: SET_CONTENT,
@@ -84,6 +115,12 @@ export const setTestCaseContent = (cases/*TestCaseData*/) => {
     }
 };
 
+/**
+ * 设置测试用例表过滤器
+ * @function
+ * @param listFilter 过滤条件
+ * @returns {{type: string, payload: *}}
+ */
 export const setTestCaseFilter = (listFilter) => {
     return {
         type: SET_FILTER,
