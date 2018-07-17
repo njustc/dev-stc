@@ -1,3 +1,18 @@
+# Android client 模块
+
+## Android端jsdoc生成步骤
+
+### 准备工作
+- `npm install -g jsdoc` (一次就好)
+
+### 操作
+- `cd dev-stc`(进入dev-stc目录)
+- `jsdoc -c android-jsdoc.json`(依据`android-jsdoc.json`配置文件来生成文件)
+
+### 生成
+- 默认生成目录为`dev-stc/android-out/`
+- `android-out/index.html`即为生成文档
+
 # NativeBase KitchenSink v2.5.0
 An example app with all the UI components of NativeBase
 
