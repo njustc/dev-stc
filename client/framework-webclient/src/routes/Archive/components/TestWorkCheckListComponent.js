@@ -11,9 +11,10 @@ const InputGroup = Input.Group;
 const Option = Select.Option;
 
 /**
- * @module TestWorkCheck/TestWorkCheckListComponent
+ * 测试工作检查表列表类，负责渲染，展示测试工作检查表的列表
+ * @extends Component
  */
-export default class TestWorkCheckListComponent extends Component {
+class TestWorkCheckListComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -262,3 +263,5 @@ export default class TestWorkCheckListComponent extends Component {
         );
     }
 }
+
+export default TestWorkCheckListComponent;

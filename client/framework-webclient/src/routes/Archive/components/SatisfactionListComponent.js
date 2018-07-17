@@ -11,10 +11,10 @@ const InputGroup = Input.Group;
 const Option = Select.Option;
 
 /**
- * @module Satisfaction/SatisfactionListComponent
+ * 满意度调查表列表类，负责渲染，展示满意度调查表的列表
+ * @extends Component
  */
-
-export default class SatisfactionListComponent extends Component {
+class SatisfactionListComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -259,3 +259,5 @@ export default class SatisfactionListComponent extends Component {
         );
     }
 }
+
+export default SatisfactionListComponent;

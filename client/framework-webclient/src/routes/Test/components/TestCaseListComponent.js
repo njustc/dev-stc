@@ -8,10 +8,12 @@ const Search = Input.Search;
 const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
+
 /**
- * @module TestCase/TestCaseListComponent
+ * 测试用例列表类，负责渲染，展示测试用例的列表
+ * @extends Component
  */
-export default class TestCaseListComponent extends Component {
+class TestCaseListComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -239,3 +241,5 @@ export default class TestCaseListComponent extends Component {
         );
     }
 }
+
+export default TestCaseListComponent;

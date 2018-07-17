@@ -9,10 +9,12 @@ const Search = Input.Search;
 const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
+
 /**
- * @module TestReport/TestReportListComponent
+ * 测试报告列表类，负责渲染，展示测试报告的列表
+ * @extends Component
  */
-export default class TestReportListComponent extends Component {
+class TestReportListComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -275,3 +277,5 @@ export default class TestReportListComponent extends Component {
         );
     }
 }
+
+export default TestReportListComponent;
