@@ -13,7 +13,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * 这个类用来测试consign类对应repository的增删查功能
+ * 这个类用来测试consign类对应repository的增删查功能<br>
  * <table border="1" summary="">
  *     <tr>
  *     <th><b>测试内容</b></th>
