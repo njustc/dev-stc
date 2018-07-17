@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (param) => {
             const {key,id} = param;
-            dispatch(addTabAction(key, '报告检查详情', TestWorkCheckContentView, {id: id}));
+            dispatch(addTabAction(key, '工作检查详情', TestWorkCheckContentView, {id: id}));
 //            dispatch(setTestWorkCheckContent())
         },
         showProject: (id) => {

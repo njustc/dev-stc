@@ -186,7 +186,7 @@ class ProjectListComponent extends Component {
                     <a href="javascript:void(0);"
                         //disabled={!this.props.enableNew}
                         onClick={this.showDeleteConfirm(record)}
-                    >取消</a>
+                    >取消项目</a>
                 </div>
             )
         }
