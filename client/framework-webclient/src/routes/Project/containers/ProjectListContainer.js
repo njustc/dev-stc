@@ -14,7 +14,6 @@ import ProjectListComponent from "../components/ProjectListComponent";
  * @returns {{dataSource: any[]}}
  */
 const mapStateToProps = (state) => {
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
     return {
         dataSource: Object.values(state.Project.listMap).filter(state.Project.listFilter),
     }

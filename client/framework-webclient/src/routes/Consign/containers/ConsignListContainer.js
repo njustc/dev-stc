@@ -16,7 +16,6 @@ import ConsignListComponent from "../components/ConsignListComponent";
  */
 const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
-    //console.log(state.Consign.listMap);
     return {
         dataSource: Object.values(state.Consign.listMap).filter(state.Consign.listFilter),
         enableNew: authData.functionGroup["Consign"]!==undefined&&authData.functionGroup["Consign"].findIndex(element => element === "ADD")!==-1
@@ -30,9 +29,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (id) => {
-            // getConsign(dispatch,id);
             dispatch(addTabAction(id, '委托详情', ConsignContentView, {id: id}));
-//            dispatch(setConsignContent())
         },
         setListFilter: (listFilter) => dispatch(setConsignFilter(listFilter)),
         getConsignList: () => getConsignList(dispatch),
