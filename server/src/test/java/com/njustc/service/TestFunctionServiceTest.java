@@ -62,7 +62,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
-@Transactional
+//@Transactional
 public class TestFunctionServiceTest {
 
     private User tester;

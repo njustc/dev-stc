@@ -102,17 +102,6 @@ public class TestBugServiceTest {
         catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("开始测试用户获取工程");
-        try {
-            JSON result = testBugService.queryTestBugs(customer1);
-
-            Assert.assertNotNull("用户 - 工程查询失败",result);
-
-            System.out.println(result);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
     }
     @Test
     public void test_SE(){
