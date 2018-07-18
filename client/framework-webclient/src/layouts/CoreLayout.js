@@ -10,7 +10,7 @@ const TabPane = Tabs.TabPane;
 const FormItem = Form.Item;
 
 import {ProjectView} from "ROUTES/Project";
-
+import Logo from './assets/logo.png';
 import tabsMap from "../routes/tabsMap";
 
 /**
@@ -131,7 +131,11 @@ class CoreLayout extends Component
         return (
             <Layout style = {{ minHeight: '100vh' }}>
                 <Sider width={200} style={{ background: '#000' }}>
-                    <div className="logo" />
+                    <Row>
+                        <div className="logoV2Container" style={{marginBottom: '20px', background: '#333'}}>
+                            <img src={Logo} className="logoV2"></img>
+                        </div>
+                    </Row>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" onClick={this.onClick}>
                         <Menu.Item key="1" disabled={this.props.sider["1"].disable}>
                             <Icon type="pie-chart" />
