@@ -91,7 +91,7 @@ class TestReportCheckContentComponent extends Component {
 
                 <FormItem {...formItemLayout} label="软件名称">
                     {getFieldDecorator('softwareName', {
-                        rules: [{ required: true, message: '请输入软件名称！' }],
+                        rules: [{ required: true, message: '请输入软件名称！'}],
                         initialValue: this.props.values.softwareName,
                     })(
                         <Input disabled={this.props.disable}/>
@@ -118,7 +118,7 @@ class TestReportCheckContentComponent extends Component {
 
                 <FormItem {...formItemLayout} label={"日期"}>
                     {getFieldDecorator('date', {
-                        rules: [{ required: false, message: '请正确输入时间！',
+                        rules: [{ required: true, message: '请正确输入时间！',
                             type: 'object',
                         }],
                         initialValue: this.props.values.date?moment(this.props.values.date):undefined,
