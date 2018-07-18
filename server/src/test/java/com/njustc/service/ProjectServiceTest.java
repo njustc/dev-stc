@@ -130,6 +130,7 @@ public class ProjectServiceTest {
             String id = jsonResult.getString("id");
             Assert.assertNotNull("工程新建失败",id);
             System.out.println("新建成功。工程的ID为: " + id);
+            System.out.println("工程信息为" + jsonResult);
 
             //test_queryprojectByID
             System.out.println("=====通过ID查询该工程=====");
