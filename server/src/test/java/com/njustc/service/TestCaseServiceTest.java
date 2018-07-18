@@ -62,7 +62,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
-@Transactional
+//@Transactional
 public class TestCaseServiceTest {
 
     private User tester;
@@ -114,34 +114,24 @@ public class TestCaseServiceTest {
         }
     }
     @Test
-    public void test_SE(){
-        System.out.println("=====testUser 新建一个测试样例=====");
+    public void testSE(){
+        System.out.println("=====tester 新建一个测试样例=====");
+        JSONObject TestCase = new JSONObject();
+        TestCase.put("body","这是tester在测试中新建的一个测试样例");
 
-
-
-        try {
-
+        try{
             //test_addTestCase
-            JSONObject consign = new JSONObject();
-            JSONObject jsonConsign = consignService.addConsign(consign,null,tester);
-            JSONObject project = new JSONObject();
-            String consign_id = jsonConsign.getString("id");
-            JSONObject jsonProject = projectService.addProject(consign_id,project,null,tester);
-            String pro_id = jsonProject.getString("id");
-            JSONObject TestCase = new JSONObject();
-            TestCase.put("body", "这是customer1测试中新建的一个测试样例");
-            JSONObject jsonResult = testCaseService.addTestCase(pro_id,TestCase, null,tester);
+            String pro_id = "p1";
+            JSONObject jsonResult = testCaseService.addTestCase(pro_id,TestCase,null,tester);
             String id = jsonResult.getString("id");
             Assert.assertNotNull("测试样例新建失败",id);
-            System.out.println("测试样例新建成功, 测试样例的ID为: " + id);
-            System.out.println(jsonResult);
+            System.out.println("测试样例新建成功, 测试样例的信息为: " + jsonResult);
 
             //test_queryTestCasesByID
             System.out.println("=====通过ID查询该测试样例=====");
             JSONObject jsonTestCase = testCaseService.queryTestCaseByID(id);
             Assert.assertNotNull("通过ID查询测试样例失败",jsonTestCase);
-            System.out.println(jsonTestCase);
-
+            System.out.println("通过ID查询测试样例成功,测试样例信息为:"+ jsonTestCase);
 
             //test_editTestCase
             System.out.println("=====编辑该测试样例内容=====");
@@ -149,13 +139,12 @@ public class TestCaseServiceTest {
             String edit_contents = "这是tester在测试中修改的测试样例";
             jsonTestCase.put(edit_object,edit_contents );
             jsonTestCase = testCaseService.editTestCase(jsonTestCase, null, tester);
-            Assert.assertEquals("测试样例修改失败",edit_contents,jsonTestCase.getString(edit_object));  //检验Case内容修改是否符合预期
-            System.out.println(jsonTestCase);
-
+            Assert.assertEquals("测试样例修改失败",edit_contents,jsonTestCase.getString(edit_object));  //检验样例内容修改是否符合预期
+            System.out.println("测试样例修改成功:测试样例信息为" + jsonTestCase);
 
             //test_deleteTestCase
             System.out.println("=====删除该测试样例=====");
-            testCaseService.deleteTestCase(jsonTestCase);
+            testCaseService.deleteTestCase(jsonResult);
             try{
                 JSONObject jsonDel = testCaseService.queryTestCaseByID(id);
                 Assert.assertNull("测试样例删除失败",jsonDel);
@@ -164,8 +153,7 @@ public class TestCaseServiceTest {
                 System.out.println("测试样例删除成功");
             }
 
-
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
     }

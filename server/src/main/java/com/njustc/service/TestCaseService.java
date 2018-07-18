@@ -176,6 +176,7 @@ public class TestCaseService extends BaseService<TestCase> {
      * 最后返回添加完成后的测试样例信息
      *
      *</p>
+     * @param projectID 工程ID
      * @param params 新创建的对象
      * @param files 上传文件
      * @param user 用户信息

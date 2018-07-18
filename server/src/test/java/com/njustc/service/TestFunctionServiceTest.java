@@ -116,50 +116,39 @@ public class TestFunctionServiceTest {
             e.printStackTrace();
         }
     }
-    
+
     @Test
-    public void test_SE(){
-        System.out.println("=====testUser 新建一个测试功能=====");
+    public void testSE(){
+        System.out.println("=====tester 新建一个测试功能=====");
         JSONObject TestFunction = new JSONObject();
-        TestFunction.put("body", "这是customer1测试中新建的一个测试功能");
+        TestFunction.put("body","这是tester在测试中新建的一个测试功能");
 
-        try {
-
+        try{
             //test_addTestFunction
-            JSONObject consign = new JSONObject();
-            JSONObject jsonConsign = consignService.addConsign(consign,null,tester);
-            JSONObject project = new JSONObject();
-            String consign_id = jsonConsign.getString("id");
-            JSONObject jsonProject = projectService.addProject(consign_id,project,null,tester);
-            String pro_id = jsonProject.getString("id");
-            JSONObject jsonResult = testFunctionService.addTestFunction(pro_id,TestFunction, null, tester);
+            String pro_id = "p1";
+            JSONObject jsonResult = testFunctionService.addTestFunction(pro_id,TestFunction,null,tester);
             String id = jsonResult.getString("id");
             Assert.assertNotNull("测试功能新建失败",id);
-            System.out.println("测试功能新建成功, 测试功能的ID为: " + id);
-            System.out.println(jsonResult);
+            System.out.println("测试功能新建成功, 测试功能的信息为: " + jsonResult);
 
             //test_queryTestFunctionsByID
             System.out.println("=====通过ID查询该测试功能=====");
-            JSONObject jsonFunction = testFunctionService.queryTestFunctionByID(id);
-            Assert.assertNotNull("通过ID查询测试功能失败",jsonFunction);
-            System.out.println(jsonFunction);
+            JSONObject jsonTestFunction = testFunctionService.queryTestFunctionByID(id);
+            Assert.assertNotNull("通过ID查询测试功能失败",jsonTestFunction);
+            System.out.println("通过ID查询测试功能成功,测试功能信息为:"+ jsonTestFunction);
 
-
-
-            
             //test_editTestFunction
             System.out.println("=====编辑该测试功能内容=====");
             String edit_object = "body";
             String edit_contents = "这是tester在测试中修改的测试功能";
-            jsonFunction.put(edit_object,edit_contents );
-            jsonFunction = testFunctionService.editTestFunction(jsonFunction, null, tester);
-            Assert.assertEquals("测试功能修改失败",edit_contents,jsonFunction.getString(edit_object));  //检验功能内容修改是否符合预期
-            System.out.println(jsonFunction);
+            jsonTestFunction.put(edit_object,edit_contents );
+            jsonTestFunction = testFunctionService.editTestFunction(jsonTestFunction, null, tester);
+            Assert.assertEquals("测试功能修改失败",edit_contents,jsonTestFunction.getString(edit_object));  //检验功能内容修改是否符合预期
+            System.out.println("测试功能修改成功:测试功能信息为" + jsonTestFunction);
 
-            
             //test_deleteTestFunction
             System.out.println("=====删除该测试功能=====");
-            testFunctionService.deleteTestFunction(jsonFunction);
+            testFunctionService.deleteTestFunction(jsonResult);
             try{
                 JSONObject jsonDel = testFunctionService.queryTestFunctionByID(id);
                 Assert.assertNull("测试功能删除失败",jsonDel);
@@ -167,7 +156,8 @@ public class TestFunctionServiceTest {
             catch (Exception e){
                 System.out.println("测试功能删除成功");
             }
-        } catch (Exception e) {
+
+        }catch (Exception e){
             e.printStackTrace();
         }
     }

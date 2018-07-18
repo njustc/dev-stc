@@ -9,11 +9,12 @@ const Search = Input.Search;
 const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
-/**
- * @module TestPlan/TestPlanListComponent
- */
 
-export default class TestPlanListComponent extends Component {
+/**
+ * 测试方案列表类，负责渲染，展示测试方案的列表
+ * @extends Component
+ */
+class TestPlanListComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -161,7 +162,7 @@ export default class TestPlanListComponent extends Component {
                     <a href="javascript:void(0);" onClick={this.viewContent({key:project.testPlan.id,id:project.id,})}>查看详情</a>
                     <Divider type="vertical"/>
                     <a href="javascript:void(0);"
-                       onClick={this.showDeleteConfirm(project.testPlan.id)}>删除测试方案</a>
+                       onClick={this.showDeleteConfirm(project.testPlan.id)}>取消测试方案</a>
                 </div>
             )
         }
@@ -243,7 +244,7 @@ export default class TestPlanListComponent extends Component {
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    {/*this.props.enableNew*/1 ?
+                    {this.props.enableNew ?
                         <Col span={2}>
                             <Button type="primary" onClick={this.props.newTestPlan}><Icon type="plus-circle-o" />新建测试方案</Button>
                         </Col>
@@ -255,3 +256,5 @@ export default class TestPlanListComponent extends Component {
         );
     }
 }
+
+export default TestPlanListComponent;
