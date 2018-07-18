@@ -12,7 +12,7 @@ import {newTestWorkCheck} from "../../../services/TestWorkCheckService";
 import {globalOperation, STATUS} from "../../../services/common";
 import {newTestRecord} from "../../../services/TestRecordService";
 import {newTestCase} from "../../../services/TestCaseService";
-import {newSatisfaction} from "SERVICES/ArchiveService";
+import {newSatisfaction} from "../../../services/ArchiveService";
 /**
  * @module Consign/ConsignContentContainer
  */
