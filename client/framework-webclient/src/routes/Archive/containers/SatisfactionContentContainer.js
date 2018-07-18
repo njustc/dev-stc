@@ -9,8 +9,8 @@ import {updateSatisfaction,putSatisfactionState} from "../../../services/Archive
  */
 /**
  * 把store里面的满意度调查表数据映射到组件，根据store数据计算页面编辑权限，计算并传入buttonsEnable数组
- * @param state
- * @param ownProps
+ * @param state {object} store数据
+ * @param ownProps {object} 创建组件时传入的数据
  * @returns {{satisfactionData: *, values: {}, consignUnit: string, softwareName: *, disableC: boolean, disableQ: boolean, buttonsEnable: *}}
  */
 const mapStateToProps = (state, ownProps) => {
@@ -33,7 +33,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 /**
  * 按钮显示控制，根据当前用户和状态判断按钮是否可用
- * @param isEditVisible
+ * @param isEditVisible {boolean} 是否可以编辑
  * @returns {Array}
  */
 const buttonsEnable = (isEditVisible) => [{
@@ -43,7 +43,7 @@ const buttonsEnable = (isEditVisible) => [{
 ];
 /**
  * 满意度调查表相关的数据操作和对应的按钮
- * @param dispatch
+ * @param dispatch {function} 分发action并触发state变化的方法
  * @returns {Array}
  */
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
@@ -62,11 +62,10 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
 }];
 /**
  * 向组件分发buttons数组
- * @param dispatch
- * @param ownProps
+ * @param dispatch {function} 分发action并触发state变化的方法
  * @returns {{buttons: Array}}
  */
-const mapDispatchToProps = (dispatch,ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         buttons: buttons(dispatch),
     }

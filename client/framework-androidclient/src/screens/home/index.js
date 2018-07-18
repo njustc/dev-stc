@@ -34,7 +34,7 @@ class Home extends Component {
               style={{ backgroundColor: "#6FAF98", alignSelf: "center" }}
               onPress={() => this.props.navigation.navigate("DrawerOpen")}
             >
-              <Text>Lets Start!</Text>
+              <Text>Let's Start!</Text>
             </Button>
           </View>
         </ImageBackground>

@@ -13,10 +13,11 @@ const { TextArea } = Input;
 const { Header, Content, Footer } = Layout;
 
 /**
- * @module Project/ProjectContentComponent
+ * 项目详情类，负责渲染，展示项目的进度和详细信息
+ * @extends Component
  */
 
-export default class ProjectContentComponent extends Component {
+class ProjectContentComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -340,7 +341,7 @@ export default class ProjectContentComponent extends Component {
                                     <br/>
                                    <div>委托人用户名：{this.props.projectData.createdUserName}</div>
                                     <br/>
-                                    <div>流程创建时间：{this.props.projectData.createdTime}</div>
+                                    <div>项目创建时间：{this.props.projectData.createdTime}</div>
                                     <br/>
                                     {/*<br/>*/}
                                     {/*<div>备注：感谢曹老板指导,给曹老板打call</div>*/}
@@ -376,3 +377,5 @@ export default class ProjectContentComponent extends Component {
         );
     }
 }
+
+export default ProjectContentComponent;

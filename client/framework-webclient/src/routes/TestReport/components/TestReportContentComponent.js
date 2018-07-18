@@ -19,6 +19,10 @@ function handleChange(value) {
  * testReport的类实现
  */
 class TestReportContentComponent extends Component {
+    /**
+     * 构造器
+     * @param props
+     */
 
     constructor(props) {
         super(props);
@@ -48,12 +52,20 @@ class TestReportContentComponent extends Component {
         this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
     }
 
+    /**
+     * 若上个界面没有传值，则使用这个默认props
+     * @type {{curID: string, values: {}, disable: boolean, buttons: Array}}
+     */
     static defaultProps = {
 	curID : '',
         values : {},
         disable:false,
         buttons: [],
     };
+    /**
+     * 对props里面的属性进行类型判断，isRequired指定必填项
+     * @type {{getValues: * , disable: *, buttons: *, form: *}}
+     */
 
     static propTypes = {
         getValues: PropTypes.func.isRequired,
@@ -62,6 +74,9 @@ class TestReportContentComponent extends Component {
         form: PropTypes.object.isRequired,
     };
 
+    /**
+     * 在页面组件render之前调用componentWillMount
+     */
     componentWillMount() {
         this.props.getValues(this.props.testReportData.id);
         let state = this.state;
@@ -72,7 +87,12 @@ class TestReportContentComponent extends Component {
         this.setState(state);
     };
 
-
+    /**
+     * 点击button的回调函数
+     * @func
+     * @param {Number} buttonIndex - 所点击的button的编号
+     * @returns {Function} 保存表单各部分的值，对于时间应注意在保存前进行format操作。
+     */
     onClick = (buttonIndex) => () => {
         this.props.form.validateFields((err, values) => {
             if (!err) {

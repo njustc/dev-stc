@@ -60,7 +60,7 @@ class BlankComponent extends Component {
 
 /**
  * 把登录信息设置相关的dispatch方法分发给BlankComponent
- * @param dispatch
+ * @param dispatch {function} 分发action并触发state变化的方法
  * @returns {{SetUser: (function(*=): *), SetAuthData: (function(*): *), SetSider: (function(*=): *)}}
  */
 const mapDispatchToProps = (dispatch) => {

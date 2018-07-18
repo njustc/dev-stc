@@ -8,10 +8,12 @@ const Search = Input.Search;
 const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
+
 /**
- * @module Contract/ContractListComponent
+ * 合同工列表类，负责渲染，展示合同的列表
+ * @extends Component
  */
-export default class ContractListComponent extends Component {
+class ContractListComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -176,10 +178,10 @@ export default class ContractListComponent extends Component {
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent({key:project.contract.id,id:project.id,})}>查看详情</a>
-                    <Divider type="vertical"/>
-                    <a href="javascript:void(0);"
-                       //disabled={!this.props.enableNew}
-                       onClick={this.showDeleteConfirm(project.id)}>取消合同</a>
+                    {/*<Divider type="vertical"/>*/}
+                    {/*<a href="javascript:void(0);"*/}
+                       {/*//disabled={!this.props.enableNew}*/}
+                       {/*onClick={this.showDeleteConfirm(project.id)}>取消合同</a>*/}
                 </div>
             )
         }
@@ -288,3 +290,5 @@ export default class ContractListComponent extends Component {
         );
     }
 }
+
+export default ContractListComponent;

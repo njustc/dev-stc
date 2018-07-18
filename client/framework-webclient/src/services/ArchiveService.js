@@ -4,6 +4,7 @@ import {setSatisfactionList,setTestWorkCheckList/*, addConsign, removeConsign, s
 import {mockProjectData, valueData} from "./mockData";
 import {STATE} from "./common";
 import {getProjectList} from "SERVICES/ProjectService";
+import {setTestWorkCheckContent} from "../modules/ducks/TestWorkCheck";
 
 const satisfactionBase = baseServiceAddress + '/v1/satisfactionSurvey';
 const satisfactionActivitiBase = baseServiceAddress + '/processInstance';
@@ -31,6 +32,15 @@ const updateSatisfaction = (dispatch, data, callback) => {
     });
 };
 
+const newSatisfaction = (dispatch, id, callback) => {
+    let urlParams = 'projectID=' + id;
+    httpPost(satisfactionBase, {body:null}, (result) => {
+        const {status} = result;
+        getProjectList(dispatch);
+        callback && callback(status);
+    }, urlParams)
+};
+
 const putSatisfactionState = (dispatch, processInstanceID, data, id, callback) => {
     httpPut(satisfactionActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
@@ -45,4 +55,4 @@ const putSatisfactionState = (dispatch, processInstanceID, data, id, callback) =
     });
 };
 
-export {updateSatisfaction,putSatisfactionState}
+export {updateSatisfaction,putSatisfactionState,newSatisfaction}

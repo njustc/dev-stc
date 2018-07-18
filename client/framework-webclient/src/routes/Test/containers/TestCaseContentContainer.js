@@ -23,8 +23,8 @@ import {newTestCase} from "SERVICES/TestCaseService";
 
 /**
  * 把store里面的测试样例数据映射到测试样例组件
- * @param state
- * @param ownProps
+ * @param state {object} store中数据
+ * @param ownProps {object} 创建组件时传入的参数
  * @returns {{dataSource: undefined, projectData: *, values: *}}
  */
 const mapStateToProps = (state, ownProps) => {
@@ -51,7 +51,7 @@ const buttonsEnable = (isEditVisible,isSubmitVisible,isReviewVisible) => [{
 
 /**
  * 测试样例对应的按钮
- * @param dispatch
+ * @param dispatch {function} 分发action并触发state变化的方法
  * @returns {Array}
  */
 const buttons = (dispatch) => [{
@@ -124,7 +124,7 @@ const buttons = (dispatch) => [{
 
 /**
  * 向测试样例组件分发buttons数组和获取测试样例的方法
- * @param dispatch
+ * @param dispatch {function} 分发action并触发state变化的方法
  * @returns {{buttons: Array, getValues: getValues, getProjectList: (function(): *), newTestCase: (function(*=, *=): *), updateTestCase: (function(*=, *=): void), deleteTestCase: (function(*=, *=): void)}}
  */
 const mapDispatchToProps = (dispatch) => {
