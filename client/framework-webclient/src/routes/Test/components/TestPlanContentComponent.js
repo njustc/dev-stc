@@ -791,7 +791,7 @@ class TestPlanContentComponent extends Component {
                     <TabPane tab="软件测试环境" key="2">
                         <Row>
                             <Col offset={1} span={21}>
-                                <h3>3.1 硬件</h3>
+                                <h3>硬件</h3>
                             </Col>
                         </Row>
                         <Row>
@@ -809,7 +809,7 @@ class TestPlanContentComponent extends Component {
 
                         <Row>
                             <Col offset={1} span={21}>
-                                <h3>3.2 软件环境</h3>
+                                <h3>软件环境</h3>
                             </Col>
                         </Row>
                         <Row>
@@ -840,7 +840,7 @@ class TestPlanContentComponent extends Component {
 
                         <Row>
                             <Col offset={1} span={21}>
-                                <h3>3.4 人员</h3>
+                                <h3>人员</h3>
                             </Col>
                         </Row>
                         <Row>
@@ -857,7 +857,7 @@ class TestPlanContentComponent extends Component {
                         <Row>
                             <Col offset={1} span={21}>
                                 本章描述了计划测试的总范围并且描述了本测试计划适用的每个测试，包括对相关文档的审查。
-                                <h3><br/>4.1 总体设计</h3>
+                                <h3><br/>总体设计</h3>
                             </Col>
                             <Col offset={2} span={20}>
                                 <FormItem {...formItemLayout2} label="测试方法">
@@ -878,7 +878,7 @@ class TestPlanContentComponent extends Component {
                                 </FormItem>
                             </Col>
                             <Col offset={1} span={23}>
-                                <h4>4.1.1 测试级别</h4>
+                                <h4>测试级别</h4>
                             </Col>
                             <Col offset={2} span={20}>
                                 <FormItem>
@@ -894,7 +894,7 @@ class TestPlanContentComponent extends Component {
                                 </FormItem>
                             </Col>
                             <Col offset={1} span={23}>
-                                <h4>4.1.2 测试类别</h4>
+                                <h4>测试类别</h4>
                             </Col>
                             <Col offset={2} span={20}>
                                 <FormItem>
@@ -910,7 +910,7 @@ class TestPlanContentComponent extends Component {
                                 </FormItem>
                             </Col>
                             <Col offset={1} span={23}>
-                                <h4>4.1.3 一般测试条件</h4>
+                                <h4>一般测试条件</h4>
                             </Col>
                             <Col offset={2} span={20}>
                                 测试应满足时序逻辑，测试使用的数据要符合实际情况，测试应当完全覆盖所有需求。
@@ -920,7 +920,7 @@ class TestPlanContentComponent extends Component {
 
                         <Row>
                             <Col offset={1} span={21}>
-                                <h3>4.2 计划执行的测试</h3>
+                                <h3>计划执行的测试</h3>
                             </Col>
                             <Col offset={2} span={20}>
                                 <FormItem {...formItemLayout2} label={"测试对象"}>
