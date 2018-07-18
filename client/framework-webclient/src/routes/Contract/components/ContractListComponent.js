@@ -178,10 +178,10 @@ class ContractListComponent extends Component {
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent({key:project.contract.id,id:project.id,})}>查看详情</a>
-                    <Divider type="vertical"/>
-                    <a href="javascript:void(0);"
-                       //disabled={!this.props.enableNew}
-                       onClick={this.showDeleteConfirm(project.id)}>取消合同</a>
+                    {/*<Divider type="vertical"/>*/}
+                    {/*<a href="javascript:void(0);"*/}
+                       {/*//disabled={!this.props.enableNew}*/}
+                       {/*onClick={this.showDeleteConfirm(project.id)}>取消合同</a>*/}
                 </div>
             )
         }
