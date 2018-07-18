@@ -521,11 +521,8 @@ class ConsignContentComponent extends Component  {
                                 )}
                             </FormItem>
 
-                            <FormItem
-                                label="国家重点实验室联系方式"
-                                {...formItemLayout}
-                            >
-                                {/*<span className="ant-form-text"></span>*/}c
+                            <FormItem>
+                                <Row><Col offset={1}><b>国家重点实验室联系方式</b></Col></Row>
                             </FormItem>
 
                             <FormItem
