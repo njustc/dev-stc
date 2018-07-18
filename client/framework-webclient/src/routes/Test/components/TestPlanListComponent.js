@@ -160,9 +160,9 @@ class TestPlanListComponent extends Component {
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent({key:project.testPlan.id,id:project.id,})}>查看详情</a>
-                    <Divider type="vertical"/>
-                    <a href="javascript:void(0);"
-                       onClick={this.showDeleteConfirm(project.testPlan.id)}>取消测试方案</a>
+                    {/*<Divider type="vertical"/>*/}
+                    {/*<a href="javascript:void(0);"*/}
+                       {/*onClick={this.showDeleteConfirm(project.testPlan.id)}>取消测试方案</a>*/}
                 </div>
             )
         }
