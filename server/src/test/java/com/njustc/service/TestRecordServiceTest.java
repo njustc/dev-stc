@@ -121,11 +121,7 @@ public class TestRecordServiceTest {
         try {
 
             //test_addTestRecord
-            JSONObject consign = new JSONObject();
-            JSONObject jsonConsign = consignService.addConsign(consign,null,tester);
-            JSONObject project = new JSONObject();
-            String consign_id = jsonConsign.getString("id");
-            JSONObject jsonProject = projectService.addProject(consign_id,project,null,tester);
+            JSONObject jsonProject = projectService.queryProjectById("p2");
             String pro_id = jsonProject.getString("id");
             JSONObject jsonResult = testRecordService.addTestRecord(jsonProject, null, tester);
             String id = jsonResult.getString("id");

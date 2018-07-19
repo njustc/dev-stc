@@ -90,7 +90,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
     }
 
     @Test
-    public void queryConsigns() {
+    public void test_queryConsigns() {
         System.out.println("开始测试工作人员获取委托");
         try {
             JSON result = consignService.queryConsigns(marketUser);
@@ -101,20 +101,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("开始测试用户获取委托");
-        try {
-            JSON result = consignService.queryConsigns(customer1);
-
-            Assert.assertNotNull("用户 - 委托查询失败", result);
-
-            System.out.println(result);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @Test
-    public void testCURD() {
+    public void test_CURD() {
         System.out.println("=====customer1 增加一个委托=====");
         JSONObject consign = new JSONObject();
         consign.put("consignation", "这是customer1测试中新建的一个委托");

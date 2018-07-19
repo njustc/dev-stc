@@ -23,7 +23,6 @@ import {newSatisfaction} from "../../../services/ArchiveService";
  * @returns {{consignData: *, values: {}, disable: boolean, buttonsEnable: *}}
  */
 const mapStateToProps = (state, ownProps) => {
-    // debugger;
     const content = state.Consign.listMap[ownProps.id];
     const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const consignation = content?state.Consign.listMap[ownProps.id].consignation:undefined;
