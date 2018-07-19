@@ -376,7 +376,7 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入委托单位信息！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.consignUnittelephone
                             })(
-                                <Input placeholder="请输入电话号码" />
+                                <Input  disabled={this.props.disable} placeholder="请输入电话号码" />
                             )}
                         </FormItem>
 
@@ -388,7 +388,7 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入传真号！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.consignUnitFax
                             })(
-                                <Input placeholder="请输入传真号" />
+                                <Input  disabled={this.props.disable} placeholder="请输入传真号" />
                             )}
 
                         </FormItem>
@@ -401,7 +401,7 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入地址！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
                                 initialValue: this.props.values.consignUnitaddress
                             })(
-                                <Input placeholder="请输入地址" />
+                                <Input  disabled={this.props.disable} placeholder="请输入地址" />
                             )}
                         </FormItem>
 
@@ -413,7 +413,7 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入邮编！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.consignUnitEmailnumber
                             })(
-                                <Input placeholder="请输入邮编" />
+                                <Input disabled={this.props.disable} placeholder="请输入邮编" />
                             )}
                         </FormItem>
 
@@ -425,7 +425,7 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入联系人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
                                 initialValue: this.props.values.consignUnitpeople
                             })(
-                                <Input placeholder="请输入联系人" />
+                                <Input disabled={this.props.disable} placeholder="请输入联系人" />
                             )}
                         </FormItem>
 
@@ -439,7 +439,7 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入E-mail！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.consignUnitEmail
                             })(
-                                <Input placeholder="请输入邮箱地址" />
+                                <Input disabled={this.props.disable} placeholder="请输入邮箱地址" />
                             )}
                         </FormItem>
 
