@@ -116,14 +116,11 @@ class TestReportContentComponent extends Component {
      */
     render() {
         const { getFieldDecorator } = this.props.form;
-        //const { dataSource } = this.state;
-        //const columns = this.columns;
         const formItemLayout =  {
             labelCol: { span: 4 },
             wrapperCol: { span: 19 },
         };
-
-        const dataSource1 = JSON.parse(this.props.projectData.testPlan.body).hardware;
+        const dataSource1 = this.props.projectData.testPlan.body?JSON.parse(this.props.projectData.testPlan.body).hardware:[];
         const columns1 = [{
             title: '序号',
             dataIndex: 'number',
@@ -146,7 +143,7 @@ class TestReportContentComponent extends Component {
             key: 'amount',
         }];
 
-        const dataSource2 = JSON.parse(this.props.projectData.testPlan.body).software;
+        const dataSource2 = this.props.projectData.testPlan.body?JSON.parse(this.props.projectData.testPlan.body).software:[];
         const columns2 = [{
             title: '序号',
             dataIndex: 'softwarenumber',

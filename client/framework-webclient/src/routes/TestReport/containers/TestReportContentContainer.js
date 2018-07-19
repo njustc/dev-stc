@@ -91,7 +91,6 @@ const buttonsEnable = (isCustomer,isMarketing,isTesting,isQuality,isSubmitVisibl
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
     onClick: (testReportData,testReport) =>{
-        console.log(testReport);
         const valueData = {
             id: testReportData.id,
             body: testReport
@@ -105,8 +104,6 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
 },{
     content: '提交',
     onClick: (testReportData,testReport) =>{
-        console.log(testReportData);
-        console.log(testReport);
         const valueData = {
             id: testReportData.id,
             body: testReport
@@ -130,7 +127,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
         });
     }
 },{
-    content: '评审',
+    content: '通过',
     onClick: (testReportData,testReport) =>{
         const putData = {
             "object": "testReport",
@@ -236,7 +233,6 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
  * @returns {{buttons: Array, getValues: (function(*=): void)}}
  */
 const mapDispatchToProps = (dispatch) => {
-    console.log("here");
     return {
         buttons: buttons(dispatch),
         getValues: (id) => getTestReport(dispatch,id)
