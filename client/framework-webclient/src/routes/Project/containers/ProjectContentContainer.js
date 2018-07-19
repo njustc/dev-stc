@@ -33,6 +33,7 @@ const mapStateToProps = (state, ownProps) => {
         projectData: projectContent?state.Project.listMap[ownProps.id]:ownProps,
         disable: authData.functionGroup["Project"]===undefined||authData.functionGroup["Project"].findIndex(element => element === "EDIT")===-1||state.Project.listMap[ownProps.id].state!=="TobeSubmit",
         consignState: consignContent?consignContent.operation[0]:'Undefined',
+        fileData: state.System.fileData,
     }
 };
 /**

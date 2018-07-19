@@ -1,7 +1,7 @@
 import {baseAddress, STATUS} from "SERVICES/common";
 import {httpPost} from "UTILS/FetchUtil";
-import {setAuthData, setMenuData, setSiderData, setSysUser} from "../modules/ducks/System";
-import {marketingData, customerData, mockSiderData, mockMenuData} from "./mockData";
+import {setAuthData, setFileData, setMenuData, setSiderData, setSysUser} from "../modules/ducks/System";
+import {marketingData, customerData, mockSiderData, mockMenuData, mockFileData} from "./mockData";
 
 /**
  * @module services/Auth
@@ -32,8 +32,10 @@ const setLogin = (dispatch, params, callback) => {
             const isQuality = (username==="quality");
             const siderData = mockSiderData(isCustomer,isMarketing,isTesting,isQuality);
             const menuData = mockMenuData(isCustomer);
+            const fileData = mockFileData(isCustomer);
             dispatch(setSiderData(siderData));
             dispatch(setMenuData(menuData));
+            dispatch(setFileData(fileData));
         }
         callback && callback(status);
     })

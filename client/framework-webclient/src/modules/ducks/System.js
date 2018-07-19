@@ -2,6 +2,7 @@ const SET_AUTHDATA = "System/SET_AUTHDATA";
 const SET_SYS_USER = 'System/SET_SYS_USER';
 const SET_SIDER = 'System/SET_SIDER';
 const SET_MENU = 'System/SET_MENU';
+const SET_FILES = 'System/SET_FILES'
 /**
  * @module System
  */
@@ -14,6 +15,7 @@ const initialState = {
     authData: {},
     siderData: {},
     menuData: [],
+    fileData: [],
 };
 /**
  * 系统用户reducer
@@ -48,6 +50,11 @@ export const SystemReducer = (state = initialState, action) =>
             return {
                 ...state,
                 menuData: action.payload,
+            };
+        case SET_FILES:
+            return {
+                ...state,
+                fileData: action.payload,
             };
         default:
             return state;
@@ -99,6 +106,13 @@ export const setMenuData = (list) => {
     sessionStorage.setItem('menu',JSON.stringify(list));
     return {
         type: SET_MENU,
+        payload: list,
+    }
+};
+
+export const setFileData = (list) => {
+    return {
+        type: SET_FILES,
         payload: list,
     }
 };

@@ -26,6 +26,7 @@ class ProjectContentComponent extends Component {
         setContentFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
+        fileData: PropTypes.array,
     };
 
     /**
@@ -69,16 +70,7 @@ class ProjectContentComponent extends Component {
     /**
      * 文档项
      */
-    data = [
-        {index:1,name:'委托申请表'},
-        {index:2,name:'测试合同书'},
-        {index:3,name:'测试方案书'},
-        {index:4,name:'测试用例表'},
-        {index:7,name:'测试报告书'},
-        {index:8,name:'测试报告检查表'},
-        {index:9,name:'测试工作检查表'},
-        {index:10,name:'满意度调查表'}
-    ];
+    data = getFileList(this.props.fileData.filter((item)=>!item.disable));
 
     viewContent = (item) => () => {
         //console.log(this.props.id);
@@ -341,6 +333,12 @@ class ProjectContentComponent extends Component {
 
         );
     }
+}
+
+function getFileList(fileData) {
+    let files = [];
+    fileData.forEach((item)=>files.push({index:item.key,name:item.name}));
+    return files;
 }
 
 export default ProjectContentComponent;
