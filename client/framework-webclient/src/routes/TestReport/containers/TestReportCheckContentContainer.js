@@ -46,14 +46,11 @@ const buttonsEnable = (isQuality) => [{
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
     onClick: (testReportCheckData,testReportCheck) =>{
-        console.log(testReportCheck);
-        console.log(testReportCheckData);
         const valueData = {
             id: testReportCheckData.id,
             body: testReportCheck
         };
         updateTestReportCheck(dispatch,valueData,(status)=>{
-            console.log(status);
             if(status===STATUS.SUCCESS) message.success('保存成功');
             else message.error('保存失败');
         });

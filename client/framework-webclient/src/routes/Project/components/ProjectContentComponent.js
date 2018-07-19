@@ -80,17 +80,6 @@ class ProjectContentComponent extends Component {
         {index:10,name:'满意度调查表'}
     ];
 
-
-    // onTitle() {
-    //     switch (this.props.consignState)  {
-    //       case 'Finish': return (
-    //           <div>流程当前状态为：委托申请表已通过</div>
-    //       );
-    //   }
-    //
-    // };
-
-    /*查看详情*/
     viewContent = (item) => () => {
         //console.log(this.props.id);
         this.props.showContent({
@@ -99,33 +88,11 @@ class ProjectContentComponent extends Component {
         },this.props.id);
     };
 
-    // consignOperation = (state) => () => {
-    //     switch (state){
-    //         case 'Submit' : this.props.showContent({index:1,name:'委托申请表'},this.props.id);break;
-    //         case 'Finish' : this.props.showContent({index:1,name:'委托申请表'},this.props.id);break;
-    //         case 'Undefined' : break;
-    //         default: break;
-    //     }
-    // };
-    //
-    // contractOperation = () => () => {
-    //     this.props.showContent({index:2,name:'测试合同书'},this.props.id);
-    //     /*switch (state){
-    //         case 'Submit' : this.props.showContent({index:2,name:'测试合同书'},this.props.id);break;
-    //         case 'Finish' : this.props.showContent({index:2,name:'测试合同书'},this.props.id);break;
-    //         case 'Undefined' : break;
-    //         default: break;
-    //     }*/
-    // };
-
     /**
      * 获取当前项目进度并转换为Steps的步骤数
      * @returns {number} 当前项目状态对应的步骤数
      */
     getCurrentStep(){
-        //console.log(this.props);
-        //return 0;
-        // if(this.props.projectData.consign.state===STATE.FINISHED){
             if(this.props.projectData.contract.state===STATE.FINISHED){
                 if(this.props.projectData.testPlan.state===STATE.FINISHED){
                     if(this.props.projectData.testReport.state===STATE.SATISFACTION) {
@@ -136,8 +103,6 @@ class ProjectContentComponent extends Component {
                 else return 2;
             }
             else return 1;
-        //}
-        // else return 0;
     }
 
     /**

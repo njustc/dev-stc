@@ -118,6 +118,55 @@ class CoreLayout extends Component
             <Menu.Item key="logout">message</Menu.Item>
         </Menu>
     );
+
+    siderMenu1 = (
+        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" onClick={this.onClick}>
+            <Menu.Item key="1" disabled={this.props.sider["1"].disable}>
+                <Icon type="pie-chart" />
+                <span>项目</span>
+            </Menu.Item>
+            <SubMenu
+                key="sub1"
+                title={<span><Icon type="user" /><span>委托</span></span>}
+            >
+                <Menu.Item key="2" disabled={this.props.sider["2"].disable}>委托列表</Menu.Item>
+            </SubMenu>
+            <SubMenu
+                key="sub2"
+                title={<span><Icon type="team" /><span>合同</span></span>}
+            >
+                <Menu.Item key="3" disabled={this.props.sider["3"].disable}>测试合同书</Menu.Item>
+            </SubMenu>
+            <SubMenu
+                key="sub3"
+                title={<span><Icon type="copy" /><span>测试</span></span>}
+            >
+                <Menu.Item key="4" disabled={this.props.sider["4"].disable}>测试方案书</Menu.Item>
+                <Menu.Item key="5" disabled={this.props.sider["5"].disable}>测试用例表</Menu.Item>
+            </SubMenu>
+            <SubMenu
+                key="sub4"
+                title={<span><Icon type="appstore-o" /><span>报告</span></span>}
+            >
+                <Menu.Item key="8" disabled={this.props.sider["8"].disable}>测试报告书</Menu.Item>
+                <Menu.Item key="9" disabled={this.props.sider["9"].disable}>测试报告检查表</Menu.Item>
+            </SubMenu>
+            <SubMenu
+                key="sub5"
+                title={<span><Icon type="smile-o" /><span>结项</span></span>}
+            >
+                <Menu.Item key="10" disabled={this.props.sider["10"].disable}>测试工作检查表</Menu.Item>
+                <Menu.Item key="11" disabled={this.props.sider["11"].disable}>满意度调查表</Menu.Item>
+            </SubMenu>
+        </Menu>
+    );
+
+    siderMenu2 = (
+        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" onClick={this.onClick}>
+            {getSubMenuItem(this.props.siderMenu.filter((item)=>!item.disable))}
+        </Menu>
+    );
+
     /**
      * 页面渲染函数
      * @function
@@ -136,47 +185,7 @@ class CoreLayout extends Component
                             <img src={Logo} className="logoV2"></img>
                         </div>
                     </Row>
-                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" onClick={this.onClick}>
-                        <Menu.Item key="1" disabled={this.props.sider["1"].disable}>
-                            <Icon type="pie-chart" />
-                            <span>项目</span>
-                        </Menu.Item>
-                        <SubMenu
-                            key="sub1"
-                            title={<span><Icon type="user" /><span>委托</span></span>}
-                        >
-                            <Menu.Item key="2" disabled={this.props.sider["2"].disable}>委托列表</Menu.Item>
-                        </SubMenu>
-                        <SubMenu
-                            key="sub2"
-                            title={<span><Icon type="team" /><span>合同</span></span>}
-                        >
-                            <Menu.Item key="3" disabled={this.props.sider["3"].disable}>测试合同书</Menu.Item>
-                        </SubMenu>
-                        <SubMenu
-                            key="sub3"
-                            title={<span><Icon type="copy" /><span>测试</span></span>}
-                        >
-                            <Menu.Item key="4" disabled={this.props.sider["4"].disable}>测试方案书</Menu.Item>
-                            <Menu.Item key="5" disabled={this.props.sider["5"].disable}>测试用例表</Menu.Item>
-                            {/*<Menu.Item key="6" disabled={this.props.sider["6"].disable}>测试记录表</Menu.Item>*/}
-                            {/*<Menu.Item key="7" disabled={this.props.sider["7"].disable}>测试问题清单</Menu.Item>*/}
-                        </SubMenu>
-                        <SubMenu
-                            key="sub4"
-                            title={<span><Icon type="appstore-o" /><span>报告</span></span>}
-                        >
-                            <Menu.Item key="8" disabled={this.props.sider["8"].disable}>测试报告书</Menu.Item>
-                            <Menu.Item key="9" disabled={this.props.sider["9"].disable}>测试报告检查表</Menu.Item>
-                        </SubMenu>
-                        <SubMenu
-                            key="sub5"
-                            title={<span><Icon type="smile-o" /><span>结项</span></span>}
-                        >
-                            <Menu.Item key="10" disabled={this.props.sider["10"].disable}>测试工作检查表</Menu.Item>
-                            <Menu.Item key="11" disabled={this.props.sider["11"].disable}>满意度调查表</Menu.Item>
-                        </SubMenu>
-                    </Menu>
+                    {this.siderMenu2}
                 </Sider>
                 <Layout>
                     <Affix offsetTop={0}>
@@ -223,6 +232,25 @@ class CoreLayout extends Component
             </Layout>
         );
     }
+}
+
+function getMenuItem(menuItems) {
+    let items = [];
+    menuItems.forEach((item) => items.push(<Menu.Item key={item.key} disabled={item.disable}>{item.name}</Menu.Item>));
+    return items;
+}
+
+function getSubMenuItem(subItems) {
+    let items = [];
+    subItems.forEach((item) => items.push(
+        <SubMenu
+            key={item.key}
+            title={<span><Icon type={item.icon} /><span>{item.name}</span></span>}
+        >
+            {getMenuItem(item.menuItems.filter((mItem) => !mItem.disable))}
+        </SubMenu>
+    ));
+    return items;
 }
 
 export default Form.create()(CoreLayout);

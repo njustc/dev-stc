@@ -17,7 +17,8 @@ const mapStateToProps = (state) => {
         sysUser: state.System.sysUser,
         panes: state.Layout.panes,
         activeKey: state.Layout.activeKey,
-        sider: state.System.siderData
+        sider: state.System.siderData,
+        siderMenu: state.System.menuData,
     }
 };
 /**
