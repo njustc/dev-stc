@@ -1,6 +1,7 @@
 const SET_AUTHDATA = "System/SET_AUTHDATA";
 const SET_SYS_USER = 'System/SET_SYS_USER';
 const SET_SIDER = 'System/SET_SIDER';
+const SET_MENU = 'System/SET_MENU';
 /**
  * @module System
  */
@@ -11,7 +12,8 @@ const SET_SIDER = 'System/SET_SIDER';
 const initialState = {
     sysUser: {},
     authData: {},
-    siderData: {}
+    siderData: {},
+    menuData: {},
 };
 /**
  * 系统用户reducer
@@ -80,6 +82,18 @@ export const setSiderData = (list) => {
     sessionStorage.setItem('sider',JSON.stringify(list));
     return {
         type: SET_SIDER,
+        payload: list,
+    }
+};
+/**
+ * 设置侧边栏菜单
+ * @param list
+ * @returns {{type: string, payload: *}}
+ */
+export const setMenuData = (list) => {
+    sessionStorage.setItem('menu',JSON.stringify(list));
+    return {
+        type: SET_MENU,
         payload: list,
     }
 };

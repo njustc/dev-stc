@@ -77,48 +77,59 @@ export const mockProjectData = [{
     }
 }];
 
-export const mockSiderData = [{
+export const mockSiderData = (isCustomer,isMarketing,isTesting,isQuality) => [{
     key : "1",
     disable : false,
     name : "项目列表",
 },{
     key : "2",
-    disable : false,
+    disable : !(isCustomer||isMarketing),
     name : "委托列表",
 },{
     key : "3",
-    disable : false,
+    disable : !(isCustomer||isMarketing),
     name : "测试合同列表",
 },{
     key : "4",
-    disable : false,
+    disable : !(isTesting||isQuality),
     name : "测试方案列表",
 },{
     key : "5",
-    disable : false,
+    disable : !(isTesting||isQuality),
     name : "测试用例列表",
-},{
-    key : "6",
-    disable : false,
-    name : "测试记录列表",
-},{
-    key : "7",
-    disable : false,
-    name : "测试问题清单",
 },{
     key : "8",
     disable : false,
     name : "测试报告列表",
 },{
     key : "9",
-    disable : false,
+    disable : !(isQuality),
     name : "报告检查列表",
 },{
     key : "10",
-    disable : false,
+    disable : !(isQuality),
     name : "工作检查列表",
 },{
     key : "11",
-    disable : false,
+    disable : !(isCustomer||isMarketing),
     name : "满意度调查列表",
 }];
+
+export const mockMenuData = (isCustomer,isMarketing,isTesting,isQuality) => [{
+    key : "12",
+    disable : !(isCustomer||isMarketing),
+    name : "委托",
+},{
+    key : "13",
+    disable : !(isCustomer||isMarketing),
+    name : "合同",
+},{
+    key : "14",
+    disable : !(isTesting||isQuality),
+    name : "测试"
+},{
+    key : "15",
+    disable : !(isCustomer||isQuality),
+    name : "结项"
+}
+];

@@ -159,8 +159,6 @@ class CoreLayout extends Component
                         >
                             <Menu.Item key="4" disabled={this.props.sider["4"].disable}>测试方案书</Menu.Item>
                             <Menu.Item key="5" disabled={this.props.sider["5"].disable}>测试用例表</Menu.Item>
-                            {/*<Menu.Item key="6" disabled={this.props.sider["6"].disable}>测试记录表</Menu.Item>*/}
-                            {/*<Menu.Item key="7" disabled={this.props.sider["7"].disable}>测试问题清单</Menu.Item>*/}
                         </SubMenu>
                         <SubMenu
                             key="sub4"

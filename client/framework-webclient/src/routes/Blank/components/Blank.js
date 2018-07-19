@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-import {setAuthData, setSiderData, setSysUser} from "../../../modules/ducks/System";
+import {setAuthData, setMenuData, setSiderData, setSysUser} from "../../../modules/ducks/System";
 
 import './Blank.scss';
 import {connect} from "react-redux";
@@ -20,7 +20,8 @@ class BlankComponent extends Component {
     static propTypes = {
         SetUser: PropTypes.func.isRequired,
         SetAuthData: PropTypes.func.isRequired,
-        SetSider: PropTypes.func.isRequired
+        SetSider: PropTypes.func.isRequired,
+        SetMenu: PropTypes.func.isRequired,
     };
 
     /**
@@ -31,13 +32,16 @@ class BlankComponent extends Component {
 		const curUserString = sessionStorage.getItem('sysUser');
 		const curAuthDataString = sessionStorage.getItem('authData');
 		const curSiderString = sessionStorage.getItem('sider');
+		const curMenuString = sessionStorage.getItem('menu');
 		const curUser = JSON.parse(curUserString);
 		const curAuthData = JSON.parse(curAuthDataString);
 		const curSider = JSON.parse(curSiderString);
+		const curMenu = JSON.parse(curMenuString);
 		if(curUserString && curUserString !== 'null' && curAuthData && curAuthDataString !== 'null'){
             this.props.SetUser(curUser);
             this.props.SetAuthData(curAuthData);
             this.props.SetSider(curSider);
+            this.props.SetMenu(curMenu);
 		    this.props.router.replace('/index');
 		}
 		else {
@@ -46,10 +50,6 @@ class BlankComponent extends Component {
 	}
 
 	render() {
-		// const curUser = sessionStorage.getItem('sysUser');
-		// const curAuthData = sessionStorage.getItem('authData');
-		// console.log(curUser);
-		// console.log(curAuthData);
 		return(
 			<div className="blank">
 				{ this.props.children }
@@ -67,8 +67,9 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		SetUser: (sysUser) => dispatch(setSysUser(sysUser)),
 		SetAuthData: (authData) => dispatch(setAuthData((authData))),
-        SetSider: (sider) => dispatch(setSiderData(sider))
+        SetSider: (sider) => dispatch(setSiderData(sider)),
+        SetMenu: (menu) => dispatch(setMenuData(menu)),
 	}
-}
+};
 
 export default connect(null, mapDispatchToProps)(BlankComponent);
