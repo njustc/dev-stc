@@ -115,21 +115,78 @@ export const mockSiderData = (isCustomer,isMarketing,isTesting,isQuality) => [{
     name : "满意度调查列表",
 }];
 
-export const mockMenuData = (isCustomer,isMarketing,isTesting,isQuality) => [{
-    key : "12",
-    disable : !(isCustomer||isMarketing),
+export const mockMenuData = (isCustomer) => [{
+    type : "SubMenu",
+    key : "sub0",
+    disable : false,
+    name : "项目",
+    icon : "pie-chart",
+    menuItems : [{
+        key : "1",
+        disable : false,
+        name : "项目列表",
+    }]
+},{
+    type : "SubMenu",
+    key : "sub1",
+    disable : false,
     name : "委托",
+    icon : "user",
+    menuItems : [{
+        key : "2",
+        disable : false,
+        name : "委托列表",
+    }]
 },{
-    key : "13",
-    disable : !(isCustomer||isMarketing),
+    type : "SubMenu",
+    key : "sub2",
+    disable : false,
     name : "合同",
+    icon : "team",
+    menuItems : [{
+        key : "3",
+        disable : false,
+        name : "测试合同列表",
+    }]
 },{
-    key : "14",
-    disable : !(isTesting||isQuality),
-    name : "测试"
+    type : "SubMenu",
+    key : "sub3",
+    disable : isCustomer,
+    name : "测试",
+    icon : "copy",
+    menuItems : [{
+        key : "4",
+        disable : isCustomer,
+        name : "测试方案列表",
+    },{
+        key : "5",
+        disable : isCustomer,
+        name : "测试用例列表",
+    }]
 },{
-    key : "15",
-    disable : !(isCustomer||isQuality),
-    name : "结项"
-}
-];
+    type : "SubMenu",
+    key : "sub4",
+    disable : false,
+    name : "报告",
+    icon : "appstore-o",
+    menuItems : [{
+        key : "8",
+        disable : false,
+        name : "测试报告列表",
+    }]
+},{
+    type : "SubMenu",
+    key : "sub5",
+    disable : false,
+    name : "结项",
+    icon : "smile-o",
+    menuItems : [{
+        key : "10",
+        disable : isCustomer,
+        name : "工作检查列表",
+    },{
+        key : "11",
+        disable : false,
+        name : "满意度调查列表",
+    }]
+}];

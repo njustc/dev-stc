@@ -31,7 +31,7 @@ const setLogin = (dispatch, params, callback) => {
             const isTesting = (username==="testing");
             const isQuality = (username==="quality");
             const siderData = mockSiderData(isCustomer,isMarketing,isTesting,isQuality);
-            const menuData = mockMenuData(isCustomer,isMarketing,isTesting,isQuality);
+            const menuData = mockMenuData(isCustomer);
             dispatch(setSiderData(siderData));
             dispatch(setMenuData(menuData));
         }

@@ -13,7 +13,7 @@ const initialState = {
     sysUser: {},
     authData: {},
     siderData: {},
-    menuData: {},
+    menuData: [],
 };
 /**
  * 系统用户reducer
@@ -42,7 +42,12 @@ export const SystemReducer = (state = initialState, action) =>
         case SET_AUTHDATA:
             return {
                 ...state,
-                authData: action.payload
+                authData: action.payload,
+            };
+        case SET_MENU:
+            return {
+                ...state,
+                menuData: action.payload,
             };
         default:
             return state;
