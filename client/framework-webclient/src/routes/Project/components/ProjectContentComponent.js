@@ -67,16 +67,10 @@ class ProjectContentComponent extends Component {
         //content: 'Last-content',
     }*/];
 
-    /**
-     * 文档项
-     */
-    data = getFileList(this.props.fileData.filter((item)=>!item.disable));
-
     viewContent = (item) => () => {
-        //console.log(this.props.id);
         this.props.showContent({
-            index: item.index,
             ...this.props.projectData,
+            index: item.index,
         },this.props.id);
     };
 
@@ -282,7 +276,7 @@ class ProjectContentComponent extends Component {
                                     size="small"
                                     header={<div>文档</div>}
                                     bordered
-                                    dataSource={this.data}
+                                    dataSource={getFileList(this.props.fileData.filter((item)=>!item.disable))}
                                     renderItem={item => (<List.Item><a href="javascript:void(0);" onClick={this.viewContent(item)}>{item.name}</a></List.Item>)}
                                 />
                             </Col>
@@ -337,7 +331,7 @@ class ProjectContentComponent extends Component {
 
 function getFileList(fileData) {
     let files = [];
-    fileData.forEach((item)=>files.push({index:item.key,name:item.name}));
+    fileData.forEach((item)=>files.push({index:JSON.parse(item.key),name:item.name}));
     return files;
 }
 

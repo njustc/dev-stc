@@ -116,35 +116,35 @@ export const mockSiderData = (isCustomer,isMarketing,isTesting,isQuality) => [{
 }];
 
 export const mockFileData = (isCustomer) => [{
-    key : "1",
+    key : 1,
     disable : false,
     name : "委托申请表",
 },{
-    key : "2",
+    key : 2,
     disable : false,
     name : "测试合同书",
 },{
-    key : "3",
+    key : 3,
     disable : isCustomer,
     name : "测试方案书",
 },{
-    key : "4",
+    key : 4,
     disable : isCustomer,
     name : "测试用例表",
 },{
-    key : "7",
+    key : 7,
     disable : false,
     name : "测试报告书",
 },{
-    key : "8",
+    key : 8,
     disable : isCustomer,
     name : "测试报告检查表",
 },{
-    key : "9",
+    key : 9,
     disable : isCustomer,
     name : "测试工作检查表",
 },{
-    key : "10",
+    key : 10,
     disable : false,
     name : "满意度调查表",
 }];

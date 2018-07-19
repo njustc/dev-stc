@@ -111,6 +111,7 @@ export const setMenuData = (list) => {
 };
 
 export const setFileData = (list) => {
+    sessionStorage.setItem('file',JSON.stringify(list));
     return {
         type: SET_FILES,
         payload: list,
