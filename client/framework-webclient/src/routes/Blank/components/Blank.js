@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-import {setAuthData, setMenuData, setSiderData, setSysUser} from "../../../modules/ducks/System";
+import {setAuthData, setFileData, setMenuData, setSiderData, setSysUser} from "../../../modules/ducks/System";
 
 import './Blank.scss';
 import {connect} from "react-redux";
@@ -33,15 +33,18 @@ class BlankComponent extends Component {
 		const curAuthDataString = sessionStorage.getItem('authData');
 		const curSiderString = sessionStorage.getItem('sider');
 		const curMenuString = sessionStorage.getItem('menu');
+		const curFileString = sessionStorage.getItem('file');
 		const curUser = JSON.parse(curUserString);
 		const curAuthData = JSON.parse(curAuthDataString);
 		const curSider = JSON.parse(curSiderString);
 		const curMenu = JSON.parse(curMenuString);
+		const curFile = JSON.parse(curFileString);
 		if(curUserString && curUserString !== 'null' && curAuthData && curAuthDataString !== 'null'){
             this.props.SetUser(curUser);
             this.props.SetAuthData(curAuthData);
             this.props.SetSider(curSider);
             this.props.SetMenu(curMenu);
+            this.props.SetFile(curFile);
 		    this.props.router.replace('/index');
 		}
 		else {
@@ -69,6 +72,7 @@ const mapDispatchToProps = (dispatch) => {
 		SetAuthData: (authData) => dispatch(setAuthData((authData))),
         SetSider: (sider) => dispatch(setSiderData(sider)),
         SetMenu: (menu) => dispatch(setMenuData(menu)),
+		SetFile: (file) => dispatch(setFileData(file)),
 	}
 };
 
