@@ -1,3 +1,4 @@
+
 package com.njustc.domain;
 
 import com.alibaba.fastjson.JSON;
