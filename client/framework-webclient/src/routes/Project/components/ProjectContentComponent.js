@@ -299,10 +299,10 @@ class ProjectContentComponent extends Component {
                                </Card>
                             </Col>
                            <Col span={8}>
-                                <Card hoverable>
-                                    <div>您现在可以：
-                                    </div>
-                                    <Divider/>
+                                <Card title={"当前项目进展"}hoverable>
+                                    {/*<div>当前项目进展*/}
+                                    {/*</div>*/}
+                                    {/*<Divider/>*/}
                                     <Timeline>
                                         {this.getConsignState()}
                                         {this.getContractState()}
