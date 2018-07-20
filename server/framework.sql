@@ -631,7 +631,9 @@ INSERT INTO `tbl_sys_role_users` (`user_id`, `role_id`) VALUES
 ('2','2'),
 ('3','2'),
 ('4','3'),
-('5','6');
+('5','6'),
+('7','4'),
+('6','5');
 -- --------------------------------------------------------
 
 --
@@ -664,7 +666,9 @@ INSERT INTO `tbl_sys_users` (`ID`, `CODE`, `USERNAME`, `PASSWORD`, `altered_time
 ('2','2','customer1','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'2','Customer1',NULL),
 ('3','3','customer2','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'3','Customer2',NULL),
 ('4','4','testing','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'4','Testing',NULL),
-('5','5','quality','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'6','Quality',NULL);
+('5','5','quality','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'5','Quality',NULL),
+('6','6','testingManager','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'6','testing_manager',NULL),
+('7','7','marketingManager','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,NULL,'7','marketing_manager',NULL);
 -- --------------------------------------------------------
 
 

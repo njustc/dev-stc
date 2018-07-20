@@ -25,7 +25,7 @@ public class BaseEntity implements Serializable
 	private String id;
 
 	/**
-	 * 编码
+	 * 编号
 	 */
 	@Column(name = "CODE")
 	private String code;
