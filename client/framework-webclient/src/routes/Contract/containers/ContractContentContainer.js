@@ -20,6 +20,7 @@ const mapStateToProps = (state, ownProps) => {
     const contractState = content?content.state:"error";
     const isCustomer = (sysUser.username==="customer1"||sysUser.username==="customer2");
     const isMarketing = (sysUser.username==="marketing");
+    const isManager = (sysUser.username---"marketingManager");
     const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Submit')!==-1;
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ConfirmPass')!==-1;
@@ -29,19 +30,20 @@ const mapStateToProps = (state, ownProps) => {
         values:  contractBody ? JSON.parse(contractBody) : {},
         disable: !(isMarketing&&contractState==="TobeSubmit"),
         disableM: !(isCustomer&&isReviewVisible),
-        buttonsEnable: buttonsEnable(isCustomer,isMarketing,isSubmitVisible,isReviewVisible,isConfirmVisible),
+        buttonsEnable: buttonsEnable(isCustomer,isMarketing,isManager,isSubmitVisible,isReviewVisible,isConfirmVisible),
     }
 };
 /**
  * 按钮显示控制，根据当前用户和状态判断按钮是否可用
  * @param isCustomer {boolean} 是否是客户
  * @param isMarketing {boolean} 是否是市场部成员
+ * @param isManager {boolean} 是否是市场部主任
  * @param isSubmitVisible {boolean} 是否可以提交
  * @param isReviewVisible {boolean} 是否可以评审
  * @param isConfirmVisible {boolean} 是否可以确认
  * @returns {Array}
  */
-const buttonsEnable = (isCustomer,isMarketing,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
+const buttonsEnable = (isCustomer,isMarketing,isManager,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
     content: '保存',
     enable: isMarketing&&isSubmitVisible,
 },{
@@ -49,10 +51,10 @@ const buttonsEnable = (isCustomer,isMarketing,isSubmitVisible,isReviewVisible,is
     enable: isMarketing&&isSubmitVisible,
 },{
     content: '通过',
-    enable: isMarketing&&isReviewVisible,
+    enable: isManager&&isReviewVisible,
 },{
     content: '否决',
-    enable: isMarketing&&isReviewVisible,
+    enable: isManager&&isReviewVisible,
 },{
     content: '确认',
     enable: isCustomer&&isConfirmVisible,
