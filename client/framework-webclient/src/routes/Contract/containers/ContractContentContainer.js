@@ -20,16 +20,15 @@ const mapStateToProps = (state, ownProps) => {
     const contractState = content?content.state:"error";
     const isCustomer = (sysUser.username==="customer1"||sysUser.username==="customer2");
     const isMarketing = (sysUser.username==="marketing");
-    const isManager = (sysUser.username---"marketingManager");
+    const isManager = (sysUser.username==="marketingManager");
     const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Submit')!==-1;
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ConfirmPass')!==-1;
-
     return {
         contractData: content?content:ownProps,
         values:  contractBody ? JSON.parse(contractBody) : {},
         disable: !(isMarketing&&contractState==="TobeSubmit"),
-        disableM: !(isCustomer&&isReviewVisible),
+        disableM: !(isCustomer&&isConfirmVisible),
         buttonsEnable: buttonsEnable(isCustomer,isMarketing,isManager,isSubmitVisible,isReviewVisible,isConfirmVisible),
     }
 };
