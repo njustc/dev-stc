@@ -17,6 +17,11 @@ import { SIDEBAR_DISABLE } from "../../common";
 
 const drawerCover = require("../../../assets/drawer-cover.png");
 const drawerImage = require("../../../assets/logo-kitchen-sink.png");
+
+/**
+ * 侧边栏具体内容
+ * @const
+ */
 const datas = [
   {
     name: "委托",
@@ -62,6 +67,9 @@ const datas = [
 //   this.props.navigation.navigate(data.route);
 // }
 
+/**
+ * 侧边栏
+ */
 class SideBar extends Component {
   constructor(props) {
     super(props);
@@ -76,6 +84,11 @@ class SideBar extends Component {
   //   this.props.navigation.navigate(data.route);
   // }
 
+  /**
+   * 侧边栏渲染函数
+   * @return {*}
+   * @func
+   */
   render() {
     return (
       <Container>

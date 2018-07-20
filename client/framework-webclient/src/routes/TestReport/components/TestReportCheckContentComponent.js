@@ -1,14 +1,16 @@
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Card, Tabs, Select, Button, Layout, Divider, Switch, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse} from 'antd';
+import {Row, Col, Button, Divider, Switch, Form, Input, DatePicker} from 'antd';
 import moment from "moment";
-
 const FormItem=Form.Item;
 
-function handleChange(value) {
-    console.log(`selected ${value}`);
-}
-
+/**
+ * TestReportCheckContentComponent类，实现了测试报告检查表的具体表单内容。
+ */
 class TestReportCheckContentComponent extends Component {
+    /**
+     * 构造器
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.state = {
@@ -17,6 +19,10 @@ class TestReportCheckContentComponent extends Component {
         };
     }
 
+    /**
+     * 若上个界面没有传值，则使用这个默认props
+     * @type {{curID: string, values: {}, disable: boolean, buttons: Array}}
+     */
     static defaultProps = {
         curID: '',
         values: {},
@@ -24,6 +30,10 @@ class TestReportCheckContentComponent extends Component {
         buttons: [],
     };
 
+    /**
+     * 对props里面的属性进行类型判断，isRequired指定必填项
+     * @type {{getValues: * , disable: *, buttons: *, form: *}}
+     */
     static propTypes = {
         getValues: PropTypes.func.isRequired,
         disable: PropTypes.bool.isRequired,
@@ -31,10 +41,19 @@ class TestReportCheckContentComponent extends Component {
         form: PropTypes.object.isRequired,
     };
 
+    /**
+     * 在页面组件render之前调用componentWillMount
+     */
     componentWillMount() {
         this.props.getValues(this.props.testReportCheckData.id);
     };
 
+    /**
+     * 点击button的回调函数
+     * @func
+     * @param {Number} buttonIndex - 所点击的button的编号
+     * @returns {Function} 保存表单各部分的值，对于时间应注意在保存前进行format操作。
+     */
     onClick = (buttonIndex) => () => {
         this.props.form.validateFields((err, values) => {
             if (!err) {
@@ -44,6 +63,11 @@ class TestReportCheckContentComponent extends Component {
         });
     };
 
+    /**
+     * 测试报告检查表表单组件的render函数。
+     * 其中formItemLayout、switchStyle以CSS语言定义了各种组件的样式；
+     * 返回"测试报告检查表"表单详情的html代码，包括测试软件的基本信息和检查事项。
+     */
     render() {
         const { getFieldDecorator } = this.props.form;
         const formItemLayout =  {
@@ -67,7 +91,7 @@ class TestReportCheckContentComponent extends Component {
 
                 <FormItem {...formItemLayout} label="软件名称">
                     {getFieldDecorator('softwareName', {
-                        rules: [{ required: true, message: '请输入软件名称！' }],
+                        rules: [{ required: true, message: '请输入软件名称！'}],
                         initialValue: this.props.values.softwareName,
                     })(
                         <Input disabled={this.props.disable}/>
@@ -94,7 +118,7 @@ class TestReportCheckContentComponent extends Component {
 
                 <FormItem {...formItemLayout} label={"日期"}>
                     {getFieldDecorator('date', {
-                        rules: [{ required: false, message: '请正确输入时间！',
+                        rules: [{ required: true, message: '请正确输入时间！',
                             type: 'object',
                         }],
                         initialValue: this.props.values.date?moment(this.props.values.date):undefined,

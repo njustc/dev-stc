@@ -9,10 +9,12 @@ const Search = Input.Search;
 const confirm = Modal.confirm;
 const InputGroup = Input.Group;
 const Option = Select.Option;
+
 /**
- * @module TestReportCheckListComponent
+ * 测试报告检查表列表类，负责渲染，展示测试报告检查表的列表
+ * @extends Component
  */
-export default class TestReportCheckListComponent extends Component {
+class TestReportCheckListComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -71,7 +73,11 @@ export default class TestReportCheckListComponent extends Component {
         }
     };
 
-    /*状态列颜色渲染*/
+    /**
+     * 根据测试报告检查表状态选择状态点的颜色
+     * @param state 测试报告检查表状态
+     * @returns {string} Badge点的颜色
+     */
     state2SColor(state) {
         // switch (state){
         //     case STATE.TO_SUBMIT: return "processing";
@@ -82,6 +88,11 @@ export default class TestReportCheckListComponent extends Component {
         return "processing";
     }
 
+    /**
+     * 根据测试报告检查表状态选择显示的状态文字描述
+     * @param state 测试报告检查表状态
+     * @returns {string} 状态的文字描述
+     */
     state2C(state) {
         // switch (state){/*TODO*/
         //     case STATE.TO_SUBMIT: return "待提交"/*(<a>待提交</a>)*/;
@@ -92,12 +103,18 @@ export default class TestReportCheckListComponent extends Component {
         return "可编写";
     }
 
+    /**
+     * 打开项目详情页面
+     * @param id 被选择测试报告检查表的标识
+     * @returns {Function} 调用showProject
+     */
     viewProject = (id) => () => {
-        /*TODO:查看项目详情*/
         this.props.showProject(id);
     };
 
-    /*table列设置*/
+    /**
+     * 设置表格Table
+     */
     columns = [{
         title:"项目编号",
         dataIndex:"code",
@@ -123,7 +140,7 @@ export default class TestReportCheckListComponent extends Component {
             return consignBody.softwareName?consignBody.softwareName:"未填写";
         }
     }, {
-        title:"检查人",/*TODO*//*用filter在客户页面上把这一列过滤掉*/
+        title:"检查人",
         dataIndex:"testReportCheck.createdUserName",
         key:"createdUserName",
         render:(name) => name?name:"无"
@@ -155,13 +172,21 @@ export default class TestReportCheckListComponent extends Component {
     }
     ];
 
-    /*查看详情*/
+    /**
+     * 打开测试报告检查表详情页面
+     * @param id 被选择测试报告检查表的标识
+     * @returns {Function} 调用showContent
+     */
     viewContent = (record) => () => {
         //console.log(record);
         this.props.showContent(record);
     };
 
-    /*取消委托提示框*/
+    /**
+     * 显示取消测试报告检查表提示框
+     * @param id 被选择测试报告检查表的标识
+     * @returns {Function}
+     */
     showDeleteConfirm = (record) => () => {
         confirm({
             title: 'Are you sure to delete this consign?',
@@ -180,7 +205,10 @@ export default class TestReportCheckListComponent extends Component {
         });
     };
 
-    /*TODO 搜索功能*/
+    /**
+     * 搜索框功能
+     * @param value 在搜索框中输入的值
+     */
     onSearch = (value) => {
         const reg = new RegExp(value, 'gi');
         switch (this.state.selectOption){
@@ -201,6 +229,9 @@ export default class TestReportCheckListComponent extends Component {
         }
     };
 
+    /**
+     * 绘制测试报告检查表列表页面， 包括：页面标题、可以改变搜索选项的搜索框、测试报告检查表表格
+     */
     render() {
         return (
             <div>
@@ -230,3 +261,5 @@ export default class TestReportCheckListComponent extends Component {
         );
     }
 }
+
+export default TestReportCheckListComponent;

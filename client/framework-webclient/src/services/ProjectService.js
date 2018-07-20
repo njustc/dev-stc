@@ -15,10 +15,19 @@ import {getContractState} from "./ContractService";
 import {getTestPlanState} from "./TestPlanService";
 import {getTestReportState} from "./TestReportService";
 
+/**
+ * @module services/projectService
+ */
+
 const projectBase = baseServiceAddress + '/v1/project';
 const projectActivitiBase = baseServiceAddress + '/processInstance';
 
-export const getProjectList = (dispatch, callback) => {
+/**
+ * 获取项目列表
+ * @param dispatch dispatch
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const getProjectList = (dispatch, callback) => {
     httpGet(projectBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
@@ -28,22 +37,30 @@ export const getProjectList = (dispatch, callback) => {
     });
 };
 
-export const getProject = (dispatch, id, callback) => {
-    // dispatch(setProjectContent({id:id,}));
+/**
+ * 获取项目内容
+ * @param dispatch dispatch
+ * @param id 项目ID
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const getProject = (dispatch, id, callback) => {
     httpGet(projectBase + '/' + id, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
             dispatch(setProjectContent(data));
-            // getProjectState(dispatch,id,(state) => {
-            //     console.log(state);
-            // });
         }
         callback && callback(status);
     });
     getConsign(dispatch,id);
 };
 
-export const deleteProject = (dispatch, id, callback) => {
+/**
+ * 删除项目
+ * @param dispatch dispatch
+ * @param id 项目ID
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const deleteProject = (dispatch, id, callback) => {
     console.log(id);
     httpDelete(projectBase, {id:id}, (result) => {
         const {status} = result;
@@ -53,20 +70,31 @@ export const deleteProject = (dispatch, id, callback) => {
     });
 };
 
-export const newProject = (dispatch, id, projectNo, callback) => {
+/**
+ * 新建项目
+ * @param dispatch dispatch
+ * @param id 项目ID
+ * @param projectNo 项目流程编号
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const newProject = (dispatch, id, projectNo, callback) => {
     let urlParams = 'consignID=' + id;
     httpPost(projectBase, {code:projectNo}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
-            // dispatch(setProjectContent(data));j
             dispatch(showListMap());
         }
         callback && callback(result);
     },urlParams);
 };
 
-export const updateProject = (dispatch, data, callback) => {
-    //console.log(data);
+/**
+ * 更新项目内容
+ * @param dispatch dispatch
+ * @param data 项目内容
+ * @param callback callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const updateProject = (dispatch, data, callback) => {
     httpPut(projectBase, data, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
@@ -76,8 +104,13 @@ export const updateProject = (dispatch, data, callback) => {
     });
 };
 
-export const getProjectState = (dispatch, processInstanceID,callback) => {
-    // getConsignState(dispatch,processInstanceID,id);
+/**
+ * 获取项目当前进行阶段以及相应阶段流程
+ * @param dispatch dispatch
+ * @param processInstanceID 项目ID
+ * @param callback　callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const getProjectState = (dispatch, processInstanceID,callback) => {
     getContractState(dispatch,processInstanceID,(contractState) => {
         let projectState = {
             Process: null,
@@ -121,12 +154,10 @@ export const getProjectState = (dispatch, processInstanceID,callback) => {
                 }
             })
         }
-
     })
 };
 
-export const putProjectState = (dispatch, processInstanceID, data, id, callback) => {
-    // console.log("ID = " + processInstanceID);
+const putProjectState = (dispatch, processInstanceID, data, id, callback) => {
     httpPut(projectActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
         if (status === STATUS.SUCCESS) {
@@ -139,3 +170,5 @@ export const putProjectState = (dispatch, processInstanceID, data, id, callback)
         callback && callback(status);
     });
 };
+
+export {getProjectList,getProject,deleteProject,newProject,updateProject,getProjectState,putProjectState}

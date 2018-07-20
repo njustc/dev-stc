@@ -1,14 +1,17 @@
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Card, Tabs, Select, Divider, Button, Layout, Form, Input,Radio,Table, Checkbox,Icon,DatePicker, Switch, Collapse} from 'antd';
+import {Row, Col, Divider, Button, Form, Input, Icon,DatePicker, Switch} from 'antd';
 import moment from "moment";
 
 const FormItem=Form.Item;
 
-function handleChange(value) {
-    console.log(`selected ${value}`);
-}
-
+/**
+ * TestWorkCheckContentComponent类，实现了测试工作检查表的具体表单内容。
+ */
 class TestWorkCheckContentComponent extends Component {
+    /**
+     * 构造器
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.state = {
@@ -17,12 +20,20 @@ class TestWorkCheckContentComponent extends Component {
         };
     }
 
+    /**
+     * 若上个界面没有传值，则使用这个默认props
+     * @type {{values: {}, disable: boolean, buttons: Array}}
+     */
     static defaultProps = {
         values: {},
         disable:false,
         buttons: [],
     };
 
+    /**
+     * 对props里面的属性进行类型判断，isRequired指定必填项
+     * @type {{values: * , disable: *, buttons: *, form: *}}
+     */
     static propTypes = {
         //testWorkCheckData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
@@ -31,7 +42,9 @@ class TestWorkCheckContentComponent extends Component {
         form: PropTypes.object.isRequired,
     };
 
-
+    /**
+     * 在页面组件render之前调用componentWillMount
+     */
     componentWillMount() {
     //     this.curID = this.props.curKey;
     //     // console.log(this.curID);
@@ -39,7 +52,13 @@ class TestWorkCheckContentComponent extends Component {
     //     // console.log(this.values);
     };
 
-    
+
+    /**
+     * 点击button的回调函数
+     * @func
+     * @param {Number} buttonIndex - 所点击的button的编号
+     * @returns {Function} 保存表单各部分的值，对于时间应注意在保存前进行format操作。
+     */
     onClick = (buttonIndex) => () => {
         this.props.form.validateFields((err, values) => {
             if (!err) {
@@ -51,6 +70,12 @@ class TestWorkCheckContentComponent extends Component {
         });
     };
 
+
+    /**
+     * 测试工作检查表表单组件的render函数。
+     * 其中formItemLayout、rowStyle、tipStyle、switchStyle以CSS语言定义了各种组件的样式；
+     * 返回"测试工作检查表"表单详情的html代码，包括测试软件的基本信息、测试信息及测试时可预见的问题和注意事项。
+     */
     render() {
         const { getFieldDecorator } = this.props.form;
         const formItemLayout =  {
@@ -632,8 +657,6 @@ class TestWorkCheckContentComponent extends Component {
                     })}
                 </FormItem>
             </Form>
-
-
         );
 
     }

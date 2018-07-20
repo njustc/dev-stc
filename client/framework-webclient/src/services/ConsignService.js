@@ -6,10 +6,19 @@ import {globalOperation, STATE} from "./common";
 import {setContractContent} from "../modules/ducks/Contract";
 // import "./common";
 
+/**
+ * @module services/consignService
+ */
+
 const consignBase = baseServiceAddress + '/consign';
 const consignActivitiBase = baseServiceAddress + '/processInstance';
 
-export const getConsignList = (dispatch, callback) => {
+/**
+ * 实现利用GET请求从后台获取委托列表
+ * @param {*} dispatch dispatch
+ * @param {*} callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const getConsignList = (dispatch, callback) => {
     httpGet(consignBase,(result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
@@ -19,9 +28,14 @@ export const getConsignList = (dispatch, callback) => {
     });
 };
 
-export const getConsign = (dispatch, id, callback) => {
+/**
+ * 实现利用GET请求从后台获取委托详情
+ * @param {*} dispatch dispatch
+ * @param {*} id 委托ID
+ * @param {*} callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const getConsign = (dispatch, id, callback) => {
     httpGet(consignBase + '/' + id, (result) => {
-       //console.log(result);
         const {status, data} = result;
         const consignStatus = status;
         const consignData = data;
@@ -44,19 +58,19 @@ export const getConsign = (dispatch, id, callback) => {
                     dispatch(setConsignContent(newData));
                 }
             })
-
-
-            // dispatch(setConsignContent(data));
         }
         callback && callback(status);
     });
 };
 
-export const deleteConsign = (dispatch, id, callback) => {
-    //console.log(id);
+/**
+ * 实现利用DELETE请求删除委托
+ * @param {*} dispatch dispatch
+ * @param {*} id 委托ID
+ * @param {*} callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const deleteConsign = (dispatch, id, callback) => {
     httpDelete(consignBase, {id:id}, (result) => {
-        // console.log("before remove");
-        // dispatch(removeConsign(id));
         const {status} = result;
         if(status === STATUS.SUCCESS)
             dispatch(removeConsign(id));
@@ -64,7 +78,12 @@ export const deleteConsign = (dispatch, id, callback) => {
     });
 };
 
-export const newConsign = (dispatch, callback) => {
+/**
+ * 实现利用PUT请求新建委托
+ * @param {*} dispatch dispatch
+ * @param {*} callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const newConsign = (dispatch, callback) => {
     httpPost(consignBase, {consignation:null,}, (result) => {
         const {data, status} = result;
         if (status === STATUS.SUCCESS) {
@@ -74,8 +93,13 @@ export const newConsign = (dispatch, callback) => {
     });
 };
 
-export const updateConsign = (dispatch, data, callback) => {
-    //console.log(data);
+/**
+ * 实现利用PUT请求更新委托内容
+ * @param {*} dispatch dispatch
+ * @param {*} data 委托内容
+ * @param {*} callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const updateConsign = (dispatch, data, callback) => {
     httpPut(consignBase, data, (result) => {
         const {status, data} = result;
         if (status === STATUS.SUCCESS) {
@@ -85,14 +109,17 @@ export const updateConsign = (dispatch, data, callback) => {
     });
 };
 
-export const getConsignState = (dispatch, processInstanceID, id, callback) => {
-    //console.log('qwerttttt');
+/**
+ * 实现利用GET请求获取委托状态
+ * @param {*} dispatch dispatch
+ * @param {*} processInstanceID 委托的流程ID
+ * @param {*} id 委托ID
+ * @param {*} callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const getConsignState = (dispatch, processInstanceID, id, callback) => {
     httpGet(consignActivitiBase + '/' + processInstanceID, (result) => {
-        //console.log(consignActivitiBase + '/' + processInstanceID);
         const {status, data} = result;
-        //console.log(data);
         const {operation} = data;
-        //console.log(operation[0]);
         const operationData = {
             "operation": operation,
             "processsInstanceID": processInstanceID,
@@ -112,9 +139,15 @@ export const getConsignState = (dispatch, processInstanceID, id, callback) => {
     })
 };
 
-export const putConsignState = (dispatch, processInstanceID, data, id, callback) => {
-    // console.log("ID = " + processInstanceID);
-    //console.log(consignActivitiBase + '/' + processInstanceID);
+/**
+ * 实现利用PUT请求更新委托状态
+ * @param {*} dispatch dispatch
+ * @param {*} processInstanceID 委托的流程ID
+ * @param {*} data 向后台传输的数据
+ * @param {*} id 委托ID
+ * @param {*} callback 回调内容为向后台发送请求传输结果的状态，可能为SUCCESS或FAILURE
+ */
+const putConsignState = (dispatch, processInstanceID, data, id, callback) => {
     httpPut(consignActivitiBase + '/' + processInstanceID, data, (result) => {
         const {status,data} = result;
         if (status === STATUS.SUCCESS) {
@@ -127,3 +160,5 @@ export const putConsignState = (dispatch, processInstanceID, data, id, callback)
         callback && callback(status);
     });
 };
+
+export {getConsignList,getConsign,deleteConsign,newConsign,updateConsign,getConsignState,putConsignState}

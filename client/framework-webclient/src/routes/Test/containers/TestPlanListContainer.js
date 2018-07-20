@@ -6,15 +6,26 @@ import {deleteTestPlan,getTestPlanList, newTestPlan} from "../../../services/Tes
 import {setTestPlanFilter} from "../../../modules/ducks/TestPlan";
 import TestPlanListComponent from "../components/TestPlanListComponent";
 import {ProjectContentView} from "../../Project";
-//import {deleteContract, newContract} from "../../../services/ContractService";
 
+/**
+ * @module TestPlan/TestPlanListContainer
+ */
+/**
+ * 把store中的测试方案分发给list页面
+ * @param state
+ * @returns {{dataSource: any[]}}
+ */
 const mapStateToProps = (state) => {
     return {
-        // dataSource: Object.values(state.TestPlan.listMap).filter(state.TestPlan.listFilter),
         dataSource: Object.values(state.Project.listMap).filter(project => project.testPlan).filter(state.TestPlan.listFilter),
     }
 };
 
+/**
+ * 把设置列表过滤器和测试方案Tab控制的dispatch方法分发给list页面
+ * @param dispatch
+ * @returns {{showContent: showContent, showProject: showProject, setListFilter: (function(*=): *), getTestPlanList: (function(): void), deleteTestPlan: (function(*=): void), newTestPlan: (function(): void)}}
+ */
 const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (params) => {

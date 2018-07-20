@@ -1,13 +1,29 @@
 const SET_AUTHDATA = "System/SET_AUTHDATA";
 const SET_SYS_USER = 'System/SET_SYS_USER';
 const SET_SIDER = 'System/SET_SIDER';
-
+const SET_MENU = 'System/SET_MENU';
+const SET_FILES = 'System/SET_FILES'
+/**
+ * @module System
+ */
+/**
+ * 系统用户初始化变量，包括系统用户，权限数组，侧边栏显示项
+ * @type {{sysUser: {}, authData: {}, siderData: {}}}
+ */
 const initialState = {
     sysUser: {},
     authData: {},
-    siderData: {}
+    siderData: {},
+    menuData: [],
+    fileData: [],
 };
-
+/**
+ * 系统用户reducer
+ * @param state
+ * @param action
+ * @returns {{sysUser: {}, authData: {}, siderData: {}}}
+ * @constructor
+ */
 export const SystemReducer = (state = initialState, action) =>
 {
     switch(action.type) {
@@ -28,13 +44,27 @@ export const SystemReducer = (state = initialState, action) =>
         case SET_AUTHDATA:
             return {
                 ...state,
-                authData: action.payload
+                authData: action.payload,
+            };
+        case SET_MENU:
+            return {
+                ...state,
+                menuData: action.payload,
+            };
+        case SET_FILES:
+            return {
+                ...state,
+                fileData: action.payload,
             };
         default:
             return state;
     }
 };
-
+/**
+ * 设置系统用户，保存用户名
+ * @param sysUser
+ * @returns {{type: string, payload: *}}
+ */
 export const setSysUser = (sysUser) => {
     sessionStorage.setItem('sysUser',JSON.stringify(sysUser));
     return {
@@ -43,7 +73,11 @@ export const setSysUser = (sysUser) => {
     };
 };
 
-
+/**
+ * 设置系统用户权限
+ * @param authData
+ * @returns {{type: string, payload: *}}
+ */
 export const setAuthData = (authData) => {
     sessionStorage.setItem('authData',JSON.stringify(authData));
     return {
@@ -51,11 +85,35 @@ export const setAuthData = (authData) => {
         payload: authData
     };
 };
-
+/**
+ * 设置侧边栏数据
+ * @param list
+ * @returns {{type: string, payload: *}}
+ */
 export const setSiderData = (list) => {
     sessionStorage.setItem('sider',JSON.stringify(list));
     return {
         type: SET_SIDER,
+        payload: list,
+    }
+};
+/**
+ * 设置侧边栏菜单
+ * @param list
+ * @returns {{type: string, payload: *}}
+ */
+export const setMenuData = (list) => {
+    sessionStorage.setItem('menu',JSON.stringify(list));
+    return {
+        type: SET_MENU,
+        payload: list,
+    }
+};
+
+export const setFileData = (list) => {
+    sessionStorage.setItem('file',JSON.stringify(list));
+    return {
+        type: SET_FILES,
         payload: list,
     }
 };

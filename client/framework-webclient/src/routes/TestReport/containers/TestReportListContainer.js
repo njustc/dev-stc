@@ -7,6 +7,14 @@ import TestReportListComponent from "../components/TestReportListComponent";
 import {TestReportContentView} from "../index";
 import {ProjectContentView} from "../../Project";
 
+/**
+ * @module TestReport/TestReportListContainer
+ */
+/**
+ * 把store中的测试报告分发给list页面
+ * @param state
+ * @returns {{dataSource: any[], enableNew: boolean}}
+ */
 const mapStateToProps = (state) => {
     const authData = JSON.parse(sessionStorage.getItem('authData'));
     //console.log(state.TestReport.listMap);
@@ -16,6 +24,11 @@ const mapStateToProps = (state) => {
     }
 };
 
+/**
+ * 把设置列表过滤器和测试报告Tab控制的dispatch方法分发给list页面
+ * @param dispatch
+ * @returns {{showContent: showContent, showProject: showProject, setListFilter: (function(*=): *), getTestReportList: (function(): void), deleteTestReport: (function(*=): void), newTestReport: (function(): void)}}
+ */
 const mapDispatchToProps = (dispatch) => {
     return {
         showContent: (param) => {

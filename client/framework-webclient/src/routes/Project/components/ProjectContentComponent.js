@@ -13,10 +13,11 @@ const { TextArea } = Input;
 const { Header, Content, Footer } = Layout;
 
 /**
- * @module ProjectContentComponent
+ * 项目详情类，负责渲染，展示项目的进度和详细信息
+ * @extends Component
  */
 
-export default class ProjectContentComponent extends Component {
+class ProjectContentComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -25,6 +26,7 @@ export default class ProjectContentComponent extends Component {
         setContentFilter: PropTypes.func,
         dataSource: PropTypes.array,
         showContent: PropTypes.func,
+        fileData: PropTypes.array,
     };
 
     /**
@@ -65,66 +67,18 @@ export default class ProjectContentComponent extends Component {
         //content: 'Last-content',
     }*/];
 
-    /**
-     * 文档项
-     */
-    data = [
-        {index:1,name:'委托申请表'},
-        {index:2,name:'测试合同书'},
-        {index:3,name:'测试方案书'},
-        {index:4,name:'测试用例表'},
-        {index:7,name:'测试报告书'},
-        {index:8,name:'测试报告检查表'},
-        {index:9,name:'测试工作检查表'},
-        {index:10,name:'满意度调查表'}
-    ];
-
-
-    // onTitle() {
-    //     switch (this.props.consignState)  {
-    //       case 'Finish': return (
-    //           <div>流程当前状态为：委托申请表已通过</div>
-    //       );
-    //   }
-    //
-    // };
-
-    /*查看详情*/
     viewContent = (item) => () => {
-        //console.log(this.props.id);
         this.props.showContent({
-            index: item.index,
             ...this.props.projectData,
+            index: item.index,
         },this.props.id);
     };
-
-    // consignOperation = (state) => () => {
-    //     switch (state){
-    //         case 'Submit' : this.props.showContent({index:1,name:'委托申请表'},this.props.id);break;
-    //         case 'Finish' : this.props.showContent({index:1,name:'委托申请表'},this.props.id);break;
-    //         case 'Undefined' : break;
-    //         default: break;
-    //     }
-    // };
-    //
-    // contractOperation = () => () => {
-    //     this.props.showContent({index:2,name:'测试合同书'},this.props.id);
-    //     /*switch (state){
-    //         case 'Submit' : this.props.showContent({index:2,name:'测试合同书'},this.props.id);break;
-    //         case 'Finish' : this.props.showContent({index:2,name:'测试合同书'},this.props.id);break;
-    //         case 'Undefined' : break;
-    //         default: break;
-    //     }*/
-    // };
 
     /**
      * 获取当前项目进度并转换为Steps的步骤数
      * @returns {number} 当前项目状态对应的步骤数
      */
     getCurrentStep(){
-        //console.log(this.props);
-        //return 0;
-        // if(this.props.projectData.consign.state===STATE.FINISHED){
             if(this.props.projectData.contract.state===STATE.FINISHED){
                 if(this.props.projectData.testPlan.state===STATE.FINISHED){
                     if(this.props.projectData.testReport.state===STATE.SATISFACTION) {
@@ -135,8 +89,6 @@ export default class ProjectContentComponent extends Component {
                 else return 2;
             }
             else return 1;
-        //}
-        // else return 0;
     }
 
     /**
@@ -284,8 +236,8 @@ export default class ProjectContentComponent extends Component {
     }
 
     /**
-     * 获取用户满意度调查表状态
-     * 目前系统中用户满意度调查表没有状态
+     * 获取满意度调查表状态
+     * 目前系统中满意度调查表没有状态
      */
     getSatisfactionState(){
         /*TODO*/
@@ -324,7 +276,7 @@ export default class ProjectContentComponent extends Component {
                                     size="small"
                                     header={<div>文档</div>}
                                     bordered
-                                    dataSource={this.data}
+                                    dataSource={getFileList(this.props.fileData.filter((item)=>!item.disable))}
                                     renderItem={item => (<List.Item><a href="javascript:void(0);" onClick={this.viewContent(item)}>{item.name}</a></List.Item>)}
                                 />
                             </Col>
@@ -340,9 +292,8 @@ export default class ProjectContentComponent extends Component {
                                     <br/>
                                    <div>委托人用户名：{this.props.projectData.createdUserName}</div>
                                     <br/>
-                                    <div>流程创建时间：{this.props.projectData.createdTime}</div>
+                                    <div>项目创建时间：{this.props.projectData.createdTime}</div>
                                     <br/>
-                                    <div>项目价格：{this.testFee()}</div>
                                     {/*<br/>*/}
                                     {/*<div>备注：感谢曹老板指导,给曹老板打call</div>*/}
                                </Card>
@@ -377,3 +328,11 @@ export default class ProjectContentComponent extends Component {
         );
     }
 }
+
+function getFileList(fileData) {
+    let files = [];
+    fileData.forEach((item)=>files.push({index:JSON.parse(item.key),name:item.name}));
+    return files;
+}
+
+export default ProjectContentComponent;

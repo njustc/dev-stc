@@ -38,7 +38,10 @@ export const getSatisfactionContentList = () => {
   });
 };
 
-export default class SatisfactionContentList extends Component{
+/**
+ * 客户满意度调查表列表
+ */
+class SatisfactionContentList extends Component{
   constructor(props){
     super(props);
     this.state={
@@ -60,10 +63,14 @@ export default class SatisfactionContentList extends Component{
 
   onChanegeTextKeyword(text){
     //console.warn("yyy");
-    this.timeA(text);
+    this.search(text);
   }
 
-  timeA(text){
+  /**
+   * 客户满意度调查表搜索函数
+   * @func
+   */
+  search(text){
     if(this.time){
       clearTimeout(this.time)
     }
@@ -112,6 +119,10 @@ export default class SatisfactionContentList extends Component{
     return index+item;
   }
 
+  /**
+   * 从后端获取用户满意度调查表
+   * @func
+   */
   getSatisfactionContentList = () => {
     const contractBase = baseServiceAddress+'/v1/satisfactionSurvey?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest();
     httpGet(contractBase,(result)=>{
@@ -126,12 +137,21 @@ export default class SatisfactionContentList extends Component{
     });
   };
 
+  /**
+   * 获取用户满意度调查表
+   * @func
+   */
   componentWillMount() {
     this.getSatisfactionContentList();
 
     //this.state.datas=ConsignList;
   }
 
+  /**
+   * 用户满意度调查表跳转函数，根据用户满意度调查表id获取用户满意度调查表具体内容传给跳转界面
+   * @param id
+   * @func
+   */
   gotoSatisfactionContentPage = (id) =>{
     httpGet(baseServiceAddress+'/v1/satisfactionSurvey/'+id+'?username='+getLocaluserName()+'&clientDigest='+getLocalclientDigest(),(result)=>{
       const {status,data}=result;
@@ -168,6 +188,10 @@ export default class SatisfactionContentList extends Component{
     this.props.navigation.navigate("SatisfactionContentPage");
   }
 
+  /**
+   * 用户满意度调查表渲染函数
+   * @return {*}
+   */
   render(){
     return(
       <Container style={styles.container}>
@@ -219,3 +243,5 @@ export default class SatisfactionContentList extends Component{
   }
 
 }
+
+export default SatisfactionContentList;

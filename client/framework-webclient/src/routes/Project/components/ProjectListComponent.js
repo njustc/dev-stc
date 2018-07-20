@@ -10,9 +10,10 @@ const InputGroup = Input.Group;
 const Option = Select.Option;
 
 /**
- * @module ProjectListComponent
+ * 项目列表类，负责渲染，展示项目的列表
+ * @extends Component
  */
-export default class ProjectListComponent extends Component {
+class ProjectListComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -185,7 +186,7 @@ export default class ProjectListComponent extends Component {
                     <a href="javascript:void(0);"
                         //disabled={!this.props.enableNew}
                         onClick={this.showDeleteConfirm(record)}
-                    >取消</a>
+                    >取消项目</a>
                 </div>
             )
         }
@@ -328,3 +329,5 @@ export default class ProjectListComponent extends Component {
         );
     }
 }
+
+export default ProjectListComponent;

@@ -22,6 +22,10 @@ import { httpGet } from "../../FetchUtil";
 import { STATUS } from "../../common";
 
 
+/**
+ * 合同功能列表
+ * @const
+ */
 const datas = [
   {
     route: "ContractList",
@@ -33,8 +37,11 @@ const datas = [
   // },
 ];//TODO: 修改界面跳转 route
 
+/**
+ * 合同功能界面
+ */
 
-export  default class Contract extends Component {
+class Contract extends Component {
   constructor(props){
     super(props);
   }
@@ -44,6 +51,11 @@ export  default class Contract extends Component {
     return index+item;
   }
 
+  /**
+   * 合同功能界面渲染函数
+   * @returns {*}
+   * @func
+   */
   render() {
     return (
       <Container style={styles.container}>
@@ -88,3 +100,4 @@ export  default class Contract extends Component {
   }
 }
 
+export  default Contract;

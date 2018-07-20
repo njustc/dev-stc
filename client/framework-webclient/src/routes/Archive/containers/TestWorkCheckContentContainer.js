@@ -4,9 +4,16 @@ import {connect} from "react-redux";
 import {getTestWorkCheck, putTestWorkCheckState, updateTestWorkCheck} from "../../../services/TestWorkCheckService";
 import {STATUS} from "../../../services/common";
 import {message} from "antd/lib/index";
-
+/**
+ * @module TestWorkCheck/TestWorkCheckContentContainer
+ */
+/**
+ * 把store里面的测试工作检查表数据映射到组件，根据store数据计算页面编辑权限，计算并传入buttonsEnable数组
+ * @param state {object} store数据
+ * @param ownProps {object} 创建组件时传入的数据
+ * @returns {{testWorkCheckData: *, values: {}, disable: boolean, buttonsEnable: *}}
+ */
 const mapStateToProps = (state, ownProps) => {
-    // debugger;
     const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const content = state.Project.listMap[ownProps.id].testWorkCheck;
     const body = content?content.body:undefined;
@@ -19,14 +26,21 @@ const mapStateToProps = (state, ownProps) => {
         buttonsEnable: buttonsEnable(isQuality),
     }
 };
-
+/**
+ * 按钮显示控制，根据当前用户和状态判断按钮是否可用
+ * @param isQuality {boolean} 是否是质量部成员
+ * @returns {Array}
+ */
 const buttonsEnable = (isQuality) => [{
     content: '保存',
     enable: isQuality,
 }];
-
+/**
+ * 测试工作检查表相关的数据操作和对应的按钮
+ * @param dispatch {function} 分发action并触发state变化的方法
+ * @returns {Array}
+ */
 const buttons = (dispatch) => [{
-    /*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
     onClick: (testWorkCheckData, testWorkCheck) => {
         console.log(testWorkCheck);
@@ -41,107 +55,13 @@ const buttons = (dispatch) => [{
         });
     }
 }
-// },{
-//     content: '提交',
-//     onClick: (testWorkCheckData,testWorkCheck) =>{
-//         console.log(testWorkCheckData);
-//         console.log(testWorkCheck);
-//         const valueData = {
-//             id: testWorkCheckData.id,
-//             body: testWorkCheck
-//         };
-//         updateTestWorkCheck(dispatch,valueData,(status)=>{
-//             console.log(status);
-//             if(status===STATUS.SUCCESS){
-//                 const putData = {
-//                     "object": "testWorkCheck",
-//                     "operation": "Submit"
-//                 };
-//                 const {processInstanceID,id} = testWorkCheckData;
-//                 console.log(putData);
-//                 putTestWorkCheckState(dispatch,processInstanceID,putData,id,(status)=>{
-//                     console.log(status);
-//                     if(status===STATUS.SUCCESS) message.success('提交成功');
-//                     else message.error('提交失败');
-//                 });
-//             }
-//             else message.error('更新失败');
-//         });
-//     }
-// },{
-//     content: '批准',
-//     onClick: (testWorkCheckData,testWorkCheck) =>{
-//         const putData = {
-//             "object": "testWorkCheck",
-//             "operation": "ReviewPass"
-//         };
-//         const {processInstanceID,id} = testWorkCheckData;
-//         putTestWorkCheckState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
-//
-//             console.log(status===STATUS.SUCCESS);
-//             if(status===STATUS.SUCCESS) message.success('批准成功');
-//             else message.error('批准失败');
-//         });
-//     }
-// },{
-//     content: '否决',
-//     onClick: (testWorkCheckData,testWorkCheck) =>{
-//         const putData = {
-//             "object": "testWorkCheck",
-//             "operation": "ReviewReject"
-//         };
-//         const {processInstanceID,id} = testWorkCheckData;
-//         putTestWorkCheckState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
-//
-//             if(status===STATUS.SUCCESS) message.success('已否决');
-//             else message.error('否决失败');
-//         });
-//     }
-// },{
-//     content: '发放',
-//     onClick: (testWorkCheckData,testWorkCheck) =>{
-//         const putData = {
-//             "object": "testWorkCheck",
-//             "operation": "Send"
-//         };
-//         const {processInstanceID,id} = testWorkCheckData;
-//         putTestWorkCheckState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
-//
-//             if(status===STATUS.SUCCESS) message.success('已发放');
-//             else message.error('发放失败');
-//         });
-//     }
-// },{
-//     content: '确认',
-//     onClick: (testWorkCheckData,testWorkCheck) =>{
-//         const putData = {
-//             "object": "testWorkCheck",
-//             "operation": "ApprovePass"
-//         };
-//         const {processInstanceID,id} = testWorkCheckData;
-//         putTestWorkCheckState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
-//
-//             if(status===STATUS.SUCCESS) message.success('确认成功');
-//             else message.error('确认失败');
-//         });
-//     }
-// },{
-//     content: '拒绝',
-//     onClick: (testWorkCheckData,testWorkCheck) =>{
-//         const putData = {
-//             "object": "testWorkCheck",
-//             "operation": "ApproveReject"
-//         };
-//         const {processInstanceID,id} = testWorkCheckData;
-//         putTestWorkCheckState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
-//
-//             if(status===STATUS.SUCCESS) message.success('已拒绝');
-//             else message.error('拒绝失败');
-//         });
-//     }}
 ];
-
-const mapDispatchToProps = (dispatch,ownProps) => {
+/**
+ * 向测试工作检查表组件分发buttons数组和获取检查表的方法
+ * @param dispatch {function} 分发action并触发state变化的方法
+ * @returns {{buttons: Array, getValues: (function(*=): void)}}
+ */
+const mapDispatchToProps = (dispatch) => {
     return {
         buttons: buttons(dispatch),
         getValues: (id) => getTestWorkCheck(dispatch,id)

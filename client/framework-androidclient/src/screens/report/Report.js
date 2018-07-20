@@ -19,6 +19,10 @@ import {
 
 import styles from "./styles";
 
+/**
+ * 报告所有功能内容
+ * @const
+ */
 const datas = [
   {
     route: "TestingReportList",
@@ -30,7 +34,10 @@ const datas = [
   },
 ];//TODO: 修改界面跳转 route
 
-export  default class Testing extends Component {
+/**
+ * 报告所有功能
+ */
+class Report extends Component {
   constructor(props){
     super(props);
   }
@@ -40,6 +47,10 @@ export  default class Testing extends Component {
     return index+item;
   }
 
+  /**
+   * 报告所有功能界面渲染函数
+   * @func
+   */
   render() {
     return (
       <Container style={styles.container}>
@@ -84,3 +95,4 @@ export  default class Testing extends Component {
   }
 }
 
+export  default Report;

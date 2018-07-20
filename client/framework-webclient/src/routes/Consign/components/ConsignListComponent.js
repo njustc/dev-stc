@@ -11,10 +11,10 @@ const InputGroup = Input.Group;
 const Option = Select.Option;
 
 /**
- * @module ConsignListComponent
+ * 委托列表类，负责渲染，展示委托的列表
+ * @extends Component
  */
-
-export default class ConsignListComponent extends Component {
+class ConsignListComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -31,6 +31,7 @@ export default class ConsignListComponent extends Component {
 
     /**
      * componentDidMount，（装载完成），在render之后调用
+     * @func
      */
     componentDidMount() {
         this.props.getConsignList();
@@ -38,6 +39,7 @@ export default class ConsignListComponent extends Component {
 
     /**
      * 记录搜索框当前选项，默认项是委托名称
+     * @type {{selectOption: string}}
      */
     state={
         selectOption:'name',
@@ -45,6 +47,7 @@ export default class ConsignListComponent extends Component {
 
     /**
      * 用户的选择操作触发改变搜索框当前选项的记录
+     * @func
      * @param value 被选择的选项名称
      * @param option 暂时没用
      */
@@ -56,6 +59,7 @@ export default class ConsignListComponent extends Component {
 
     /**
      * 根据搜索框选项选择搜索输入框中显示的文字
+     * @func
      * @returns {string} 搜索输入框中的提示文字
      */
     setPlaceholder = () => {
@@ -72,6 +76,7 @@ export default class ConsignListComponent extends Component {
 
     /**
      * 根据委托状态选择状态点的颜色
+     * @func
      * @param state 委托状态
      * @returns {string} Badge点的颜色
      */
@@ -86,6 +91,7 @@ export default class ConsignListComponent extends Component {
 
     /**
      * 根据委托状态选择显示的状态文字描述
+     * @func
      * @param state 委托状态
      * @returns {string} 状态的文字描述
      */
@@ -102,6 +108,7 @@ export default class ConsignListComponent extends Component {
 
     /**
      * 设置表格Table
+     * @var
      */
     columns = [/*{
         title:"委托ID",
@@ -176,6 +183,7 @@ export default class ConsignListComponent extends Component {
 
     /**
      * 打开委托详情页面
+     * @func
      * @param record 被选择委托的标识
      * @returns {Function} 调用showContent
      */
@@ -185,6 +193,7 @@ export default class ConsignListComponent extends Component {
 
     /**
      * 显示取消委托提示框
+     * @func
      * @param record 被选择委托的标识
      * @returns {Function}
      */
@@ -208,6 +217,7 @@ export default class ConsignListComponent extends Component {
 
     /**
      * 搜索框功能
+     * @func
      * @param value 在搜索框中输入的值
      */
     onSearch = (value) => {
@@ -230,6 +240,7 @@ export default class ConsignListComponent extends Component {
 
     /**
      * 绘制委托列表页面， 包括：页面标题、可以改变搜索选项的搜索框、委托表格
+     * @func
      */
     render() {
         return (
@@ -261,3 +272,5 @@ export default class ConsignListComponent extends Component {
         );
     }
 }
+
+export default ConsignListComponent;

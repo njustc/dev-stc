@@ -12,11 +12,17 @@ import {newTestWorkCheck} from "../../../services/TestWorkCheckService";
 import {globalOperation, STATUS} from "../../../services/common";
 import {newTestRecord} from "../../../services/TestRecordService";
 import {newTestCase} from "../../../services/TestCaseService";
-import {newSatisfaction} from "SERVICES/ArchiveService";
-// import "./common"
-/*TODO:表单内容和按钮的可视及禁用情况*/
+import {newSatisfaction} from "../../../services/ArchiveService";
+/**
+ * @module Consign/ConsignContentContainer
+ */
+/**
+ * 把store里面的委托数据映射到委托组件，根据store数据计算页面编辑权限，计算并传入buttonsEnable数组
+ * @param state {object} store数据
+ * @param ownProps {object} 创建组件时传入的数据
+ * @returns {{consignData: *, values: {}, disable: boolean, buttonsEnable: *}}
+ */
 const mapStateToProps = (state, ownProps) => {
-    // debugger;
     const content = state.Consign.listMap[ownProps.id];
     const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const consignation = content?state.Consign.listMap[ownProps.id].consignation:undefined;
@@ -32,7 +38,14 @@ const mapStateToProps = (state, ownProps) => {
         buttonsEnable: buttonsEnable(isCustomer,isMarketing,isSubmitVisible,isReviewVisible),
     }
 };
-
+/**
+ * 按钮显示控制，根据当前用户和状态判断按钮是否可用
+ * @param isCustomer {boolean} 是否是客户
+ * @param isMarketing {boolean} 是否是市场部成员
+ * @param isSubmitVisible {boolean} 是否可以提交
+ * @param isReviewVisible {boolean} 是否可以评审
+ * @returns {Array}
+ */
 const buttonsEnable = (isCustomer,isMarketing,isSubmitVisible,isReviewVisible) => [{
     content: '保存',
     enable: isCustomer&&isSubmitVisible,
@@ -46,7 +59,11 @@ const buttonsEnable = (isCustomer,isMarketing,isSubmitVisible,isReviewVisible) =
     content: '否决',
     enable: isMarketing&&isReviewVisible,
 }];
-
+/**
+ * 委托相关的数据操作和对应的按钮
+ * @param dispatch {function} 分发action并触发state变化的方法
+ * @returns {Array}
+ */
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
     onClick: (consignData,consignation) =>{
@@ -164,8 +181,12 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
     },
     // enable: isReviewVisible
 }];
-
-const mapDispatchToProps = (dispatch,ownProps) => {
+/**
+ * 向委托组件分发buttons数组和获取委托的方法
+ * @param dispatch {function} 分发action并触发state变化的方法
+ * @returns {{buttons: {Array}, getValues: getValues}}
+ */
+const mapDispatchToProps = (dispatch) => {
     return {
         buttons: buttons(dispatch),
         getValues: (id,processInstanceID) => {

@@ -19,6 +19,10 @@ function handleChange(value) {
  * testReport的类实现
  */
 class TestReportContentComponent extends Component {
+    /**
+     * 构造器
+     * @param props
+     */
 
     constructor(props) {
         super(props);
@@ -48,12 +52,20 @@ class TestReportContentComponent extends Component {
         this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
     }
 
+    /**
+     * 若上个界面没有传值，则使用这个默认props
+     * @type {{curID: string, values: {}, disable: boolean, buttons: Array}}
+     */
     static defaultProps = {
 	curID : '',
         values : {},
         disable:false,
         buttons: [],
     };
+    /**
+     * 对props里面的属性进行类型判断，isRequired指定必填项
+     * @type {{getValues: * , disable: *, buttons: *, form: *}}
+     */
 
     static propTypes = {
         getValues: PropTypes.func.isRequired,
@@ -62,6 +74,9 @@ class TestReportContentComponent extends Component {
         form: PropTypes.object.isRequired,
     };
 
+    /**
+     * 在页面组件render之前调用componentWillMount
+     */
     componentWillMount() {
         this.props.getValues(this.props.testReportData.id);
         let state = this.state;
@@ -72,7 +87,12 @@ class TestReportContentComponent extends Component {
         this.setState(state);
     };
 
-
+    /**
+     * 点击button的回调函数
+     * @func
+     * @param {Number} buttonIndex - 所点击的button的编号
+     * @returns {Function} 保存表单各部分的值，对于时间应注意在保存前进行format操作。
+     */
     onClick = (buttonIndex) => () => {
         this.props.form.validateFields((err, values) => {
             if (!err) {
@@ -96,14 +116,11 @@ class TestReportContentComponent extends Component {
      */
     render() {
         const { getFieldDecorator } = this.props.form;
-        //const { dataSource } = this.state;
-        //const columns = this.columns;
         const formItemLayout =  {
             labelCol: { span: 4 },
             wrapperCol: { span: 19 },
         };
-
-        const dataSource1 = JSON.parse(this.props.projectData.testPlan.body).hardware;
+        const dataSource1 = this.props.projectData.testPlan.body?JSON.parse(this.props.projectData.testPlan.body).hardware:[];
         const columns1 = [{
             title: '序号',
             dataIndex: 'number',
@@ -126,7 +143,7 @@ class TestReportContentComponent extends Component {
             key: 'amount',
         }];
 
-        const dataSource2 = JSON.parse(this.props.projectData.testPlan.body).software;
+        const dataSource2 = this.props.projectData.testPlan.body?JSON.parse(this.props.projectData.testPlan.body).software:[];
         const columns2 = [{
             title: '序号',
             dataIndex: 'softwarenumber',
@@ -359,7 +376,7 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入委托单位信息！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.consignUnittelephone
                             })(
-                                <Input placeholder="请输入电话号码" />
+                                <Input  disabled={this.props.disable} placeholder="请输入电话号码" />
                             )}
                         </FormItem>
 
@@ -371,7 +388,7 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入传真号！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.consignUnitFax
                             })(
-                                <Input placeholder="请输入传真号" />
+                                <Input  disabled={this.props.disable} placeholder="请输入传真号" />
                             )}
 
                         </FormItem>
@@ -384,7 +401,7 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入地址！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
                                 initialValue: this.props.values.consignUnitaddress
                             })(
-                                <Input placeholder="请输入地址" />
+                                <Input  disabled={this.props.disable} placeholder="请输入地址" />
                             )}
                         </FormItem>
 
@@ -396,7 +413,7 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入邮编！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.consignUnitEmailnumber
                             })(
-                                <Input placeholder="请输入邮编" />
+                                <Input disabled={this.props.disable} placeholder="请输入邮编" />
                             )}
                         </FormItem>
 
@@ -408,7 +425,7 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入联系人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
                                 initialValue: this.props.values.consignUnitpeople
                             })(
-                                <Input placeholder="请输入联系人" />
+                                <Input disabled={this.props.disable} placeholder="请输入联系人" />
                             )}
                         </FormItem>
 
@@ -422,7 +439,7 @@ class TestReportContentComponent extends Component {
                                 rules: [{ required: false, message: '请输入E-mail！',pattern:"^[a-zA-Z0-9/.]+$" }],
                                 initialValue: this.props.values.consignUnitEmail
                             })(
-                                <Input placeholder="请输入邮箱地址" />
+                                <Input disabled={this.props.disable} placeholder="请输入邮箱地址" />
                             )}
                         </FormItem>
 

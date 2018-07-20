@@ -1,6 +1,6 @@
 /*测试用例*/
 import React, {Component, PropTypes} from 'react';
-import {Form, message, Table, Card, Collapse, Badge, Divider, Modal, Button,Input,Icon, Row, Col, Popconfirm, DatePicker,InputNumber} from 'antd'
+import {Form, message, Table, Card, Collapse, Button,Input,Icon, Row, Col, Popconfirm} from 'antd'
 import {EditableCell} from "COMPONENTS/EditableCell";
 import {getProjectList} from "SERVICES/ProjectService";
 import {newTestCase} from "SERVICES/TestCaseService";
@@ -10,33 +10,36 @@ const FormItem=Form.Item;
 const Panel = Collapse.Panel;
 const { TextArea } = Input;
 
+/**
+ * TestCaseContentComponent类，实现了测试用例详情界面的具体表单内容。
+ */
 class TestCaseContentComponent extends Component {
+    /**
+     * 构造器
+     * @param props
+     */
     constructor(props) {
         super(props);
     }
 
     state={
-        dataSource : [{
-            id: 1,
-            classification: 'yj',
-            process: 'unhappy->happy',
-            expectedResult: 'happy',
-            designer: 'yj',
-            time: '2018-06-03',
-            action: 'delete',
-            designNotes: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-            statute: 'sssssss',
-            accordance: 'tttttt'
-        }],
+        dataSource : [],
         count: 1,
     }
 
+    /**
+     * 对props里面的属性进行类型判断，isRequired指定必填项
+     * @type {{testCaseData: *, values: * , form: *}}
+     */
     static propTypes = {
-        projectData: PropTypes.object.isRequired,
+        testCaseData: PropTypes.object.isRequired,
         values: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };
 
+    /**
+     * 在页面组件render之前调用componentWillMount
+     */
     componentWillMount() {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
@@ -52,6 +55,13 @@ class TestCaseContentComponent extends Component {
         this.setState({dataSource, count});
     };
 
+    /**
+     * 可扩展表格的render方法
+     * @func
+     * @param {Object} record - 一条测试用例的所有信息（包括其对应的测试记录和可能的测试问题）
+     * @returns {*} 可扩展表格扩展部分的render函数，其中rowStyle、customPanelStyle以CSS语言定义了各种组件的样式；
+     * 返回测试用例扩展信息的html代码，其中包括测试用例的详情信息、添加或修改测试记录和测试问题的详情项，全部为可编辑表格。
+     */
     expandedRowRender = (record) => {
         const rowStyle = {
             marginBottom:'10pt',
@@ -224,6 +234,11 @@ class TestCaseContentComponent extends Component {
         );
     };
 
+    /**
+     * 点击button的回调函数
+     * @func
+     * 保存表单各部分的值。
+     */
     onClick = () => () => {
         // this.props.form.validateFields((err, values) => {
         //     if (!err) {
@@ -242,6 +257,9 @@ class TestCaseContentComponent extends Component {
         //this.props.addTestCase(this.props.projectData,fieldsValue);
     };
 
+    /**
+     * 测试用例表格的列设置
+     */
     /*table列设置*/
     columns = [{
         title: "序号",
@@ -256,35 +274,7 @@ class TestCaseContentComponent extends Component {
                 onChange={this.onCellChange(record.id, 'classification')}
             />
         ),
-    },
-        /*{
-        title:"测试用例设计说明",
-        dataIndex:"designNotes",
-    },
-     {
-        title:"与本测试用例有关的规约说明",
-        dataIndex:"statute",
-    },
-        {
-        title:"执行过程",
-        dataIndex:"process",
-        render: (text, record) => (
-            <EditableCell
-                value={text}
-                onChange={this.onCellChange(record.id, 'process')}
-            />
-        ),
     }, {
-        title:"预期结果",
-        dataIndex:"expectedResult",
-        render: (text, record) => (
-            <EditableCell
-                value={text}
-                onChange={this.onCellChange(record.id, 'expectedResult')}
-            />
-        ),
-    }, */
-        {
         title:"设计者",
         dataIndex:"designer",
         render: (text, record) => (
@@ -313,20 +303,14 @@ class TestCaseContentComponent extends Component {
 
         );
       },
-    },/*{
-        title:"依据",
-        dataIndex:"accordance",
-    }*/
-    ];
+    }];
 
-    addTestRecord = (id) => {
-
-    }
-
-    addTestProblem = (id) => {
-
-    }
-
+    /**
+     * onCellChange表示测试用例表中可编辑单元格修改后的回调函数。
+     * @func
+     * @param {Number} id - id用来表示修改的单元格对应的数据行的id值
+     * @param {string} dataIndex - dataIndex用来表示修改的单元格对应的列的名称
+     */
     onCellChange = (id, dataIndex) => {
         return (value) => {
             const dataSource = [...this.state.dataSource];
@@ -344,6 +328,12 @@ class TestCaseContentComponent extends Component {
             })
         };
     }
+
+    /**
+     * onDelete表示测试用例表中删除一个测试用例的回调函数
+     * @func
+     * @param {Number} id - id用来表示修改的单元格对应的数据行的id值
+     */
     onDelete = (id) => {
         const dataSource = [...this.state.dataSource];
         this.setState({ dataSource: dataSource.filter(item => item.id !== id) });
@@ -352,6 +342,11 @@ class TestCaseContentComponent extends Component {
                 message.success('删除测试用例成功');
         });
     }
+
+    /**
+     * handleAdd表示测试用例表中添加一个测试用例的回调函数
+     * @func
+     */
     handleAdd = () => {
         let { count, dataSource } = this.state;
         const {newTestCase, updateTestCase, projectData, form} = this.props;
@@ -373,6 +368,12 @@ class TestCaseContentComponent extends Component {
         });
     }
 
+    /**
+     * 测试用例表的render函数。
+     * 其中formItemLayout以CSS语言定义了各种组件的样式；
+     * 返回"测试用例表"详情的html代码，包括添加测试用例的card、测试用例列表。
+     * 测试用例列表中又以可扩展的方式展开测试用例的详情信息，其中可选择添加或修改该测试用例对应的测试记录和测试问题。
+     */
     render(){
         const { getFieldDecorator } = this.props.form;
         const formItemLayout =  {

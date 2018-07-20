@@ -19,6 +19,10 @@ import {
 
 import styles from "./styles";
 
+/**
+ * 结项功能内容列表
+ * @const
+ */
 const datas = [
   {
     route: "TestingWorkCheckTableList",
@@ -30,7 +34,10 @@ const datas = [
   },
 ];//TODO: 修改界面跳转 route
 
-export  default class ProjectClosing extends Component {
+/**
+ * 结项功能
+ */
+class ProjectClosing extends Component {
   constructor(props){
     super(props);
   }
@@ -40,6 +47,11 @@ export  default class ProjectClosing extends Component {
     return index+item;
   }
 
+  /**
+   * 结项功能渲染函数
+   * @returns {*}
+   * @func
+   */
   render() {
     return (
       <Container style={styles.container}>
@@ -84,3 +96,4 @@ export  default class ProjectClosing extends Component {
   }
 }
 
+export  default ProjectClosing;

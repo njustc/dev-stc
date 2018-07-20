@@ -1,29 +1,53 @@
 import React, {Component, PropTypes} from 'react';
-import {Icon, Row,Col,Steps,Form,Button,Input,DatePicker,InputNumber,Collapse,Table,Tabs,Popconfirm} from 'antd'
+import {Icon, Row, Col, Form, Button, Input, InputNumber, Table, Tabs, Popconfirm} from 'antd'
 const TabPane = Tabs.TabPane;
-const { Column, ColumnGroup } = Table;
 const FormItem=Form.Item;
 const InputGroup = Input.Group;
 
-
+/**
+ * EditableCell类，实现了测试方案书中可编辑表格的部分。
+ */
 class EditableCell extends Component {
+    /**
+     * state表示组件的状态：value是prop的值，editable表示此单元格是否可以编辑
+     */
     state = {
         value: this.props.value,
         editable: false,
     }
+
+    /**
+     * 在元素发生变化时调用handleChange函数
+     * @func
+     * @params e - e为原生的事件绑定对象
+     */
     handleChange = (e) => {
         const value = e.target.value;
         this.setState({ value });
     }
+
+    /**
+     * check将可编辑单元格的editable属性设置为不可编辑，并在prop属性改变时保存修改的值
+     * @func
+     */
     check = () => {
         this.setState({ editable: false });
         if (this.props.onChange) {
             this.props.onChange(this.state.value);
         }
     }
+
+    /**
+     * edit将单元格的editable属性设置为可编辑
+     * @func
+     */
     edit = () => {
         this.setState({ editable: true });
     }
+
+    /**
+     * 可编辑单元格的渲染函数，返回editableCell的html代码
+     */
     render() {
         const { value, editable } = this.state;
         return (
@@ -59,7 +83,18 @@ class EditableCell extends Component {
     }
 }
 
+
+/**
+ * TestPlanContentComponent类，实现了测试方案书的具体表单内容。
+ */
 class TestPlanContentComponent extends Component {
+    /**
+     * 构造器
+     * @param props
+     * 创建并初始化一个测试方案组件类：
+     * volumes1-4设置了四张表格的列，state设置了这个类的一些状态。
+     * state中，datasource1-4设置了四张表格的初始数据。
+     */
     constructor(props) {
         super(props);
 
@@ -321,6 +356,12 @@ class TestPlanContentComponent extends Component {
         };
     };
 
+    /**
+     * onCellChange1表示硬件环境表中可编辑单元格修改后的回调函数。
+     * @func
+     * @param {Number} key - key用来表示修改的单元格对应的数据行的key值
+     * @param {string} dataIndex - dataIndex用来表示修改的单元格对应的列的名称
+     */
     onCellChange1 = (key, dataIndex) => {
         return (value) => {
             const dataSource1 = [...this.state.dataSource1];
@@ -331,10 +372,21 @@ class TestPlanContentComponent extends Component {
             }
         };
     }
+
+    /**
+     * onDelete1表示硬件环境表中删除一条数据的回调函数
+     * @func
+     * @param {Number} key - key用来表示修改的单元格对应的数据行的key值
+     */
     onDelete1 = (key) => {
         const dataSource1 = [...this.state.dataSource1];
         this.setState({ dataSource1: dataSource1.filter(item => item.key !== key) });
     }
+
+    /**
+     * handleAdd1表示硬件环境表中添加一条数据的回调函数
+     * @func
+     */
     handleAdd1 = () => {
         const { count1, dataSource1 } = this.state;
         const newData = {
@@ -348,6 +400,12 @@ class TestPlanContentComponent extends Component {
         });
     }
 
+    /**
+     * onCellChange2表示软件环境表中可编辑单元格修改后的回调函数。
+     * @func
+     * @param {Number} key - key用来表示修改的单元格对应的数据行的key值
+     * @param {string} dataIndex - dataIndex用来表示修改的单元格对应的列的名称
+     */
     onCellChange2 = (key, dataIndex) => {
         return (value) => {
             const dataSource2 = [...this.state.dataSource2];
@@ -358,10 +416,20 @@ class TestPlanContentComponent extends Component {
             }
         };
     }
+    /**
+     * onDelete2表示软件环境表中删除一条数据的回调函数
+     * @func
+     * @param {Number} key - key用来表示修改的单元格对应的数据行的key值
+     */
     onDelete2 = (key) => {
         const dataSource2 = [...this.state.dataSource2];
         this.setState({ dataSource2: dataSource2.filter(item => item.key !== key) });
     }
+
+    /**
+     * handleAdd2表示软件环境表中添加一条数据的回调函数
+     * @func
+     */
     handleAdd2 = () => {
         const { count2, dataSource2 } = this.state;
         const newData = {
@@ -375,6 +443,12 @@ class TestPlanContentComponent extends Component {
         });
     }
 
+    /**
+     * onCellChange3表示测试进度表中可编辑单元格修改后的回调函数。
+     * @func
+     * @param {Number} key - key用来表示修改的单元格对应的数据行的key值
+     * @param {string} dataIndex - dataIndex用来表示修改的单元格对应的列的名称
+     */
     onCellChange3 = (key, dataIndex) => {
         return (value) => {
             const dataSource3 = [...this.state.dataSource3];
@@ -386,6 +460,12 @@ class TestPlanContentComponent extends Component {
         };
     }
 
+    /**
+     * onCellChange4表示人员表中可编辑单元格（人数）修改后的回调函数。
+     * @func
+     * @param {Number} key - key用来表示修改的单元格对应的数据行的key值
+     * @param {string} dataIndex - dataIndex用来表示修改的单元格对应的列的名称
+     */
     onCellChange4 = (key, dataIndex) => {
         return (value) => {
             const dataSource4 = [...this.state.dataSource4];
@@ -397,6 +477,10 @@ class TestPlanContentComponent extends Component {
         };
     }
 
+    /**
+     * 若上个界面没有传值，则使用这个默认props
+     * @type {{values: {documentID: string, testLevel:string}, disable: boolean, buttons: Array}}
+     */
     static defaultProps = {
         values: {
             documentID:'NST-04-JS006-2011-软件测试方案-',
@@ -406,6 +490,10 @@ class TestPlanContentComponent extends Component {
         buttons: [],
     };
 
+    /**
+     * 对props里面的属性进行类型判断，isRequired指定必填项
+     * @type {{testPlanData: *, values: * , disable: *, buttons: *, form: *}}
+     */
     static propTypes = {
         testPlanData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
@@ -413,6 +501,13 @@ class TestPlanContentComponent extends Component {
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };
+
+    /**
+     * 在页面组件render之前调用componentWillMount。
+     * 对于可编辑表格（硬件环境表、软件环境表、测试进度表、人员表）在读值之前需要从props.values中找到打包好的对应数据，
+     * 若暂时还未有数据（undefined），需要进行初始化。
+     * @func
+     */
     componentWillMount() {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
@@ -479,6 +574,13 @@ class TestPlanContentComponent extends Component {
         this.setState(state);
         //     // console.log(this.values);
     };
+
+    /**
+     * 点击button的回调函数
+     * @func
+     * @param {Number} buttonIndex - 所点击的button的编号
+     * @returns {Function} 保存表单各部分的值，对于可编辑表格应注意在保存前进行打包操作。
+     */
     onClick = (buttonIndex) => () => {
         // this.props.form.validateFields((err, values) => {
         //     if (!err) {
@@ -491,12 +593,17 @@ class TestPlanContentComponent extends Component {
         fieldsValue["software"] = this.state.dataSource2;
         fieldsValue["testProgress"] = this.state.dataSource3;
         fieldsValue["people"] = this.state.dataSource4;
-        debugger;
         buttons[buttonIndex].onClick(this.props.testPlanData,JSON.stringify(fieldsValue));
     };
 
+
+    /**
+     * 测试方案书的render函数。
+     * 其中formItemLayout、formLayout2、InputStyle以CSS语言定义了各种组件的样式；
+     * 返回"测试方案书"表单详情的html代码，包括测试软件的基本信息、软件测试环境、测试计划及测试进度表。
+     */
     render() {
-        const { current } = this.state;
+        // const { current } = this.state;
         const { getFieldDecorator } = this.props.form;
         const formItemLayout =  {
             labelCol: { span: 4 },
@@ -684,7 +791,7 @@ class TestPlanContentComponent extends Component {
                     <TabPane tab="软件测试环境" key="2">
                         <Row>
                             <Col offset={1} span={21}>
-                                <h3>3.1 硬件</h3>
+                                <h3>硬件</h3>
                             </Col>
                         </Row>
                         <Row>
@@ -702,7 +809,7 @@ class TestPlanContentComponent extends Component {
 
                         <Row>
                             <Col offset={1} span={21}>
-                                <h3>3.2 软件环境</h3>
+                                <h3>软件环境</h3>
                             </Col>
                         </Row>
                         <Row>
@@ -733,7 +840,7 @@ class TestPlanContentComponent extends Component {
 
                         <Row>
                             <Col offset={1} span={21}>
-                                <h3>3.4 人员</h3>
+                                <h3>人员</h3>
                             </Col>
                         </Row>
                         <Row>
@@ -750,7 +857,7 @@ class TestPlanContentComponent extends Component {
                         <Row>
                             <Col offset={1} span={21}>
                                 本章描述了计划测试的总范围并且描述了本测试计划适用的每个测试，包括对相关文档的审查。
-                                <h3><br/>4.1 总体设计</h3>
+                                <h3><br/>总体设计</h3>
                             </Col>
                             <Col offset={2} span={20}>
                                 <FormItem {...formItemLayout2} label="测试方法">
@@ -771,7 +878,7 @@ class TestPlanContentComponent extends Component {
                                 </FormItem>
                             </Col>
                             <Col offset={1} span={23}>
-                                <h4>4.1.1 测试级别</h4>
+                                <h4>测试级别</h4>
                             </Col>
                             <Col offset={2} span={20}>
                                 <FormItem>
@@ -787,7 +894,7 @@ class TestPlanContentComponent extends Component {
                                 </FormItem>
                             </Col>
                             <Col offset={1} span={23}>
-                                <h4>4.1.2 测试类别</h4>
+                                <h4>测试类别</h4>
                             </Col>
                             <Col offset={2} span={20}>
                                 <FormItem>
@@ -803,7 +910,7 @@ class TestPlanContentComponent extends Component {
                                 </FormItem>
                             </Col>
                             <Col offset={1} span={23}>
-                                <h4>4.1.3 一般测试条件</h4>
+                                <h4>一般测试条件</h4>
                             </Col>
                             <Col offset={2} span={20}>
                                 测试应满足时序逻辑，测试使用的数据要符合实际情况，测试应当完全覆盖所有需求。
@@ -813,7 +920,7 @@ class TestPlanContentComponent extends Component {
 
                         <Row>
                             <Col offset={1} span={21}>
-                                <h3>4.2 计划执行的测试</h3>
+                                <h3>计划执行的测试</h3>
                             </Col>
                             <Col offset={2} span={20}>
                                 <FormItem {...formItemLayout2} label={"测试对象"}>

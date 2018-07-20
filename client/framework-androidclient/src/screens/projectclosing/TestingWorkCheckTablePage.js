@@ -27,7 +27,15 @@ import {
 
 import styles from "./styles";
 
-export  default class TestingWorkCheckTablePagePage extends Component {
+/**
+ * TestingWorkCheckTablePagePage 实现类
+ */
+class TestingWorkCheckTablePagePage extends Component {
+    /**
+     * constructor
+     * 其中有变量的初始值及定义
+     * @param props
+     */
   constructor(props) {
     super(props);
     this.state = {
@@ -211,6 +219,10 @@ export  default class TestingWorkCheckTablePagePage extends Component {
     this.listener_item24.remove();
   }
 
+    /**
+     * 移动端显示html代码
+     * @returns {*}
+     */
   render(){
     return (
       <Container>
@@ -558,3 +570,4 @@ export  default class TestingWorkCheckTablePagePage extends Component {
     );
   }
 }
+export  default TestingWorkCheckTablePagePage;
