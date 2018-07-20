@@ -99,17 +99,6 @@ public class SatisfationSurveyServiceTest {
         catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("开始测试用户获取用户满意度调查表");
-        try{
-            JSON result = satisfactionSurveyService.querySatisfactionSurveys(customer1);
-
-            Assert.assertNotNull("用户 - 用户满意度调查表查询失败",result);
-
-            System.out.println(result);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 

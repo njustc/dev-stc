@@ -8,6 +8,7 @@ import com.njustc.domain.User;
 import com.njustc.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,12 +72,6 @@ public class TestPlanServiceTest {
     private TestPlanService testPlanService;
 
     @Autowired
-    private ConsignService consignService;
-
-    @Autowired
-    private ProjectService projectService;
-
-    @Autowired
     private UserRepository userRepository;
 
     @Before
@@ -86,7 +81,7 @@ public class TestPlanServiceTest {
         customer2 = userRepository.findByUsername(("customer2"));
     }
 
-    @Test
+    @Ignore
     public void test_queryTestPlans(){
         System.out.println("开始测试工作人员获取测试计划");
         try {
@@ -121,7 +116,7 @@ public class TestPlanServiceTest {
 
         try {
 
-//test_addTestPlan
+            //test_addTestPlan
             String pro_id = "p1";
             JSONObject jsonResult = testPlanService.addTestPlan(pro_id,TestPlan,null,tester);
             String id = jsonResult.getString("id");
@@ -134,6 +129,12 @@ public class TestPlanServiceTest {
             Assert.assertNotNull("通过ID查询测试计划失败",jsonTestPlan);
             System.out.println("通过ID查询测试计划成功,测试计划信息为:"+ jsonTestPlan);
 
+            //test_queryTestPlanByProject
+            System.out.println("=====通过工程查询该测试计划=====");
+            JSON jsonTestPlan_pro = testPlanService.queryTestPlansByProject(pro_id);
+            Assert.assertNotNull("通过工程查询测试计划失败",jsonTestPlan_pro);
+            System.out.println(jsonTestPlan_pro);
+            
             //test_editTestPlan
             System.out.println("=====编辑该测试计划内容=====");
             String edit_object = "body";
