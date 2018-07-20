@@ -73,12 +73,6 @@ public class TestCaseServiceTest {
     private TestCaseService testCaseService;
 
     @Autowired
-    private ConsignService consignService;
-    
-    @Autowired
-    private ProjectService projectService;
-    
-    @Autowired
     private UserRepository userRepository;
 
     @Before
@@ -101,17 +95,7 @@ public class TestCaseServiceTest {
         catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("开始测试用户获取测试样例");
-        try {
-            JSON result = testCaseService.queryTestCases(customer1);
 
-            Assert.assertNotNull("用户 - 测试样例查询失败",result);
-
-            System.out.println(result);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
     }
     @Test
     public void testSE(){
@@ -133,6 +117,12 @@ public class TestCaseServiceTest {
             Assert.assertNotNull("通过ID查询测试样例失败",jsonTestCase);
             System.out.println("通过ID查询测试样例成功,测试样例信息为:"+ jsonTestCase);
 
+            //test_queryTestCaseByProject
+            System.out.println("=====通过工程查询该测试样例=====");
+            JSON jsonTestCase_pro = testCaseService.queryTestCasesByProject(pro_id);
+            Assert.assertNotNull("通过工程查询测试样例失败",jsonTestCase_pro);
+            System.out.println(jsonTestCase_pro);
+            
             //test_editTestCase
             System.out.println("=====编辑该测试样例内容=====");
             String edit_object = "body";
@@ -141,7 +131,7 @@ public class TestCaseServiceTest {
             jsonTestCase = testCaseService.editTestCase(jsonTestCase, null, tester);
             Assert.assertEquals("测试样例修改失败",edit_contents,jsonTestCase.getString(edit_object));  //检验样例内容修改是否符合预期
             System.out.println("测试样例修改成功:测试样例信息为" + jsonTestCase);
-
+            
             //test_deleteTestCase
             System.out.println("=====删除该测试样例=====");
             testCaseService.deleteTestCase(jsonResult);

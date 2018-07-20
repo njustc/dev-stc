@@ -71,8 +71,6 @@ public class ContractServiceTest {
     @Autowired
     private ContractService contractService;
 
-    @Autowired
-    private ProjectService projectService;
 
     @Autowired
     private UserRepository userRepository;

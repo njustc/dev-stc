@@ -72,12 +72,6 @@ public class TestWorkCheckServiceTest {
     private TestWorkCheckService testWorkCheckService;
 
     @Autowired
-    private ConsignService consignService;
-
-    @Autowired
-    private ProjectService projectService;
-
-    @Autowired
     private UserRepository userRepository;
 
     @Before
@@ -94,17 +88,6 @@ public class TestWorkCheckServiceTest {
             JSON result = testWorkCheckService.queryTestWorkChecks(tester);
 
             Assert.assertNotNull("工作人员 - 工程查询失败",result);
-
-            System.out.println(result);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("开始测试用户获取测试工作检查");
-        try {
-            JSON result = testWorkCheckService.queryTestWorkChecks(customer1);
-
-            Assert.assertNotNull("用户 - 工程查询失败",result);
 
             System.out.println(result);
         }
@@ -144,6 +127,12 @@ public class TestWorkCheckServiceTest {
             Assert.assertNotNull("通过ID查询测试工作检查失败",jsonTestWorkCheck);
             System.out.println(jsonTestWorkCheck);
 
+
+            //test_queryTestWorkCheckByProject
+            System.out.println("=====通过工程查询该测试工作检查=====");
+            JSON jsonTestWorkCheck_pro = testWorkCheckService.queryTestWorkCheckByProject(pro_id);
+            Assert.assertNotNull("通过工程查询测试工作检查失败",jsonTestWorkCheck_pro);
+            System.out.println(jsonTestWorkCheck_pro);
 
             //test_editTestWorkCheck
             System.out.println("=====编辑该测试工作检查内容=====");

@@ -8,6 +8,7 @@ import com.njustc.domain.User;
 import com.njustc.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,9 +73,6 @@ public class TestRecordServiceTest {
     private TestRecordService testRecordService;
 
     @Autowired
-    private ConsignService consignService;
-
-    @Autowired
     private ProjectService projectService;
 
     @Autowired
@@ -86,7 +84,8 @@ public class TestRecordServiceTest {
         customer1 = userRepository.findByUsername("customer1");
         customer2 = userRepository.findByUsername(("customer2"));
     }
-    @Test
+
+    @Ignore
     public void test_queryTestRecords(){
         System.out.println("开始测试工作人员获取测试报告检查");
         try {
@@ -99,19 +98,9 @@ public class TestRecordServiceTest {
         catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("开始测试用户获取测试报告检查");
-        try {
-            JSON result = testRecordService.queryTestRecords(customer1);
-
-            Assert.assertNotNull("用户 - 工程查询失败",result);
-
-            System.out.println(result);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
     }
-    @Test
+
+    @Ignore
     public void test_SE(){
         System.out.println("=====tester 新建一个测试报告检查=====");
         JSONObject TestRecord = new JSONObject();
@@ -134,6 +123,8 @@ public class TestRecordServiceTest {
             JSONObject jsonTestRecord = testRecordService.queryTestRecordByID(id);
             Assert.assertNotNull("通过ID查询测试报告检查失败",jsonTestRecord);
             System.out.println(jsonTestRecord);
+
+
 
 
             //test_editTestRecord
