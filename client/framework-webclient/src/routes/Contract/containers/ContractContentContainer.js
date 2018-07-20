@@ -28,6 +28,7 @@ const mapStateToProps = (state, ownProps) => {
         contractData: content?content:ownProps,
         values:  contractBody ? JSON.parse(contractBody) : {},
         disable: !(isMarketing&&contractState==="TobeSubmit"),
+        disableM: !(isCustomer&&isReviewVisible),
         buttonsEnable: buttonsEnable(isCustomer,isMarketing,isSubmitVisible,isReviewVisible,isConfirmVisible),
     }
 };
