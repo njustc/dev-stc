@@ -73,8 +73,6 @@ public class TestBugServiceTest {
     @Autowired
     private TestBugService testBugService;
 
-    @Autowired
-    private ConsignService consignService;
 
     @Autowired
     private ProjectService projectService;
@@ -113,10 +111,9 @@ public class TestBugServiceTest {
         try {
 
             //test_addTestBug
-            JSONObject consign = new JSONObject();
-            JSONObject jsonConsign = consignService.addConsign(consign,null,tester);
-            JSONObject project = new JSONObject();
-            String consign_id = jsonConsign.getString("id");
+
+            String consign_id = "consign1";
+            JSONObject project = projectService.queryProjectById("p1");
             JSONObject jsonProject = projectService.addProject(consign_id,project,null,tester);
             JSONObject jsonResult = testBugService.addTestBug(jsonProject, null, tester);
             String id = jsonResult.getString("id");
