@@ -31,7 +31,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         testPlanData: content?content:ownProps,
         values:  body ? JSON.parse(body) : {},
-        disable: testPlanState!=="TobeWrite",
+        disable: !(isTesting&&testPlanState==="TobeWrite"),
         buttonsEnable: buttonsEnable(isTesting,isQuality,isManager,isSubmitVisible,isReviewVisible,isConfirmVisible),
     }
 };
