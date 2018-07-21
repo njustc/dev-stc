@@ -32,7 +32,7 @@ class TestCaseContentComponent extends Component {
      * @type {{testCaseData: *, values: * , form: *}}
      */
     static propTypes = {
-        testCaseData: PropTypes.object.isRequired,
+        testCaseData: PropTypes.object,
         values: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };

@@ -63,7 +63,7 @@ const buttonsEnable = (isCustomer,isMarketing,isTesting,isManager,isQuality,isSu
     enable: isTesting&&isSubmitVisible,
 },{
     content: '通过',
-    enable: isManager&&isReviewVisible,
+    enable: isManager&&isReviewViszible,
 },{
     content: '否决',
     enable: isManager&&isReviewVisible,

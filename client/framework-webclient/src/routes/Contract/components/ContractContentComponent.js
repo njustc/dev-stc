@@ -607,10 +607,13 @@ class ContractContentComponent extends Component {
                         }
                     })}
                 </FormItem>
-                <FormItem label='评审内容'>
-                    <TextArea
-                        disabled={this.props.disableM}
-                    />
+                <FormItem {...formItemLayout} label="评审内容">
+                    {getFieldDecorator('contractComment', {
+                        rules: [],
+                        initialValue: this.props.values.contractComment,
+                    })(
+                        <Input disabled={this.props.disableM}/>
+                    )}
                 </FormItem>
             </Form>
 
