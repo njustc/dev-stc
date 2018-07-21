@@ -23,6 +23,7 @@ const mapStateToProps = (state, ownProps) => {
     const testPlanState = content?content.state:"error";
     const isTesting = (sysUser.username==="testing");
     const isQuality = (sysUser.username==="quality");
+    const isManager = (sysUser.username==="testingManager");
     const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Write')!==-1;
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ConfirmPass')!==-1;
@@ -31,7 +32,7 @@ const mapStateToProps = (state, ownProps) => {
         testPlanData: content?content:ownProps,
         values:  body ? JSON.parse(body) : {},
         disable: testPlanState!=="TobeWrite",
-        buttonsEnable: buttonsEnable(isTesting,isQuality,isSubmitVisible,isReviewVisible,isConfirmVisible),
+        buttonsEnable: buttonsEnable(isTesting,isQuality,isManager,isSubmitVisible,isReviewVisible,isConfirmVisible),
     }
 };
 
@@ -44,7 +45,7 @@ const mapStateToProps = (state, ownProps) => {
  * @param isConfirmVisible {boolean} 是否可以确认
  * @returns {Array}
  */
-const buttonsEnable = (isTesting,isQuality,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
+const buttonsEnable = (isTesting,isQuality,isManager,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
     content: '保存',
     enable: isTesting&&isSubmitVisible,
 },{
@@ -58,10 +59,10 @@ const buttonsEnable = (isTesting,isQuality,isSubmitVisible,isReviewVisible,isCon
     enable: isQuality&&isReviewVisible,
 },{
     content: '确认',
-    enable: isTesting&&isConfirmVisible,
+    enable: isManager&&isConfirmVisible,
 },{
     content: "拒绝",
-    enable: isTesting&&isConfirmVisible,
+    enable: isManager&&isConfirmVisible,
 }
 ];
 

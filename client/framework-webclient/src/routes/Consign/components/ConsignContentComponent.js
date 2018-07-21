@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Steps, Modal, Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message,Table, Popconfirm } from 'antd';
+import {Divider, Modal, Row, Col, Card, Tabs, Select, Button, Layout, Form, Input,Radio,Checkbox,Icon,DatePicker,Collapse,message,Table, Popconfirm } from 'antd';
 import moment from "moment/moment";
 
 
@@ -520,53 +520,33 @@ class ConsignContentComponent extends Component  {
                                     <Input disabled={this.props.disable} placeholder="请输入网址" />
                                 )}
                             </FormItem>
-
+                            <Divider/>
                             <FormItem>
                                 <Row><Col offset={1}><b>国家重点实验室联系方式</b></Col></Row>
-                            </FormItem>
-
-                            <FormItem
-                                {...formItemLayout}
-                                label="单位地址"
-                            >
-                                <span className="ant-form-text">南京市栖霞区仙林大道163号</span>
-                            </FormItem>
-
-                            <FormItem
-                                {...formItemLayout}
-                                label="邮政编码"
-                            >
-                                <span className="ant-form-text">210046</span>
-                            </FormItem>
-
-                            <FormItem
-                                {...formItemLayout}
-                                label="电话"
-                            >
-                                <span className="ant-form-text">86-25-89683467, 86-25-89683670</span>
-                            </FormItem>
-
-                            <FormItem
-                                {...formItemLayout}
-                                label="传真"
-                            >
-                                <span className="ant-form-text">86-25-89686596</span>
-                            </FormItem>
-
-                            <FormItem
-                                {...formItemLayout}
-                                label="网址"
-                            >
-                        <span className="ant-form-text">http://keysoftlab.nju.edu.cn
-                        </span>
-                            </FormItem>
-
-                            <FormItem
-                                {...formItemLayout}
-                                label="Email"
-                            >
-                        <span className="ant-form-text">keysoftlab@nju.edu.cn
-                        </span>
+                                <Row>
+                                    <Col span={3} offset={1}>单位地址</Col>
+                                    <Col>南京市栖霞区仙林大道163号</Col>
+                                </Row>
+                                <Row>
+                                    <Col span={3} offset={1}>邮政编码</Col>
+                                    <Col>210046</Col>
+                                </Row>
+                                <Row>
+                                    <Col span={3} offset={1}>电话</Col>
+                                    <Col>86-25-89683467, 86-25-89683670</Col>
+                                </Row>
+                                <Row>
+                                    <Col span={3} offset={1}>传真</Col>
+                                    <Col>86-25-89686596</Col>
+                                </Row>
+                                <Row>
+                                    <Col span={3} offset={1}>网址</Col>
+                                    <Col>http://keysoftlab.nju.edu.cn</Col>
+                                </Row>
+                                <Row>
+                                    <Col span={3} offset={1}>Email</Col>
+                                    <Col>keysoftlab@nju.edu.cn</Col>
+                                </Row>
                             </FormItem>
 
                         </TabPane>
@@ -894,7 +874,7 @@ class ConsignContentComponent extends Component  {
                                 )}
                             </FormItem>
 
-                            <FormItem {...formItemLayout} label={"需要测试的技术指标"}>
+                            <FormItem {...formItemLayout} label={"测试技术指标"}>
                                 {getFieldDecorator('testIndicator', {
                                     rules: [{ required: true, message: '请选择至少一项技术指标！' }],
                                     initialValue: this.props.values.testIndicator,
@@ -1129,66 +1109,67 @@ class ConsignContentComponent extends Component  {
                                 )}
                             </FormItem>
 
-                            <FormItem label="测试项目编号"
-                                      {...formItemLayout}
-                            >
-                                {getFieldDecorator('testingNumber', {
-                                    rules: [{ required: true, message: '请输入测试项目编号！'}],
-                                    initialValue: this.props.values.testingNumber,
-                                })(
-                                    <Input disabled={this.props.disable} placeholder="请输入测试项目编号" />
-                                )}
-                            </FormItem>
+                            {/*<FormItem label="测试项目编号"*/}
+                                      {/*{...formItemLayout}*/}
+                            {/*>*/}
+                                {/*{getFieldDecorator('testingNumber', {*/}
+                                    {/*rules: [{ required: true, message: '请输入测试项目编号！'}],*/}
+                                    {/*initialValue: this.props.values.testingNumber,*/}
+                                {/*})(*/}
+                                    {/*<Input disabled={this.props.disable} placeholder="请输入测试项目编号" />*/}
+                                {/*)}*/}
+                            {/*</FormItem>*/}
 
-                            <FormItem
-                                label="备注"
-                                {...formItemLayout}
-                            >
-                                {getFieldDecorator('remarksE', {
-                                    rules: [{ required: true, message: '请输入备注！'}],
-                                    initialValue: this.props.values.remarksE,
-                                })(
-                                    <TextArea disabled={this.props.disable} rows={4} />
-                                )}
-                            </FormItem>
+                            {/*<FormItem*/}
+                                {/*label="备注"*/}
+                                {/*{...formItemLayout}*/}
+                            {/*>*/}
+                                {/*{getFieldDecorator('remarksE', {*/}
+                                    {/*rules: [{ required: true, message: '请输入备注！'}],*/}
+                                    {/*initialValue: this.props.values.remarksE,*/}
+                                {/*})(*/}
+                                    {/*<TextArea disabled={this.props.disable} rows={4} />*/}
+                                {/*)}*/}
+                            {/*</FormItem>*/}
 
-                            <FormItem
-                                label="受理人（签字）"
-                                {...formItemLayout}
-                            >
-                                <span className="ant-form-text"></span>
-                            </FormItem>
+                            {/*<FormItem*/}
+                                {/*label="受理人（签字）"*/}
+                                {/*{...formItemLayout}*/}
+                            {/*>*/}
+                                {/*<span className="ant-form-text"></span>*/}
+                            {/*</FormItem>*/}
 
-                            <FormItem
-                                label="日期"
-                                {...formItemLayout}
-                            >
-                                <span className="ant-form-text"></span>
-                            </FormItem>
+                            {/*<FormItem*/}
+                                {/*label="日期"*/}
+                                {/*{...formItemLayout}*/}
+                            {/*>*/}
+                                {/*<span className="ant-form-text"></span>*/}
+                            {/*</FormItem>*/}
 
-                            <FormItem
-                                label="委托人填写"
-                                {...formItemLayout}
-                            >
-                                <TextArea disabled={this.props.disable} rows={4} />
-                            </FormItem>
+                            {/*<FormItem*/}
+                                {/*label="委托人填写"*/}
+                                {/*{...formItemLayout}*/}
+                            {/*>*/}
+                                {/*<TextArea disabled={this.props.disable} rows={4} />*/}
+                            {/*</FormItem>*/}
 
-                            <FormItem
-                                label="委托人（签字）"
-                                {...formItemLayout}
-                            >
-                                <span className="ant-form-text"></span>
-                            </FormItem>
+                            {/*<FormItem*/}
+                                {/*label="委托人（签字）"*/}
+                                {/*{...formItemLayout}*/}
+                            {/*>*/}
+                                {/*<span className="ant-form-text"></span>*/}
+                            {/*</FormItem>*/}
 
-                            <FormItem
-                                label="日期"
-                                {...formItemLayout}
-                            >
-                                <span className="ant-form-text"></span>
-                            </FormItem>
+                            {/*<FormItem*/}
+                                {/*label="日期"*/}
+                                {/*{...formItemLayout}*/}
+                            {/*>*/}
+                                {/*<span className="ant-form-text"></span>*/}
+                            {/*</FormItem>*/}
+
                         </TabPane>
 
-                        <TabPane tab="委托测试软件功能列表" key="5">
+                        <TabPane tab="测试软件功能列表" key="5">
                             <div>
                                 <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
                                     添加测试功能

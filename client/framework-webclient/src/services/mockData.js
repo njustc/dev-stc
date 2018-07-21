@@ -207,6 +207,10 @@ export const mockMenuData = (isCustomer) => [{
         key : "8",
         disable : false,
         name : "测试报告列表",
+    },{
+        key : "9",
+        disable : isCustomer,
+        name : "测试报告检查列表",
     }]
 },{
     type : "SubMenu",
@@ -217,7 +221,7 @@ export const mockMenuData = (isCustomer) => [{
     menuItems : [{
         key : "10",
         disable : isCustomer,
-        name : "工作检查列表",
+        name : "测试工作检查列表",
     },{
         key : "11",
         disable : false,

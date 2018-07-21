@@ -68,6 +68,7 @@ class ContractContentComponent extends Component {
         contractData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
+        disableM: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };
@@ -606,9 +607,14 @@ class ContractContentComponent extends Component {
                         }
                     })}
                 </FormItem>
-                <FormItem label='评审内容'><TextArea
-                    disabled={this.props.disableM}
-                /></FormItem>
+                <FormItem {...formItemLayout} label="评审内容">
+                    {getFieldDecorator('contractComment', {
+                        rules: [],
+                        initialValue: this.props.values.contractComment,
+                    })(
+                        <Input disabled={this.props.disableM}/>
+                    )}
+                </FormItem>
             </Form>
 
         );
