@@ -61,7 +61,7 @@ class ConsignCase(unittest.TestCase):
         text = create.find_element_by_xpath(".//span")
         print(text.text)
         create.click()
-        sleep(2)
+        sleep(5)
         consigns = self.dr.find_elements_by_xpath("//tbody[@class='ant-table-tbody']/tr")
         after = len(consigns)
         print(after)
@@ -87,23 +87,7 @@ class ConsignCase(unittest.TestCase):
         next.click()
         sleep(2)
 
-    def test_d_fillin_consign(self):
-        '''填写委托'''
-        # TODO 填写委托表单具体内容
-        self.nextStep()
-        process = self.dr.find_element_by_xpath\
-            ("//div[contains(@class,'ant-steps-item-process')]/div[@class='ant-steps-item-content']/div")
-        self.assertEqual(process.text, '软件基本信息')
-        self.nextStep()
-        process = self.dr.find_element_by_xpath \
-            ("//div[contains(@class,'ant-steps-item-process')]/div[@class='ant-steps-item-content']/div")
-        self.assertEqual(process.text, '软件运行环境')
-        self.nextStep()
-        process = self.dr.find_element_by_xpath \
-            ("//div[contains(@class,'ant-steps-item-process')]/div[@class='ant-steps-item-content']/div")
-        self.assertEqual(process.text, '委托测试信息')
-
-    def test_e_save_consign(self):
+    def test_d_save_consign(self):
         '''保存委托'''
         # TODO 保存委托的测试（目前只做了保存按钮点击的提示）
         save = self.dr.find_element_by_xpath("//div[@class='ant-form-item-control-wrapper']/div/span/button")
@@ -114,31 +98,11 @@ class ConsignCase(unittest.TestCase):
         self.assertEqual(message, '保存成功')
         sleep(5)
 
-    def test_f_submit_consign(self):
+    def test_e_submit_consign(self):
         '''提交委托'''
         submit = self.dr.find_element_by_xpath("//div[@class='ant-form-item-control-wrapper']/div/span/button[2]")
         self.assertEqual(submit.find_element_by_xpath("./span").text, '提 交')
         submit.click()
-        sleep(1)
+        sleep(2)
         message = self.dr.find_element_by_xpath("//div[contains(@class,'ant-message-success')]/span").text
         self.assertEqual(message, '提交成功')
-        sleep(5)
-        # list = self.dr.find_element_by_xpath\
-        #    ("//div[contains(@class,'ant-tabs-nav-animated') and contains(@aria-selected,'false')]/div")
-        list = self.dr.find_element_by_xpath \
-            ("//div[contains(@class,'ant-tabs-nav-animated')]/div[2]")
-        self.assertEqual(list.find_element_by_xpath("./div").text, '委托列表')
-        # list.click()
-        list.send_keys('\n')
-        tab = self.dr.find_element_by_xpath \
-            ("//div[contains(@class,'ant-tabs-nav-animated')]/div[contains(@class,'ant-tabs-tab-active')]/div")
-        print(tab.text)
-        close = self.dr.find_element_by_xpath \
-            ("//div[contains(@class,'ant-tabs-nav-animated')]/div[contains(@class,'ant-tabs-tab-active')]/div/i")
-        # close.click()
-        close.send_keys('\n')
-        # self.assertEqual(tab.text, '委托详情')
-        sleep(2)
-        tab = self.dr.find_element_by_xpath \
-            ("//div[contains(@class,'ant-tabs-nav-animated')]/div[contains(@class,'ant-tabs-tab-active')]/div")
-        self.assertEqual(tab.text, '委托列表')
