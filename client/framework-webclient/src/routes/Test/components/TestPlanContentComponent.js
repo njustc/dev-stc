@@ -509,6 +509,14 @@ class TestPlanContentComponent extends Component {
      * @func
      */
     componentWillMount() {
+        this.update();
+    }
+
+    componentWillUnmount() {
+
+    }
+
+    update = () => {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
         this.props.getValues(this.props.testPlanData.id);
