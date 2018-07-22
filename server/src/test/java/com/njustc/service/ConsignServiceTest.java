@@ -5,6 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.njustc.FrameworkApplication;
 import com.njustc.domain.User;
 import com.njustc.repository.UserRepository;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.ibatis.jdbc.Null;
+import org.apache.taglibs.standard.lang.jstl.NullLiteral;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -76,6 +79,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
     @Autowired
     private UserRepository userRepository;
 
+
+    /**
+     * 获取用户信息,将其作为之后测试方法时的参数
+     */
     @Before
     public void getUser() {
         marketUser = userRepository.findByUsername("marketing");
@@ -84,8 +91,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
         tester = userRepository.findByUsername("testing");
     }
 
+    /**
+     * 所测试的方法:根据用户查询委托
+     */
     @Ignore
-    public void test_queryConsigns() {
+    public void testqueryConsigns() {
         System.out.println("开始测试工作人员获取委托");
         try {
             JSON result = consignService.queryConsigns(marketUser);
@@ -98,35 +108,39 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
         }
     }
 
+    /**
+     * 所测试的方法:新建委托,通过ID查询委托,通过工程ID查询委托,编辑委托内容,删除委托
+     */
     @Test
-    public void test_CURD() {
+    public void testConsign() {
         System.out.println("=====customer1 增加一个委托=====");
         JSONObject consign = new JSONObject();
         consign.put("consignation", "这是customer1测试中新建的一个委托");
 
         try {
 
-            //test_addconsign
+            //testaddconsign
             JSONObject jsonResult = consignService.addConsign(consign, null, customer1);
             String id = jsonResult.getString("id");
             Assert.assertNotNull("委托新建失败", id);
             System.out.println("新建成功。委托的ID为: " + id);
 
-            //test_queryconsignByID
+            //testqueryconsignByID
             System.out.println("=====通过ID查询该委托=====");
             JSONObject jsonConsign = consignService.queryConsignByID(id);
             Assert.assertNotNull("通过ID委托查询失败", jsonConsign);
             System.out.println("查询成功.委托信息为:" + jsonConsign);
 
-            //test_queryconsingByProject
+            //testqueryconsingByProject
             System.out.println("=====通过工程查询委托=====");
             String pro_id = "p1";
             JSON jsonConsign_pro = consignService.queryConsignsByProject(pro_id);
             Assert.assertNotNull("通过工程查询委托失败", jsonConsign_pro);
             System.out.println("查询成功.委托信息为:" + jsonConsign_pro);
 
-            //test_editconsign
+            //testeditconsign
             System.out.println("=====编辑该委托=====");
+
             String edit_object = "consignation";
             String edit_contents = "这是customer1在测试中修改的委托";
             jsonConsign.put(edit_object, edit_contents);
@@ -134,7 +148,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
             Assert.assertEquals(edit_contents, jsonConsign.getString(edit_object));  //检验委托内容修改是否符合预期
             System.out.println("编辑成功.委托信息为:" + jsonConsign);
 
-            //test_deleteconsign
+            //testdeleteconsign
             System.out.println("=====删除该委托=====");
             consignService.deleteConsign(jsonConsign);
             try {

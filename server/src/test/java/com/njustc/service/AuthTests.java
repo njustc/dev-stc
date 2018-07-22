@@ -16,6 +16,39 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
+/**
+ * 本测试用来测试Auth Service
+ * <table border = "1" summary="">
+ *      <tr>
+ *          <th>测试内容</th>
+ *          <th>测试操作</th>
+ *          <th>测试结果</th>
+ *      </tr>
+ *      <tr>
+ *          <td>获取用户</td>
+ *          <td>findByUsername</td>
+ *          <td>返回用户名,获取成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>获取用户身份</td>
+ *          <td>getRoles</td>
+ *          <td>返回用户身份,获取成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>获取用户功能</td>
+ *          <td>getFunctions</td>
+ *          <td>返回用户功能,获取成功</td>
+ *      </tr>
+ *      <tr>
+ *          <td>获取用户委托</td>
+ *          <td>testUserConsign</td>
+ *          <td>返回用户委托,获取成功</td>
+ *      </tr>
+ * </table>
+ *
+ *
+ */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
 public class AuthTests {
@@ -26,6 +59,10 @@ public class AuthTests {
     @Autowired
     private UserRepository userRepository;
 
+
+    /**
+     * 测试获取用户
+     */
     @Before
     public void testGetUser()
     {
@@ -37,6 +74,10 @@ public class AuthTests {
         Assert.assertNotNull("customer2获取失败",custom2user);
 
     }
+
+    /**
+     * 测试获取用户身份
+     */
     @Test
     public void testUserRole()
     {
@@ -48,6 +89,10 @@ public class AuthTests {
         Assert.assertNotNull("customer2role获取失败",customer2roles);
 
     }
+
+    /**
+     * 测试获取用户功能
+     */
     @Test
     public void testUserFunction()
     {
@@ -63,6 +108,10 @@ public class AuthTests {
         Assert.assertNotNull("custom2Function获取失败",customuser2Functions);
 
     }
+
+    /**
+     * 测试获取用户委托
+     */
     @Test
   //  @Transactional
     public void testUserConsign()

@@ -74,6 +74,9 @@ public class TestWorkCheckServiceTest {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * 获取用户信息,将其作为之后测试方法时的参数
+     */
     @Before
     public void getUser() {
         tester = userRepository.findByUsername("testing");
@@ -81,8 +84,11 @@ public class TestWorkCheckServiceTest {
         customer2 = userRepository.findByUsername(("customer2"));
     }
 
+    /**
+     * 测试方法:根据用户所对应工程查询测试工作检查
+     */
     @Test
-    public void test_queryTestWorkChecks(){
+    public void testqueryTestWorkChecks(){
         System.out.println("开始测试工作人员获取测试工作检查");
         try {
             JSON result = testWorkCheckService.queryTestWorkChecks(tester);
@@ -96,8 +102,11 @@ public class TestWorkCheckServiceTest {
         }
     }
 
+    /**
+     * 所测试的方法:新建测试工作检查,通过ID查询测试工作检查,通过工程ID查询测试工作检查,编辑测试工作检查内容,删除测试工作检查
+     */
     @Test
-    public void test_SE(){
+    public void testTestWorkCheck(){
         System.out.println("=====tester 新建一个测试工作检查=====");
         JSONObject TestWorkCheck = new JSONObject();
 
@@ -112,7 +121,7 @@ public class TestWorkCheckServiceTest {
 
         try {
 
-            //test_addTestWorkCheck
+            //testaddTestWorkCheck
 
             String pro_id = "p1";
             JSONObject jsonResult = testWorkCheckService.addTestWorkCheck(pro_id,TestWorkCheck, null, tester);
@@ -121,20 +130,20 @@ public class TestWorkCheckServiceTest {
             System.out.println("测试工作检查新建成功, 测试工作检查的ID为: " + id);
             System.out.println(jsonResult);
 
-            //test_queryTestWorkChecksByID
+            //testqueryTestWorkChecksByID
             System.out.println("=====通过ID查询该测试工作检查=====");
             JSONObject jsonTestWorkCheck = testWorkCheckService.queryTestWorkCheckByID(id);
             Assert.assertNotNull("通过ID查询测试工作检查失败",jsonTestWorkCheck);
             System.out.println(jsonTestWorkCheck);
 
 
-            //test_queryTestWorkCheckByProject
+            //testqueryTestWorkCheckByProject
             System.out.println("=====通过工程查询该测试工作检查=====");
             JSON jsonTestWorkCheck_pro = testWorkCheckService.queryTestWorkCheckByProject(pro_id);
             Assert.assertNotNull("通过工程查询测试工作检查失败",jsonTestWorkCheck_pro);
             System.out.println(jsonTestWorkCheck_pro);
 
-            //test_editTestWorkCheck
+            //testeditTestWorkCheck
             System.out.println("=====编辑该测试工作检查内容=====");
 
             String edit_object_body = "body";
@@ -170,9 +179,9 @@ public class TestWorkCheckServiceTest {
             jsonTestWorkCheck.put(edit_object_starttime,edit_starttime);
 
             jsonTestWorkCheck = testWorkCheckService.editTestWorkCheck(jsonTestWorkCheck, null, tester);
-            /**
-             * 检测修改内容是否符合预期
-             */
+
+             // 检测修改内容是否符合预期
+
             Assert.assertEquals("测试工作检查Body修改失败",edit_body,jsonTestWorkCheck.getString(edit_object_body));
             Assert.assertEquals("测试工作Version检查修改失败",edit_version,jsonTestWorkCheck.getString(edit_object_version));
             Assert.assertEquals("测试工作检查acendtime修改失败",edit_acendtime,jsonTestWorkCheck.getString(edit_object_acendtime));
@@ -183,7 +192,7 @@ public class TestWorkCheckServiceTest {
             Assert.assertEquals("测试工作检查starttime修改失败",edit_starttime,jsonTestWorkCheck.getString(edit_object_starttime));
             System.out.println(jsonTestWorkCheck);
 
-            //test_deleteTestWorkCheck
+            //testdeleteTestWorkCheck
             System.out.println("=====删除该测试工作检查=====");
             testWorkCheckService.deleteTestWorkCheck(jsonResult);
             try{

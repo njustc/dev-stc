@@ -79,6 +79,10 @@ public class SatisfationSurveyServiceTest {
     @Autowired
     private UserRepository userRepository;
 
+
+     /**
+      * 获取用户信息,将其作为之后测试方法时的参数
+      */
     @Before
     public void getUser(){
         tester = userRepository.findByUsername("testing");
@@ -86,8 +90,12 @@ public class SatisfationSurveyServiceTest {
         customer2 = userRepository.findByUsername("customer2");
     }
 
-    @Test
-    public void test_querySatisfationSurvey(){
+
+     /**
+      * 所测试的方法:根据用户对应工程查询用户满意度调查表
+      */
+     @Test
+    public void testquerySatisfationSurvey(){
         System.out.println("开始测试工作人员获取用户满意度调查表");
         try{
             JSON result = satisfactionSurveyService.querySatisfactionSurveys(tester);
@@ -102,16 +110,18 @@ public class SatisfationSurveyServiceTest {
     }
 
 
-
+     /**
+      * 所测试的方法:新建用户满意度调查表,根据ID查询用户满意度调查表,根据工程ID查询用户满意度调查表,编辑用户满意度调查表内容,删除用户满意度调查表
+      */
     @Test
-    public void test_SE(){
+    public void testSatisfactionSurvey(){
         System.out.println("=====tester 新建一个用户满意度调查表=====");
         JSONObject SatisfactionSurvey = new JSONObject();
         SatisfactionSurvey.put("body", "这是tester测试中新建的一个用户满意度调查表");
 
         try {
 
-            //test_addSatisfactionSurvey
+            //testaddSatisfactionSurvey
 
             String pro_id = "p1";
             JSONObject jsonResult = satisfactionSurveyService.addSatisfactionSurvey(pro_id,SatisfactionSurvey, null,tester);
@@ -120,19 +130,19 @@ public class SatisfationSurveyServiceTest {
             System.out.println("用户满意度调查表新建成功, 用户满意度调查表的ID为: " + id);
             System.out.println(jsonResult);
 
-            //test_querySatisfactionSurveysByID
+            //testquerySatisfactionSurveysByID
             System.out.println("=====通过ID查询该用户满意度调查表=====");
             JSONObject jsonSatisfactionSurvey = satisfactionSurveyService.querySatisfactionSurveyByID(id);
             Assert.assertNotNull("通过ID查询用户满意度调查表失败",jsonSatisfactionSurvey);
             System.out.println(jsonSatisfactionSurvey);
 
-            //test_querySatisfactionSurveyByProject
+            //testquerySatisfactionSurveyByProject
             System.out.println("=====通过工程查询该用户满意调查表=====");
             JSON jsonSatisfactionSurvey_pro = satisfactionSurveyService.querySatisfactionSurveysByProject(pro_id);
             Assert.assertNotNull("通过工程查询用户满意度调查表失败",jsonSatisfactionSurvey_pro);
             System.out.println(jsonSatisfactionSurvey_pro);
 
-            //test_editSatisfactionSurvey
+            //testeditSatisfactionSurvey
             System.out.println("=====编辑该用户满意度调查表内容=====");
             String edit_object = "body";
             String edit_contents = "这是tester在测试中修改的用户满意度调查表";
@@ -142,7 +152,7 @@ public class SatisfationSurveyServiceTest {
             System.out.println(jsonSatisfactionSurvey);
 
 
-            //test_deleteSatisfactionSurvey
+            //testdeleteSatisfactionSurvey
             System.out.println("=====删除该用户满意度调查表=====");
             satisfactionSurveyService.deleteSatisfactionSurvey(jsonResult);
             try{

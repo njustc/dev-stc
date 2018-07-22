@@ -74,6 +74,10 @@ public class TestPlanServiceTest {
     @Autowired
     private UserRepository userRepository;
 
+
+    /**
+     * 获取用户信息,将其作为之后测试方法时的参数
+     */
     @Before
     public void getUser() {
         tester = userRepository.findByUsername("testing");
@@ -81,8 +85,11 @@ public class TestPlanServiceTest {
         customer2 = userRepository.findByUsername(("customer2"));
     }
 
+    /**
+     * 所测试的方法:根据用户所对应工程查询测试计划
+     */
     @Ignore
-    public void test_queryTestPlans(){
+    public void testqueryTestPlans(){
         System.out.println("开始测试工作人员获取测试计划");
         try {
             JSON result = testPlanService.queryTestPlans(tester);
@@ -107,8 +114,12 @@ public class TestPlanServiceTest {
         }
     }
 
+
+    /**
+     * 所测试的方法:新建测试计划,通过ID查询测试计划,通过工程ID查询测试计划,编辑测试计划内容,删除测试计划
+     */
     @Test
-    public void test_SE(){
+    public void testTestPlan(){
         System.out.println("=====tester 新建一个测试计划=====");
         JSONObject TestPlan = new JSONObject();
         TestPlan.put("body", "这是testUser测试中新建的一个测试计划");
@@ -116,26 +127,26 @@ public class TestPlanServiceTest {
 
         try {
 
-            //test_addTestPlan
+            //testaddTestPlan
             String pro_id = "p1";
             JSONObject jsonResult = testPlanService.addTestPlan(pro_id,TestPlan,null,tester);
             String id = jsonResult.getString("id");
             Assert.assertNotNull("测试计划新建失败",id);
             System.out.println("测试计划新建成功, 测试计划的信息为: " + jsonResult);
 
-            //test_queryTestPlansByID
+            //testqueryTestPlansByID
             System.out.println("=====通过ID查询该测试计划=====");
             JSONObject jsonTestPlan = testPlanService.queryTestPlanByID(id);
             Assert.assertNotNull("通过ID查询测试计划失败",jsonTestPlan);
             System.out.println("通过ID查询测试计划成功,测试计划信息为:"+ jsonTestPlan);
 
-            //test_queryTestPlanByProject
+            //testqueryTestPlanByProject
             System.out.println("=====通过工程查询该测试计划=====");
             JSON jsonTestPlan_pro = testPlanService.queryTestPlansByProject(pro_id);
             Assert.assertNotNull("通过工程查询测试计划失败",jsonTestPlan_pro);
             System.out.println(jsonTestPlan_pro);
             
-            //test_editTestPlan
+            //testeditTestPlan
             System.out.println("=====编辑该测试计划内容=====");
             String edit_object = "body";
             String edit_contents = "这是tester在测试中修改的测试计划";
@@ -144,7 +155,7 @@ public class TestPlanServiceTest {
             Assert.assertEquals("测试计划修改失败",edit_contents,jsonTestPlan.getString(edit_object));  //检验计划内容修改是否符合预期
             System.out.println("测试计划修改成功:测试计划信息为" + jsonTestPlan);
 
-            //test_deleteTestPlan
+            //testdeleteTestPlan
             System.out.println("=====删除该测试计划=====");
             testPlanService.deleteTestPlan(jsonResult);
             try{
