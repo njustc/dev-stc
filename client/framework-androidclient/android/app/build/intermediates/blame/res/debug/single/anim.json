@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
-        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/anim/abc_fade_out.xml"
-    },
-    {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
         "source": "/Users/weiyuyang/Mobilestc/RNstc4.7/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
+        "source": "/Users/weiyuyang/Mobilestc/RNstc4.4/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/anim/abc_fade_out.xml"
     },
     {
         "merged": "/Users/weiyuyang/Mobilestc/RNstc4.0/android/app/build/intermediates/res/merged/debug/anim/catalyst_fade_out.xml",
