@@ -16,6 +16,10 @@ import {message} from "antd/lib/index";
 const mapStateToProps = (state, ownProps) => {
     const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const content = state.Project.listMap[ownProps.id].contract;
+    const consign = state.Project.listMap[ownProps.id].consign;
+    const consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+    const softWareName = consignBody.softwareName?consignBody.softwareName:"未填写";
+    const unitCompany = consignBody.consignUnitC?consignBody.consignUnitC:"未填写";
     const contractBody = content?content.contractBody:undefined;
     const contractState = content?content.state:"error";
     const isCustomer = (sysUser.username==="customer1"||sysUser.username==="customer2");
@@ -26,6 +30,8 @@ const mapStateToProps = (state, ownProps) => {
     const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ConfirmPass')!==-1;
     console.log(contractBody);
     return {
+        softWareName: softWareName,
+        unitCompany: unitCompany,
         contractData: content?content:ownProps,
         values:  contractBody ? JSON.parse(contractBody) : {},
         disable: !(isMarketing&&contractState==="TobeSubmit"),

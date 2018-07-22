@@ -146,7 +146,7 @@ class ProjectListComponent extends Component {
         key:"name",
         render: (consign) => {
             let consignBody = consign.consignation?JSON.parse(consign.consignation):{};
-            return consignBody.softwareName?consignBody.softwareName+"测试项目":"未填写";
+            return consignBody.softwareName?consignBody.softwareName:"未填写";
         }
     }, {
         title:"委托单位",

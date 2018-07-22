@@ -19,6 +19,10 @@ import {message} from "antd/lib/index";
 const mapStateToProps = (state, ownProps) => {
     const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const content = state.Project.listMap[ownProps.id].testPlan;
+    const consign = state.Project.listMap[ownProps.id].consign;
+    const consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+    const softWareName = consignBody.softwareName?consignBody.softwareName:"未填写";
+    const unitCompany = consignBody.consignUnitC?consignBody.consignUnitC:"未填写";
     const body = content?content.body:undefined;
     const testPlanState = content?content.state:"error";
     const isTesting = (sysUser.username==="testing");
@@ -29,6 +33,8 @@ const mapStateToProps = (state, ownProps) => {
     const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ConfirmPass')!==-1;
 
     return {
+        softWareName: softWareName,
+        unitCompany: unitCompany,
         testPlanData: content?content:ownProps,
         values:  body ? JSON.parse(body) : {},
         disable: !(isTesting&&testPlanState==="TobeWrite"),
