@@ -123,7 +123,7 @@ class TestReportCheckContentComponent extends Component {
                         }],
                         initialValue: this.props.values.date?moment(this.props.values.date):undefined,
                     })(
-                        <DatePicker format="YYYY-MM-DD"/>
+                        <DatePicker disabled={this.props.disable} format="YYYY-MM-DD"/>
                     )}
                 </FormItem>
 
@@ -138,11 +138,13 @@ class TestReportCheckContentComponent extends Component {
                                 {getFieldDecorator('item1', {
                                     //rules: [{ required: false }],
                                     valuePropName: 'checked',
+
                                     initialValue: this.props.values.item1
                                 })(
                                     <Switch
                                         checkedChildren={'是'}
                                         unCheckedChildren={'否'}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -160,6 +162,7 @@ class TestReportCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={'是'}
                                         unCheckedChildren={'否'}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -177,6 +180,7 @@ class TestReportCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={'是'}
                                         unCheckedChildren={'否'}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -194,6 +198,7 @@ class TestReportCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={'是'}
                                         unCheckedChildren={'否'}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -211,6 +216,7 @@ class TestReportCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={'是'}
                                         unCheckedChildren={'否'}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -228,6 +234,7 @@ class TestReportCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={'是'}
                                         unCheckedChildren={'否'}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -245,6 +252,7 @@ class TestReportCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={'是'}
                                         unCheckedChildren={'否'}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -262,6 +270,7 @@ class TestReportCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={'是'}
                                         unCheckedChildren={'否'}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -279,6 +288,7 @@ class TestReportCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={'是'}
                                         unCheckedChildren={'否'}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -296,6 +306,7 @@ class TestReportCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={'是'}
                                         unCheckedChildren={'否'}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -316,6 +327,7 @@ class TestReportCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={'是'}
                                         unCheckedChildren={'否'}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -333,6 +345,7 @@ class TestReportCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={'是'}
                                         unCheckedChildren={'否'}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -350,6 +363,7 @@ class TestReportCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={'是'}
                                         unCheckedChildren={'否'}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -367,6 +381,7 @@ class TestReportCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={'是'}
                                         unCheckedChildren={'否'}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
