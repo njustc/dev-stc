@@ -1,4 +1,4 @@
-#Mon Jul 16 14:38:01 CST 2018
+#Wed Jul 18 13:41:04 CST 2018
 base.0=/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
 renamed.0=classes.dex
 file.0=/Users/weiyuyang/GitHub/20180712/dev-stc/client/framework-androidclient/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex
