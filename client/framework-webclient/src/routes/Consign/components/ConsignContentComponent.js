@@ -367,7 +367,7 @@ class ConsignContentComponent extends Component  {
                         <TabPane tab="单位信息" key="1">
                             <FormItem {...formItemLayout} label={"委托单位(中文)"}>
                                 {getFieldDecorator('consignUnitC', {
-                                    rules: [{ required: true, message: '请正确输入委托单位(中文)！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
+                                    rules: [{ required: true, message: '请正确输入委托单位(中文)！' ,pattern:"^[\u4E00-\u9FA50-9]+$"}],
                                     initialValue: this.props.values.consignUnitC,
                                 })(
                                     <Input disabled={this.props.disable}/>
@@ -376,7 +376,7 @@ class ConsignContentComponent extends Component  {
 
                             <FormItem {...formItemLayout} label={"委托单位(英文)"}>
                                 {getFieldDecorator('consignUnitE', {
-                                    rules: [{ required: true, message: '请正确输入委托单位(英文)！' ,pattern:"^[A-Za-z]+$"}],
+                                    rules: [{ required: true, message: '请正确输入委托单位(英文)！' ,pattern:"^[a-zA-Z0-9]+$"}],
                                     initialValue: this.props.values.consignUnitE,
                                 })(
                                     <Input disabled={this.props.disable}/>
@@ -385,7 +385,7 @@ class ConsignContentComponent extends Component  {
 
                             <FormItem {...formItemLayout} label={"开发单位"}>
                                 {getFieldDecorator('developUnit', {
-                                    rules: [{ required: true, message: '请正确输入开发单位！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$" }],
+                                    rules: [{ required: true, message: '请正确输入开发单位！',pattern:"^[\u4E00-\u9FA5A-Za-z0-9]+$" }],
                                     initialValue: this.props.values.developUnit,
                                 })(
                                     <Input disabled={this.props.disable}/>

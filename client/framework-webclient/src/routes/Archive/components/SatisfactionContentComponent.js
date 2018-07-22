@@ -119,7 +119,7 @@ class SatisfactionContentComponent extends Component {
                         <Col span={10}>
                             <FormItem {...formItemLayout} label={"联系电话"}>
                                 {getFieldDecorator('contactNumber', {
-                                    rules: [{ required: true, message: '请正确输入联系电话！',pattern:"^[0-9-()\+]*$"}],
+                                    rules: [{ required: true, message: '请正确输入联系电话！',pattern:"^[0-9/-()\+]*$"}],
                                     initialValue: this.props.values.contactNumber,
                                 })(
                                     <Input disabled={this.props.disableC}/>
@@ -134,7 +134,7 @@ class SatisfactionContentComponent extends Component {
                         <Col span={10}>
                             <FormItem{...formItemLayout} label={"Email"}>
                                 {getFieldDecorator('Email', {
-                                    rules: [{ required: true, message: '请正确输入Email！'}],
+                                    rules: [{ required: true, message: '请正确输入Email！', pattern:"^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+\.){1,63}[a-z0-9]+$"}],
                                     initialValue: this.props.values.Email,
                                 })(
                                     <Input disabled={this.props.disableC}/>
@@ -144,7 +144,7 @@ class SatisfactionContentComponent extends Component {
                         <Col span={10}>
                             <FormItem {...formItemLayout} label={"手机"}>
                                 {getFieldDecorator('mobilePhone', {
-                                    rules: [{ required: true, message: '请正确输入手机号！',pattern:"^[0-9-()\+]*$"}],
+                                    rules: [{ required: true, message: '请正确输入手机号！',pattern:"^[0-9/-()\+]*$"}],
                                     initialValue: this.props.values.mobilePhone,
                                 })(
                                     <Input disabled={this.props.disableC}/>

@@ -148,13 +148,13 @@ class ContractContentComponent extends Component {
                                 rules: [{ required: true, message: '请输入项目名称！' }],
                                 initialValue: this.props.values.projectName,
                             })(
-                                <Input size="large" disabled={this.props.disable} placeholder={"（软件测试）"}/>
+                                <Input size="large" disabled={this.props.disable}/>
                             )}
                         </FormItem>
 
                         <FormItem {...formItemLayout} label="委托方（甲方）">
                             {getFieldDecorator('consignA', {
-                                rules: [{ required: true, message: '请输入委托方（甲方）！',pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$" }],
+                                rules: [{ required: true, message: '请输入委托方（甲方）！'}],
                                 initialValue: this.props.values.consignA,
                             })(
                                 <Input size="large" disabled={this.props.disable}/>
@@ -163,7 +163,7 @@ class ContractContentComponent extends Component {
 
                         <FormItem {...formItemLayout} label="受托方（乙方）">
                             {getFieldDecorator('consignB', {
-                                rules: [{ required: true, message: '请输入受托方（乙方）！',pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$" }],
+                                rules: [{ required: true, message: '请输入受托方（乙方）！'}],
                                 initialValue: this.props.values.consignB,
                             })(
                                 <Input size="large" disabled={this.props.disable}/>
@@ -251,7 +251,7 @@ class ContractContentComponent extends Component {
                                             rules: [{ required: true, message: '请输入项目名称！' }],
                                             initialValue: this.props.values.ProjectName,
                                         })(
-                                            <Input  style={InputStyle} disabled={this.props.disable} placeholder={"（软件测试）"}/>
+                                            <Input  style={InputStyle} disabled={this.props.disable}/>
                                         )}(下称受测软件)的质量特性
                                         {getFieldDecorator('qualityChar', {
                                             rules: [{ required: true, message: '请输入项目名称！' }],
@@ -431,7 +431,7 @@ class ContractContentComponent extends Component {
 
                         <FormItem {...formItemLayout2} label={"联系人"}>
                             {getFieldDecorator('aContact', {
-                                rules: [{ required: true, message: '请输入联系人！' ,pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$"}],
+                                rules: [{ required: true, message: '请输入联系人！'}],
                                 initialValue: this.props.values.aContact,
                             })(
                                 <Input disabled={this.props.disable}/>
@@ -467,7 +467,7 @@ class ContractContentComponent extends Component {
 
                         <FormItem {...formItemLayout2} label={"开户银行"}>
                             {getFieldDecorator('aAccountBank', {
-                                rules: [{ required: true, message: '请输入开户银行！',pattern:"^[a-zA-Z\u4E00-\u9FA5]+$" }],
+                                rules: [{ required: true, message: '请输入开户银行！'}],
                                 initialValue: this.props.values.aAccountBank,
                             })(
                                 <Input disabled={this.props.disable}/>
