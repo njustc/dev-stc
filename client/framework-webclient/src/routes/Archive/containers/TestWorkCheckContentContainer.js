@@ -30,7 +30,7 @@ const mapStateToProps = (state, ownProps) => {
         projectCode: projectCode,
         testWorkCheckData: content?content:ownProps,
         values:  body ? JSON.parse(body) : {},
-        disable: false,
+        disable: !isQuality,
         buttonsEnable: buttonsEnable(isQuality),
     }
 };
