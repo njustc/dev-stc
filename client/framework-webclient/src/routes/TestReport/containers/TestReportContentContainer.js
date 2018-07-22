@@ -36,7 +36,7 @@ const mapStateToProps = (state, ownProps) => {
         testReportData: content?content:ownProps,
         projectData: state.Project.listMap[ownProps.id],
         values:  body ? JSON.parse(body) : {},
-        disable: !(isTesting&&testPlanState==='TobeWrite'),
+        disable: !(isTesting&&testPlanState==='TobeWrite') ,
         buttonsEnable: buttonsEnable(isCustomer,isMarketing,isTesting,isManager,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible),
     }
 };
@@ -63,7 +63,7 @@ const buttonsEnable = (isCustomer,isMarketing,isTesting,isManager,isQuality,isSu
     enable: isTesting&&isSubmitVisible,
 },{
     content: '通过',
-    enable: isManager&&isReviewViszible,
+    enable: isManager&&isReviewVisible,
 },{
     content: '否决',
     enable: isManager&&isReviewVisible,
