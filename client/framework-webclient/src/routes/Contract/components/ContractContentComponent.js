@@ -406,10 +406,10 @@ class ContractContentComponent extends Component {
 
                         <FormItem {...formItemLayout2} label={"单位全称"}>
                             {getFieldDecorator('aUnitName', {
-                                rules: [{ required: true, message: '请输入单位全称！' }],
-                                initialValue: this.props.values.aUnitName,
+                                rules: [],
+                                initialValue: this.props.unitCompany,
                             })(
-                                <Input disabled={this.props.disable}/>
+                                <Input disabled={true}/>
                             )}
                         </FormItem>
 

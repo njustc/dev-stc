@@ -248,15 +248,6 @@ class TestReportContentComponent extends Component {
                             )}
                         </FormItem>
 
-                        <FormItem {...formItemLayout} label={"版本/型号"}>
-                            {getFieldDecorator('versionModel', {
-                                rules: [{ required: false, message: '请正确输入版本/型号！',pattern:"^[a-zA-Z0-9/.]+$" }],
-                                initialValue: this.props.values.versionModel
-                            })(
-                                <Input disabled={this.props.disable}/>
-                            )}
-                        </FormItem>
-
 						 <FormItem {...formItemLayout} label={"来样日期"}>
                             {getFieldDecorator('receiveTime', {
                                 rules: [{ required: false, message: '请正确输入来样日期！',pattern:"^[a-zA-Z0-9/.]+$" }],
