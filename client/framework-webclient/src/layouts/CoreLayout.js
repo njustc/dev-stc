@@ -37,7 +37,8 @@ class CoreLayout extends Component
         activeKey: PropTypes.string,
         addTab: PropTypes.func.isRequired,
         removeTab: PropTypes.func.isRequired,
-        switchTab: PropTypes.func.isRequired
+        switchTab: PropTypes.func.isRequired,
+        resetTab: PropTypes.func.isRequired,
     };
     /**
      * 点击登录控制按钮的时候触发
@@ -49,6 +50,7 @@ class CoreLayout extends Component
         if(e.key==="logout"){
             sessionStorage.removeItem('sysUser');
             sessionStorage.removeItem('authData');
+            this.props.resetTab();
             message.info('退出成功，正在跳转');
             this.props.router.replace('/login');
         }

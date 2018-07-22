@@ -209,7 +209,7 @@ class ContractContentComponent extends Component {
                                             rules: [],
                                             initialValue: "南京大学测试中心",
                                         })(
-                                            <Input style={InputStyle} disabled={this.props.disable}/>
+                                            <Input style={InputStyle} disabled={true}/>
                                         )}（以下简称“乙方”）在平等自愿的基础上，依据《中华人民共和国合同法》有关规定就项目的执行，经友好协商后订立。
                                     </InputGroup>
                                 </FormItem>

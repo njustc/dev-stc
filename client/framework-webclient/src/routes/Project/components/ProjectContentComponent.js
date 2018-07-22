@@ -240,7 +240,11 @@ class ProjectContentComponent extends Component {
      * 目前系统中满意度调查表没有状态
      */
     getSatisfactionState(){
-        /*TODO*/
+        if(this.props.projectData.testReport.state===STATE.SATISFACTION){
+            return (
+                <Timeline.Item color="blue">满意度调查表可填写</Timeline.Item>
+            );
+        }
     }
 
     /**

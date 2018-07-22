@@ -5,6 +5,7 @@ const SET_STATE = "Layout/SET_STATE";
 const SET_ACTIVE_KEY = "Layout/SET_ACTIVE_KEY";
 const ADD_TAB = "Layout/ADD_TAB";
 const REMOVE_TAB = 'Layout/REMOVE_TAB';
+const RELOG = "Layout/RELOG";
 /**
  * @module CoreLayout/LayoutState
  */
@@ -79,6 +80,10 @@ export const LayoutReducer = (state = initialState, action) =>{
                 panes: panes,
                 activeKey: activeKey,
             };
+        case RELOG:
+            return {
+                ...initialState,
+            };
         default:
             return state;
     }
@@ -122,5 +127,12 @@ export const removeTabAction = (key) => {
     return {
         type: REMOVE_TAB,
         payload: key,
+    }
+};
+
+export const relogAction = () => {
+    return {
+        type: RELOG,
+        payload: undefined,
     }
 };

@@ -4,6 +4,7 @@ import {setActiveKey, addTabAction, removeTabAction} from "MODULES/ducks/Layout"
 import React from "react";
 import {getProjectList} from "../services/ProjectService";
 import {getConsignList} from "../services/ConsignService";
+import {relogAction} from "../modules/ducks/Layout";
 /**
  * @module CoreLayout/CoreLayoutContainer
  */
@@ -39,6 +40,7 @@ const mapDispatchToProps = (dispatch) => {
         switchTab: (activeKey) => dispatch(setActiveKey(activeKey)),
         getProjectList: () => getProjectList(dispatch),
         getConsignList: () => getConsignList(dispatch),
+        resetTab: () => dispatch(relogAction()),
     }
 };
 
