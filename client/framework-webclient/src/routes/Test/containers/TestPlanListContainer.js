@@ -6,7 +6,6 @@ import {deleteTestPlan,getTestPlanList, newTestPlan} from "../../../services/Tes
 import {setTestPlanFilter} from "../../../modules/ducks/TestPlan";
 import TestPlanListComponent from "../components/TestPlanListComponent";
 import {ProjectContentView} from "../../Project";
-//import {deleteContract, newContract} from "../../../services/ContractService";
 
 /**
  * @module TestPlan/TestPlanListContainer
@@ -18,7 +17,6 @@ import {ProjectContentView} from "../../Project";
  */
 const mapStateToProps = (state) => {
     return {
-        // dataSource: Object.values(state.TestPlan.listMap).filter(state.TestPlan.listFilter),
         dataSource: Object.values(state.Project.listMap).filter(project => project.testPlan).filter(state.TestPlan.listFilter),
     }
 };

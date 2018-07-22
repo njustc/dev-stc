@@ -71,12 +71,6 @@ public class TestReportCheckServiceTest {
     private TestReportCheckService testReportCheckService;
 
     @Autowired
-    private ConsignService consignService;
-
-    @Autowired
-    private ProjectService projectService;
-
-    @Autowired
     private UserRepository userRepository;
 
     @Before
@@ -93,17 +87,6 @@ public class TestReportCheckServiceTest {
             JSON result = testReportCheckService.queryTestReportChecks(tester);
 
             Assert.assertNotNull("工作人员 - 工程查询失败",result);
-
-            System.out.println(result);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("开始测试用户获取测试报告检查");
-        try {
-            JSON result = testReportCheckService.queryTestReportChecks(customer1);
-
-            Assert.assertNotNull("用户 - 工程查询失败",result);
 
             System.out.println(result);
         }
@@ -135,7 +118,13 @@ public class TestReportCheckServiceTest {
             Assert.assertNotNull("通过ID查询测试报告检查失败",jsonTestReportCheck);
             System.out.println(jsonTestReportCheck);
 
-
+            //test_queryTestReportCheckByProject
+            System.out.println("=====通过工程查询该测试报告检查=====");
+            JSON jsonTestReportCheck_pro = testReportCheckService.queryTestReportCheckByProject(pro_id);
+            Assert.assertNotNull("通过工程查询测试报告检查失败",jsonTestReportCheck_pro);
+            System.out.println(jsonTestReportCheck_pro);
+            
+            
             //test_editTestReportCheck
             System.out.println("=====编辑该测试报告检查内容=====");
             String edit_object = "body";

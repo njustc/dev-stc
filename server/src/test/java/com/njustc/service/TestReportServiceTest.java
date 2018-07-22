@@ -7,6 +7,7 @@ import com.njustc.domain.User;
 import com.njustc.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,12 +71,6 @@ public class TestReportServiceTest {
     private TestReportService testReportService;
 
     @Autowired
-    private ConsignService consignService;
-
-    @Autowired
-    private ProjectService projectService;
-
-    @Autowired
     private UserRepository userRepository;
 
 
@@ -86,24 +81,13 @@ public class TestReportServiceTest {
         customer2 = userRepository.findByUsername(("customer2"));
     }
 
-    @Test
+    @Ignore
     public void test_queryTestReports(){
         System.out.println("开始测试工作人员获取测试报告");
         try {
             JSON result = testReportService.queryTestReport(tester);
 
             Assert.assertNotNull("工作人员 - 工程查询失败",result);
-
-            System.out.println(result);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("开始测试用户获取测试报告");
-        try {
-            JSON result = testReportService.queryTestReport(customer1);
-
-            Assert.assertNotNull("用户 - 工程查询失败",result);
 
             System.out.println(result);
         }
@@ -136,7 +120,14 @@ public class TestReportServiceTest {
             Assert.assertNotNull("通过ID查询测试报告检失败",jsonTestReport);
             System.out.println(jsonTestReport);
 
-
+            //test_queryTestReportByProject
+            System.out.println("=====通过工程查询该测试报告=====");
+            JSON jsonTestReport_pro = testReportService.queryTestReportByProject(pro_id);
+            Assert.assertNotNull("通过工程查询测试报告失败",jsonTestReport_pro);
+            System.out.println(jsonTestReport_pro);
+            
+            
+            
             //test_editTestReport
             System.out.println("=====编辑该测试报告内容=====");
             String edit_object = "body";

@@ -160,9 +160,9 @@ class TestPlanListComponent extends Component {
             return (
                 <div>
                     <a href="javascript:void(0);" onClick={this.viewContent({key:project.testPlan.id,id:project.id,})}>查看详情</a>
-                    <Divider type="vertical"/>
-                    <a href="javascript:void(0);"
-                       onClick={this.showDeleteConfirm(project.testPlan.id)}>删除测试方案</a>
+                    {/*<Divider type="vertical"/>*/}
+                    {/*<a href="javascript:void(0);"*/}
+                       {/*onClick={this.showDeleteConfirm(project.testPlan.id)}>取消测试方案</a>*/}
                 </div>
             )
         }
@@ -244,7 +244,7 @@ class TestPlanListComponent extends Component {
                         <Search placeholder={this.setPlaceholder()} onSearch={this.onSearch} enterButton={true}/>
                     </Col>
                     <Col span={1}></Col>
-                    {/*this.props.enableNew*/1 ?
+                    {this.props.enableNew ?
                         <Col span={2}>
                             <Button type="primary" onClick={this.props.newTestPlan}><Icon type="plus-circle-o" />新建测试方案</Button>
                         </Col>

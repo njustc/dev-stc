@@ -73,8 +73,6 @@ public class TestBugServiceTest {
     @Autowired
     private TestBugService testBugService;
 
-    @Autowired
-    private ConsignService consignService;
 
     @Autowired
     private ProjectService projectService;
@@ -102,17 +100,6 @@ public class TestBugServiceTest {
         catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("开始测试用户获取工程");
-        try {
-            JSON result = testBugService.queryTestBugs(customer1);
-
-            Assert.assertNotNull("用户 - 工程查询失败",result);
-
-            System.out.println(result);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
     }
     @Test
     public void test_SE(){
@@ -124,10 +111,9 @@ public class TestBugServiceTest {
         try {
 
             //test_addTestBug
-            JSONObject consign = new JSONObject();
-            JSONObject jsonConsign = consignService.addConsign(consign,null,tester);
-            JSONObject project = new JSONObject();
-            String consign_id = jsonConsign.getString("id");
+
+            String consign_id = "consign1";
+            JSONObject project = projectService.queryProjectById("p1");
             JSONObject jsonProject = projectService.addProject(consign_id,project,null,tester);
             JSONObject jsonResult = testBugService.addTestBug(jsonProject, null, tester);
             String id = jsonResult.getString("id");

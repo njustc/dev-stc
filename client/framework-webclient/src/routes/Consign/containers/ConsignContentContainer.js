@@ -12,7 +12,7 @@ import {newTestWorkCheck} from "../../../services/TestWorkCheckService";
 import {globalOperation, STATUS} from "../../../services/common";
 import {newTestRecord} from "../../../services/TestRecordService";
 import {newTestCase} from "../../../services/TestCaseService";
-import {newSatisfaction} from "SERVICES/ArchiveService";
+import {newSatisfaction} from "../../../services/ArchiveService";
 /**
  * @module Consign/ConsignContentContainer
  */
@@ -23,7 +23,6 @@ import {newSatisfaction} from "SERVICES/ArchiveService";
  * @returns {{consignData: *, values: {}, disable: boolean, buttonsEnable: *}}
  */
 const mapStateToProps = (state, ownProps) => {
-    // debugger;
     const content = state.Consign.listMap[ownProps.id];
     const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const consignation = content?state.Consign.listMap[ownProps.id].consignation:undefined;
@@ -35,7 +34,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         consignData: content?state.Consign.listMap[ownProps.id]:ownProps,
         values: consignation ? JSON.parse(consignation) : {},
-        disable: consignState!=="TobeSubmit",
+        disable: !(isCustomer&&consignState==="TobeSubmit"),
         buttonsEnable: buttonsEnable(isCustomer,isMarketing,isSubmitVisible,isReviewVisible),
     }
 };

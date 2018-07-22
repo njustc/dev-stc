@@ -32,7 +32,7 @@ class TestCaseContentComponent extends Component {
      * @type {{testCaseData: *, values: * , form: *}}
      */
     static propTypes = {
-        testCaseData: PropTypes.object.isRequired,
+        testCaseData: PropTypes.object,
         values: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };
@@ -45,6 +45,15 @@ class TestCaseContentComponent extends Component {
         //     // console.log(this.curID);
         // this.props.getValues(this.props.projectData.id);
         //     // console.log(this.values);
+        this.update();
+        this.timer = setInterval(() => this.update(), 1000);
+    };
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
+    }
+
+    update = () => {
         this.props.getProjectList();
         const {projectData} = this.props;
         const dataSource = projectData.testCase.map(item => {
@@ -53,7 +62,7 @@ class TestCaseContentComponent extends Component {
         });
         const count = projectData.testCase.length;
         this.setState({dataSource, count});
-    };
+    }
 
     /**
      * 可扩展表格的render方法

@@ -20,27 +20,30 @@ const mapStateToProps = (state, ownProps) => {
     const contractState = content?content.state:"error";
     const isCustomer = (sysUser.username==="customer1"||sysUser.username==="customer2");
     const isMarketing = (sysUser.username==="marketing");
+    const isManager = (sysUser.username==="marketingManager");
     const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Submit')!==-1;
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
     const isConfirmVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ConfirmPass')!==-1;
-
+    console.log(contractBody);
     return {
         contractData: content?content:ownProps,
         values:  contractBody ? JSON.parse(contractBody) : {},
-        disable: contractState!=="TobeSubmit",
-        buttonsEnable: buttonsEnable(isCustomer,isMarketing,isSubmitVisible,isReviewVisible,isConfirmVisible),
+        disable: !(isMarketing&&contractState==="TobeSubmit"),
+        disableM: !(isCustomer&&isConfirmVisible),
+        buttonsEnable: buttonsEnable(isCustomer,isMarketing,isManager,isSubmitVisible,isReviewVisible,isConfirmVisible),
     }
 };
 /**
  * 按钮显示控制，根据当前用户和状态判断按钮是否可用
  * @param isCustomer {boolean} 是否是客户
  * @param isMarketing {boolean} 是否是市场部成员
+ * @param isManager {boolean} 是否是市场部主任
  * @param isSubmitVisible {boolean} 是否可以提交
  * @param isReviewVisible {boolean} 是否可以评审
  * @param isConfirmVisible {boolean} 是否可以确认
  * @returns {Array}
  */
-const buttonsEnable = (isCustomer,isMarketing,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
+const buttonsEnable = (isCustomer,isMarketing,isManager,isSubmitVisible,isReviewVisible,isConfirmVisible) => [{
     content: '保存',
     enable: isMarketing&&isSubmitVisible,
 },{
@@ -48,10 +51,10 @@ const buttonsEnable = (isCustomer,isMarketing,isSubmitVisible,isReviewVisible,is
     enable: isMarketing&&isSubmitVisible,
 },{
     content: '通过',
-    enable: isMarketing&&isReviewVisible,
+    enable: isManager&&isReviewVisible,
 },{
     content: '否决',
-    enable: isMarketing&&isReviewVisible,
+    enable: isManager&&isReviewVisible,
 },{
     content: '确认',
     enable: isCustomer&&isConfirmVisible,
@@ -74,7 +77,6 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
             contractBody: contract
         };
         updateContract(dispatch,valueData,(status)=>{
-            console.log(status);
             if(status===STATUS.SUCCESS) message.success('保存成功');
             else message.error('保存失败');
         });
@@ -87,16 +89,13 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
             contractBody: contract
         };
         updateContract(dispatch,valueData,(status)=>{
-            console.log(status);
             if(status===STATUS.SUCCESS){
                 const putData = {
                     "object": "contract",
                     "operation": "Submit"
                 };
                 const {processInstanceID,id} = contractData;
-                console.log(putData);
                 putContractState(dispatch,processInstanceID,putData,id,(status)=>{
-                    console.log(status);
                     if(status===STATUS.SUCCESS) message.success('提交成功');
                     else message.error('提交失败');
                 });
@@ -107,58 +106,90 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
 },{
     content: '通过',
     onClick: (contractData,contract) =>{
-        const putData = {
-            "object": "contract",
-            "operation": "ReviewPass"
+        const valueData = {
+            id: contractData.id,
+            contractBody: contract
         };
-        const {processInstanceID,id} = contractData;
-        putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
-
-        console.log(status===STATUS.SUCCESS);
-        if(status===STATUS.SUCCESS) message.success('通过成功');
-        else message.error('通过失败');
+        updateContract(dispatch,valueData,(status)=>{
+            if(status===STATUS.SUCCESS){
+                const putData = {
+                    "object": "contract",
+                    "operation": "ReviewPass"
+                };
+                const {processInstanceID,id} = contractData;
+                putContractState(dispatch,processInstanceID,putData,id,(status)=>{
+                    console.log(status);
+                    if(status===STATUS.SUCCESS) message.success('通过成功');
+                    else message.error('通过失败');
+                });
+            }
+            else message.error('更新失败');
         });
     }
 },{
     content: '否决',
     onClick: (contractData,contract) =>{
-        const putData = {
-            "object": "contract",
-            "operation": "ReviewReject"
+        const valueData = {
+            id: contractData.id,
+            contractBody: contract
         };
-        const {processInstanceID,id} = contractData;
-        putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
-
-        if(status===STATUS.SUCCESS) message.success('已否决');
-        else message.error('否决失败');
+        updateContract(dispatch,valueData,(status)=>{
+            if(status===STATUS.SUCCESS){
+                const putData = {
+                    "object": "contract",
+                    "operation": "ReviewReject"
+                };
+                const {processInstanceID,id} = contractData;
+                putContractState(dispatch,processInstanceID,putData,id,(status)=>{
+                    if(status===STATUS.SUCCESS) message.success('否决成功');
+                    else message.error('否决失败');
+                });
+            }
+            else message.error('更新失败');
         });
     }
 },{
     content: '确认',
     onClick: (contractData,contract) =>{
-        const putData = {
-            "object": "contract",
-            "operation": "ConfirmPass"
+        const valueData = {
+            id: contractData.id,
+            contractBody: contract
         };
-        const {processInstanceID,id} = contractData;
-        putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
-
-        if(status===STATUS.SUCCESS) message.success('确认成功');
-        else message.error('确认失败');
+        updateContract(dispatch,valueData,(status)=>{
+            if(status===STATUS.SUCCESS){
+                const putData = {
+                    "object": "contract",
+                    "operation": "ConfirmPass"
+                };
+                const {processInstanceID,id} = contractData;
+                putContractState(dispatch,processInstanceID,putData,id,(status)=>{
+                    if(status===STATUS.SUCCESS) message.success('确认成功');
+                    else message.error('确认失败');
+                });
+            }
+            else message.error('更新失败');
         });
     }
 },{
     content: '拒绝',
     onClick: (contractData,contract) =>{
-        const putData = {
-            "object": "contract",
-            "operation": "ConfirmReject"
+        const valueData = {
+            id: contractData.id,
+            contractBody: contract
         };
-        const {processInstanceID,id} = contractData;
-        putContractState(dispatch,processInstanceID,putData,id,(status)=>{console.log(status);
-
-        if(status===STATUS.SUCCESS) message.success('已拒绝');
-        else message.error('拒绝失败');
+        updateContract(dispatch,valueData,(status)=>{
+            if(status===STATUS.SUCCESS){
+                const putData = {
+                    "object": "contract",
+                    "operation": "ConfirmReject"
+                };
+                const {processInstanceID,id} = contractData;
+                putContractState(dispatch,processInstanceID,putData,id,(status)=>{
+                    if(status===STATUS.SUCCESS) message.success('拒绝成功');
+                    else message.error('拒绝失败');
+                });
+            }
+            else message.error('更新失败');
         });
     }
 }];

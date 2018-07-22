@@ -116,14 +116,11 @@ class TestReportContentComponent extends Component {
      */
     render() {
         const { getFieldDecorator } = this.props.form;
-        //const { dataSource } = this.state;
-        //const columns = this.columns;
         const formItemLayout =  {
             labelCol: { span: 4 },
             wrapperCol: { span: 19 },
         };
-
-        const dataSource1 = JSON.parse(this.props.projectData.testPlan.body).hardware;
+        const dataSource1 = this.props.projectData.testPlan.body?JSON.parse(this.props.projectData.testPlan.body).hardware:[];
         const columns1 = [{
             title: '序号',
             dataIndex: 'number',
@@ -146,7 +143,7 @@ class TestReportContentComponent extends Component {
             key: 'amount',
         }];
 
-        const dataSource2 = JSON.parse(this.props.projectData.testPlan.body).software;
+        const dataSource2 = this.props.projectData.testPlan.body?JSON.parse(this.props.projectData.testPlan.body).software:[];
         const columns2 = [{
             title: '序号',
             dataIndex: 'softwarenumber',
@@ -360,91 +357,91 @@ class TestReportContentComponent extends Component {
 
 
 
-                        <FormItem {...formItemLayout} label={"测试单位联系方式"}>
-                            {getFieldDecorator('testUnitContactMode', {
-                                rules: [{ required: false, message: '请输入！' }],
-                                initialValue: this.props.values.testUnitContactMode
-                            })(
-                                <TextArea disabled={this.props.disable}
-                                          rows={"4"}  placeholder="请输入软件用户对象描述"/>
-                            )}
-                        </FormItem>
+                        {/*<FormItem {...formItemLayout} label={"测试单位联系方式"}>*/}
+                            {/*{getFieldDecorator('testUnitContactMode', {*/}
+                                {/*rules: [{ required: false, message: '请输入！' }],*/}
+                                {/*initialValue: this.props.values.testUnitContactMode*/}
+                            {/*})(*/}
+                                {/*<TextArea disabled={this.props.disable}*/}
+                                          {/*rows={"4"}  placeholder="请输入软件用户对象描述"/>*/}
+                            {/*)}*/}
+                        {/*</FormItem>*/}
 
 
-                        <FormItem
-                            label="电话"
-                            {...formItemLayout}
-                        >
-                            {getFieldDecorator('consignUnittelephone', {
-                                rules: [{ required: false, message: '请输入委托单位信息！',pattern:"^[a-zA-Z0-9/.]+$" }],
-                                initialValue: this.props.values.consignUnittelephone
-                            })(
-                                <Input placeholder="请输入电话号码" />
-                            )}
-                        </FormItem>
+                        {/*<FormItem*/}
+                            {/*label="电话"*/}
+                            {/*{...formItemLayout}*/}
+                        {/*>*/}
+                            {/*{getFieldDecorator('consignUnittelephone', {*/}
+                                {/*rules: [{ required: false, message: '请输入委托单位信息！',pattern:"^[a-zA-Z0-9/.]+$" }],*/}
+                                {/*initialValue: this.props.values.consignUnittelephone*/}
+                            {/*})(*/}
+                                {/*<Input  disabled={this.props.disable} placeholder="请输入电话号码" />*/}
+                            {/*)}*/}
+                        {/*</FormItem>*/}
 
-                        <FormItem
-                            label="传真"
-                            {...formItemLayout}
-                        >
-                            {getFieldDecorator('consignUnitFax', {
-                                rules: [{ required: false, message: '请输入传真号！',pattern:"^[a-zA-Z0-9/.]+$" }],
-                                initialValue: this.props.values.consignUnitFax
-                            })(
-                                <Input placeholder="请输入传真号" />
-                            )}
+                        {/*<FormItem*/}
+                            {/*label="传真"*/}
+                            {/*{...formItemLayout}*/}
+                        {/*>*/}
+                            {/*{getFieldDecorator('consignUnitFax', {*/}
+                                {/*rules: [{ required: false, message: '请输入传真号！',pattern:"^[a-zA-Z0-9/.]+$" }],*/}
+                                {/*initialValue: this.props.values.consignUnitFax*/}
+                            {/*})(*/}
+                                {/*<Input  disabled={this.props.disable} placeholder="请输入传真号" />*/}
+                            {/*)}*/}
 
-                        </FormItem>
+                        {/*</FormItem>*/}
 
-                        <FormItem
-                            label="地址"
-                            {...formItemLayout}
-                        >
-                            {getFieldDecorator('consignUnitaddress', {
-                                rules: [{ required: false, message: '请输入地址！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
-                                initialValue: this.props.values.consignUnitaddress
-                            })(
-                                <Input placeholder="请输入地址" />
-                            )}
-                        </FormItem>
+                        {/*<FormItem*/}
+                            {/*label="地址"*/}
+                            {/*{...formItemLayout}*/}
+                        {/*>*/}
+                            {/*{getFieldDecorator('consignUnitaddress', {*/}
+                                {/*rules: [{ required: false, message: '请输入地址！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],*/}
+                                {/*initialValue: this.props.values.consignUnitaddress*/}
+                            {/*})(*/}
+                                {/*<Input  disabled={this.props.disable} placeholder="请输入地址" />*/}
+                            {/*)}*/}
+                        {/*</FormItem>*/}
 
-                        <FormItem
-                            label="邮编"
-                            {...formItemLayout}
-                        >
-                            {getFieldDecorator('consignUnitEmailnumber', {
-                                rules: [{ required: false, message: '请输入邮编！',pattern:"^[a-zA-Z0-9/.]+$" }],
-                                initialValue: this.props.values.consignUnitEmailnumber
-                            })(
-                                <Input placeholder="请输入邮编" />
-                            )}
-                        </FormItem>
+                        {/*<FormItem*/}
+                            {/*label="邮编"*/}
+                            {/*{...formItemLayout}*/}
+                        {/*>*/}
+                            {/*{getFieldDecorator('consignUnitEmailnumber', {*/}
+                                {/*rules: [{ required: false, message: '请输入邮编！',pattern:"^[a-zA-Z0-9/.]+$" }],*/}
+                                {/*initialValue: this.props.values.consignUnitEmailnumber*/}
+                            {/*})(*/}
+                                {/*<Input disabled={this.props.disable} placeholder="请输入邮编" />*/}
+                            {/*)}*/}
+                        {/*</FormItem>*/}
 
-                        <FormItem
-                            label="联系人"
-                            {...formItemLayout}
-                        >
-                            {getFieldDecorator('consignUnitpeople', {
-                                rules: [{ required: false, message: '请输入联系人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
-                                initialValue: this.props.values.consignUnitpeople
-                            })(
-                                <Input placeholder="请输入联系人" />
-                            )}
-                        </FormItem>
+                        {/*<FormItem*/}
+                            {/*label="联系人"*/}
+                            {/*{...formItemLayout}*/}
+                        {/*>*/}
+                            {/*{getFieldDecorator('consignUnitpeople', {*/}
+                                {/*rules: [{ required: false, message: '请输入联系人！',pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],*/}
+                                {/*initialValue: this.props.values.consignUnitpeople*/}
+                            {/*})(*/}
+                                {/*<Input disabled={this.props.disable} placeholder="请输入联系人" />*/}
+                            {/*)}*/}
+                        {/*</FormItem>*/}
 
 
 
-                        <FormItem
-                            label="E-mail"
-                            {...formItemLayout}
-                        >
-                            {getFieldDecorator('consignUnitEmail', {
-                                rules: [{ required: false, message: '请输入E-mail！',pattern:"^[a-zA-Z0-9/.]+$" }],
-                                initialValue: this.props.values.consignUnitEmail
-                            })(
-                                <Input placeholder="请输入邮箱地址" />
-                            )}
-                        </FormItem>
+                        {/*<FormItem*/}
+                            {/*label="E-mail"*/}
+                            {/*{...formItemLayout}*/}
+                        {/*>*/}
+                            {/*{getFieldDecorator('consignUnitEmail', {*/}
+                                {/*rules: [{ required: false, message: '请输入E-mail！',pattern:"^[a-zA-Z0-9/.]+$" }],*/}
+                                {/*initialValue: this.props.values.consignUnitEmail*/}
+                            {/*})(*/}
+                                {/*<Input disabled={this.props.disable} placeholder="请输入邮箱地址" />*/}
+                            {/*)}*/}
+                        {/*</FormItem>*/}
 
                         </TabPane>
                         <TabPane tab="测试环境" key="2">
@@ -510,7 +507,6 @@ class TestReportContentComponent extends Component {
                             {/*</FormItem>*/}
 
                             {/*<Table dataSource={dataSource4} columns={columns4} />*/}
-
 
                         {/*</TabPane>*/}
                     </Tabs>

@@ -34,22 +34,13 @@ const num=[
 ]
 
 /**
-<<<<<<< HEAD
- * ContractContentComponent类，代表合同内容组件部分
-=======
  * ContractContentComponent类，即合同内容组件类，代表合同内容组件部分的所有项
->>>>>>> 853917bdc9794c04dd0d3e59a04dad7b0c502a75
  * @extends Component
  */
 class ContractContentComponent extends Component {
     /**
-<<<<<<< HEAD
-     * 构建一个合同内容
-     * @param props - 构造合同内容的时候传入的多个数据
-=======
      * 创建并初始化一个合同内容组件类
      * @param  props - 构造合同内容的时候传入的多个数据
->>>>>>> 853917bdc9794c04dd0d3e59a04dad7b0c502a75
      */
     constructor(props) {
         super(props);
@@ -77,6 +68,7 @@ class ContractContentComponent extends Component {
         contractData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
+        disableM: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
     };
@@ -615,10 +607,14 @@ class ContractContentComponent extends Component {
                         }
                     })}
                 </FormItem>
-                {true?<FormItem label='评审内容'><TextArea
-                    //    row={4}
-                /></FormItem>:<div></div>}
-                {/*<FormItem label='评审结论'><TextArea row={4}/></FormItem>*/}
+                <FormItem {...formItemLayout} label="评审内容">
+                    {getFieldDecorator('contractComment', {
+                        rules: [],
+                        initialValue: this.props.values.contractComment,
+                    })(
+                        <Input disabled={this.props.disableM}/>
+                    )}
+                </FormItem>
             </Form>
 
         );

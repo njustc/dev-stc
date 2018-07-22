@@ -24,6 +24,7 @@ const mapStateToProps = (state, ownProps) => {
     const isCustomer = (sysUser.username==="customer1"||sysUser.username==="customer2")
     const isMarketing = (sysUser.username==="marketing");
     const isTesting = (sysUser.username==="testing");
+    const isManager = (sysUser.username==="testingManager");
     const isQuality = (sysUser.username==="quality");
     const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Write')!==-1;
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
@@ -35,8 +36,8 @@ const mapStateToProps = (state, ownProps) => {
         testReportData: content?content:ownProps,
         projectData: state.Project.listMap[ownProps.id],
         values:  body ? JSON.parse(body) : {},
-        disable: testPlanState!=='TobeWrite',
-        buttonsEnable: buttonsEnable(isCustomer,isMarketing,isTesting,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible),
+        disable: !(isTesting&&testPlanState==='TobeWrite'),
+        buttonsEnable: buttonsEnable(isCustomer,isMarketing,isTesting,isManager,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible),
     }
 };
 
@@ -45,6 +46,7 @@ const mapStateToProps = (state, ownProps) => {
  * @param isCustomer {boolean} 是否为客户
  * @param isMarketing {boolean} 是否为市场部成员
  * @param isTesting {boolean} 是否为测试部成员
+ * @param isManager {boolean} 是否为测试部主任
  * @param isQuality {boolean} 是否为质量部成员
  * @param isSubmitVisible {boolean} 是否可以提交
  * @param isReviewVisible {boolean} 是否可以评审
@@ -53,7 +55,7 @@ const mapStateToProps = (state, ownProps) => {
  * @param isConfirmVisible {boolean} 是否可以确认
  * @returns {Array}
  */
-const buttonsEnable = (isCustomer,isMarketing,isTesting,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible) => [{
+const buttonsEnable = (isCustomer,isMarketing,isTesting,isManager,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible) => [{
     content: '保存',
     enable: isTesting&&isSubmitVisible,
 },{
@@ -61,10 +63,10 @@ const buttonsEnable = (isCustomer,isMarketing,isTesting,isQuality,isSubmitVisibl
     enable: isTesting&&isSubmitVisible,
 },{
     content: '通过',
-    enable: isTesting&&isReviewVisible,
+    enable: isManager&&isReviewViszible,
 },{
     content: '否决',
-    enable: isTesting&&isReviewVisible,
+    enable: isManager&&isReviewVisible,
 },{
     content: '批准',
     enable: isQuality&&isApproveVisible,
@@ -91,7 +93,6 @@ const buttonsEnable = (isCustomer,isMarketing,isTesting,isQuality,isSubmitVisibl
 const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*/
     content: '保存',
     onClick: (testReportData,testReport) =>{
-        console.log(testReport);
         const valueData = {
             id: testReportData.id,
             body: testReport
@@ -105,8 +106,6 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
 },{
     content: '提交',
     onClick: (testReportData,testReport) =>{
-        console.log(testReportData);
-        console.log(testReport);
         const valueData = {
             id: testReportData.id,
             body: testReport
@@ -130,7 +129,7 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
         });
     }
 },{
-    content: '评审',
+    content: '通过',
     onClick: (testReportData,testReport) =>{
         const putData = {
             "object": "testReport",
@@ -236,7 +235,6 @@ const buttons = (dispatch) => [{/*TODO:buttons的显示和禁用还存在问题*
  * @returns {{buttons: Array, getValues: (function(*=): void)}}
  */
 const mapDispatchToProps = (dispatch) => {
-    console.log("here");
     return {
         buttons: buttons(dispatch),
         getValues: (id) => getTestReport(dispatch,id)

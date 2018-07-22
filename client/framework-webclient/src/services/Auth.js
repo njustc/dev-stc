@@ -1,7 +1,7 @@
 import {baseAddress, STATUS} from "SERVICES/common";
 import {httpPost} from "UTILS/FetchUtil";
-import {setAuthData, setSiderData, setSysUser} from "../modules/ducks/System";
-import {marketingData, customerData, mockSiderData} from "./mockData";
+import {setAuthData, setFileData, setMenuData, setSiderData, setSysUser} from "../modules/ducks/System";
+import {marketingData, customerData, mockSiderData, mockMenuData, mockFileData} from "./mockData";
 
 /**
  * @module services/Auth
@@ -26,15 +26,19 @@ const setLogin = (dispatch, params, callback) => {
             };
             dispatch(setSysUser(sysUser));
             dispatch(setAuthData(roles[0]));
-            const siderData = getSiderData(roles[0]);
+            const isCustomer = (username==="customer1"||username==="customer2")
+            const isMarketing = (username==="marketing");
+            const isTesting = (username==="testing");
+            const isQuality = (username==="quality");
+            const siderData = mockSiderData(isCustomer,isMarketing,isTesting,isQuality);
+            const menuData = mockMenuData(isCustomer);
+            const fileData = mockFileData(isCustomer);
             dispatch(setSiderData(siderData));
+            dispatch(setMenuData(menuData));
+            dispatch(setFileData(fileData));
         }
         callback && callback(status);
     })
 };
-
-function getSiderData(functionGroup) {
-    return mockSiderData;
-}
 
 export {setLogin}

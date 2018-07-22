@@ -62,7 +62,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(FrameworkApplication.class)
-@Transactional
+//@Transactional
 public class TestFunctionServiceTest {
 
     private User tester;
@@ -93,22 +93,11 @@ public class TestFunctionServiceTest {
     
     @Test
     public void test_querytestFunction(){
-        System.out.println("开始测试工作人员获取测试样例");
+        System.out.println("开始测试工作人员获取测试功能");
         try {
             JSON result = testFunctionService.queryTestFunctions(tester);
 
-            Assert.assertNotNull("工作人员 - 测试样例查询失败",result);
-
-            System.out.println(result);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("开始测试用户获取测试样例");
-        try {
-            JSON result = testFunctionService.queryTestFunctions(customer1);
-
-            Assert.assertNotNull("用户 - 测试样例查询失败",result);
+            Assert.assertNotNull("工作人员 - 测试功能查询失败",result);
 
             System.out.println(result);
         }
@@ -137,6 +126,12 @@ public class TestFunctionServiceTest {
             Assert.assertNotNull("通过ID查询测试功能失败",jsonTestFunction);
             System.out.println("通过ID查询测试功能成功,测试功能信息为:"+ jsonTestFunction);
 
+            //test_queryTestFunctionByProject
+            System.out.println("=====通过工程查询该测试功能=====");
+            JSON jsonTestFunction_pro = testFunctionService.queryTestFUnctionByProject(pro_id);
+            Assert.assertNotNull("通过工程查询测试功能失败",jsonTestFunction_pro);
+            System.out.println(jsonTestFunction_pro);
+            
             //test_editTestFunction
             System.out.println("=====编辑该测试功能内容=====");
             String edit_object = "body";
