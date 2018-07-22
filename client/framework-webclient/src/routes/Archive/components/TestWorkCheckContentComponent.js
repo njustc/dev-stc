@@ -40,6 +40,9 @@ class TestWorkCheckContentComponent extends Component {
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
+        softWareName: PropTypes.string.isRequired,
+        unitCompany: PropTypes.string.isRequired,
+        projectCode: PropTypes.string.isRequired,
     };
 
     /**
@@ -107,28 +110,19 @@ class TestWorkCheckContentComponent extends Component {
 
                 <FormItem {...formItemLayout} label="软件名称">
                     {getFieldDecorator('softwareName', {
-                        rules: [{ required: true, message: '请输入软件名称！' }],
-                        initialValue: this.props.values.softwareName,
+                        rules: [],
+                        initialValue: this.props.softWareName,
                     })(
-                        <Input disabled={this.props.disable}/>
-                    )}
-                </FormItem>
-
-                <FormItem {...formItemLayout} label={"版本号"}>
-                    {getFieldDecorator('version', {
-                        rules: [{ required: true, message: '请正确输入版本号！',pattern:"^[a-zA-Z0-9/.]+$"}],
-                        initialValue: this.props.values.version,
-                    })(
-                        <Input disabled={this.props.disable}/>
+                        <Input disabled={true}/>
                     )}
                 </FormItem>
 
                 <FormItem {...formItemLayout} label={"委托单位"}>
                     {getFieldDecorator('consignUnit', {
-                        rules: [{ required: true, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                        initialValue: this.props.values.consignUnit,
+                        rules: [],
+                        initialValue: this.props.unitCompany,
                     })(
-                        <Input disabled={this.props.disable}/>
+                        <Input disabled={true}/>
                     )}
                 </FormItem>
 
@@ -157,7 +151,7 @@ class TestWorkCheckContentComponent extends Component {
                     }],
                         initialValue: this.props.values.startingDate?moment(this.props.values.startingDate):undefined,
                     })(
-                        <DatePicker showTime format="YYYY-MM-DD"/>
+                        <DatePicker showTime  disabled={this.props.disable} format="YYYY-MM-DD"/>
                     )}
                 </FormItem>
 
@@ -168,7 +162,7 @@ class TestWorkCheckContentComponent extends Component {
                         }],
                         initialValue: this.props.values.estimatedFinishTime?moment(this.props.values.estimatedFinishTime):undefined,
                     })(
-                        <DatePicker showTime format="YYYY-MM-DD"/>
+                        <DatePicker showTime  disabled={this.props.disable} format="YYYY-MM-DD"/>
                     )}
                 </FormItem>
 
@@ -179,7 +173,7 @@ class TestWorkCheckContentComponent extends Component {
                         }],
                         initialValue: this.props.values.actualFinishTime?moment(this.props.values.actualFinishTime):undefined,
                     })(
-                        <DatePicker showTime format="YYYY-MM-DD"/>
+                        <DatePicker showTime  disabled={this.props.disable} format="YYYY-MM-DD"/>
                     )}
                 </FormItem>
 
@@ -202,6 +196,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -219,6 +214,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -236,6 +232,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -257,6 +254,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -274,6 +272,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -295,6 +294,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -312,6 +312,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -335,6 +336,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -356,6 +358,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -373,6 +376,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -390,6 +394,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -408,6 +413,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -425,6 +431,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -446,6 +453,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -468,6 +476,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -485,6 +494,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -502,6 +512,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -523,6 +534,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -540,6 +552,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -557,6 +570,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -574,6 +588,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -596,6 +611,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -613,6 +629,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>
@@ -630,6 +647,7 @@ class TestWorkCheckContentComponent extends Component {
                                     <Switch
                                         checkedChildren={<Icon type="check" />}
                                         unCheckedChildren={<Icon type="cross" />}
+                                        disabled={this.props.disable}
                                     />
                                 )}
                             </FormItem>

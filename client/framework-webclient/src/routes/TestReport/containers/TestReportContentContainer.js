@@ -19,6 +19,11 @@ const mapStateToProps = (state, ownProps) => {
     // debugger;
     const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const content = state.Project.listMap[ownProps.id].testReport;
+    const consign = state.Project.listMap[ownProps.id].consign;
+    const projectCode = state.Project.listMap[ownProps.id].code;
+    const consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+    const softWareName = consignBody.softwareName?consignBody.softwareName:"未填写";
+    const unitCompany = consignBody.consignUnitC?consignBody.consignUnitC:"未填写";
     const body = content?content.body:undefined;
     const testPlanState = content?content.state:"error";
     const isCustomer = (sysUser.username==="customer1"||sysUser.username==="customer2")
@@ -33,10 +38,13 @@ const mapStateToProps = (state, ownProps) => {
     const isSendVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Send')!==-1;
 
     return {
+        softWareName: softWareName,
+        unitCompany: unitCompany,
+        projectCode: projectCode,
         testReportData: content?content:ownProps,
         projectData: state.Project.listMap[ownProps.id],
         values:  body ? JSON.parse(body) : {},
-        disable: !(isTesting&&testPlanState==='TobeWrite'),
+        disable: !(isTesting&&testPlanState==='TobeWrite') ,
         buttonsEnable: buttonsEnable(isCustomer,isMarketing,isTesting,isManager,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible),
     }
 };
@@ -63,7 +71,7 @@ const buttonsEnable = (isCustomer,isMarketing,isTesting,isManager,isQuality,isSu
     enable: isTesting&&isSubmitVisible,
 },{
     content: '通过',
-    enable: isManager&&isReviewViszible,
+    enable: isManager&&isReviewVisible,
 },{
     content: '否决',
     enable: isManager&&isReviewVisible,

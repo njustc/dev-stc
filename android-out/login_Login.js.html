@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: login/Login.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: login/Login.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {Component} from 'react';
+import {
+    StyleSheet,
+    Dimensions,
+    TouchableOpacity,
+    View,
+    Text,
+    TextInput,
+    Image,
+    ToastAndroid,
+    Navigator
+} from 'react-native';
+
+import {baseAddress,STATUS} from "../common";
+import {httpPost} from "../FetchUtil";
+
+const loginBase = baseAddress + '/login';
+
+let {width, height} = Dimensions.get('window');
+
+let LocaluserName = '';
+let LocalclientDigest = '';
+
+
+export const getLocaluserName= () =>
+{
+    return LocaluserName;
+};
+
+export const getLocalclientDigest = () =>
+{
+    return LocalclientDigest;
+};
+
+/**
+ * 登录界面
+ */
+
+class LoginView extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+            clientDigest: ''
+        }
+    }
+
+  /**
+   * 登录按钮调用函数，将登录用户名、密码传至后台匹配是否成功登录
+   * @func
+   */
+
+  renderClick(){
+
+        let userName = this.state.username;
+        let password = this.state.password;
+        LocaluserName = this.state.username;
+        let toastMsg = '登录成功';
+
+        if(userName===null||userName===""){
+            toastMsg = '用户名不能为空';
+            ToastAndroid.showWithGravity(toastMsg, 1000, ToastAndroid.CENTER);
+            return;
+        }
+        if(password===null||password===""){
+            toastMsg = '密码不能为空';
+            ToastAndroid.showWithGravity(toastMsg, 1000, ToastAndroid.CENTER);
+            return;
+        }
+
+        //TODO: compare userName and password with 后台
+        const params = {
+            username: this.state.username,
+            password: this.state.password,
+        };
+
+        //
+        let loginUrl = loginBase;
+
+    httpPost(loginUrl, params, (result) => {
+            const {status, data} = result;
+            if (status === STATUS.SUCCESS) {
+                toastMsg = '登录成功';
+                const {clientDigest} = data;
+                this.state.clientDigest = clientDigest;
+                LocalclientDigest = this.state.clientDigest;
+                //console.warn(this.state.clientDigest);
+                ToastAndroid.showWithGravity(toastMsg, 1000, ToastAndroid.CENTER);
+                //this.props.navigation.replace('SideMenu');
+                this.props.navigation.replace('Drawer');
+            }
+            else{
+                toastMsg = '用户名或密码错误';
+                ToastAndroid.showWithGravity(toastMsg, 1000, ToastAndroid.CENTER);
+            }
+            //callback &amp;&amp; callback(status);//TODO: complete callback
+        })
+    }
+
+  /**
+   * 登录界面渲染函数
+   * @func
+   */
+  render(){
+
+        return(
+            &lt;View style={styles.container}>
+                &lt;Image
+                    style={styles.logo}
+
+                    source={require('../img/njust.png')}
+                />
+
+                &lt;TextInput placeholder='请输入用户名' clearButtonMode="always" underlineColorAndroid="transparent"
+                           style={styles.inputStyle}
+                           onChangeText={(username) => this.setState({username})}
+                />
+
+                &lt;TextInput placeholder='请输入密码' clearButtonMode="always" secureTextEntry={true} password={true}
+                           underlineColorAndroid="transparent" style={styles.inputStyle}
+                           onChangeText={(password) => this.setState({password})}
+                />
+
+                &lt;TouchableOpacity
+                    activeOpacity={0.5}
+                    onPress={() => this.renderClick()}
+                >
+                    &lt;View style={styles.loginBtnStyle}>
+                        &lt;Text style={{color: 'white', fontSize: 20, fontWeight: '500'}}>登录&lt;/Text>
+                    &lt;/View>
+                &lt;/TouchableOpacity>
+
+                &lt;View style={styles.loginQueStyle}>
+                    &lt;Text style={{color: '#73B5F9', marginLeft: 20, fontSize: 16, fontWeight: '400'}}>忘记密码&lt;/Text>
+                    &lt;Text style={{color: '#73B5F9', marginRight: 20, fontSize: 16, fontWeight: '400'}}>用户注册&lt;/Text>
+                &lt;/View>
+
+            &lt;/View>
+        );/*TODO: may need to add functions here, both 忘记密码 and 用户注册*/
+    }
+
+}
+
+
+const styles = StyleSheet.create({
+
+    container: {
+        width: width,
+        flex: 1,
+        backgroundColor: '#F4F4F4',
+        alignItems: 'center',
+
+    },
+    headerStyle: {
+        width: 80,
+        height: 80,
+        borderRadius: 40,
+        borderWidth: 1,
+        borderColor: 'white',
+        marginTop: 50,
+        marginBottom: 20
+    },
+    inputStyle: {
+        textAlign: 'center',
+        width: width * 0.9,
+        height: 50,
+        marginTop: 1,
+        backgroundColor: 'white',
+        //borderRadius: 8,
+        alignSelf: 'center',
+        color: 'black',
+        fontWeight: '600'
+    },
+    loginBtnStyle: {
+        width: width * 0.9,
+        height: 50,
+        marginTop: 20,
+        backgroundColor: '#73B5F9',
+        //'borderRadius: 8,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    loginQueStyle: {
+        flexDirection: 'row',
+        width: width,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    loginWayStyle: {
+        position: 'absolute',
+        flexDirection: 'row',
+        height: 50,
+        alignItems: 'center',
+        bottom: 10,
+        left: 10
+
+    },
+    loginWayLogoStyle: {
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        marginRight: 8
+    }
+
+});
+
+export default LoginView;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Consignation.html">Consignation</a></li><li><a href="ConsignationPage.html">ConsignationPage</a></li><li><a href="Contract.html">Contract</a></li><li><a href="ContractList.html">ContractList</a></li><li><a href="ContractPage.html">ContractPage</a></li><li><a href="LoginView.html">LoginView</a></li><li><a href="ProjectClosing.html">ProjectClosing</a></li><li><a href="Report.html">Report</a></li><li><a href="SatisfactionContentList.html">SatisfactionContentList</a></li><li><a href="SatisfactionContentPage.html">SatisfactionContentPage</a></li><li><a href="SideBar.html">SideBar</a></li><li><a href="TestCaseContentList.html">TestCaseContentList</a></li><li><a href="TestCaseContentPage.html">TestCaseContentPage</a></li><li><a href="Testing.html">Testing</a></li><li><a href="TestingReportCheckTableList.html">TestingReportCheckTableList</a></li><li><a href="TestingReportCheckTablePage.html">TestingReportCheckTablePage</a></li><li><a href="TestingReportList.html">TestingReportList</a></li><li><a href="TestingReportPage.html">TestingReportPage</a></li><li><a href="TestingWorkCheckTableList.html">TestingWorkCheckTableList</a></li><li><a href="TestingWorkCheckTablePagePage.html">TestingWorkCheckTablePagePage</a></li><li><a href="TestPlanContentList.html">TestPlanContentList</a></li><li><a href="TestPlanContentPage.html">TestPlanContentPage</a></li><li><a href="TestProblemContentPage.html">TestProblemContentPage</a></li><li><a href="TestRecordContentPage.html">TestRecordContentPage</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AppNavigator">AppNavigator</a></li><li><a href="global.html#baseAddress">baseAddress</a></li><li><a href="global.html#baseServiceAddress">baseServiceAddress</a></li><li><a href="global.html#datas">datas</a></li><li><a href="global.html#Drawer">Drawer</a></li><li><a href="global.html#httpDelete">httpDelete</a></li><li><a href="global.html#httpGet">httpGet</a></li><li><a href="global.html#httpPost">httpPost</a></li><li><a href="global.html#httpPut">httpPut</a></li><li><a href="global.html#sysFetch">sysFetch</a></li><li><a href="global.html#%25E5%25AE%259A%25E4%25B9%2589%25E7%25AA%2597%25E5%258F%25A3%25E5%25A4%25A7%25E5%25B0%258F">定义窗口大小</a></li><li><a href="global.html#%25E7%25A7%25BB%25E5%258A%25A8%25E7%25AB%25AF%25E6%2598%25BE%25E7%25A4%25BAhtml%25E4%25BB%25A3%25E7%25A0%2581">移动端显示html代码</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Jul 19 2018 16:47:01 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

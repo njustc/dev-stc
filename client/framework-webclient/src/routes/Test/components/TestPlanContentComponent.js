@@ -495,6 +495,8 @@ class TestPlanContentComponent extends Component {
      * @type {{testPlanData: *, values: * , disable: *, buttons: *, form: *}}
      */
     static propTypes = {
+        softWareName: PropTypes.string.isRequired,
+        unitCompany: PropTypes.string.isRequired,
         testPlanData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
@@ -639,19 +641,10 @@ class TestPlanContentComponent extends Component {
                     <TabPane tab="基本信息" key="1">
                         <FormItem {...formItemLayout} label={"软件名称"}>
                             {getFieldDecorator('softwareName', {
-                                rules: [{ required: true, message: '请输入软件名称！' }],
-                                initialValue: this.props.values.softwareName,
+                                rules: [],
+                                initialValue: this.props.softWareName,
                             })(
-                                <Input  disabled={this.props.disable}/>
-                            )}
-                        </FormItem>
-
-                        <FormItem {...formItemLayout} label={"项目名称"}>
-                            {getFieldDecorator('projectName', {
-                                rules: [{ required: true, message: '请输入项目名称！' }],
-                                initialValue: this.props.values.projectName,
-                            })(
-                                <Input  disabled={this.props.disable}/>
+                                <Input  disabled={true}/>
                             )}
                         </FormItem>
 

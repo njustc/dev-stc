@@ -1,9 +1,10 @@
-//export const baseAddress = 'http://121.42.175.137:8000';
 /**
  * 后端ip地址
  * @constant
  */
-export const baseAddress = 'http://192.168.1.116:8000';
+//export const baseAddress = 'http://121.42.175.137:8000';
+
+export const baseAddress = 'http://192.168.43.104:8000';
 /**
  * 后端ip地址
  * @constant

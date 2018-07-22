@@ -80,6 +80,10 @@ public class TestBugServiceTest {
     @Autowired
     private UserRepository userRepository;
 
+
+    /**
+     * 获取用户信息,将其作为之后测试方法时的参数
+     */
     @Before
     public void getUser() {
         tester = userRepository.findByUsername("testing");
@@ -87,8 +91,12 @@ public class TestBugServiceTest {
         customer2 = userRepository.findByUsername(("customer2"));
     }
 
+
+    /**
+     * 所测试方法:根据用户对应工程查询测试错误
+     */
     @Test
-    public void test_queryTestBugs(){
+    public void testqueryTestBugs(){
         System.out.println("开始测试工作人员获取测试Bug");
         try {
             JSON result = testBugService.queryTestBugs(tester);
@@ -101,8 +109,12 @@ public class TestBugServiceTest {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 所测试的方法:新建测试错误,根据ID查询测试错误,根据工程ID查询测试错误,编辑测试错误内容,删除测试错误
+     */
     @Test
-    public void test_SE(){
+    public void testTestBug(){
         System.out.println("=====tester 新建一个测试Bug=====");
         JSONObject TestBug = new JSONObject();
         TestBug.put("body", "这是testUser测试中新建的一个测试Bug");
@@ -110,7 +122,7 @@ public class TestBugServiceTest {
 
         try {
 
-            //test_addTestBug
+            //testaddTestBug
 
             String consign_id = "consign1";
             JSONObject project = projectService.queryProjectById("p1");
@@ -121,14 +133,14 @@ public class TestBugServiceTest {
             System.out.println("测试Bug新建成功, 测试Bug的ID为: " + id);
             System.out.println(jsonResult);
 
-            //test_queryTestBugsByID
+            //testqueryTestBugsByID
             System.out.println("=====通过ID查询该测试Bug=====");
             JSONObject jsonTestBug = testBugService.queryTestBugByID(id);
             Assert.assertNotNull("通过ID查询测试Bug失败",jsonTestBug);
             System.out.println(jsonTestBug);
 
 
-            //test_editTestBug
+            //testeditTestBug
             System.out.println("=====编辑该测试Bug内容=====");
             String edit_object = "body";
             String edit_contents = "这是tester在测试中修改的测试Bug";
@@ -138,7 +150,7 @@ public class TestBugServiceTest {
             System.out.println(jsonTestBug);
 
 
-            //test_deleteTestBug
+            //testdeleteTestBug
             System.out.println("=====删除该测试Bug=====");
             testBugService.deleteTestBug(jsonTestBug);
             try{

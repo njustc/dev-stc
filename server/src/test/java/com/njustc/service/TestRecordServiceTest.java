@@ -78,6 +78,10 @@ public class TestRecordServiceTest {
     @Autowired
     private UserRepository userRepository;
 
+
+    /**
+     * 获取用户信息,将其作为之后测试方法时的参数
+     */
     @Before
     public void getUser() {
         tester = userRepository.findByUsername("testing");
@@ -85,8 +89,11 @@ public class TestRecordServiceTest {
         customer2 = userRepository.findByUsername(("customer2"));
     }
 
+    /**
+     * 所测试的方法:根据用户所对应工程查询测试记录
+     */
     @Ignore
-    public void test_queryTestRecords(){
+    public void testqueryTestRecords(){
         System.out.println("开始测试工作人员获取测试报告检查");
         try {
             JSON result = testRecordService.queryTestRecords(tester);
@@ -100,8 +107,12 @@ public class TestRecordServiceTest {
         }
     }
 
+
+    /**
+     * 所测试的方法:新建测试报告,通过ID查询测试报告,编辑测试报告内容,删除测试报告
+     */
     @Ignore
-    public void test_SE(){
+    public void testTestRecord(){
         System.out.println("=====tester 新建一个测试报告检查=====");
         JSONObject TestRecord = new JSONObject();
         TestRecord.put("body", "这是testUser测试中新建的一个测试报告检查");
@@ -109,7 +120,7 @@ public class TestRecordServiceTest {
 
         try {
 
-            //test_addTestRecord
+            //testaddTestRecord
             JSONObject jsonProject = projectService.queryProjectById("p2");
             String pro_id = jsonProject.getString("id");
             JSONObject jsonResult = testRecordService.addTestRecord(jsonProject, null, tester);
@@ -118,7 +129,7 @@ public class TestRecordServiceTest {
             System.out.println("测试报告检查新建成功, 测试报告检查的ID为: " + id);
             System.out.println(jsonResult);
 
-            //test_queryTestRecordsByID
+            //testqueryTestRecordsByID
             System.out.println("=====通过ID查询该测试报告检查=====");
             JSONObject jsonTestRecord = testRecordService.queryTestRecordByID(id);
             Assert.assertNotNull("通过ID查询测试报告检查失败",jsonTestRecord);
@@ -127,7 +138,7 @@ public class TestRecordServiceTest {
 
 
 
-            //test_editTestRecord
+            //testeditTestRecord
             System.out.println("=====编辑该测试报告检查内容=====");
             String edit_object = "body";
             String edit_contents = "这是tester在测试中修改的测试报告检查";
@@ -137,7 +148,7 @@ public class TestRecordServiceTest {
             System.out.println(jsonTestRecord);
 
 
-            //test_deleteTestRecord
+            //testdeleteTestRecord
             System.out.println("=====删除该测试报告检查=====");
             testRecordService.deleteTestRecord(jsonTestRecord);
             try{

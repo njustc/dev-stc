@@ -71,6 +71,8 @@ class ContractContentComponent extends Component {
         disableM: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
+        softWareName: PropTypes.string.isRequired,
+        unitCompany: PropTypes.string.isRequired,
     };
 
 
@@ -145,28 +147,28 @@ class ContractContentComponent extends Component {
                     <TabPane tab="合同基本信息 " key="1">
                         <FormItem {...formItemLayout} label="项目名称">
                             {getFieldDecorator('projectName', {
-                                rules: [{ required: true, message: '请输入项目名称！' }],
-                                initialValue: this.props.values.projectName,
+                                rules: [],
+                                initialValue: this.props.softWareName,
                             })(
-                                <Input size="large" disabled={this.props.disable} placeholder={"（软件测试）"}/>
+                                <Input size="large" disabled={true} placeholder={"（软件测试）"}/>
                             )}
                         </FormItem>
 
                         <FormItem {...formItemLayout} label="委托方（甲方）">
                             {getFieldDecorator('consignA', {
-                                rules: [{ required: true, message: '请输入委托方（甲方）！',pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$" }],
-                                initialValue: this.props.values.consignA,
+                                rules: [],
+                                initialValue: this.props.unitCompany,
                             })(
-                                <Input size="large" disabled={this.props.disable}/>
+                                <Input size="large" disabled={true}/>
                             )}
                         </FormItem>
 
                         <FormItem {...formItemLayout} label="受托方（乙方）">
                             {getFieldDecorator('consignB', {
-                                rules: [{ required: true, message: '请输入受托方（乙方）！',pattern:"^[a-zA-Z\u0020\u4E00-\u9FA5]+$" }],
-                                initialValue: this.props.values.consignB,
+                                rules: [],
+                                initialValue: "南京大学测试中心",
                             })(
-                                <Input size="large" disabled={this.props.disable}/>
+                                <Input size="large" disabled={true}/>
                             )}
                         </FormItem>
 
@@ -198,14 +200,14 @@ class ContractContentComponent extends Component {
                                     <InputGroup compact>
                                         本合同由作为委托方的
                                         {getFieldDecorator('aUnitName', {
-                                            rules: [{required: true, message: '请输入单位全称！'}],
-                                            initialValue: this.props.values.aUnitName,
+                                            rules: [],
+                                            initialValue: this.props.unitCompany,
                                         })(
-                                            <Input style={InputStyle} disabled={this.props.disable}/>
+                                            <Input style={InputStyle} disabled={true}/>
                                         )}（以下简称“甲方”）与作为受托方的
                                         {getFieldDecorator('bUnitName', {
-                                            rules: [{required: true, message: '请输入单位全称！'}],
-                                            initialValue: this.props.values.bUnitName,
+                                            rules: [],
+                                            initialValue: "南京大学测试中心",
                                         })(
                                             <Input style={InputStyle} disabled={this.props.disable}/>
                                         )}（以下简称“乙方”）在平等自愿的基础上，依据《中华人民共和国合同法》有关规定就项目的执行，经友好协商后订立。
@@ -404,10 +406,10 @@ class ContractContentComponent extends Component {
 
                         <FormItem {...formItemLayout2} label={"单位全称"}>
                             {getFieldDecorator('aUnitName', {
-                                rules: [{ required: true, message: '请输入单位全称！' }],
-                                initialValue: this.props.values.aUnitName,
+                                rules: [],
+                                initialValue: this.props.unitCompany,
                             })(
-                                <Input disabled={this.props.disable}/>
+                                <Input disabled={true}/>
                             )}
                         </FormItem>
 

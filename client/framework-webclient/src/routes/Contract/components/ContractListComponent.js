@@ -127,7 +127,7 @@ class ContractListComponent extends Component {
         key:"name",
         render:(consignation) => {
             let consignBody = consignation?JSON.parse(consignation):{};
-            return consignBody.softwareName?consignBody.softwareName+"测试项目合同":"未填写";
+            return consignBody.softwareName?consignBody.softwareName:"未填写";
         },
     }, {
         title:"委托单位",
