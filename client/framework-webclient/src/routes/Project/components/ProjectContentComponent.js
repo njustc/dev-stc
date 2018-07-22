@@ -290,7 +290,7 @@ class ProjectContentComponent extends Component {
                                     <br/>
                                     <div>委托人ID：{this.props.projectData.createdUserId}</div>
                                     <br/>
-                                   <div>委托人用户名：{this.props.projectData.createdUserName}</div>
+                                   <div>最后修改人用户名：{this.props.projectData.consign.alteredUserName}</div>
                                     <br/>
                                     <div>项目创建时间：{this.props.projectData.createdTime}</div>
                                     <br/>
