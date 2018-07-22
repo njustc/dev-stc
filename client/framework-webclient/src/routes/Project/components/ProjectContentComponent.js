@@ -248,9 +248,17 @@ class ProjectContentComponent extends Component {
      */
     testFee(){
         console.log(this.props.projectData.contract.contractBody);//
-        let contractBodyString=this.props.projectData.contract.contractBody;
+        let contractBodyString = this.props.projectData.contract.contractBody;
         let contractBody = contractBodyString?JSON.parse(contractBodyString):{};
         return contractBody.testFee?"¥"+contractBody.testFee:"未填写";
+    }
+
+    projectName(){
+        //this.props.projectData.consign.consignation.softwareName?this.props.projectData.consign.consignation.softwareName+"测试项目":"未填写"
+        console.log(this.props.projectData.consign.consignation);
+        let consignBodyString = this.props.projectData.consign.consignation;
+        let consignBody = consignBodyString?JSON.parse(consignBodyString):{};
+        return consignBody.softwareName?consignBody.softwareName:"未填写";
     }
 
     /**
@@ -286,7 +294,8 @@ class ProjectContentComponent extends Component {
                                     <br/>
                                     <div>项目ID：{this.props.projectData.id}</div>
                                     <br/>
-                                    <div>项目名称：{this.props.projectData.consign.consignation.softwareName?this.props.projectData.consign.consignation.softwareName+"测试项目":"未填写"}</div>
+                                    {/*<div>项目名称：{this.props.projectData.consign.consignation.softwareName?this.props.projectData.consign.consignation.softwareName+"测试项目":"未填写"}</div>*/}
+                                    <div>项目名称：{this.projectName()}</div>
                                     <br/>
                                     <div>委托人ID：{this.props.projectData.createdUserId}</div>
                                     <br/>
