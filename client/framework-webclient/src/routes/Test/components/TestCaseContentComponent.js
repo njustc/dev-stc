@@ -398,6 +398,7 @@ class TestCaseContentComponent extends Component {
                         showArrow={false}
                         header={<Button>添加测试用例</Button>}
                         key="1"
+                        disabled={this.props.disable}
                     >
                         <div style={{ background: '#ECECEC', padding: '15px', marginBottom:'10pt' }}>
                         <Card bordered={false} style={{ width: '100%' }}>

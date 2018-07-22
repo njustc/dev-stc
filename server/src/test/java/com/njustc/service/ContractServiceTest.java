@@ -8,6 +8,7 @@ import com.njustc.domain.User;
 import com.njustc.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,10 @@ public class ContractServiceTest {
     @Autowired
     private UserRepository userRepository;
 
+
+    /**
+     * 获取用户信息,将其作为之后测试方法时的参数
+     */
     @Before
     public void getUser(){
         marketUser = userRepository.findByUsername("marketing");
@@ -82,8 +87,12 @@ public class ContractServiceTest {
         customer1 = userRepository.findByUsername("customer1");
         customer2 = userRepository.findByUsername("customer2");
     }
-    @Test
-    public void test_queryContracts(){
+
+    /**
+     * 所测试的方法:根据用户查询合同
+     */
+    @Ignore
+    public void testqueryContracts(){
         System.out.println("开始测试工作人员获取合同");
         try {
             JSON result = contractService.queryContracts(tester);
@@ -108,34 +117,37 @@ public class ContractServiceTest {
         }
     }
 
+    /**
+     * 所测试的方法:新建合同,根据ID查询合同,根据工程ID查询合同,编辑合同内容,删除合同
+     */
     @Test
-    public void test_SE(){
+    public void testContract(){
         System.out.println("=====customer1 增加一个合同=====");
         JSONObject contract = new JSONObject();
         contract.put("contractBody", "这是customer1测试中新建的一个合同");
 
         try {
 
-            //test_addcontract
+            //testaddcontract
             String pro_id = "p1";
             JSONObject jsonResult = contractService.addContract(pro_id,contract, null, customer1);
             String id = jsonResult.getString("id");
             Assert.assertNotNull("合同新建失败",id);
             System.out.println("新建成功。合同的ID为: " + id);
 
-            //test_querycontractByID
+            //testquerycontractByID
             System.out.println("=====通过ID查询该合同=====");
             JSONObject jsonContract = contractService.queryContractByID(id);
             Assert.assertNotNull("通过ID合同查询失败",jsonContract);
             System.out.println(jsonContract);
 
-            //test_querycnotractByProject
+            //testquerycnotractByProject
             System.out.println("=====通过工程查询该合同=====");
             JSON jsonContract_pro = contractService.queryContractsByProject(pro_id);
             Assert.assertNotNull("通过工程查询合同失败",jsonContract_pro);
             System.out.println(jsonContract_pro);
 
-            //test_editcontract
+            //testeditcontract
             System.out.println("=====编辑该合同=====");
             String edit_object = "contractBody";
             String edit_contents = "这是customer1在测试中修改的合同";
@@ -144,7 +156,7 @@ public class ContractServiceTest {
             Assert.assertEquals(edit_contents,jsonContract.getString(edit_object));  //检验合同内容修改是否符合预期
             System.out.println(jsonContract);
 
-            //test_deletecontract
+            //testdeletecontract
             System.out.println("=====删除该合同=====");
             contractService.deleteContract(jsonResult);
             try {

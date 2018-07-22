@@ -28,10 +28,15 @@ import {newTestCase} from "SERVICES/TestCaseService";
  * @returns {{dataSource: undefined, projectData: *, values: *}}
  */
 const mapStateToProps = (state, ownProps) => {
+    const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
+    const isTesting = (sysUser.username==="testing");
+    const isQuality = (sysUser.username==="quality");
+    const isManager = (sysUser.username==="testingManager");
     return {
         dataSource: undefined,
         projectData: state.Project.listMap[ownProps.id],
         values: state.Project.listMap[ownProps.id].testCase,
+        disable: !(isTesting||isQuality||isManager),
     }
 };
 

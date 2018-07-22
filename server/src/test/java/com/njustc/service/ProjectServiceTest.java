@@ -78,7 +78,11 @@ public class ProjectServiceTest {
 
     @Autowired
     private UserRepository userRepository;
-    
+
+
+    /**
+     * 获取用户信息,将其作为之后测试方法时的参数
+     */
     @Before
     public void getUsers(){
         markerUser = userRepository.findByUsername("marketing");
@@ -86,9 +90,12 @@ public class ProjectServiceTest {
         customer2 = userRepository.findByUsername("customer2");
         tester = userRepository.findByUsername("testing");
     }
-    
+
+    /**
+     * 根据用户查询工程
+     */
     @Ignore
-    public void queryProjects() {
+    public void testqueryProjects() {
         System.out.println("开始测试工作人员获取工程");
         try {
             JSON result = projectService.queryProjects(tester);
@@ -114,9 +121,11 @@ public class ProjectServiceTest {
     }
 
 
-
+    /**
+     * 所测试的方法:新建工程,根据ID查询工程,删除工程
+     */
     @Test
-    public void testSE() {
+    public void testProject() {
         System.out.println("=====tester 增加一个工程=====");
         JSONObject project = new JSONObject();
         //project.put("projectation", "这是tester测试中新建的一个工程");
@@ -124,7 +133,6 @@ public class ProjectServiceTest {
         try {
 
             //test_addproject
-
             JSONObject jsonConsign = consignService.addConsign(consign,null,tester);
             String consign_id = jsonConsign.getString("id");
             JSONObject jsonResult = projectService.addProject(consign_id,project, null, tester);

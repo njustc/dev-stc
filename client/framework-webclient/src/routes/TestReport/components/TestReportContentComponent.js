@@ -72,6 +72,9 @@ class TestReportContentComponent extends Component {
         disable: PropTypes.bool.isRequired,
         buttons: PropTypes.array.isRequired,
         form: PropTypes.object.isRequired,
+        softWareName: PropTypes.string.isRequired,
+        unitCompany: PropTypes.string.isRequired,
+        projectCode: PropTypes.string.isRequired,
     };
 
     /**
@@ -220,37 +223,28 @@ class TestReportContentComponent extends Component {
                         <TabPane tab="基本信息" key="1">
 		 <FormItem {...formItemLayout} label={"委托单位"}>
                             {getFieldDecorator('consignUnitC', {
-                                rules: [{ required: false, message: '请正确输入委托单位！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                initialValue: this.props.values.consignUnitC
+                                rules: [],
+                                initialValue: this.props.unitCompany
                             })(
-                                <Input disabled={this.props.disable}/>
+                                <Input disabled={true}/>
                             )}
                         </FormItem>
 
 		 <FormItem {...formItemLayout} label={"项目编号"}>
                             {getFieldDecorator('sampleNumber', {
-                                rules: [{ required: false, message: '请正确输入项目编号！' ,pattern:"^[A-Za-z]+$"}],
-                                initialValue: this.props.values.sampleNumber
+                                rules: [],
+                                initialValue: this.props.projectCode
                             })(
-                                <Input disabled={this.props.disable}/>
+                                <Input disabled={true}/>
                             )}
                         </FormItem>
 
-						 <FormItem {...formItemLayout} label={"样品名称"}>
+						 <FormItem {...formItemLayout} label={"软件名称"}>
                             {getFieldDecorator('sampleName', {
-                                rules: [{ required: false, message: '请正确输入样品名称！' ,pattern:"^[\u4E00-\u9FA5]+$"}],
-                                initialValue: this.props.values.sampleName
+                                rules: [],
+                                initialValue: this.props.softWareName
                             })(
-                                <Input disabled={this.props.disable}/>
-                            )}
-                        </FormItem>
-
-                        <FormItem {...formItemLayout} label={"版本/型号"}>
-                            {getFieldDecorator('versionModel', {
-                                rules: [{ required: false, message: '请正确输入版本/型号！',pattern:"^[a-zA-Z0-9/.]+$" }],
-                                initialValue: this.props.values.versionModel
-                            })(
-                                <Input disabled={this.props.disable}/>
+                                <Input disabled={true}/>
                             )}
                         </FormItem>
 

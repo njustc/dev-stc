@@ -18,11 +18,19 @@ const mapStateToProps = (state, ownProps) => {
     const content = state.Project.listMap[ownProps.id].testWorkCheck;
     const body = content?content.body:undefined;
     const isQuality = (sysUser.username==="quality");
+    const consign = state.Project.listMap[ownProps.id].consign;
+    const projectCode = state.Project.listMap[ownProps.id].code;
+    const consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+    const softWareName = consignBody.softwareName?consignBody.softwareName:"未填写";
+    const unitCompany = consignBody.consignUnitC?consignBody.consignUnitC:"未填写";
 
     return {
+        softWareName: softWareName,
+        unitCompany: unitCompany,
+        projectCode: projectCode,
         testWorkCheckData: content?content:ownProps,
         values:  body ? JSON.parse(body) : {},
-        disable: false,
+        disable: !isQuality,
         buttonsEnable: buttonsEnable(isQuality),
     }
 };

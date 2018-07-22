@@ -73,6 +73,10 @@ public class TestReportCheckServiceTest {
     @Autowired
     private UserRepository userRepository;
 
+
+    /**
+     * 获取用户信息,将其作为之后测试方法时的参数
+     */
     @Before
     public void getUser() {
         tester = userRepository.findByUsername("testing");
@@ -80,8 +84,11 @@ public class TestReportCheckServiceTest {
         customer2 = userRepository.findByUsername(("customer2"));
     }
 
+    /**
+     * 所测试的方法:根据用户所对应工程查询测试报告检查
+     */
     @Test
-    public void test_queryTestReportChecks(){
+    public void testqueryTestReportChecks(){
         System.out.println("开始测试工作人员获取测试报告检查");
         try {
             JSON result = testReportCheckService.queryTestReportChecks(tester);
@@ -94,8 +101,12 @@ public class TestReportCheckServiceTest {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 所测试的方法:新建测试报告检查,通过ID查询测试报告检查,通过工程ID查询测试报告检查,编辑测试报告检查内容,删除测试报告检查
+     */
     @Test
-    public void test_SE(){
+    public void testTestReportCheck(){
         System.out.println("=====tester 新建一个测试报告检查=====");
         JSONObject TestReportCheck = new JSONObject();
         TestReportCheck.put("body", "这是testUser测试中新建的一个测试报告检查");
@@ -103,7 +114,7 @@ public class TestReportCheckServiceTest {
 
         try {
 
-            //test_addTestReportCheck
+            //testaddTestReportCheck
 
             String pro_id = "p1";
             JSONObject jsonResult = testReportCheckService.addTestReportCheck(pro_id,TestReportCheck, null, tester);
@@ -112,20 +123,20 @@ public class TestReportCheckServiceTest {
             System.out.println("测试报告检查新建成功, 测试报告检查的ID为: " + id);
             System.out.println(jsonResult);
 
-            //test_queryTestReportChecksByID
+            //testqueryTestReportChecksByID
             System.out.println("=====通过ID查询该测试报告检查=====");
             JSONObject jsonTestReportCheck = testReportCheckService.queryTestReportCheckByID(id);
             Assert.assertNotNull("通过ID查询测试报告检查失败",jsonTestReportCheck);
             System.out.println(jsonTestReportCheck);
 
-            //test_queryTestReportCheckByProject
+            //testqueryTestReportCheckByProject
             System.out.println("=====通过工程查询该测试报告检查=====");
             JSON jsonTestReportCheck_pro = testReportCheckService.queryTestReportCheckByProject(pro_id);
             Assert.assertNotNull("通过工程查询测试报告检查失败",jsonTestReportCheck_pro);
             System.out.println(jsonTestReportCheck_pro);
             
             
-            //test_editTestReportCheck
+            //testeditTestReportCheck
             System.out.println("=====编辑该测试报告检查内容=====");
             String edit_object = "body";
             String edit_contents = "这是tester在测试中修改的测试报告检查";
@@ -135,7 +146,7 @@ public class TestReportCheckServiceTest {
             System.out.println(jsonTestReportCheck);
 
 
-            //test_deleteTestReportCheck
+            //testdeleteTestReportCheck
             System.out.println("=====删除该测试报告检查=====");
             testReportCheckService.deleteTestReportCheck(jsonTestReportCheck);
             try{
