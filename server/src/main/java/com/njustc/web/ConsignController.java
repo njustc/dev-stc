@@ -7,6 +7,7 @@ import com.njustc.service.ConsignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 /**
  * The {@code ConsignController} class 用来处理对委托的各种请求 <br>
  * 包括按照用户查询、按照工程查询、按照id查询；添加委托；删除委托；修改委托

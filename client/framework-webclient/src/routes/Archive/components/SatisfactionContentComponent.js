@@ -109,7 +109,7 @@ class SatisfactionContentComponent extends Component {
                         <Col span={10}>
                             <FormItem{...formItemLayout} label={"联系人"}>
                                 {getFieldDecorator('contact', {
-                                    rules: [{ required: true, message: '请正确输入联系人！' ,pattern:"^[\u4E00-\u9FA5A-Za-z]+$"}],
+                                    rules: [{ required: true, message: '请正确输入联系人！'}],
                                     initialValue: this.props.values.contact,
                                 })(
                                     <Input disabled={this.props.disableC}/>
@@ -119,10 +119,10 @@ class SatisfactionContentComponent extends Component {
                         <Col span={10}>
                             <FormItem {...formItemLayout} label={"联系电话"}>
                                 {getFieldDecorator('contactNumber', {
-                                    rules: [{ required: true, message: '请正确输入联系电话！' ,pattern:"^(\(\d{3,4}-)|\d{3.4}-)?\d{7,8}$"}],
+                                    rules: [{ required: true, message: '请正确输入联系电话！',pattern:"^[0-9/-()\+]*$"}],
                                     initialValue: this.props.values.contactNumber,
                                 })(
-                                    <Input disabled={this.props.disableC} placeholder={"025-89685110"}/>
+                                    <Input disabled={this.props.disableC}/>
                                 )}
                             </FormItem>
                         </Col>
@@ -134,7 +134,7 @@ class SatisfactionContentComponent extends Component {
                         <Col span={10}>
                             <FormItem{...formItemLayout} label={"Email"}>
                                 {getFieldDecorator('Email', {
-                                    rules: [{ required: true, message: '请正确输入Email！' ,pattern:"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"}],
+                                    rules: [{ required: true, message: '请正确输入Email！', pattern:"^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+\.){1,63}[a-z0-9]+$"}],
                                     initialValue: this.props.values.Email,
                                 })(
                                     <Input disabled={this.props.disableC}/>
@@ -144,10 +144,10 @@ class SatisfactionContentComponent extends Component {
                         <Col span={10}>
                             <FormItem {...formItemLayout} label={"手机"}>
                                 {getFieldDecorator('mobilePhone', {
-                                    rules: [{ required: true, message: '请正确输入手机号！' ,pattern:"^(13[0-9]|14[0-9]|15[0-9]|166|17[0-9]|18[0-9]|19[8|9])\\d{8}$"}],
+                                    rules: [{ required: true, message: '请正确输入手机号！',pattern:"^[0-9/-()\+]*$"}],
                                     initialValue: this.props.values.mobilePhone,
                                 })(
-                                    <Input disabled={this.props.disableC} placeholder={"15195908360"}/>
+                                    <Input disabled={this.props.disableC}/>
                                 )}
                             </FormItem>
                         </Col>

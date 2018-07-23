@@ -19,11 +19,17 @@ const mapStateToProps = (state, ownProps) => {
     // debugger;
     const sysUser = JSON.parse(sessionStorage.getItem('sysUser'));
     const content = state.Project.listMap[ownProps.id].testReport;
+    const consign = state.Project.listMap[ownProps.id].consign;
+    const projectCode = state.Project.listMap[ownProps.id].code;
+    const consignBody = consign.consignation?JSON.parse(consign.consignation):{};
+    const softWareName = consignBody.softwareName?consignBody.softwareName:"未填写";
+    const unitCompany = consignBody.consignUnitC?consignBody.consignUnitC:"未填写";
     const body = content?content.body:undefined;
     const testPlanState = content?content.state:"error";
     const isCustomer = (sysUser.username==="customer1"||sysUser.username==="customer2")
     const isMarketing = (sysUser.username==="marketing");
     const isTesting = (sysUser.username==="testing");
+    const isManager = (sysUser.username==="testingManager");
     const isQuality = (sysUser.username==="quality");
     const isSubmitVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Write')!==-1;
     const isReviewVisible = content&&content.operation&&content.operation.findIndex(element => element === 'ReviewPass')!==-1;
@@ -32,11 +38,14 @@ const mapStateToProps = (state, ownProps) => {
     const isSendVisible = content&&content.operation&&content.operation.findIndex(element => element === 'Send')!==-1;
 
     return {
+        softWareName: softWareName,
+        unitCompany: unitCompany,
+        projectCode: projectCode,
         testReportData: content?content:ownProps,
         projectData: state.Project.listMap[ownProps.id],
         values:  body ? JSON.parse(body) : {},
-        disable: testPlanState!=='TobeWrite',
-        buttonsEnable: buttonsEnable(isCustomer,isMarketing,isTesting,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible),
+        disable: !(isTesting&&testPlanState==='TobeWrite') ,
+        buttonsEnable: buttonsEnable(isCustomer,isMarketing,isTesting,isManager,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible),
     }
 };
 
@@ -45,6 +54,7 @@ const mapStateToProps = (state, ownProps) => {
  * @param isCustomer {boolean} 是否为客户
  * @param isMarketing {boolean} 是否为市场部成员
  * @param isTesting {boolean} 是否为测试部成员
+ * @param isManager {boolean} 是否为测试部主任
  * @param isQuality {boolean} 是否为质量部成员
  * @param isSubmitVisible {boolean} 是否可以提交
  * @param isReviewVisible {boolean} 是否可以评审
@@ -53,7 +63,7 @@ const mapStateToProps = (state, ownProps) => {
  * @param isConfirmVisible {boolean} 是否可以确认
  * @returns {Array}
  */
-const buttonsEnable = (isCustomer,isMarketing,isTesting,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible) => [{
+const buttonsEnable = (isCustomer,isMarketing,isTesting,isManager,isQuality,isSubmitVisible,isReviewVisible,isApproveVisible,isSendVisible,isConfirmVisible) => [{
     content: '保存',
     enable: isTesting&&isSubmitVisible,
 },{
@@ -61,10 +71,10 @@ const buttonsEnable = (isCustomer,isMarketing,isTesting,isQuality,isSubmitVisibl
     enable: isTesting&&isSubmitVisible,
 },{
     content: '通过',
-    enable: isTesting&&isReviewVisible,
+    enable: isManager&&isReviewVisible,
 },{
     content: '否决',
-    enable: isTesting&&isReviewVisible,
+    enable: isManager&&isReviewVisible,
 },{
     content: '批准',
     enable: isQuality&&isApproveVisible,

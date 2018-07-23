@@ -495,6 +495,8 @@ class TestPlanContentComponent extends Component {
      * @type {{testPlanData: *, values: * , disable: *, buttons: *, form: *}}
      */
     static propTypes = {
+        softWareName: PropTypes.string.isRequired,
+        unitCompany: PropTypes.string.isRequired,
         testPlanData: PropTypes.object.isRequired,
         values: PropTypes.object.isRequired,
         disable: PropTypes.bool.isRequired,
@@ -509,6 +511,14 @@ class TestPlanContentComponent extends Component {
      * @func
      */
     componentWillMount() {
+        this.update();
+    }
+
+    componentWillUnmount() {
+
+    }
+
+    update = () => {
         //     this.curID = this.props.curKey;
         //     // console.log(this.curID);
         this.props.getValues(this.props.testPlanData.id);
@@ -631,19 +641,10 @@ class TestPlanContentComponent extends Component {
                     <TabPane tab="基本信息" key="1">
                         <FormItem {...formItemLayout} label={"软件名称"}>
                             {getFieldDecorator('softwareName', {
-                                rules: [{ required: true, message: '请输入软件名称！' }],
-                                initialValue: this.props.values.softwareName,
+                                rules: [],
+                                initialValue: this.props.softWareName,
                             })(
-                                <Input  disabled={this.props.disable}/>
-                            )}
-                        </FormItem>
-
-                        <FormItem {...formItemLayout} label={"项目名称"}>
-                            {getFieldDecorator('projectName', {
-                                rules: [{ required: true, message: '请输入项目名称！' }],
-                                initialValue: this.props.values.projectName,
-                            })(
-                                <Input  disabled={this.props.disable}/>
+                                <Input  disabled={true}/>
                             )}
                         </FormItem>
 
@@ -788,7 +789,7 @@ class TestPlanContentComponent extends Component {
                         </TabPane>
                     */}
 
-                    <TabPane tab="软件测试环境" key="2">
+                    <TabPane tab="测试环境" key="2">
                         <Row>
                             <Col offset={1} span={21}>
                                 <h3>硬件</h3>
@@ -856,9 +857,10 @@ class TestPlanContentComponent extends Component {
                     <TabPane tab="测试计划" key="3">
                         <Row>
                             <Col offset={1} span={21}>
-                                本章描述了计划测试的总范围并且描述了本测试计划适用的每个测试，包括对相关文档的审查。
                                 <h3><br/>总体设计</h3>
                             </Col>
+                        </Row>
+                        <Row>
                             <Col offset={2} span={20}>
                                 <FormItem {...formItemLayout2} label="测试方法">
                                     {getFieldDecorator('testMethods', {
@@ -868,6 +870,10 @@ class TestPlanContentComponent extends Component {
                                         <Input  disabled={this.props.disable}/>
                                     )}
                                 </FormItem>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col offset={2} span={20}>
                                 <FormItem {...formItemLayout2} label="测试类型">
                                     {getFieldDecorator('testType', {
                                         rules: [{ required: true,message: '请输入测试类型！' }],
@@ -877,45 +883,25 @@ class TestPlanContentComponent extends Component {
                                     )}
                                 </FormItem>
                             </Col>
-                            <Col offset={1} span={23}>
-                                <h4>测试级别</h4>
-                            </Col>
+                        </Row>
+                        <Row>
                             <Col offset={2} span={20}>
-                                <FormItem>
-                                    <InputGroup compact>
-                                        本测试的测试级别为
+                                <FormItem {...formItemLayout2} label="测试级别">
                                         {getFieldDecorator('testLevel', {
                                             rules: [{ required: true, message: '请输入测试级别！' }],
                                             initialValue: this.props.values.testLevel,
                                         })(
-                                            <Input style={InputStyle} disabled={this.props.disable} placeholder={"系统级"}/>
+                                            <Input disabled={this.props.disable} placeholder={"系统级"}/>
                                         )}
-                                    </InputGroup>
                                 </FormItem>
-                            </Col>
-                            <Col offset={1} span={23}>
-                                <h4>测试类别</h4>
-                            </Col>
-                            <Col offset={2} span={20}>
-                                <FormItem>
-                                    <InputGroup compact>
-                                        本测试的测试类别为
-                                        {getFieldDecorator('testCategory', {
-                                            rules: [{ required: true, message: '请输入测试类别！' }],
-                                            initialValue: this.props.values.testCategory,
-                                        })(
-                                            <Input style={InputStyle} disabled={this.props.disable} />
-                                        )}
-                                    </InputGroup>
-                                </FormItem>
-                            </Col>
-                            <Col offset={1} span={23}>
-                                <h4>一般测试条件</h4>
-                            </Col>
-                            <Col offset={2} span={20}>
-                                测试应满足时序逻辑，测试使用的数据要符合实际情况，测试应当完全覆盖所有需求。
                             </Col>
                         </Row>
+                        <Row>
+                            <Col offset={2} span={20}>
+                                <p>一般测试条件：测试应满足时序逻辑，测试使用的数据要符合实际情况，测试应当完全覆盖所有需求。</p>
+                            </Col>
+                        </Row>
+
                         <FormItem/>
 
                         <Row>

@@ -34,7 +34,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         consignData: content?state.Consign.listMap[ownProps.id]:ownProps,
         values: consignation ? JSON.parse(consignation) : {},
-        disable: consignState!=="TobeSubmit",
+        disable: !(isCustomer&&consignState==="TobeSubmit"),
         buttonsEnable: buttonsEnable(isCustomer,isMarketing,isSubmitVisible,isReviewVisible),
     }
 };

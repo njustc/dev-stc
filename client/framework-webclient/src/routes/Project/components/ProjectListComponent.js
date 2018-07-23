@@ -80,7 +80,7 @@ class ProjectListComponent extends Component {
             case STATE.TO_REVIEW: return "processing";
             case STATE.TO_CONFIRM: return "processing";
             case STATE.CANCELED: return "default";
-            case STATE.FINISHED: return "success";
+            // case STATE.FINISHED: return "success";
             case STATE.TO_IMPLEMENT: return "processing";
             case STATE.TO_APPROVE: return "processing";
             case STATE.TO_SEND: return "processing";
@@ -146,7 +146,7 @@ class ProjectListComponent extends Component {
         key:"name",
         render: (consign) => {
             let consignBody = consign.consignation?JSON.parse(consign.consignation):{};
-            return consignBody.softwareName?consignBody.softwareName+"测试项目":"未填写";
+            return consignBody.softwareName?consignBody.softwareName:"未填写";
         }
     }, {
         title:"委托单位",
