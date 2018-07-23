@@ -3,6 +3,7 @@
 
 ### WEB-OUT ###
 /web-out/
+/android-out/
 
 ### STS ###
 .apt_generated
