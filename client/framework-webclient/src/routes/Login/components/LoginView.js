@@ -44,7 +44,7 @@ class LoginView extends React.Component {
             <div className="login-background">
                 <div className="login-component">
                     <div className="login-title">
-                        <img src={Logo} className="login-logo "></img>
+                        <img src={Logo} className="login-logo"></img>
                         <span><h2 style={{fontSize:'18px',color:'#666666'}}>南大测试</h2></span>
                     </div>
 
